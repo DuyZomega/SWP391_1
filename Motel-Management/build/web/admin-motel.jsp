@@ -25,7 +25,6 @@
   <div class="sidebar">
     <div class="container">
         <div class="navigation">
-            
             <ul>
                 <div class="logo">
                     <a href="admin.jsp">
@@ -110,7 +109,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="owner-setting.jsp">
+                                                <a href="owner-setting.html">
                                                     <i class='bx bx-cog'></i>
                                                     <span>Cài đặt</span>
                                                 </a>

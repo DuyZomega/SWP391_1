@@ -44,7 +44,7 @@
                             <span class="title">Quản lý Motel</span>
                         </a>
                     </li>
-                    <li  class="active">
+                    <li>
                         <a href="admin-user.jsp">
                             <span><i class='bx bxs-user-rectangle'></i></span>
                             <span class="title">Quản lý người thuê</span>
@@ -56,7 +56,7 @@
                             <span class="title">Quản lý chủ thuê</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="admin-report.jsp">
                             <span><i class='bx bx-bell'></i></span>
                             <span class="title">Report</span>
@@ -68,11 +68,8 @@
                             <span class="title">Tài khoản</span>
                         </a>
                     </li>
-    
                 </ul>
             </div>
-    
-            
         </div>
     </div>
     <!-- End sidebar -->
@@ -110,7 +107,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="owner-setting.jsp">
+                                                    <a href="owner-setting.html">
                                                         <i class='bx bx-cog'></i>
                                                         <span>Cài đặt</span>
                                                     </a>

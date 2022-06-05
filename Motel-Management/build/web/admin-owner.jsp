@@ -71,8 +71,6 @@
     
                 </ul>
             </div>
-    
-            
         </div>
     </div>
     <!-- End sidebar -->
@@ -110,7 +108,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="owner-setting.jsp">
+                                                    <a href="owner-setting.html">
                                                         <i class='bx bx-cog'></i>
                                                         <span>Cài đặt</span>
                                                     </a>
@@ -150,7 +148,7 @@
                                                     <th>ID</th>
                                                     <th>Image</th>
                                                     <th>FullName</th>
-                                                    <th>SL phòng</th>
+                                                    <th>SL Trọ</th>
                                                     <th>Email</th>
                                                     <th>SDT</th>
                                                     <th>Địa chỉ</th>
