@@ -95,10 +95,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                 ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getPasswordError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
-      out.write("                             </h5>                         \r\n");
+      out.write("                            </h5>                         \r\n");
       out.write("                            <a href=\"#\" class=\"float-end\">Quên mật khẩu?</a>\r\n");
       out.write("                        </div>\r\n");
-      out.write("                        <button type=\"submit\" name=\"action\" value=\"Login\" class=\"btn btn-dark\">Đăng nhập</button>\r\n");
+      out.write("                        <button type=\"submit\" name=\"action\" value=\"Login\" class=\"btn btn-danger\">Đăng nhập</button>\r\n");
       out.write("                        <button type=\"reset\" value =\"Reset\" class=\"btn btn-success\">Reset</button>\r\n");
       out.write("                    </form>\r\n");
       out.write("                    <div class=\"d-flex align-items-center justify-content-center pt-lg-5\">\r\n");

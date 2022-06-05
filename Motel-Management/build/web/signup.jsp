@@ -34,42 +34,44 @@
                             <form class="row">
                                 <div class="form-item col-12">
                                     <label for="name">Họ và tên</label>
-                                    <input type="text" class="form-control" placeholder="Full name">
+                                    <input type="text"  name="fullName" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getFullNameError()}
                                     </h5>     
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="user">Tên đăng nhập</label>
-                                    <input type="text" class="form-control" placeholder="User Id">
+                                    <input type="text"  name="userId" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getUserIdError()}
                                     </h5>  
                                 </div>
                                 <div class="form-item col-12">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <label for="gmail">Gmail</label>
+                                    <input type="text"  name="gmail" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getEmailError()}
                                     </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="telephone">Số điện thoại</label>
-                                    <input type="text" class="form-control" placeholder="Telephone number">
+                                    <input type="text"  name="phone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getPhoneError()}
                                     </h5>  
                                 </div>
+                                    <input type="hidden" name="status" value="US"/>
                                 <div class="form-item col-12">
                                     <label for="password">Mật khẩu</label>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password"  name="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getPasswordError()}
                                     </h5>  
                                 </div>
+                                    <input type="hidden" name="status" value="US"/>
                                 <div class="form-item col-12">
                                     <label for="confirm-password">Nhập lại mật khẩu</label>
-                                    <input type="password" class="form-control" placeholder="Confirm password">
+                                    <input type="password"  name="confirm" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getConfirmpasswordError()}
                                     </h5> 
@@ -106,6 +108,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

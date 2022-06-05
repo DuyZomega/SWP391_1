@@ -52,7 +52,7 @@
                             <input type="password" name="password" class="form-control" placeholder="password">
                             <h5 style="color:black; background-color: white">
                                  ${requestScope.USER_ERROR.getPasswordError()}
-                             </h5>                         
+                            </h5>                         
                             <a href="#" class="float-end">Quên mật khẩu?</a>
                         </div>
                         <button type="submit" name="action" value="Login" class="btn btn-danger">Đăng nhập</button>
