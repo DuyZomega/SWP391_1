@@ -35,33 +35,44 @@
                                 <div class="form-item col-12">
                                     <label for="name">Họ và tên</label>
                                     <input type="text" class="form-control" placeholder="Full name">
-                                    ${requestScope.USER_ERROR.getFullNameError()}
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getFullNameError()}
+                                    </h5>     
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="user">Tên đăng nhập</label>
                                     <input type="text" class="form-control" placeholder="User Id">
-                                    ${requestScope.USER_ERROR.getUserIdError()}
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getUserIdError()}
+                                    </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="email">Email</label>
                                     <input type="text" class="form-control" placeholder="Email">
-                                    ${requestScope.USER_ERROR.getEmailError()}
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getEmailError()}
+                                    </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="telephone">Số điện thoại</label>
                                     <input type="text" class="form-control" placeholder="Telephone number">
-                                    ${requestScope.USER_ERROR.getPhoneError()}
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getPhoneError()}
+                                    </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="password">Mật khẩu</label>
                                     <input type="password" class="form-control" placeholder="Password">
-                                    ${requestScope.USER_ERROR.getPasswordError()}
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getPasswordError()}
+                                    </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="confirm-password">Nhập lại mật khẩu</label>
                                     <input type="password" class="form-control" placeholder="Confirm password">
-                                    ${requestScope.USER_ERROR.getConfirmpasswordError()}
-                                 
+                                    <h5 style="color:black; background-color: white">
+                                        ${requestScope.USER_ERROR.getConfirmpasswordError()}
+                                    </h5> 
                                 </div>
                                 <div class="btn-group btn-group-toggle col-12 offset-md-3 col-md-6 pt-3" data-toggle="buttons">
                                     <label class="btn btn-success active">

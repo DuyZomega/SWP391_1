@@ -40,15 +40,15 @@ public class LoginController extends HttpServlet {
             String password=request.getParameter("password");
             UserDAO dao=new UserDAO();
             UserDTO loginUser= dao.checkLogin(userId, password);
+            HttpSession session=request.getSession();
             if(loginUser!=null){
-                HttpSession session=request.getSession();
                 session.setAttribute("LOGIN_USER", loginUser);
-                String roleID=loginUser.getRole();
-                if(AD.equals(roleID)){
+                String role=loginUser.getRole();
+                if(AD.equals(role)){
                     url=ADMIN_PAGE;
-                }else if(US.equals(roleID)){
+                }else if(US.equals(role)){
                     url=USER_PAGE;
-                }else if(OWNER.equals(roleID)){
+                }else if(OWNER.equals(role)){
                     url=OWNER_PAGE;
                 }else{
                     request.setAttribute("ERROR", "Your role is not suppoort!");

@@ -43,15 +43,20 @@
                         <div class="col-12">
                             <label for="userID">Tên đăng nhập</label>
                             <input type="text" name="userId" class="form-control" placeholder="userID or phone">
-                            ${requestScope.USER_ERROR.getUserIdError()}
+                             <h5 style="color:black; background-color: white">
+                                 ${requestScope.USER_ERROR.getUserIdError()}
+                             </h5> 
                         </div>
                         <div class="col-12">
                             <label for="password">Mật khẩu</label>
                             <input type="password" name="password" class="form-control" placeholder="password">
-                            ${requestScope.USER_ERROR.getPasswordError()}
+                            <h5 style="color:black; background-color: white">
+                                 ${requestScope.USER_ERROR.getPasswordError()}
+                             </h5>                         
                             <a href="#" class="float-end">Quên mật khẩu?</a>
                         </div>
                         <button type="submit" name="action" value="Login" class="btn btn-danger">Đăng nhập</button>
+                        <button type="reset" value ="Reset" class="btn btn-success">Reset</button>
                     </form>
                     <div class="d-flex align-items-center justify-content-center pt-lg-5">
                         <p class="mb-0 me-2">Don't have an account? </p>

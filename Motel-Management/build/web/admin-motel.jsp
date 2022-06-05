@@ -1,5 +1,6 @@
 
 
+<%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,13 @@
     <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
+    <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || !"AD".equals(loginUser.getRole())) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
+        %>
   <!-- sidebar -->
   <div class="sidebar">
     <div class="container">

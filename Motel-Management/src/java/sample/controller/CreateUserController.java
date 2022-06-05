@@ -12,8 +12,6 @@ import sample.users.UserDAO;
 import sample.users.UserDTO;
 import sample.users.UserError;
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 import javax.servlet.ServletException;
 
 
@@ -22,7 +20,7 @@ public class CreateUserController extends HttpServlet {
 
     private static final String ERROR = "signup.jsp";
     private static final String SUCCESS = "login.jsp";
-    private static final String gmailPattern = "^\\w+@\\w+[.]\\w+([.]\\w+)?$";
+    private static final String gmailPattern = "\\w+@\\w+[.]\\w+([.]\\w+)?";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,6 +36,7 @@ public class CreateUserController extends HttpServlet {
                     String password = "***";
                     String role = request.getParameter("role");
                     String confirmpasswordError = request.getParameter("confirmpasswordError");
+                    boolean passwordinput = password.matches(password);
             boolean gmailinput = gmail.matches(gmailPattern);
             boolean check = true;
             if (userId.length() > 10 || userId.length() < 2) {
@@ -56,7 +55,7 @@ public class CreateUserController extends HttpServlet {
                 userError.setGmailError("Email must be real");
                 check = false;
             }
-            if (!password.equals(password)) {
+            if (!passwordinput) {
                 userError.setPasswordError("Wrong Password");
                 check = false;
             }
