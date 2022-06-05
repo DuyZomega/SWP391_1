@@ -38,7 +38,6 @@ public class CreateUserController extends HttpServlet {
                     String password = "***";
                     String role = request.getParameter("role");
                     String confirmpasswordError = request.getParameter("confirmpasswordError");
-                    boolean passwordinput = password.matches(password);
             boolean gmailinput = gmail.matches(gmailPattern);
             boolean check = true;
             if (userId.length() > 10 || userId.length() < 2) {
@@ -57,7 +56,7 @@ public class CreateUserController extends HttpServlet {
                 userError.setGmailError("Email must be real");
                 check = false;
             }
-            if (!passwordinput) {
+            if (!password.equals(password)) {
                 userError.setPasswordError("Wrong Password");
                 check = false;
             }
