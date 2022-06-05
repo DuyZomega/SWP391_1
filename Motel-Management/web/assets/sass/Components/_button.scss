@@ -1,0 +1,6 @@
+.button--primary {
+    @include styleButton($color-white-0, $color-red-1, transparent, $fs-3, $fw-0, $pd-2, $pd-0);
+    &:hover {
+        @include hoverButton($color-white-0, $color-red-1, $color-red-1);
+    }
+}

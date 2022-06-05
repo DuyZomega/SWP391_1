@@ -1,0 +1,39 @@
+.background {
+    .container {
+        color: $color-white-0;
+        .login {
+            margin-top: $mg-5;
+            padding-top: $pd-3 + 20px;
+            padding-bottom: $pd-4;
+            border-radius: $border-radius-1;
+            background-color: $color-blue-2;
+            box-shadow: 10px 10px 20px $color-blue-2;
+            img {
+                max-width: 150px;
+                height: auto;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+        }
+        .form {
+            a {
+                color: $color-white-0;
+            }
+            button {
+                margin-top: 30px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                &:hover {
+                    background-color: $color-blue-2;
+                    color: $color-white-0;
+                    border-color: $color-white-0;
+                }
+            }
+        }
+        .signup {
+            color: $color-blue-3;
+        }
+    }
+}
