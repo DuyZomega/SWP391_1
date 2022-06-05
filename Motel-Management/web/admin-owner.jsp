@@ -92,7 +92,7 @@
                         <div class="dropdown">
                             <div class="dropdown dib">
                                 <div class="header-icon" data-toggle="dropdown">
-                                    <span class="user-avatar">Admin Thuyctp
+                                    <span class="user-avatar">${sessionScope.LOGIN_USER.fullName}
                                         <i class='bx bx-chevron-down'></i>
                                     </span>
                                     <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-left">
