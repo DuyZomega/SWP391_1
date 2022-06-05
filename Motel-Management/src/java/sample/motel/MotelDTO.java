@@ -15,7 +15,7 @@ public class MotelDTO {
     private String phone;
     private String address;
     private double rating;
-    private String adminId;
+    private String ownerId;
     private int status;
 
     public String getMotelID() {
@@ -58,12 +58,12 @@ public class MotelDTO {
         this.rating = rating;
     }
 
-    public String getAdminId() {
-        return adminId;
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public void setAdminId(String adminId) {
-        this.adminId = adminId;
+    public void setOwnerId(String adminId) {
+        this.ownerId = adminId;
     }
 
     public int getStatus() {
@@ -82,17 +82,17 @@ public class MotelDTO {
         this.phone = "";
         this.address = "";
         this.rating = 0;
-        this.adminId = "";
+        this.ownerId = "";
         this.status = 0;
     }
 
-    public MotelDTO(String motelID, String name, String phone, String address, double rating, String adminId, int status) {
+    public MotelDTO(String motelID, String name, String phone, String address, double rating, String ownerId, int status) {
         this.motelID = motelID;
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.rating = rating;
-        this.adminId = adminId;
+        this.ownerId = ownerId;
         this.status = status;
     }
     
