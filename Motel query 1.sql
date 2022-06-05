@@ -218,6 +218,12 @@ INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomT
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'215487599', N'phòng số 9', N'', N'phòng đôi máy lạnh', 0, N'625781458',N'2')
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'854577756', N'phòng số 10', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'2')
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'326556884', N'phòng số 11', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'455846698', N'ROOM 001', N'', N'phòng đơn tầng 1', 1, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'589626587', N'ROOM 002', N'', N'phòng đơn tầng 1', 1, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'744774478', N'ROOM 003', N'', N'phòng đơn tầng 1', 0, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'446228678', N'ROOM 004', N'', N'phòng đơn tầng 1', 0, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'874316458', N'ROOM 005', N'', N'phòng đơn tầng 1', 1, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'243181986', N'ROOM 006', N'', N'phòng đơn tầng 1', 1, N'842578129',N'1')
 
 --INSERT service 
 INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) VALUES (N'489656859', N'Coca', 15000, 1, N'587416594')
@@ -295,3 +301,4 @@ SELECT * FROM tblMotel WHERE Address like '%nhơn phú%';
 SELECT * FROM tblUser
 DELETE tblUser WHERE UserID = '01'
 */
+select * from tblRoom where MotelID = '842578129'

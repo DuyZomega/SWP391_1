@@ -18,7 +18,7 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class MotelDAO {
-    private static final String SHOW_MOTEL = "SELECT MotelID, Name, Phone, Address,Ratings,AdminID,Status FROM tblMotel WHERE AdminID = ?"; 
+    private static final String SHOW_MOTEL = "SELECT MotelID, Name, Phone,Image, Address,Ratings,OwnerID,Status FROM tblMotel WHERE OwnerID = ?"; 
     
     public List<MotelDTO> searchMotel(String ownerID) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList();
@@ -34,12 +34,13 @@ public class MotelDAO {
                 while (rs.next()) {
                     String motelID = rs.getString("MotelID");
                     String name = rs.getString("Name");
+                    String image = rs.getString("Image");
                     String phone = rs.getString("Phone");
                     String address = rs.getString("Address");
                     double rating = rs.getDouble("Ratings");
-                    String adminID = rs.getString("AdminID");
+                    String adminID = rs.getString("OwnerID");
                     int status = rs.getInt("Status");
-                    listMotel.add(new MotelDTO(motelID, name, phone, address, rating, adminID, status));
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, address, rating, adminID, status));
                 }
             }
         } catch (Exception e) {

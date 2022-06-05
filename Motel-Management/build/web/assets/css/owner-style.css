@@ -246,6 +246,7 @@ figcaption {
 .header .toggle {
     font-size: 40px;
     padding: 10px;
+    cursor: pointer;
 }
 
 .header .float-left .dashboard_bar {

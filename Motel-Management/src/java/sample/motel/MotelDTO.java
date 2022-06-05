@@ -12,6 +12,7 @@ package sample.motel;
 public class MotelDTO {
     private String motelID;
     private String name;
+    private String image;
     private String phone;
     private String address;
     private double rating;
@@ -73,12 +74,20 @@ public class MotelDTO {
     public void setStatus(int status) {
         this.status = status;
     }
-    
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
     
     
     public MotelDTO(){
         this.motelID = "";
         this.name = "";
+        this.image = "";
         this.phone = "";
         this.address = "";
         this.rating = 0;
@@ -86,9 +95,10 @@ public class MotelDTO {
         this.status = 0;
     }
 
-    public MotelDTO(String motelID, String name, String phone, String address, double rating, String ownerId, int status) {
+    public MotelDTO(String motelID, String name,String image, String phone, String address, double rating, String ownerId, int status) {
         this.motelID = motelID;
         this.name = name;
+        this.image = image;
         this.phone = phone;
         this.address = address;
         this.rating = rating;

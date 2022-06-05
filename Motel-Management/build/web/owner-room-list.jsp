@@ -1,4 +1,9 @@
 
+<%@page import="sample.room.RoomDTO"%>
+<%@page import="sample.users.UserDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.motel.MotelDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,48 +30,55 @@
             <div class="navigation">
                 <ul>
                     <div class="logo">
-                        <a href="owner-index.jsp">
+                        <a href="owner-index.html">
                             <img class="logo" src="assets/img/logo2.png" alt="logo">
                         </a>
                     </div>
+                    <%
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("OW")) {
+                                response.sendRedirect("login.jsp");
+                                return;           
+                            }
+                     %>
                     <li>
-                        <a href="owner-index.jsp">
+                        <a href="owner-index.html">
                             <span><i class='bx bx-tachometer'></i></span>
                             <span class="title">Tổng quan</span>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="owner-room-list.jsp">
+                        <a href="owner-room-list.html">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Phòng</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-service.jsp">
+                        <a href="owner-service.html">
                             <span><i class='bx bx-cloud-rain'></i></span>
                             <span class="title">Dịch vụ</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-history-room.jsp">
+                        <a href="owner-history-room.html">
                             <span><i class='bx bx-history'></i></span>
                             <span class="title">Lịch sử thuê phòng</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-notification.jsp">
+                        <a href="owner-notification.html">
                             <span><i class='bx bx-bell'></i></span>
                             <span class="title">Gửi thông báo</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-statistical.jsp">
+                        <a href="owner-statistical.html">
                             <span><i class='bx bx-line-chart'></i></span>
                             <span class="title">Thống kê</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-profile.jsp">
+                        <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
                             <span><i class='bx bx-user'></i></span>
                             <span class="title">Tài khoản</span>
                         </a>
@@ -132,28 +144,38 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <!-- dung vong for o day -->
+                                <%
+                                    List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
+                                    if (listMotel != null){
+                                        if (listMotel.size() > 0){
+                                            for (MotelDTO motel : listMotel) {
+                                    
+                                %>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#home1">
+                                    <a class="nav-link" data-toggle="tab" href="#a<%= motel.getMotelID() %>">
                                         <i class='bx bx-home-alt-2'></i>
-                                        <span>Home 1</span>
+                                        <span><%= motel.getName() %></span>
                                     </a>
                                 </li>
-                                
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#home2">
-                                        <i class='bx bx-home-alt-2'></i>
-                                        <span>Home 2</span>
-                                    </a>
-                                </li>                          
+                                <%
+                                            }
+                                        }   
+                                    }
+                                %> 
                             </ul>
                             
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <!-- home1 -->
-                                <div class="tab-pane active" id="home1" role="tabpanel">
+                                <%                                  
+                                    if (listMotel != null){
+                                        if (listMotel.size() > 0){
+                                            for (MotelDTO motel : listMotel) {
+                                %>
+                                <div class="tab-pane" id="a<%= motel.getMotelID() %>" role="tabpanel">
                                     <div class="search">
                                         <div class="address-home">
-                                            <span>Địa chỉ: <h5> 111a,Đình phong phú</h5></span>
+                                            <span>Địa chỉ: <h5> <%= motel.getAddress()%></h5></span>
                                         </div>
                                         <form action="#">
                                             <label>
@@ -164,13 +186,18 @@
                                     </div>
                                     <div class="row">
                                         <!-- dung vong for o day -->
+                                        <% 
+                                            List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
+                                            for (RoomDTO room : listRoom) {
+                                                if(room.getMotelID().equals(motel.getMotelID())){                                                                                                                                   
+                                        %>
                                         <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
                                             <div class="card card-child">
                                                 <div class="room-name">
-                                                    <span>Room 1</span>
+                                                    <span><%= room.getName() %></span>
                                                     <div class="status">
                                                         <!-- dùng lệnh if -->
-                                                        <span class="stt1">Trạng thái:<h6>Trống</h6></span>
+                                                        <span class="stt1">Trạng thái:<h6></h6></span>
                                                         <!-- <span class="stt2">Trạng thái:<h6>Đang thuê</h6></span>
                                                         <span class="stt3">Trạng thái:<h6>Đã cọc</h6></span> -->
                                                     </div>
@@ -182,7 +209,7 @@
                                                             <span></span>
                                                         </li>                                                        
                                                         <li>
-                                                            <h6>Thông tin phòng:</h6>
+                                                            <h6>Thông tin phòng: <%= room.getDesc()%></h6>
                                                             <span>
                                                             </span>
                                                         </li>
@@ -193,7 +220,7 @@
                                                         </li>
                                                         <li>
                                                             <h5>Giá:</h5>
-                                                            <span>120,000&dstrok;</span>
+                                                            <span><%= room.getPrice()%>&dstrok;</span>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -203,60 +230,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <%
+                                                    }
+                                                }
+                                            
+                                         %>
                                     </div>
                                 </div>
-                                <!-- home2 -->
-                                <div class="tab-pane" id="home2" role="tabpanel">
-                                    <div class="search">
-                                        <div class="address-home">
-                                            <span>Địa chỉ: <h5> Chưa có</h5></span>
-                                        </div>
-                                        <form action="#">
-                                            <label>
-                                                <input class="form-control" type="text" name="search" placeholder="Search...">
-                                                <i class='bx bx-search-alt'></i>
-                                            </label>
-                                        </form>
-                                    </div>
-                                    <div class="row">
-                                        <!-- dung vong for o day -->
-                                        <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
-                                            <div class="card card-child">
-                                                <div class="room-name">
-                                                    <span>Room 1</span>
-                                                    <div class="status">
-                                                        <!-- dùng lệnh if -->
-                                                        <span class="stt1">Trạng thái:<h6>Trống</h6></span>
-                                                        <!-- <span class="stt2">Trạng thái:<h6>Đang thuê</h6></span>
-                                                        <span class="stt3">Trạng thái:<h6>Đã cọc</h6></span> -->
-                                                    </div>
-                                                </div>
-                                                <div class="card-body room-title">
-                                                    <ul class="list">
-                                                        <li>
-                                                            <h5>Người thuê:</h5>
-                                                            <span></span>
-                                                        </li>                                                        
-                                                        <li>
-                                                            <h5>Dịch vụ:</h5>
-                                                            <span>
-                                                                
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <h5>Giá:</h5>
-                                                            <span>120,000&dstrok;</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group mx-auto">
-                                                    <button class="btn btn-warning" data-toggle="modal" data-target="#titleRoom">Chi Tiết</button>
-                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#deleteRoom">Hủy Phòng</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>       
+                                <%
+                                            }
+                                        }  
+                                     }
+                                %> 
                             </div>
                             <!-- end tapnet -->
                         </div>
