@@ -37,9 +37,15 @@
                             <span><i class='bx bx-tachometer'></i></span>
                             <span class="title">Tổng quan</span>
                         </a>
+                    </li> 
+                    <li>
+                        <a href="#">
+                            <span><i class='bx bxs-user-rectangle'></i></span>
+                            <span class="title">Quản lý Tai Khoan</span>
+                        </a>
                     </li>
                     <li >
-                        <a href="admin-motel.jsp">
+                        <a href="AdminShowMotel">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Quản lý Motel</span>
                         </a>
@@ -93,41 +99,33 @@
                     <div class="float-right">
                         <div class="dropdown">
                             <div class="dropdown dib">
-                                <div class="header-icon" data-toggle="dropdown">
-                                    <span class="user-avatar">Admin Thuyctp
+                                <div class="header-icon admin" data-toggle="dropdown">
+                                    <span class="user-avatar"> 
+                                        <img src="assets/img/avatar.jpg">
+                                        Thuy CTP
                                         <i class='bx bx-chevron-down'></i>
                                     </span>
-                                    <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-left">
-                                        <div class="dropdown-content-heading">
-                                            <span class="text-left">Welcome admin</span>
-                                        </div>
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-user'></i>
-                                                        <span>Tài khoản</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="owner-setting.jsp">
-                                                        <i class='bx bx-cog'></i>
-                                                        <span>Cài đặt</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-log-out-circle'></i>
-                                                        <span>Thoát</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
+                                    <ul class="dropdown-menu dropdown-menu-default ">
+                                        <li class="hidden">
+                                            <a href="admin/profile/info" title="Thông tin tài khoản" class="">
+                                                <i class="icon-user"></i> Thông tin tài khoản </a>
+                                        </li>
+                                        <li>
+                                            <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
+                                                <i class="icon-lock"></i> Đổi mật khẩu </a>
+                                        </li>
+                                        <li>
+                                            <a href="admin/verify/logout">
+                                                <i class="icon-logout"></i> Đăng xuất </a>
+                                        </li>
+                                    </ul>
+
                                 </div>
+
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>

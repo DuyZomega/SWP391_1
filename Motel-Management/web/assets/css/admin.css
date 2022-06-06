@@ -10,3 +10,15 @@
 table.dataTable thead>tr>th.sorting{
     padding-right: 0px;
 }
+.admin a:hover{
+ color: brown;
+ background: transparent;
+}
+.admin img{
+    height: 30px;
+    width: 40px;
+}
+.admin .dropdown-menu{
+    padding: 0.5rem 1.5rem;;
+    line-height: 1.5;
+}

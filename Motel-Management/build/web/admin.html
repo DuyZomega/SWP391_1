@@ -90,38 +90,40 @@
                     <div class="float-right">
                         <div class="dropdown">
                             <div class="dropdown dib">
-                                <div class="header-icon" data-toggle="dropdown">
-                                    <span class="user-avatar">Admin Thuyctp
-                                        <i class='bx bx-chevron-down'></i>
-                                    </span>
-                                    <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-left">
-                                        <div class="dropdown-content-heading">
-                                            <span class="text-left">Welcome admin</span>
-                                        </div>
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-user'></i>
-                                                        <span>Tài khoản</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="owner-setting.html">
-                                                        <i class='bx bx-cog'></i>
-                                                        <span>Cài đặt</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-log-out-circle'></i>
-                                                        <span>Thoát</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                <ul class="nav navbar-nav header-icon">
+                                    <li class="dropdown dropdown-user open user-avatar dropdown-profile dropdown-menu dropdown-menu-left">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                            <span class="username username-hide-on-mobile user-avatar"> 
+                                                <img src="assets/img/avatar.jpg" height="30px" style="width: 30px">
+                                                                            Tứ LV 
+                                            </span>
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-default">
+                                            <li class="hidden">
+                                                <a href="admin/profile/info" title="Thông tin tài khoản" class="">
+                                                <i class="icon-user"></i> Thông tin tài khoản </a>
+                                            </li>
+                                            <li>
+                                                <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
+                                                <i class="icon-lock"></i> Đổi mật khẩu </a>
+                                            </li>
+                                            <li class="hidden">
+                                                <a href="admin/notification">
+                                                <i class="icon-notebook"></i> Nhật kí hoạt động </a>
+                                            </li>
+                                            <li class="hidden">
+                                                <a href="admin/user_role">
+                                                <i class="icon-info"></i> Phân quyền </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="admin/verify/logout">
+                                                <i class="icon-logout"></i> Đăng xuất </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>    

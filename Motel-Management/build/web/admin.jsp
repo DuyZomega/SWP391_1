@@ -37,9 +37,15 @@
                             <span><i class='bx bx-tachometer'></i></span>
                             <span class="title">Tổng quan</span>
                         </a>
+                    </li> 
+                    <li>
+                        <a href="#">
+                            <span><i class='bx bxs-user-rectangle'></i></span>
+                            <span class="title">Quản lý Tai Khoan</span>
+                        </a>
                     </li>
                     <li >
-                        <a href="admin-motel.jsp">
+                        <a href="AdminShowMotel">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Quản lý Motel</span>
                         </a>
@@ -93,38 +99,9 @@
                     <div class="float-right">
                         <div class="dropdown">
                             <div class="dropdown dib">
-                                <div class="header-icon" data-toggle="dropdown">
-                                    <span class="user-avatar">Admin Thuyctp
-                                        <i class='bx bx-chevron-down'></i>
-                                    </span>
-                                    <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-left">
-                                        <div class="dropdown-content-heading">
-                                            <span class="text-left">Welcome admin</span>
-                                        </div>
-                                        <div class="dropdown-content-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-user'></i>
-                                                        <span>Tài khoản</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="owner-setting.jsp">
-                                                        <i class='bx bx-cog'></i>
-                                                        <span>Cài đặt</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class='bx bx-log-out-circle'></i>
-                                                        <span>Thoát</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                              
+                                
+                               
                             </div>
                         </div>
                     </div>    
