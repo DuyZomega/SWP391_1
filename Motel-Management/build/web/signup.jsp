@@ -23,7 +23,7 @@
 <body>
     <div class="background">
         <div class="container">
-            <div class="row">
+            <div class="row" action="CreateUserController ">
                 <div class="col-lg-6 offset-lg-3 p-lg-0">
                     <div class="login row">
                         <div class="col-12 text-center">
@@ -40,7 +40,7 @@
                                     </h5>     
                                 </div>
                                 <div class="form-item col-12">
-                                    <label for="user">Tên đăng nhập</label>
+                                    <label for="userId">Tên đăng nhập</label>
                                     <input type="text"  name="userId" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getUserIdError()}
