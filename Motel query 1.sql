@@ -10,8 +10,6 @@ GO
 USE MotelDB
 GO
 
-
-
 CREATE TABLE [tblUser](--done
 [UserID]       [varchar](10) not null PRIMARY KEY,
 [FullName]     [nvarchar](100) not null,
@@ -27,18 +25,49 @@ CREATE TABLE [tblUser](--done
 [Status]       [bit] null,
 );
 
+CREATE TABLE [tblCity](--done
+[CityID]      [varchar](10) not null PRIMARY KEY,
+[Name]         [nvarchar](50)
+);
+CREATE TABLE [tblDistrict](--done
+[DistrictID]      [varchar](10) not null PRIMARY KEY,
+[Name]         [nvarchar](50),
+[CityID]      [varchar](10) not null FOREIGN KEY REFERENCES tblCity(CityID),
+);
+
+
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'1', N'An Giang')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'2', N'Ba Ria Vung Tau')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'3', N'Bạc Lieu')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'4', N'Bac Giang')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'9', N'Bình Định')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'30', N'Thanh Pho HCM')
+
+/*disctrictID sẽ là số của cityID + 1 2 3 tăng dần*/
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'11', N'An Phú', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'12', N'Phú Tân', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'21', N'Thành phố Bà Rịa', '2')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'22', N'Thành phố Vũng Tàu', '2')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'91', N'Phù Mỹ', '9')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'92', N'Phù Cát', '9')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'301', N'Thành phố Thủ Đức', '30')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'302', N'Quận 2', '30')
+
 CREATE TABLE [tblMotel](--done
 [MotelID]      [varchar](10) not null PRIMARY KEY,
 [Name]         [nvarchar](50),
 [Phone]        [varchar](10),
 [Desct]        [nvarchar] (MAX),
 [Image]        [nvarchar](1000),
-[Address]      [nvarchar](200),
+[Address]      [nvarchar](200), /* này sẽ nhập số nhà tên đường và phường nhé*/
+[DistrictID]	[varchar](10) not null FOREIGN KEY REFERENCES tblDistrict(DistrictID),
 [Ratings]      [decimal](2,1)
 CONSTRAINT chk_Ratings CHECK (Ratings >= 0 AND Ratings <= 5),
 [OwnerID]      [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),
 [Status]       [bit] null,
 );
+
+
 
 CREATE TABLE [tblService](--done
 [ServiceID]    [varchar](10) Not Null PRIMARY KEY ,
@@ -158,15 +187,15 @@ INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [Citiz
 
 
 --insert motel
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Phương Nam', N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0948484848', N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm',4,N'quan01',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0328787878', N'143A Mỹ Đức,Bình Phú,TP Bến Tre,Bến Tre',4.5,N'quan01',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0248996587', N'345/55 Trần Hưng Đạo, Cầu Kho, Quận 1, hcm',4.1,N'tu06',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0344989898', N'263, Lê Hồng Phong, Thành Phố Vũng Tàu, Bà Rịa Vũng Tàu',4.1,N'chuongmai',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'548762589',N'Nhà Trọ Ladalat',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0147586325', N'263, Số 19, đường Hoa Hồng, hồ Tuyền Lâm, phường 4, thành phố Đà Lạt, Đà Lạt',3.9,N'phuc08',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'473658715',N'Nhà Trọ Vạn Phúc',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0478523645', N'91 Vạn Phúc, phường Liễu Giai, quận Ba Đình, Hà Nội',4.7,N'Quang09',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0745898989', N'Đường 30 Tháng 4, Phường Hưng Lợi, Quận Ninh Kiều, Cần Thơ',4.4,N'nhatvuong',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985364865', N'Đặng Huy Trứ, Phường Vĩnh Nguyên, TP. Nha Trang, Khánh Hòa',4.1,N'nhatvuong',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985635353', N'Hùng Vương, Phường Thanh Hà, Thành phố Hội An, Quảng Nam',3.4,N'chuongmai',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Phương Nam', N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0948484848','301', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0328787878','302', N'143A Mỹ Đức,Bình Phú',4.5,N'quan01',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0248996587','302', N'345/55 Trần Hưng Đạo, Cầu Kho',4.1,N'tu06',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0344989898','302', N'263, Lê Hồng Phong',4.1,N'chuongmai',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'548762589',N'Nhà Trọ Ladalat',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0147586325','91', N'263, Số 19, đường Hoa Hồng, hồ Tuyền Lâm, phường 4',3.9,N'phuc08',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'473658715',N'Nhà Trọ Vạn Phúc',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0478523645','301', N'91 Vạn Phúc, phường Liễu Giai',4.7,N'Quang09',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0745898989','11', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985364865','11', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985635353','12', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
 
 --insert room
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'012414785', N'01', N'',N'phòng đơn 1 giường', 1, N'587416594',N'1')
