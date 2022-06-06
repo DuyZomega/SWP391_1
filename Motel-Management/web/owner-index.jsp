@@ -4,6 +4,7 @@
     Author     : Bao
 --%>
 
+<%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,6 +32,13 @@
                             <img class="logo" src="assets/img/logo2.png" alt="logo">
                         </a>
                     </div>
+                    <%
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("OW")) {
+                                response.sendRedirect("login.jsp");
+                                return;           
+                            }
+                     %>
                     <li class="active">
                         <a href="owner-index.jsp">
                             <span><i class='bx bx-tachometer'></i></span>
@@ -38,7 +46,7 @@
                         </a>
                     </li>
                     <li >
-                        <a href="owner-room-list.jsp">
+                        <a href="MainController?action=ShowRoom&ownerID=<%=loginUser.getUserId()%>">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Phòng</span>
                         </a>

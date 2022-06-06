@@ -27,7 +27,9 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT_CONTROLLER = "LogoutController"; 
     private static final String SHOW_ROOM_LIST = "ShowRoom";
     private static final String SHOW_ROOM_LIST_CONTROLLER = "ShowRoomController"; 
-    
+    private static final String SHOW_PROFILE = "ShowProfile";
+    private static final String SHOW_PROFILE_CONTROLLER = "ShowProfileController";
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,6 +42,8 @@ public class MainController extends HttpServlet {
                 url = LOGOUT_CONTROLLER;
             } else if (SHOW_ROOM_LIST.equals(action)){
                 url = SHOW_ROOM_LIST_CONTROLLER;
+            } else if (SHOW_PROFILE.equals(action)){
+                url = SHOW_PROFILE_CONTROLLER;
             }
             
         } catch (Exception e) {

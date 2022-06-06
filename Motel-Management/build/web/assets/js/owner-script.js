@@ -8,7 +8,16 @@ toggle.onclick = function () {
     header.classList.toggle('active');
     main.classList.toggle('active');
 }
-
+$('.nav-link').each(function(i){
+    if(i === 0){
+        $(this).addClass('active');
+    }
+});
+$('.tab-pane').each(function(i){
+    if(i === 0){
+        $(this).addClass('active');
+    }
+});
 // input image
 let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");

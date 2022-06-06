@@ -42,9 +42,10 @@ public class ShowRoomController extends HttpServlet {
                 request.setAttribute("LIST_MOTEL", listMotel);
                 RoomDAO dao2 = new RoomDAO();
                 for(MotelDTO motel : listMotel){                  
-                    listRoom = dao2.searchRoom(motel.getMotelID());
+                   List<RoomDTO> list = dao2.searchRoom(motel.getMotelID());
+                   listRoom.addAll(list);
                 }
-                request.setAttribute("ROOM_LIST", listRoom);
+                request.setAttribute("LIST_ROOM", listRoom);
                 url=SUCCESS;
             }
             
