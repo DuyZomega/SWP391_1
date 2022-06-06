@@ -44,6 +44,12 @@
                             <span class="title">Quản lý Tai Khoan</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="admin-user.jsp">
+                            <span><i class='bx bxs-user-rectangle'></i></span>
+                            <span class="title">Quản lý tai khoan</span>
+                        </a>
+                    </li>
                     <li >
                         <a href="AdminShowMotel">
                             <span><i class='bx bx-home'></i></span>
@@ -102,7 +108,7 @@
                                 <div class="header-icon admin" data-toggle="dropdown">
                                     <span class="user-avatar"> 
                                         <img src="assets/img/avatar.jpg">
-                                        Thuy CTP
+                                        Thuy CTP ${sessionScope.LOGIN_USER.fullName}
                                         <i class='bx bx-chevron-down'></i>
                                     </span>
 

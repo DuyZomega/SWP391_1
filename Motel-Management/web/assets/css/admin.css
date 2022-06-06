@@ -28,7 +28,7 @@ table.dataTable thead>tr>th.sorting{
 }
 
 .sharp.btn-xs {
-    padding: 3px !important;
+    padding: 1px !important;
     width: 26px;
     height: 26px;
     min-width: 26px;
@@ -70,4 +70,7 @@ table.dataTable thead>tr>th.sorting{
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: 0.75rem;
+}
+.table img{
+    max-width: 120px;
 }

@@ -11,18 +11,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <!--Boxicons-->
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/owner-style.css">
-    
+
     <link rel="stylesheet" href="assets/css/admin.css">
 </head>
+
 <body>
     <!-- sidebar -->
     <div class="sidebar">
         <div class="container">
             <div class="navigation">
-                
+
                 <ul>
                     <div class="logo">
                         <a href="admin.html">
@@ -35,7 +36,7 @@
                             <span class="title">Tổng quan</span>
                         </a>
                     </li>
-                    <li >
+                    <li>
                         <a href="admin-motel.html">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Quản lý Motel</span>
@@ -65,11 +66,11 @@
                             <span class="title">Tài khoản</span>
                         </a>
                     </li>
-    
+
                 </ul>
             </div>
-    
-            
+
+
         </div>
     </div>
     <!-- End sidebar -->
@@ -90,43 +91,33 @@
                     <div class="float-right">
                         <div class="dropdown">
                             <div class="dropdown dib">
-                                <ul class="nav navbar-nav header-icon">
-                                    <li class="dropdown dropdown-user open user-avatar dropdown-profile dropdown-menu dropdown-menu-left">
-                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
-                                            <span class="username username-hide-on-mobile user-avatar"> 
-                                                <img src="assets/img/avatar.jpg" height="30px" style="width: 30px">
-                                                                            Tứ LV 
-                                            </span>
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-default">
-                                            <li class="hidden">
-                                                <a href="admin/profile/info" title="Thông tin tài khoản" class="">
+                                <div class="header-icon admin" data-toggle="dropdown">
+                                    <span class="user-avatar"> 
+                                        <img src="assets/img/avatar.jpg">
+                                        Thuy CTP
+                                        <i class='bx bx-chevron-down'></i>
+                                    </span>
+
+                                    <ul class="dropdown-menu dropdown-menu-default ">
+                                        <li class="hidden">
+                                            <a href="admin/profile/info" title="Thông tin tài khoản" class="">
                                                 <i class="icon-user"></i> Thông tin tài khoản </a>
-                                            </li>
-                                            <li>
-                                                <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
+                                        </li>
+                                        <li>
+                                            <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
                                                 <i class="icon-lock"></i> Đổi mật khẩu </a>
-                                            </li>
-                                            <li class="hidden">
-                                                <a href="admin/notification">
-                                                <i class="icon-notebook"></i> Nhật kí hoạt động </a>
-                                            </li>
-                                            <li class="hidden">
-                                                <a href="admin/user_role">
-                                                <i class="icon-info"></i> Phân quyền </a>
-                                            </li>
-                                            <li class="divider"> </li>
-                                            <li>
-                                                <a href="admin/verify/logout">
+                                        </li>
+                                        <li>
+                                            <a href="admin/verify/logout">
                                                 <i class="icon-logout"></i> Đăng xuất </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,54 +127,54 @@
     <!-- Main Content -->
 
     <div class="main-content">
-            <div class="cardBox">
-                <div class="card room">
-                    <div class="inconBx">
-                        <i class='bx bx-home-heart'></i>
-                    </div>
-                    <div>
-                        <div class="number">1,504</div>
-                        <div class="cardName">Số lượng motel</div>
-                    </div>
+        <div class="cardBox">
+            <div class="card room">
+                <div class="inconBx">
+                    <i class='bx bx-home-heart'></i>
                 </div>
-                <div class="card service">
-                    <div class="inconBx">
-                        <i class='bx bxs-user-rectangle'></i>
-                    </div>
-                    <div>
-                        <div class="number">1,504</div>
-                        <div class="cardName">Người thuê</div>
-                    </div>
-                </div>
-                <div class="card feedback">
-                    <div class="inconBx">
-                        <i class='bx bx-user-circle'></i>
-                    </div>
-                    <div>
-                        <div class="number">1,504</div>
-                        <div class="cardName">Chủ trọ</div>
-                    </div>
-                </div>
-                <div class="card turnover">
-                    <div class="inconBx">
-                        <i class='bx bx-money'></i>
-                    </div>
-                    <div>
-                        <div class="number">&#8363;1,512.250</div>
-                        <div class="cardName">Tổng doanh thu</div>
-                    </div>
+                <div>
+                    <div class="number">1,504</div>
+                    <div class="cardName">Số lượng motel</div>
                 </div>
             </div>
+            <div class="card service">
+                <div class="inconBx">
+                    <i class='bx bxs-user-rectangle'></i>
+                </div>
+                <div>
+                    <div class="number">1,504</div>
+                    <div class="cardName">Người thuê</div>
+                </div>
+            </div>
+            <div class="card feedback">
+                <div class="inconBx">
+                    <i class='bx bx-user-circle'></i>
+                </div>
+                <div>
+                    <div class="number">1,504</div>
+                    <div class="cardName">Chủ trọ</div>
+                </div>
+            </div>
+            <div class="card turnover">
+                <div class="inconBx">
+                    <i class='bx bx-money'></i>
+                </div>
+                <div>
+                    <div class="number">&#8363;1,512.250</div>
+                    <div class="cardName">Tổng doanh thu</div>
+                </div>
+            </div>
+        </div>
 
-            <!-- order detail list -->
-            <div class="dashboard row">
-                <div class="recent-orders col-12">
-                    <div class="cardHeader">
-                        <h2>chart</h2>
-                        <a href="#" class="btn btn-danger">Xem tất cả</a>
-                    </div>
+        <!-- order detail list -->
+        <div class="dashboard row">
+            <div class="recent-orders col-12">
+                <div class="cardHeader">
+                    <h2>chart</h2>
+                    <a href="#" class="btn btn-danger">Xem tất cả</a>
                 </div>
             </div>
+        </div>
     </div>
 
 
