@@ -34,25 +34,25 @@
                             <form class="row" action="CreateUserController">
                                 <div class="form-item col-12">
                                     <label for="name">Họ và tên</label>
-                                    <input type="text"  name="fullName" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="text"  placeholder="fullName" class="form-control" >
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getFullNameError()}
                                     </h5>     
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="userId">Tên đăng nhập</label>
-                                    <input type="text"  name="userId" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="text"  placeholder="userId" class="form-control" >
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getUserIdError()}
                                     </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="gmail">Gmail</label>
-                                    <input type="text"  name="gmail" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="text"  placeholder="gmail" class="form-control" >
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="telephone">Số điện thoại</label>
-                                    <input type="text"  name="phone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="text"  placeholder="phone" class="form-control" >
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getPhoneError()}
                                     </h5>  
@@ -60,7 +60,7 @@
                                     <input type="hidden" name="status" value="US"/>
                                 <div class="form-item col-12">
                                     <label for="password">Mật khẩu</label>
-                                    <input type="password"  name="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="password"  placeholder="password" class="form-control" >
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getPasswordError()}
                                     </h5>  
@@ -68,7 +68,7 @@
                                     <input type="hidden" name="status" value="US"/>
                                 <div class="form-item col-12">
                                     <label for="confirm-password">Nhập lại mật khẩu</label>
-                                    <input type="password"  name="confirm" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
+                                    <input type="password"  placeholder="confirm" class="form-control">
                                     <h5 style="color:black; background-color: white">
                                         ${requestScope.USER_ERROR.getConfirmpasswordError()}
                                     </h5> 
