@@ -44,14 +44,14 @@
                             <label for="userID">Tên đăng nhập</label>
                             <input type="text" name="userId" class="form-control" placeholder="userID or phone">
                              <h5 style="color:black; background-color: white">
-                                 ${requestScope.USER_ERROR.getUserIdError()}
+                                 ${requestScope.ERROR}
                              </h5> 
                         </div>
                         <div class="col-12">
                             <label for="password">Mật khẩu</label>
                             <input type="password" name="password" class="form-control" placeholder="password">
                             <h5 style="color:black; background-color: white">
-                                 ${requestScope.USER_ERROR.getPasswordError()}
+                                 ${requestScope.ERROR}
                             </h5>                         
                             <a href="#" class="float-end">Quên mật khẩu?</a>
                         </div>

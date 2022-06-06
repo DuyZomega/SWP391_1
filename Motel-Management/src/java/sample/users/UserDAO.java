@@ -111,7 +111,7 @@ public List<UserDTO> getListUser(String search) throws SQLException {
                     String phone = rs.getString("phone");
                     String gmail = rs.getString("gmail");
                     String address = rs.getString("address");
-                    String password = "***";
+                    String password = rs.getString("password");
                     String role = rs.getString("role");
                     int status = rs.getInt("status");
                     list.add(new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, password, role, status));
