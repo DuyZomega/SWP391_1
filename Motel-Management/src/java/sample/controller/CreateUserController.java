@@ -28,16 +28,16 @@ public class CreateUserController extends HttpServlet {
         String url = ERROR;
         UserError userError = new UserError("", "", "", "", "", "","","");
         try {
-                    String userId = request.getParameter("userID");
+                    String userId = request.getParameter("userId");
                     String fullName = request.getParameter("fullName");
                     String phone = request.getParameter("phone");
                     String gmail = request.getParameter("gmail");
-                    String address = request.getParameter("address");
-                    String password = "***";
+                    String address = "...";
+                    String password = request.getParameter("password");
                     String role = request.getParameter("role");
-                    String confirmpasswordError = request.getParameter("confirmpasswordError");
-                    boolean passwordinput = password.matches(password);
-            boolean gmailinput = gmail.matches(gmailPattern);
+                    String confirm = request.getParameter("confirm");
+                   
+         
             boolean check = true;
             if (userId.length() > 10 || userId.length() < 2) {
                 userError.setUserIdError("UserID contains 2 - 10 characters!");
@@ -51,19 +51,9 @@ public class CreateUserController extends HttpServlet {
                 userError.setPhoneError("Phone number must  atleast 10 number");
                 check = false;
             }
-            if (!gmailinput) {
-                userError.setGmailError("Email must be real");
-                check = false;
-            }
-            if (!passwordinput) {
-                userError.setPasswordError("Wrong Password");
-                check = false;
-            }
-            if (address.length() < 5) {
-                userError.setAddressError("Address must be real");
-                check = false;
-            }
-            if (!password.equals(confirmpasswordError)) {
+    
+            
+            if (!password.equals(confirm)) {
                 userError.setConfirmpasswordError("Passwords are not the same!");
                 check = false;
             }

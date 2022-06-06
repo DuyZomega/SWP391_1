@@ -31,7 +31,7 @@
                             <h4 class="text-center">Thông tin đăng ký</h4>
                         </div>
                         <div class="form col-12 px-5">
-                            <form class="row">
+                            <form class="row" action="CreateUserController">
                                 <div class="form-item col-12">
                                     <label for="name">Họ và tên</label>
                                     <input type="text"  name="fullName" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
@@ -49,9 +49,6 @@
                                 <div class="form-item col-12">
                                     <label for="gmail">Gmail</label>
                                     <input type="text"  name="gmail" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" required="">
-                                    <h5 style="color:black; background-color: white">
-                                        ${requestScope.USER_ERROR.getEmailError()}
-                                    </h5>  
                                 </div>
                                 <div class="form-item col-12">
                                     <label for="telephone">Số điện thoại</label>
@@ -78,10 +75,10 @@
                                 </div>
                                 <div class="btn-group btn-group-toggle col-12 offset-md-3 col-md-6 pt-3" data-toggle="buttons">
                                     <label class="btn btn-success active">
-                                      <input type="radio" name="US" id="US" checked> Người thuê
+                                      <input type="radio" name="role" value="US" checked> Người thuê
                                     </label>
                                     <label class="btn btn-danger">
-                                      <input type="radio" name="OW" id="OW"> Chủ trọ
+                                      <input type="radio" name="role" value="OW"> Chủ trọ
                                     </label>
                                   </div>
                                 <div class="button col-12">

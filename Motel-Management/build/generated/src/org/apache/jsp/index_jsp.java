@@ -3,7 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import sample.users.UserDTO;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -45,7 +44,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html lang=\"en\">\r\n");
       out.write("\r\n");
@@ -77,7 +75,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</head>\r\n");
       out.write("\r\n");
       out.write("<body>\r\n");
-      out.write("    \r\n");
       out.write("    <!-- HEADER -->\r\n");
       out.write("    <header>\r\n");
       out.write("        \r\n");
@@ -126,17 +123,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </li>\r\n");
       out.write("                    </ul>\r\n");
       out.write("                </div>\r\n");
-
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if (loginUser == null || !"US".equals(loginUser.getRole())) {
-                response.sendRedirect("login.jsp");
-                return;
-            }
-            String searchprd = (String) request.getParameter("search");
-            if (searchprd == null) {
-                searchprd = "";
-            }
-        
       out.write("\r\n");
       out.write("                <div class=\"header__bottom__right\">\r\n");
       out.write("                    <form class=\"header__bottom--search\">\r\n");
