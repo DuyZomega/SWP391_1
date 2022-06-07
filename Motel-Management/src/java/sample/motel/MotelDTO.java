@@ -14,7 +14,10 @@ public class MotelDTO {
     private String name;
     private String image;
     private String phone;
+    private String Desct;
     private String address;
+    private String district;
+    private String city;
     private double rating;
     private String ownerId;
     private int status;
@@ -82,6 +85,31 @@ public class MotelDTO {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDesct() {
+        return Desct;
+    }
+
+    public void setDesct(String Desct) {
+        this.Desct = Desct;
+    }
+    
     
     
     public MotelDTO(){
@@ -89,18 +117,24 @@ public class MotelDTO {
         this.name = "";
         this.image = "";
         this.phone = "";
+        this.Desct = "";
         this.address = "";
+        this.district = "";
+        this.city = "";
         this.rating = 0;
         this.ownerId = "";
         this.status = 0;
     }
 
-    public MotelDTO(String motelID, String name,String image, String phone, String address, double rating, String ownerId, int status) {
+    public MotelDTO(String motelID, String name,String image, String phone, String desct ,String address , String district,String city, double rating, String ownerId, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
         this.phone = phone;
+        this.Desct = desct;
         this.address = address;
+        this.district = district;
+        this.city = city;
         this.rating = rating;
         this.ownerId = ownerId;
         this.status = status;
