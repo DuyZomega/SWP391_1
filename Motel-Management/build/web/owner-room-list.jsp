@@ -175,7 +175,7 @@
                                 <div class="tab-pane" id="a<%= motel.getMotelID() %>" role="tabpanel">
                                     <div class="search">
                                         <div class="address-home">
-                                            <span>Địa chỉ: <h5> <%= motel.getAddress()%></h5></span>
+                                            <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></h5></span>
                                         </div>
                                         <form action="#">
                                             <label>
