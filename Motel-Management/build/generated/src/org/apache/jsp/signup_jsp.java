@@ -77,7 +77,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <form class=\"row\" action=\"CreateUserController\">\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"name\">Họ và tên</label>\r\n");
-      out.write("                                    <input type=\"text\"  name=\"fullName\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"text\"  placeholder=\"fullName\" class=\"form-control\" >\r\n");
       out.write("                                    <h5 style=\"color:black; background-color: white\">\r\n");
       out.write("                                        ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getFullNameError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -86,7 +86,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                </div>\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"userId\">Tên đăng nhập</label>\r\n");
-      out.write("                                    <input type=\"text\"  name=\"userId\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"text\"  placeholder=\"userId\" class=\"form-control\" >\r\n");
       out.write("                                    <h5 style=\"color:black; background-color: white\">\r\n");
       out.write("                                        ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getUserIdError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -95,11 +95,11 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                </div>\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"gmail\">Gmail</label>\r\n");
-      out.write("                                    <input type=\"text\"  name=\"gmail\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"text\"  placeholder=\"gmail\" class=\"form-control\" >\r\n");
       out.write("                                </div>\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"telephone\">Số điện thoại</label>\r\n");
-      out.write("                                    <input type=\"text\"  name=\"phone\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"text\"  placeholder=\"phone\" class=\"form-control\" >\r\n");
       out.write("                                    <h5 style=\"color:black; background-color: white\">\r\n");
       out.write("                                        ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getPhoneError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -109,7 +109,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <input type=\"hidden\" name=\"status\" value=\"US\"/>\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"password\">Mật khẩu</label>\r\n");
-      out.write("                                    <input type=\"password\"  name=\"password\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"password\"  placeholder=\"password\" class=\"form-control\" >\r\n");
       out.write("                                    <h5 style=\"color:black; background-color: white\">\r\n");
       out.write("                                        ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getPasswordError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
@@ -119,7 +119,7 @@ public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <input type=\"hidden\" name=\"status\" value=\"US\"/>\r\n");
       out.write("                                <div class=\"form-item col-12\">\r\n");
       out.write("                                    <label for=\"confirm-password\">Nhập lại mật khẩu</label>\r\n");
-      out.write("                                    <input type=\"password\"  name=\"confirm\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\" required=\"\">\r\n");
+      out.write("                                    <input type=\"password\"  placeholder=\"confirm\" class=\"form-control\">\r\n");
       out.write("                                    <h5 style=\"color:black; background-color: white\">\r\n");
       out.write("                                        ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${requestScope.USER_ERROR.getConfirmpasswordError()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
