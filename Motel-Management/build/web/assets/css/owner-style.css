@@ -772,7 +772,16 @@ figcaption {
 
 }
 
+
+
+
+
 /* profile */
+
+#accordion .card {
+    border-radius: 10px;
+}
+
 .card-setting {
     background: #34495e !important;
     border-radius: 10px !important;
@@ -791,9 +800,102 @@ figcaption {
     position: relative;
 }
 
-#accordion .card {
-    border-radius: 10px;
+.profile-pic {
+    position: relative;
+    margin: auto;
+    width: 165px;
 }
+
+.profile-pic img {
+    object-fit: cover;
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    border: 3px solid #cccccc;
+}
+
+.profile-pic .upload {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    background: #34495e;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #cccccc;
+}  
+
+.profile-pic .upload i {
+    color: #fff;
+}
+
+.profile-pic .upload button {
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+}
+
+.profile-name {
+    display: block;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 0px 15px;
+    text-align: center;
+}
+
+.profile-content {
+    margin-top: 15px;
+    padding: 0px 15px;
+    border-top: 1px solid #e7e7e7;
+}
+
+.profile-content .contact-info {
+    margin: 10px 0px;
+}
+
+.contact-info .info-title {
+    position: relative;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.info-title h4{
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-top: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.phone-number,
+.mail-address,
+.contact-email,
+.contact-website,
+.contact-skype,
+.birth-date,
+.gender {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #373757;
+}
+
+.contact-title {
+    display: inline-block;
+    padding-bottom: 15px;
+    width: 170px;
+    font-size: 16px;
+    color: #868e96;
+}
+
+.error-message {
+    color: #e74c3c;
+}
+
+
+
+
 
 
 
@@ -830,126 +932,21 @@ figcaption {
     display: block;
 }
 
-.profile-pic {
-    position: relative;
-    margin: auto;
-    width: 165px;
-}
-
- .profile-pic img {
-    object-fit: cover;
-    width: 165px;
-    height: 165px;
-    border-radius: 50%;
-    border: 3px solid #cccccc;
-}
-
-.profile-pic .upload {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 35px;
-    height: 35px;
-    background: #34495e;
-    line-height: 35px;
-    text-align: center;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #cccccc;
-}  
-
-.profile-pic .upload i {
-    color: #fff;
-}
-
-.profile-pic .upload button {
-    position: absolute;
-    transform: scale(2);
-    opacity: 0;
-}
-
-.profile-content {
-    position: absolute;
-    margin: 20px;
-    width: 90%;
-}
-.user-work h4,
-.user-skill h4 {
-  font-size: 14px;
-  position: relative;
-  margin-bottom: 15px;
-  padding: 5px 0px;
-  border-bottom: 1px solid #e7e7e7;
-  font-family: 'Roboto', sans-serif;
-}
-
-.user-profile-name {
-  display: block;
-  font-size: 22px;
-  font-weight: 500;
-  padding: 0px 15px;
-  text-align: center;
-}
 
 
 
-.user-profile-tab {
-    margin-top: 15px;
-    padding: 0px 15px;
-    border-top: 1px solid #e7e7e7;
-}
 
-.contact-information,
-.basic-information {
-    margin: 10px 0px;
-}
 
-.contact-information .info-title {
-    position: relative;
-    display: flex;
-    padding-bottom: 15px;
-}
 
-.contact-information .info-title a {
-    padding: 5px 10px;
-    border-radius: 20px;
-    background: #2980b9;
-    right: 0;
-    margin-left: 20px;
-    color: #fff;
-}
-.contact-information .info-title a:hover {
-    text-decoration: none;
-    background: #34495e;
-}
 
-.contact-information h4,
-.basic-information h4 {
-    font-size: 12px;
-    text-transform: uppercase;
-    padding-top: 10px;
-    font-family: 'Roboto', sans-serif;
-}
 
-.contact-title {
-    display: inline-block;
-    padding-bottom: 15px;
-    width: 170px;
-    font-size: 16px;
-    color: #868e96;
-}
 
-.phone-number,
-.mail-address,
-.contact-email,
-.contact-website,
-.contact-skype,
-.birth-date,
-.gender {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    color: #373757;
-}
+
+
+
+
+
+
 
 /* notification */
 .email-left-box {
