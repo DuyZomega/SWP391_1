@@ -325,3 +325,4 @@ SELECT * FROM tblMotel WHERE Address like '%nhơn phú%';
 SELECT * FROM tblUser
 DELETE tblUser WHERE UserID = '01'
 */
+UPDATE tblUser SET Password = '1' WHERE UserID = 'quan01' 

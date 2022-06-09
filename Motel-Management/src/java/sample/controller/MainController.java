@@ -29,10 +29,17 @@ public class MainController extends HttpServlet {
     private static final String SHOW_ROOM_LIST_CONTROLLER = "ShowRoomController"; 
     private static final String SHOW_PROFILE = "ShowProfile";
     private static final String SHOW_PROFILE_CONTROLLER = "ShowProfileController";
+    private static final String UPDATE_USER = "updateOwner";
+    private static final String UPDATE_USER_CONTROLLER = "UpdateOwnerController";
+    private static final String CHANGE_PASSWORD = "ChangePassword";
+    private static final String CHANGE_PASSWORD_CONTROLLER = "ChangePassWordController";
+    private static final String CHANGE_IMAGE = "ChangeImage";
+    private static final String CHANGE_IMAGE_CONTROLLER = "ChangeImageController";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         String url = ERROR;
         try {
             String action = request.getParameter("action");
@@ -44,6 +51,12 @@ public class MainController extends HttpServlet {
                 url = SHOW_ROOM_LIST_CONTROLLER;
             } else if (SHOW_PROFILE.equals(action)){
                 url = SHOW_PROFILE_CONTROLLER;
+            } else if (UPDATE_USER.equals(action)){
+                url = UPDATE_USER_CONTROLLER;
+            } else if (CHANGE_PASSWORD.equals(action)){
+                url = CHANGE_PASSWORD_CONTROLLER;
+            } else if (CHANGE_IMAGE.equals(action)){
+                url = CHANGE_IMAGE_CONTROLLER;
             }
             
         } catch (Exception e) {
