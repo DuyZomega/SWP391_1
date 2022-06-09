@@ -6,43 +6,55 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
+import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "AdminShowMotel", urlPatterns = {"/AdminShowMotel"})
-public class AdminShowMotel extends HttpServlet {
+@WebServlet(name = "AdminDetailUser", urlPatterns = {"/AdminDetailUser"})
+public class AdminDetailUser extends HttpServlet {
 
-     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "admin-motel.jsp";
-    
+    private static final String ERROR = "error.jsp";
+    private static final String OWNER = "admin-owner-info.jsp";
+    private static final String USER = "admin-owner-info.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url =  ERROR;
+        String url = ERROR;
         try {
-            MotelDAO dao1 = new MotelDAO();
-            List<MotelDTO> adminMotel = dao1.adminShowMotel();
-            if (adminMotel.size()>0){
-                request.setAttribute("ADMIN_LIST_MOTEL", adminMotel);
-                url=SUCCESS;
-            } else{
-                 request.setAttribute("ERROR_MESSAGE", "No motel here");
-                url=SUCCESS;
+            String userId = request.getParameter("userId");
+            String role = request.getParameter("role");
+            UserDAO user = new UserDAO();
+            List<UserDTO> listAcc = user.getInfo(userId);
+            if (role.equals("US")) {
+                if (listAcc.size() > 0) {
+                    request.setAttribute("INFO", listAcc);
+                    url = USER;
+                } else {
+                    request.setAttribute("ERROR_MESSAGE", "No user here");
+                    url = USER;
+                }
+            } else if (role.equals("OW")) {
+                if (listAcc.size() > 0) {
+                    request.setAttribute("INFO", listAcc);
+                    url = OWNER;
+                } else {
+                    request.setAttribute("ERROR_MESSAGE", "No owner here");
+                    url = OWNER;
+                }
             }
-            
+
         } catch (Exception e) {
-            log("Error at showlistcontroller: "+e.toString());
+            log("Error at showlistcontroller: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

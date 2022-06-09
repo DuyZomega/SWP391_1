@@ -5,12 +5,14 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -19,29 +21,28 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AdminListAccount", urlPatterns = {"/AdminListAccount"})
 public class AdminListAccount extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+      private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "admin-account.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AdminListAccount</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AdminListAccount at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+       String url =  ERROR;
+        try {
+            UserDAO user = new UserDAO();
+            List<UserDTO> listAcc = user.getListAcc();
+            if (listAcc.size()>0){
+                request.setAttribute("LIST_ACC", listAcc);
+                url=SUCCESS;
+            } else{
+                request.setAttribute("ERROR_MESSAGE", "No account here");
+                url=SUCCESS;
+            }
+            
+        } catch (Exception e) {
+            log("Error at showlistcontroller: "+e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

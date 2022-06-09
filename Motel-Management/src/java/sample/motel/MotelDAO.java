@@ -20,9 +20,8 @@ import sample.utils.DBUtils;
 public class MotelDAO {
     private static final String SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, Phone,Desct,Image, Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,OwnerID,Status FROM tblMotel,tblDistrict,tblCity WHERE OwnerID = ? AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID"; 
    
-    private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, Name, tblMotel.Image, tblMotel.Phone, tblMotel.Address, tblMotel.Ratings, tblMotel.Status, OwnerID \n" +
-"FROM tblMotel "; 
-  
+    private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
+
     public List<MotelDTO> searchMotel(String ownerID) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList();
         Connection conn = null;
@@ -66,7 +65,7 @@ public class MotelDAO {
     }
 
     public List<MotelDTO> adminShowMotel() throws SQLException {
-       List<MotelDTO> adminMotel = new ArrayList();
+        List<MotelDTO> adminMotel = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -81,10 +80,12 @@ public class MotelDAO {
                     String image = rs.getString("Image");
                     String phone = rs.getString("Phone");
                     String address = rs.getString("Address");
+                    String districtName = rs.getString("DistrictName");
+                    String cityName = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
-                    String ownerId = rs.getString("OwnerID");
+                    String ownerId = rs.getString("FullName");
                     int status = rs.getInt("Status");
-                    adminMotel.add(new MotelDTO(motelID, name, image, phone, address, rating, ownerId, status));
+                    adminMotel.add(new MotelDTO(motelID, name, image, phone, address, districtName, cityName, rating, ownerId, status));
                 }
             }
         } catch (Exception e) {
@@ -101,6 +102,6 @@ public class MotelDAO {
             }
         }
         return adminMotel;
-    
+
     }
 }

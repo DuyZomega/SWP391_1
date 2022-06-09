@@ -24,6 +24,7 @@
     </head>
     <body>
 
+
         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
@@ -35,26 +36,32 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li>
+                        <li >
                             <a href="admin.jsp">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
+                        </li> 
+                        <li>
+                            <a href="AdminListAccount">
+                                <span><i class='bx bxs-user-rectangle'></i></span>
+                                <span class="title">Quản lý Tai Khoan</span>
+                            </a>
                         </li>
-                        <li class="active" >
-                            <a href="admin-motel.jsp">
+                        <li class="active">
+                            <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
                             </a>
                         </li>
                         <li>
-                            <a href="admin-user.jsp">
+                            <a href="UserManager?action=all&role=US">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý người thuê</span>
                             </a>
                         </li>
                         <li>
-                            <a href="admin-owner.jsp">
+                            <a href="UserManager?action=all&role=OW">
                                 <span><i class='bx bx-user-circle'></i></span>
                                 <span class="title">Quản lý chủ thuê</span>
                             </a>
@@ -80,6 +87,7 @@
         </div>
         <!-- End sidebar -->
 
+
         <!-- Header -->
         <div class="header">
             <div class="container-fluid">
@@ -94,35 +102,35 @@
                             </div>
                         </div>
                         <div class="float-right">
-                        <div class="dropdown">
-                            <div class="dropdown dib">
-                                <div class="header-icon admin" data-toggle="dropdown">
-                                    <span class="user-avatar"> 
-                                        <img src="assets/img/avatar.jpg">
-                                        Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                        <i class='bx bx-chevron-down'></i>
-                                    </span>
+                            <div class="dropdown">
+                                <div class="dropdown dib">
+                                    <div class="header-icon admin" data-toggle="dropdown">
+                                        <span class="user-avatar"> 
+                                            <img src="assets/img/avatar.jpg">
+                                            Thuy CTP ${sessionScope.LOGIN_USER.fullName}
+                                            <i class='bx bx-chevron-down'></i>
+                                        </span>
 
-                                    <ul class="dropdown-menu dropdown-menu-default ">
-                                        <li class="hidden">
-                                            <a href="admin/profile/info" title="Thông tin tài khoản" class="">
-                                                <i class="icon-user"></i> Thông tin tài khoản </a>
-                                        </li>
-                                        <li>
-                                            <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
-                                                <i class="icon-lock"></i> Đổi mật khẩu </a>
-                                        </li>
-                                        <li>
-                                            <a href="admin/verify/logout">
-                                                <i class="icon-logout"></i> Đăng xuất </a>
-                                        </li>
-                                    </ul>
+                                        <ul class="dropdown-menu dropdown-menu-default ">
+                                            <li class="hidden">
+                                                <a href="admin/profile/info" title="Thông tin tài khoản" class="">
+                                                    <i class="icon-user"></i> Thông tin tài khoản </a>
+                                            </li>
+                                            <li>
+                                                <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
+                                                    <i class="icon-lock"></i> Đổi mật khẩu </a>
+                                            </li>
+                                            <li>
+                                                <a href="admin/verify/logout">
+                                                    <i class="icon-logout"></i> Đăng xuất </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
 
                                 </div>
-
                             </div>
-                        </div>
-                    </div>   
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -138,24 +146,24 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <c:if test="${requestScope.ADMIN_LIST_MOTEL != null}">
-                                                <c:if test="${not empty requestScope.ADMIN_LIST_MOTEL}">
-                                                    <table id="myTable" class="table table-striped table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>MotelID</th>
-                                                                <th>Hinh anh</th>
-                                                                <th>MotelName</th>
-                                                                <th>Hotline</th>
-                                                                <th>Địa chỉ</th>
-                                                                <th>Rating</th>
-                                                                <th>Chủ trọ </th>
-                                                                <th>Status</th>
-                                                                <th>Action</th>
-                                                            </tr>
-                                                        </thead>
+                                            <table id="myTable" class="table table-striped table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>MotelID</th>
+                                                        <th>Hinh anh</th>
+                                                        <th>MotelName</th>
+                                                        <th>Hotline</th>
+                                                        <th>Địa chỉ</th>
+                                                        <th>Rating</th>
+                                                        <th>Chủ trọ </th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
 
-                                                        <tbody>
+                                                <tbody>
+                                                    <c:if test="${requestScope.ADMIN_LIST_MOTEL != null}">
+                                                        <c:if test="${not empty requestScope.ADMIN_LIST_MOTEL}">
                                                             <c:forEach var="motel" varStatus="counter" items="${requestScope.ADMIN_LIST_MOTEL}">
 
                                                             <form action="MainController">
@@ -170,26 +178,28 @@
                                                                     <td>${motel.rating}</td>
                                                                     <td>${motel.ownerId}</td>
                                                                     <td>
-                                                                        <span class="badge badge-success">Activity</span>
+                                                                        <c:if test="${motel.status == 0}">
+                                                                            <span class="badge badge-danger">Extended</span>
+                                                                        </c:if> 
+                                                                        <c:if test="${motel.status == 1}">
+                                                                            <span class="badge badge-success">Activity</span>
+                                                                        </c:if> 
                                                                     </td>
-
-                                                                    <!--                                                        
-                                                                     <td><span class="badge badge-danger">Extended</span></td>-->
                                                                     <td>
                                                                         <div class="d-flex">
-                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>
+                                                                            <a href="MotelManager?action=update&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
                                                                             <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
                                                                         </div>    
                                                                     </td>
                                                                 </tr>
-                                                              
+                                                            </c:forEach> 
+                                                        </c:if>
+                                                    </c:if>
+                                                </form>
+                                                </tbody>
+                                            </table>
+                                            ${requestScope.ERROR_MESSAGE}
 
-                                                            </c:forEach>
-                                                        </form>
-                                                        </tbody>
-                                                    </table>
-                                                </c:if>
-                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

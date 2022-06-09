@@ -39,31 +39,25 @@
                         </a>
                     </li> 
                     <li>
-                        <a href="#">
+                        <a href="AdminListAccount">
                             <span><i class='bx bxs-user-rectangle'></i></span>
                             <span class="title">Quản lý Tai Khoan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="admin-user.jsp">
-                            <span><i class='bx bxs-user-rectangle'></i></span>
-                            <span class="title">Quản lý tai khoan</span>
-                        </a>
-                    </li>
                     <li >
-                        <a href="AdminShowMotel">
+                        <a href="MotelManager?action=all">
                             <span><i class='bx bx-home'></i></span>
                             <span class="title">Quản lý Motel</span>
                         </a>
                     </li>
                     <li>
-                        <a href="admin-user.jsp">
+                        <a href="UserManager?action=all&role=US">
                             <span><i class='bx bxs-user-rectangle'></i></span>
                             <span class="title">Quản lý người thuê</span>
                         </a>
                     </li>
                     <li>
-                        <a href="admin-owner.jsp">
+                        <a href="UserManager?action=all&role=OW">
                             <span><i class='bx bx-user-circle'></i></span>
                             <span class="title">Quản lý chủ thuê</span>
                         </a>

@@ -1,15 +1,19 @@
-
+<%-- 
+    Document   : admin-account
+    Created on : Jun 6, 2022, 11:33:43 PM
+    Author     : cao thi phuong thuy
+--%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="sample.users.UserDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin</title>
+        <title>Admin account</title>
         <link rel="shortcut icon" href="assets/img/logo2.png">
         <!-- CSS -->
         <!-- Bootstrap CSS -->
@@ -24,7 +28,6 @@
     </head>
     <body>
 
-
         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
@@ -36,32 +39,32 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li >
+                        <li>
                             <a href="admin.jsp">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
-                        </li> 
-                        <li>
+                        </li><!-- comment -->
+                        <li class="active" >
                             <a href="AdminListAccount">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý Tai Khoan</span>
+                                <span><i class='bx bx-home'></i></span>
+                                <span class="title">Quản lý Tài Khoản</span>
                             </a>
                         </li>
-                        <li class="active">
-                            <a href="MotelManager?action=all">
+                        <li>
+                            <a href="AdminShowMotel">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
                             </a>
                         </li>
                         <li>
-                            <a href="UserManager?action=all&role=US">
+                            <a href="admin-user.jsp">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý người thuê</span>
                             </a>
                         </li>
                         <li>
-                            <a href="UserManager?action=all&role=OW">
+                            <a href="admin-owner.jsp">
                                 <span><i class='bx bx-user-circle'></i></span>
                                 <span class="title">Quản lý chủ thuê</span>
                             </a>
@@ -86,7 +89,6 @@
             </div>
         </div>
         <!-- End sidebar -->
-
 
         <!-- Header -->
         <div class="header">
@@ -149,57 +151,67 @@
                                             <table id="myTable" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>MotelID</th>
+                                                        <th>ID</th>
                                                         <th>Hinh anh</th>
-                                                        <th>MotelName</th>
-                                                        <th>Hotline</th>
+                                                        <th>Họ tên</th>
+                                                        <th>CMND</th>
+                                                        <th>SDT</th>
+                                                        <th>Gmail</th>
                                                         <th>Địa chỉ</th>
-                                                        <th>Rating</th>
-                                                        <th>Chủ trọ </th>
+                                                        <th>Role</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
-                                                    <c:if test="${requestScope.ADMIN_LIST_MOTEL != null}">
-                                                        <c:if test="${not empty requestScope.ADMIN_LIST_MOTEL}">
-                                                            <c:forEach var="motel" varStatus="counter" items="${requestScope.ADMIN_LIST_MOTEL}">
-
+                                                    <c:if test="${requestScope.LIST_ACC != null}">
+                                                        <c:if test="${not empty requestScope.LIST_ACC}">
+                                                            <c:forEach var="a" varStatus="counter" items="${requestScope.LIST_ACC}">
                                                             <form action="MainController">
                                                                 <tr>
-                                                                    <td>${motel.motelID}</td>
+                                                                    <td>${a.userId}</td>
                                                                     <td>
-                                                                        <img src="${motel.image}">
+                                                                        <img src="${a.image}">
                                                                     </td>
-                                                                    <td>${motel.name}</td>
-                                                                    <td>${motel.phone}</td>
-                                                                    <td>${motel.address}</td>
-                                                                    <td>${motel.rating}</td>
-                                                                    <td>${motel.ownerId}</td>
+                                                                    <td>${a.fullName}</td>
+                                                                    <td>${a.citizenNumber}</td>
+                                                                    <td>${a.phone}</td>
+                                                                    <td>${a.gmail}</td>
+                                                                    <td>${a.address}</td>
+                                                                    <td><span class="role fs-16 font-w500 text-end d-block">
+                                                                        <c:if test="${a.role.equals('US')}">
+                                                                            Người thuê
+                                                                        </c:if> 
+                                                                        <c:if test="${a.role.equals('OW')}">
+                                                                            Chủ thuê
+                                                                        </c:if> 
+                                                                            <c:if test="${a.role.equals('AD')}">
+                                                                            Admin
+                                                                        </c:if> 
+                                                                        </span></td>
                                                                     <td>
-                                                                        <c:if test="${motel.status == 0}">
+                                                                        <c:if test="${a.status == 0}">
                                                                             <span class="badge badge-danger">Extended</span>
                                                                         </c:if> 
-                                                                        <c:if test="${motel.status == 1}">
+                                                                        <c:if test="${a.status == 1}">
                                                                             <span class="badge badge-success">Activity</span>
                                                                         </c:if> 
                                                                     </td>
                                                                     <td>
                                                                         <div class="d-flex">
-                                                                            <a href="MotelManager?action=update&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
+                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>
                                                                             <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
                                                                         </div>    
                                                                     </td>
                                                                 </tr>
-                                                            </c:forEach> 
+                                                            </c:forEach>
                                                         </c:if>
                                                     </c:if>
                                                 </form>
                                                 </tbody>
                                             </table>
                                             ${requestScope.ERROR_MESSAGE}
-
                                         </div>
                                     </div>
                                 </div>

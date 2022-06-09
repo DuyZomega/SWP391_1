@@ -6,40 +6,51 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
+import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
- *
+ * chua xong
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "AdminShowMotel", urlPatterns = {"/AdminShowMotel"})
-public class AdminShowMotel extends HttpServlet {
+@WebServlet(name = "AdminListUser", urlPatterns = {"/AdminListUser"})
+public class AdminListUser extends HttpServlet {
 
-     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "admin-motel.jsp";
+    private static final String ERROR = "error.jsp";
+    private static final String OWNER = "admin-owner.jsp";    
+    private static final String USER = "admin-user.jsp";
+
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        String url =  ERROR;
         try {
-            MotelDAO dao1 = new MotelDAO();
-            List<MotelDTO> adminMotel = dao1.adminShowMotel();
-            if (adminMotel.size()>0){
-                request.setAttribute("ADMIN_LIST_MOTEL", adminMotel);
-                url=SUCCESS;
+            String role = request.getParameter("role");
+            UserDAO user = new UserDAO();
+            List<UserDTO> listAcc = user.getList(role);
+            if(role.equals("US")){
+               if (listAcc.size()>0){
+                request.setAttribute("LIST_US", listAcc);
+                url=USER;
             } else{
-                 request.setAttribute("ERROR_MESSAGE", "No motel here");
-                url=SUCCESS;
-            }
+                request.setAttribute("ERROR_MESSAGE", "No user here");
+                url=USER;
+            }  
+            } else if(role.equals("OW")){
+            if (listAcc.size()>0){
+                request.setAttribute("LIST_OW", listAcc);
+                url=OWNER;
+            } else{
+                request.setAttribute("ERROR_MESSAGE", "No owner here");
+                url=OWNER;
+            }}
             
         } catch (Exception e) {
             log("Error at showlistcontroller: "+e.toString());
@@ -47,6 +58,7 @@ public class AdminShowMotel extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
