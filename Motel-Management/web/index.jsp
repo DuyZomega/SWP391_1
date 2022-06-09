@@ -52,10 +52,27 @@
                 <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
-
+ 
                 <a href="./login.jsp">Đăng nhập</a>
 
                 <a href="./signup.jsp">Đăng ký</a>
+                
+                if{
+                <%
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("US")) {
+                                response.sendRedirect("login.jsp");
+                                return;           
+                            }
+                %>
+                <a type = hidden href="./login.jsp">Đăng nhập</a>
+
+                <a type = hidden href="./signup.jsp">Đăng ký</a>
+                }else{
+                <a href="./login.jsp">Đăng nhập</a>
+
+                <a href="./signup.jsp">Đăng ký</a>
+                }
             </div>
         </div>
         <div class="header__bottom">
