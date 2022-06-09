@@ -1,5 +1,9 @@
 
-
+<%@page import="sample.room.RoomDTO"%>
+<%@page import="sample.users.UserDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.motel.MotelDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,10 +52,27 @@
                 <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
-
+ 
                 <a href="./login.jsp">Đăng nhập</a>
 
                 <a href="./signup.jsp">Đăng ký</a>
+                
+                if{
+                <%
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("US")) {
+                                response.sendRedirect("login.jsp");
+                                return;           
+                            }
+                %>
+                <a type = hidden href="./login.jsp">Đăng nhập</a>
+
+                <a type = hidden href="./signup.jsp">Đăng ký</a>
+                }else{
+                <a href="./login.jsp">Đăng nhập</a>
+
+                <a href="./signup.jsp">Đăng ký</a>
+                }
             </div>
         </div>
         <div class="header__bottom">
@@ -183,31 +204,7 @@
                         <button class="button--primary">Xem ngay</button>
                     </div>
                 </div>
-                <div class="item">
-                    <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                    </a>
-                    <div class="motel-title my-4">
-                        <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                    </div>
-                    <div class="motel-address my-2">
-                        <p>Quận Tân Bình, Thành phố Hồ Chí Minh</p>
-                    </div>
-                    <div class="motel-services my-2">
-                        <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                    </div>
-                    <div class="d-flex justify-content-between my-2">
-                        <p>Liên hệ</p>
-                        <p><i class="fas fa-history"></i> một ngày trước</p>
-                    </div>
-                    <div class="motel-price d-flex justify-content-between">
-                        <p>7.0 Triệu</p>
-                        <button class="button--primary">Xem ngay</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
+                
     </section>
 
     <!-- CONTACT -->
