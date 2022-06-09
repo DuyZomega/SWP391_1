@@ -22,7 +22,7 @@ public class UserError {
     private String passwordError;
     private String roleError;
     private int statusError;
-    private String confirmpasswordError;
+    private String confirmpasswordError;   
     public UserError() {
 
     }
