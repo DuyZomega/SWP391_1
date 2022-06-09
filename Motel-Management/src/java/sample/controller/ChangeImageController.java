@@ -6,42 +6,55 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import sample.users.UserDAO;
 
 /**
  *
  * @author Bao
  */
+@MultipartConfig()
 @WebServlet(name = "ChangeImageController", urlPatterns = {"/ChangeImageController"})
 public class ChangeImageController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "ShowProfileController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ChangeImageController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ChangeImageController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+        try {             
+            Part part = request.getPart("photo");          
+            String realPath = request.getServletContext().getRealPath("/images");
+            String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
+            String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+            
+            if(!Files.exists(Path.of(realPath))){
+                Files.createDirectories(Path.of(realPath));
+            }
+            part.write(pathImage + "/" + filename);
+            
+            String image = "images/" + filename;
+            String userID = request.getParameter("userID");
+            UserDAO dao = new UserDAO();
+            boolean check = dao.changeImage(userID,image);
+            if(check){
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

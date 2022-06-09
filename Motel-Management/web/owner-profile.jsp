@@ -40,7 +40,7 @@
                             }
                         %>
                         <li>
-                            <a href="owner-index.html">
+                            <a href="owner-index.jsp">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -76,7 +76,7 @@
                             </a>
                         </li>
                         <li class="active">
-                            <a href="owner-profile.html">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -117,7 +117,7 @@
                                         <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
                                         <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class='bx bx-log-out-circle'></i>Thoát</a>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
                                 </div>  
                             </div>  
@@ -293,7 +293,7 @@
                                 <input type="hidden" name="action" value="ChangeImage">
                                 <input type="hidden" name="userID" value=<%= loginUser.getUserId()%>>
                                 <input type="hidden" name="role" value="<%= loginUser.getRole()%>">
-                                <input type="file" class="custom-file" accept=".jpg, .png">   
+                                <input type="file" name="photo" class="custom-file" accept=".jpg, .png">   
                             </label>
                         </div>
                         <div class="modal-footer justify-content-center">
