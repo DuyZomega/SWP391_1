@@ -76,7 +76,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="owner-profile.jsp">
+                        <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                             <span><i class='bx bx-user'></i></span>
                             <span class="title">Tài khoản</span>
                         </a>

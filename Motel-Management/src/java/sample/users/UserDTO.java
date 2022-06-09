@@ -152,4 +152,18 @@ public class UserDTO {
         this.role = role;
     }
     
+    public UserDTO() {
+        this.userId = "";
+        this.fullName = "";
+        this.image = "";
+        this.gender = 0;
+        this.birthDay = "";
+        this.citizenNumber = "";
+        this.phone = "";
+        this.gmail = "";
+        this.address = "";
+        this.password = "";
+        this.role = "";
+        this.status = 0;
+    }
 }

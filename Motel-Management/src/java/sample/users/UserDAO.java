@@ -21,6 +21,133 @@ import sample.utils.DBUtils;
  */
 public class UserDAO {
     private static final String LOGIN = "SELECT UserID, FullName, Role FROM tblUser WHERE UserID=? AND Password=?";
+    private static final String UPLOAD_PROFILE = "SELECT UserID, FullName, Image, DateOfBirth, CitizenNumber, Gender, Address, Phone, Gmail FROM tblUser WHERE UserID = ?";
+    private static final String UPDATE_USER = "UPDATE tblUser SET FullName= ?, Address= ?, DateOfBirth=?, Phone=?,Gmail= ?, CitizenNumber = ?, Gender=? WHERE userID=?";
+    private static final String CHANGE_PASSWORD = "UPDATE tblUser SET Password = ? WHERE UserID = ? ";
+    private static final String CHANGE_IMAGE = "UPDATE tblUser SET Image = ? WHERE UserID = ? ";
+    
+    public boolean changeImage(String userID, String image) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHANGE_IMAGE);
+                ptm.setString(1, image);
+                ptm.setString(2, userID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+
+    }
+    
+    public boolean changePassword(String userID, String passWord) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHANGE_PASSWORD);
+                ptm.setString(1, passWord);
+                ptm.setString(2, userID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+
+    }
+    
+    public UserDTO getUserProfile(String userID) throws SQLException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPLOAD_PROFILE);
+                ptm.setString(1, userID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String fullName = rs.getString("FullName");
+                    String image = rs.getString("Image");
+                    String birthday = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("CitizenNumber");
+                    int gender = rs.getInt("Gender");
+                    String address = rs.getString("Address");
+                    String phone = rs.getString("Phone");
+                    String gmail = rs.getString("Gmail");
+                    user = new UserDTO(userID, fullName, image, gender, birthday, citizenNumber, phone, gmail, address, "", "", 1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
+    
+    public boolean update(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_USER);
+                ptm.setString(1, user.getFullName());
+                ptm.setString(2, user.getAddress());
+                ptm.setString(3, user.getBirthDay());
+                ptm.setString(4, user.getPhone());
+                ptm.setString(5, user.getGmail());
+                ptm.setString(6, user.getCitizenNumber());
+                ptm.setInt(7, user.getGender());
+                ptm.setString(8, user.getUserId());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+
+    }
     
     public UserDTO checkLogin(String userId, String password) throws SQLException {
         UserDTO user = null;

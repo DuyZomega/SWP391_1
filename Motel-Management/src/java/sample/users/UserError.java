@@ -7,13 +7,12 @@ package sample.users;
 
 import java.sql.Date;
 
-
 public class UserError {
 
     private String userIdError;
     private String fullNameError;
     private String imageError;
-    private int genderError;
+    private String genderError;
     private String birthDayError;
     private String citizenNumberError;
     private String phoneError;
@@ -22,9 +21,22 @@ public class UserError {
     private String passwordError;
     private String roleError;
     private int statusError;
-    private String confirmpasswordError;   
-    public UserError() {
+    private String confirmpasswordError;
 
+    public UserError() {
+        this.userIdError = "";
+        this.fullNameError = "";
+        this.imageError = "";
+        this.genderError = "";
+        this.birthDayError = "";
+        this.citizenNumberError = "";
+        this.phoneError = "";
+        this.gmailError = "";
+        this.addressError = "";
+        this.passwordError = "";
+        this.roleError = "";
+        this.statusError = 0;
+        this.confirmpasswordError = "";
     }
 
     public UserError(String userIdError, String fullNameError, String phoneError, String gmailError, String addressError, String passwordError, String roleError, String confirmpasswordError) {
@@ -38,7 +50,6 @@ public class UserError {
         this.confirmpasswordError = confirmpasswordError;
     }
 
-
     public UserError(String userIdError, String fullNameError, String passwordError, String roleError) {
         this.userIdError = userIdError;
         this.fullNameError = fullNameError;
@@ -46,7 +57,7 @@ public class UserError {
         this.roleError = roleError;
     }
 
-    public UserError(String userIdError, String fullNameError, String imageError, int genderError, String birthDayError, String citizenNumberError, String phoneError, String gmailError, String addressError, String passwordError, String roleError, int statusError) {
+    public UserError(String userIdError, String fullNameError, String imageError, String genderError, String birthDayError, String citizenNumberError, String phoneError, String gmailError, String addressError, String passwordError, String roleError, int statusError) {
         this.userIdError = userIdError;
         this.fullNameError = fullNameError;
         this.imageError = imageError;
@@ -85,11 +96,11 @@ public class UserError {
         this.imageError = imageError;
     }
 
-    public int getGenderError() {
+    public String getGenderError() {
         return genderError;
     }
 
-    public void setGenderError(int genderError) {
+    public void setGenderError(String genderError) {
         this.genderError = genderError;
     }
 
