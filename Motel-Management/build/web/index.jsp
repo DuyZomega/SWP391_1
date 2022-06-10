@@ -204,28 +204,7 @@
                                     for (MotelDTO motel : listMotel) {
 
                         %>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#a<%= motel.getMotelID()%>">
-                                <i class='bx bx-home-alt-2'></i>
-                                <span><%= motel.getName()%></span>
-                            </a>
-                        </li>
-                        <%
-                                    }
-                                }
-                            }
-                        %> 
-                    </ul>
-
-
-                    <div class="motel__content">
-                        <ul class="nav nav-tabs">
-                            <%
-                                if (listMotel != null) {
-                                    if (listMotel.size() > 0) {
-                                        for (MotelDTO motel : listMotel) {
-                            %>
-                            <div class="owl-carousel owl-theme">
+                        <div class="owl-carousel owl-theme">
                                 <div class="item">
                                     <a href="#" class="motel-image">
                                         <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
@@ -249,12 +228,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <%
-                                        }
+                        <%
                                     }
                                 }
-                            %> 
-                        </ul>
+                            }
+                        %> 
                     </div>
 
                 </div>
