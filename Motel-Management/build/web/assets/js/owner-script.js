@@ -8,16 +8,17 @@ toggle.onclick = function () {
     header.classList.toggle('active');
     main.classList.toggle('active');
 }
-$('.nav-link').each(function(i){
-    if(i === 0){
-        $(this).addClass('active');
-    }
-});
-$('.tab-pane').each(function(i){
-    if(i === 0){
-        $(this).addClass('active');
-    }
-});
+//loading
+// $(window).on("load",function () {
+//     $(".preloader").fadeOut("slow");
+//     $(".preloader").css("display","none");
+// });
+
+let feedback = document.querySelectorAll('.feedback');
+feedback.onclick = function () {
+    $("#" + (this).data("data-target")).classList.toggle('active'); 
+}
+
 // input image
 let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");
@@ -45,11 +46,29 @@ function preview() {
         reader.readAsDataURL(i);
     }
 }
-//data-table
 
+// success
+function success() {
+    swal({
+        title: "Thành Công!",
+        text: "Xác nhận thao tác của bạn.",
+        icon: "success",
+        timer: 3000
+    });
+}
+
+
+//data-table
 $(document).ready( function () {
     $('#myTable').DataTable();
 } );
+
+// change page history detail
+$(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
 
 //profile
 var loadFile = function (event) {
@@ -57,30 +76,40 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
   };  
 
-let label = document.querySelector(".label");
-let hover = document.querySelector(".profile-pic");
-
-profileAvat = function () {
-    label.classList.toggle(".active");
-}
-
-
 //chart
-const month = Utils.month({count: 7});
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {   
+const ctx = document.getElementById('chart-Dashboard').getContext('2d');
+const day = [
+    {x: Date.parse('2022-06-09 UTC+0700'), y: 18},
+    {x: Date.parse('2022-06-10 UTC+0700'), y: 10},
+    {x: Date.parse('2022-06-11 UTC+0700'), y: 4},
+    {x: Date.parse('2022-06-12 UTC+0700'), y: 7},
+    {x: Date.parse('2022-06-13 UTC+0700'), y: 16},
+    {x: Date.parse('2022-06-14 UTC+0700'), y: 18},
+    {x: Date.parse('2022-06-15 UTC+0700'), y: 12}
+];
+
+const week = [
+    {x: Date.parse('2022-06-5 UTC+0700'), y: 134},
+    {x: Date.parse('2022-06-12 UTC+0700'), y: 100},
+    {x: Date.parse('2022-06-19 UTC+0700'), y: 240},
+    {x: Date.parse('2022-06-26 UTC+0700'), y: 150},
+    {x: Date.parse('2022-07-03 UTC+0700'), y: 175},
+];
+
+const chart = new Chart(ctx, {   
     type: 'bar',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        // labels: Object.keys(week),
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Doanh thu tuần',
+            data: day,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
             ],
             borderColor: [
@@ -89,23 +118,38 @@ const myChart = new Chart(ctx, {
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
                 'rgba(255, 159, 64, 1)'
             ],
-            borderWidth: 1
+            borderWidth: 1,
         }]
     },
     options: {
         scales: {
+            x: {
+                type: 'time',
+                time: {
+                    unit: 'day'
+                }
+            },
             y: {
                 beginAtZero: true
             }
         }
     }
-});
+}); 
 
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+function timeFrame(period) {
+    if (period.value == 'day') {
+        chart.data.datasets[0].data = day;
+        chart.options.scales.x.time.unit = period.value;
+    }
+     if (period.value == 'week') {
+        chart.data.datasets[0].data = week;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    chart.update();
+}
 
 //
 function onChange() {

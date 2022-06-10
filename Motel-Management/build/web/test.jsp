@@ -1,6 +1,13 @@
+<%-- 
+    Document   : test
+    Created on : Jun 10, 2022, 12:32:21 AM
+    Author     : Bao
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
