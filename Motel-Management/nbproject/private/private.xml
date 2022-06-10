@@ -5,11 +5,15 @@
         <group>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-room-list.jsp</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/index.jsp</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/ChangeImageController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/users/UserDTO.java</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/signup.jsp</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDTO.java</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDAO.java</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-room-detail.html</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/users/UserDAO.java</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-room-detail.jsp</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-profile.jsp</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-room-list.jsp</file>
         </group>
     </open-files>

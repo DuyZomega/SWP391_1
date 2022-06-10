@@ -14,7 +14,7 @@ public class UserDTO {
     private String fullName;
     private String image;
     private int gender;
-    private String birthDay;
+    private String DateOfBirth;
     private String citizenNumber;
     private String phone;
     private String gmail;
@@ -55,12 +55,12 @@ public class UserDTO {
         this.gender = gender;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getDateOfBirth() {
+        return DateOfBirth;
     }
 
-    public void setBirthDay(String birthDay) {
-        this.birthDay = birthDay;
+    public void setDateOfBirth(String DateOfBirth) {
+        this.DateOfBirth = DateOfBirth;
     }
 
     public String getCitizenNumber() {
@@ -120,12 +120,12 @@ public class UserDTO {
     }
 
 
-    public UserDTO(String userId, String fullName, String image, int gender, String birthDay, String citizenNumber, String phone, String gmail, String address, String password, String role, int status) {
+    public UserDTO(String userId, String fullName, String image, int gender, String DateOfBirth, String citizenNumber, String phone, String gmail, String address, String password, String role, int status) {
         this.userId = userId;
         this.fullName = fullName;
         this.image = image;
         this.gender = gender;
-        this.birthDay = birthDay;
+        this.DateOfBirth = DateOfBirth;
         this.citizenNumber = citizenNumber;
         this.phone = phone;
         this.gmail = gmail;
@@ -157,7 +157,7 @@ public class UserDTO {
         this.fullName = "";
         this.image = "";
         this.gender = 0;
-        this.birthDay = "";
+        this.DateOfBirth = "";
         this.citizenNumber = "";
         this.phone = "";
         this.gmail = "";
@@ -166,12 +166,12 @@ public class UserDTO {
         this.role = "";
         this.status = 0;
     }
-      public UserDTO(String userId, String fullName, String image, int gender, String birthDay, String citizenNumber, String phone, String gmail, String address, String role, int status) {
+      public UserDTO(String userId, String fullName, String image, int gender, String DateOfBirth, String citizenNumber, String phone, String gmail, String address, String role, int status) {
         this.userId = userId;
         this.fullName = fullName;
         this.image = image;
         this.gender = gender;
-        this.birthDay = birthDay;
+        this.DateOfBirth = DateOfBirth;
         this.citizenNumber = citizenNumber;
         this.phone = phone;
         this.gmail = gmail;

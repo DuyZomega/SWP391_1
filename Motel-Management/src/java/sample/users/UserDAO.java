@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sample.users;
 
 import java.sql.Connection;
@@ -92,13 +88,13 @@ public class UserDAO {
                 while (rs.next()) {
                     String fullName = rs.getString("FullName");
                     String image = rs.getString("Image");
-                    String birthday = rs.getString("DateOfBirth");
+                    String DateOfBirth = rs.getString("DateOfBirth");
                     String citizenNumber = rs.getString("CitizenNumber");
                     int gender = rs.getInt("Gender");
                     String address = rs.getString("Address");
                     String phone = rs.getString("Phone");
                     String gmail = rs.getString("Gmail");
-                    user = new UserDTO(userID, fullName, image, gender, birthday, citizenNumber, phone, gmail, address, "", "", 1);
+                    user = new UserDTO(userID, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, "", "", 1);
                 }
             }
         } catch (Exception e) {
@@ -127,7 +123,7 @@ public class UserDAO {
                 ptm = conn.prepareStatement(UPDATE_USER);
                 ptm.setString(1, user.getFullName());
                 ptm.setString(2, user.getAddress());
-                ptm.setString(3, user.getBirthDay());
+                ptm.setString(3, user.getDateOfBirth());
                 ptm.setString(4, user.getPhone());
                 ptm.setString(5, user.getGmail());
                 ptm.setString(6, user.getCitizenNumber());
@@ -292,13 +288,13 @@ public boolean updateUser(UserDTO user) throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblUsers "
-                        + " SET fullname=?, image=?, gender=?, birthDay=?, citizenNumber=?, phone=?, gmail=?, address=?, password=?, role=?, status=? "
+                        + " SET fullname=?, image=?, gender=?, DateOfBirth=?, citizenNumber=?, phone=?, gmail=?, address=?, password=?, role=?, status=? "
                         + " WHERE userId=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getFullName());
                 stm.setString(2, user.getImage());
                 stm.setInt(3, user.getGender());
-                stm.setString(4, user.getBirthDay());
+                stm.setString(4, user.getDateOfBirth());
                 stm.setString(5, user.getCitizenNumber());
                 stm.setString(6, user.getPhone());
                 stm.setString(7, user.getGmail());
@@ -389,13 +385,13 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, BIRTHDAY,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
+                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, DATEOFBIRTH,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
                         + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getFullName());
                 stm.setString(2, user.getImage());
                 stm.setInt(3, user.getGender());
-                stm.setString(4, user.getBirthDay());
+                stm.setString(4, user.getDateOfBirth());
                 stm.setString(5, user.getCitizenNumber());
                 stm.setString(6, user.getPhone());
                 stm.setString(7, user.getGmail());
@@ -437,14 +433,14 @@ public boolean checkDuplcate(String userId) throws SQLException {
                     String fullName = rs.getString("fullName");
                     String image = rs.getString("image");
                     int gender = rs.getInt("gender");
-                    String birthDay = rs.getString("DateOfBirth");
+                    String DateOfBirth = rs.getString("DateOfBirth");
                     String citizenNumber = rs.getString("citizenNumber");
                     String phone = rs.getString("phone");
                     String gmail = rs.getString("gmail");
                     String address = rs.getString("address");
                     String role = rs.getString("role");
                     int status = rs.getInt("status");
-                    listAcc.add(new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, role, status));
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
                 }
             }
         } catch (Exception e) {
@@ -564,7 +560,7 @@ public boolean checkDuplcate(String userId) throws SQLException {
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getFullName());
                 stm.setString(2, user.getImage());
-                stm.setString(3, user.getBirthDay());
+                stm.setString(3, user.getDateOfBirth());
                 stm.setString(4, user.getCitizenNumber());
                 stm.setString(5, user.getPhone());
                 stm.setString(6, user.getGmail());
