@@ -5,8 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +39,8 @@ public class AdminUpdateUser extends HttpServlet {
             int gender = Integer.parseInt(request.getParameter("gender"));
             int status = Integer.parseInt(request.getParameter("status"));
             String role = request.getParameter("role");
-            String birthDay = request.getParameter("birthDay");
-            UserDTO user = new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, role, status);
+            String DateOfBirth = request.getParameter("DateOfBirth");
+            UserDTO user = new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status);
 
             UserDAO dao = new UserDAO();
             boolean check = dao.detailUser(user);
