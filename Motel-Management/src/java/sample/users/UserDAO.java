@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sample.users;
 
 import java.sql.Connection;
@@ -92,13 +88,13 @@ public class UserDAO {
                 while (rs.next()) {
                     String fullName = rs.getString("FullName");
                     String image = rs.getString("Image");
-                    String birthday = rs.getString("DateOfBirth");
+                    String DateOfBirth = rs.getString("DateOfBirth");
                     String citizenNumber = rs.getString("CitizenNumber");
                     int gender = rs.getInt("Gender");
                     String address = rs.getString("Address");
                     String phone = rs.getString("Phone");
                     String gmail = rs.getString("Gmail");
-                    user = new UserDTO(userID, fullName, image, gender, birthday, citizenNumber, phone, gmail, address, "", "", 1);
+                    user = new UserDTO(userID, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, "", "", 1);
                 }
             }
         } catch (Exception e) {
@@ -127,7 +123,7 @@ public class UserDAO {
                 ptm = conn.prepareStatement(UPDATE_USER);
                 ptm.setString(1, user.getFullName());
                 ptm.setString(2, user.getAddress());
-                ptm.setString(3, user.getBirthDay());
+                ptm.setString(3, user.getDateOfBirth());
                 ptm.setString(4, user.getPhone());
                 ptm.setString(5, user.getGmail());
                 ptm.setString(6, user.getCitizenNumber());
@@ -292,13 +288,13 @@ public boolean updateUser(UserDTO user) throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE tblUsers "
-                        + " SET fullname=?, image=?, gender=?, birthDay=?, citizenNumber=?, phone=?, gmail=?, address=?, password=?, role=?, status=? "
+                        + " SET fullname=?, image=?, gender=?, DateOfBirth=?, citizenNumber=?, phone=?, gmail=?, address=?, password=?, role=?, status=? "
                         + " WHERE userId=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getFullName());
                 stm.setString(2, user.getImage());
                 stm.setInt(3, user.getGender());
-                stm.setString(4, user.getBirthDay());
+                stm.setString(4, user.getDateOfBirth());
                 stm.setString(5, user.getCitizenNumber());
                 stm.setString(6, user.getPhone());
                 stm.setString(7, user.getGmail());
@@ -389,13 +385,13 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, BIRTHDAY,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
+                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, DATEOFBIRTH,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
                         + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getFullName());
                 stm.setString(2, user.getImage());
                 stm.setInt(3, user.getGender());
-                stm.setString(4, user.getBirthDay());
+                stm.setString(4, user.getDateOfBirth());
                 stm.setString(5, user.getCitizenNumber());
                 stm.setString(6, user.getPhone());
                 stm.setString(7, user.getGmail());
@@ -416,6 +412,179 @@ public boolean checkDuplcate(String userId) throws SQLException {
         }
         return check;
     }
+    
+    
+    
+    /*admin*/
+    private static final String LIST_ACC = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS FROM tblUser";
+    
+    public List<UserDTO> getListAcc() throws SQLException {
+         List<UserDTO> listAcc = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(LIST_ACC);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String userId = rs.getString("userID");
+                    String fullName = rs.getString("fullName");
+                    String image = rs.getString("image");
+                    int gender = rs.getInt("gender");
+                    String DateOfBirth = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("citizenNumber");
+                    String phone = rs.getString("phone");
+                    String gmail = rs.getString("gmail");
+                    String address = rs.getString("address");
+                    String role = rs.getString("role");
+                    int status = rs.getInt("status");
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAcc;
+    
+    }
+    /*======*/
+     private static final String LIST_USER = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS FROM tblUser WHERE ROLE=?";
+     
+    public List<UserDTO> getList(String role) throws SQLException {
+         List<UserDTO> listAcc = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(LIST_USER);
+                ptm.setString(1, role);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String userId = rs.getString("userID");
+                    String fullName = rs.getString("fullName");
+                    String image = rs.getString("image");
+                    int gender = rs.getInt("gender");
+                    String birthDay = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("citizenNumber");
+                    String phone = rs.getString("phone");
+                    String gmail = rs.getString("gmail");
+                    String address = rs.getString("address");
+                    int status = rs.getInt("status");
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, role, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAcc;
+    
+    }
+    
+    /*==========*/
+       private static final String INFO_USER = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, ROLE, STATUS FROM tblUser WHERE USERID=?";
+     
+    public List<UserDTO> getInfo(String userId) throws SQLException {
+         List<UserDTO> listAcc = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(INFO_USER);
+                ptm.setString(1, userId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String role = rs.getString("role");
+                    String fullName = rs.getString("fullName");
+                    String image = rs.getString("image");
+                    int gender = rs.getInt("gender");
+                    String birthDay = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("citizenNumber");
+                    String phone = rs.getString("phone");
+                    String gmail = rs.getString("gmail");
+                    String address = rs.getString("address");
+                    int status = rs.getInt("status");
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, role, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAcc;
+    
+    }
+    /*===*/
+    public boolean detailUser(UserDTO user) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblUser SET fullname=?, image=?, DateOfBirth=?, citizenNumber=?, phone=?, gmail=?, address=?, role=?, status=?, gender=? WHERE userId=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getFullName());
+                stm.setString(2, user.getImage());
+                stm.setString(3, user.getDateOfBirth());
+                stm.setString(4, user.getCitizenNumber());
+                stm.setString(5, user.getPhone());
+                stm.setString(6, user.getGmail());
+                stm.setString(7, user.getAddress());
+                stm.setString(8, user.getRole());
+                stm.setInt(9, user.getStatus());
+                stm.setInt(10, user.getGender());
+                stm.setString(11, user.getUserId());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
+    /*admin*/
 }
 
 
