@@ -188,8 +188,8 @@
                             <button class="button--primary">Xem ngay</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div>   
         </section>
         <section>
             <div class="card">
@@ -219,134 +219,136 @@
 
 
                     <div class="motel__content">
-
-                        <%
-                            if (listMotel != null) {
-                                if (listMotel.size() > 0) {
-                                    for (MotelDTO motel : listMotel) {
-                        %>
-                        <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <a href="#" class="motel-image">
-                                    <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                                </a>
-                                <div class="motel-title my-4">
-                                    <span><%= motel.getName() %></span>
-                                </div>
-                                <div class="motel-address my-2">
-                                    <span> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></span>
-                                </div>
-                                <div class="motel-services my-2">
-                                    <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                                </div>
-                                <div class="d-flex justify-content-between my-2">
-                                    <p>Liên hệ</p>
-                                    <p><i class="fas fa-history"></i> một ngày trước</p>
-                                </div>
-                                <div class="motel-price d-flex justify-content-between">
-                                    <p>7.0 Triệu</p>
-                                    <button class="button--primary">Xem ngay</button>
+                        <ul class="nav nav-tabs">
+                            <%
+                                if (listMotel != null) {
+                                    if (listMotel.size() > 0) {
+                                        for (MotelDTO motel : listMotel) {
+                            %>
+                            <div class="owl-carousel owl-theme">
+                                <div class="item">
+                                    <a href="#" class="motel-image">
+                                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                                    </a>
+                                    <div class="motel-title my-4">
+                                        <span><%= motel.getName()%></span>
+                                    </div>
+                                    <div class="motel-address my-2">
+                                        <span> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></span>
+                                    </div>
+                                    <div class="motel-services my-2">
+                                        <p>Dịch vụ: thay ga gối 1 lần/...</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between my-2">
+                                        <p>Liên hệ</p>
+                                        <p><i class="fas fa-history"></i> một ngày trước</p>
+                                    </div>
+                                    <div class="motel-price d-flex justify-content-between">
+                                        <p>7.0 Triệu</p>
+                                        <button class="button--primary">Xem ngay</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                                <%
+                            <%
+                                        }
                                     }
                                 }
-                            }
-                        %> 
+                            %> 
+                        </ul>
+                    </div>
+
+                </div>
+        </section>
+        <!-- CONTACT -->
+        <section class="contact"></section>
+
+        <!-- FOOTER -->
+        <footer class="mt-5">
+            <div class="container">
+                <div class="row section mb-3">
+                    <div class="col-12 col-sm-3">
+                        <h3>VỀ HORD</h3>
+                        <ul>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Give us feedback</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <h3>THÔNG TIN</h3>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Find us</a></li>
+                            <li><a href="#">Schedule</a></li>
+                            <li><a href="#">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
+                        <ul>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Cookie policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-3 footer-contact">
+                        <h3>THÔNG TIN LIÊN LẠC</h3>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer__copyright text-center">
+                    <p>2022 © công ty TNHH chém gió xuyên quốc gia</p>
+                    <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
+                </div>
             </div>
-        </div>
-    </section>
-    <!-- CONTACT -->
-    <section class="contact"></section>
-
-    <!-- FOOTER -->
-    <footer class="mt-5">
-        <div class="container">
-            <div class="row section mb-3">
-                <div class="col-12 col-sm-3">
-                    <h3>VỀ HORD</h3>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Give us feedback</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>THÔNG TIN</h3>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Find us</a></li>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">News</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
-                    <ul>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Cookie policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3 footer-contact">
-                    <h3>THÔNG TIN LIÊN LẠC</h3>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="footer__copyright text-center">
-                <p>2022 © công ty TNHH chém gió xuyên quốc gia</p>
-                <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
 
 
 
 
-    <!-- thư viện hỗ trợ -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    referrerpolicy="no-referrer"></script>
-    <!-- Jquery Waypoint -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <!-- BS4 JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
-    <!-- BS4 carousels -->
-    <script>
-        $('.carousel').carousel({
-            interval: 3000
-        });
-    </script>
-    <!-- owl carousels -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script>
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                1200: {
-                    items: 4
+        <!-- thư viện hỗ trợ -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+        <!-- Jquery Waypoint -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <!-- BS4 JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+        <!-- BS4 carousels -->
+        <script>
+            $('.carousel').carousel({
+                interval: 3000
+            });
+        </script>
+        <!-- owl carousels -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script>
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 4
+                    }
                 }
-            }
-        });
-    </script>
-</body>
+            });
+        </script>
+    </body>
 
 </html>
