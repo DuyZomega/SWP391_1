@@ -93,12 +93,19 @@
                         </div>
 
                         <div class="float-right">
-                            <div class="header-icon">
-                                <a href="#" class="user-avatar">
-                                    <span >Thoát</span>
-                                    <i class='bx bx-log-in-circle'></i>
-                                </a>
-                            </div>   
+                             <div class="btn-group me-1 mb-1">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
+                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
+                                </div>
+                            </div>  
+                        </div> 
                         </div>   
                     </div>
                 </div>
