@@ -23,29 +23,22 @@ import sample.room.RoomDTO;
  *
  * @author Bao
  */
-@WebServlet(name = "ShowRoomController", urlPatterns = {"/ShowRoomController"})
-public class ShowRoomController extends HttpServlet {
+@WebServlet(name = "ShowMotelController", urlPatterns = {"/ShowMotelController"})
+public class ShowMotelController extends HttpServlet {
      
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-room-list.jsp";
+    private static final String SUCCESS = "index.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url =  ERROR;
-        try {
+                try {
             String ownerID = request.getParameter("ownerID");
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
-            List<RoomDTO> listRoom = new ArrayList<>();
             if (listMotel.size()>0){
-                request.setAttribute("LIST_MOTEL", listMotel);
-                RoomDAO dao2 = new RoomDAO();
-                for(MotelDTO motel : listMotel){                  
-                   List<RoomDTO> list = dao2.searchRoom(motel.getMotelID());
-                   listRoom.addAll(list);
-                }
-                request.setAttribute("LIST_ROOM", listRoom);
+                request.setAttribute("LIST_MOTELINDEX", listMotel);
                 url=SUCCESS;
             }
             
@@ -53,8 +46,7 @@ public class ShowRoomController extends HttpServlet {
             log("Error at showlistcontroller: "+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
-        }
-        
+        }    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
