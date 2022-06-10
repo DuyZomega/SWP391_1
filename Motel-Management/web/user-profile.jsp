@@ -100,7 +100,7 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        Hồ Trần Khánh Duy
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
@@ -152,7 +152,7 @@
                                                 <i class='bx bxs-camera-plus'></i>
                                             </div>
                                         </div>
-                                        <div class="profile-name">Lê Minh Quân</div>
+                                        <div class="profile-name">Hồ Trần Khánh Duy</div>
                                     </div>
                                     <div class="col-lg-8">                                
                                         <div class="profile-content">
