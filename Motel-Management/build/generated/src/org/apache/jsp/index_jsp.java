@@ -100,10 +100,29 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <button type=\"button\" class=\"button--primary btn btn-sm\">\r\n");
       out.write("                    <a href=\"#\" class=\"border-left-0 m-0 p-0\">Quản lý thuê trọ</a>\r\n");
       out.write("                </button>\r\n");
-      out.write("\r\n");
+      out.write(" \r\n");
       out.write("                <a href=\"./login.jsp\">Đăng nhập</a>\r\n");
       out.write("\r\n");
       out.write("                <a href=\"./signup.jsp\">Đăng ký</a>\r\n");
+      out.write("                \r\n");
+      out.write("                if{\r\n");
+      out.write("                ");
+
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("US")) {
+                                response.sendRedirect("login.jsp");
+                                return;           
+                            }
+                
+      out.write("\r\n");
+      out.write("                <a type = hidden href=\"./login.jsp\">Đăng nhập</a>\r\n");
+      out.write("\r\n");
+      out.write("                <a type = hidden href=\"./signup.jsp\">Đăng ký</a>\r\n");
+      out.write("                }else{\r\n");
+      out.write("                <a href=\"./login.jsp\">Đăng nhập</a>\r\n");
+      out.write("\r\n");
+      out.write("                <a href=\"./signup.jsp\">Đăng ký</a>\r\n");
+      out.write("                }\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("        <div class=\"header__bottom\">\r\n");
@@ -235,145 +254,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <button class=\"button--primary\">Xem ngay</button>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
-      out.write("                <section>\r\n");
-      out.write("                    <div class=\"card\">\r\n");
-      out.write("                        <div class=\"card-body\">\r\n");
-      out.write("                            <!-- Nav tabs -->\r\n");
-      out.write("                            <ul class=\"nav nav-tabs\">\r\n");
-      out.write("                                <!-- dung vong for o day -->\r\n");
-      out.write("                                ");
-
-                                    List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
-                                    if (listMotel != null){
-                                        if (listMotel.size() > 0){
-                                            for (MotelDTO motel : listMotel) {
-                                    
-                                
-      out.write("\r\n");
-      out.write("                                <li class=\"nav-item\">\r\n");
-      out.write("                                    <a class=\"nav-link\" data-toggle=\"tab\" href=\"#a");
-      out.print( motel.getMotelID() );
-      out.write("\">\r\n");
-      out.write("                                        <i class='bx bx-home-alt-2'></i>\r\n");
-      out.write("                                        <span>");
-      out.print( motel.getName() );
-      out.write("</span>\r\n");
-      out.write("                                    </a>\r\n");
-      out.write("                                </li>\r\n");
-      out.write("                                ");
-
-                                            }
-                                        }   
-                                    }
-                                
-      out.write(" \r\n");
-      out.write("                            </ul>\r\n");
-      out.write("                            \r\n");
-      out.write("                            <!-- Tab panes -->\r\n");
-      out.write("                            <div class=\"tab-content\">\r\n");
-      out.write("                                <!-- home1 -->\r\n");
-      out.write("                                ");
-                                  
-                                    if (listMotel != null){
-                                        if (listMotel.size() > 0){
-                                            for (MotelDTO motel : listMotel) {
-                                
-      out.write("\r\n");
-      out.write("                                <div class=\"tab-pane\" id=\"a");
-      out.print( motel.getMotelID() );
-      out.write("\" role=\"tabpanel\">\r\n");
-      out.write("                                    <div class=\"search\">\r\n");
-      out.write("                                        <div class=\"address-home\">\r\n");
-      out.write("                                            <span>Địa chỉ: <h5> ");
-      out.print( motel.getAddress());
-      out.write(',');
-      out.print( motel.getDistrict());
-      out.write(',');
-      out.print( motel.getCity());
-      out.write("</h5></span>\r\n");
-      out.write("                                        </div>\r\n");
-      out.write("                                        <form action=\"#\">\r\n");
-      out.write("                                            <label>\r\n");
-      out.write("                                                <input class=\"form-control\" type=\"text\" name=\"search\" placeholder=\"Search...\">\r\n");
-      out.write("                                                <i class='bx bx-search-alt'></i>\r\n");
-      out.write("                                            </label>\r\n");
-      out.write("                                        </form>\r\n");
-      out.write("                                    </div>\r\n");
-      out.write("                                    <div class=\"row\">\r\n");
-      out.write("                                        <!-- dung vong for o day -->\r\n");
-      out.write("                                        ");
- 
-                                            List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
-                                            for (RoomDTO room : listRoom) {
-                                                if(room.getMotelID().equals(motel.getMotelID())){                                                                                                                                   
-                                        
-      out.write("\r\n");
-      out.write("                                        <div class=\"col-xl-3 col-lg-6 col-sm-6 my-3\">\r\n");
-      out.write("                                            <div class=\"card card-child\">\r\n");
-      out.write("                                                <div class=\"room-name\">\r\n");
-      out.write("                                                    <span>");
-      out.print( room.getName() );
-      out.write("</span>\r\n");
-      out.write("                                                    <div class=\"status\">\r\n");
-      out.write("                                                        <!-- dùng lệnh if -->\r\n");
-      out.write("                                                        <span class=\"stt1\">Trạng thái:<h6></h6></span>\r\n");
-      out.write("                                                        <!-- <span class=\"stt2\">Trạng thái:<h6>Đang thuê</h6></span>\r\n");
-      out.write("                                                        <span class=\"stt3\">Trạng thái:<h6>Đã cọc</h6></span> -->\r\n");
-      out.write("                                                    </div>\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("                                                <div class=\"card-body room-title\">\r\n");
-      out.write("                                                    <ul class=\"list\">\r\n");
-      out.write("                                                        <li>\r\n");
-      out.write("                                                            <h6>Người thuê:</h6>\r\n");
-      out.write("                                                            <span></span>\r\n");
-      out.write("                                                        </li>                                                        \r\n");
-      out.write("                                                        <li>\r\n");
-      out.write("                                                            <h6>Thông tin phòng: ");
-      out.print( room.getDesc());
-      out.write("</h6>\r\n");
-      out.write("                                                            <span>\r\n");
-      out.write("                                                            </span>\r\n");
-      out.write("                                                        </li>\r\n");
-      out.write("                                                        <li>\r\n");
-      out.write("                                                            <h6>Số lượng dịch vụ đã sử dụng:</h6>\r\n");
-      out.write("                                                            <span>\r\n");
-      out.write("                                                            </span>\r\n");
-      out.write("                                                        </li>\r\n");
-      out.write("                                                        <li>\r\n");
-      out.write("                                                            <h5>Giá:</h5>\r\n");
-      out.write("                                                            <span>");
-      out.print( room.getPrice());
-      out.write("&dstrok;</span>\r\n");
-      out.write("                                                        </li>\r\n");
-      out.write("                                                    </ul>\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("                                                <div class=\"form-group mx-auto\">\r\n");
-      out.write("                                                    <button class=\"btn btn-warning\" data-toggle=\"modal\" data-target=\"#titleRoom\">Chi Tiết</button>\r\n");
-      out.write("                                                    <button class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#deleteRoom\">Hủy Phòng</button>\r\n");
-      out.write("                                                </div>\r\n");
-      out.write("                                            </div>\r\n");
-      out.write("                                        </div>\r\n");
-      out.write("                                        ");
-
-                                                    }
-                                                }
-                                            
-                                         
-      out.write("\r\n");
-      out.write("                                    </div>\r\n");
-      out.write("                                </div>\r\n");
-      out.write("                                ");
-
-                                            }
-                                        }  
-                                     }
-                                
-      out.write(" \r\n");
-      out.write("                            </div>\r\n");
-      out.write("                            <!-- end tapnet -->\r\n");
-      out.write("                        </div>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                </section>\r\n");
+      out.write("                \r\n");
       out.write("    </section>\r\n");
       out.write("\r\n");
       out.write("    <!-- CONTACT -->\r\n");
