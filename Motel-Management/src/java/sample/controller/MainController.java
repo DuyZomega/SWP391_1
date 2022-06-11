@@ -37,6 +37,8 @@ public class MainController extends HttpServlet {
     private static final String CHANGE_PASSWORD_CONTROLLER = "ChangePassWordController";
     private static final String CHANGE_IMAGE = "ChangeImage";
     private static final String CHANGE_IMAGE_CONTROLLER = "ChangeImageController";
+    private static final String SHOW_OWNER_OVERVIEW = "ShowOverview";
+    private static final String SHOW_OWNER_OVERVIEW_CONTROLLER = "OwnerShowOverview";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,6 +61,8 @@ public class MainController extends HttpServlet {
                 url = CHANGE_PASSWORD_CONTROLLER;
             } else if (CHANGE_IMAGE.equals(action)){
                 url = CHANGE_IMAGE_CONTROLLER;
+            } else if (SHOW_OWNER_OVERVIEW.equals(action)){
+                url = SHOW_OWNER_OVERVIEW_CONTROLLER;
             }
             
         } catch (Exception e) {
