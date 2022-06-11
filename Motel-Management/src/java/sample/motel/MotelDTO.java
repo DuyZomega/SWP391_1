@@ -21,7 +21,7 @@ public class MotelDTO {
     private double rating;
     private String ownerId;
     private int status;
-
+    
   
 
     public String getMotelID() {
@@ -154,4 +154,16 @@ public class MotelDTO {
         this.ownerId = ownerId;
         this.status = status;
     }
+
+    public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String ownerId, int status) {
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.ownerId = ownerId;
+        this.status = status;
+    }
+        
 }

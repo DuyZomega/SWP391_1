@@ -198,10 +198,10 @@
                     <ul class="nav nav-tabs">
 
                         <%
-                            List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
-                            if (listMotel != null) {
-                                if (listMotel.size() > 0) {
-                                    for (MotelDTO motel : listMotel) {
+                            List<MotelDTO> showMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTELINDEX");
+                            if (showMotel != null) {
+                                if (showMotel.size() > 0) {
+                                    for (MotelDTO motel : showMotel) {
 
                         %>
                         <div class="owl-carousel owl-theme">

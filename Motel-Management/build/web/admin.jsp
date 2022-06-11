@@ -97,33 +97,18 @@
                         </div>
                     </div>
                     <div class="float-right">
-                        <div class="dropdown">
-                            <div class="dropdown dib">
-                                <div class="header-icon admin" data-toggle="dropdown">
-                                    <span class="user-avatar"> 
-                                        <img src="assets/img/avatar.jpg">
-                                        Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                        <i class='bx bx-chevron-down'></i>
-                                    </span>
-
-                                    <ul class="dropdown-menu dropdown-menu-default ">
-                                        <li class="hidden">
-                                            <a href="admin/profile/info" title="Thông tin tài khoản" class="">
-                                                <i class="icon-user"></i> Thông tin tài khoản </a>
-                                        </li>
-                                        <li>
-                                            <a href="admin/profile/changepassword" title="Đổi mật khẩu" class="">
-                                                <i class="icon-lock"></i> Đổi mật khẩu </a>
-                                        </li>
-                                        <li>
-                                            <a href="admin/verify/logout">
-                                                <i class="icon-logout"></i> Đăng xuất </a>
-                                        </li>
-                                    </ul>
-
+                        <div class="btn-group me-1 mb-1">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
+                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
                                 </div>
-
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
