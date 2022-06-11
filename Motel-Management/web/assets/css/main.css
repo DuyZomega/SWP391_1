@@ -257,4 +257,30 @@ footer .footer__copyright p {
     background-color: #2c3e50;
     color: #fff; }
 
+.booking .heading {
+  color: #61BDF6;
+  text-shadow: 0px 0px 10px #1DA1F2;
+  margin-bottom: 30px; }
+.booking .desc-service {
+  padding-left: 40px; }
+.booking .table {
+  margin: 50px 0; }
+
+.booking__table .table td {
+  vertical-align: middle !important;
+  border: 1px solid #dee2e6; }
+.booking__table .inputDate,
+.booking__table .inputHour {
+  border: 1px solid #ced4da;
+  display: inline-block;
+  width: 100%;
+  border-radius: 0.25rem; }
+  .booking__table .inputDate input,
+  .booking__table .inputHour input {
+    width: 100%;
+    border: none;
+    padding: 6px 12px; }
+.booking__table .hour {
+  width: 105px; }
+
 /*# sourceMappingURL=main.css.map */
