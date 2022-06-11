@@ -40,7 +40,7 @@
                             }
                         %>
                         <li>
-                            <a href="owner-index.jsp">
+                            <a href="MainController?action=ShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -147,9 +147,9 @@
                         }
                         String gender = "";
                         if (userProfile.getGender() == 1) {
-                            gender = "FEMALE";
+                            gender = "Nữ";
                         } else {
-                            gender = "MALE";
+                            gender = "Nam";
                         }
                     %>
                     <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
@@ -194,12 +194,12 @@
                                                         </div>
                                                         <div class="row phone-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">CMND/CCCD:</label>
-                                                            <input type="number" name="citizenNumber" value="<%= userProfile.getCitizenNumber()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="text" name="citizenNumber" value="<%= userProfile.getCitizenNumber()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getCitizenNumberError()%></span>
                                                         </div>
                                                         <div class="row phone-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Số điện thoại:</label>
-                                                            <input type="number" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getPhoneError()%></span>
                                                         </div>
                                                         <div class="row address-content">
@@ -209,18 +209,22 @@
                                                         </div>
                                                         <div class="row email-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Email:</label>
-                                                            <input type="text" name="gmail" value="<%= userProfile.getGmail()%>"  class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="email" name="gmail" value="<%= userProfile.getGmail()%>"  class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getGmailError()%></span>
                                                         </div>
                                                         <div class="row birthday-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Ngày/Tháng/Năm:</label>
-                                                            <input type="date" max="2022-01-01" min="1940-01-01" name="birthDay" value="<%= userProfile.getBirthDay()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="date" max="2022-01-01" min="1940-01-01" name="birthDay" value="<%= userProfile.getDateOfBirth()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getBirthDayError()%></span>
                                                         </div>
-                                                        <div class="row email-content">
-                                                            <label class="contact-title col-md-5 col-sm-4 mt-3">Giới Tính:</label>
-                                                            <input type="text" name="gender" value="<%= gender%>"  class="form-control col-md-5 col-sm-8 mt-2">
-                                                            <span class="error-message col-md-2 mt-3"><%= userError.getGenderError()%></span>
+                                                        <div class="row gender-content">
+                                                        <label class="contact-title col-md-5 col-sm-4 mt-3">Giới tính:</label>
+                                                        <select name="gender" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <option value="<%=userProfile.getGender()%>"><%= gender %></option>
+                                                            <option value="0">Nam</option>
+                                                            <option value="1">Nữ</option>
+          
+                                                        </select>
                                                         </div>
                                                         <div class="row pt-3 d-flex">
                                                             <button type="submit" name="action" value="updateOwner" class="offset-3 btn btn-success">Xác nhận</button>

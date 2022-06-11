@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
     private static final String US="US";
     private static final String USER_PAGE="index.jsp";
     private static final String OWNER="OW";
-    private static final String OWNER_PAGE="owner-index.jsp";
+    private static final String OWNER_PAGE="OwnerShowOverview";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class LoginController extends HttpServlet {
             String password=request.getParameter("password");
             UserDAO dao=new UserDAO();
             UserDTO loginUser= dao.checkLogin(userId, password);
-            HttpSession session=request.getSession();
+            HttpSession session=request.getSession();           
             if(loginUser!=null){
                 session.setAttribute("LOGIN_USER", loginUser);
                 String role=loginUser.getRole();

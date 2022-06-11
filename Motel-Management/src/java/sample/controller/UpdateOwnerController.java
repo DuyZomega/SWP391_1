@@ -39,7 +39,7 @@ public class UpdateOwnerController extends HttpServlet {
             String birthday = request.getParameter("birthDay");
             String phone = request.getParameter("phone");
             String email = request.getParameter("gmail");
-            String gender = request.getParameter("gender");
+            int gender = Integer.parseInt(request.getParameter("gender"));
             boolean checkValidation = true;
 
             if (fullName.length() < 5 || fullName.length() > 20) {
@@ -53,21 +53,12 @@ public class UpdateOwnerController extends HttpServlet {
             if (CitizenNumber.length() < 7 || CitizenNumber.length() > 12){
                 userError.setCitizenNumberError("CitizenNumber must be in range 8-11");
                 checkValidation = false;
-            }
-            if (!gender.equals("MALE") && !gender.equals("FEMALE")){
-                userError.setGenderError("Gender is wrong format (MALE / FEMALE)");
-                checkValidation = false ;
-            }
-
+            }           
+            
+            
             if (checkValidation) {
-                UserDAO dao = new UserDAO();
-                int gender2 ;
-                if (gender.equals("MALE")){
-                    gender2 = 0 ;
-                }else {
-                    gender2 = 1;
-                }
-                UserDTO user = new UserDTO(userID, fullName, "", gender2, birthday, CitizenNumber, phone, email, address, "", "", 1);
+                UserDAO dao = new UserDAO();             
+                UserDTO user = new UserDTO(userID, fullName, "", gender, birthday, CitizenNumber, phone, email, address, "", "", 1);
                 boolean checkUpdate = dao.update(user);
                 if (checkUpdate) {
                     HttpSession session = request.getSession();
