@@ -10,44 +10,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
+import javax.servlet.http.HttpSession;
+import sample.admin.DashboardDAO;
+import sample.admin.DashboardDTO;
+import sample.users.UserDTO;
 
 /**
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "AdminUpdateMotel", urlPatterns = {"/AdminUpdateMotel"})
-public class AdminUpdateMotel extends HttpServlet {
+@WebServlet(name = "AdminShowOverview", urlPatterns = {"/AdminShowOverview"})
+public class AdminShowOverview extends HttpServlet {
 
-     
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "AdminShowMotel";
-    
+    private static final String SUCCESS = "admin.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-       try{
-           String motelID = request.getParameter("motelID");
-            String name = request.getParameter("name");
-            String image = request.getParameter("image");
-            String phone = request.getParameter("phone");
-            String Desct = request.getParameter("Desct");
-            double rating = Double.parseDouble(request.getParameter("rating"));
-            int status = Integer.parseInt(request.getParameter("status"));
-            MotelDTO motel = new MotelDTO(motelID, name, image, phone, Desct, rating, status);
-             MotelDAO dao = new MotelDAO();
-            boolean check = dao.updateMotel(motel);
-            if (check) {
-                    request.setAttribute("MESSAGE", "Update successfully");
-                    url = SUCCESS;
-                } else {
-                    request.setAttribute("ERROR_MESSAGE", "Update fail");
-                    url = ERROR;
-                }
-       } catch (Exception e) {
-            log("Error at showlistcontroller: " + e.toString());
+        try {
+          //HttpSession session = request.getSession();
+          //  UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+           // String userID = loginUser.getUserId();
+            DashboardDAO dao = new DashboardDAO();
+            DashboardDTO dashboard = new DashboardDTO();
+            int motelNumber = dao.getMotelNumber();
+            int userNumber = dao.getUserNumber();
+            int ownerNumber = dao.getOwnerNumber();
+            int reportNumber = dao.getReportNumber();
+            dashboard = new DashboardDTO(motelNumber, userNumber, ownerNumber, reportNumber);
+            if (dashboard != null) {
+                request.setAttribute("DASHBOARD", dashboard);
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            log("Error at AdminShowOverview: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
