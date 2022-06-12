@@ -35,12 +35,12 @@
 
                     <ul>
                         <div class="logo">
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
                         <li>
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -58,13 +58,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admin-user.jsp">
+                            <a href="UserManager?action=all&role=US">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý người thuê</span>
                             </a>
                         </li>
                         <li>
-                            <a href="admin-owner.jsp">
+                            <a href="UserManager?action=all&role=OW">
                                 <span><i class='bx bx-user-circle'></i></span>
                                 <span class="title">Quản lý chủ thuê</span>
                             </a>
@@ -158,6 +158,8 @@
                                                                     <td>${a.userId}</td>
                                                                     <td>
                                                                         <img src="${a.image}">
+<!--                                                                        
+                                                                        <img src="images/man-300x300.png">-->
                                                                     </td>
                                                                     <td>${a.fullName}</td>
                                                                     <td>${a.citizenNumber}</td>

@@ -32,12 +32,12 @@
 
                     <ul>
                         <div class="logo">
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
                         <li >
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -92,7 +92,7 @@
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-12 my-2">
+                    <div class="col-sm-12">
                         <div class="toggle float-left">
                             <i class='bx bx-menu'></i>
                         </div>
@@ -159,7 +159,7 @@
                                                                     </td>
                                                                     <td>${motel.name}</td>
                                                                     <td>${motel.phone}</td>
-                                                                    <td>${motel.address}</td>
+                                                                    <td>${motel.address},${motel.district},${motel.city}</td>
                                                                     <td>${motel.rating}</td>
                                                                     <td>${motel.ownerId}</td>
                                                                     <td>
@@ -172,8 +172,8 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="d-flex">
-                                                                            <a href="MotelManager?action=update&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
-                                                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
+                                                                            <a href="MotelManager?action=detail&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
+                                                                            <a href="MotelManager?action=delete&motelID=${motel.motelID}" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
                                                                         </div>    
                                                                     </td>
                                                                 </tr>

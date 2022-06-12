@@ -35,12 +35,12 @@
 
                     <ul>
                         <div class="logo">
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
                         <li >
-                            <a href="admin.jsp">
+                            <a href="AdminShowMotel">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -174,7 +174,7 @@
                                                                     </td>
                                                                     <td>
                                                                         <div class="d-flex">
-                                                                            <a href="" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>
+<!--                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
                                                                             <a href="UserManager?action=detail&role=${o.role}&userId=${o.userId}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-user-detail'></i></a>
                                                                         </div>    
                                                                     </td>

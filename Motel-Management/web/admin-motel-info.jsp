@@ -1,9 +1,8 @@
 <%-- 
-    Document   : admin-owner-info
-    Created on : Jun 9, 2022, 8:28:16 PM
+    Document   : admin-motel-info
+    Created on : Jun 11, 2022, 3:09:13 PM
     Author     : cao thi phuong thuy
 --%>
-
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.users.UserDTO"%>
@@ -38,7 +37,7 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li>
+                        <li class="active">
                             <a href="AdminShowMotel">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
@@ -75,7 +74,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -99,19 +98,19 @@
                         </div>
 
                         <div class="float-right">
-                             <div class="btn-group me-1 mb-1">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
-                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
-                                </div>
-                            </div>  
-                        </div>
+                            <div class="btn-group me-1 mb-1">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Thuy CTP ${sessionScope.LOGIN_USER.fullName}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
+                                        <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
+                                    </div>
+                                </div>  
+                            </div>
                         </div>   
                     </div>
                 </div>
@@ -133,70 +132,55 @@
                                     <c:if test="${not empty requestScope.INFO}">
 
                                         <c:forEach var="o" varStatus="counter" items="${requestScope.INFO}">
-                                            <form class="row" action="UserManager">
+                                            <form class="row" action="MotelManager">
                                                 <div class="mb-3 col-md-12">
                                                     <label for="image" class="form-label">Hình ảnh  <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="image" value="${o.image}" required="">
 
 
                                                 </div>
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="userId" class="form-label">Tên đăng nhập</label>
-                                                    <input type="text" class="form-control" name="userId" value="${o.userId}" readonly="">
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="fullName" class="form-label">Họ và Tên  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="fullName" value="${o.fullName}" required="">
+                                                <div class="mb-3 col-md-4">
+                                                    <label for="motelID" class="form-label">Mã Motel</label>
+                                                    <input type="text" class="form-control" name="motelID" value="${o.motelID}" readonly="">
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="birthDay" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                                    <input type="date" class="form-control" name="DateOfBirth" value="${o.dateOfBirth}" required="">
+                                                    <label for="name" class="form-label">Tên Motel <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="name" value="${o.name}" required="">
                                                 </div>
+                                                <div class="mb-3 col-md-2">
+                                                    <label for="rating" class="form-label">Đánh giá <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="rating" value="${o.rating}" required="">
+                                                </div>
+
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="gender">
-                                                         <c:if test="${o.gender == 0}">
-                                                            <option value="0">Male</option>
-                                                            <option value="1">Female</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.gender == 1}">
-                                                            <option value="1">Female</option>
-                                                            <option value="0">Male</option>
-                                                        </c:if> 
-                                                        
-                                                    </select>
+                                                    <label for="ownerId" class="form-label">Chủ trọ</label>
+                                                    <input type="text" class="form-control" name="ownerId" value="${o.ownerId}" readonly="">
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="phone" class="form-label">SDT  <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="phone" pattern="[0-9]{9,11}" value="${o.phone}" required="">
                                                 </div>
+                                                <div class="mb-3 col-md-12">
+                                                    <label for="Desct" class="form-label">Mô tả <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" name="Desct" value="${o.desct}" required="">
+
+                                                </div>
+
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="citizenNumber" class="form-label">CMND/CCCD <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="citizenNumber" value="${o.citizenNumber}" required="">
-
-                                                </div>
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="gmail" class="form-label">Email <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" name="gmail" value="${o.gmail}" placeholder="">
-                                                </div>
-
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="address" class="form-label">Địa chỉ</label>
+                                                    <label for="address" class="form-label">Địa chỉ<span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="address" value="${o.address}" required="">
+
                                                 </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="role" class="form-label">Quyền <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="role"  required="">
-                                                           <c:if test="${o.role.equals('US')}">
-                                                            <option value="US">Người thuê</option>
-                                                            <option value="OW">Chủ thuê</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.role.equals('OW')}">
-                                                            <option value="OW">Chủ thuê</option>
-                                                            <option value="US">Người thuê</option>
-                                                        </c:if> 
-                                                    </select>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="DistrictName" class="form-label">Quận/Huyện</label>
+                                                    <input type="text" class="form-control" name="district" value="${o.district}" required="">
                                                 </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label for="cityName" class="form-label">Tỉnh</label>
+                                                    <input type="text" class="form-control" name="city" value="${o.city}" required="">
+                                                </div>
+
+
                                                 <div class="col-md-6 mb-3">
                                                     <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
                                                     <select class="form-select" name="status" required="">

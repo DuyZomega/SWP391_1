@@ -167,6 +167,14 @@ public class MotelDTO {
         this.status = status;
     }
 
-
+ public MotelDTO(String motelID, String name, String image, String phone, String Desct, double rating,int status) {
+        this.motelID = motelID;
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.rating = rating;
+        this.status = status;
+    }
         
 }

@@ -5,6 +5,8 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,36 +19,28 @@ import sample.motel.MotelDTO;
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "AdminUpdateMotel", urlPatterns = {"/AdminUpdateMotel"})
-public class AdminUpdateMotel extends HttpServlet {
-
-     
+@WebServlet(name = "AdminDetailMotel", urlPatterns = {"/AdminDetailMotel"})
+public class AdminDetailMotel extends HttpServlet {
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "AdminShowMotel";
-    
+    private static final String MOTEL = "admin-motel-info.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-       try{
-           String motelID = request.getParameter("motelID");
-            String name = request.getParameter("name");
-            String image = request.getParameter("image");
-            String phone = request.getParameter("phone");
-            String Desct = request.getParameter("Desct");
-            double rating = Double.parseDouble(request.getParameter("rating"));
-            int status = Integer.parseInt(request.getParameter("status"));
-            MotelDTO motel = new MotelDTO(motelID, name, image, phone, Desct, rating, status);
-             MotelDAO dao = new MotelDAO();
-            boolean check = dao.updateMotel(motel);
-            if (check) {
-                    request.setAttribute("MESSAGE", "Update successfully");
-                    url = SUCCESS;
+       String url = ERROR;
+        try {
+            String motelID = request.getParameter("motelID");
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getInfo(motelID);
+                if (listMotel.size() > 0) {
+                    request.setAttribute("INFO", listMotel);
+                    url = MOTEL;
                 } else {
-                    request.setAttribute("ERROR_MESSAGE", "Update fail");
-                    url = ERROR;
+                    request.setAttribute("ERROR_MESSAGE", "No user here");
+                    url = MOTEL;
                 }
-       } catch (Exception e) {
+
+        } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
