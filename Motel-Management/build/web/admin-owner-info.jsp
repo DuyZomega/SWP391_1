@@ -149,8 +149,8 @@
                                                     <input type="text" class="form-control" name="fullName" value="${o.fullName}" required="">
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="DateOfBirth" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                                    <input type="date" class="form-control" name="DateOfBirth" value="${o.DateOfBirth}" required="">
+                                                    <label for="birthDay" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                                                    <input type="date" class="form-control" name="DateOfBirth" value="${o.dateOfBirth}" required="">
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
