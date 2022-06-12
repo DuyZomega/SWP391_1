@@ -23,7 +23,6 @@ public class MotelDAO {
 
     private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
 
-    private static final String SHOWLIST_MOTEL = "SELECT MotelID, tblMotel.Name, Phone,Desct,Image, Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,OwnerID,Status FROM tblMotel,tblDistrict,tblCity WHERE OwnerID = ? AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
 
     public List<MotelDTO> searchMotel(String ownerID) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList();
@@ -108,7 +107,8 @@ public class MotelDAO {
 
     }
 
-    public List<MotelDTO> ShowListMotel() throws SQLException {
+public List<MotelDTO> ShowListMotel() throws SQLException{
+        String SHOWLIST_MOTEL = "SELECT top 3 * from tblMotel";
         List<MotelDTO> showMotel = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -116,7 +116,7 @@ public class MotelDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(SHOWLIST_MOTEL);
+                ptm = conn.prepareStatement(ADMIN_SHOW_MOTEL);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String motelID = rs.getString("MotelID");
@@ -126,9 +126,10 @@ public class MotelDAO {
                     String address = rs.getString("Address");
                     String districtName = rs.getString("DistrictName");
                     String cityName = rs.getString("CityName");
+                    double rating = rs.getDouble("Ratings");
                     String ownerId = rs.getString("FullName");
                     int status = rs.getInt("Status");
-                    showMotel.add(new MotelDTO(motelID, name, image, phone, address, districtName, cityName, ownerId, status));
+                    showMotel.add(new MotelDTO(motelID, name, image, phone, address, districtName, cityName, rating, ownerId, status));
                 }
             }
         } catch (Exception e) {
