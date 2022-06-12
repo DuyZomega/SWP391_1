@@ -33,12 +33,19 @@ public class ShowMotelController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url =  ERROR;
-                try {
+         try {
             String ownerID = request.getParameter("ownerID");
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
+            List<RoomDTO> listRoom = new ArrayList<>();
             if (listMotel.size()>0){
-                request.setAttribute("LIST_MOTELINDEX", listMotel);
+                request.setAttribute("LIST_MOTEL", listMotel);
+                RoomDAO dao2 = new RoomDAO();
+                for(MotelDTO motel : listMotel){                  
+                   List<RoomDTO> list = dao2.searchRoom(motel.getMotelID());
+                   listRoom.addAll(list);
+                }
+                request.setAttribute("LIST_ROOM", listRoom);
                 url=SUCCESS;
             }
             
@@ -46,7 +53,8 @@ public class ShowMotelController extends HttpServlet {
             log("Error at showlistcontroller: "+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
-        }    
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

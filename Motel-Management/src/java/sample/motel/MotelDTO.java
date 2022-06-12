@@ -155,15 +155,18 @@ public class MotelDTO {
         this.status = status;
     }
 
-    public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String ownerId, int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String address, String district, String city, String ownerId, int status) {
+        this.motelID = motelID;
         this.name = name;
         this.image = image;
         this.phone = phone;
-        this.Desct = Desct;
         this.address = address;
         this.district = district;
+        this.city = city;
         this.ownerId = ownerId;
         this.status = status;
     }
+
+
         
 }
