@@ -72,7 +72,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="user-profile.html">Thông tin cá nhân</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="index.jsp">Đăng xuất</a>
                     </div>
                 </div>
                 </div>

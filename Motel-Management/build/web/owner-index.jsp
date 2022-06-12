@@ -271,7 +271,6 @@
                                         if (listFeedback != null) {
                                             if (listFeedback.size() > 0) {
                                                 for (FeedbackDTO feedback : listFeedback) {
-
                                     %>
                                     <tr>
                                         <td><div class="imgBx"><img src="<%= feedback.getImage()%>" alt=""></div></td>
