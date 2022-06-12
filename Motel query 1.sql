@@ -36,22 +36,22 @@ CREATE TABLE [tblDistrict](--done
 );
 
 
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'1', N'An Giang')
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'2', N'Ba Ria Vung Tau')
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'3', N'Bạc Lieu')
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'4', N'Bac Giang')
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'9', N'Bình Định')
-INSERT [tblCity] ([CityID], [Name]) VALUES (N'30', N'Thanh Pho HCM')
+INSERT [tblCity] ([CityID], [Name]) VALUES (N'1', N'Thanh Pho HCM')
 
 /*disctrictID sẽ là số của cityID + 1 2 3 tăng dần*/
-INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'11', N'An Phú', '1')
-INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'12', N'Phú Tân', '1')
-INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'21', N'Thành phố Bà Rịa', '2')
-INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'22', N'Thành phố Vũng Tàu', '2')
-INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'91', N'Phù Mỹ', '9')
-INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'92', N'Phù Cát', '9')
-INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'301', N'Thành phố Thủ Đức', '30')
-INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'302', N'Quận 2', '30')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'1', N'Bình Tân', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'2', N'Gò Vấp', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'3', N'Tân Bình', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'4', N'Quận 1', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'5', N'Quận 3', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'6', N'Quận 6', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'7', N'Thành phố Thủ Đức', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'8', N'Quận 7', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'9', N'Quận 8', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'10', N'Quận Bình Thạnh', '1')
+INSERT [tblDistrict] ([DistrictID], [Name],[CityID]) VALUES (N'11', N'Quận Phú Nhuận', '1')
+INSERT [tblDistrict] ([DistrictID],  [Name],[CityID]) VALUES (N'12', N'Quận 6', '1')
+
 
 CREATE TABLE [tblMotel](--done
 [MotelID]      [varchar](10) not null PRIMARY KEY,
@@ -161,45 +161,43 @@ ADD CONSTRAINT FK_Payment_Booking FOREIGN KEY([PaymentID])
     REFERENCES [tblBooking]([BookingID]);
 
 --/////////////
---insert user
-
-
+--insert user UPDATE tblUser set Image = 'assets/img/avatar.jpg' where Status = 0
 
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price]) VALUES (N'1', N'Phòng đơn', 150000)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price]) VALUES (N'2', N'Phòng đôi', 250000)
 
 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address], [Phone] ,[Gmail], [Role], [Status] ) VALUES (N'quan01', N'Le Minh Quan',N'1', N'.....','2001-05-07',321615057,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942949219','hoangquan9851@gmail.com','OW',1) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber],[Gender], [Address] ,[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tu06', N'Nguyen Doan Tu',N'1', N'.....','2001-05-26',78523465,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01945876325','tutu988@gmail.com','OW',0) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'phuc08', N'Lam Son Phuc',N'1', N'.....','2001-02-14',235478154,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01478523654','phucson223@gmail.com','OW',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Quang09', N'Do Duy Quang',N'1', N'.....','1998-05-14',25479864,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0365258417','quang744@gmail.com','OW',1)  
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'chuongmai', N'Huy Chuong',N'99', N'.....','2002-01-14',214536587,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0975841354','chuongmai@gmail.com','OW',0)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'nhatvuong', N'Pham Nhat Vuong',N'99', N'.....','1989-01-14',248762544,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0248998745','vuong@gmail.com','OW',1)  
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address], [Phone] ,[Gmail], [Role], [Status] ) VALUES (N'quan01', N'Le Minh Quan',N'1', N'images/man.png','2001-05-07',321615057,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942949219','hoangquan9851@gmail.com','OW',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber],[Gender], [Address] ,[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tu06', N'Nguyen Doan Tu',N'1', N'images/man.png','2001-05-26',78523465,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01945876325','tutu988@gmail.com','OW',0) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'phuc08', N'Lam Son Phuc',N'1', N'assets/img/avatar.jpg','2001-02-14',235478154,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01478523654','phucson223@gmail.com','OW',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Quang09', N'Do Duy Quang',N'1', N'images/man.png','1998-05-14',25479864,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0365258417','quang744@gmail.com','OW',1)  
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'chuongmai', N'Huy Chuong',N'99', N'assets/img/avatar.jpg','2002-01-14',214536587,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0975841354','chuongmai@gmail.com','OW',0)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'nhatvuong', N'Pham Nhat Vuong',N'99', N'images/man.png','1989-01-14',248762544,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0248998745','vuong@gmail.com','OW',1)  
  
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'doan07', N'Nguyen Huu Doan',N'1', N'.....','2001-09-17',712465325,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0965852413','donatran1113@gmail.com','US',1) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'hai03', N'Tran Ngoc Hai',N'1', N'.....','2001-10-15',3541258746,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0347895634','haitn@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tuan04', N'Nguyen Huu Pham Tuan',N'1', N'.....','2001-07-07',47853265,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01653992966','tuanhp@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'duy05', N'Ho Khanh Duy',N'1', N'.....','2001-01-25',452874365,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0963756841','Devilgamer@gmail.com','US',0) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Lamm44', N'Dang Son Lam',N'14', N'.....','1989-05-07',58213647,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','014752368','liontee@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'taich74', N'Nguyen Huu Tai',N'8751', N'.....','1999-11-24',7468512,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942741653','monster11@gmail.com','US',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'doan07', N'Nguyen Huu Doan',N'1', N'images/man.png','2001-09-17',712465325,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0965852413','donatran1113@gmail.com','US',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'hai03', N'Tran Ngoc Hai',N'1', N'images/man.png','2001-10-15',3541258746,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0347895634','haitn@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tuan04', N'Nguyen Huu Pham Tuan',N'1', N'images/man.png','2001-07-07',47853265,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01653992966','tuanhp@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'duy05', N'Ho Khanh Duy',N'1', N'images/duy.png','2001-01-25',452874365,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0963756841','Devilgamer@gmail.com','US',0) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Lamm44', N'Dang Son Lam',N'14', N'images/man.png','1989-05-07',58213647,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','014752368','liontee@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'taich74', N'Nguyen Huu Tai',N'8751', N'images/man.png','1999-11-24',7468512,1,N'Số 71 đường c18 P12 Tân Bình, HCM','0942741653','monster11@gmail.com','US',1) 
 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'thuy02', N'Cao Thi Phuong Thuy',N'1', N'.....','2001-04-08',45217896,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0852135789','thuy01@gmail.com','AD',1)  
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'thuy02', N'Cao Thi Phuong Thuy',N'1', N'images/girl.png','2001-04-08',45217896,1,N'166/46d2 Thích Quảng Đức, Phú Nhuận , HCM','0852135789','thuy01@gmail.com','AD',1)  
 
 
 --insert motel
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Phương Nam', N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0948484848','301', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0328787878','302', N'143A Mỹ Đức,Bình Phú',4.5,N'quan01',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0248996587','302', N'345/55 Trần Hưng Đạo, Cầu Kho',4.1,N'tu06',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0344989898','302', N'263, Lê Hồng Phong',4.1,N'chuongmai',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'548762589',N'Nhà Trọ Ladalat',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0147586325','91', N'263, Số 19, đường Hoa Hồng, hồ Tuyền Lâm, phường 4',3.9,N'phuc08',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'473658715',N'Nhà Trọ Vạn Phúc',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0478523645','301', N'91 Vạn Phúc, phường Liễu Giai',4.7,N'Quang09',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0745898989','11', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985364865','11', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'https://ezcloud.vn/wp-content/uploads/2019/07/motel-la-gi.jpg', N'0985635353','12', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Phương Nam', N'Desction motel',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'Desction motel',N'images/motel-5.jpg', N'0328787878','2', N'143A Mỹ Đức,Bình Phú',4.5,N'quan01',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'Desction motel',N'images/motel-4.jpg', N'0248996587','3', N'345/55 Trần Hưng Đạo, Cầu Kho',4.1,N'tu06',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'images/motel-7.jpg', N'0344989898','4', N'263, Lê Hồng Phong',4.1,N'chuongmai',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'548762589',N'Nhà Trọ Ladalat',N'Desction motel',N'images/motel-6.jpg', N'0147586325','5', N'263, Số 19, đường Hoa Hồng, hồ Tuyền Lâm, phường 4',3.9,N'phuc08',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'473658715',N'Nhà Trọ Vạn Phúc',N'Desction motel',N'images/motel-5.jpg', N'0478523645','6', N'91 Vạn Phúc, phường Liễu Giai',4.7,N'Quang09',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'images/motel-4.jpg', N'0745898989','7', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
 
 --insert room
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'012414785', N'01', N'',N'phòng đơn 1 giường', 1, N'587416594',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID])VALUES (N'216587125', N'02', N'', N'phòng đôi 1 giường', 0, N'587416594',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'216587125', N'02', N'', N'phòng đôi 1 giường', 0, N'587416594',N'1')
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'219657756', N'03', N'',N'phòng đôi 2 giường', 1, N'587416594',N'1')
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'765324124', N'04', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
 INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'895365765', N'05', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
@@ -290,7 +288,7 @@ INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [User
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-10-10',N'Booking table', 59900,1,'tuan04') 
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 500000,1,'Lamm44')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 600000,1,'hai03')
-UPDATE tblUser set Image = 'assets/img/avatar.jpg' where Status = 0
+
 
 ---INSERT BookingDetail
 
@@ -318,7 +316,6 @@ INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [Bookin
 INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('4', N'Ngoc Hai',N'Phòng rất sạch sẽ', 4,N'587416594',N'booking04',1) 
 INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Pham Tuan',N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
 INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('6', N'nhat lam',N'nha', 4,N'861435762',N'booking01',1)
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Pham Tuan',N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
 
 
 ---INSERT Report
@@ -346,8 +343,9 @@ SELECT * FROM tblMotel
 SELECT * FROM tblMotel WHERE Address like '%nhơn phú%';
 SELECT * FROM tblUser
 DELETE tblUser WHERE UserID = '01'
-*/
+
 UPDATE tblUser SET Password = '1' WHERE UserID = 'quan01' 
+*/
 select COUNT(*) as NumberRoom from tblUser,tblMotel,tblRoom where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblRoom.MotelID and UserID = 'quan01'
 select COUNT(*) as NumberService from tblUser,tblMotel,tblService where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblService.MotelID and UserID = 'quan01'
 select COUNT(*) as NumberFeedback from  tblUser, tblMotel , tblFeedBack where tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'		
@@ -357,4 +355,3 @@ SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status FROM (SELECT TOP 5 b
 WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID ORDER BY a.BookingDate DESC
 SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
 SELECT RoomID FROM tblRoom Where RoomID = ''
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'332369568', N'Room 12', N'', N'phòng đơn nệm lò xo, máy lạnh ', 0, N'842578129',N'1')
