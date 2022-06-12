@@ -58,9 +58,17 @@
 
                     <a href="./signup.jsp">Đăng ký</a>
                     <% } else { %>
-                    <form action="/logout?_method=DELETE" method="POST">
-                        <button type="submit">Log Out</button>
-                    </form>
+                    <div class="header__right">
+               <button type="button" class="button--primary btn btn-sm">
+                    <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+                </button>
+                <div class="user-dropdown dropdown">
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
                     <%}%>
                 </div>
             </div>
