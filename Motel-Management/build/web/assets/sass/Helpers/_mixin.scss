@@ -4,13 +4,14 @@
     font-weight: $fw;
 }
 
-@mixin styleButton($color, $bg-color, $border, $fs, $fw, $pd-y, $pd-x) {
+@mixin styleButton($color, $bg-color, $border, $fs, $fw, $pd-y, $pd-x, $bdr) {
     color: $color;
     background-color: $bg-color;
     border: 1px solid $border;
     font-size: $fs;
     font-weight: $fw;
     padding: $pd-y $pd-x;
+    border-radius: $bdr;
     cursor: pointer;
 }
 

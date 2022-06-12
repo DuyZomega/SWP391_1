@@ -1,4 +1,5 @@
 .background {
+    color: $color-white-1;
     .container {
         color: $color-white-0;
         .login {
@@ -31,9 +32,33 @@
                     border-color: $color-white-0;
                 }
             }
+            .btn-signup{
+                &:hover{
+                    background-color: $color-primary-3;
+                }
+            }
+        }
+        .form-item {
+            padding: 0;
+            label {
+                color: $color-white-1;
+            }
+            input {
+                color: $color-white-1;
+            }
         }
         .signup {
             color: $color-blue-3;
+        }
+        .button-select {
+            .active {
+            background-color: $color-primary-3;
+            }
+            .btn {
+                &:hover {
+                    color: $color-white-1;
+                }
+            }
         }
     }
 }
