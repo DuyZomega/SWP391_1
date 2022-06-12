@@ -4,7 +4,7 @@
         .carousel-control-prev,
         .carousel-control-next {
             i {
-                color: $color-black-0;
+                color: #000;
                 font-size: $fs-4;
             }
         }
@@ -24,22 +24,25 @@
 }
 // MOTEL
 .motel {
-    padding-top: 0;
     .heading {
-        color: $color-primary-0;
+        color: $color-blue-1;
         text-shadow: 0px 0px 10px $color-blue-3;
-        margin-bottom: $mg-3;
     }
     .motel__content {
-        i{
-            font-size: $fs-3;
+        .item {
+            margin-bottom: 0px;
+            margin-left: $mg-4;
+            padding: $pd-1;
+            border: 1px solid $color-red-0;
+            border-radius: $border-radius-1;
+            box-shadow: 1px 1px 5px $color-red-0;
+            background-color: $color-white-0;
+            display: table;
+            .motel-image {
+                display: block;
+                border-radius: $border-radius-1;
+                overflow: hidden;
+            }
         }
-        p{
-            font-size: $fs-3 - 2;
-            margin: 0;
-            padding: 10px 0;
-
-        }
-        
     }
 }
