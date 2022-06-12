@@ -17,7 +17,16 @@ public class RoomDTO {
     private String Desc;
     private int status;
     private String MotelID;
+    private String roomType;
 
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+    
     public String getRoomId() {
         return roomId;
     }
@@ -95,6 +104,16 @@ public class RoomDTO {
         this.MotelID = MotelID;
         this.status = status;
     }
+
+    public RoomDTO(String roomId, String name, String Desc,String roomType, int status, String MotelID) {
+        this.roomId = roomId;
+        this.name = name;
+        this.Desc = Desc;
+        this.roomType = roomType;
+        this.status = status;
+        this.MotelID = MotelID;
+    }
+    
     
     
 }
