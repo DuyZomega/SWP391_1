@@ -49,23 +49,32 @@
                         0865.644.162</a>
                 </div>
                 <div class="header__right">
+                    
+                    <% UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                        if (loginUser == null || !loginUser.getRole().equals("US")) { %>
                     <button type="button" class="button--primary btn btn-sm">
                         <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                     </button>
-                    <% UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                        if (loginUser == null || !loginUser.getRole().equals("US")) { %>
                     <a href="./login.jsp">Đăng nhập</a>
 
                     <a href="./signup.jsp">Đăng ký</a>
                     <% } else { %>
                     <div class="header__right">
-               <button type="button" class="button--primary btn btn-sm">
+                <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
                 <div class="user-dropdown dropdown">
+                    <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>Xin chào, "some-one"</span>
+                        <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="user-profile.html">Thông tin cá nhân</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Đăng xuất</a>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
