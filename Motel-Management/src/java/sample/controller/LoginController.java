@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
             UserDAO dao=new UserDAO();
             UserDTO loginUser= dao.checkLogin(userId, password);
             HttpSession session=request.getSession();           
-            if(loginUser != null){
+            if(loginUser!=null){
                 session.setAttribute("LOGIN_USER", loginUser);
                 String role=loginUser.getRole();
                 if(AD.equals(role)){
