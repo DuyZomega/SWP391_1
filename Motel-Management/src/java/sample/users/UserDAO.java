@@ -478,13 +478,13 @@ public boolean checkDuplcate(String userId) throws SQLException {
                     String fullName = rs.getString("fullName");
                     String image = rs.getString("image");
                     int gender = rs.getInt("gender");
-                    String birthDay = rs.getString("DateOfBirth");
+                    String DateOfBirth = rs.getString("DateOfBirth");
                     String citizenNumber = rs.getString("citizenNumber");
                     String phone = rs.getString("phone");
                     String gmail = rs.getString("gmail");
                     String address = rs.getString("address");
                     int status = rs.getInt("status");
-                    listAcc.add(new UserDTO(userId, fullName, image, gender, birthDay, citizenNumber, phone, gmail, address, role, status));
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
                 }
             }
         } catch (Exception e) {
