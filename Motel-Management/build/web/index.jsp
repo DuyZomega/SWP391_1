@@ -215,6 +215,40 @@
                     <button class="button--primary">Xem ngay</button>
                 </div>
             </div>
+            <%
+                List<MotelDTO> showmotel = (ArrayList<MotelDTO>) request.getAttribute("SHOWLIST_MOTEL");
+                if (showmotel != null) {
+                    if (showmotel.size() > 0) {
+                        for (MotelDTO motel : showmotel) {
+
+            %>
+            <div class="item">
+                <a href="#" class="motel-image">
+                    <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                </a>
+                <div class="motel-title my-4">
+                    <a href="#" class="text-decoration-none"><span><%= motel.getName()%></span></a>
+                </div>
+                <div class="motel-address my-2">
+                    <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%></h5></span>
+                </div>
+                <div class="motel-services my-2">
+                    <p>Dịch vụ: thay ga gối 1 lần/...</p>
+                </div>
+                <div class="d-flex justify-content-between my-2">
+                    <p>Liên hệ</p>
+                    <p><i class="fas fa-history"></i> một ngày trước</p>
+                </div>
+                <div class="motel-price d-flex justify-content-between">
+                    <p>7.0 Triệu</p>
+                    <button class="button--primary">Xem ngay</button>
+                </div>
+            </div>
+            <%
+                        }
+                    }
+                }
+            %> 
         </div>
     </div>  
 </section>      

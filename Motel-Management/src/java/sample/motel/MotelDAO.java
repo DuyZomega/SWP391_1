@@ -23,7 +23,7 @@ public class MotelDAO {
 
     private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
 
-
+    private static final String SHOWLIST_MOTEL = "SELECT * FROM tblMotel";
     public List<MotelDTO> searchMotel(String ownerID) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList();
         Connection conn = null;
@@ -107,8 +107,7 @@ public class MotelDAO {
 
     }
 
-public List<MotelDTO> ShowListMotel() throws SQLException{
-        String SHOWLIST_MOTEL = "SELECT top 3 * from tblMotel";
+public List<MotelDTO> showListMotel() throws SQLException {
         List<MotelDTO> showMotel = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -116,7 +115,7 @@ public List<MotelDTO> ShowListMotel() throws SQLException{
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(ADMIN_SHOW_MOTEL);
+                ptm = conn.prepareStatement(SHOWLIST_MOTEL);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String motelID = rs.getString("MotelID");
@@ -125,11 +124,10 @@ public List<MotelDTO> ShowListMotel() throws SQLException{
                     String phone = rs.getString("Phone");
                     String address = rs.getString("Address");
                     String districtName = rs.getString("DistrictName");
-                    String cityName = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
                     String ownerId = rs.getString("FullName");
                     int status = rs.getInt("Status");
-                    showMotel.add(new MotelDTO(motelID, name, image, phone, address, districtName, cityName, rating, ownerId, status));
+                    showMotel.add(new MotelDTO(motelID, name, image, phone, address, districtName, rating, ownerId, status));
                 }
             }
         } catch (Exception e) {
