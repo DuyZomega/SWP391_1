@@ -24,25 +24,25 @@ import sample.users.UserDTO;
 public class ShowMotelController extends HttpServlet {
 
       private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "admin-account.jsp";
+    private static final String SUCCESS = "index.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url =  ERROR;
+        String url = ERROR;
         try {
-            MotelDAO dao = new MotelDAO();
-            List<MotelDTO> showlistMotel = dao.showListMotel();
-            if (showlistMotel.size()>0){
-                request.setAttribute("SHOWLIST_MOTEL", showlistMotel);
-                url=SUCCESS;
-            } else{
-                request.setAttribute("ERROR_MESSAGE", "No motel here");
-                url=SUCCESS;
-            }
-            
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getListMotel();
+                if (listMotel.size() > 0) {
+                    request.setAttribute("LIST_MOTEL", listMotel);
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR_MESSAGE", "No motel here");
+                    url = SUCCESS;
+                }
+
         } catch (Exception e) {
-            log("Error at showlistcontroller: "+e.toString());
+            log("Error at showlistcontroller: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

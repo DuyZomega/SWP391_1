@@ -202,7 +202,7 @@
                                                         </div>
                                                         <div class="row birthday-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Ngày/Tháng/Năm:</label>
-                                                            <input type="date" max="2022-01-01" min="1940-01-01" name="birthDay" value="<%= userProfile.getBirthDay()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="date" max="2022-01-01" min="1940-01-01" name="birthDay" value="<%= userProfile.getDateOfBirth()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getBirthDayError()%></span>
                                                         </div>
                                                         <div class="row email-content">

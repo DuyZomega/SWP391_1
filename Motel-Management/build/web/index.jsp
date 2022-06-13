@@ -61,21 +61,29 @@
                     <a href="./login.jsp">Đăng nhập</a>
 
                     <a href="./signup.jsp">Đăng ký</a>
-                    <% } else { %>
+                    <% } else {%>
                     <div class="header__right">
                         <button type="button" class="button--primary btn btn-sm">
                             <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                         </button>
+                        <li>
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+                                <span><i class='bx bx-user'></i></span>
+                                <span class="title">Tài khoản</span>
+                            </a>
+                        </li>
                         <div class="user-dropdown dropdown">
                             <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
                                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>Xin chào, "some-one"</span>
+                                <span>Xin chào,<%= loginUser.getFullName()%></span>
                                 <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="user-profile.html">Thông tin cá nhân</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="index.jsp">Đăng xuất</a>
+                                <a class="dropdown-item" href="user-profile.jsp">Thông tin cá nhân</a>
+                                <form action="LogoutController" method="get">
+                                    <div class="dropdown-divider" ></div>
+                                    <a class="dropdown-item" ><input type="submit" value="Logout" /></a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -215,43 +223,39 @@
                     <button class="button--primary">Xem ngay</button>
                 </div>
             </div>
-            <%
-                List<MotelDTO> showmotel = (ArrayList<MotelDTO>) request.getAttribute("SHOWLIST_MOTEL");
-                if (showmotel != null) {
-                    if (showmotel.size() > 0) {
-                        for (MotelDTO motel : showmotel) {
+            <c:if test="${requestScope.LIST_MOTEL != null}">
+                <c:if test="${not empty requestScope.LIST_MOTEL}">
 
-            %>
-            <div class="item">
-                <a href="#" class="motel-image">
-                    <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                </a>
-                <div class="motel-title my-4">
-                    <a href="#" class="text-decoration-none"><span><%= motel.getName()%></span></a>
-                </div>
-                <div class="motel-address my-2">
-                    <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%></h5></span>
-                </div>
-                <div class="motel-services my-2">
-                    <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                </div>
-                <div class="d-flex justify-content-between my-2">
-                    <p>Liên hệ</p>
-                    <p><i class="fas fa-history"></i> một ngày trước</p>
-                </div>
-                <div class="motel-price d-flex justify-content-between">
-                    <p>7.0 Triệu</p>
-                    <button class="button--primary">Xem ngay</button>
-                </div>
-            </div>
-            <%
-                        }
-                    }
-                }
-            %> 
+                    <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
+                        <div class="item">
+                            <a href="#" class="motel-image">
+                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                            </a>
+                            <div class="motel-title my-4">
+                                <a href="#" class="text-decoration-none">${o.name}</a>
+                            </div>
+                            <div class="motel-address my-2">
+                                <p>${o.address},${o.district}</p>
+                            </div>
+                            <div class="motel-services my-2">
+                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
+                            </div>
+                            <div class="d-flex justify-content-between my-2">
+                                <p>Liên hệ</p>
+                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                            </div>
+                            <div class="motel-price d-flex justify-content-between">
+                                <p>7.0 Triệu</p>
+                                <button class="button--primary">Xem ngay</button>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            </c:if>
         </div>
     </div>  
-</section>      
+</section>  
+
 
 <!-- CONTACT -->
 <section class="contact"></section>

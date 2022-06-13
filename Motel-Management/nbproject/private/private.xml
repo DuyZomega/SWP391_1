@@ -3,36 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin-motel.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDTO.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDAO.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-room-detail.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-profile.jsp</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-room-list.jsp</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/index.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-profile.jsp</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/login.jsp</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/login.html</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/ShowRoomController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDTO.java</file>
             <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/signup.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-profile.html</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/room/RoomDAO.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin-report.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-notification.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/test.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-service.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/MotelManager.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/ShowMotelController.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/users/UserDAO.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-index.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-history-room.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-room-list.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin-user.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/user-booking.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin-owner-info.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/owner-statistical.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/admin-owner.jsp</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/MainController.java</file>
-            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/controller/UpdateOwnerController.java</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/motel/MotelDAO.java</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/web/index.html</file>
+            <file>file:/C:/Users/lenovo/Documents/GitHub/PRN211/SWP391_1/Motel-Management/src/java/sample/utils/DBUtils.java</file>
         </group>
     </open-files>
 </project-private>
