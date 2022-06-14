@@ -28,12 +28,12 @@
 
                     <ul>
                         <div class="logo">
-                            <a href="AdminShowOverview">
+                            <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
                         <li class="active">
-                            <a href="AdminShowOverview">
+                            <a href="AdminShowMotel">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>

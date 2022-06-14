@@ -6,47 +6,41 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
+import sample.admin.ReportDAO;
+import sample.admin.ReportDTO;
 
 /**
  *
- * @author Bao
+ * @author cao thi phuong thuy
  */
-@WebServlet(name = "ShowProfileController", urlPatterns = {"/ShowProfileController"})
-public class ShowProfileController extends HttpServlet {
+@WebServlet(name = "AdminReportManager", urlPatterns = {"/AdminReportManager"})
+public class AdminReportManager extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-profile.jsp";
-    private static final String AD="AD";
-    private static final String ADMIN_PAGE="admin-profile.jsp";
-    private static final String US="US";
-    private static final String USER_PAGE="";
-    private static final String OWNER="OW";
-    private static final String OWNER_PAGE="owner-profile.jsp";
-    
+   private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "admin-report.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url =  ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String role = request.getParameter("role");
-            UserDAO dao = new UserDAO();
-            UserDTO userProfile = dao.getUserProfile(userID);
-            request.setAttribute("USER_PROFILE", userProfile);
-            if (OWNER.equals(role)){
-                url = OWNER_PAGE;
-            }else if (AD.equals(role)){
-                url = ADMIN_PAGE;
-            }
+            ReportDAO report = new ReportDAO();
+            List<ReportDTO> listReport = report.getList();
+               if (listReport.size()>0){
+                request.setAttribute("LIST_RP", listReport);
+                url=SUCCESS;
+            } else{
+                request.setAttribute("ERROR_MESSAGE", "No user here");
+                url=SUCCESS;
+            }  
         } catch (Exception e) {
-            log("Error at ShowProfileController: "+e.toString());
+            log("Error at showlistcontroller: "+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

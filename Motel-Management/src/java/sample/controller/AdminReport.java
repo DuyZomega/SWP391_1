@@ -11,42 +11,31 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
+import sample.admin.ReportDAO;
 
 /**
  *
- * @author Bao
+ * @author cao thi phuong thuy
  */
-@WebServlet(name = "ShowProfileController", urlPatterns = {"/ShowProfileController"})
-public class ShowProfileController extends HttpServlet {
+@WebServlet(name = "AdminReport", urlPatterns = {"/AdminReport"})
+public class AdminReport extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-profile.jsp";
-    private static final String AD="AD";
-    private static final String ADMIN_PAGE="admin-profile.jsp";
-    private static final String US="US";
-    private static final String USER_PAGE="";
-    private static final String OWNER="OW";
-    private static final String OWNER_PAGE="owner-profile.jsp";
-    
+       private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "AdminReportManager";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+       String url = ERROR;
         try {
-            String userID = request.getParameter("userID");
-            String role = request.getParameter("role");
-            UserDAO dao = new UserDAO();
-            UserDTO userProfile = dao.getUserProfile(userID);
-            request.setAttribute("USER_PROFILE", userProfile);
-            if (OWNER.equals(role)){
-                url = OWNER_PAGE;
-            }else if (AD.equals(role)){
-                url = ADMIN_PAGE;
-            }
+            ReportDAO report = new ReportDAO();
+            String reportID = request.getParameter("reportID");
+                boolean check = report.solved(reportID);
+                if (check) {
+                    url = SUCCESS;
+                }
         } catch (Exception e) {
-            log("Error at ShowProfileController: "+e.toString());
+            log("Error at DeleteController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
