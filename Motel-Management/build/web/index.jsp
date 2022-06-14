@@ -54,7 +54,7 @@
                     <div class="header__right">
 
                     <% UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                        if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                        if (loginUser == null || !loginUser.getRole().equals("US") )  { %>
                     <button type="button" class="button--primary btn btn-sm">
                         <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                     </button>
@@ -63,9 +63,6 @@
                     <a href="./signup.jsp">Đăng ký</a>
                     <% } else {%>
                     <div class="header__right">
-                        <button type="button" class="button--primary btn btn-sm">
-                            <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
-                        </button>
                         <li>
                             <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
                                 <span><i class='bx bx-user'></i></span>
@@ -92,47 +89,85 @@
             <%}%>
         </div>
     </div>
-    <div class="header__bottom">
-        <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
-            <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
-                                                  alt="logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <%                         if (loginUser == null || !loginUser.getRole().equals("OW")) { %>
+    <button type="button" class="button--primary btn btn-sm">
+        <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+    </button>
+    <a href="./login.jsp">Đăng nhập</a>
+
+    <a href="./signup.jsp">Đăng ký</a>
+    <% } else {%>
+    <div class="header__right">
+        <button type="button" class="button--primary btn btn-sm">
+            <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+        </button>
+        <li>
+            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+                <span><i class='bx bx-user'></i></span>
+                <span class="title">Tài khoản</span>
+            </a>
+        </li>
+        <div class="user-dropdown dropdown">
+            <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span>Xin chào,<%= loginUser.getFullName()%></span>
+                <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Về chúng tôi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đại lý kinh doanh</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bảng giá dịch vụ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Đội ngũ & Đối tác</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="header__bottom__right">
-                <form class="header__bottom--search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Bạn muốn ở đâu?">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="user-profile.jsp">Thông tin cá nhân</a>
+                <form action="LogoutController" method="get">
+                    <div class="dropdown-divider" ></div>
+                    <a class="dropdown-item" ><input type="submit" value="Logout" /></a>
                 </form>
             </div>
-        </nav>
+        </div>
     </div>
+</div>
+</div>
+<%}%>
+</div>
+</div>
+<div class="header__bottom">
+    <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
+        <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
+                                              alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Về chúng tôi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Đại lý kinh doanh</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bảng giá dịch vụ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Đội ngũ & Đối tác</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="header__bottom__right">
+            <form class="header__bottom--search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Bạn muốn ở đâu?">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+</div>
 </header>
 
 <!-- INFOR -->
@@ -211,9 +246,6 @@
                 <div class="motel-address my-2">
                     <p>Quận Tân Bình, Thành phố Hồ Chí Minh</p>
                 </div>
-                <div class="motel-services my-2">
-                    <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                </div>
                 <div class="d-flex justify-content-between my-2">
                     <p>Liên hệ</p>
                     <p><i class="fas fa-history"></i> một ngày trước</p>
@@ -235,10 +267,7 @@
                                 <a href="#" class="text-decoration-none">${o.name}</a>
                             </div>
                             <div class="motel-address my-2">
-                                <p>${o.address},${o.district}</p>
-                            </div>
-                            <div class="motel-services my-2">
-                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
+                                <p>${o.address},${o.district},${o.city}</p>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <p>Liên hệ</p>

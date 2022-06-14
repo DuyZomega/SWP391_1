@@ -16,7 +16,7 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class UserDAO {
-    private static final String LOGIN = "SELECT UserID, FullName, Role FROM tblUser WHERE UserID=? AND Password=?";
+    private static final String LOGIN = "SELECT UserID, FullName, Role FROM tblUser WHERE UserID=? AND Password=? AND Status = 1";
     private static final String UPLOAD_PROFILE = "SELECT UserID, FullName, Image, DateOfBirth, CitizenNumber, Gender, Address, Phone, Gmail FROM tblUser WHERE UserID = ?";
     private static final String UPDATE_USER = "UPDATE tblUser SET FullName= ?, Address= ?, DateOfBirth=?, Phone=?,Gmail= ?, CitizenNumber = ?, Gender=? WHERE userID=?";
     private static final String CHANGE_PASSWORD = "UPDATE tblUser SET Password = ? WHERE UserID = ? ";

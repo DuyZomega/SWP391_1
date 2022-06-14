@@ -105,7 +105,7 @@ public class MotelDAO {
         return adminMotel;
 
     }
-private static final String SHOWLIST_MOTEL = "SELECT MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID";
+private static final String SHOWLIST_MOTEL = "SELECT MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
 public List<MotelDTO> getListMotel() throws SQLException {
          List<MotelDTO> listMotel = new ArrayList<>();
         Connection conn = null;
@@ -115,6 +115,49 @@ public List<MotelDTO> getListMotel() throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(SHOWLIST_MOTEL);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String motelID = rs.getString("MotelID");
+                    String image = rs.getString("image");
+                    String name = rs.getString("name");
+                    String phone = rs.getString("phone");
+                    String Desct = rs.getString("Desct");
+                    String address = rs.getString("address");
+                    String district = rs.getString("DistrictName");
+                    String city = rs.getString("CityName");
+                    double rating = rs.getDouble("Ratings");
+                    String ownerId = rs.getString("FullName");
+                    int status = rs.getInt("status");
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, Desct, address, district, city, rating, ownerId, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listMotel;
+    
+    }
+
+private static final String FILTER_MOTEL = "SELECT MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.DistrictID = ? AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
+public List<MotelDTO> getFilterMotel() throws SQLException {
+         List<MotelDTO> listMotel = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(FILTER_MOTEL);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String motelID = rs.getString("MotelID");
