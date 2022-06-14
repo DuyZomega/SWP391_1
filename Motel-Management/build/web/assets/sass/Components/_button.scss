@@ -1,7 +1,0 @@
-.button--primary {
-    @include styleButton($color-white-0, $color-primary-1, transparent, $fs-3, $fw-0, $pd-2, $pd-0, $border-radius-0);
-    transition: .5s;
-    &:hover {
-        @include hoverButton($color-white-0, $color-primary-0, transparent);
-    }
-}
