@@ -56,7 +56,8 @@ body {
 
 .header__top {
   background-color: #2c3e50;
-  font-size: 14px; }
+  font-size: 14px;
+  height: 45px; }
   .header__top .header__left a:first-of-type,
   .header__top .header__left a:nth-of-type(2) {
     width: 30px;
@@ -214,6 +215,8 @@ footer {
     color: #fff;
     background-color: #00ecd5;
     border: 1px solid transparent; }
+  .button--primary:focus {
+    outline: none; }
 
 .background {
   background-image: url(../img/bgd.jpg);
@@ -292,34 +295,48 @@ footer {
           content: "\f005";
           font-family: FontAwesome; }
 
-.background .container {
-  color: #fff; }
-  .background .container .login {
-    margin-top: 50px;
-    padding-top: 40px;
-    padding-bottom: 50px;
-    border-radius: 10px;
-    background-color: #2c3e50;
-    box-shadow: 10px 10px 20px #2c3e50; }
-    .background .container .login img {
-      max-width: 150px;
-      height: auto;
+.background {
+  color: #f0f0f0; }
+  .background .container {
+    color: #fff; }
+    .background .container .login {
+      margin-top: 50px;
+      padding-top: 40px;
+      padding-bottom: 50px;
+      border-radius: 10px;
+      background-color: #2c3e50;
+      box-shadow: 10px 10px 20px #2c3e50; }
+      .background .container .login img {
+        max-width: 150px;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block; }
+    .background .container .form a {
+      color: #fff; }
+    .background .container .form button {
+      margin-top: 30px;
       margin-left: auto;
       margin-right: auto;
       display: block; }
-  .background .container .form a {
-    color: #fff; }
-  .background .container .form button {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block; }
-    .background .container .form button:hover {
-      background-color: #2c3e50;
-      color: #fff;
-      border-color: #fff; }
-  .background .container .signup {
-    color: #1DA1F2; }
+      .background .container .form button:hover {
+        background-color: #2c3e50;
+        color: #fff;
+        border-color: #fff; }
+    .background .container .form .btn-signup:hover {
+      background-color: #ffadd9; }
+    .background .container .form-item {
+      padding: 0; }
+      .background .container .form-item label {
+        color: #f0f0f0; }
+      .background .container .form-item input {
+        color: #f0f0f0; }
+    .background .container .signup {
+      color: #1DA1F2; }
+    .background .container .button-select .active {
+      background-color: #ffadd9; }
+    .background .container .button-select .btn:hover {
+      color: #f0f0f0; }
 
 .content__list .item {
   margin-bottom: 20px;

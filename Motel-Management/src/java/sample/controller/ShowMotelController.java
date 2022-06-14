@@ -5,9 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,37 +13,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
-import sample.room.RoomDAO;
-import sample.room.RoomDTO;
+import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
- * @author Bao
+ * @author cao thi phuong thuy
  */
 @WebServlet(name = "ShowMotelController", urlPatterns = {"/ShowMotelController"})
 public class ShowMotelController extends HttpServlet {
-     
-    private static final String ERROR = "error.jsp";
+
+      private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "index.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url =  ERROR;
-                try {
-            String ownerID = request.getParameter("ownerID");
-            MotelDAO dao1 = new MotelDAO();
-            List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
-            if (listMotel.size()>0){
-                request.setAttribute("LIST_MOTELINDEX", listMotel);
-                url=SUCCESS;
-            }
-            
+        String url = ERROR;
+        try {
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getListMotel();
+                if (listMotel.size() > 0) {
+                    request.setAttribute("LIST_MOTEL", listMotel);
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR_MESSAGE", "No motel here");
+                    url = SUCCESS;
+                }
+
         } catch (Exception e) {
-            log("Error at showlistcontroller: "+e.toString());
+            log("Error at showlistcontroller: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
-        }    
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

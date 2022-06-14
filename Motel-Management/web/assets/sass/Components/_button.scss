@@ -4,4 +4,7 @@
     &:hover {
         @include hoverButton($color-white-0, $color-primary-0, transparent);
     }
+    &:focus{
+        outline: none;
+    }
 }

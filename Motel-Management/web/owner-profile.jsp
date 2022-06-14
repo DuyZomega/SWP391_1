@@ -1,5 +1,3 @@
-
-
 <%@page import="sample.users.UserError"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

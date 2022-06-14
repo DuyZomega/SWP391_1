@@ -1,5 +1,6 @@
 
 
+<%@page import="sample.admin.DashboardDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +29,12 @@
                 
                 <ul>
                     <div class="logo">
-                        <a href="admin.jsp">
+                        <a href="AdminShowOverview">
                             <img class="logo" src="assets/img/logo2.png" alt="logo">
                         </a>
                     </div>
                     <li class="active">
-                        <a href="admin.jsp">
+                        <a href="AdminShowOverview">
                             <span><i class='bx bx-tachometer'></i></span>
                             <span class="title">Tổng quan</span>
                         </a>
@@ -118,6 +119,12 @@
     <!-- End header -->
 
     <!-- Main Content -->
+     <%
+                DashboardDTO dashboard = (DashboardDTO) request.getAttribute("DASHBOARD");
+                if (dashboard == null) {
+                    dashboard = new DashboardDTO();
+                }
+            %>
 
     <div class="main-content">
             <div class="cardBox">
@@ -126,7 +133,7 @@
                         <i class='bx bx-home-heart'></i>
                     </div>
                     <div>
-                        <div class="number">1,504</div>
+                        <div class="number"><%= dashboard.getMotelNumber()%></div>
                         <div class="cardName">Số lượng motel</div>
                     </div>
                 </div>
@@ -135,8 +142,8 @@
                         <i class='bx bxs-user-rectangle'></i>
                     </div>
                     <div>
-                        <div class="number">1,504</div>
-                        <div class="cardName">Người thuê</div>
+                        <div class="number"><%= dashboard.getUserNumber()%></div>
+                        <div class="cardName">Tài khoản</div>
                     </div>
                 </div>
                 <div class="card feedback">
@@ -144,17 +151,17 @@
                         <i class='bx bx-user-circle'></i>
                     </div>
                     <div>
-                        <div class="number">1,504</div>
+                        <div class="number"><%= dashboard.getOwnerNumber()%></div>
                         <div class="cardName">Chủ trọ</div>
                     </div>
                 </div>
                 <div class="card turnover">
                     <div class="inconBx">
-                        <i class='bx bx-money'></i>
+                        <i class='bx bx-bell'></i>
                     </div>
                     <div>
-                        <div class="number">&#8363;1,512.250</div>
-                        <div class="cardName">Tổng doanh thu</div>
+                        <div class="number"><%= dashboard.getReportNumber()%></div>
+                        <div class="cardName">Report</div>
                     </div>
                 </div>
             </div>
