@@ -29,6 +29,7 @@
     <body>
 
         <!-- sidebar -->
+        
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
@@ -39,20 +40,20 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li>
+                        <li >
                             <a href="AdminShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
-                        </li><!-- comment -->
-                        <li class="active" >
+                        </li> 
+                        <li class="active">
                             <a href="AdminListAccount">
-                                <span><i class='bx bx-home'></i></span>
-                                <span class="title">Quản lý Tài Khoản</span>
+                                <span><i class='bx bxs-user-rectangle'></i></span>
+                                <span class="title">Quản lý tài khoản</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="AdminShowMotel">
+                        <li >
+                            <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
                             </a>
@@ -63,20 +64,20 @@
                                 <span class="title">Quản lý người thuê</span>
                             </a>
                         </li>
-                        <li>
+                        <li >
                             <a href="UserManager?action=all&role=OW">
                                 <span><i class='bx bx-user-circle'></i></span>
                                 <span class="title">Quản lý chủ thuê</span>
                             </a>
                         </li>
                         <li>
-                            <a href="admin-report.jsp">
+                            <a href="AdminReportManager">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Report</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="MainController?action=ShowProfile&userID=${sessionScope.LOGIN_USER.userId}&role=AD">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -90,40 +91,36 @@
         </div>
         <!-- End sidebar -->
 
-        <!-- Header -->
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-12 my-2">
+                    <div class="col-sm-12">
                         <div class="toggle float-left">
-                            <i class='bx bx-menu'></i>
+                            <i class="bx bx-menu"></i>
                         </div>
                         <div class="float-left">
                             <div class="dashboard_bar d-flex">
-                                Quản lý phòng trọ
+                                Quản lý tài khoản
                             </div>
                         </div>
                         <div class="float-right">
-                             <div class="btn-group me-1 mb-1">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
-                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
-                                </div>
+                            <div class="btn-group me-1 mb-1">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        ${sessionScope.LOGIN_USER.fullName}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=${sessionScope.LOGIN_USER.userId}&role=AD"><i class="bx bx-user"></i>Tài khoản</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class="bx bx-log-out-circle"></i>Thoát</a>
+                                    </div>
+                                </div>  
                             </div>  
-                        </div>
                         </div>   
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End header -->
-
         <div class="main-content">
             <div class="main">
                 <div class="container-fluid">
@@ -133,72 +130,67 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="myTable" class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Hinh anh</th>
-                                                        <th>Họ tên</th>
-                                                        <th>CMND</th>
-                                                        <th>SDT</th>
-                                                        <th>Gmail</th>
-                                                        <th>Địa chỉ</th>
-                                                        <th>Role</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
+                                            <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                                               <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã Đặt Phòng: activate to sort column descending" style="width: 80.15px;">ID</th>
 
-                                                <tbody>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Mã Motel: activate to sort column ascending" style="width: 100px;">Hình ảnh</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Mã Phòng: activate to sort column ascending" style="width: 100.3875px;">Họ & Tên</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Trạng Thái: activate to sort column ascending" >SDT </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Số Dịch Vụ: activate to sort column ascending"style="width: 50.3875px;">Gmail</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="PT Thanh Toán: activate to sort column ascending" style="width: 450.025px;">Địa chỉ</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Ngày Nhận Phòng: activate to sort column ascending"style="width: 150.3875px;">Role</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Ngày Nhận Phòng: activate to sort column ascending">Trạng thái</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Tổng Tiền: activate to sort column ascending" style="width: 90px;">Action</th>
+                                                        </tr>
+                                                    </thead>
+
                                                     <c:if test="${requestScope.LIST_ACC != null}">
                                                         <c:if test="${not empty requestScope.LIST_ACC}">
-                                                            <c:forEach var="a" varStatus="counter" items="${requestScope.LIST_ACC}">
-                                                            <form action="MainController">
-                                                                <tr>
-                                                                    <td>${a.userId}</td>
-                                                                    <td>
-                                                                        <img src="${a.image}">
-<!--                                                                        
-                                                                        <img src="images/man-300x300.png">-->
-                                                                    </td>
-                                                                    <td>${a.fullName}</td>
-                                                                    <td>${a.citizenNumber}</td>
-                                                                    <td>${a.phone}</td>
-                                                                    <td>${a.gmail}</td>
-                                                                    <td>${a.address}</td>
-                                                                    <td><span class="role fs-16 font-w500 text-end d-block">
-                                                                        <c:if test="${a.role.equals('US')}">
-                                                                            Người thuê
+                                                            <tbody>
+                                                                <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_ACC}">
+                                                                    <tr class="clickable-row odd" data-href="UserManager?action=detail&role=${o.role}&userId=${o.userId}" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                                        <td class="sorting_1">${o.userId}</td>
+                                                                        <td><img src="${o.image}"></td>
+                                                                        <td>${o.fullName}</td>
+                                                                        <td>${o.phone}</td>
+                                                                        <td>${o.gmail}</td>
+                                                                        <td>${o.address}</td>
+                                                                        <td><span class="role fs-16 font-w500 text-end d-block">
+                                                                        <c:if test="${o.role.equals('US')}">
+                                                                            Khách
                                                                         </c:if> 
-                                                                        <c:if test="${a.role.equals('OW')}">
+                                                                        <c:if test="${o.role.equals('OW')}">
                                                                             Chủ thuê
                                                                         </c:if> 
-                                                                            <c:if test="${a.role.equals('AD')}">
+                                                                            <c:if test="${o.role.equals('AD')}">
                                                                             Admin
                                                                         </c:if> 
                                                                         </span></td>
-                                                                    <td>
-                                                                        <c:if test="${a.status == 0}">
-                                                                            <span class="badge badge-danger">Extended</span>
-                                                                        </c:if> 
-                                                                        <c:if test="${a.status == 1}">
-                                                                            <span class="badge badge-success">Activity</span>
-                                                                        </c:if> 
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>
-                                                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
-                                                                        </div>    
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
+                                                                        <td><c:if test="${o.status == 0}">
+                                                                                <span class="badge badge-danger">Extended</span>
+                                                                            </c:if> 
+                                                                            <c:if test="${o.status == 1}">
+                                                                                <span class="badge badge-success">Activity</span>
+                                                                            </c:if> </td>
+                                                                        <td>
+                                                                            <div class="d-flex">
+                                                                                <!--                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
+                                                                                <a href="UserManager?action=detail&role=${o.role}&userId=${o.userId}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-user-detail'></i></a>
+                                                                            </div>  
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                </c:forEach>
+                                                            </tbody>
                                                         </c:if>
                                                     </c:if>
-                                                </form>
-                                                </tbody>
-                                            </table>
-                                            ${requestScope.ERROR_MESSAGE}
+                                                </table>
+                                                ${requestScope.ERROR_MESSAGE}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -209,7 +201,6 @@
                     </section>
                 </div>
             </div>
-        </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
