@@ -142,7 +142,7 @@
                     <div class="card">
                         <div class="card-body">
                             <!-- Nav tabs -->
-                            <ul class="nav nav-tabs">
+                            <ul class="nav nav-tabs">   
                                 <!-- dung vong for o day -->
                                 <%
                                     List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
