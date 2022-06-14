@@ -332,6 +332,8 @@ INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('5', N
 ---INSERT BookingServiceDetail
 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('1', '489656859','booking01', 3,15000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('6', '565468569','booking01', 1,25000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('5', '021586822','booking01', 1,25000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('2', '021586822','booking02', 2,10000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('3', '565468569','booking03', 5,17000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('4', '489656859','booking04', 1,15000) 
@@ -347,14 +349,3 @@ SELECT * FROM tblMotel WHERE Address like '%nhơn phú%';
 SELECT * FROM tblUser
 DELETE tblUser WHERE UserID = '01'
 */
-UPDATE tblUser SET Password = '1' WHERE UserID = 'quan01' 
-select COUNT(*) as NumberRoom from tblUser,tblMotel,tblRoom where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblRoom.MotelID and UserID = 'quan01'
-select COUNT(*) as NumberService from tblUser,tblMotel,tblService where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblService.MotelID and UserID = 'quan01'
-select COUNT(*) as NumberFeedback from  tblUser, tblMotel , tblFeedBack where tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'		
-(select tblBooking.BookingID, tblPayment.Total  from tblUser, tblMotel, tblRoom, tblBookingDetail, tblBooking ,tblPayment where tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoom.MotelID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID GROUP BY tblBooking.BookingID , tblPayment.Total)
-select BookingID, BookingDate from tblBooking Order by BookingDate DESC 
-SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m, tblRoom as r, tblBookingDetail as d, tblBooking as b 
-WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID ORDER BY a.BookingDate DESC
-SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
-SELECT RoomID FROM tblRoom Where RoomID = ''
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'332369568', N'Room 12', N'', N'phòng đơn nệm lò xo, máy lạnh ', 0, N'842578129',N'1')

@@ -1,0 +1,36 @@
+.booking {
+    .heading {
+        color: $color-blue-1;
+        text-shadow: 0px 0px 10px $color-blue-3;
+        margin-bottom: $mg-6;
+    }
+    .desc-service{
+        padding-left: 40px;
+    }
+    .table{
+        margin: 50px 0;
+    }
+}
+
+.booking__table {
+    .table td {
+        vertical-align: middle !important;
+        border: 1px solid #dee2e6;
+    }
+    .inputDate,
+    .inputHour {
+        border: 1px solid #ced4da;
+        display: inline-block;
+        width: 100%;
+        input {
+            width: 100%;
+            border: none;
+            padding: 6px 12px;
+        }
+        border-radius: 0.25rem;
+    }
+    .hour {
+        width: 105px;
+    }
+    
+}
