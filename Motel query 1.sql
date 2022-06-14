@@ -80,19 +80,18 @@ CREATE TABLE [tblService](--done
 CREATE TABLE [tblRoomType](
 [RoomTypeID]	[varchar](10) not null PRIMARY KEY,
 [TypeName]		[nvarchar](50),
-[Price]			[decimal](10)
+[Price]			[decimal](10),
+[Image]        [nvarchar](1000),
+[Desct]        [nvarchar](1500),
+[MotelID]      [varchar](10) Not Null FOREIGN KEY REFERENCES tblMotel(MotelID),
 
 );
 
 CREATE TABLE [tblRoom](--done
 [RoomID]	   [varchar](10) not null PRIMARY KEY,
 [Name]         [nvarchar](50) ,
-[Image]        [nvarchar](1000),
-[Desct]        [nvarchar](1500),
 [Status]       [bit] Null,
-[MotelID]      [varchar](10) not null FOREIGN KEY REFERENCES tblMotel(MotelID) ,
 [RoomTypeID]      [varchar](10) not null FOREIGN KEY REFERENCES tblRoomType(RoomTypeID) 
-
 );
 
 CREATE TABLE [tblNotification]( --done
@@ -146,6 +145,8 @@ CREATE TABLE [tblReport](
 [Title]           [nvarchar](100),
 [Desct]           [nvarchar](1500),
 [Date]            [date],
+[Status]          [bit] null,
+[MotelID]         [varchar](10) not null FOREIGN KEY REFERENCES tblMotel(MotelID), 
 );
 
 CREATE TABLE [tblBookingServiceDetail](
@@ -162,10 +163,6 @@ ADD CONSTRAINT FK_Payment_Booking FOREIGN KEY([PaymentID])
 
 --/////////////
 --insert user UPDATE tblUser set Image = 'assets/img/avatar.jpg' where Status = 0
-
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price]) VALUES (N'1', N'Phòng đơn', 150000)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price]) VALUES (N'2', N'Phòng đôi', 250000)
-
 
 INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address], [Phone] ,[Gmail], [Role], [Status] ) VALUES (N'quan01', N'Le Minh Quan',N'1', N'images/man.png','2001-05-07',321615057,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942949219','hoangquan9851@gmail.com','OW',1) 
 INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber],[Gender], [Address] ,[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tu06', N'Nguyen Doan Tu',N'1', N'images/man.png','2001-05-26',78523465,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01945876325','tutu988@gmail.com','OW',0) 
@@ -185,7 +182,7 @@ INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [Citiz
 
 
 --insert motel
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Phương Nam', N'Desction motel',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Ngọc Quân', N'Desction motel',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'Desction motel',N'images/motel-5.jpg', N'0328787878','2', N'143A Mỹ Đức,Bình Phú',4.5,N'quan01',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'Desction motel',N'images/motel-4.jpg', N'0248996587','3', N'345/55 Trần Hưng Đạo, Cầu Kho',4.1,N'tu06',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'images/motel-7.jpg', N'0344989898','4', N'263, Lê Hồng Phong',4.1,N'chuongmai',1)
@@ -195,69 +192,84 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
 
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 150000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '587416594')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 250000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'3', N'Phòng gia đình Ngọc Quân', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'4', N'Phòng đơn Ánh Dương', 200000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '842578129')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'5', N'Phòng đôi Ánh Dương', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'6', N'Phòng đơn Gia Lai', 145000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'7', N'Phòng đôi Malibu Beach', 350000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '861435762')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'8', N'Phòng gia đình Ladalat', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '548762589')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 198000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '473658715')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'11', N'Phòng VinHome', 69000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '785146827')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'12', N'Phòng đơn NgocLan', 100000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 245000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587624587')
+
+
 --insert room
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'012414785', N'01', N'',N'phòng đơn 1 giường', 1, N'587416594',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'216587125', N'02', N'', N'phòng đôi 1 giường', 0, N'587416594',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'219657756', N'03', N'',N'phòng đôi 2 giường', 1, N'587416594',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'765324124', N'04', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'895365765', N'05', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'244714724', N'06', N'', N'phòng đôi 2 giường', 0, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'658715137', N'07', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'247965765', N'08', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'735947138', N'09', N'', N'phòng đơn 1 giường', 1, N'587416594',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'012414754', N'NO 1', N'', N'phòng đơn máy lạnh', 1, N'486258478',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'487621547', N'NO 2', N'', N'phòng đơn máy lạnh', 1, N'486258478',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'632658744', N'NO 3', N'', N'phòng đôi máy lạnh', 1, N'486258478',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'421578965', N'NO 4', N'', N'phòng đôi máy lạnh', 0, N'486258478',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'249632785', N'NO 5', N'', N'phòng đơn quạt máy', 0, N'486258478',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'124525876', N'NO 6', N'', N'phòng đơn máy lạnh', 1, N'486258478',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'632658452', N'NO 7', N'', N'phòng đơn máy lạnh', 1, N'486258478',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'758624864', N'NO 8', N'', N'phòng đơn máy lạnh', 1, N'486258478',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'587953254', N'phong 1', N'', N'phòng 1 giường mới', 1, N'587624587',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'456257895', N'phong 2', N'', N'phòng 1 giường mới', 0, N'587624587',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'248425478', N'phong 3', N'', N'phòng 2 giường điều hòa', 1, N'587624587',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'851658754', N'phong 4', N'', N'phòng 2 giường điều hòa', 0, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'236587157', N'phong 5', N'',N'phòng 1 giường điều hòa', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'236854824', N'phong 6', N'', N'phòng 1 giường điều hòa', 0, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'895621458', N'phong 7', N'', N'phòng 1 giường điều hòa', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'548587526', N'phong 8', N'', N'phòng 1 giường điều hòa', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'326584957', N'phong 9', N'', N'phòng 1 giường nhỏ', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'452713658', N'phong 10', N'', N'phòng 1 giường nhỏ', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'986554787', N'phong 11', N'', N'phòng 1 giường nhỏ', 1, N'587624587',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'845764818', N'num 1', N'', N'phòng đơn nệm lò xo', 0, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'632548789', N'num 2', N'', N'phòng đơn nệm thường', 1, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'124569832', N'num 3', N'', N'phòng đơn nệm thường', 1, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'865741253', N'num 4', N'',N'phòng đơn nệm thường', 1, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'325487958', N'num 5', N'', N'phòng đôi nệm lò xo', 0, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'986525487', N'num 6', N'', N'phòng đôi nệm lò xo', 1, N'861435762',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'956325478', N'num 7', N'', N'phòng đôi nệm lò xo', 1, N'861435762',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'871245872', N'num 8', N'', N'phòng đơn nệm thường', 1, N'861435762',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'985568725', N'num 9', N'', N'phòng đơn nệm lò xo', 1, N'861435762',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'112547695', N'num 10', N'', N'phòng đơn nệm lò xo', 0 ,N'861435762',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'365982589', N'num 11', N'',N'phòng đơn nệm lò xo', 1, N'861435762',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'245782168', N'phòng số 1', N'', N'phòng đơn nhỏ', 1, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'626356896', N'phòng số 2', N'', N'phòng đơn nhỏ', 1, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'842565836', N'phòng số 3', N'', N'phòng đơn nhỏ', 1, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'895658269', N'phòng số 4', N'', N'phòng đơn nhỏ', 0, N'625781458',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'124858468', N'phòng số 5', N'', N'phòng đơn nhỏ', 1, N'625781458',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'642766983', N'phòng số 6', N'', N'phòng đôi máy lạnh', 0, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'528495989', N'phòng số 7', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'663289984', N'phòng số 8', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'215487599', N'phòng số 9', N'', N'phòng đôi máy lạnh', 0, N'625781458',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'854577756', N'phòng số 10', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'326556884', N'phòng số 11', N'', N'phòng đôi máy lạnh', 1, N'625781458',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'521487545', N'Room 01', N'', N'phòng đôi nệm lò xo ', 1, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'521477856', N'Room 02', N'', N'phòng đôi nệm lò xo ', 1, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'632356985', N'Room 03', N'', N'phòng đôi nệm lò xo ', 0, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'784125569', N'Room 04', N'', N'phòng đôi nệm lò xo ', 0, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'336598852', N'Room 05', N'', N'phòng đôi nệm lò xo ', 0, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'745447857', N'Room 06', N'', N'phòng đôi nệm lò xo ', 1, N'842578129',N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'225657877', N'Room 07', N'', N'phòng đơn nệm lò xo, máy lạnh ', 0, N'842578129',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'632577896', N'Room 08', N'', N'phòng đơn nệm lò xo, máy lạnh ', 1, N'842578129',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'996532157', N'Room 09', N'', N'phòng đơn nệm lò xo, máy lạnh ', 0, N'842578129',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'323565985', N'Room 10', N'', N'phòng đơn nệm lò xo, máy lạnh ', 1, N'842578129',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'747569865', N'Room 11', N'', N'phòng đơn nệm lò xo, máy lạnh ', 1, N'842578129',N'1')
-INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES (N'332369568', N'Room 12', N'', N'phòng đơn nệm lò xo, máy lạnh ', 0, N'842578129',N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'012414785', N'01', 1, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'216587125', N'02', 0, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'219657756', N'03', 1 ,N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'765324124', N'04', 1,N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'895365765', N'05', 1,N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'244714724', N'06', 0,N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'658715137', N'07', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'247965765', N'08', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'735947138', N'09', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'012414754', N'NO 1', 1,N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'487621547', N'NO 2', 1,N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632658744', N'NO 3',  1, N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'421578965', N'NO 4',  0,N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'249632785', N'NO 5', 0, N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'124525876', N'NO 6', 1,N'6')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632658452', N'NO 7', 1, N'7')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'758624864', N'NO 8', 1,N'8')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'587953254', N'phong 1', 1, N'9')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'456257895', N'phong 2', 0,N'10')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'248425478', N'phong 3',  1, N'11')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'851658754', N'phong 4', 0, N'12')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'236587157', N'phong 5', 1,N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'236854824', N'phong 6', 0,N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'895621458', N'phong 7', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'548587526', N'phong 8', 1,N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'326584957', N'phong 9', 1,N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'452713658', N'phong 10', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'986554787', N'phong 11', 1, N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'845764818', N'num 1', 1, N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632548789', N'num 2', 1, N'6')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'124569832', N'num 3', 1, N'7')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'865741253', N'num 4', 1, N'8')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'325487958', N'num 5', 1, N'9')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'986525487', N'num 6', 1, N'10')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'956325478', N'num 7', 1, N'11')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'871245872', N'num 8',1, N'12')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'985568725', N'num 9', 1, N'13')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'112547695', N'num 10', 1, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'365982589', N'num 11', 1, N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'245782168', N'phòng số 1', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'626356896', N'phòng số 2', 1, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'842565836', N'phòng số 3', 1, N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'895658269', N'phòng số 4', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'124858468', N'phòng số 5', 1, N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'642766983', N'phòng số 6', 1, N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'528495989', N'phòng số 7', 1, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'663289984', N'phòng số 8', 1, N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'215487599', N'phòng số 9', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'854577756', N'phòng số 10', 1, N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'326556884', N'phòng số 11', 1, N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'521487545', N'Room 01', 1, N'6')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'521477856', N'Room 02',1, N'7')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632356985', N'Room 03', 1, N'2')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'784125569', N'Room 04', 1, N'9')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'336598852', N'Room 05', 1, N'8')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'745447857', N'Room 06', 1, N'10')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'225657877', N'Room 07', 1, N'3')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632577896', N'Room 08', 1, N'4')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'996532157', N'Room 09', 1, N'5')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'323565985', N'Room 10', 1, N'6')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'747569865', N'Room 11',1, N'7')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'332369568', N'Room 12', 1, N'8')
 
 --INSERT service 
 INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) VALUES (N'489656859', N'Coca', 15000, 1, N'587416594')
@@ -319,11 +331,11 @@ INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [Bookin
 
 
 ---INSERT Report
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('1', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05') 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('2', N'duy05',N'bao cao owner', N'Nhà trọ không đúng như mô tả','2021-05-05') 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('3', N'tuan04',N'bao cao owner', N'Owner nay khong tot','2022-05-05') 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('4', N'doan07',N'bao cao owner', N'Nhà trọ này chém giá','2022-05-05') 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date]) VALUES ('5', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05') 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date], [MotelID],[Status]) VALUES ('1', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',0) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('2', N'duy05',N'bao cao owner', N'Nhà trọ không đúng như mô tả','2021-05-05','625781458',0) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('3', N'tuan04',N'bao cao owner', N'Owner nay khong tot','2022-05-05','625781458',0) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('4', N'doan07',N'bao cao owner', N'Nhà trọ này chém giá','2022-05-05', '587624587',1) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('5', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',1) 
 
 
 ---INSERT BookingServiceDetail
@@ -345,7 +357,7 @@ SELECT * FROM tblUser
 DELETE tblUser WHERE UserID = '01'
 
 UPDATE tblUser SET Password = '1' WHERE UserID = 'quan01' 
-*/
+
 select COUNT(*) as NumberRoom from tblUser,tblMotel,tblRoom where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblRoom.MotelID and UserID = 'quan01'
 select COUNT(*) as NumberService from tblUser,tblMotel,tblService where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblService.MotelID and UserID = 'quan01'
 select COUNT(*) as NumberFeedback from  tblUser, tblMotel , tblFeedBack where tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'		
@@ -355,3 +367,4 @@ SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status FROM (SELECT TOP 5 b
 WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID ORDER BY a.BookingDate DESC
 SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
 SELECT RoomID FROM tblRoom Where RoomID = ''
+*/
