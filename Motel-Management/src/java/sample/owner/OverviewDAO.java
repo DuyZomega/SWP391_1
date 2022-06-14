@@ -18,13 +18,23 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class OverviewDAO {
-    private static final String GET_NUMBER_ROOM = "SELECT COUNT(*) as NumberRoom FROM tblUser,tblMotel,tblRoom WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoom.MotelID AND UserID = ?";
-    private static final String GET_NUMBER_SERVICE = "SELECT COUNT(*) as NumberService FROM tblUser,tblMotel,tblService WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblService.MotelID AND UserID = ?";
-    private static final String GET_NUMBER_FEEDBACK = "SELECT COUNT(*) as NumberFeedback FROM  tblUser, tblMotel , tblFeedBack WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = ?";
-    private static final String GET_NUMBER_INCOME = "SELECT tblBooking.BookingID, tblPayment.Total FROM tblUser, tblMotel, tblRoom, tblBookingDetail, tblBooking ,tblPayment WHERE tblUser.UserID = ? AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoom.MotelID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID GROUP BY tblBooking.BookingID , tblPayment.Total";
-    private static final String GET_NEWS = "SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m, tblRoom as r, tblBookingDetail as d, tblBooking as b \n" +
-                                           "WHERE u.UserID = ? AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID ORDER BY a.BookingDate DESC";
-    private static final String GET_OFEEDBACK ="SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = ? AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC";
+    private static final String GET_NUMBER_ROOM = "SELECT COUNT(*) as NumberRoom FROM tblUser,tblMotel,tblRoomType,tblRoom \n" +
+                                                  "WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND UserID = ?";
+    private static final String GET_NUMBER_SERVICE = "SELECT COUNT(*) as NumberService FROM tblUser,tblMotel,tblService\n" +
+                                                     "WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblService.MotelID AND UserID = ?";
+    private static final String GET_NUMBER_FEEDBACK = "SELECT COUNT(*) as NumberFeedback FROM  tblUser, tblMotel , tblFeedBack \n" +
+                                                      "WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = ?";
+    private static final String GET_NUMBER_INCOME = "SELECT tblBooking.BookingID, tblPayment.Total\n" +
+                                                    "FROM tblUser, tblMotel,tblRoomType, tblRoom, tblBookingDetail, tblBooking ,tblPayment\n" +
+                                                    "WHERE tblUser.UserID = ? AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID\n" +
+                                                    "GROUP BY tblBooking.BookingID , tblPayment.Total";
+    private static final String GET_NEWS = "SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status \n" +
+                                           "FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m,tblRoomType as rt, tblRoom as r, tblBookingDetail as d, tblBooking as b WHERE u.UserID = ? AND u.UserID = m.OwnerID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID \n" +
+                                           "ORDER BY a.BookingDate DESC";
+    private static final String GET_OFEEDBACK ="SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings \n" +
+                                               "FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings \n" +
+                                               "FROM tblUser, tblMotel, tblFeedBack, tblBooking\n" +
+                                               "WHERE tblUser.UserID = ? AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC";
     
     public List<FeedbackDTO> getListFeedback(String userID) throws SQLException {
         List<FeedbackDTO> listFeedback = new ArrayList();

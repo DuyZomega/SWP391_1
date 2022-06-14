@@ -1,13 +1,13 @@
 USE [master];
 GO
 
-DROP DATABASE MotelDB
+DROP DATABASE MotelDB1
 GO
 
-CREATE DATABASE MotelDB
+CREATE DATABASE MotelDB1
 GO
 
-USE MotelDB
+USE MotelDB1
 GO
 
 CREATE TABLE [tblUser](--done
@@ -191,6 +191,7 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'images/motel-4.jpg', N'0745898989','7', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
+--insert roomtype
 
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 150000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '587416594')
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 250000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594')
@@ -300,7 +301,7 @@ INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [User
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-10-10',N'Booking table', 59900,1,'tuan04') 
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 500000,1,'Lamm44')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 600000,1,'hai03')
-
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-11-15',N'khach nhan trong ngay', 400000,0,'taich74')
 
 ---INSERT BookingDetail
 
@@ -311,6 +312,8 @@ INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Tim
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt05', '323565985','booking05', 250000,5) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt06', '332369568','booking05', 250000,7) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt07', '225657877','booking06', 250000,1) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt08', '012414785','booking07', 350000,7) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt09', '216587125','booking07', 50000,4)
 
 ---INSERT Payment
 
@@ -368,3 +371,29 @@ WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND
 SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
 SELECT RoomID FROM tblRoom Where RoomID = ''
 */
+
+SELECT COUNT(*) as NumberRoom FROM tblUser,tblMotel,tblRoomType,tblRoom 
+WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND UserID = 'quan01'
+
+SELECT COUNT(*) as NumberService FROM tblUser,tblMotel,tblService
+WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblService.MotelID AND UserID = 'quan01'
+
+SELECT COUNT(*) as NumberFeedback FROM  tblUser, tblMotel , tblFeedBack 
+WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'
+
+SELECT tblBooking.BookingID, tblPayment.Total
+FROM tblUser, tblMotel,tblRoomType, tblRoom, tblBookingDetail, tblBooking ,tblPayment
+WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID
+GROUP BY tblBooking.BookingID , tblPayment.Total
+
+SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status 
+FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m,tblRoomType as rt, tblRoom as r, tblBookingDetail as d, tblBooking as b WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID 
+ORDER BY a.BookingDate DESC
+
+SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings 
+FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings 
+FROM tblUser, tblMotel, tblFeedBack, tblBooking
+WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
+
+SELECT RoomID, r.Name, rt.Image, Price, rt.Desct, r.Status, rt.MotelID FROM tblMotel as m, tblRoom as r, tblRoomType as rt WHERE m.MotelID = '587416594' AND m.MotelID = rt.MotelID AND r.RoomTypeID = rt.RoomTypeID 
+
