@@ -76,6 +76,7 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
   };  
 
+  
 //chart
 const ctx = document.getElementById('chart-Dashboard').getContext('2d');
 const day = [
@@ -96,30 +97,45 @@ const week = [
     {x: Date.parse('2022-07-03 UTC+0700'), y: 175},
 ];
 
+const month = [
+    {x: Date.parse('2022-01-01 UTC+0700'), y: 1234},
+    {x: Date.parse('2022-02-01 UTC+0700'), y: 3542},
+    {x: Date.parse('2022-03-01 UTC+0700'), y: 1231},
+    {x: Date.parse('2022-04-01 UTC+0700'), y: 1221},
+    {x: Date.parse('2022-05-01 UTC+0700'), y: 1233},
+    {x: Date.parse('2022-06-01 UTC+0700'), y: 1323},
+    {x: Date.parse('2022-07-01 UTC+0700'), y: 2412},
+    {x: Date.parse('2022-08-01 UTC+0700'), y: 1233},
+    {x: Date.parse('2022-09-01 UTC+0700'), y: 1233},
+    {x: Date.parse('2022-12-01 UTC+0700'), y: 3212},
+    {x: Date.parse('2022-09-01 UTC+0700'), y: 1233},
+    {x: Date.parse('2022-12-01 UTC+0700'), y: 1321},
+];
+
 const chart = new Chart(ctx, {   
     type: 'bar',
     data: {
         // labels: Object.keys(week),
         datasets: [{
-            label: 'Doanh thu tuần',
+            label: 'Doanh thu nhà nghỉ A',
             data: day,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
+                'rgba(39, 174, 96,0.5)'
             ],
             borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 159, 64, 1)'
+                'rgba(39, 174, 96,1.0)'
+
+            ],
+            borderWidth: 1,
+        },{
+            label: 'Doanh thu nhà nghỉ B',
+            data: day,
+            backgroundColor: [
+                'rgba(211, 84, 0,0.5)'
+            ],
+            borderColor: [
+
+                'rgba(211, 84, 0,1.0)'
             ],
             borderWidth: 1,
         }]
@@ -144,20 +160,60 @@ function timeFrame(period) {
         chart.data.datasets[0].data = day;
         chart.options.scales.x.time.unit = period.value;
     }
-     if (period.value == 'week') {
+    if (period.value == 'week') {
         chart.data.datasets[0].data = week;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    if (period.value == 'month') {
+        chart.data.datasets[0].data = month;
         chart.options.scales.x.time.unit = period.value;
     }
     chart.update();
 }
 
 //
-function onChange() {
-    const password = document.querySelector('input[name=newpassword]');
-    const confirm = document.querySelector('input[name=confirm]');
-    if (confirm.value === password.value) {
-      confirm.setCustomValidity('');
+// function onChange() {
+//     const password = document.querySelector('input[name=newpassword]');
+//     const confirm = document.querySelector('input[name=confirm]');
+//     if (confirm.value === password.value) {
+//       confirm.setCustomValidity('');
+//     } else {
+//       confirm.setCustomValidity('Passwords do not match');
+//     }
+// }
+
+
+//change idHome for delete
+function change(event) {
+    document.getElementById("idhome").value = event.target.value;
+}
+
+
+// input other reason
+function other(event) {
+    if (event.target.value === 'custom') {
+        document.getElementById("otherid").style.display = "block";
+        document.getElementById("otherid1").style.display = "block";
     } else {
-      confirm.setCustomValidity('Passwords do not match');
+        document.getElementById("otherid").style.display = "none";
+        document.getElementById("otherid1").style.display = "none";
+    }
+}
+
+// select input
+var sel1 = document.querySelector('#sel1');
+var sel2 = document.querySelector('#sel2');
+var options2 = sel2.querySelectorAll('option');
+
+function giveSelection(selValue) {
+    sel2.innerHTML = '';
+    for(var i = 0; i < options2.length; i++) {
+      if(options2[i].dataset.option === selValue) {
+        sel2.appendChild(options2[i]);
+      }
     }
   }
+  
+  giveSelection(sel1.value);
+
+

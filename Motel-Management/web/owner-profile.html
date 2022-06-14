@@ -20,56 +20,71 @@
     <!-- sidebar -->
     <div class="sidebar">
         <div class="container">
-            <div class="navigation">
-                <ul>
+            <div class="navigation">  
+                <ul class="slide-menu">
                     <div class="logo">
                         <a href="owner-index.html">
                             <img class="logo" src="assets/img/logo2.png" alt="logo">
                         </a>
                     </div>
-                    <li>
+                    <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
                         <a href="owner-index.html">
                             <span><i class='bx bx-tachometer'></i></span>
                             <span class="title">Tổng quan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="owner-room-list.html">
-                            <span><i class='bx bx-home'></i></span>
-                            <span class="title">Phòng</span>
+                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <i class='bx bx-bookmarks'></i>
+                            <span class="title">Quản lý</span>
+                            <i class='bx bxs-chevron-down drop'></i>
                         </a>
+                        <ul class="collapse sub-menu" id="collapseOne">
+                            <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
+                                <a href="owner-room-list.html" li class="dropdown-item">
+                                    <i class='bx bx-home-alt-2'></i>
+                                    <span class="title">Nhà nghỉ</span>
+                                </a> 
+                            </li>
+                            <li data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
+                                <a href="owner-room-list.html" li class="dropdown-item">
+                                    <i class='bx bx-calendar-edit'></i>
+                                    <span class="title">Phòng</span>
+                                </a>
+                            </li> 
+                            <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
+                                <a href="owner-service.html" li class="dropdown-item">
+                                    <i class='bx bx-cloud-rain'></i>
+                                    <span class="title">Dịch vụ</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="owner-service.html">
-                            <span><i class='bx bx-cloud-rain'></i></span>
-                            <span class="title">Dịch vụ</span>
-                        </a>
-                    </li>
-                    <li>
+                    <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
                         <a href="owner-history-room.html">
                             <span><i class='bx bx-history'></i></span>
                             <span class="title">Lịch sử thuê phòng</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-toggle="tooltip"data-placement="right" title="Thông báo">
                         <a href="owner-notification.html">
                             <span><i class='bx bx-bell'></i></span>
                             <span class="title">Thông báo</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
                         <a href="owner-feedback.html">
                             <span><i class="bx bx-detail"></i></span>
                             <span class="title">Nhận xét</span>
                         </a>
                     </li>
-                    <li>
+                    <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                         <a href="owner-statistical.html">
                             <span><i class='bx bx-line-chart'></i></span>
                             <span class="title">Thống kê</span>
                         </a>
                     </li>
-                    <li class="active">
+                    <li class="active" data-toggle="tooltip"data-placement="right" title="Tài khoản">
                         <a href="owner-profile.html">
                             <span><i class='bx bx-user'></i></span>
                             <span class="title">Tài khoản</span>
@@ -77,8 +92,6 @@
                     </li>
                 </ul>
             </div>
-
-
         </div>
     </div>
     <!-- End sidebar -->
@@ -123,19 +136,19 @@
             <div class="card mx-5 mb-2">
                 <div class="card-header card-setting" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#profile"
+                            aria-expanded="true" aria-controls="profile">
                             Hồ sơ của tôi <i class='bx bx-chevron-right'></i>
                         </button>
                     </h5>
                 </div>
-                <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="collapse" id="profile" aria-labelledby="profile" data-parent="#accordion">
                     <div class="card-body">
                         <div class="user-profile">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="profile-pic">
-                                        <img src="assets/img/avatar.jpg" width="200"/>
+                                        <img src="assets/img/avatar.jpg" id="output" width="200"/>
                                         <div class="upload">
                                             <button class="btn btn-warning" data-toggle="modal" data-target="#uploadImg">Chi Tiết</button>                                                   
                                             <i class='bx bxs-camera-plus'></i>
@@ -242,11 +255,11 @@
                 <form action="#">
                     <div class="modal-body">
                         <label class="custom-control-label d-flex">
-                            <input type="file" class="custom-file" accept=".jpg, .png">   
+                            <input type="file" class="custom-file" accept=".jpg, .png" onchange="loadFile(event)">   
                         </label>
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button class="btn btn-success" type="submit">Xác nhận</button>
+                        <button class="btn btn-success" type="submit" id="confirm">Xác nhận</button>
                         <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                     </div>
                 </form>
