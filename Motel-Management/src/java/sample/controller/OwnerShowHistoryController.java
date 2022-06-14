@@ -6,12 +6,16 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.owner.HistoryDAO;
+import sample.owner.HistoryDTO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -28,10 +32,24 @@ public class OwnerShowHistoryController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         HistoryDAO dao = new HistoryDAO();
+        String status = "1";
         try {
-            String ownerID= request.getParameter("ownerID");
-            
-            
+            HttpSession session=request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            String ownerID= loginUser.getUserId();
+            List<HistoryDTO> listHistory = dao.getListHistory(ownerID);
+            if (listHistory != null){
+                for (HistoryDTO history : listHistory){
+                    if(status.equals(history.getStatus())){
+                        String payType = dao.getPayType(history.getBookingID());
+                        history.setPayType(payType);
+                    }
+                    int numberService = dao.getNumberService(history.getBookingID());
+                    history.setNumberService(numberService);
+                }
+                request.setAttribute("LIST_HISTORY", listHistory);
+                url = SUCCESS;
+            }   
         } catch (Exception e) {
             log("Error at OwnerShowHistoryController:"+e.toString());
         } finally {

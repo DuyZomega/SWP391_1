@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="owner-history-room.html">
+                            <a href="MainController?action=ShowHistory">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
                             </a>

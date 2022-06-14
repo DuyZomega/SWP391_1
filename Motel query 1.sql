@@ -371,29 +371,3 @@ WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND
 SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
 SELECT RoomID FROM tblRoom Where RoomID = ''
 */
-
-SELECT COUNT(*) as NumberRoom FROM tblUser,tblMotel,tblRoomType,tblRoom 
-WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND UserID = 'quan01'
-
-SELECT COUNT(*) as NumberService FROM tblUser,tblMotel,tblService
-WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblService.MotelID AND UserID = 'quan01'
-
-SELECT COUNT(*) as NumberFeedback FROM  tblUser, tblMotel , tblFeedBack 
-WHERE tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'
-
-SELECT tblBooking.BookingID, tblPayment.Total
-FROM tblUser, tblMotel,tblRoomType, tblRoom, tblBookingDetail, tblBooking ,tblPayment
-WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID
-GROUP BY tblBooking.BookingID , tblPayment.Total
-
-SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status 
-FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m,tblRoomType as rt, tblRoom as r, tblBookingDetail as d, tblBooking as b WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID 
-ORDER BY a.BookingDate DESC
-
-SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings 
-FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings 
-FROM tblUser, tblMotel, tblFeedBack, tblBooking
-WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
-
-SELECT RoomID, r.Name, rt.Image, Price, rt.Desct, r.Status, rt.MotelID FROM tblMotel as m, tblRoom as r, tblRoomType as rt WHERE m.MotelID = '587416594' AND m.MotelID = rt.MotelID AND r.RoomTypeID = rt.RoomTypeID 
-
