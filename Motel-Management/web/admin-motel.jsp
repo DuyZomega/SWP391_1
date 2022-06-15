@@ -23,8 +23,14 @@
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
     <body>
+ <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+    //                                response.sendRedirect("login.jsp");
+    //                                return;
+    //                            }
 
-
+        %>
         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
@@ -32,12 +38,12 @@
 
                     <ul>
                         <div class="logo">
-                            <a href="admin.jsp">
+                            <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
                         <li >
-                            <a href="admin.jsp">
+                            <a href="AdminShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -67,13 +73,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admin-report.jsp">
+                            <a href="AdminReportManager">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Report</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -87,40 +93,36 @@
         </div>
         <!-- End sidebar -->
 
-
-        <!-- Header -->
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-12 my-2">
+                    <div class="col-sm-12">
                         <div class="toggle float-left">
-                            <i class='bx bx-menu'></i>
+                            <i class="bx bx-menu"></i>
                         </div>
                         <div class="float-left">
                             <div class="dashboard_bar d-flex">
-                                Quản lý phòng trọ
+                                Quản lý motel
                             </div>
                         </div>
                         <div class="float-right">
-                             <div class="btn-group me-1 mb-1">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
-                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
-                                </div>
+                            <div class="btn-group me-1 mb-1">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        ${sessionScope.LOGIN_USER.fullName}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userId=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class="bx bx-user"></i>Tài khoản</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class="bx bx-log-out-circle"></i>Thoát</a>
+                                    </div>
+                                </div>  
                             </div>  
-                        </div>
                         </div>   
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End header -->
 
         <div class="main-content">
             <div class="main">
@@ -131,60 +133,61 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="myTable" class="table table-striped table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>MotelID</th>
-                                                        <th>Hinh anh</th>
-                                                        <th>MotelName</th>
-                                                        <th>Hotline</th>
-                                                        <th>Địa chỉ</th>
-                                                        <th>Rating</th>
-                                                        <th>Chủ trọ </th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
+                                            <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                                                <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
+                                                    <thead>
+                                                        <tr>
+                                                            <th  class="sorting sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã motel: activate to sort column descending" style="width: 100.15px;">Mã motel</th>
+                                                            <th  class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Hình ảnh: activate to sort column ascending" style="width: 100px;">Hình ảnh</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Tên: activate to sort column ascending" style="width: 150.3875px;">Tên motel</th>
+                                                            <th>Hotline</th>
+                                                            <th>Địa chỉ</th>
+                                                            <th>Rating</th>
+                                                            <th>Chủ trọ </th>
+                                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Trạng thái: activate to sort column ascending" style="width: 90px;">Trạng thái</th>
+                                                            <th  class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 90px;">Action</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                <tbody>
-                                                    <c:if test="${requestScope.ADMIN_LIST_MOTEL != null}">
-                                                        <c:if test="${not empty requestScope.ADMIN_LIST_MOTEL}">
-                                                            <c:forEach var="motel" varStatus="counter" items="${requestScope.ADMIN_LIST_MOTEL}">
+                                                    <tbody>
+                                                        <c:if test="${requestScope.ADMIN_LIST_MOTEL != null}">
+                                                            <c:if test="${not empty requestScope.ADMIN_LIST_MOTEL}">
+                                                                <c:forEach var="motel" varStatus="counter" items="${requestScope.ADMIN_LIST_MOTEL}">
 
-                                                            <form action="MainController">
-                                                                <tr>
-                                                                    <td>${motel.motelID}</td>
-                                                                    <td>
-                                                                        <img src="${motel.image}">
-                                                                    </td>
-                                                                    <td>${motel.name}</td>
-                                                                    <td>${motel.phone}</td>
-                                                                    <td>${motel.address}</td>
-                                                                    <td>${motel.rating}</td>
-                                                                    <td>${motel.ownerId}</td>
-                                                                    <td>
-                                                                        <c:if test="${motel.status == 0}">
-                                                                            <span class="badge badge-danger">Extended</span>
-                                                                        </c:if> 
-                                                                        <c:if test="${motel.status == 1}">
-                                                                            <span class="badge badge-success">Activity</span>
-                                                                        </c:if> 
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-                                                                            <a href="MotelManager?action=update&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
-                                                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
-                                                                        </div>    
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach> 
+                                                                <form action="MainController">
+                                                                    <tr>
+                                                                        <td>${motel.motelID}</td>
+                                                                        <td>
+                                                                            <img src="${motel.image}">
+                                                                        </td>
+                                                                        <td>${motel.name}</td>
+                                                                        <td>${motel.phone}</td>
+                                                                        <td>${motel.address},${motel.district},${motel.city}</td>
+                                                                        <td>${motel.rating}</td>
+                                                                        <td>${motel.ownerId}</td>
+                                                                        <td>
+                                                                            <c:if test="${motel.status == 0}">
+                                                                                <span class="badge badge-danger">Extended</span>
+                                                                            </c:if> 
+                                                                            <c:if test="${motel.status == 1}">
+                                                                                <span class="badge badge-success">Activity</span>
+                                                                            </c:if> 
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex">
+                                                                                <a href="MotelManager?action=detail&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
+                                                                                <a href="MotelManager?action=delete&motelID=${motel.motelID}" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
+                                                                            </div>    
+                                                                        </td>
+                                                                    </tr>
+                                                                </c:forEach> 
+                                                            </c:if>
                                                         </c:if>
-                                                    </c:if>
-                                                </form>
-                                                </tbody>
-                                            </table>
-                                            ${requestScope.ERROR_MESSAGE}
-
+                                                    </form>
+                                                    </tbody>
+                                                </table>
+                                                ${requestScope.ERROR_MESSAGE}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

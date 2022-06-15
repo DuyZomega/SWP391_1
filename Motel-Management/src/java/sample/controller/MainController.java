@@ -39,6 +39,8 @@ public class MainController extends HttpServlet {
     private static final String CHANGE_IMAGE_CONTROLLER = "ChangeImageController";
     private static final String SHOW_OWNER_OVERVIEW = "ShowOverview";
     private static final String SHOW_OWNER_OVERVIEW_CONTROLLER = "OwnerShowOverview";
+    private static final String SHOW_OWNER_HISTORY = "ShowHistory";
+    private static final String SHOW_OWNER_HISTORY_CONTROLLER = "OwnerShowHistoryController";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,6 +65,8 @@ public class MainController extends HttpServlet {
                 url = CHANGE_IMAGE_CONTROLLER;
             } else if (SHOW_OWNER_OVERVIEW.equals(action)){
                 url = SHOW_OWNER_OVERVIEW_CONTROLLER;
+            } else if (SHOW_OWNER_HISTORY.equals(action)){
+                url = SHOW_OWNER_HISTORY_CONTROLLER;
             }
             
         } catch (Exception e) {

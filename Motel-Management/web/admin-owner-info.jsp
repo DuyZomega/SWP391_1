@@ -27,19 +27,27 @@
     </head>
     <body>
         <!-- sidebar -->
+    <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+    //                                response.sendRedirect("login.jsp");
+    //                                return;
+    //                            }
 
+        %>
+ <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
 
                     <ul>
                         <div class="logo">
-                            <a href="admin.jsp">
+                            <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li class="active">
-                            <a href="admin.jsp">
+                        <li >
+                            <a href="AdminShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -47,7 +55,7 @@
                         <li>
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý Tai Khoan</span>
+                                <span class="title">Quản lý tài khoản</span>
                             </a>
                         </li>
                         <li >
@@ -69,13 +77,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="admin-report.jsp">
+                            <a href="AdminReportManager">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Report</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -89,29 +97,31 @@
         </div>
         <!-- End sidebar -->
 
-        <!-- Header -->
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="toggle float-left">
-                            <i class='bx bx-menu'></i>
+                            <i class="bx bx-menu"></i>
                         </div>
-
+                        <div class="float-left">
+                            <div class="dashboard_bar d-flex">
+                                Thông tin chi tiết
+                            </div>
+                        </div>
                         <div class="float-right">
-                             <div class="btn-group me-1 mb-1">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Thuy CTP ${sessionScope.LOGIN_USER.fullName}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="">
-                                    <a class="dropdown-item" href="owner-profile.html"><i class="bx bx-user"></i>Tài khoản</a>
-                                    <a class="dropdown-item" href="owner-notification.html"><i class="bx bx-bell"></i>Thông báo</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i class="bx bx-log-out-circle"></i>Thoát</a>
-                                </div>
+                            <div class="btn-group me-1 mb-1">
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        ${sessionScope.LOGIN_USER.fullName}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userId=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class="bx bx-user"></i>Tài khoản</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class="bx bx-log-out-circle"></i>Thoát</a>
+                                    </div>
+                                </div>  
                             </div>  
-                        </div>
                         </div>   
                     </div>
                 </div>
@@ -136,15 +146,14 @@
                                             <form class="row" action="UserManager">
                                                 <div class="mb-3 col-md-12">
                                                     <label for="image" class="form-label">Hình ảnh  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="image" value="${o.image}" required="">
-
-
+                                                    <input type="text" class="form-control" name="image" value="${o.image}" required="" style="display: none">
+                                                    <img name="image" src="${o.image}" style="width:300px; height: auto ; text-align: center">
                                                 </div>
-                                                <div class="mb-3 col-md-12">
+                                                <div class="mb-3 col-md-6">
                                                     <label for="userId" class="form-label">Tên đăng nhập</label>
                                                     <input type="text" class="form-control" name="userId" value="${o.userId}" readonly="">
                                                 </div>
-                                                <div class="mb-3 col-md-12">
+                                                <div class="mb-3 col-md-6">
                                                     <label for="fullName" class="form-label">Họ và Tên  <span class="text-danger">*</span></label>
                                                     <input type="text" class="form-control" name="fullName" value="${o.fullName}" required="">
                                                 </div>
@@ -175,12 +184,12 @@
                                                     <input type="text" class="form-control" name="citizenNumber" value="${o.citizenNumber}" required="">
 
                                                 </div>
-                                                <div class="mb-3 col-md-12">
+                                                <div class="mb-3 col-md-6">
                                                     <label for="gmail" class="form-label">Email <span class="text-danger">*</span></label>
                                                     <input type="email" class="form-control" name="gmail" value="${o.gmail}" placeholder="">
                                                 </div>
 
-                                                <div class="mb-3 col-md-12">
+                                                <div class="mb-3 col-md-6">
                                                     <label for="address" class="form-label">Địa chỉ</label>
                                                     <input type="text" class="form-control" name="address" value="${o.address}" required="">
                                                 </div>

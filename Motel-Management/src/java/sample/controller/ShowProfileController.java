@@ -24,7 +24,7 @@ public class ShowProfileController extends HttpServlet {
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "owner-profile.jsp";
     private static final String AD="AD";
-    private static final String ADMIN_PAGE="";
+    private static final String ADMIN_PAGE="admin-profile.jsp";
     private static final String US="US";
     private static final String USER_PAGE="";
     private static final String OWNER="OW";
@@ -42,6 +42,8 @@ public class ShowProfileController extends HttpServlet {
             request.setAttribute("USER_PROFILE", userProfile);
             if (OWNER.equals(role)){
                 url = OWNER_PAGE;
+            }else if (AD.equals(role)){
+                url = ADMIN_PAGE;
             }
         } catch (Exception e) {
             log("Error at ShowProfileController: "+e.toString());

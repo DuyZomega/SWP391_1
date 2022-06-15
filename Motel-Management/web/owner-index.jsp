@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="owner-history-room.html">
+                            <a href="MainController?action=ShowHistory">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
                             </a>
@@ -271,7 +271,6 @@
                                         if (listFeedback != null) {
                                             if (listFeedback.size() > 0) {
                                                 for (FeedbackDTO feedback : listFeedback) {
-
                                     %>
                                     <tr>
                                         <td><div class="imgBx"><img src="<%= feedback.getImage()%>" alt=""></div></td>

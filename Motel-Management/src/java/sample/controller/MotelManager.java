@@ -27,6 +27,15 @@ public class MotelManager extends HttpServlet {
     private static final String UPDATE_LIST = "update";
     private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateMotel";
     
+   private static final String DETAIL_LIST = "detail";
+  private static final String DETAIL_LIST_CONTROLLER = "AdminDetailMotel";
+  
+    private static final String DELETE_LIST = "delete";
+    private static final String DELETE_LIST_CONTROLLER = "AdminDeleteMotel";
+    
+    private static final String REPORT_LIST = "reportmanager";
+    private static final String REPORT_LIST_CONTROLLER = "AdminReport";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -37,6 +46,12 @@ public class MotelManager extends HttpServlet {
                 url = MOTEL_LIST_CONTROLLER;
             }else if (UPDATE_LIST.equals(action)){
                 url = UPDATE_LIST_CONTROLLER;
+            }else if (DELETE_LIST.equals(action)){
+                url = DELETE_LIST_CONTROLLER;
+            }else if (DETAIL_LIST.equals(action)){
+                url = DETAIL_LIST_CONTROLLER;
+            }else if (REPORT_LIST.equals(action)){
+                url = REPORT_LIST_CONTROLLER;
             }
             
         } catch (Exception e) {

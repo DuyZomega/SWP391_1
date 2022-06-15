@@ -27,7 +27,7 @@ import sample.room.RoomDTO;
 public class ShowRoomController extends HttpServlet {
      
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-room-list.jsp";
+    private static final String SUCCESS = "test.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

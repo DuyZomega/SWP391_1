@@ -1,5 +1,10 @@
 
 
+<%@page import="sample.room.RoomDTO"%>
+<%@page import="sample.users.UserDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.motel.MotelDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,13 +52,42 @@
                 <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
+             <% UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                        if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                    <button type="button" class="button--primary btn btn-sm">
+                        <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+                    </button>
+                    <a href="./login.jsp">Đăng nhập</a>
 
-                <a href="./login.jsp">Đăng nhập</a>
-
-                <a href="./signup.jsp">Đăng ký</a>
-                </ul>
+                    <a href="./signup.jsp">Đăng ký</a>
+                    <% } else {%>
+                    <div class="header__right">
+                        <li>
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+                                <span><i class='bx bx-user'></i></span>
+                                <span class="title">Tài khoản</span>
+                            </a>
+                        </li>
+                        <div class="user-dropdown dropdown">
+                            <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
+                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>Xin chào,<%= loginUser.getFullName()%></span>
+                                <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="user-profile.jsp">Thông tin cá nhân</a>
+                                <form action="LogoutController" method="get">
+                                    <div class="dropdown-divider" ></div>
+                                    <a class="dropdown-item" ><input type="submit" value="Logout" /></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <%}%>
         </div>
+    </div>
         <div class="header__bottom">
             <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
                 <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
@@ -180,10 +214,13 @@
                             <h2>Đặt lịch</h2>
                             <hr>
                             <div class="content-booking-detail">
+                                 <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
                                 <p>Vui lòng đăng nhập để đặt lịch</p>
-                                <button class="button--primary">Đăng nhập</button>
+                                <button class="button--primary" href="./login.jsp">Đăng nhập</button>
                                 <p>hoặc</p>
-                                <button class="button--primary">Đăng ký</button>
+                                <button class="button--primary" href="./signup.jsp">Đăng ký</button>
+                                <% } else { %>
+                                <button class="button--primary" href="./user-booking.jsp">Đặt phòng</button>
                             </div>
                         </div>
                         <div class="content-contact text-center border rounded p-3">

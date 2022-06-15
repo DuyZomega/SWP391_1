@@ -23,66 +23,81 @@
     </div> -->
 
     <div id="main-wrapper">
-        <!-- sidebar -->
+         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
-                <div class="navigation">
-                    <ul>
+                <div class="navigation">  
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="owner-index.html">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
                             <a href="owner-index.html">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
                         </li>
                         <li>
-                            <a href="owner-room-list.html">
-                                <span><i class='bx bx-home'></i></span>
-                                <span class="title">Phòng</span>
+                            <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <i class='bx bx-bookmarks'></i>
+                                <span class="title">Quản lý</span>
+                                <i class='bx bxs-chevron-down drop'></i>
                             </a>
+                            <ul class="collapse sub-menu" id="collapseOne">
+                                <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
+                                    <a href="owner-room-list.html" li class="dropdown-item">
+                                        <i class='bx bx-home-alt-2'></i>
+                                        <span class="title">Nhà nghỉ</span>
+                                    </a> 
+                                </li>
+                                <li class="active" data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
+                                    <a href="owner-room-list.html" li class="dropdown-item">
+                                        <i class='bx bx-calendar-edit'></i>
+                                        <span class="title">Phòng</span>
+                                    </a>
+                                </li> 
+                                <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
+                                    <a href="owner-service.html" li class="dropdown-item">
+                                        <i class='bx bx-cloud-rain'></i>
+                                        <span class="title">Dịch vụ</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="owner-service.html">
-                                <span><i class='bx bx-cloud-rain'></i></span>
-                                <span class="title">Dịch vụ</span>
-                            </a>
-                        </li>
-                        <li class="active">
+                        <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
                             <a href="owner-history-room.html">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Thông báo">
                             <a href="owner-notification.html">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
                             <a href="owner-feedback.html">
                                 <span><i class="bx bx-detail"></i></span>
                                 <span class="title">Nhận xét</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                             <a href="owner-statistical.html">
                                 <span><i class='bx bx-line-chart'></i></span>
                                 <span class="title">Thống kê</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Tài khoản">
                             <a href="owner-profile.html">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
-                        </li> 
+                        </li>
                     </ul>
-                </div>  
+                </div>
             </div>
         </div>
         <!-- End sidebar -->
@@ -145,7 +160,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr class='clickable-row' data-href="owner-history-detail.html" 
-                                                    data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                    data-toggle="tooltip"data-placement="right" title="Nhấn để xem chi tiết">
                                                         <td>A1</td>
                                                         <td>Motel1</td>
                                                         <td>025</td>
@@ -158,7 +173,7 @@
                                                         
                                                     </tr>
                                                     <tr class='clickable-row' data-href="owner-history-detail.html"
-                                                    data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                    data-toggle="tooltip"data-placement="right" title="Nhấn để xem chi tiết">
                                                         <td>B1</td>
                                                         <td>Motel2</td>
                                                         <td>030</td>
