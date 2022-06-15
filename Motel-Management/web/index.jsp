@@ -35,26 +35,25 @@
         <!-- main CSS -->
         <link rel="stylesheet" href="./assets/css/main.css">
 
-        <jsp:useBean id="list" class="sample.motel.MotelDAO" scope="request"></jsp:useBean>
-        </head>
+    </head>
 
-        <body>
-            <!-- HEADER -->
-            <header>
+    <body>
+        <!-- HEADER -->
+        <header>
 
-                <div class="header__top d-flex justify-content-between align-items-center container-fluid py-2 fixed-top">
-                    <div class="header__left">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="mailto:hotel.management@gmail.com" class="text-white text-decoration-none"><i
-                                class="fa fa-envelope"></i> hotel.management@gmail.com</a>
-                        <a href="tel:0865644162" class="text-white mr-4 text-decoration-none"><i class="fas fa-phone-alt"></i>
-                            0865.644.162</a>
-                    </div>
-                    <div class="header__right">
+            <div class="header__top d-flex justify-content-between align-items-center container-fluid py-2 fixed-top">
+                <div class="header__left">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="mailto:hotel.management@gmail.com" class="text-white text-decoration-none"><i
+                            class="fa fa-envelope"></i> hotel.management@gmail.com</a>
+                    <a href="tel:0865644162" class="text-white mr-4 text-decoration-none"><i class="fas fa-phone-alt"></i>
+                        0865.644.162</a>
+                </div>
+                <div class="header__right">
 
                     <% UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                        if (loginUser == null || !loginUser.getRole().equals("US") )  { %>
+                        if (loginUser == null || !loginUser.getRole().equals("US")) { %>
                     <button type="button" class="button--primary btn btn-sm">
                         <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                     </button>
@@ -236,25 +235,6 @@
     <h3 class="heading">TIN CHO THUÊ</h3>
     <div class="motel__content">
         <div class="owl-carousel owl-theme">
-            <div class="item">
-                <a href="#" class="motel-image">
-                    <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                </a>
-                <div class="motel-title my-4">
-                    <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                </div>
-                <div class="motel-address my-2">
-                    <p>Quận Tân Bình, Thành phố Hồ Chí Minh</p>
-                </div>
-                <div class="d-flex justify-content-between my-2">
-                    <p>Liên hệ</p>
-                    <p><i class="fas fa-history"></i> một ngày trước</p>
-                </div>
-                <div class="motel-price d-flex justify-content-between">
-                    <p>7.0 Triệu</p>
-                    <button class="button--primary">Xem ngay</button>
-                </div>
-            </div>
             <c:if test="${requestScope.LIST_MOTEL != null}">
                 <c:if test="${not empty requestScope.LIST_MOTEL}">
 
@@ -267,7 +247,10 @@
                                 <a href="#" class="text-decoration-none">${o.name}</a>
                             </div>
                             <div class="motel-address my-2">
-                                <p>${o.address},${o.district},${o.city}</p>
+                                <p>${o.address},${o.district}</p>
+                            </div>
+                            <div class="motel-services my-2">
+                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <p>Liên hệ</p>

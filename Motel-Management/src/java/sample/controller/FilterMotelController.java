@@ -31,10 +31,10 @@ public class FilterMotelController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            MotelDAO motel = new MotelDAO();
-            List<MotelDTO> listMotel = motel.getFilterMotel();
-                if (listMotel.size() > 0) {
-                    request.setAttribute("FILTER_MOTEL", listMotel);
+            MotelDAO motel1 = new MotelDAO();
+            List<MotelDTO> listMotel1 = motel1.getFilterMotel();
+                if (listMotel1.size() > 0) {
+                    request.setAttribute("FILTER_MOTEL", listMotel1);
                     url = SUCCESS;
                 } else {
                     request.setAttribute("ERROR_MESSAGE", "No motel here");

@@ -1,137 +1,132 @@
 
-/* Truncate Title */
-// window.addEventListener("load",function(){
-//     truncateTitle();
-// });
-
-// function truncateTitle(){
-//     var list = document.getElementsByClassName("service");
-//     console.log(list);
-//     for(var i = 0; i < list.length; i++){
-//         var text = list[i].innerHTML;
-//         var newText = truncateString(text,20);
-//         list[i].innerHTML = newText;
-//     }
-// }
-
-// function truncateString(str,num){
-//     if(str.length > num){
-//         return str.slice(0,num) + "...";
-//     } else{
-//         return str;
-//     }
-
 // ====================== Validation ====================
+//Đối tượng
+function Validator(options) {
 
-function getEle(id) {
-    return document.getElementById(id);
+    var selectorRules = {};
+
+    function validate(inputElement, rule) {
+        var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
+        var errorMessage;
+
+        // Lấy ra các rules của selector
+        var rules = selectorRules[rule.selector];
+        
+        // Lặp qua từng rule & kiểm tra
+        // Nếu lỗi break
+        for(var i = 0; i<rules.length; ++i){
+            errorMessage = rules[i](inputElement.value);
+            if(errorMessage) break;
+        }
+
+        if (errorMessage) {
+            errorElement.innerText = errorMessage;
+            inputElement.parentElement.classList.add('invalid');
+        } else {
+            errorElement.innerText = '';
+            inputElement.parentElement.classList.remove('invalid');
+        }
+
+    }
+    // Lấy element của form cần validate
+    var formElement = document.querySelector(options.form);
+    if (formElement) {
+        options.rules.forEach(function (rule) {
+
+            // Lưu lại các rules cho mỗi input
+            if(Array.isArray(selectorRules[rule.selector])){
+                selectorRules[rule.selector].push(rule.test);
+            }else{
+                selectorRules[rule.selector] = [rule.test];
+            }
+            var inputElement = formElement.querySelector(rule.selector);
+
+            if (inputElement) {
+                //xử lý trường hơp blur ra ngoài
+                inputElement.onblur = function () {
+                    validate(inputElement, rule);
+                }
+
+                // xử lý khi người dùng nhập vào input
+                inputElement.oninput = function () {
+                    var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
+                    errorElement.innerText = '';
+                    inputElement.parentElement.classList.remove('invalid');
+                }
+            }
+        });
+
+    }
 }
 
-var checkValidation = function () {
-    var valid = true;
-    valid = kiemTraRong('fullName', 'error_fullName')
-     & kiemTraRong('user', 'error_userName') & kiemTraRong('password', 'error_password') & kiemTraRong('confirm-password', 'error_confirmPassword') & kiemTraRong('email', 'error_email') & kiemTraRong('telephone', 'error_phone');
-    if (!valid) {
-        return false;
-    }
-    return true;
 
-};
+// Định nghĩa rules
+// Nguyên tắc của các rules
+// 1. Error -> msg báo lỗi
+// 2. Hợp lệ -> không trả ra gì 
 
+Validator.isRequired = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^[A-Za-z0-9_.]+$/;
+            return regex.test(value.trim()) ? undefined : message || 'Vui lòng nhập đúng cú pháp!';
+        }
+    };
+}
 
-var kiemTraRong = function (idValue, idError) {
-    var inputText = getEle(idValue);
-    if (inputText.value.trim() === '') {
-        getEle(idError).innerHTML = inputText.name + ' không được bỏ trống!';
-        getEle(idError).style.display = 'block';
-        return false;
-    } else {
-        document.getElementById(idError).innerHTML = '';
-        document.getElementById(idError).style.display = 'none';
-        return true;
+Validator.isTextOnly = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^[A-Za-z ]+$/;
+            return regex.test(value.trim()) ? undefined : message || 'Vui lòng nhập đúng cú pháp!';
+        }
+    };
+}
+
+Validator.isNumberOnly = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^[0-9]+$/;
+            return regex.test(value.trim()) ? undefined : message || 'Vui lòng nhập đúng cú pháp!';
+        }
+    };
+}
+
+Validator.isEmail = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            return regex.test(value.trim()) ? undefined : message || 'Trường này phải là email!';
+        }
+    };
+}
+
+Validator.minLength = function (selector, min, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value.length >= min ? undefined : message || `Vui lòng nhập tối thiểu ${min} kí tự`;
+        }
+    };
+}
+
+Validator.isConfirmed = function (selector, getConfirmValue, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
+        }
     }
 }
 
 
-// var kiemTraTatCaLaChu = function (selectorValue, selectorError) {
-//     var inputText = document.querySelector(selectorValue);
-//     var regexChu = /^[A-Za-z ]+$/;
-//     if (regexChu.test(inputText.value)) {
-//         //Hợp lệ 
-//         document.querySelector(selectorError).innerHTML = '';
-//         document.querySelector(selectorError).style.display = 'none';
-//         return true;
-//     } else {
-//         //Không hợp lệ
-//         document.querySelector(selectorError).innerHTML = inputText.name + ' phải là chữ !';
-//         document.querySelector(selectorError).style.display = 'block';
-//         return false;
-//     }
-// }
 
-// // var kiemtraTenUser = function (selectorValue, selectorError) {
-// //     var inputText = document.querySelector(selectorValue);
-// //     var regexChu = /^[A-Za-z0-9]+$/;
-// //     if (regexChu.test(inputText.value)) {
-// //         //Hợp lệ 
-// //         document.querySelector(selectorError).innerHTML = '';
-// //         document.querySelector(selectorError).style.display = 'none';
-// //         return true;
-// //     } else {
-// //         //Không hợp lệ
-// //         document.querySelector(selectorError).innerHTML = inputText.name + ' không có ký tự đặc biệt!';
-// //         document.querySelector(selectorError).style.display = 'block';
-// //         return false;
-// //     }
-// // }
 
-// var kiemTraTatCaLaSo = function (selectorValue, selectorError) {
-//     var inputNum = document.querySelector(selectorValue).value;
-//     if (!isNaN(inputNum)) {
-//         //Hợp lệ 
-//         document.querySelector(selectorError).innerHTML = '';
-//         document.querySelector(selectorError).style.display = 'none';
-//         return true;
-//     } else {
-//         document.querySelector(selectorError).innerHTML = inputText.name + ' yêu cầu nhập số !';
-//         document.querySelector(selectorError).style.display = 'block';
-//         return false;
-//     }
-//     console.log(inputNum);
-// }
 
-// var kiemTraEmail = function (selectorValue, selectorError) {
-//     var inputText = document.querySelector(selectorValue);
-//     var regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\ [[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     if (regexEmail.test(inputText.value)) {
-//         document.querySelector(selectorError).innerHTML = '';
-//         document.querySelector(selectorError).style.display = 'none';
-//         return true;
-//     } else {
-//         document.querySelector(selectorError).innerHTML = inputText.name + ' không hợp lệ !';
-//         document.querySelector(selectorError).style.display = 'block';
-//         return false;
-//     }
-// }
 
-// var kiemTraDoDai = function (selectorValue, selectorError) {
-//     var inputText = document.querySelector(selectorValue);
-//     if (inputText.value.length >= inputText.minLength && inputText.value.length <= inputText.maxLength) {
-//         document.querySelector(selectorError).innerHTML = '';
-//         document.querySelector(selectorError).style.display = 'none';
-//         return true;
-//     } else {
-//         document.querySelector(selectorError).innerHTML = inputText.name + ' từ ' + inputText.minLength + ' đến ' + inputText.maxLength + ' ký tự!';
-//         document.querySelector(selectorError).style.display = 'block';
-//         return false;
-//     }
-// }
-
-// getEle('fullName').onblur = checkValidation;
-// getEle('user').onblur = checkValidation;
-// getEle('email').onblur = checkValidation;
-// getEle('telephone').onblur = checkValidation;
-// getEle('password').onblur = checkValidation;
-// getEle('confirm-password').onblur = checkValidation;
 
 
