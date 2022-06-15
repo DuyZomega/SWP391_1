@@ -20,6 +20,7 @@ import sample.utils.DBUtils;
 public class RoomDAO {
     private static final String SHOW_ROOM = "SELECT RoomID, Name, tblRoomType.TypeName, Price, Desct, Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID ";
     private static final String CHECK_ROOMID = "SELECT RoomID FROM tblRoom Where RoomID = ? ";
+    private static final String CHECK_ROOMTYPEID = "SELECT RoomTypeID FROM tblRoomType Where RoomTypeID = ?";
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
     
     public boolean createRoom(RoomDTO room) throws SQLException {
@@ -63,6 +64,37 @@ public class RoomDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(CHECK_ROOMID);
                 ptm.setString(1, roomID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean checkRoomTypeID(String roomTypeID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_ROOMTYPEID);
+                ptm.setString(1, roomTypeID);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     check = true;
