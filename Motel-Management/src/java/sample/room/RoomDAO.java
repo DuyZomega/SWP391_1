@@ -18,7 +18,7 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class RoomDAO {
-    private static final String SHOW_ROOM = "SELECT RoomID, Name, Image, Price, Desct, Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID ";
+    private static final String SHOW_ROOM = "SELECT RoomID, Name, tblRoomType.TypeName, Price, Desct, Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID ";
     private static final String CHECK_ROOMID = "SELECT RoomID FROM tblRoom Where RoomID = ? ";
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
     
@@ -98,12 +98,12 @@ public class RoomDAO {
                 while (rs.next()) {
                     String roomID = rs.getString("MotelID");
                     String name = rs.getString("Name");
-                    String image = rs.getString("Image");
+                    String typeName = rs.getString("TypeName");
                     int price = rs.getInt("Price");
                     String desct = rs.getNString("Desct");
                     String motelID = rs.getString("MotelID");
                     int status = rs.getInt("Status");
-                    listRoom.add(new RoomDTO(roomID, name, image, price, desct, motelID, status));
+                    listRoom.add(new RoomDTO(roomID, name, typeName, price, desct, motelID, status));
                 }
             }
         } catch (Exception e) {

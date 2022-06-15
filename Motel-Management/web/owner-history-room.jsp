@@ -68,7 +68,7 @@
                                         </a> 
                                     </li>
                                     <li class="active" data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
-                                        <a href="owner-room-list.jsp" li class="dropdown-item">
+                                        <a href="MainController?action=ShowRoom&ownerID=<%=loginUser.getUserId()%>" li class="dropdown-item">
                                             <i class='bx bx-calendar-edit'></i>
                                             <span class="title">Phòng</span>
                                         </a>
