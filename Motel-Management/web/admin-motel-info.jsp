@@ -26,15 +26,15 @@
     </head>
     <body>
         <!-- sidebar -->
-    <%
+        <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-    //                                response.sendRedirect("login.jsp");
-    //                                return;
-    //                            }
+            //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+            //                                response.sendRedirect("login.jsp");
+            //                                return;
+            //                            }
 
         %>
- <!-- sidebar -->
+        <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
@@ -129,72 +129,75 @@
                                     <c:if test="${not empty requestScope.INFO}">
 
                                         <c:forEach var="o" varStatus="counter" items="${requestScope.INFO}">
-                                            <form class="row" action="MotelManager">
+                                            <div class="row" >
                                                 <div class="mb-3 col-md-12">
                                                     <label for="image" class="form-label">Hình ảnh  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="image" value="${o.image}" required="">
-
+                                                    <img name="image" src="${o.image}" style="width:300px; height: auto ; text-align: center">
 
                                                 </div>
-                                                <div class="mb-3 col-md-4">
+                                                <div class="mb-3 col-md-6">
                                                     <label for="motelID" class="form-label">Mã Motel</label>
-                                                    <input type="text" class="form-control" name="motelID" value="${o.motelID}" readonly="">
+                                                    <input type="text" class="form-control" name="motelID" value="${o.motelID}" required="" style="display: none">
+                                                    <p>${o.motelID}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="name" class="form-label">Tên Motel <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="name" value="${o.name}" required="">
-                                                </div>
-                                                <div class="mb-3 col-md-2">
-                                                    <label for="rating" class="form-label">Đánh giá <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="rating" value="${o.rating}" required="">
-                                                </div>
+                                                    <p>${o.name} / Ratings : ${o.rating} <i class='bx bxs-star' style="color: #f39c12"></i>
+                                                        <c:if test="${o.status == 0}">
+                                                            <span class="badge badge-danger">Extended</span>
+                                                        </c:if> 
+                                                        <c:if test="${o.status == 1}">
+                                                            <span class="badge badge-success">Activity</span>
+                                                        </c:if> 
+                                                    </p>
 
+                                                </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="ownerId" class="form-label">Chủ trọ</label>
-                                                    <input type="text" class="form-control" name="ownerId" value="${o.ownerId}" readonly="">
+                                                    <p>${o.ownerId}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
-                                                    <label for="phone" class="form-label">SDT  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="phone" pattern="[0-9]{9,11}" value="${o.phone}" required="">
+                                                    <label for="phone" class="form-label">Holine motel  <span class="text-danger">*</span></label>
+                                                    <p>${o.phone}</p>
+                                                </div>
+                                                
+                                                <div class="mb-3 col-md-12">
+                                                    <label for="address" class="form-label">Địa chỉ<span class="text-danger">*</span></label>
+                                                    <p>${o.address}, ${o.district}, ${o.city}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-12">
                                                     <label for="Desct" class="form-label">Mô tả <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="Desct" value="${o.desct}" required="">
-
+                                                    <p>${o.desct}</p>
                                                 </div>
 
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="address" class="form-label">Địa chỉ<span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="address" value="${o.address}" required="">
+                                                <div class="form-group mx-auto">
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#removeRoom">
+                                                        <span>Xóa motel</span> 
+                                                    </button> 
+                                                </div>
+                                            </div>
+                                            <div id="removeRoom" class="modal fade" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered" role="content">
 
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="DistrictName" class="form-label">Quận/Huyện</label>
-                                                    <input type="text" class="form-control" name="district" value="${o.district}" required="">
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="cityName" class="form-label">Tỉnh</label>
-                                                    <input type="text" class="form-control" name="city" value="${o.city}" required="">
-                                                </div>
+                                                    <form action="MotelManager">
+                                                        <div class="modal-content">
+                                                            <div class="card-body">
+                                                                <div class="del-title">
+                                                                    <i class='bx bx-error-circle'></i>
+                                                                    <h2>Bạn muốn xóa motel?</h2> 
 
+                                                                    <input type="text" class="form-control" name="motelID" value="${o.motelID}" required="" style="display: none">
 
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="status" required="">
-                                                        <c:if test="${o.status == 0}">
-                                                            <option value="0">Block</option>
-                                                            <option value="1">Activity</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.status == 1}">
-                                                            <option value="1">Activity</option>
-                                                            <option value="0">Block</option>
-                                                        </c:if> 
-                                                    </select>
+                                                                </div>
+                                                                <div class="del-submit d-flex justify-content-center">
+                                                                    <button class="btn btn-success"  type="submit" value="delete" name="action">Xác Nhận</button>
+                                                                    <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="d-grid">
-                                                    <button type="submit" value="update" name="action" class="btn btn-info m-b-xs">Cập nhật</button>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </c:forEach>
                                     </c:if>
                                 </c:if>
@@ -207,10 +210,15 @@
             </div>
         </div>
 
+
+
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.es5.min.js"></script>
+        <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="assets/js/owner-script.js"></script>
     </body>
 </html>

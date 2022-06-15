@@ -51,7 +51,7 @@
                         <li>
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý Tai Khoan</span>
+                                <span class="title">Quản lý tài khoản</span>
                             </a>
                         </li>
                         <li class="active">
@@ -143,7 +143,7 @@
                                                                 <c:forEach var="motel" varStatus="counter" items="${requestScope.ADMIN_LIST_MOTEL}">
 
                                                                 <form action="MainController">
-                                                                    <tr>
+                                                                    <tr class="clickable-row odd" data-href="MotelManager?action=detail&motelID=${motel.motelID}" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                                         <td>${motel.motelID}</td>
                                                                         <td>
                                                                             <img src="${motel.image}">

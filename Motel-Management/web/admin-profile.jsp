@@ -143,7 +143,7 @@
                             gender = "Nam";
                         }
                     %>
-                    <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <div class="user-profile">
                                 <div class="row">
