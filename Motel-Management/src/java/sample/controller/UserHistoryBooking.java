@@ -11,46 +11,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
  *
- * @author Bao
+ * @author cao thi phuong thuy
  */
-@WebServlet(name = "ShowProfileController", urlPatterns = {"/ShowProfileController"})
-public class ShowProfileController extends HttpServlet {
+@WebServlet(name = "UserHistoryBooking", urlPatterns = {"/userhistorybooking"})
+public class UserHistoryBooking extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-profile.jsp";
-    private static final String AD="AD";
-    private static final String ADMIN_PAGE="admin-profile.jsp";
-    private static final String US="US";
-    private static final String USER_PAGE="user-profile.jsp";
-    private static final String OWNER="OW";
-    private static final String OWNER_PAGE="owner-profile.jsp";
-    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        try {
-            String userID = request.getParameter("userID");
-            String role = request.getParameter("role");
-            UserDAO dao = new UserDAO();
-            UserDTO userProfile = dao.getUserProfile(userID);
-            request.setAttribute("USER_PROFILE", userProfile);
-            if (OWNER.equals(role)){
-                url = OWNER_PAGE;
-            }else if (AD.equals(role)){
-                url = ADMIN_PAGE;
-            }else if (US.equals(role)){
-                url = USER_PAGE;
-            }
-        } catch (Exception e) {
-            log("Error at ShowProfileController: "+e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UserHistoryBooking</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UserHistoryBooking at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

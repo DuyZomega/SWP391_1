@@ -8,14 +8,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Trang cá nhân</title>
+        <title>Home On Road</title>
         <link rel="shortcut icon" href="assets/img/logo2.png">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-        <!--Boxicons-->
-        <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
         <!-- CSS -->
         <link rel="stylesheet" href="assets/css/owner-style.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+        <!--Boxicons-->
+        <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
     </head>
 
     <body>
@@ -23,9 +24,9 @@
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="ShowMotelController">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
@@ -36,35 +37,17 @@
                                 return;
                             }
                         %>
-                        <li class="active">
-                            <a href="user-profile.html">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Thông tin cá nhân</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span><i class='bx bx-book-content' ></i></span>
-                                <span class="title">Lịch đặt gần đây</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="user-history-booking.html">
-                                <span><i class='bx bx-history' ></i></span>
+                        
+                        <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
+                                <a href="#">
+                                <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử đặt phòng</span>
                             </a>
                         </li>
-                        <li>
+                        <li data-toggle="tooltip"data-placement="right" title="Thông báo">
                             <a href="#">
-                                <span><i class='bx bx-message-rounded-dots' ></i></span>
-                                <span class="title">Tin nhắn</span>
-                            </a>
-                        </li>
-                        <hr style="border-color: rgba(255, 255, 255, 0.5);">
-                        <li>
-                            <a href="owner-profile.html">
-                                <span><i class='bx bx-log-out' ></i></span>
-                                <span class="title">Đăng xuất</span>
+                                <span><i class='bx bx-bell'></i></span>
+                                <span class="title">Thông báo</span>
                             </a>
                         </li>
                         <li class="active">
@@ -75,15 +58,18 @@
                         </li>
                     </ul>
                 </div>
+
+
             </div>
         </div>
+        <!-- End sidebar -->
         <%
             String error = (String) request.getAttribute("ERROR");
             if (error == null) {
                 error = "";
             }
         %>
-        <!-- header -->
+        <!-- Header -->
         <div class="header">
             <div class="container-fluid">
                 <div class="row">
@@ -100,11 +86,11 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Hồ Trần Khánh Duy
+                                       ${sessionScope.LOGIN_USER.fullName}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="#"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="#"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -115,6 +101,7 @@
                 </div>
             </div>
         </div>
+        <!-- End header -->
 
         <div class="main-content">
             <div id="accordion">
@@ -122,7 +109,7 @@
                 <div class="card mx-5 mb-2">
                     <div class="card-header card-setting" id="headingOne">
                         <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#profile"
                                     aria-expanded="true" aria-controls="collapseOne">
                                 Hồ sơ của tôi <i class='bx bx-chevron-right'></i>
                             </button>
@@ -135,12 +122,12 @@
                         }
                         String gender = "";
                         if (userProfile.getGender() == 1) {
-                            gender = "FEMALE";
+                            gender = "Nữ";
                         } else {
-                            gender = "MALE";
+                            gender = "Nam";
                         }
                     %>
-                    <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="collapse show" id="profile" aria-labelledby="profile" data-parent="#accordion">
                         <div class="card-body">
                             <div class="user-profile">
                                 <div class="row">
@@ -152,7 +139,7 @@
                                                 <i class='bx bxs-camera-plus'></i>
                                             </div>
                                         </div>
-                                        <div class="profile-name">Hồ Trần Khánh Duy</div>
+                                        <div class="profile-name">${sessionScope.LOGIN_USER.fullName}</div>
                                     </div>
                                     <div class="col-lg-8">                                
                                         <div class="profile-content">
@@ -182,12 +169,12 @@
                                                         </div>
                                                         <div class="row phone-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">CMND/CCCD:</label>
-                                                            <input type="number" name="citizenNumber" value="<%= userProfile.getCitizenNumber()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="text" name="citizenNumber" value="<%= userProfile.getCitizenNumber()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getCitizenNumberError()%></span>
                                                         </div>
                                                         <div class="row phone-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Số điện thoại:</label>
-                                                            <input type="number" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getPhoneError()%></span>
                                                         </div>
                                                         <div class="row address-content">
@@ -197,7 +184,7 @@
                                                         </div>
                                                         <div class="row email-content">
                                                             <label class="contact-title col-md-5 col-sm-4 mt-3">Email:</label>
-                                                            <input type="text" name="gmail" value="<%= userProfile.getGmail()%>"  class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <input type="email" name="gmail" value="<%= userProfile.getGmail()%>"  class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getGmailError()%></span>
                                                         </div>
                                                         <div class="row birthday-content">
@@ -205,10 +192,14 @@
                                                             <input type="date" max="2022-01-01" min="1940-01-01" name="birthDay" value="<%= userProfile.getDateOfBirth()%>" class="form-control col-md-5 col-sm-8 mt-2">
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getBirthDayError()%></span>
                                                         </div>
-                                                        <div class="row email-content">
-                                                            <label class="contact-title col-md-5 col-sm-4 mt-3">Giới Tính:</label>
-                                                            <input type="text" name="gender" value="<%= gender%>"  class="form-control col-md-5 col-sm-8 mt-2">
-                                                            <span class="error-message col-md-2 mt-3"><%= userError.getGenderError()%></span>
+                                                        <div class="row gender-content">
+                                                        <label class="contact-title col-md-5 col-sm-4 mt-3">Giới tính:</label>
+                                                        <select name="gender" class="form-control col-md-5 col-sm-8 mt-2">
+                                                            <option value="<%=userProfile.getGender()%>"><%= gender %></option>
+                                                            <option value="0">Nam</option>
+                                                            <option value="1">Nữ</option>
+          
+                                                        </select>
                                                         </div>
                                                         <div class="row pt-3 d-flex">
                                                             <button type="submit" name="action" value="updateOwner" class="offset-3 btn btn-success">Xác nhận</button>
@@ -225,7 +216,7 @@
                     </div>
                 </div>
                 <!--Change password -->
-               <div class="card mx-5 mb-2">
+                <div class="card mx-5 mb-2">
                     <div class="card-header card-setting" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
@@ -268,7 +259,7 @@
             </div>
         </div>
 
-         <!-- edit Home -->
+        <!-- edit Home -->
         <div id="uploadImg" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
                 <div class="modal-content modal-addRoom">
@@ -293,16 +284,11 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
+        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="assets/js/owner-script.js"></script>
-
     </body>
+
+</html>

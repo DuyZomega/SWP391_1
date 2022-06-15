@@ -36,7 +36,7 @@
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
@@ -204,6 +204,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/admin.js"></script>
+        <script src="assets/js/owner-script.js"></script>
     </body>
 </html>
