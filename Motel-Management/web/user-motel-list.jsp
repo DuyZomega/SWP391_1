@@ -167,29 +167,6 @@
                 <div class="content__list col-9">
                     <div class="row">
                         <div class="col-4 p-0">
-                            <div class="item">
-                                <a href="#" class="motel-image">
-                                    <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                                </a>
-                                <div class="motel-title my-4">
-                                    <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                                </div>
-                                <div class="motel-address my-2">
-                                    <p>Quận Tân Bình, Thành phố Hồ Chí Minh</p>
-                                </div>
-                                <div class="motel-services my-2">
-                                    <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                                </div>
-                                <div class="d-flex justify-content-between my-2">
-                                    <p>Liên hệ</p>
-                                    <p><i class="fas fa-history"></i> một ngày trước</p>
-                                </div>
-                                <div class="motel-price d-flex justify-content-between">
-                                    <p>7.0 Triệu</p>
-                                    <button class="button--primary">Xem ngay</button>
-                                </div>
-                            </div>
-                        </div>
                         <c:if test="${requestScope.LIST_MOTEL != null}">
                             <c:if test="${not empty requestScope.LIST_MOTEL}">
 
@@ -198,11 +175,26 @@
                                         <a href="#" class="motel-image">
                                             <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
                                         </a>
+                                        <div class="motel-image my-2">
+                                            <p>${o.image}</p>
+                                        </div>
                                         <div class="motel-title my-4">
                                             <a href="#" class="text-decoration-none">${o.name}</a>
                                         </div>
                                         <div class="motel-address my-2">
                                             <p>${o.address},${o.district},${o.city}</p>
+                                        </div>
+                                        <div class="motel-type my-2">
+                                            <p>${o.typename}</p>
+                                        </div>
+                                        <div class="motel-desc my-2">
+                                            <p>${o.Desct},${o.service},${o.serviceprice}</p>
+                                        </div>
+                                        <div class="motel-rating my-2">
+                                            <p>${o.rating}</p>
+                                        </div>
+                                        <div class="motel-price my-2">
+                                            <p>${o.motelprice}</p>
                                         </div>
                                         <div class="d-flex justify-content-between my-2">
                                             <p>Liên hệ</p>
