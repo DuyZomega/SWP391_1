@@ -384,21 +384,16 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, DATEOFBIRTH,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
-                        + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, password, role, status) "
+                        + " VALUES(?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, user.getFullName());
-                stm.setString(2, user.getImage());
-                stm.setInt(3, user.getGender());
-                stm.setString(4, user.getDateOfBirth());
-                stm.setString(5, user.getCitizenNumber());
-                stm.setString(6, user.getPhone());
-                stm.setString(7, user.getGmail());
-                stm.setString(8, user.getAddress());
-                stm.setString(9, user.getPassword());
-                stm.setString(10, user.getRole());
-                stm.setInt(11, user.getStatus());
-                stm.setString(12, user.getUserId());
+                stm.setString(1, user.getUserId());
+                stm.setString(2, user.getFullName());
+                stm.setString(3, user.getPhone());
+                stm.setString(4, user.getGmail());
+                stm.setString(5, user.getPassword());
+                stm.setString(6, user.getRole());
+                stm.setInt(7, user.getStatus());
                 check = stm.executeUpdate() > 0;
             }
         } finally {

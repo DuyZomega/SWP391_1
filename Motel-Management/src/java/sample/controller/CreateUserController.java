@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package sample.controller;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +10,6 @@ import sample.users.UserDTO;
 import sample.users.UserError;
 import java.io.IOException;
 import javax.servlet.ServletException;
-
 
 @WebServlet(name = "CreateUserController", urlPatterns = {"/CreateUserController"})
 public class CreateUserController extends HttpServlet {
@@ -26,18 +22,17 @@ public class CreateUserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        UserError userError = new UserError("", "", "", "", "", "","","");
+        UserError userError = new UserError();
         try {
-                    String userId = request.getParameter("userId");
-                    String fullName = request.getParameter("fullName");
-                    String phone = request.getParameter("phone");
-                    String gmail = request.getParameter("gmail");
-                    String address = "...";
-                    String password = request.getParameter("password");
-                    String role = request.getParameter("role");
-                    String confirm = request.getParameter("confirm");
-                   
-         
+            String userId = request.getParameter("userId");
+            String fullName = request.getParameter("fullName");
+            String phone = request.getParameter("phone");
+            String gmail = request.getParameter("gmail");
+            String password = request.getParameter("password");
+            String role = request.getParameter("role");
+            String confirm = request.getParameter("confirm");
+            int status = 1;
+            UserDAO dao = new UserDAO();
             boolean check = true;
             if (userId.length() > 10 || userId.length() < 2) {
                 userError.setUserIdError("UserID contains 2 - 10 characters!");
@@ -47,29 +42,18 @@ public class CreateUserController extends HttpServlet {
                 userError.setFullNameError("FullName Contains 5 - 20 characters!");
                 check = false;
             }
-            if (phone.length() < 10) {
-                userError.setPhoneError("Phone number must  atleast 10 number");
+            if (phone.length() < 9) {
+                userError.setPhoneError("Phone number must at least 9 number");
                 check = false;
             }
-    
-            
             if (!password.equals(confirm)) {
                 userError.setConfirmpasswordError("Passwords are not the same!");
                 check = false;
             }
-            if (role.length() > 5 || role.length() < 2) {
-                userError.setRoleError("Role contains 2- 5 characters !");
-                check = false;
-            }
-            
-            
-            
-            
-              if (check) {
-                UserDAO dao = new UserDAO();
-                UserDTO user = new UserDTO(userId, fullName, phone, gmail, address, password, role);
+            if(check == true){
+                UserDTO user = new UserDTO(userId, fullName, phone, gmail, password, role, status);
                 boolean checkInsert = dao.insertUserNew(user);
-                if(checkInsert){
+                if (checkInsert) {
                     url = SUCCESS;
                 }
             } else {
@@ -78,7 +62,7 @@ public class CreateUserController extends HttpServlet {
 
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
-            if(e.toString().contains("duplicate")){
+            if (e.toString().contains("duplicate")) {
                 userError.setUserIdError("Duplicate UserID !!!");
                 request.setAttribute("USER_ERROR", userError);
             }

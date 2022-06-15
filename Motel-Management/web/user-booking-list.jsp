@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     </head>
     <body>
-         <!-- sidebar -->
+        <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
@@ -40,10 +40,10 @@
 //                                response.sendRedirect("login.jsp");
 //                                return;
 //                            }
-                        %>
-                        
-                        <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                                <a href="#">
+%>
+
+                        <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
+                            <a href="#">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử đặt phòng</span>
                             </a>
@@ -54,7 +54,7 @@
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
@@ -90,7 +90,7 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       ${sessionScope.LOGIN_USER.fullName}
+                                        ${sessionScope.LOGIN_USER.fullName}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
@@ -106,9 +106,59 @@
             </div>
         </div>
         <!-- End header -->
-        
-        
-        
+
+       <div class="main-content">
+                <div class="main">
+                    <div class="container-fluid">
+                        <section>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="myTable" class="table table-hover table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mã Đặt Phòng</th>
+                                                            <th>Mã Motel</th>
+                                                            <th>Mã Phòng</th>
+                                                            <th>Tên Người Thuê</th>
+                                                            <th>Trạng Thái</th>
+                                                            <th>Số Dịch Vụ</th>
+                                                            <th>PT Thanh Toán</th>
+                                                            <th>Ngày Nhận Phòng</th>
+                                                            <th>Tổng Tiền</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        <tr class='clickable-row' data-href="owner-history-detail.html" 
+                                                            data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                            <td>booking01</td>
+                                                            <td>587416594</td>
+                                                            <td>012414785</td>
+                                                            <td>Ho Khanh Duy</td>
+                                                            <td>Đã Thanh Toán</td>
+                                                            <td>1</td>
+                                                            <td>Tien mat</td>
+                                                            <td>2001-05-07</td>
+                                                            <td>59900&#8363;</td>
+
+                                                        </tr>
+                                                                                                            
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /# card -->
+                                </div>
+                                <!-- /# column -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
