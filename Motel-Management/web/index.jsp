@@ -63,7 +63,7 @@
                     <% } else {%>
                     <div class="header__right">
                         <li>
-                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -75,7 +75,7 @@
                                 <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="user-profile.jsp">Thông tin cá nhân</a>
+                                <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">Thông tin cá nhân</a>
                                 <form action="LogoutController" method="get">
                                     <div class="dropdown-divider" ></div>
                                     <a class="dropdown-item" ><input type="submit" value="Logout" /></a>
@@ -101,7 +101,7 @@
             <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
         </button>
         <li>
-            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                 <span><i class='bx bx-user'></i></span>
                 <span class="title">Tài khoản</span>
             </a>
@@ -113,7 +113,7 @@
                 <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="user-profile.jsp">Thông tin cá nhân</a>
+                <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">Thông tin cá nhân</a>
                 <form action="LogoutController" method="get">
                     <div class="dropdown-divider" ></div>
                     <a class="dropdown-item" ><input type="submit" value="Logout" /></a>
