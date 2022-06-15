@@ -66,18 +66,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="AdminReportManager">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Report</span>

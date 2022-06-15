@@ -26,6 +26,8 @@ public class UserManager extends HttpServlet {
    private static final String DETAIL_LIST = "detail";
   private static final String DETAIL_LIST_CONTROLLER = "AdminDetailUser";
     
+    private static final String DELETE_LIST = "delete";
+    private static final String DELETE_LIST_CONTROLLER = "AdminDeleteUser"; 
     private static final String UPDATE_LIST = "update";
     private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateUser"; 
     
@@ -41,6 +43,8 @@ public class UserManager extends HttpServlet {
                 url = UPDATE_LIST_CONTROLLER;
             }else if (DETAIL_LIST.equals(action)){
                 url = DETAIL_LIST_CONTROLLER;
+            }else if (DELETE_LIST.equals(action)){
+                url = DELETE_LIST_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: "+e.toString());

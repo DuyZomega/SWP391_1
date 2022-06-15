@@ -29,10 +29,10 @@
         <!-- sidebar -->
     <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-    //                                response.sendRedirect("login.jsp");
-    //                                return;
-    //                            }
+                                if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                                    response.sendRedirect("login.jsp");
+                                    return;
+                                }
 
         %>
  <!-- sidebar -->
