@@ -71,7 +71,7 @@
                             </ul>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                            <a href="MainController?action=ShowHistory">
+                                <a href="MainController?action=ShowHistory">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
                             </a>
@@ -171,7 +171,7 @@
                             gender = "Nam";
                         }
                     %>
-                    <div class="collapse" id="profile" aria-labelledby="profile" data-parent="#accordion">
+                    <div class="collapse show" id="profile" aria-labelledby="profile" data-parent="#accordion">
                         <div class="card-body">
                             <div class="user-profile">
                                 <div class="row">

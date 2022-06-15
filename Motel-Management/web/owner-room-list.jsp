@@ -75,7 +75,7 @@
                         </ul>
                     </li>
                     <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                        <a href="owner-history-room.html">
+                        <a href="MainController?action=ShowHistory">
                             <span><i class='bx bx-history'></i></span>
                             <span class="title">Lịch sử thuê phòng</span>
                         </a>
@@ -99,7 +99,7 @@
                         </a>
                     </li>
                     <li data-toggle="tooltip"data-placement="right" title="Tài khoản">
-                        <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>">
+                        <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                             <span><i class='bx bx-user'></i></span>
                             <span class="title">Tài khoản</span>
                         </a>
@@ -226,7 +226,9 @@
                                         <% 
                                             List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
                                             for (RoomDTO room : listRoom) {
-                                                if(room.getMotelID().equals(motel.getMotelID())){                                                                                                                                   
+                                                if(room.getMotelID().equals(motel.getMotelID())){
+                                                String status = "Trống";
+                                                if (room.getStatus() == 1) status ="Đang Thuê";
                                         %>
                                         <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
                                             <div class="card card-child">
@@ -234,7 +236,7 @@
                                                     <span><%= room.getName() %></span>
                                                     <div class="status">
                                                         <!-- dùng lệnh if -->
-                                                        <span class="stt1">Trạng thái:<h6></h6></span>
+                                                        <span class="stt1">Trạng thái:<%= status %><h6></h6></span>
                                                         <!-- <span class="stt2">Trạng thái:<h6>Đang thuê</h6></span>
                                                         <span class="stt3">Trạng thái:<h6>Đã cọc</h6></span> -->
                                                     </div>
@@ -242,11 +244,11 @@
                                                 <div class="card-body room-title">
                                                     <ul class="list">
                                                         <li>
-                                                            <h6>Người thuê:</h6>
+                                                            <h6>LOẠI PHÒNG:<%= room.getImage() %></h6>
                                                             <span></span>
                                                         </li>                                                        
                                                         <li>
-                                                            <h6>Thông tin phòng: <%= room.getDesc()%></h6>
+                                                            <h6>THÔNG TIN:<%= room.getDesc()%></h6>
                                                             <span>
                                                             </span>
                                                         </li>
