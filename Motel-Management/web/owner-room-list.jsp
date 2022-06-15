@@ -227,8 +227,6 @@
                                             List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
                                             for (RoomDTO room : listRoom) {
                                                 if(room.getMotelID().equals(motel.getMotelID())){
-                                                String status = "Trống";
-                                                if (room.getStatus() == 1) status ="Đang Thuê";
                                         %>
                                         <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
                                             <div class="card card-child">
@@ -236,9 +234,11 @@
                                                     <span><%= room.getName() %></span>
                                                     <div class="status">
                                                         <!-- dùng lệnh if -->
-                                                        <span class="stt1">Trạng thái:<%= status %><h6></h6></span>
-                                                        <!-- <span class="stt2">Trạng thái:<h6>Đang thuê</h6></span>
-                                                        <span class="stt3">Trạng thái:<h6>Đã cọc</h6></span> -->
+                                                        <% if (room.getStatus() == 1){ %>
+                                                        <span class="stt2">Trạng thái:<h6>Đang thuê</h6></span>
+                                                        <% }else{%>
+                                                        <span class="stt1">Trạng thái:<h6>Trống</h6></span>
+                                                        <% }%>
                                                     </div>
                                                 </div>
                                                 <div class="card-body room-title">
@@ -266,7 +266,7 @@
                                                 <div class="form-group mx-auto">
                                                     <button class="btn btn-primary clickable-row" data-href="owner-room-list-details.html">
                                                         <span>Xem</span> 
-                                                    </button>
+                                                    </button>                                                   
                                                     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteRoom">
                                                         <span>Xóa Phòng</span> 
                                                     </button>
@@ -306,6 +306,14 @@
                         <div class="row p-4">
                             <div class="col-12">
                                 <div class="row form-group">
+                                    <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên Nhà Trọ</label>
+                                    <select name="MotelID" class="form-control col-md-7"">
+                                        <option disabled selected>Choose motel name to add room</option>
+                                        <option value="#">ánh dương</option>
+                                        <option value="#">Normal</option>
+                                    </select>
+                                </div>
+                                <div class="row form-group">
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên phòng</label>
                                     <input type="text" name="roomID" placeholder="Tên Phòng" required class="form-control col-md-7">
                                 </div>
@@ -317,7 +325,7 @@
                                         <option value="#">Normal</option>
                                         <option value="custom">Other</option>
                                     </select>
-                                    <input type="text" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"
+                                    <input type="text" name="roomType" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"
                                      placeholder="Loại phòng" required>
                                     <input type="text" id="otherid1" name="price" placeholder="Giá Phòng" required 
                                     class="form-control offset-md-1 col-md-3 mt-2" style="display: none;"> 

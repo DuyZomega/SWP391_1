@@ -48,6 +48,13 @@ public class OwnerCreateRoomController extends HttpServlet {
             if (checkValidation) {
                 String roomID = "";
                 boolean checkID = false;
+                if(roomType.equals("custom")){
+                    do{
+                    String randomRT = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao.checkRoomTypeID(randomRT);
+                    }while (checkID = false);
+                    
+                }
                 do {
                     roomID = String.valueOf(generator.nextInt(9999999));
                     checkID = dao.checkRoomID(roomID);
