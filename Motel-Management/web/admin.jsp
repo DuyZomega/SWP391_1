@@ -162,14 +162,55 @@
             </div>
 
             <!-- order detail list -->
-            <div class="dashboard row">
-                <div class="recent-orders col-12">
-                    <div class="cardHeader">
-                        <h2>chart</h2>
-                        <a href="#" class="btn btn-danger">Xem tất cả</a>
+            <section class="chartBox">
+                <div class="row">
+                    <div class="col-lg-12 admin">
+                        <div class="card border-0 d-flex">
+                        <div class="card-header">
+                            <h4>Top owner</h4>
+                            <a href="#" class="btn-title">Xem tất cả</a>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr><th>STT</th>
+                                        <th>Mã người dùng</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Họ và tên</th>
+                                        <th>SDT</th>
+                                        <th>Income</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr><th>STT</th>
+                                        <td>250000</td>
+                                        <td>
+                                            <img src="images/man.png">
+                                        </td>
+                                        <td>Tran Ngoc Hai</td>
+                                        <td>250000</td>
+                                        <td><div class="">Đã Thanh Toán</div></td>
+                                    </tr>
+                                    
+                                    <tr><th>STT</th>
+                                        <td>250000</td>
+                                        <td>
+                                            <img src="images/man.png">
+                                        </td>
+                                        <td>Tran Ngoc Hai</td>
+                                        <td>250000</td>
+                                        <td><div class="">Đã Thanh Toán</div></td>
+                                    </tr>                                   
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                     </div>
                 </div>
-            </div>
+            </section>
+            
         </div>
 
 

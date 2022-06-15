@@ -8,9 +8,13 @@
     border-radius: 20px;
     border: 1px #000;
 }
-.row{
+/*.row{
     margin-left: 0;
     margin-right: 0;
+}*/
+.admin .card-header{
+        display: flex;
+    justify-content: space-between;
 }
 table.dataTable thead>tr>th.sorting{
     padding-right: 0px;
