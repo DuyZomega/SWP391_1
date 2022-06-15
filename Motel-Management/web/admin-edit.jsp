@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">

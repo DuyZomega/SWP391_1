@@ -23,7 +23,7 @@
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="index.html">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
