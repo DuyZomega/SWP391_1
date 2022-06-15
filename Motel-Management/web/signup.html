@@ -40,13 +40,11 @@
                                     <label for="fullName">Họ và tên</label>
                                     <input type="text" name="Họ và tên" id="fullName" />
                                     <span id="error_message" class="helper-text text-danger"></span>
-                                    <span id="error_fullName_all_leter" class="helper-text text-danger"></span>
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="userName">Tên đăng nhập</label>
                                     <input type="text" name="Tên đăng nhập" id="userName">
                                     <span id="error_message" class="helper-text text-danger"></span>
-                                    <span id="error_userName_sign" class="helper-text text-danger"></span>
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="email">Email</label>
@@ -62,7 +60,6 @@
                                     <label for="password">Mật khẩu</label>
                                     <input type="password" name="Mật khẩu" id="password" minlength="6" maxlength="32">
                                     <span id="error_message" class="helper-text text-danger"></span>
-                                    <span id="error_password_min_max_length" class="helper-text text-danger"></span>
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="password_confirmation">Nhập lại mật khẩu</label>
@@ -100,7 +97,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
     <!-- Jquery Waypoint -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- BS4 JS -->
@@ -120,7 +116,7 @@
                 Validator.isRequired('#email'),
                 Validator.isEmail('#email', 'Vui lòng nhập đúng ký tự email'),
                 Validator.minLength('#password', 1, 'Vui lòng nhập lại mật khẩu'),
-                Validator.isRequired('#password_confirmation'),
+                Validator.isRequired('#password_confirmation', 'Vui lòng không để trống'),
                 Validator.isConfirmed('#password_confirmation', function(){
                     return document.querySelector('#form-1 #password').value;
                 }, 'Mật khẩu nhập lại không chính xác')

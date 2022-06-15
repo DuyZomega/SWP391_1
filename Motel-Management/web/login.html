@@ -34,15 +34,17 @@
                             <h4 class="text-center my-3">Điền thông tin đăng nhập</h4>
                         </div>
                         <div class="col-12 px-5">
-                            <form class="form">
+                            <form id="form-2" action="" method="POST" class="form">
                                 <div class="form-item input-field col-12">
                                     <label for="userName">Tên đăng nhập</label>
                                     <input type="text" name="Họ và tên" id="userName" />
+                                    <span id="error_message" class="helper-text text-danger"></span>
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="password">Mật khẩu</label>
                                     <input type="password" name="Mật khẩu" id="password" minlength="6" maxlength="32">
-                                    <a href="#" class="float-end">Quên mật khẩu?</a>
+                                    <span id="error_message" class="helper-text text-danger"></span>
+                                    <a href="#" class="float-end">Quên mật khẩu?</a>      
                                 </div>
                                 <button type="submit" value="Login" class="btn-signup btn btn-danger">Đăng nhập</button>
                             </form>
@@ -70,6 +72,16 @@
     <script src="vendor/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
     <!-- main js -->
     <script src="assets/js/user-script.js"></script>
+    <script>
+        Validator({
+            form: '#form-2',
+            errorSelector: '#error_message',
+            rules: [
+                Validator.isRequired('#userName', 'Vui lòng nhập lại tên người dùng'),
+                Validator.minLength('#password', 1, 'Vui lòng nhập lại mật khẩu'),
+            ]
+        });
+    </script>
 </body>
 
 </html>
