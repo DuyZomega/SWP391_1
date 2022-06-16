@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,14 +25,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
               integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
-
         <!-- Fotorama from CDNJS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-
         <!-- main CSS -->
         <link rel="stylesheet" href="./assets/css/main.css">
     </head>
-
     <body>
         <!-- HEADER -->
         <header>
@@ -71,7 +67,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="header__bottom">
                 <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
                     <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
@@ -81,7 +76,6 @@
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
@@ -98,7 +92,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="header__bottom__right">
                         <form class="header__bottom--search">
                             <div class="input-group">
@@ -124,7 +117,6 @@
             </div>
             <hr>
         </header>
-
         <!-- CONTENT -->
         <section class="content__list-room container">
             <div class="row">
@@ -222,7 +214,6 @@
             </div>
         </div>
     </section>
-
     <!-- FOOTER -->
     <footer class="mt-5">
         <div class="container">
@@ -268,7 +259,6 @@
             </div>
         </div>
     </footer>
-
     <!-- thư viện hỗ trợ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     referrerpolicy="no-referrer"></script>
