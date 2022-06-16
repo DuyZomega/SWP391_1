@@ -25,10 +25,10 @@
         <!-- sidebar -->
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-            //                                response.sendRedirect("login.jsp");
-            //                                return;
-            //                            }
+                                        if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                                            response.sendRedirect("login.jsp");
+                                            return;
+                                        }
 
             String error = (String) request.getAttribute("ERROR");
             if (error == null) {
@@ -41,7 +41,7 @@
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
@@ -63,18 +63,6 @@
                             <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
                             </a>
                         </li>
                         <li>
@@ -155,7 +143,7 @@
                             gender = "Nam";
                         }
                     %>
-                    <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <div class="user-profile">
                                 <div class="row">
@@ -167,7 +155,7 @@
                                                 <i class='bx bxs-camera-plus'></i>
                                             </div>
                                         </div>
-                                        <div class="profile-name">Lê Minh Quân</div>
+                                        <div class="profile-name"> ${sessionScope.LOGIN_USER.fullName}</div>
                                     </div>
                                     <div class="col-lg-8">                                
                                         <div class="profile-content">

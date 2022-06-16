@@ -1,13 +1,13 @@
 USE [master];
 GO
 
-DROP DATABASE MotelDB1
+DROP DATABASE MotelDB
 GO
 
-CREATE DATABASE MotelDB1
+CREATE DATABASE MotelDB
 GO
 
-USE MotelDB1
+USE MotelDB
 GO
 
 CREATE TABLE [tblUser](--done
@@ -22,7 +22,7 @@ CREATE TABLE [tblUser](--done
 [Gmail]        [varchar](50),
 [Password]     [varchar](20),
 [Role]         [nvarchar](10),
-[Status]       [bit] null,
+[Status]       int,
 );
 
 CREATE TABLE [tblCity](--done
@@ -64,7 +64,7 @@ CREATE TABLE [tblMotel](--done
 [Ratings]      [decimal](2,1)
 CONSTRAINT chk_Ratings CHECK (Ratings >= 0 AND Ratings <= 5),
 [OwnerID]      [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),
-[Status]       [bit] null,
+[Status]       int 
 );
 
 
@@ -73,7 +73,7 @@ CREATE TABLE [tblService](--done
 [ServiceID]    [varchar](10) Not Null PRIMARY KEY ,
 [ServiceName]  [nvarchar](50),
 [Price]        [decimal](10) Not Null ,
-[Status]       [bit] Null,
+[Status]       int ,
 [MotelID]      [varchar](10) Not Null FOREIGN KEY REFERENCES tblMotel(MotelID),
 );
 
@@ -84,13 +84,13 @@ CREATE TABLE [tblRoomType](
 [Image]        [nvarchar](1000),
 [Desct]        [nvarchar](1500),
 [MotelID]      [varchar](10) Not Null FOREIGN KEY REFERENCES tblMotel(MotelID),
-
+[Status]       int ,
 );
 
 CREATE TABLE [tblRoom](--done
 [RoomID]	   [varchar](10) not null PRIMARY KEY,
 [Name]         [nvarchar](50) ,
-[Status]       [bit] Null,
+[Status]       int ,
 [RoomTypeID]      [varchar](10) not null FOREIGN KEY REFERENCES tblRoomType(RoomTypeID) 
 );
 
@@ -107,36 +107,32 @@ CREATE TABLE [tblBooking](--done
 [BookingDate]     [date],
 [Desct]           [nvarchar](1500),
 [Total]           [decimal](10),
-[Status]          [bit] null, 
+[Status]          int ,
 [UserID]          [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),  
 );
 CREATE TABLE [tblBookingDetail](--done
 [BookingDetailID] [varchar](10) not null PRIMARY KEY,
 [RoomID]          [varchar](10) not null FOREIGN KEY REFERENCES tblRoom(RoomID),
 [BookingID]       [varchar](10) not null FOREIGN KEY REFERENCES tblBooking(BookingID),
-[Price]           [decimal](10),
 [Time]			[int],
 );
 
 CREATE TABLE [tblPayment](
 [PaymentID]       [varchar](10) UNIQUE not Null,
-[Total]           [decimal](10),
 [Desct]           [nvarchar](1500),
 [PaymentTime]     [date],
 [Sender]          [nvarchar](50),
 [Receiver]        [nvarchar](50),
-[PaymentTypeName] [nvarchar](50),
-[Status]          [bit] null,
+[PaymentTypeName] [nvarchar](50)
 );
 
 CREATE TABLE [tblFeedBack](
 [FeedbackID]      [varchar](10) not null PRIMARY KEY,
-[Name]            [nvarchar](50),
 [Desct]           [nvarchar](1500),
 [Ratings]         [decimal](2,1),
 [MotelID]         [varchar](10) not null FOREIGN KEY REFERENCES tblMotel(MotelID), 
 [BookingID]       [varchar](10) not null FOREIGN KEY REFERENCES tblBooking(BookingID),
-[Status]          [bit] null,
+[Status]          int ,
 );
 
 CREATE TABLE [tblReport](
@@ -145,7 +141,7 @@ CREATE TABLE [tblReport](
 [Title]           [nvarchar](100),
 [Desct]           [nvarchar](1500),
 [Date]            [date],
-[Status]          [bit] null,
+[Status]          int ,
 [MotelID]         [varchar](10) not null FOREIGN KEY REFERENCES tblMotel(MotelID), 
 );
 
@@ -154,7 +150,7 @@ CREATE TABLE [tblBookingServiceDetail](
 [ServiceID]                 [varchar](10) not null FOREIGN KEY REFERENCES tblService(ServiceID),
 [BookingID]                 [varchar](10) not null FOREIGN KEY REFERENCES tblBooking(BookingID),
 [Quantity]					[int],
-[Price]                     [decimal](10),
+[Total]                     [decimal](10),
 );
 
 ALTER TABLE [tblPayment]
@@ -191,21 +187,20 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'Desction motel',N'images/motel-4.jpg', N'0745898989','7', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'Desction motel',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
---insert roomtype
 
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 150000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '587416594')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 250000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'3', N'Phòng gia đình Ngọc Quân', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'4', N'Phòng đơn Ánh Dương', 200000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '842578129')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'5', N'Phòng đôi Ánh Dương', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'6', N'Phòng đơn Gia Lai', 145000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'7', N'Phòng đôi Malibu Beach', 350000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '861435762')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'8', N'Phòng gia đình Ladalat', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '548762589')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 198000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '473658715')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'11', N'Phòng VinHome', 69000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '785146827')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'12', N'Phòng đơn NgocLan', 100000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458')
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 245000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587624587')
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 150000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '587416594',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 250000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'3', N'Phòng gia đình Ngọc Quân', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'4', N'Phòng đơn Ánh Dương', 200000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '842578129',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'5', N'Phòng đôi Ánh Dương', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'6', N'Phòng đơn Gia Lai', 145000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'7', N'Phòng đôi Malibu Beach', 350000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '861435762',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'8', N'Phòng gia đình Ladalat', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '548762589',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 198000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '473658715',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'11', N'Phòng VinHome', 69000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '785146827',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'12', N'Phòng đơn NgocLan', 100000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 245000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587624587',1)
 
 
 --insert room
@@ -295,42 +290,43 @@ INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID]) V
 
 ---INSERT Booking
 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2001-05-07',N'Booking table', 59900,1,'duy05') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-11-08',N'Booking table', 59900,1,'duy05') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking03', '2021-08-09',N'Booking table', 59900,1,'hai03') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-10-10',N'Booking table', 59900,1,'tuan04') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 500000,1,'Lamm44')
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 600000,1,'hai03')
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-11-15',N'khach nhan trong ngay', 400000,0,'taich74')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2001-05-07',N'Booking table', 790900,1,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-11-08',N'Booking table', 14900,1,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking03', '2021-08-09',N'Booking table', 259000,1,'hai03') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-10-10',N'Booking table', 499000,1,'tuan04') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 851000,1,'Lamm44')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 250000,0,'hai03')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-12-10',N'khach nhan phong', 190000,1,'Lamm44')
+
 
 ---INSERT BookingDetail
 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt01', '012414785','booking01', 150000,2) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt02', '765324124','booking02', 250000,1) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt03', '248425478','booking03', 250000,2) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt04', '842565836','booking04', 150000,1) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt05', '323565985','booking05', 250000,5) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt06', '332369568','booking05', 250000,7) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt07', '225657877','booking06', 250000,1) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt08', '012414785','booking07', 350000,7) 
-INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt09', '216587125','booking07', 50000,4)
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt01', '012414785','booking01',2) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt02', '765324124','booking02',1) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt03', '248425478','booking03',2) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt04', '842565836','booking04',1) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt05', '323565985','booking05',5) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt06', '332369568','booking06',7) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt07', '225657877','booking07',1) 
 
 ---INSERT Payment
 
-INSERT [tblPayment] ([PaymentID], [Total],[Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName],[Status]) VALUES ('booking01', 290000,N'payment01 table', '2021-02-02','tuan04','tu06',N'Tien mat',1) 
-INSERT [tblPayment] ([PaymentID], [Total],[Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName],[Status]) VALUES ('booking02', 290000,N'payment01 table', '2021-02-02','tuan04','tu06',N'Chuyển khoản',1) 
-INSERT [tblPayment] ([PaymentID], [Total],[Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName],[Status]) VALUES ('booking03', 290000,N'payment01 table', '2021-02-02','hai03','hai03',N'Chuyển khoản',1) 
-INSERT [tblPayment] ([PaymentID], [Total],[Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName],[Status]) VALUES ('booking04', 290000,N'payment01 table', '2021-02-02','duy05','hai03',N'Tien mat',1) 
-INSERT [tblPayment] ([PaymentID], [Total],[Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName],[Status]) VALUES ('booking05', 700000,N'payment in day', '2022-12-11','lam','quan',N'Tien mat',1)
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking01',N'payment01 table', '2021-02-02','Nguyen Huu Tuan','Tran Ngoc Tu',N'Tien mat') 
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking02', N'payment01 table', '2021-02-02','Nguyen Huu Tuan','Tran Ngoc Tu',N'Chuyển khoản') 
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking03',N'payment01 table', '2021-02-02','Tran Ngoc Hai','Le Quan',N'Chuyển khoản') 
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking04',N'payment01 table', '2021-02-02','Nguyen Huu Doan','Le Quan',N'Tien mat') 
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking05',N'payment in day', '2022-12-11','Tran Van Lam','Le Quan',N'Tien mat')
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking06',N'payment01 table', '2021-02-02','Tran Ngoc Hai','Tran Ngoc Tu',N'Chuyển khoản') 
+INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[PaymentTypeName]) VALUES ('booking07',N'payment01 table', '2021-02-02','Tran Ngoc Hai','Nguyen Quang',N'Tien mat') 
 
 
 ---INSERT Feedback
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('1', N'Phuong Thuy',N'Nhà trọ chất lượng tốt', 5,N'587416594',N'booking01',1)
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('2', N'Hong Anh',N'Đánh giá 5 sao', 5,N'842578129',N'booking02',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('3', N'Minh Nhat',N'Dịch vụ tốt', 5,N'486258478',N'booking03',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('4', N'Ngoc Hai',N'Phòng rất sạch sẽ', 4,N'587416594',N'booking04',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Pham Tuan',N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('6', N'nhat lam',N'nha', 4,N'861435762',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('1',N'Nhà trọ chất lượng tốt', 5,N'587416594',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('2', N'Đánh giá 5 sao', 5,N'842578129',N'booking02',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('3', N'Dịch vụ tốt', 5,N'486258478',N'booking03',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('4',N'Phòng rất sạch sẽ', 4,N'587416594',N'booking04',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('6',N'Phòng rất đẹp', 4,N'861435762',N'booking01',1)
 
 
 ---INSERT Report
@@ -343,31 +339,10 @@ INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Stat
 
 ---INSERT BookingServiceDetail
 
-INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('1', '489656859','booking01', 3,15000) 
-INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('2', '021586822','booking02', 2,10000) 
-INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('3', '565468569','booking03', 5,17000) 
-INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('4', '489656859','booking04', 1,15000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Total]) VALUES ('1', '489656859','booking01', 3,15000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Total]) VALUES ('2', '021586822','booking02', 2,10000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Total]) VALUES ('3', '565468569','booking03', 5,17000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Total]) VALUES ('4', '489656859','booking04', 1,15000) 
 
 
-/*
-SELECT * FROM tblService
-SELECT * FROM tblRoom 
-ORDER BY Name
-DELETE tblRoom where Price >0
-SELECT * FROM tblMotel
-SELECT * FROM tblMotel WHERE Address like '%nhơn phú%';
-SELECT * FROM tblUser
-DELETE tblUser WHERE UserID = '01'
-
-UPDATE tblUser SET Password = '1' WHERE UserID = 'quan01' 
-
-select COUNT(*) as NumberRoom from tblUser,tblMotel,tblRoom where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblRoom.MotelID and UserID = 'quan01'
-select COUNT(*) as NumberService from tblUser,tblMotel,tblService where tblUser.UserID = tblMotel.OwnerID and tblMotel.MotelID = tblService.MotelID and UserID = 'quan01'
-select COUNT(*) as NumberFeedback from  tblUser, tblMotel , tblFeedBack where tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblUser.UserID = 'quan01'		
-(select tblBooking.BookingID, tblPayment.Total  from tblUser, tblMotel, tblRoom, tblBookingDetail, tblBooking ,tblPayment where tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblRoom.MotelID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID AND tblBooking.BookingID = tblPayment.PaymentID GROUP BY tblBooking.BookingID , tblPayment.Total)
-select BookingID, BookingDate from tblBooking Order by BookingDate DESC 
-SELECT tblUser.FullName, a.Price, a.Time, a.Name , a.Status FROM (SELECT TOP 5 b.UserID, d.Price, d.Time,b.BookingDate, b.Status, r.Name FROM tblUser as u, tblMotel as m, tblRoom as r, tblBookingDetail as d, tblBooking as b 
-WHERE u.UserID = 'quan01' AND u.UserID = m.OwnerID AND m.MotelID = r.MotelID AND r.RoomID = d.RoomID  AND d.BookingID = b.BookingID) a inner join tblUser on a.UserID = tblUser.UserID ORDER BY a.BookingDate DESC
-SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings FROM tblUser, tblMotel, tblFeedBack, tblBooking WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
-SELECT RoomID FROM tblRoom Where RoomID = ''
-*/
+ 

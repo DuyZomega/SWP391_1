@@ -27,6 +27,8 @@ public class MainController extends HttpServlet {
     private static final String LOGIN_CONTROLLER = "LoginController";
     private static final String LOGOUT = "Logout";
     private static final String LOGOUT_CONTROLLER = "LogoutController"; 
+    private static final String SHOW_MOTEL_LIST = "ShowAllMotel";
+    private static final String SHOW_MOTEL_LIST_CONTROLLER = "ShowAllMotelController"; 
     private static final String SHOW_ROOM_LIST = "ShowRoom";
     private static final String SHOW_ROOM_LIST_CONTROLLER = "ShowRoomController"; 
     private static final String SHOW_PROFILE = "ShowProfile";
@@ -41,6 +43,8 @@ public class MainController extends HttpServlet {
     private static final String SHOW_OWNER_OVERVIEW_CONTROLLER = "OwnerShowOverview";
     private static final String SHOW_OWNER_HISTORY = "ShowHistory";
     private static final String SHOW_OWNER_HISTORY_CONTROLLER = "OwnerShowHistoryController";
+    private static final String SHOW_ROOM_DETAIL = "showRoomDetail";
+    private static final String SHOW_ROOM_DETAIL_CONTROLLER = "OwnerShowRoomDetail";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,6 +57,8 @@ public class MainController extends HttpServlet {
                 url = LOGIN_CONTROLLER;
             } else if (LOGOUT.equals(action)){
                 url = LOGOUT_CONTROLLER;
+                } else if (SHOW_MOTEL_LIST.equals(action)){
+                url = SHOW_MOTEL_LIST_CONTROLLER;
             } else if (SHOW_ROOM_LIST.equals(action)){
                 url = SHOW_ROOM_LIST_CONTROLLER;
             } else if (SHOW_PROFILE.equals(action)){
@@ -67,6 +73,8 @@ public class MainController extends HttpServlet {
                 url = SHOW_OWNER_OVERVIEW_CONTROLLER;
             } else if (SHOW_OWNER_HISTORY.equals(action)){
                 url = SHOW_OWNER_HISTORY_CONTROLLER;
+            } else if (SHOW_ROOM_DETAIL.equals(action)){
+                url = SHOW_ROOM_DETAIL_CONTROLLER;
             }
             
         } catch (Exception e) {

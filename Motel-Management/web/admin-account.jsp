@@ -4,6 +4,7 @@
     Author     : cao thi phuong thuy
 --%>
 
+<%@page import="sample.users.UserDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,26 +28,34 @@
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
     <body>
+        <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
+
+        %>
 
         <!-- sidebar -->
-        
+
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <li >
+                        <li>
                             <a href="AdminShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
                         </li> 
-                        <li class="active">
+                        <li  class="active">
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý tài khoản</span>
@@ -59,25 +68,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li >
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
-                            </a>
-                        </li>
-                        <li>
                             <a href="AdminReportManager">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Report</span>
                             </a>
                         </li>
                         <li>
-                            <a href="MainController?action=ShowProfile&userID=${sessionScope.LOGIN_USER.userId}&role=AD">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -131,7 +128,20 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
-                                               <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
+                                                <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
+                                                    <div class="dataTables_length" id="myTable_length">
+                                                        <label> Role
+                                                            <form class="row" action="UserManager">
+                                                                <select  aria-controls="myTable" name="role">
+                                                                <option value="US">Người thuê</option>
+                                                                <option value="OW">Chủ trọ</option>
+                                                                <option value="AD">Admin</option> 
+                                                            </select>
+                                                                <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i class='bx bx-search'></i>
+                                                                </button>
+                                                                </form>
+                                                        </label>
+                                                    </div>
                                                     <thead>
                                                         <tr>
                                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã Đặt Phòng: activate to sort column descending" style="width: 80.15px;">ID</th>
@@ -159,16 +169,16 @@
                                                                         <td>${o.gmail}</td>
                                                                         <td>${o.address}</td>
                                                                         <td><span class="role fs-16 font-w500 text-end d-block">
-                                                                        <c:if test="${o.role.equals('US')}">
-                                                                            Khách
-                                                                        </c:if> 
-                                                                        <c:if test="${o.role.equals('OW')}">
-                                                                            Chủ thuê
-                                                                        </c:if> 
-                                                                            <c:if test="${o.role.equals('AD')}">
-                                                                            Admin
-                                                                        </c:if> 
-                                                                        </span></td>
+                                                                                <c:if test="${o.role.equals('US')}">
+                                                                                    Khách
+                                                                                </c:if> 
+                                                                                <c:if test="${o.role.equals('OW')}">
+                                                                                    Chủ thuê
+                                                                                </c:if> 
+                                                                                <c:if test="${o.role.equals('AD')}">
+                                                                                    Admin
+                                                                                </c:if> 
+                                                                            </span></td>
                                                                         <td><c:if test="${o.status == 0}">
                                                                                 <span class="badge badge-danger">Extended</span>
                                                                             </c:if> 
@@ -177,8 +187,9 @@
                                                                             </c:if> </td>
                                                                         <td>
                                                                             <div class="d-flex">
-                                                                                <!--                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
                                                                                 <a href="UserManager?action=detail&role=${o.role}&userId=${o.userId}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-user-detail'></i></a>
+
+                                                                                <a href="UserManager?action=delete&role=${o.role}&userId=${o.userId}" class="btn btn-danger shadow btn-xs sharp me-1"><i class='bx bxs-trash'></i></a>
                                                                             </div>  
 
                                                                         </td>
@@ -201,11 +212,11 @@
                     </section>
                 </div>
             </div>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/admin.js"></script>
+            <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+            <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+            <script src="assets/js/owner-script.js"></script>
     </body>
 </html>

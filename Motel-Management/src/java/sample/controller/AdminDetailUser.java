@@ -23,7 +23,6 @@ import sample.users.UserDTO;
 public class AdminDetailUser extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String OWNER = "admin-owner-info.jsp";
     private static final String USER = "admin-owner-info.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -35,7 +34,6 @@ public class AdminDetailUser extends HttpServlet {
             String role = request.getParameter("role");
             UserDAO user = new UserDAO();
             List<UserDTO> listAcc = user.getInfo(userId);
-            if (role.equals("US")) {
                 if (listAcc.size() > 0) {
                     request.setAttribute("INFO", listAcc);
                     url = USER;
@@ -43,15 +41,7 @@ public class AdminDetailUser extends HttpServlet {
                     request.setAttribute("ERROR_MESSAGE", "No user here");
                     url = USER;
                 }
-            } else if (role.equals("OW")) {
-                if (listAcc.size() > 0) {
-                    request.setAttribute("INFO", listAcc);
-                    url = OWNER;
-                } else {
-                    request.setAttribute("ERROR_MESSAGE", "No owner here");
-                    url = OWNER;
-                }
-            }
+           
 
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());

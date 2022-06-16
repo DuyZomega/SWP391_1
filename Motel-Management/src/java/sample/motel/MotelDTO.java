@@ -19,6 +19,10 @@ public class MotelDTO {
     private String district;
     private String city;
     private double rating;
+    private String service;
+    private double serviceprice;
+    private String typename;
+    private double motelprice;
     private String ownerId;
     private int status;
     
@@ -111,7 +115,44 @@ public class MotelDTO {
     public void setDesct(String Desct) {
         this.Desct = Desct;
     }
-    
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public double getMotelprice() {
+        return motelprice;
+    }
+
+    public void setMotelprice(double motelprice) {
+        this.motelprice = motelprice;
+    }
+
+
+
+    public double getServiceprice() {
+        return serviceprice;
+    }
+
+    public void setServiceprice(double serviceprice) {
+        this.serviceprice = serviceprice;
+    }
+
+    public String getTypename() {
+        return typename;
+    }
+
+    public void setTypename(String typename) {
+        this.typename = typename;
+    }
+
+
+
+
     
     
     public MotelDTO(){
@@ -126,6 +167,9 @@ public class MotelDTO {
         this.rating = 0;
         this.ownerId = "";
         this.status = 0;
+        this.service = "";
+        this.serviceprice=0;
+        this.motelprice = 0;
     }
 
     public MotelDTO(String motelID, String name,String image, String phone, String desct ,String address , String district,String city, double rating, String ownerId, int status) {
@@ -188,5 +232,23 @@ public class MotelDTO {
         this.rating = rating;
         this.status = status;
     }
-        
+
+    public MotelDTO(String motelID, String name, String image, String phone, String Desct, String address, String district, String city, double rating, String typename, double motelprice, int status) {
+        this.motelID = motelID;
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.status = status;
+    }
+
+
+
+
 }

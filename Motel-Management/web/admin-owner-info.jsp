@@ -27,20 +27,20 @@
     </head>
     <body>
         <!-- sidebar -->
-    <%
+        <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-    //                                response.sendRedirect("login.jsp");
-    //                                return;
-    //                            }
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
         %>
- <!-- sidebar -->
+        <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
@@ -52,7 +52,7 @@
                                 <span class="title">Tổng quan</span>
                             </a>
                         </li> 
-                        <li>
+                        <li class="active">
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý tài khoản</span>
@@ -62,18 +62,6 @@
                             <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
                             </a>
                         </li>
                         <li>
@@ -143,86 +131,105 @@
                                     <c:if test="${not empty requestScope.INFO}">
 
                                         <c:forEach var="o" varStatus="counter" items="${requestScope.INFO}">
-                                            <form class="row" action="UserManager">
-                                                <div class="mb-3 col-md-12">
-                                                    <label for="image" class="form-label">Hình ảnh  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="image" value="${o.image}" required="" style="display: none">
+                                            <div class="row">
+                                            <div class="row col-4">
+                                                <div class="mb-3 col-md-12 form-group mx-auto">
                                                     <img name="image" src="${o.image}" style="width:300px; height: auto ; text-align: center">
                                                 </div>
+                                            </div>
+                                            <div class="row col-8">
+                                                
                                                 <div class="mb-3 col-md-6">
                                                     <label for="userId" class="form-label">Tên đăng nhập</label>
-                                                    <input type="text" class="form-control" name="userId" value="${o.userId}" readonly="">
+                                                    <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
+                                                    <p>${o.userId}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="fullName" class="form-label">Họ và Tên  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="fullName" value="${o.fullName}" required="">
+                                                    <p>${o.fullName}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="birthDay" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                                    <input type="date" class="form-control" name="DateOfBirth" value="${o.dateOfBirth}" required="">
+                                                    <p>${o.dateOfBirth}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="gender">
-                                                         <c:if test="${o.gender == 0}">
-                                                            <option value="0">Male</option>
-                                                            <option value="1">Female</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.gender == 1}">
-                                                            <option value="1">Female</option>
-                                                            <option value="0">Male</option>
-                                                        </c:if> 
-                                                        
-                                                    </select>
+
+                                                    <c:if test="${o.gender == 0}">
+                                                       <p> <span class="badge badge-info">Male</span></p>
+                                                    </c:if> 
+                                                    <c:if test="${o.gender == 1}">
+                                                        <p><span class="badge badge-info">Female</span></p>
+                                                    </c:if> 
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="phone" class="form-label">SDT  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="phone" pattern="[0-9]{9,11}" value="${o.phone}" required="">
+                                                    <p>${o.phone}</p>
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="citizenNumber" class="form-label">CMND/CCCD <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" name="citizenNumber" value="${o.citizenNumber}" required="">
+                                                    <p>${o.citizenNumber}</p>
 
                                                 </div>
                                                 <div class="mb-3 col-md-6">
                                                     <label for="gmail" class="form-label">Email <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" name="gmail" value="${o.gmail}" placeholder="">
+                                                    <p>${o.gmail}</p>
                                                 </div>
 
                                                 <div class="mb-3 col-md-6">
                                                     <label for="address" class="form-label">Địa chỉ</label>
-                                                    <input type="text" class="form-control" name="address" value="${o.address}" required="">
+                                                    <p>${o.address}</p>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="role" class="form-label">Quyền <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="role"  required="">
-                                                           <c:if test="${o.role.equals('US')}">
-                                                            <option value="US">Người thuê</option>
-                                                            <option value="OW">Chủ thuê</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.role.equals('OW')}">
-                                                            <option value="OW">Chủ thuê</option>
-                                                            <option value="US">Người thuê</option>
-                                                        </c:if> 
-                                                    </select>
+
+                                                    <c:if test="${o.role.equals('US')}">
+                                                        <p><span class="badge badge-danger">Người thuê</span></p>
+                                                    </c:if> 
+                                                    <c:if test="${o.role.equals('OW')}">
+                                                       <p> <span class="badge badge-success">Chủ thuê</span></p>
+                                                    </c:if> 
+                                                    <c:if test="${o.role.equals('AD')}">
+                                                        <p><span class="badge badge-success">Admin</span></p>
+                                                    </c:if> 
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                                    <select class="form-select" name="status" required="">
-                                                        <c:if test="${o.status == 0}">
-                                                            <option value="0">Block</option>
-                                                            <option value="1">Activity</option>
-                                                        </c:if> 
-                                                        <c:if test="${o.status == 1}">
-                                                            <option value="1">Activity</option>
-                                                            <option value="0">Block</option>
-                                                        </c:if> 
-                                                    </select>
+                                                    <c:if test="${o.status == 0}">
+                                                       <p> <span class="badge badge-danger">Extended</span></p>
+                                                    </c:if> 
+                                                    <c:if test="${o.status == 1}">
+                                                        <p><span class="badge badge-success">Activity</span></p>
+                                                    </c:if> 
                                                 </div>
-                                                <div class="d-grid">
-                                                    <button type="submit" value="update" name="action" class="btn btn-info m-b-xs">Cập nhật</button>
+                                                <div class="form-group mx-auto">
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#removeRoom">
+                                                        <span>Xóa tài khoản</span> 
+                                                    </button> 
+                                                    
                                                 </div>
-                                            </form>
+                                                <div id="removeRoom" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="content">
+
+                                                        <form action="UserManager">
+                                                            <div class="modal-content">
+                                                                <div class="card-body">
+                                                                    <div class="del-title">
+                                                                        <i class='bx bx-error-circle'></i>
+                                                                        <h2>Bạn muốn xóa tài khoản?</h2> 
+                                                                        <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
+                                                                    </div>
+                                                                    <div class="del-submit d-flex justify-content-center">
+                                                                        <button class="btn btn-success"  type="submit" value="delete" name="action">Xác Nhận</button>
+                                                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </c:forEach>
                                     </c:if>
                                 </c:if>

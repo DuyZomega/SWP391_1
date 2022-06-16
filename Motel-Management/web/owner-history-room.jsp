@@ -35,9 +35,9 @@
             <div class="sidebar">
                 <div class="container">
                     <div class="navigation">
-                        <ul>
+                        <ul class="slide-menu">
                             <div class="logo">
-                                <a href="owner-index.html">
+                                <a href="owner-index.jsp">
                                     <img class="logo" src="assets/img/logo2.png" alt="logo">
                                 </a>
                             </div>
@@ -48,49 +48,64 @@
                                     return;
                                 }
                             %>
-                            <li>
+                            <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
                                 <a href="MainController?action=ShowOverview">
                                     <span><i class='bx bx-tachometer'></i></span>
                                     <span class="title">Tổng quan</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="owner-room-list.html">
-                                    <span><i class='bx bx-home'></i></span>
-                                    <span class="title">Phòng</span>
+                                <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <i class='bx bx-bookmarks'></i>
+                                    <span class="title">Quản lý</span>
+                                    <i class='bx bxs-chevron-down drop'></i>
                                 </a>
+                                <ul class="collapse sub-menu" id="collapseOne">
+                                    <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
+                                        <a href="owner-room-list.jsp" li class="dropdown-item">
+                                            <i class='bx bx-home-alt-2'></i>
+                                            <span class="title">Nhà nghỉ</span>
+                                        </a> 
+                                    </li>
+                                    <li class="active" data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
+                                        <a href="MainController?action=ShowRoom&ownerID=<%=loginUser.getUserId()%>" li class="dropdown-item">
+                                            <i class='bx bx-calendar-edit'></i>
+                                            <span class="title">Phòng</span>
+                                        </a>
+                                    </li> 
+                                    <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
+                                        <a href="owner-service.jsp" li class="dropdown-item">
+                                            <i class='bx bx-cloud-rain'></i>
+                                            <span class="title">Dịch vụ</span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>
-                                <a href="owner-service.html">
-                                    <span><i class='bx bx-cloud-rain'></i></span>
-                                    <span class="title">Dịch vụ</span>
-                                </a>
-                            </li>
-                            <li class="active">
+                            <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
                                 <a href="MainController?action=ShowHistory">
                                     <span><i class='bx bx-history'></i></span>
                                     <span class="title">Lịch sử thuê phòng</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="owner-notification.html">
+                            <li data-toggle="tooltip"data-placement="right" title="Thông báo">
+                                <a href="owner-notification.jsp">
                                     <span><i class='bx bx-bell'></i></span>
                                     <span class="title">Thông báo</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="owner-feedback.html">
+                            <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
+                                <a href="owner-feedback.jsp">
                                     <span><i class="bx bx-detail"></i></span>
                                     <span class="title">Nhận xét</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="owner-statistical.html">
+                            <li data-toggle="tooltip"data-placement="right" title="Thống kê">
+                                <a href="owner-statistical.jsp">
                                     <span><i class='bx bx-line-chart'></i></span>
                                     <span class="title">Thống kê</span>
                                 </a>
                             </li>
-                            <li>
+                            <li data-toggle="tooltip"data-placement="right" title="Tài khoản">
                                 <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                     <span><i class='bx bx-user'></i></span>
                                     <span class="title">Tài khoản</span>

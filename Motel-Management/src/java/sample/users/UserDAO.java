@@ -262,8 +262,7 @@ public boolean deleteUser(String userID) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "DELETE tblUsers "
-                        + " WHERE USERID=? ";
+                String sql = "UPDATE tblUser SET Status = 0 WHERE UserID = ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, userID);
                 result = stm.executeUpdate() > 0 ? true : false;
@@ -385,21 +384,16 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUsers(USERID, FULLNAME, IMAGE, GENDER, DATEOFBIRTH,CITIZEN NUMBER, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS ) "
-                        + " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, password, role, status) "
+                        + " VALUES(?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, user.getFullName());
-                stm.setString(2, user.getImage());
-                stm.setInt(3, user.getGender());
-                stm.setString(4, user.getDateOfBirth());
-                stm.setString(5, user.getCitizenNumber());
-                stm.setString(6, user.getPhone());
-                stm.setString(7, user.getGmail());
-                stm.setString(8, user.getAddress());
-                stm.setString(9, user.getPassword());
-                stm.setString(10, user.getRole());
-                stm.setInt(11, user.getStatus());
-                stm.setString(12, user.getUserId());
+                stm.setString(1, user.getUserId());
+                stm.setString(2, user.getFullName());
+                stm.setString(3, user.getPhone());
+                stm.setString(4, user.getGmail());
+                stm.setString(5, user.getPassword());
+                stm.setString(6, user.getRole());
+                stm.setInt(7, user.getStatus());
                 check = stm.executeUpdate() > 0;
             }
         } finally {
@@ -459,52 +453,6 @@ public boolean checkDuplcate(String userId) throws SQLException {
         return listAcc;
     
     }
-    /*======*/
-     private static final String LIST_USER = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, PASSWORD, ROLE, STATUS FROM tblUser WHERE ROLE=?";
-     
-    public List<UserDTO> getList(String role) throws SQLException {
-         List<UserDTO> listAcc = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(LIST_USER);
-                ptm.setString(1, role);
-                rs = ptm.executeQuery();
-                while (rs.next()) {
-                    String userId = rs.getString("userID");
-                    String fullName = rs.getString("fullName");
-                    String image = rs.getString("image");
-                    int gender = rs.getInt("gender");
-                    String DateOfBirth = rs.getString("DateOfBirth");
-                    String citizenNumber = rs.getString("citizenNumber");
-                    String phone = rs.getString("phone");
-                    String gmail = rs.getString("gmail");
-                    String address = rs.getString("address");
-                    int status = rs.getInt("status");
-                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return listAcc;
-    
-    }
-    
-    /*==========*/
        private static final String INFO_USER = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, ROLE, STATUS FROM tblUser WHERE USERID=?";
      
     public List<UserDTO> getInfo(String userId) throws SQLException {
@@ -585,6 +533,49 @@ public boolean checkDuplcate(String userId) throws SQLException {
     }
     
     /*admin*/
+ private static final String FILTER_ROLE = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, ROLE, STATUS FROM tblUser WHERE ROLE=?";
+     
+    public List<UserDTO> getFilterRole(String role) throws SQLException {
+       List<UserDTO> listAcc = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(FILTER_ROLE);
+                ptm.setString(1, role);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String userId = rs.getString("userId");
+                    String fullName = rs.getString("fullName");
+                    String image = rs.getString("image");
+                    int gender = rs.getInt("gender");
+                    String DateOfBirth = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("citizenNumber");
+                    String phone = rs.getString("phone");
+                    String gmail = rs.getString("gmail");
+                    String address = rs.getString("address");
+                    int status = rs.getInt("status");
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAcc; 
+    
+    }
 }
 
 

@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowMotel">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
@@ -48,18 +48,6 @@
                             <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
                             </a>
                         </li>
                         <li>

@@ -179,4 +179,16 @@ public class UserDTO {
         this.role = role;
         this.status = status;
     }
+
+    public UserDTO(String userId, String fullName, String phone, String gmail, String password, String role, int status) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.gmail = gmail;
+        this.password = password;
+        this.role = role;
+        this.status = status;
+    }
+     
+      
 }

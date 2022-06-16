@@ -6,20 +6,26 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Random;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
 import sample.room.RoomErrorDTO;
+import sample.users.UserDAO;
 
 /**
  *
  * @author Bao
  */
+@MultipartConfig()
 @WebServlet(name = "OwnerCreateRoomController", urlPatterns = {"/OwnerCreateRoomController"})
 public class OwnerCreateRoomController extends HttpServlet {
 
@@ -48,15 +54,51 @@ public class OwnerCreateRoomController extends HttpServlet {
             if (checkValidation) {
                 String roomID = "";
                 boolean checkID = false;
-                do {
-                    roomID = String.valueOf(generator.nextInt(9999999));
-                    checkID = dao.checkRoomID(roomID);
-                } while (checkID = false);
-                RoomDTO newRoom = new RoomDTO(roomID, roomName, desc, roomType, 1, motelID);
-                boolean checkCreate = dao.createRoom(newRoom);
-                if(checkCreate){
-                    url=SUCCESS;
-                    request.setAttribute("MESSAGE", "Create Room Successfully!");
+                boolean checkCreateRoomtype = true;
+                if (roomType.equals("custom")) {
+                    String roomTypeID = "";
+                    do {
+                        roomTypeID = String.valueOf(generator.nextInt(9999999));
+                        checkID = dao.checkRoomTypeID(roomTypeID);
+                    } while (checkID = false);
+                    Part part = request.getPart("photo");
+                    String realPath = request.getServletContext().getRealPath("/images");
+                    String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
+                    String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+
+                    if (!Files.exists(Path.of(realPath))) {
+                        Files.createDirectories(Path.of(realPath));
+                    }
+
+                    String image = "images/" + filename;
+                    String roomTypeName = request.getParameter("roomType");
+                    String checkPrice = request.getParameter("price");
+                    if (checkPrice.matches("[0-9]{2,10}")) {
+                        int price = Integer.parseInt(checkPrice);
+                        part.write(pathImage + "/" + filename);
+                        boolean check = dao.createRoomType(roomTypeID, roomTypeName, price, image, desc, motelID);
+                        if (check) {
+                            roomType = roomTypeID;
+                        } else {
+                            checkCreateRoomtype = false;
+                        }
+                    } else {
+                        request.setAttribute("ERROR", "price is not character! 2-10");
+                        checkCreateRoomtype = false;
+                    }
+                }
+
+                if (checkCreateRoomtype) {
+                    do {
+                        roomID = String.valueOf(generator.nextInt(9999999));
+                        checkID = dao.checkRoomID(roomID);
+                    } while (checkID = false);
+                    RoomDTO newRoom = new RoomDTO(roomID, roomName, desc, roomType, 1, motelID);
+                    boolean checkCreate = dao.createRoom(newRoom);
+                    if (checkCreate) {
+                        url = SUCCESS;
+                        request.setAttribute("MESSAGE", "Create Room Successfully!");
+                    }
                 }
             }
 

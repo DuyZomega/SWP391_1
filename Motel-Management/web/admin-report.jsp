@@ -30,10 +30,10 @@
     <body>
 <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-    //                                response.sendRedirect("login.jsp");
-    //                                return;
-    //                            }
+                                if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                                    response.sendRedirect("login.jsp");
+                                    return;
+                                }
 
         %>
         <!-- sidebar -->
@@ -41,7 +41,7 @@
             <div class="container">
                 <div class="navigation">
 
-                    <ul>
+                    <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
@@ -63,18 +63,6 @@
                             <a href="MotelManager?action=all">
                                 <span><i class='bx bx-home'></i></span>
                                 <span class="title">Quản lý Motel</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=US">
-                                <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý người thuê</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="UserManager?action=all&role=OW">
-                                <span><i class='bx bx-user-circle'></i></span>
-                                <span class="title">Quản lý chủ thuê</span>
                             </a>
                         </li>
                         <li class="active">
@@ -204,6 +192,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script src="assets/js/admin.js"></script>
+        <script src="assets/js/owner-script.js"></script>
     </body>
 </html>
