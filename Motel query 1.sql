@@ -306,6 +306,7 @@ INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [User
 ---INSERT BookingDetail
 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt01', '012414785','booking01', 150000,2) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt10', '236854824','booking01', 150000,2) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt02', '765324124','booking02', 250000,1) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt03', '248425478','booking03', 250000,2) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID], [Price],[Time]) VALUES ('bookDt04', '842565836','booking04', 150000,1) 
@@ -343,7 +344,8 @@ INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Stat
 
 ---INSERT BookingServiceDetail
 
-INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('1', '489656859','booking01', 3,15000) 
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('1', '489656859','booking01', 3,15000)
+INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('5', '565468569','booking01', 2,34000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('2', '021586822','booking02', 2,10000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('3', '565468569','booking03', 5,17000) 
 INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingID], [Quantity],[Price]) VALUES ('4', '489656859','booking04', 1,15000) 

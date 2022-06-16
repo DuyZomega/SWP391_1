@@ -22,6 +22,37 @@ public class RoomDAO {
     private static final String CHECK_ROOMID = "SELECT RoomID FROM tblRoom Where RoomID = ? ";
     private static final String CHECK_ROOMTYPEID = "SELECT RoomTypeID FROM tblRoomType Where RoomTypeID = ?";
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
+    private static final String CREATE_ROOMTYPE = "INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct], [MotelID]) VALUES(?,?,?,?,?,?)";
+    
+    public boolean createRoomType(String roomTypeID, String typeName,int price, String image,String desct, String motelID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CREATE_ROOMTYPE);
+                ptm.setString(1, roomTypeID);
+                ptm.setString(2, typeName);
+                ptm.setInt(3, price);
+                ptm.setString(4, image);
+                ptm.setString(5, desct);
+                ptm.setString(6, motelID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+
+    }
     
     public boolean createRoom(RoomDTO room) throws SQLException {
         boolean check = false;
