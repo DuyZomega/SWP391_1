@@ -533,6 +533,49 @@ public boolean checkDuplcate(String userId) throws SQLException {
     }
     
     /*admin*/
+ private static final String FILTER_ROLE = "SELECT USERID, FULLNAME, IMAGE, GENDER, DateOfBirth,CitizenNumber, PHONE, GMAIL, ADDRESS, ROLE, STATUS FROM tblUser WHERE ROLE=?";
+     
+    public List<UserDTO> getFilterRole(String role) throws SQLException {
+       List<UserDTO> listAcc = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(FILTER_ROLE);
+                ptm.setString(1, role);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String userId = rs.getString("userId");
+                    String fullName = rs.getString("fullName");
+                    String image = rs.getString("image");
+                    int gender = rs.getInt("gender");
+                    String DateOfBirth = rs.getString("DateOfBirth");
+                    String citizenNumber = rs.getString("citizenNumber");
+                    String phone = rs.getString("phone");
+                    String gmail = rs.getString("gmail");
+                    String address = rs.getString("address");
+                    int status = rs.getInt("status");
+                    listAcc.add(new UserDTO(userId, fullName, image, gender, DateOfBirth, citizenNumber, phone, gmail, address, role, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAcc; 
+    
+    }
 }
 
 

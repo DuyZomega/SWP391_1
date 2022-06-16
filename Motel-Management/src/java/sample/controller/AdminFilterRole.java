@@ -6,55 +6,39 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "UserManager", urlPatterns = {"/UserManager"})
-public class UserManager extends HttpServlet {
+@WebServlet(name = "AdminFilterRole", urlPatterns = {"/AdminFilterRole"})
+public class AdminFilterRole extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String USER_LIST = "all";
-    private static final String USER_LIST_CONTROLLER = "AdminListUser";
-    
-   private static final String DETAIL_LIST = "detail";
-  private static final String DETAIL_LIST_CONTROLLER = "AdminDetailUser";
-    
-    private static final String DELETE_LIST = "delete";
-    private static final String DELETE_LIST_CONTROLLER = "AdminDeleteUser"; 
-    private static final String UPDATE_LIST = "update";
-    private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateUser"; 
-    
-    private static final String FEEDBACK_LIST = "feedback";
-    private static final String FEEDBACK_LIST_CONTROLLER = "UserFeedbackController";
-    private static final String FILTER_LIST = "filter";
-    private static final String FILTER_LIST_CONTROLLER = "AdminFilterRole";
+   private static final String ERROR ="admin-account.jsp";
+    private static final String SUCCESS ="admin-account.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+         String url= ERROR;
         try {
-            String action = request.getParameter("action");
-            if(USER_LIST.equals(action)){
-                url = USER_LIST_CONTROLLER;
-            }else if (UPDATE_LIST.equals(action)){
-                url = UPDATE_LIST_CONTROLLER;
-            }else if (DETAIL_LIST.equals(action)){
-                url = DETAIL_LIST_CONTROLLER;
-            }else if (DELETE_LIST.equals(action)){
-                url = DELETE_LIST_CONTROLLER;
-            }else if (FILTER_LIST.equals(action)){
-                url = FILTER_LIST_CONTROLLER;
+            String role=request.getParameter("role");
+            UserDAO dao= new UserDAO();
+            List<UserDTO> listUser = dao.getFilterRole(role);
+            if(listUser.size()>0){
+                request.setAttribute("LIST_ACC", listUser);
+                url=SUCCESS;
             }
         } catch (Exception e) {
-            log("Error at MainController: "+e.toString());
-        } finally {
+            log("Error at SearchController: "+e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
