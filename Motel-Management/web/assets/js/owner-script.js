@@ -75,16 +75,18 @@ $(document).ready(function () {
     //data-table
     $('#myTable').DataTable();
 
-    // change page history detail
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-
     $("td:has(#input)").click(function() {
         $("#input", this).removeAttr("disabled");
     });
 } );
 
+
+$(document).ready(function () {
+    
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+})
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
