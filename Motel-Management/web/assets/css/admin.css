@@ -8,9 +8,14 @@
     border-radius: 20px;
     border: 1px #000;
 }
-.row{
+/*.row{
     margin-left: 0;
     margin-right: 0;
+}*/
+
+.admin .card-header{
+        display: flex;
+    justify-content: space-between;
 }
 table.dataTable thead>tr>th.sorting{
     padding-right: 0px;
@@ -130,6 +135,9 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Poppins,sans-serif;
 }
 p {
+    
+    color: black;
+    font-size: 16px;
     line-height: 1.6;
 }
 ul.profile-about-list {

@@ -6,59 +6,39 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
- * chua xong
+ *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "AdminListUser", urlPatterns = {"/AdminListUser"})
-public class AdminListUser extends HttpServlet {
+@WebServlet(name = "UserFeedbackController", urlPatterns = {"/UserFeedbackController"})
+public class UserFeedbackController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String OWNER = "admin-owner.jsp";    
-    private static final String USER = "admin-user.jsp";
+    private static final String SUCCESS = "userhistorybooking";
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url =  ERROR;
-        try {
-            String role = request.getParameter("role");
-            UserDAO user = new UserDAO();
-            List<UserDTO> listAcc = user.getList(role);
-            if(role.equals("US")){
-               if (listAcc.size()>0){
-                request.setAttribute("LIST_US", listAcc);
-                url=USER;
-            } else{
-                request.setAttribute("ERROR_MESSAGE", "No user here");
-                url=USER;
-            }  
-            } else if(role.equals("OW")){
-            if (listAcc.size()>0){
-                request.setAttribute("LIST_OW", listAcc);
-                url=OWNER;
-            } else{
-                request.setAttribute("ERROR_MESSAGE", "No owner here");
-                url=OWNER;
-            }}
-            
-        } catch (Exception e) {
-            log("Error at showlistcontroller: "+e.toString());
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+         String url = ERROR;
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UserFeedbackController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UserFeedbackController SUCCESS " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -6,11 +6,16 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.owner.HistoryDAO;
+import sample.owner.HistoryDTO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -19,31 +24,31 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserHistoryBooking", urlPatterns = {"/userhistorybooking"})
 public class UserHistoryBooking extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "user-booking-list.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserHistoryBooking</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserHistoryBooking at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+
+        HistoryDAO dao = new HistoryDAO();
+        try {
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            String userID = loginUser.getUserId();
+            List<HistoryDTO> listUserBooking = dao.getListUserBooking(userID);
+            if (listUserBooking != null) {
+                request.setAttribute("LIST_HISTORY", listUserBooking);
+                url = SUCCESS;
+            }
+        } catch (Exception e) {
+            log("Error at UserShowHistoryController:" + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

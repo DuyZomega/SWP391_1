@@ -4,6 +4,9 @@
     Author     : cao thi phuong thuy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.owner.HistoryDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +27,15 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     </head>
     <body>
-         <!-- sidebar -->
+        <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || !loginUser.getRole().equals("US")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
+        %>
+
+        <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
@@ -34,16 +45,9 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <%
-                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-//                            if (loginUser == null || !loginUser.getRole().equals("US")) {
-//                                response.sendRedirect("login.jsp");
-//                                return;
-//                            }
-                        %>
-                        
-                        <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                                <a href="#">
+
+                        <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
+                            <a href="#">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử đặt phòng</span>
                             </a>
@@ -54,7 +58,7 @@
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
@@ -90,7 +94,7 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       ${sessionScope.LOGIN_USER.fullName}
+                                        ${sessionScope.LOGIN_USER.fullName}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
@@ -106,9 +110,84 @@
             </div>
         </div>
         <!-- End header -->
-        
-        
-        
+
+        <div class="main-content">
+            <div class="main">
+                <div class="container-fluid">
+                    <section>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="myTable" class="table table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã đặt phòng</th>
+                                                        <th>Tên Motel</th>
+                                                        <th>Mã Phòng</th>
+                                                        <th>Ngày đặt phòng</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Action</th> <!-- đánh giá / hủy phòng trong 30p -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        List<HistoryDTO> listHistory = (ArrayList<HistoryDTO>) request.getAttribute("LIST_HISTORY");
+                                                        for (HistoryDTO history : listHistory) {
+                                                            String status = "Đã Hủy";
+
+                                                    %>
+                                                    <tr class='clickable-row' data-href="#" 
+                                                        data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                        <td><%= history.getBookingID()%></td>
+                                                        <td><%= history.getUserName()%></td>
+                                                        <td><%= history.getRoomID()%></td>
+                                                        <td><%= history.getDate()%></td>
+                                                        <td><%= history.getTotal()%></td>
+
+                                                        <%
+                                                            if (history.getStatus().equals("1")) {
+                                                        %>
+                                                        <td>Đã thanh toán</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="UserManager?action=feedback?userId=<%=loginUser.getUserId()%>&motelID=<%= history.getMotelID()%>" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>
+                                                                <a href="#" class="btn btn-danger shadow btn-xs sharp">Report</a>
+                                                            </div>  
+
+                                                        </td> 
+                                                        <%
+                                                            }
+                                                            if (history.getStatus().equals("0")) {
+                                                        %>
+                                                        <td>Proccessing</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="#" class="btn btn-danger shadow btn-xs sharp">Hủy phòng</a>
+                                                            </div>  
+
+                                                        </td>         
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </tr>
+                                                    <% }%>   
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /# card -->
+                            </div>
+                            <!-- /# column -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

@@ -26,49 +26,53 @@
 </head>
 
 <body>
-    <div class="background">
+       <div class="background">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 p-lg-0">
                     <div class="login row">
                         <div class="col-12 text-center">
-                            <a href="./index.html"><img src="./assets/img/logo2-1.png" alt="logo"></a>
+                            <a href="ShowMotelController"><img src="./assets/img/logo2-1.png" alt="logo"></a>
                             <h4 class="text-center my-3">Thông tin đăng ký</h4>
                         </div>
                         <div class="form col-12 px-5">
-                            <form class="row">
+                            <form action="CreateUserController" method="POST" id="form-1" class="row">
                                 <div class="form-item input-field col-12">
-                                    <label for="fullName">Họ và tên</label>
-                                    <input type="text" name="Họ và tên" id="fullName" />
-                                    <span id="error_fullName" class="helper-text text-danger"></span>
-                                    <span id="error_fullName_all_leter" class="helper-text text-danger"></span>
+                                    <label for="fullName">Họ và tên <span class="text-danger">*</span></label>
+                                    <input type="text" name="fullName" id="fullName"  placeholder="Họ và tên" />
+                                    <span id="error_message" class="helper-text text-danger">
+                                        <span id="error_fullName_all_leter" class="helper-text text-danger">${requestScope.USER_ERROR.getFullNameError()}</span>
+                                    </span>
+                                    
                                 </div>
                                 <div class="form-item input-field col-12">
-                                    <label for="userName">Tên đăng nhập</label>
-                                    <input type="text" name="Tên đăng nhập" id="userName">
-                                    <span id="error_userName" class="helper-text text-danger"></span>
-                                    <span id="error_userName_sign" class="helper-text text-danger"></span>
+                                    <label for="userId">Tên đăng nhập <span class="text-danger">*</span></label>
+                                    <input type="text" name="userId" placeholder="Tên đăng nhập" id="userName">
+                                    <span id="error_message" class="helper-text text-danger"><span id="error_userName_sign" class="helper-text text-danger">${requestScope.USER_ERROR.getUserIdError()} </span></span>
+                                    
+                                     </div>
+                                <div class="form-item input-field col-12">
+                                    <label for="gmail">Email <span class="text-danger">*</span></label>
+                                    <input type="email" name="gmail" id="email" placeholder="Gmail">
+                                    <span id="error_message" class="helper-text text-danger"></span>
                                 </div>
                                 <div class="form-item input-field col-12">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="Email" id="email">
-                                    <span id="error_email" class="helper-text text-danger"></span>
+                                    <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="tel" name="phone" placeholder="Số điện thoại" id="telephone">
+                                    <span id="error_message" class="helper-text text-danger">${requestScope.USER_ERROR.getPhoneError()}</span>
+                               
                                 </div>
                                 <div class="form-item input-field col-12">
-                                    <label for="telephone">Số điện thoại</label>
-                                    <input type="tel" name="Số điện thoại" id="telephone">
-                                    <span id="error_phone" class="helper-text text-danger"></span>
+                                    <label for="password">Mật khẩu <span class="text-danger">*</span></label>
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu" minlength="6" maxlength="32">
+                                    <span id="error_message" class="helper-text text-danger">
+                                    <span id="error_password_min_max_length" class="helper-text text-danger"></span></span>
                                 </div>
                                 <div class="form-item input-field col-12">
-                                    <label for="password">Mật khẩu</label>
-                                    <input type="password" name="Mật khẩu" id="password" minlength="6" maxlength="32">
-                                    <span id="error_password" class="helper-text text-danger"></span>
-                                    <span id="error_password_min_max_length" class="helper-text text-danger"></span>
-                                </div>
-                                <div class="form-item input-field col-12">
-                                    <label for="confirm-password">Nhập lại mật khẩu</label>
-                                    <input type="password" name="Nhập lại mật khẩu" id="confirm-password">
-                                    <span id="error_confirmPassword" class="helper-text text-danger"></span>
+                                    <label for="confirm">Nhập lại mật khẩu <span class="text-danger">*</span></label>
+                                    <input type="password" name="confirm" id="confirm" placeholder="Nhập lại mật khẩu">
+                                    <span id="error_message" class="helper-text text-danger">${requestScope.USER_ERROR.getConfirmpasswordError()}</span>
+                                
                                 </div>
                                 <div class="button-select btn-group btn-group-toggle col-12 offset-md-2 col-md-8 pt-3"
                                     data-toggle="buttons">
@@ -78,15 +82,16 @@
                                     <label class="btn btn-danger">
                                       <input type="radio" name="role" value="OW"> Chủ trọ
                                     </label>
-                                  </div>
+                                </div>
                                 <div class="button col-12">
-                                    <button id="signUp" type="submit" value="Login" class="btn-signup btn btn-danger">Đăng
+                                    <button id="signUp" type="submit" value="Create"
+                                        class="btn-signup btn btn-danger">Đăng
                                         ký</button>
                                 </div>
                             </form>
                             <div class="text-center mt-3">
                                 <label class="mb-0 me-2">Bạn đã có tài khoản? </label>
-                                <span><a href="./login.html" class="login-switch text-primary">Đăng nhập</a> ở
+                                <span><a href="login.jsp" class="login-switch text-primary">Đăng nhập</a> ở
                                     đây</span>
                             </div>
                         </div>
@@ -95,6 +100,7 @@
             </div>
         </div>
     </div>
+
     <!-- thư viện hỗ trợ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>

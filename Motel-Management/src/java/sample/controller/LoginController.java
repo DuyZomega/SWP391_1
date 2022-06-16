@@ -51,10 +51,10 @@ public class LoginController extends HttpServlet {
                 }else if(OWNER.equals(role)){
                     url=OWNER_PAGE;
                 }else{
-                    request.setAttribute("ERROR", "Your role is not suppoort!");
+                    request.setAttribute("ERROR", "Tài khoản của bạn không được được phép");
                 }
             }else{
-                request.setAttribute("ERROR","Incorrect userID or Password");
+                request.setAttribute("ERROR","Sai tên đăng nhập , mật khẩu");
             }
             
         } catch (Exception e) {
