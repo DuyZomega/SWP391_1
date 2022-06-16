@@ -132,7 +132,43 @@
 
     <!-- Main Content -->
     <div class="main-content">
-
+        <div class="main">
+            <div class="container-fluid">
+                <section>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="myTable" class="table table-hover table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mã Dịch vụ</th>
+                                                    <th>Tên dịch vụ</th>
+                                                    <th>Giá tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>D1</td>
+                                                    <td>Dịch vụ 1</td>
+                                                    <td>100,000&#8363;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>D2</td>
+                                                    <td>Dịch vụ 2</td>
+                                                    <td>50,000&#8363;</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

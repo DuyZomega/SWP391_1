@@ -68,24 +68,28 @@ function success() {
     });
 }
 
+//
 
-//data-table
-$(document).ready( function () {
+
+$(document).ready(function () {
+    //data-table
     $('#myTable').DataTable();
-} );
 
-// change page history detail
-$(document).ready(function($) {
+    // change page history detail
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-});
+
+    $("td:has(#input)").click(function() {
+        $("#input", this).removeAttr("disabled");
+    });
+} );
 
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
-  };  
+};  
 
   
 //chart
@@ -180,19 +184,7 @@ function timeFrame(period) {
         chart.options.scales.x.time.unit = period.value;
     }
     chart.update();
-}
-
-//
-// function onChange() {
-//     const password = document.querySelector('input[name=newpassword]');
-//     const confirm = document.querySelector('input[name=confirm]');
-//     if (confirm.value === password.value) {
-//       confirm.setCustomValidity('');
-//     } else {
-//       confirm.setCustomValidity('Passwords do not match');
-//     }
-// }
-
+} 
 
 //change idHome for delete
 function change(event) {
@@ -212,19 +204,17 @@ function other(event) {
 }
 
 // select input
-var sel1 = document.querySelector('#sel1');
-var sel2 = document.querySelector('#sel2');
-var options2 = sel2.querySelectorAll('option');
 
-function giveSelection(selValue) {
-    sel2.innerHTML = '';
-    for(var i = 0; i < options2.length; i++) {
-      if(options2[i].dataset.option === selValue) {
-        sel2.appendChild(options2[i]);
-      }
-    }
-  }
-  
-  giveSelection(sel1.value);
+$("#motelid").change(function() {
+    var cat = $(this).val(); // this is the selected value
+ 
+    $("#typyRoom option:not(." + cat + ")").hide(); // you hide every option that don't have your selected value as a class
+    $("#typyRoom option." + cat).show(); // you only show selected options
+    $("#typyRoom").val(""); //reset the previously selected value
+  });
+
+
+
+// change span to input 
 
 
