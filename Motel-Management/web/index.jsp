@@ -236,8 +236,8 @@
     <h3 class="heading">TIN CHO THUÊ</h3>
     <div class="motel__content">
         <div class="owl-carousel owl-theme">
-            <c:if test="${requestScope.LIST_MOTEL != null}">
-                <c:if test="${not empty requestScope.LIST_MOTEL}">
+            <c:if test="${requestScope.LIST_MOTEL1 != null}">
+                <c:if test="${not empty requestScope.LIST_MOTEL1}">
 
                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
                         <div class="item">
