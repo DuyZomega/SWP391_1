@@ -5,6 +5,7 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.room.RoomDAO;
+import sample.room.RoomDTO;
+import sample.service.ServiceDAO;
+import sample.service.ServiceDTO;
 import sample.users.UserDAO;
 import sample.users.UserDTO;
 
@@ -33,13 +38,21 @@ public class ShowMotelController extends HttpServlet {
         try {
             MotelDAO motel = new MotelDAO();
             List<MotelDTO> listMotel = motel.getListMotel();
-                if (listMotel.size() > 0) {
-                    request.setAttribute("LIST_MOTEL", listMotel);
-                    url = SUCCESS;
-                } else {
-                    request.setAttribute("ERROR_MESSAGE", "No motel here");
-                    url = SUCCESS;
+
+            List<ServiceDTO> listService = new ArrayList<>();
+            if (listMotel.size() > 0) {
+                request.setAttribute("LIST_MOTEL", listMotel);
+                ServiceDAO dao = new ServiceDAO();
+                for (MotelDTO motel1 : listMotel) {
+                    List<ServiceDTO> list = dao.searchservice(motel1.getMotelID());
+                    listService.addAll(list);
                 }
+                request.setAttribute("LIST_SERVICE", listService);
+                url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR_MESSAGE", "No motel here");
+                url = SUCCESS;
+            }
 
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
@@ -47,6 +60,7 @@ public class ShowMotelController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

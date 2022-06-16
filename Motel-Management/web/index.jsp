@@ -233,6 +233,7 @@
 
 
 <section class="motel container">
+    <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem tất c</a> 
     <h3 class="heading">TIN CHO THUÊ</h3>
     <div class="motel__content">
         <div class="owl-carousel owl-theme">
@@ -242,7 +243,7 @@
                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
                         <div class="item">
                             <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                                <img class="img-fluid" src="${o.image}"( alt="nt1">
                             </a>
                             <div class="motel-title my-4">
                                 <a href="#" class="text-decoration-none">${o.name}</a>
@@ -250,15 +251,25 @@
                             <div class="motel-address my-2">
                                 <p>${o.address},${o.district}</p>
                             </div>
+                            <c:if test="${requestScope.LIST_SERVICE != null}">
+                                <c:if test="${not empty requestScope.LIST_SERVICE}">
+
+                                    <c:forEach var="s" varStatus="counter" items="${requestScope.LIST_SERVICE}">
+                                        <div class="motel-services my-2">
+                                            <p>${s.service}</p>
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
+                            </c:if>
                             <div class="motel-services my-2">
-                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
+                                <p>${o.desct}</p>
                             </div>
                             <div class="d-flex justify-content-between my-2">
                                 <p>Liên hệ</p>
                                 <p><i class="fas fa-history"></i> một ngày trước</p>
                             </div>
                             <div class="motel-price d-flex justify-content-between">
-                                <p>7.0 Triệu</p>
+                                <p>${o.motelprice}</p>
                                 <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem ngay</a> 
                             </div>
                         </div>

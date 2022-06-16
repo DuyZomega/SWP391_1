@@ -121,7 +121,7 @@ public List<MotelDTO> getListMotel() throws SQLException {
                     String image = rs.getString("image");
                     String name = rs.getString("name");
                     String phone = rs.getString("phone");
-                    String Desct = rs.getString("Desct");
+                    String desct = rs.getString("Desct");
                     String address = rs.getString("address");
                     String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
@@ -129,7 +129,7 @@ public List<MotelDTO> getListMotel() throws SQLException {
                     String typename = rs.getString("TypeName");
                     double price = rs.getDouble("Price");
                     int status = rs.getInt("status");
-                    listMotel.add(new MotelDTO(motelID, name, image, phone, Desct, address, district, city, rating, typename ,price, status));
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, desct, address, district, city, rating, typename ,price, status));
                 }
             }
         } catch (Exception e) {
@@ -146,6 +146,49 @@ public List<MotelDTO> getListMotel() throws SQLException {
             }
         }
         return listMotel;
+    
+    }
+private static final String SHOWALLLIST_MOTEL = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID  AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
+public List<MotelDTO> getAllListMotel() throws SQLException {
+         List<MotelDTO> listAllMotel = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SHOWALLLIST_MOTEL);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String motelID = rs.getString("MotelID");
+                    String image = rs.getString("image");
+                    String name = rs.getString("name");
+                    String phone = rs.getString("phone");
+                    String desct = rs.getString("Desct");
+                    String address = rs.getString("address");
+                    String district = rs.getString("DistrictName");
+                    String city = rs.getString("CityName");
+                    double rating = rs.getDouble("Ratings");
+                    String typename = rs.getString("TypeName");
+                    double price = rs.getDouble("Price");
+                    int status = rs.getInt("status");
+                    listAllMotel.add(new MotelDTO(motelID, name, image, phone, desct, address, district, city, rating,typename ,price, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listAllMotel;
     
     }
 
