@@ -5,6 +5,7 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.admin.DashboardDAO;
 import sample.admin.DashboardDTO;
+import sample.owner.HistoryDTO;
 import sample.users.UserDTO;
 
 /**
@@ -30,9 +32,9 @@ public class AdminShowOverview extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-          //HttpSession session = request.getSession();
-          //  UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-           // String userID = loginUser.getUserId();
+            //HttpSession session = request.getSession();
+            //  UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            // String userID = loginUser.getUserId();
             DashboardDAO dao = new DashboardDAO();
             DashboardDTO dashboard = new DashboardDTO();
             int motelNumber = dao.getMotelNumber();
@@ -42,7 +44,11 @@ public class AdminShowOverview extends HttpServlet {
             dashboard = new DashboardDTO(motelNumber, userNumber, ownerNumber, reportNumber);
             if (dashboard != null) {
                 request.setAttribute("DASHBOARD", dashboard);
-                url = SUCCESS;
+                List<HistoryDTO> topIncome = dao.getTopIncome();
+                if (topIncome != null) {
+                    request.setAttribute("TOP_INCOME", topIncome);
+                    url = SUCCESS;
+                }
             }
         } catch (Exception e) {
             log("Error at AdminShowOverview: " + e.toString());

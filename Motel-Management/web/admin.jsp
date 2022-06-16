@@ -1,5 +1,6 @@
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.users.UserError"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page import="sample.admin.DashboardDTO"%>
@@ -27,10 +28,10 @@
         <!-- sidebar -->
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                                if (loginUser == null || !loginUser.getRole().equals("AD")) {
-                                    response.sendRedirect("login.jsp");
-                                    return;
-                                }
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
         %>
         <div class="sidebar">
@@ -166,55 +167,55 @@
                 <div class="row">
                     <div class="col-lg-12 admin">
                         <div class="card border-0 d-flex">
-                        <div class="card-header">
-                            <h4>Top owner</h4>
-                            <a href="#" class="btn-title">Xem tất cả</a>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr><th>STT</th>
-                                        <th>Mã người dùng</th>
-                                        <th>Hình ảnh</th>
-                                        <th>Họ và tên</th>
-                                        <th>SDT</th>
-                                        <th>Income</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr><th>STT</th>
-                                        <td>250000</td>
-                                        <td>
-                                            <img src="images/man.png">
-                                        </td>
-                                        <td>Tran Ngoc Hai</td>
-                                        <td>250000</td>
-                                        <td><div class="">Đã Thanh Toán</div></td>
-                                    </tr>
-                                    
-                                    <tr><th>STT</th>
-                                        <td>250000</td>
-                                        <td>
-                                            <img src="images/man.png">
-                                        </td>
-                                        <td>Tran Ngoc Hai</td>
-                                        <td>250000</td>
-                                        <td><div class="">Đã Thanh Toán</div></td>
-                                    </tr>                                   
-                                </tbody>
-                            </table>
-                        </div>
+                            <div class="card-header">
+                                <h4>Top owner</h4>
+                                <a href="#" class="btn-title">Xem tất cả</a>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr><th>STT</th>
+                                            <th>Mã người dùng</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Họ và tên</th>
+                                            <th>SDT</th>
+                                            <th>Income</th>
+                                        </tr>
+                                    </thead>
 
-                    </div>
+                                    <c:if test="${requestScope.TOP_INCOME != null}">
+                                        <c:if test="${not empty requestScope.TOP_INCOME}">
+                                            <tbody> 
+                                                <c:forEach var="t" varStatus="counter" items="${requestScope.TOP_INCOME}">
+                                                    <tr>
+                                                        <th>${counter.count}</th>
+                                                        <td>${t.userID}</td>
+                                                        <td>
+                                                            <img src="${t.status}">
+                                                        </td>
+                                                        <td>${t.userName}</td>
+                                                        <td>${t.payType}</td>
+                                                        <td>
+                                                            <div class="">${t.total}</div>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </c:if>
+                                    </c:if>
+                                </table>
+                                ${requestScope.ERROR_MESSAGE}
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </section>
-            
+
         </div>
 
 
-                        
+
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

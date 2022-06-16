@@ -47,7 +47,7 @@
                         </div>
 
                         <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                            <a href="#">
+                            <a href="userhistorybooking">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử đặt phòng</span>
                             </a>

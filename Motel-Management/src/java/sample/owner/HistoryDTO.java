@@ -125,6 +125,15 @@ public class HistoryDTO {
         this.date = date;
         this.total = total;
     }
+
+    public HistoryDTO(String userID, String userName, String status, String payType, int total) {
+        this.userID = userID;
+        this.userName = userName;
+        this.status = status;
+        this.payType = payType;
+        this.total = total;
+    }
+    
     
         
     
