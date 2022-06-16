@@ -17,7 +17,7 @@ public class DBUtils {
         java.sql.Connection conn=null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String url="jdbc:sqlserver://localhost:1433;databaseName=MotelDB";
-        conn=DriverManager.getConnection(url,"sa","07112001Thuy");
+        conn=DriverManager.getConnection(url,"sa","123");
         return conn;
     }   
    public static void main(String[] args){
