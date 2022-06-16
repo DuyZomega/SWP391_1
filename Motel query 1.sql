@@ -128,7 +128,6 @@ CREATE TABLE [tblPayment](
 
 CREATE TABLE [tblFeedBack](
 [FeedbackID]      [varchar](10) not null PRIMARY KEY,
-[Name]            [nvarchar](50),
 [Desct]           [nvarchar](1500),
 [Ratings]         [decimal](2,1),
 [MotelID]         [varchar](10) not null FOREIGN KEY REFERENCES tblMotel(MotelID), 
@@ -322,12 +321,13 @@ INSERT [tblPayment] ([PaymentID], [Desct], [PaymentTime],[Sender], [Receiver],[P
 
 
 ---INSERT Feedback
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('1', N'Phuong Thuy',N'Nhà trọ chất lượng tốt', 5,N'587416594',N'booking01',1)
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('2', N'Hong Anh',N'Đánh giá 5 sao', 5,N'842578129',N'booking02',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('3', N'Minh Nhat',N'Dịch vụ tốt', 5,N'486258478',N'booking03',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('4', N'Ngoc Hai',N'Phòng rất sạch sẽ', 4,N'587416594',N'booking04',1) 
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Pham Tuan',N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
-INSERT [tblFeedBack] ([FeedbackID], [Name],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('6', N'nhat lam',N'nha', 4,N'861435762',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('1',N'Nhà trọ chất lượng tốt', 5,N'587416594',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('2', N'Đánh giá 5 sao', 5,N'842578129',N'booking02',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('3', N'Dịch vụ tốt', 5,N'486258478',N'booking03',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('4',N'Phòng rất sạch sẽ', 4,N'587416594',N'booking04',1) 
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('5', N'Nhân viên phục vụ tốt', 4,N'861435762',N'booking01',1)
+INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[Status]) VALUES ('6',N'nha', 4,N'861435762',N'booking01',1)
+
 
 
 ---INSERT Report
