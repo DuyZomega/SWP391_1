@@ -41,6 +41,8 @@ public class MainController extends HttpServlet {
     private static final String SHOW_OWNER_OVERVIEW_CONTROLLER = "OwnerShowOverview";
     private static final String SHOW_OWNER_HISTORY = "ShowHistory";
     private static final String SHOW_OWNER_HISTORY_CONTROLLER = "OwnerShowHistoryController";
+    private static final String SHOW_ROOM_DETAIL = "showRoomDetail";
+    private static final String SHOW_ROOM_DETAIL_CONTROLLER = "OwnerShowRoomDetail";
      
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -67,6 +69,8 @@ public class MainController extends HttpServlet {
                 url = SHOW_OWNER_OVERVIEW_CONTROLLER;
             } else if (SHOW_OWNER_HISTORY.equals(action)){
                 url = SHOW_OWNER_HISTORY_CONTROLLER;
+            } else if (SHOW_ROOM_DETAIL.equals(action)){
+                url = SHOW_ROOM_DETAIL_CONTROLLER;
             }
             
         } catch (Exception e) {

@@ -297,7 +297,7 @@ INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [User
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 851000,1,'Lamm44')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 250000,0,'hai03')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-12-10',N'khach nhan phong', 190000,1,'Lamm44')
-
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking08', '2022-11-09',N'khach nhan phong tre', 200000,1,'Lamm44')
 
 ---INSERT BookingDetail
 
@@ -308,6 +308,7 @@ INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUE
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt05', '323565985','booking05',5) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt06', '332369568','booking06',7) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt07', '225657877','booking07',1) 
+INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt08', '452713658','booking08',7) 
 
 ---INSERT Payment
 

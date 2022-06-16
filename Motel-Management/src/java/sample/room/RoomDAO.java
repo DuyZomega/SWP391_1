@@ -159,7 +159,7 @@ public class RoomDAO {
                 ptm.setString(1,ownerID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    String roomID = rs.getString("MotelID");
+                    String roomID = rs.getString("RoomID");
                     String name = rs.getString("Name");
                     String typeName = rs.getString("TypeName");
                     int price = rs.getInt("Price");
