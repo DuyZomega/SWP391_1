@@ -40,3 +40,19 @@
 .spacing{
     padding: 50px 0;
 }
+
+body{
+    .lb-data .lb-close{
+        background: url(../../vendor/lightbox/imges/close.png);
+    }
+    .lb-nav a.lb-prev{
+        background: url(../../vendor/lightbox/imges/prev.png) left 48% no-repeat;
+    }
+    .lb-nav a.lb-next{
+        background: url(../../vendor/lightbox/imges/next.png) right 48% no-repeat;
+    } 
+
+    .lb-cancel{
+        background:url(../../vendor/lightbox/imges/loading.gif) no-repeat;
+    }
+}

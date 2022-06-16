@@ -1,20 +1,15 @@
 .booking {
     .heading {
-        color: $color-blue-1;
-        text-shadow: 0px 0px 10px $color-blue-3;
-        margin-bottom: $mg-6;
+        // color: $color-blue-1;
+        margin-bottom: $mg-6 - 10;
     }
-    .desc-service{
+    .desc-service {
         padding-left: 40px;
-    }
-    .table{
-        margin: 50px 0;
     }
 }
 
 .booking__table {
     .table td {
-        vertical-align: middle !important;
         border: 1px solid #dee2e6;
     }
     .inputDate,
@@ -32,5 +27,4 @@
     .hour {
         width: 105px;
     }
-    
 }

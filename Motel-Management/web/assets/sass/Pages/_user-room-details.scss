@@ -38,7 +38,6 @@
                         transition: all 0.25s;
                     }
                 }
-
             }
             input.star-5 {
                 &:checked ~ label.star {
@@ -49,10 +48,10 @@
                 }
             }
 
-            input.star-1{
+            input.star-1 {
                 &:checked ~ label.star {
                     &::before {
-                        color: #F62;
+                        color: #f62;
                     }
                 }
             }
@@ -69,4 +68,169 @@
             }
         }
     }
+    .rating-carousel {
+        margin-right: 10px;
+        .customer-rating {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 8px;
+            img {
+                border-radius: 50%;
+                width: 70px;
+                height: 70px;
+            }
+            h6 {
+                margin-bottom: 5px;
+            }
+        }
+        .item-rating {
+            position: relative;
+            height: 200px;
+            border: 1px solid #00ba8fbf;
+            padding: 20px;
+            margin: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px 1px #e8e5e5;
+            .name-customer {
+                position: absolute;
+                background-color: $color-primary-1;
+                color: $color-white-1;
+                padding: 10px;
+                border-radius: 10px;
+                top: -2px;
+                left: -15px;
+                box-shadow: 2px 2px 4px 1px #e8e5e5;
+            }
+            img {
+                position: absolute;
+                top: -30px;
+                right: 30px;
+                box-shadow: 2px 2px 4px 1px #e8e5e5;
+            }
+            .cmt-box {
+                padding-top: 30px;
+            }
+            i {
+                color: #fd4;
+            }
+            p.cmt-customer {
+                margin: 0;
+            }
+        }
+    }
+    .widgets {
+        position: relative;
+        .content-booking {
+            position: absolute;
+            top: 0;
+            left: 15px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            // display: none;
+        }
+        .content-booking-1 {
+            position: absolute;
+            top: 0;
+            left: 15px;
+            z-index: 1;
+        }
+        .content-contact {
+            position: absolute;
+            top: 262px;
+            left: 15px;
+            right: 0;
+        }
+    }
+    .content-booking,
+    .content-booking-1 {
+        height: 252px;
+    }
+}
+.booking {
+    .table {
+        border: 1px solid rgb(222, 226, 230);
+    }
+    .table .thead-dark {
+        background-color: $color-blue-2;
+    }
+    .booking__table {
+        .room-number {
+            width: 105px;
+        }
+        .hour {
+            width: 83px;
+        }
+        .price,
+        .total-price,
+        .total-price-1 {
+            width: 150px;
+        }
+    }
+    .img-room {
+        img {
+            width: 150px;
+            height: auto;
+            margin-right: 10px;
+        }
+    }
+}
+
+.owl-theme .owl-nav.disabled + .owl-dots {
+    margin: 0;
+}
+
+.PhongDoi,
+.PhongDon {
+    .custom-select {
+        background: url("") no-repeat right 0.75rem center/8px 10px;
+        transition: 0.5s;
+        &:hover {
+            background: url("../../assets/img/chevron-down-regular.png") no-repeat right 0.75rem center/8px 10px;
+            background-size: 30%;
+        }
+    }
+}
+.thead-dark {
+    th {
+        background-color: $color-blue-2 !important;
+        border-color: $color-blue-2;
+    }
+}
+
+.room-type-title {
+    font-weight: bold;
+}
+
+.box-booking {
+    position: relative;
+
+    .btn-booking-before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 2;
+    }
+    .btn-booking {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+    }
+}
+.hot-label {
+    width: 50px;
+}
+.empty-room {
+    font-size: 15px;
+    background: -webkit-linear-gradient(rgb(237, 2, 2), rgb(170, 2, 2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.heading {
+    font-weight: bold;
 }

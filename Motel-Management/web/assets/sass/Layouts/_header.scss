@@ -30,9 +30,9 @@
         }
     }
     .header__right {
-        display: flex; 
+        display: flex;
         align-items: center;
-        .button--primary{
+        .button--primary {
             margin-right: 15px;
         }
         a {
@@ -47,21 +47,21 @@
                 color: $color-primary-0;
             }
         }
-        .btn-user-dropdown{
+        .btn-user-dropdown {
             font-size: $fs-3;
-            transition: all .5s;
+            transition: all 0.5s;
             padding-left: 0;
-            span:nth-of-type(1){
+            span:nth-of-type(1) {
                 padding-left: $pd-1;
                 border-left: 1px solid $color-red-0;
-                transition: .5s;
+                transition: 0.5s;
             }
-            &:hover{
-                span{
-                    color:$color-primary-0;
+            &:hover {
+                span {
+                    color: $color-primary-0;
                 }
             }
-            &:focus{
+            &:focus {
                 outline: none;
                 box-shadow: none;
             }
@@ -82,19 +82,19 @@
                 font-size: $fs-3;
                 &:hover {
                     background-color: transparent;
-                    color:$color-primary-0;
+                    color: $color-primary-0;
                 }
             }
         }
     }
 }
 
-.header__bottom {   
+.header__bottom {
     padding-top: $pd-4 - 5;
     .myNavBar {
         padding: 0 2.5rem;
         .logo {
-            @include size(150px, auto)
+            @include size(150px, auto);
         }
         .nav-item {
             a {
@@ -110,23 +110,25 @@
             }
         }
     }
-    .header__bottom__right{
-        .form-group{
-            border: 1px solid $color-red-0;
-            border-radius: $border-radius-0;
-            overflow: hidden;
+    .header__bottom__right {
+        .header__bottom--search {
+            width: 100%;
         }
-        .form-control{
-            border: none;
-            margin: 0;
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid $color-primary-1;
+            border-left: none;
+            background: $color-primary-1;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
             &:focus{
                 outline: none;
-                box-shadow: none
             }
-        }
-        #btn-search{
-            @include size(47px, 38px);
-            border: none;
         }
     }
 }
