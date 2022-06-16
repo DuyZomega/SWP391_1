@@ -25,7 +25,7 @@ table.dataTable thead>tr>th.sorting{
  background: transparent;
 }
 .admin img{
-    height: 30px;
+    height: 100%;
     width: 40px;
 }
 .admin .dropdown-menu{
