@@ -233,7 +233,7 @@ public class MotelDTO {
         this.status = status;
     }
 
-    public MotelDTO(String motelID, String name, String image, String phone, String Desct, String address, String district, String city, double rating, String service, double serviceprice, String typename, double motelprice, int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String Desct, String address, String district, String city, double rating, String typename, double motelprice, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
@@ -243,8 +243,6 @@ public class MotelDTO {
         this.district = district;
         this.city = city;
         this.rating = rating;
-        this.service = service;
-        this.serviceprice = serviceprice;
         this.typename = typename;
         this.motelprice = motelprice;
         this.status = status;

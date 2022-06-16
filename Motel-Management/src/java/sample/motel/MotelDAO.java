@@ -105,7 +105,7 @@ public class MotelDAO {
         return adminMotel;
 
     }
-private static final String SHOWLIST_MOTEL = "SELECT tblMotel.MotelID, tblMotel.Name, tblMotel.image, tblMotel.phone, tblRoomType.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,tblMotel.Ratings,tblService.ServiceName AS ServiceName,tblService.Price AS ServicePrice ,tblMotel.Status, tblService.Status, tblRoomType.TypeName AS RoomTpe, tblRoomType.Price AS MotelPrice FROM tblMotel,tblDistrict,tblCity, tblUser ,tblService, tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.MotelID = tblService.MotelID AND tblRoomType.MotelID = tblService.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND tblService.Status = 1";
+private static final String SHOWLIST_MOTEL = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
 public List<MotelDTO> getListMotel() throws SQLException {
          List<MotelDTO> listMotel = new ArrayList<>();
         Connection conn = null;
@@ -117,7 +117,7 @@ public List<MotelDTO> getListMotel() throws SQLException {
                 ptm = conn.prepareStatement(SHOWLIST_MOTEL);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    String motelID = rs.getString("motelID");
+                    String motelID = rs.getString("MotelID");
                     String image = rs.getString("image");
                     String name = rs.getString("name");
                     String phone = rs.getString("phone");
@@ -126,12 +126,10 @@ public List<MotelDTO> getListMotel() throws SQLException {
                     String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
+                    String typename = rs.getString("TypeName");
+                    double price = rs.getDouble("Price");
                     int status = rs.getInt("status");
-                    String service = rs.getString("service");
-                    double serviceprice = rs.getDouble("serviceprice");
-                    String typename = rs.getString("typename");
-                    double motelprice = rs.getDouble("motelprice")      ;  
-                    listMotel.add(new MotelDTO( motelID, name, image, phone, Desct, address, district, city, rating, service, serviceprice, typename, motelprice , status));
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, Desct, address, district, city, rating, typename ,price, status));
                 }
             }
         } catch (Exception e) {

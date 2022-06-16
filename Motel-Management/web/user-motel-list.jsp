@@ -46,13 +46,6 @@
                     <a href="tel:0865644162" class="text-white mr-4 text-decoration-none"><i class="fas fa-phone-alt"></i>
                         0865.644.162</a>
                 </div>
-                <%
-                    UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                    if (loginUser == null || !loginUser.getRole().equals("US")) {
-                        response.sendRedirect("login.jsp");
-                        return;
-                    }
-                %>
             </div>
             <div class="header">
                 <div class="container-fluid">
@@ -167,10 +160,10 @@
                 <div class="content__list col-9">
                     <div class="row">
                         <div class="col-4 p-0">
-                        <c:if test="${requestScope.LIST_MOTEL != null}">
-                            <c:if test="${not empty requestScope.LIST_MOTEL}">
+                        <c:if test="${requestScope.LIST_MOTEL1 != null}">
+                            <c:if test="${not empty requestScope.LIST_MOTEL1}">
 
-                                <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
+                                <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL1}">
                                     <div class="item">
                                         <a href="#" class="motel-image">
                                             <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">

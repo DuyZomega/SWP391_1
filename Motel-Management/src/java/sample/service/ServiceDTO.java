@@ -15,7 +15,8 @@ public class ServiceDTO {
     private int price;
     private int quantity;
     private int status;
-
+    private String MotelID;
+    
     public String getServiceId() {
         return serviceId;
     }
@@ -56,12 +57,21 @@ public class ServiceDTO {
         this.status = status;
     }
 
+    public String getMotelID() {
+        return MotelID;
+    }
+
+    public void setMotelID(String MotelID) {
+        this.MotelID = MotelID;
+    }
+
     public ServiceDTO() {
         this.serviceId = "";
         this.name = "";
         this.price = 0;
         this.quantity = 0;
         this.status = 0;
+        this.MotelID = "";
     }
 
     public ServiceDTO(String serviceId, String name, int price, int quantity, int status) {
@@ -70,6 +80,12 @@ public class ServiceDTO {
         this.price = price;
         this.quantity = quantity;
         this.status = status;
+    }
+
+    public ServiceDTO(String name, int status, String MotelID) {
+        this.name = name;
+        this.status = status;
+        this.MotelID = MotelID;
     }
     
     

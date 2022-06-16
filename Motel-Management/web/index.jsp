@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="sample.motel.MotelDTO"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -258,7 +259,7 @@
                             </div>
                             <div class="motel-price d-flex justify-content-between">
                                 <p>7.0 Triệu</p>
-                                <button class="button--primary">Xem ngay</button>
+                                <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem ngay</a> 
                             </div>
                         </div>
                     </c:forEach>
