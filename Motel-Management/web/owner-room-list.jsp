@@ -190,6 +190,7 @@
                                     }
                                 %> 
                             </ul>
+
                             
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -264,7 +265,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="form-group mx-auto">
-                                                    <button class="btn btn-primary clickable-row" data-href="owner-room-list-details.html">
+                                                    <button class="btn btn-primary clickable-row" data-href="MainController?action=showRoomDetail&roomID=<%=room.getRoomId()%>&status=<%=room.getStatus()%>">
                                                         <span>Xem</span> 
                                                     </button>                                                   
                                                     <button class="btn btn-danger" data-toggle="modal" data-target="#deleteRoom">
@@ -319,7 +320,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Loại phòng</label>
-                                    <select name="typeofRoom" class="form-control col-md-7" name="pageSelector" onchange="other(event)">
+                                    <select name="typeofRoom" class="form-control col-md-7" onchange="other(event)">
                                         <option disabled selected>Choose type of room</option>
                                         <option value="#">Luxury</option>
                                         <option value="#">Normal</option>

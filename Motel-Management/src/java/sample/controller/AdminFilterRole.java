@@ -6,68 +6,39 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.owner.RoomDetailDAO;
-import sample.owner.RoomDetailDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
 import sample.users.UserDAO;
 import sample.users.UserDTO;
 
 /**
  *
- * @author Bao
+ * @author cao thi phuong thuy
  */
-@WebServlet(name = "OwnerShowRoomDetail", urlPatterns = {"/OwnerShowRoomDetail"})
-public class OwnerShowRoomDetail extends HttpServlet {
+@WebServlet(name = "AdminFilterRole", urlPatterns = {"/AdminFilterRole"})
+public class AdminFilterRole extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-room-list-details.jsp";
-    
+   private static final String ERROR ="admin-account.jsp";
+    private static final String SUCCESS ="admin-account.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
-        RoomDetailDAO Rdao =new RoomDetailDAO();
-        UserDAO Udao = new UserDAO();
-        ServiceDAO Sdao = new ServiceDAO();
+         String url= ERROR;
         try {
-            String roomID = request.getParameter("roomID");
-            int status = Integer.parseInt(request.getParameter("status"));
-            if(status == 1){
-                RoomDetailDTO roomDetail = Rdao.getRoomDetail(roomID);
-                if(roomDetail != null){
-                    request.setAttribute("ROOM_DETAIL", roomDetail);
-                    UserDTO userProfile = Udao.getUserProfile(roomDetail.getUserID());
-                    if(userProfile != null){
-                        request.setAttribute("USER_PROFILE", userProfile);
-                        List<ServiceDTO> servicelist = Sdao.getServiceBooking(roomDetail.getBookingID());
-                        url = SUCCESS;
-                        if(servicelist != null){
-                            request.setAttribute("SERVICE_LIST", servicelist);
-                            int totalRoom = Rdao.getBookingPrice(roomDetail.getBookingID());
-                            request.setAttribute("TOTAL_ROOM", totalRoom);
-                        }
-                    }        
-                }
-            }else{
-                RoomDetailDTO roomDetail = Rdao.getRoomDetailNull(roomID);
-                if(roomDetail != null){
-                    request.setAttribute("ROOM_DETAIL", roomDetail);
-                    url = SUCCESS;
-                }
+            String role=request.getParameter("role");
+            UserDAO dao= new UserDAO();
+            List<UserDTO> listUser = dao.getFilterRole(role);
+            if(listUser.size()>0){
+                request.setAttribute("LIST_ACC", listUser);
+                url=SUCCESS;
             }
-            
         } catch (Exception e) {
-            log("Error at OwnerShowRoomDetail: "+e.toString());
-        } finally {
+            log("Error at SearchController: "+e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

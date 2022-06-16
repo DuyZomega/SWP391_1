@@ -25,6 +25,7 @@
         <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
         <!-- Data-Table -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
     </head>
     <body>
         <%
@@ -47,7 +48,7 @@
                         </div>
 
                         <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                            <a href="#">
+                            <a href="userhistorybooking">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử đặt phòng</span>
                             </a>
@@ -153,7 +154,12 @@
                                                         <td>Đã thanh toán</td>
                                                         <td>
                                                             <div class="d-flex">
-                                                                <a href="UserManager?action=feedback?userId=<%=loginUser.getUserId()%>&motelID=<%= history.getMotelID()%>" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>
+                                                                <!--<a href="UserManager?action=feedback?userId=<%=loginUser.getUserId()%>&motelID=<%= history.getMotelID()%>" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>-->
+                                                                <div class="add-room">
+                                                                    <button data-toggle="modal"  data-target="#feedback" class="btn btn-info m-b-xs shadow btn-xs sharp me-1">
+                                                                        <span>Đánh giá</span>
+                                                                    </button>
+                                                                </div>
                                                                 <a href="#" class="btn btn-danger shadow btn-xs sharp">Report</a>
                                                             </div>  
 
@@ -172,8 +178,76 @@
                                                         <%
                                                             }
                                                         %>
-                                                    </tr>
-                                                    <% }%>   
+                                                        <!-- feedback form -->
+                                                <div id="feedback" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                        <div class="modal-content modal-addRoom">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Đánh giá đơn hàng</h4>
+                                                            </div>
+                                                            <form action="UserManager">
+                                                                <div class="modal-body">
+                                                                    <div class="row p-4">
+                                                                        <div class="col-12">
+                                                                            <div class="row form-group">
+                                                                                <label for="firstname" class="col-md-3 col-form-label text-md-right">Rating</label>
+                                                                                <select name="typeofRoom" class="form-control col-md-7" name="pageSelector" onchange="other(event)">
+                                                                                    <option disabled selected>Choose type of room</option>
+                                                                                    <option value="#">Luxury</option>
+                                                                                    <option value="#">Normal</option>
+                                                                                    <option value="custom">Other</option>
+                                                                                </select>
+                                                                                <input type="text" name="roomType" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"
+                                                                                       placeholder="Loại phòng" required>
+                                                                                <input type="text" id="otherid1" name="price" placeholder="Giá Phòng" required 
+                                                                                       class="form-control offset-md-1 col-md-3 mt-2" style="display: none;"> 
+                                                                            </div>
+                                                                            <div class="form-rating">
+                                                                                <div class="form-rating-container pull-left row form-group">
+                                                                                    <input id="rating-5" type="radio" checked="" name="rating" value="5">
+                                                                                    <label class="fa fa-stack pull-right" for="rating-5">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i>
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </label>
+                                                                                    <input id="rating-4" type="radio" name="rating" value="4">
+                                                                                    <label class="fa fa-stack pull-right" for="rating-4">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i>
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </label>
+                                                                                    <input id="rating-3" type="radio" name="rating" value="3">
+                                                                                    <label class="fa fa-stack pull-right" for="rating-3">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i>
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </label>
+                                                                                    <input id="rating-2" type="radio" name="rating" value="2">
+                                                                                    <label class="fa fa-stack pull-right" for="rating-2">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i>
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </label>
+                                                                                    <input id="rating-1" type="radio" name="rating" value="1">
+                                                                                    <label class="fa fa-stack pull-right" for="rating-1">
+                                                                                        <i class="fa fa-star fa-stack-1x"></i>
+                                                                                        <i class="fa fa-star-o fa-stack-1x"></i>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row form-group">
+                                                                                <label for="firstname" class="col-md-3 col-form-label text-md-right">Nội dung</label>
+                                                                                <textarea type="text" placeholder="Mô tả phòng..." required class="form-control col-md-7" rows="3"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <button class="btn btn-success" type="submit" action="feedback">Đánh giá</button>
+                                                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </tr>
+                                                <% }%>   
 
                                                 </tbody>
                                             </table>
@@ -193,6 +267,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/fontawesome.min.js"></script>
+
         <script src="assets/js/owner-script.js"></script>
     </body>
 </html>

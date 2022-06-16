@@ -9,6 +9,7 @@ package sample.owner;
  * @author Bao
  */
 public class RoomDetailDTO {
+    private String userID;
     private int status;
     private String bookingID;
     private String roomID;
@@ -100,7 +101,18 @@ public class RoomDetailDTO {
         this.time = time;
     }
 
-    public RoomDetailDTO(int status, String bookingID, String roomID, String roomType, String motelID, String address, String district, String city, String bookingDate, int time) {
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    
+    
+
+    public RoomDetailDTO(String userID,int status, String bookingID, String roomID, String roomType, String motelID, String address, String district, String city, String bookingDate, int time) {
+        this.userID = userID;
         this.status = status;
         this.bookingID = bookingID;
         this.roomID = roomID;
@@ -114,6 +126,7 @@ public class RoomDetailDTO {
     }
 
     public RoomDetailDTO() {
+        this.userID = "";
         this.status = 0;
         this.bookingID = "";
         this.roomID = "";
