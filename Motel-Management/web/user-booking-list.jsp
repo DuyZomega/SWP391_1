@@ -4,6 +4,9 @@
     Author     : cao thi phuong thuy
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.owner.HistoryDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +27,14 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     </head>
     <body>
+        <%
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            if (loginUser == null || !loginUser.getRole().equals("US")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
+        %>
+
         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
@@ -34,13 +45,6 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <%
-                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-//                            if (loginUser == null || !loginUser.getRole().equals("US")) {
-//                                response.sendRedirect("login.jsp");
-//                                return;
-//                            }
-%>
 
                         <li class="active" data-toggle="tooltip"data-placement="right" title="Lịch sử">
                             <a href="#">
@@ -107,58 +111,83 @@
         </div>
         <!-- End header -->
 
-       <div class="main-content">
-                <div class="main">
-                    <div class="container-fluid">
-                        <section>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table id="myTable" class="table table-hover table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Mã Đặt Phòng</th>
-                                                            <th>Mã Motel</th>
-                                                            <th>Mã Phòng</th>
-                                                            <th>Tên Người Thuê</th>
-                                                            <th>Trạng Thái</th>
-                                                            <th>Số Dịch Vụ</th>
-                                                            <th>PT Thanh Toán</th>
-                                                            <th>Ngày Nhận Phòng</th>
-                                                            <th>Tổng Tiền</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        
-                                                        <tr class='clickable-row' data-href="owner-history-detail.html" 
-                                                            data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
-                                                            <td>booking01</td>
-                                                            <td>587416594</td>
-                                                            <td>012414785</td>
-                                                            <td>Ho Khanh Duy</td>
-                                                            <td>Đã Thanh Toán</td>
-                                                            <td>1</td>
-                                                            <td>Tien mat</td>
-                                                            <td>2001-05-07</td>
-                                                            <td>59900&#8363;</td>
+        <div class="main-content">
+            <div class="main">
+                <div class="container-fluid">
+                    <section>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="myTable" class="table table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã đặt phòng</th>
+                                                        <th>Tên Motel</th>
+                                                        <th>Mã Phòng</th>
+                                                        <th>Ngày đặt phòng</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Tình trạng</th>
+                                                        <th>Action</th> <!-- đánh giá / hủy phòng trong 30p -->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        List<HistoryDTO> listHistory = (ArrayList<HistoryDTO>) request.getAttribute("LIST_HISTORY");
+                                                        for (HistoryDTO history : listHistory) {
+                                                            String status = "Đã Hủy";
 
-                                                        </tr>
-                                                                                                            
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                    %>
+                                                    <tr class='clickable-row' data-href="#" 
+                                                        data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                        <td><%= history.getBookingID()%></td>
+                                                        <td><%= history.getUserName()%></td>
+                                                        <td><%= history.getRoomID()%></td>
+                                                        <td><%= history.getDate()%></td>
+                                                        <td><%= history.getTotal()%></td>
+
+                                                        <%
+                                                            if (history.getStatus().equals("1")) {
+                                                        %>
+                                                        <td>Đã thanh toán</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="UserManager?action=feedback?userId=<%=loginUser.getUserId()%>&motelID=<%= history.getMotelID()%>" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>
+                                                                <a href="#" class="btn btn-danger shadow btn-xs sharp">Report</a>
+                                                            </div>  
+
+                                                        </td> 
+                                                        <%
+                                                            }
+                                                            if (history.getStatus().equals("0")) {
+                                                        %>
+                                                        <td>Proccessing</td>
+                                                        <td>
+                                                            <div class="d-flex">
+                                                                <a href="#" class="btn btn-danger shadow btn-xs sharp">Hủy phòng</a>
+                                                            </div>  
+
+                                                        </td>         
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </tr>
+                                                    <% }%>   
+
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <!-- /# card -->
                                 </div>
-                                <!-- /# column -->
+                                <!-- /# card -->
                             </div>
-                        </section>
-                    </div>
+                            <!-- /# column -->
+                        </div>
+                    </section>
                 </div>
             </div>
+        </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

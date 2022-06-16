@@ -31,6 +31,8 @@ public class UserManager extends HttpServlet {
     private static final String UPDATE_LIST = "update";
     private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateUser"; 
     
+    private static final String FEEDBACK_LIST = "feedback";
+    private static final String FEEDBACK_LIST_CONTROLLER = "UserFeedbackController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
