@@ -138,7 +138,7 @@ html body {
     top: 20px;
     left: 20px;
     bottom: 20px;
-    width: 230px;
+    width: 235px;
     border-radius: 20px;
     box-sizing: initial;
     background: #34495e;
@@ -337,7 +337,7 @@ html body {
 /* header */
 .header {
     position: fixed;
-    left: 250px;
+    left: 255px;
     float: right;
     width: calc(100% - 235px);
     z-index: 1;
@@ -576,6 +576,90 @@ html body {
 
 .cardFB table tbody tr:last-child {
     background: #cccccc;
+}
+
+
+/* motel */
+.home-card {
+    padding: 10px;
+    border-radius: 20px !important;
+    margin-bottom: 30px;
+}
+
+.home-card .home-img{
+    height: 80px;
+    width: 80px;
+    min-width: 80px;
+    border-radius: 0.35rem;
+    overflow: hidden;
+}
+
+.home-card .text {
+    color: #34495e;
+}
+
+.home-card .title {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.home-card .address-home {
+    color: #95a5a6;
+}
+
+.home-card .edit {
+    background: transparent;
+    border: 0;
+}
+
+.home-card .edit:hover {
+    text-decoration: none;
+    color: #34495e;
+}
+
+.badge {
+    line-height: 1.5 !important;
+    border-radius: 5px !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    padding: 4px 10px !important;
+    border: 1px solid transparent !important;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #27ae60 !important;
+}
+
+.home-card p {
+    color: #95a5a6;
+}
+
+.home-card .text-black {
+    color: #000;
+    font-weight: 500;
+}
+
+.home-card .text-black i {
+    padding: 10px;
+}
+
+.home-card .info-title {
+    color: #95a5a6;
+}
+
+.home-card .info-title span {
+    font-size: 500;
+}
+
+.home-card .turnover {
+    border: 1px dashed #95a5a6;
+    border-radius: 5px;
+    padding: 7px 13px;
+}
+
+.home-card .turnover span{
+    color: #95a5a6;
 }
 
 
@@ -828,8 +912,55 @@ figcaption {
 
 
 
-/* history-room */
+/* service */
+.service-list .card-header {
+    border-color: #EEEEEE;
+    position: relative;
+    background: transparent;
+    padding: 1.5rem 1.875rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.service-list .card-header button  i{
+    position: relative;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.service-list .card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    text-transform: capitalize; 
+}
+
+.service-list table.dataTable thead th {
+    position: relative !important;
+    font-size: 0.85rem !important;
+    background: none;
+    font-weight: 600;
+    color: #797979;
+    padding: 15px;
+} 
+
+.service-list table.dataTable tbody td {
+line-height: 35px;
+} 
+
+.table th, .table td {
+    padding: 0.75rem !important;
+    vertical-align: top !important;
+    border-top: 1px solid #EEEEEE !important;
+}
+
+.action-button i {
+    height: 20px;
+    width: 20px;
+}
+
+/* history-room */
 #myTable thead th {
     font-size: 13px;
 }
@@ -838,8 +969,40 @@ figcaption {
     cursor: pointer;
 }
 
+#save {
+    display: none;
+}
 
-/* history-room */
+
+/* history-room-details */
+.main-content .page-header h1 {
+    font-size: 18px;
+    padding: 14px 0;
+    margin: 0;
+}
+
+.main-content .page-header h1 span {
+    font-size: 14px;
+}
+
+.main-content .page-header .breadcrumb {
+    margin: 0;
+    padding: 15px;
+    background: transparent;
+    float: left;
+}
+
+.main-content .page-header .breadcrumb li.active {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.main-content .page-header .breadcrumb li a {
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+}
 
 .main-content .breadcrumb {
     background: transparent;
@@ -904,6 +1067,7 @@ figcaption {
     font-weight: 600;
     text-transform: uppercase;
 }
+
 
 
 
@@ -1028,58 +1192,6 @@ figcaption {
 
 
 
-
-
-
-
-
-
-
-.main-content .page-header h1 {
-    font-size: 18px;
-    padding: 14px 0;
-    margin: 0;
-}
-
-.main-content .page-header h1 span {
-    font-size: 14px;
-}
-
-.main-content .page-header .breadcrumb {
-    margin: 0;
-    padding: 15px;
-    background: transparent;
-    float: left;
-}
-
-.main-content .page-header .breadcrumb li.active {
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    font-size: 20px;
-}
-
-.main-content .page-header .breadcrumb li a {
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    display: block;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* notification */
 .email-left-box {
     width: 15rem;
@@ -1088,6 +1200,7 @@ figcaption {
     border-top: 0;
     border-left: 0; 
 }
+
 @media (min-width: 576px) and (max-width: 991.98px) {
     .email-left-box {
         width: 100%;
@@ -1132,7 +1245,6 @@ figcaption {
 }
 
 .email-left-box .intro-title {
-    background: var(--rgba-primary-1);
     padding: 1rem;
     margin: 1.875rem 0 1.25rem 0;
 }
@@ -1147,10 +1259,6 @@ figcaption {
     font-size: 0.75rem;
     position: relative;
     bottom: 1px;
-}
-
-.email-left-box .intro-title i {
-    color: var(--primary);
 }
 
 

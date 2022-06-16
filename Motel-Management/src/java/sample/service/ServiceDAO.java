@@ -17,14 +17,14 @@ import sample.utils.DBUtils;
 public class ServiceDAO {
     private static final String GET_SERVICE_BOOKING = "SELECT  s.ServiceID, s.ServiceName, s.Price, d.Quantity FROM tblBookingServiceDetail as d, tblService as s WHERE s.ServiceID = d.ServiceID AND BookingID = ?";
     private static final String GET_SERVICE = "SELECT  s.ServiceName, s.Status , m.MotelID FROM tblMotel as m, tblService as s WHERE s.MotelID = m.MotelID AND s.Status = 1";
-    public ServiceDTO getServiceBooking(String bookingID) throws SQLException {
-        ServiceDTO service = null;
+         public List<ServiceDTO> getServiceBooking(String bookingID) throws SQLException {
+        List<ServiceDTO> listService = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            if (conn != null) {
+            while (rs.next()) {
                 ptm = conn.prepareStatement(GET_SERVICE_BOOKING);
                 ptm.setString(1, bookingID);
                 rs = ptm.executeQuery();
@@ -33,7 +33,7 @@ public class ServiceDAO {
                     String serviceName = rs.getString("ServiceName");
                     int price = rs.getInt("Price");
                     int quantity = rs.getInt("Quantity");
-                    service = new ServiceDTO(serviceID, serviceName, price, quantity,1);
+                    listService.add(new ServiceDTO(serviceID, serviceName, price, quantity,1));
                 }
             }
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class ServiceDAO {
                 conn.close();
             }
         }
-        return service;
+        return listService;
     }
 public List<ServiceDTO> searchservice(String ownerID) throws SQLException {
         List<ServiceDTO> listService = new ArrayList();

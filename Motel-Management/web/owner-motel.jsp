@@ -162,7 +162,26 @@
                             </li>
                         </ol>
                     </div>
-                </div>         
+                </div>  
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="card home-card">
+                            <div class="card-body">
+                                <div class="d-flex mb-4 align-items-center">
+                                    <div class="home-img mr-3">
+                                        <img src="#" alt="ảnh nhà">
+                                    </div>
+                                    <div class="mr-auto">
+                                        <p class="text-primary mb-1">ID HOME</p>
+                                        <h5 class="title mb-2">HOME name</h5>
+                                        <span>Địa chỉ</span>
+                                    </div>
+                                    <span class="badge badge-success d-sm-inline-block d-none">Trạng thái</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
             </div>
         </div>
     </div>

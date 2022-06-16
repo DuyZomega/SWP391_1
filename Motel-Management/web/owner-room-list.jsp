@@ -308,7 +308,7 @@
                             <div class="col-12">
                                 <div class="row form-group">
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên Nhà Trọ</label>
-                                    <select name="MotelID" class="form-control col-md-7"">
+                                    <select name="MotelID" class="form-control col-md-7">
                                         <option disabled selected>Choose motel name to add room</option>
                                         <option value="#">ánh dương</option>
                                         <option value="#">Normal</option>
