@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
+import sample.owner.FeedbackDTO;
 import sample.utils.DBUtils;
 
 /**
@@ -574,6 +575,35 @@ public boolean checkDuplcate(String userId) throws SQLException {
             }
         }
         return listAcc; 
+    
+    }
+
+    public boolean insertFeedback(FeedbackDTO feedback) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "INSERT INTO tblFeedback(feedbackID, desct, ratings, motelID, bookingID, status) "
+                        + " VALUES(?,?,?,?,?,1)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, feedback.getFeedbackID());
+                stm.setString(2, feedback.getDesc());
+                stm.setInt(3, feedback.getRating());
+                stm.setString(4, feedback.getMotelID());
+                stm.setString(5, feedback.getFeedbackID());
+                check = stm.executeUpdate() > 0;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     
     }
 }

@@ -9,6 +9,7 @@ package sample.owner;
  * @author Bao
  */
 public class FeedbackDTO {
+    private String userId;
     private String feedbackID;
     private String userName;
     private String desc;
@@ -25,7 +26,21 @@ public class FeedbackDTO {
         this.image = "";
     }
     
-    
+     public FeedbackDTO(String userId, String feedbackID, String desc, int rating, String MotelID) {
+        this.userId = userId;
+        this.feedbackID = feedbackID;
+        this.desc = desc;
+        this.rating = rating;
+        this.MotelID = MotelID;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
 
     public FeedbackDTO(String feedbackID, String userName, String desc, int rating, String MotelID, String image) {
         this.feedbackID = feedbackID;

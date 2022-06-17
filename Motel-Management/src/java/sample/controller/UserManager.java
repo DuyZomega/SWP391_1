@@ -51,6 +51,8 @@ public class UserManager extends HttpServlet {
                 url = DELETE_LIST_CONTROLLER;
             }else if (FILTER_LIST.equals(action)){
                 url = FILTER_LIST_CONTROLLER;
+            }else if (FEEDBACK_LIST.equals(action)){
+                url = FEEDBACK_LIST_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: "+e.toString());
