@@ -126,7 +126,8 @@
                                 <p><i class="fas fa-history"></i> một ngày trước</p>
                             </div>
                             <div class="motel-price d-flex justify-content-between">
-                                <p> <span class="badge-info">Chỉ từ: </span>${o.motelprice}</p>
+                                <p> <span class="badge-info">
+                                        Chỉ từ: </span>${o.motelprice}</p>
                                 <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem ngay</a> 
                             </div>
                         </div>
