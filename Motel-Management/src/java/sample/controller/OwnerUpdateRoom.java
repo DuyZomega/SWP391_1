@@ -6,73 +6,42 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.owner.RoomDetailDAO;
-import sample.owner.RoomDetailDTO;
-import sample.room.RoomTypeDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
+import sample.room.RoomDAO;
 
 /**
  *
  * @author Bao
  */
-@WebServlet(name = "OwnerShowRoomDetail", urlPatterns = {"/OwnerShowRoomDetail"})
-public class OwnerShowRoomDetail extends HttpServlet {
+@WebServlet(name = "OwnerUpdateRoom", urlPatterns = {"/OwnerUpdateRoom"})
+public class OwnerUpdateRoom extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-room-list-details.jsp";
+    private static final String SUCCESS = "OwnerShowRoomDetail";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        RoomDetailDAO Rdao =new RoomDetailDAO();
-        UserDAO Udao = new UserDAO();
-        ServiceDAO Sdao = new ServiceDAO();
         try {
             String roomID = request.getParameter("roomID");
-            int status = Integer.parseInt(request.getParameter("status"));
-            if(status == 1){
-                RoomDetailDTO roomDetail = Rdao.getRoomDetail(roomID);
-                if(roomDetail != null){
-                    request.setAttribute("ROOM_DETAIL", roomDetail);
-                    UserDTO userProfile = Udao.getUserProfile(roomDetail.getUserID());
-                    if(userProfile != null){
-                        request.setAttribute("USER_PROFILE", userProfile);
-                        List<ServiceDTO> servicelist = Sdao.getServiceBooking(roomDetail.getBookingID());
-                        url = SUCCESS;
-                        if(servicelist != null){
-                            request.setAttribute("SERVICE_LIST", servicelist);
-                            int totalRoom = Rdao.getBookingPrice(roomDetail.getBookingID());
-                            request.setAttribute("TOTAL_ROOM", totalRoom);
-                        }
-                    }        
-                }
+            String roomName = request.getParameter("roomName");
+            String roomTypeID = request.getParameter("roomTypeID");
+            RoomDAO dao = new RoomDAO();
+            boolean check = dao.updateRoom(roomID, roomName, roomTypeID);
+            if (check){
+                url = SUCCESS;
+                request.setAttribute("MESSAGE", "cập nhật thông tin phòng thành công !");
             }else{
-                RoomDetailDTO roomDetail = Rdao.getRoomDetailNull(roomID);
-                if(roomDetail != null){
-                    request.setAttribute("ROOM_DETAIL", roomDetail);
-                    request.setAttribute("TOTAL_ROOM", 0);
-                    List<RoomTypeDTO> listRoomtype = Rdao.getRoomType(roomDetail.getMotelID());
-                    if (listRoomtype != null){
-                        request.setAttribute("LIST_ROOMTYPE", listRoomtype);
-                        url = SUCCESS;
-                    }
-                }
+                request.setAttribute("MESSAGE", "Cập Nhật Thất Bại");
             }
             
         } catch (Exception e) {
-            log("Error at OwnerShowRoomDetail: "+e.toString());
+            log("Error at OwnerUpdateRoom: "+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
