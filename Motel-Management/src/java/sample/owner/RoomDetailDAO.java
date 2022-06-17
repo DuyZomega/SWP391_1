@@ -17,7 +17,7 @@ import sample.utils.DBUtils;
  */
 public class RoomDetailDAO {
     private static final String GET_ROOM_DETAIL="SELECT b.UserID, r.Status, b.BookingID, r.RoomID, rt.TypeName,m.MotelID,m.Address, dt.Name as district, c.Name as city, b.BookingDate,bd.Time FROM tblCity as c, tblDistrict as dt, tblMotel as m, tblRoomType as rt, tblRoom as r,tblBookingDetail as bd, tblBooking as b\n" +
-                                            "WHERE c.CityID = dt.CityID AND dt.DistrictID = m.DistrictID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND r.RoomID= ? AND b.Status =0";
+                                            "WHERE c.CityID = dt.CityID AND dt.DistrictID = m.DistrictID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND r.RoomID= ? AND b.Status =2";
     private static final String GET_BOOKING_PRICE ="SELECT b.BookingID, r.RoomID, rt.Price, bd.Time FROM tblBooking as b , tblBookingDetail as bd, tblRoom as r, tblRoomType as rt \n" +
                                                    "WHERE b.BookingID = bd.BookingID AND bd.RoomID = r.RoomID AND r.RoomTypeID = rt.RoomTypeID AND b.BookingID = ?";
     private static final String GET_ROOM_DETAIL_NULL = "SELECT  r.Status, r.RoomID, rt.TypeName,m.MotelID,m.Address, dt.Name as district, c.Name as city FROM tblCity as c, tblDistrict as dt, tblMotel as m, tblRoomType as rt, tblRoom as r\n" +
