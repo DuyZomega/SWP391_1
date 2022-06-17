@@ -77,5 +77,34 @@ public class ReportDAO {
             }
         }
         return result;}
+
+     public boolean insertReport(ReportDTO report) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "INSERT INTO tblReport(reportID, motelID, desct, title, userID, date, status) "
+                        + " VALUES(?,?,?,?,?,?,?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, report.getReportID());
+                stm.setString(2, report.getMotelID());
+                stm.setString(3, report.getDesct());
+                stm.setString(4, report.getTitle());
+                stm.setString(5, report.getUserId());
+                stm.setString(6, report.getDate());
+                stm.setInt(7, report.getStatus());
+                check = stm.executeUpdate() > 0;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;}
     
 }
