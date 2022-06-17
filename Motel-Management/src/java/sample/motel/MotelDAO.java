@@ -121,7 +121,7 @@ public List<MotelDTO> getListMotel() throws SQLException {
                     String image = rs.getString("image");
                     String name = rs.getString("name");
                     String phone = rs.getString("phone");
-                    String Desct = rs.getString("Desct");
+                    String desct = rs.getString("Desct");
                     String address = rs.getString("address");
                     String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
@@ -129,7 +129,7 @@ public List<MotelDTO> getListMotel() throws SQLException {
                     String typename = rs.getString("TypeName");
                     double price = rs.getDouble("Price");
                     int status = rs.getInt("status");
-                    listMotel.add(new MotelDTO(motelID, name, image, phone, Desct, address, district, city, rating, typename ,price, status));
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, desct, address, district, city, rating, typename ,price, status));
                 }
             }
         } catch (Exception e) {
