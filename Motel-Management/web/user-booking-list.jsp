@@ -155,9 +155,9 @@
                                                         <td><%= history.getTotal()%></td>
 
                                                         <%
-                                                            if (history.getStatus().equals("1") || history.getStatus().equals("2")) {
+                                                            if (history.getStatus().equals("1")) {
                                                         %>
-                                                        <td>Đã thanh toán</td>
+                                                        <td>Đã hoàn thành</td>
                                                         <td>
                                                             <div class="d-flex">
                                                                 <!--<a href="UserManager?action=feedback?userId=<%=loginUser.getUserId()%>&motelID=<%= history.getMotelID()%>" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>-->
@@ -218,18 +218,44 @@
 
                                                 <!-- end feedback -->
                                                 <%
-                                                    }
-                                                    if (history.getStatus().equals("0")) {
+                                                } else if (history.getStatus().equals("0") || history.getStatus().equals("2")) {
                                                 %>
-                                                <td>Proccessing</td>
+                                                <td>Đang thực hiện</td>
                                                 <td>
-                                                    <div class="d-flex">
-                                                        <a href="#" class="btn btn-danger shadow btn-xs sharp">Hủy phòng</a>
-                                                    </div>  
+<!--                                                    <div class="d-flex">
+                                                        <a href="UserManager?action=cancel&bookingID=<%= history.getBookingID()%>&roomID=<%= history.getRoomID()%>" class="btn btn-danger shadow btn-xs sharp">Hủy phòng</a>
+                                                    </div>  -->
 
-                                                </td>         
+                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#removeRoom">
+                                                        <span>Hủy Phòng</span> 
+                                                    </button> 
+                                                </td>        
+                                                
+                                                <div id="removeRoom" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="content">
+                                                        <div class="modal-content">
+                                                                <div class="card-body">
+                                                                    <div class="del-title">
+                                                                        <i class='bx bx-error-circle'></i>
+                                                                        <h2>Bạn muốn hủy phòng ?</h2> 
+                                                                    </div>
+                                                                    <div class="del-submit d-flex justify-content-center">
+                                                                        <button class="btn btn-success"><a href="UserManager?action=cancel&bookingID=<%= history.getBookingID()%>&roomID=<%= history.getRoomID()%>" style="color: white">Xác Nhận</a></button>
+                                                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <%
-                                                    }
+                                                } else if (history.getStatus().equals("3")) {%>
+                                                <td>Đã hủy</td>
+                                                <td>
+                                                    <div >
+                                                        <a href="ShowAllMotelController" class="btn btn-primary clickable-row">Xem lại phòng</a>
+                                                    </div>  
+                                                </td>      
+                                                <%}
                                                 %>
                                                 <!-- feedback form -->
                                                 </tr>

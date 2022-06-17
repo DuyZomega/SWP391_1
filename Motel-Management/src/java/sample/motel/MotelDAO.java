@@ -327,4 +327,54 @@ public List<MotelDTO> getFilterMotel() throws SQLException {
     }
     
     /*admin*/
+private static final String CANCEL_BOOKING = "UPDATE tblBooking SET Status = 3 WHERE bookingID =?";
+    public boolean cancelBooking(String bookingID) throws SQLException {
+      boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CANCEL_BOOKING);
+                ptm.setString(1, bookingID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+private static final String CANCEL_ROOM = "UPDATE tblRoom SET Status = 0 WHERE roomID =?";
+    public boolean cancelRoom(String roomID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CANCEL_ROOM);
+                ptm.setString(1, roomID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    /*admin*/
 }

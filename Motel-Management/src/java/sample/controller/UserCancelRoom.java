@@ -11,55 +11,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.motel.MotelDAO;
 
 /**
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "UserManager", urlPatterns = {"/UserManager"})
-public class UserManager extends HttpServlet {
+@WebServlet(name = "UserCancelRoom", urlPatterns = {"/UserCancelRoom"})
+public class UserCancelRoom extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String USER_LIST = "all";
-    private static final String USER_LIST_CONTROLLER = "AdminListUser";
-    
-   private static final String DETAIL_LIST = "detail";
-  private static final String DETAIL_LIST_CONTROLLER = "AdminDetailUser";
-    
-    private static final String DELETE_LIST = "delete";
-    private static final String DELETE_LIST_CONTROLLER = "AdminDeleteUser"; 
-    private static final String UPDATE_LIST = "update";
-    private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateUser"; 
-    
-    private static final String FEEDBACK_LIST = "feedback";
-    private static final String FEEDBACK_LIST_CONTROLLER = "UserFeedbackController";
-    private static final String FILTER_LIST = "filter";
-    private static final String FILTER_LIST_CONTROLLER = "AdminFilterRole";
-    private static final String CANCEL_ROOM = "cancel";
-    private static final String CANCEL_ROOM_CONTROLLER = "UserCancelRoom";
+    private static final String SUCCESS = "userhistorybooking";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        MotelDAO dao = new MotelDAO();
         try {
-            String action = request.getParameter("action");
-            if(USER_LIST.equals(action)){
-                url = USER_LIST_CONTROLLER;
-            }else if (UPDATE_LIST.equals(action)){
-                url = UPDATE_LIST_CONTROLLER;
-            }else if (DETAIL_LIST.equals(action)){
-                url = DETAIL_LIST_CONTROLLER;
-            }else if (DELETE_LIST.equals(action)){
-                url = DELETE_LIST_CONTROLLER;
-            }else if (FILTER_LIST.equals(action)){
-                url = FILTER_LIST_CONTROLLER;
-            }else if (FEEDBACK_LIST.equals(action)){
-                url = FEEDBACK_LIST_CONTROLLER;
-            }else if (CANCEL_ROOM.equals(action)){
-                url = CANCEL_ROOM_CONTROLLER;
+            String bookingID = request.getParameter("bookingID");
+            String roomID = request.getParameter("roomID");
+            boolean checkCancel = dao.cancelBooking(bookingID);
+            if (checkCancel) {
+                boolean checkRoom = dao.cancelRoom(roomID);
+                if (checkRoom) {
+                    url = SUCCESS;
+
+                    request.setAttribute("SUCCESS", "Cập nhật thành công");
+                }
             }
         } catch (Exception e) {
-            log("Error at MainController: "+e.toString());
+            log("Error at OwnerCreateMotelController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
