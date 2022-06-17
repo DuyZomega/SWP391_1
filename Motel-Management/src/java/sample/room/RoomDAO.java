@@ -18,64 +18,11 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class RoomDAO {
-    private static final String SHOW_ROOM = "SELECT RoomID, Name, tblRoomType.TypeName, Price, Desct, tblRoom.Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID AND (tblRoom.Status = 0 OR tblRoom.Status = 1 ) ";
+    private static final String SHOW_ROOM = "SELECT RoomID, Name, tblRoomType.TypeName, Price, Desct, tblRoom.Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID ";
     private static final String CHECK_ROOMID = "SELECT RoomID FROM tblRoom Where RoomID = ? ";
     private static final String CHECK_ROOMTYPEID = "SELECT RoomTypeID FROM tblRoomType Where RoomTypeID = ?";
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
     private static final String CREATE_ROOMTYPE = "INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct], [MotelID]) VALUES(?,?,?,?,?,?)";
-    private static final String DELETE_ROOM = "UPDATE tblRoom SET Status = 2 WHERE RoomID = ?";
-    private static final String UPDATE_ROOM = "UPDATE tblRoom SET Name = ?, RoomTypeID = ? WHERE RoomID = ?"; 
-    
-    public boolean updateRoom(String roomID, String Name,String roomTypeID ) throws SQLException {
-        boolean check = false;
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(UPDATE_ROOM);
-                ptm.setString(1, Name);
-                ptm.setString(2, roomTypeID);
-                ptm.setString(3, roomID);
-                check = ptm.executeUpdate() > 0 ? true : false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return check;
-
-    }
-    
-    public boolean deleteRoom(String roomID) throws SQLException {
-        boolean check = false;
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(DELETE_ROOM);
-                ptm.setString(1, roomID);
-                check = ptm.executeUpdate() > 0 ? true : false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return check;
-    }
     
     public boolean createRoomType(String roomTypeID, String typeName,int price, String image,String desct, String motelID) throws SQLException {
         boolean check = false;

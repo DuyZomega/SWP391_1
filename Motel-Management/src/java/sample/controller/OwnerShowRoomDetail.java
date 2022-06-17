@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.owner.RoomDetailDAO;
 import sample.owner.RoomDetailDTO;
-import sample.room.RoomTypeDTO;
 import sample.service.ServiceDAO;
 import sample.service.ServiceDTO;
 import sample.users.UserDAO;
@@ -63,11 +62,7 @@ public class OwnerShowRoomDetail extends HttpServlet {
                 if(roomDetail != null){
                     request.setAttribute("ROOM_DETAIL", roomDetail);
                     request.setAttribute("TOTAL_ROOM", 0);
-                    List<RoomTypeDTO> listRoomtype = Rdao.getRoomType(roomDetail.getMotelID());
-                    if (listRoomtype != null){
-                        request.setAttribute("LIST_ROOMTYPE", listRoomtype);
-                        url = SUCCESS;
-                    }
+                    url = SUCCESS;
                 }
             }
             

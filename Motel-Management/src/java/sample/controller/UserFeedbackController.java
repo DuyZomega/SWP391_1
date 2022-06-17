@@ -5,12 +5,13 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.owner.FeedbackDTO;
+import sample.users.UserDAO;
 
 /**
  *
@@ -26,17 +27,22 @@ public class UserFeedbackController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
          String url = ERROR;
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserFeedbackController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserFeedbackController SUCCESS " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        UserDAO dao = new UserDAO();
+        try {
+            String feedbackID = request.getParameter("bookingID");
+            String userID = request.getParameter("userID");
+            int rating = Integer.parseInt(request.getParameter("rating"));
+            String desct = request.getParameter("desct");
+            String motelID = request.getParameter("motelID");
+             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID);
+            boolean checkInsert = dao.insertFeedback(feedback);
+                if (checkInsert) {
+                    url = SUCCESS;
+                }
+        } catch (Exception e) {
+            log("Error at OwnerCreateMotelController:"+e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

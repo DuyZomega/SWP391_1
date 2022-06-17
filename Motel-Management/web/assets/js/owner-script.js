@@ -74,24 +74,11 @@ function success() {
 $(document).ready(function () {
     //data-table
     $('#myTable').DataTable();
-});
 
-<<<<<<< Updated upstream
-=======
-$(document).ready(function () {
-    // change page history detail
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
-
-$(document).ready(function () {
-
->>>>>>> Stashed changes
     $("td:has(#input)").click(function() {
         $("#input", this).removeAttr("disabled");
     });
-});
+} );
 
 
 $(document).ready(function () {
@@ -212,13 +199,9 @@ function other(event) {
     if (event.target.value === 'custom') {
         document.getElementById("otherid").style.display = "block";
         document.getElementById("otherid1").style.display = "block";
-        document.getElementById("otherid2").style.display = "block";
-        document.getElementById("customFile").style.display = "block";
     } else {
         document.getElementById("otherid").style.display = "none";
         document.getElementById("otherid1").style.display = "none";
-        document.getElementById("otherid2").style.display = "none";
-        document.getElementById("customFile").style.display = "none";
     }
 }
 
@@ -230,7 +213,7 @@ $("#motelid").change(function() {
     $("#typyRoom option:not(." + cat + ")").hide(); // you hide every option that don't have your selected value as a class
     $("#typyRoom option." + cat).show(); // you only show selected options
     $("#typyRoom").val(""); //reset the previously selected value
-});
+  });
 
 
 
