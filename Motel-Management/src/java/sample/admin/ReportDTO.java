@@ -16,6 +16,25 @@ public class ReportDTO {
     private String title;
     private String desct;
     private int status;
+    private String date;
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public ReportDTO(String reportID, String userId, String motelID, String title, String desct, int status, String date) {
+        this.reportID = reportID;
+        this.userId = userId;
+        this.motelID = motelID;
+        this.title = title;
+        this.desct = desct;
+        this.status = status;
+        this.date = date;
+    }
 
     public String getReportID() {
         return reportID;

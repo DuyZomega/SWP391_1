@@ -16,7 +16,7 @@ import sample.utils.DBUtils;
  */
 public class ServiceDAO {
     private static final String GET_SERVICE_BOOKING = "SELECT  s.ServiceID, s.ServiceName, s.Price, d.Quantity FROM tblBookingServiceDetail as d, tblService as s WHERE s.ServiceID = d.ServiceID AND BookingID = ?";
-    private static final String GET_SERVICE = "SELECT  s.ServiceName, s.Status , m.MotelID FROM tblMotel as m, tblService as s WHERE s.MotelID = m.MotelID AND s.Status = 1";
+    private static final String GET_SERVICE = "SELECT  s.ServiceName, s.Status  FROM tblMotel as m, tblService as s WHERE s.MotelID = m.MotelID AND s.Status = 1 AND m.MotelID =?";
          public List<ServiceDTO> getServiceBooking(String bookingID) throws SQLException {
         List<ServiceDTO> listService = new ArrayList();
         Connection conn = null;
@@ -51,7 +51,7 @@ public class ServiceDAO {
         }
         return listService;
     }
-public List<ServiceDTO> searchservice(String ownerID) throws SQLException {
+public List<ServiceDTO> searchservice(String motelID) throws SQLException {
         List<ServiceDTO> listService = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -60,13 +60,12 @@ public List<ServiceDTO> searchservice(String ownerID) throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_SERVICE);
-                ptm.setString(1,ownerID);
+                ptm.setString(1,motelID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    String motelID = rs.getString("MotelID");
                     String serviceName = rs.getString("ServiceName");
                     int status = rs.getInt("Status");
-                    listService.add(new ServiceDTO(serviceName,status,motelID));
+                    listService.add(new ServiceDTO(serviceName,status));
                 }
             }
         } catch (Exception e) {

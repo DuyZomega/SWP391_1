@@ -10,6 +10,7 @@ package sample.motel;
  * @author Bao
  */
 public class MotelDTO {
+
     private String motelID;
     private String name;
     private String image;
@@ -25,8 +26,6 @@ public class MotelDTO {
     private double motelprice;
     private String ownerId;
     private int status;
-    
-  
 
     public String getMotelID() {
         return motelID;
@@ -132,8 +131,6 @@ public class MotelDTO {
         this.motelprice = motelprice;
     }
 
-
-
     public double getServiceprice() {
         return serviceprice;
     }
@@ -150,12 +147,7 @@ public class MotelDTO {
         this.typename = typename;
     }
 
-
-
-
-    
-    
-    public MotelDTO(){
+    public MotelDTO() {
         this.motelID = "";
         this.name = "";
         this.image = "";
@@ -168,29 +160,16 @@ public class MotelDTO {
         this.ownerId = "";
         this.status = 0;
         this.service = "";
-        this.serviceprice=0;
+        this.serviceprice = 0;
         this.motelprice = 0;
     }
 
-    public MotelDTO(String motelID, String name,String image, String phone, String desct ,String address , String district,String city, double rating, String ownerId, int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String Desct, String address, String district, String city, double rating, String ownerId, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
         this.phone = phone;
-        this.Desct = desct;
-        this.address = address;
-        this.district = district;
-        this.city = city;
-        this.rating = rating;
-        this.ownerId = ownerId;
-        this.status = status;
-    }
-    
-        public MotelDTO(String motelID, String name, String image, String phone, String address, String district, String city, double rating, String ownerId, int status) {
-        this.motelID = motelID;
-        this.name = name;
-        this.image = image;
-        this.phone = phone;
+        this.Desct = Desct;
         this.address = address;
         this.district = district;
         this.city = city;
@@ -199,15 +178,16 @@ public class MotelDTO {
         this.status = status;
     }
 
-    public MotelDTO(String motelID, String name, String image, String phone, String address, String district, double rating, String ownerId, int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String address, String district, String city, double rating, String typename, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
         this.phone = phone;
         this.address = address;
         this.district = district;
+        this.city = city;
         this.rating = rating;
-        this.ownerId = ownerId;
+        this.typename = typename;
         this.status = status;
     }
 
@@ -223,7 +203,7 @@ public class MotelDTO {
         this.status = status;
     }
 
- public MotelDTO(String motelID, String name, String image, String phone, String Desct, double rating,int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String Desct, double rating, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
@@ -247,8 +227,5 @@ public class MotelDTO {
         this.motelprice = motelprice;
         this.status = status;
     }
-
-
-
 
 }

@@ -1,5 +1,6 @@
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.room.RoomDTO"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page import="java.util.List"%>
@@ -144,77 +145,72 @@
 <section class="content spacing">
     <div class="container py-4">
         <div class="row">
-            <%
-                List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL1");
-                if (listMotel != null) {
-                    if (listMotel.size() > 0) {
-                        for (MotelDTO motel : listMotel) {
+            <c:if test="${requestScope.LIST_MOTEL2 != null}">
+                <c:if test="${not empty requestScope.LIST_MOTEL2}">
 
-            %>
-            <div class="col-12 content__title d-flex justify-content-between align-items-center">
-                <div class="content__title-left">
-                    <h3 class="heading"><%= motel.getName()%></h3>
-                    <p><%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></p>
-                </div>
-            </div>
-            <%
-                        }
-                    }
-                }
-            %> 
-            <div class="col-9">
-                <!-- item -->
-                <div class="content__item">
-                    <div class="fotorama" data-nav="thumbs">
-                        <a href="https://s.fotorama.io/1.jpg"><img src="https://s.fotorama.io/1.jpg" width="144"
-                                                                   height="96"></a>
-                        <a href="https://s.fotorama.io/2.jpg"><img src="https://s.fotorama.io/2.jpg" width="144"
-                                                                   height="96"></a>
-                    </div>
-                    <div class="item-price">
-                        <p>3 triệu</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="content__describe">
-                    <h3 class="heading">Mô tả</h3>
-                    <p>Không có mô tả nào</p>
-                </div>
-                <hr>
-                <div class="content__describe">
-                    <h3 class="heading">Tiện ích</h3>
-                    <p>Chưa thiết lập cơ sở vật chất cho nhà.</p>
-                </div>
-                <hr>
-                <div class="content__feedback container-fluid">
-                    <div class="row">
-                        <h3 class="col-12 p-0 heading">Đánh giá</h3>
-                        <div class="box-name col-6 p-0">
-                            <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
-                        </div>
-                        <div class="box-rate col-6">
-                            <label for="">Đánh giá</label>
-                            <div class="stars">
-                                <form action="">
-                                    <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                    <label class="star star-5" for="star-5"></label>
-                                    <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                    <label class="star star-4" for="star-4"></label>
-                                    <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                    <label class="star star-3" for="star-3"></label>
-                                    <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                    <label class="star star-2" for="star-2"></label>
-                                    <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                    <label class="star star-1" for="star-1"></label>
-                                </form>
+                    <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL2}">
+                        <div class="col-12 content__title d-flex justify-content-between align-items-center">
+                            <div class="content__title-left">
+                                <h3 class="heading">${o.name}</h3>
+                                <p>${o.address},${o.district},${o.city}</p>
                             </div>
                         </div>
-                        <div class="box-comment col-12 p-0">
-                            <textarea name="#" id="" cols="30" rows="10" placeholder="Hãy nói lên cảm nghĩ của bạn..."></textarea>
-                        </div>
-                        <div class="box-send col-12 text-center">
-                            <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
-                        </div>
+                        <div class="col-9">
+                            <!-- item -->
+                            <div class="content__item">
+                                <div class="fotorama" data-nav="thumbs">
+                                    <a href="${o.image}"><img src="${o.image}" width="144"
+                                                                               height="96"></a>
+                                    <a href="${o.image}"><img src="${o.image}" width="144"
+                                                                               height="96"></a>
+                                </div>
+                                <div class="item-price">
+                                    <p>${o.motelprice}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="content__describe">
+                                <h3 class="heading">Mô tả</h3>
+                                <p>${o.desct}</p>
+                            </div>
+                            <hr>
+                            <div class="content__describe">
+                                <h3 class="heading">Tiện ích</h3>
+                                <p>${o.desct}</p>
+                            </div>
+                            <hr>
+                            <div class="content__feedback container-fluid">
+                                <div class="row">
+                                    <h3 class="col-12 p-0 heading">Đánh giá</h3>
+                                    <div class="box-name col-6 p-0">
+                                        <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
+                                    </div>
+                                    <div class="box-rate col-6">
+                                        <label for="">Đánh giá</label>
+                                        <div class="stars">
+                                            <form action="">
+                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
+                                                <label class="star star-5" for="star-5"></label>
+                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
+                                                <label class="star star-4" for="star-4"></label>
+                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
+                                                <label class="star star-3" for="star-3"></label>
+                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
+                                                <label class="star star-2" for="star-2"></label>
+                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
+                                                <label class="star star-1" for="star-1"></label>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="box-comment col-12 p-0">
+                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Hãy nói lên cảm nghĩ của bạn..."></textarea>
+                                    </div>
+                                    <div class="box-send col-12 text-center">
+                                        <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
+                                    </div>
+                                </c:forEach>
+                            </c:if>
+                        </c:if>
                     </div>
                 </div>
             </div>
