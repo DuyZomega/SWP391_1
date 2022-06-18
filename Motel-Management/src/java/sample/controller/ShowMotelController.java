@@ -38,10 +38,17 @@ public class ShowMotelController extends HttpServlet {
         try {
             MotelDAO motel = new MotelDAO();
             List<MotelDTO> listMotel = motel.getListMotel();
+            List<RoomDTO> listRoom = new ArrayList<>();
 
             List<ServiceDTO> listService = new ArrayList<>();
             if (listMotel.size() > 0) {
                 request.setAttribute("LIST_MOTEL", listMotel);
+                RoomDAO dao1 = new RoomDAO();
+                for (MotelDTO motel1 : listMotel) {
+                    List<RoomDTO> list = dao1.searchRoom(motel1.getMotelID());
+                    listRoom.addAll(list);
+                }
+                request.setAttribute("LIST_ROOM", listRoom);
                 ServiceDAO dao = new ServiceDAO();
                 for (MotelDTO motel1 : listMotel) {
                     List<ServiceDTO> list = dao.searchservice(motel1.getMotelID());
@@ -60,7 +67,6 @@ public class ShowMotelController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

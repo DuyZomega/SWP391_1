@@ -3,7 +3,7 @@
     Created on : Jun 15, 2022, 2:36:31 AM
     Author     : Bao
 --%>
-
+<%@page buffer="8192kb" autoFlush="true" %>
 <%@page import="sample.service.ServiceDTO"%>
 <%@page import="sample.motel.MotelDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -371,7 +371,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% int totalRoom = (int)request.getAttribute("TOTAL_ROOM"); %>
+                                                        <% int totalRoom = 0;
+                                                            totalRoom = (int)request.getAttribute("TOTAL_ROOM"); %>
                                                         <tr>
                                                             <td>01</td>
                                                             <td>Giá Phòng</td>

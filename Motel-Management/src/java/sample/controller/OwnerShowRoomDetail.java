@@ -61,6 +61,7 @@ public class OwnerShowRoomDetail extends HttpServlet {
                 RoomDetailDTO roomDetail = Rdao.getRoomDetailNull(roomID);
                 if(roomDetail != null){
                     request.setAttribute("ROOM_DETAIL", roomDetail);
+                    request.setAttribute("TOTAL_ROOM", 0);
                     url = SUCCESS;
                 }
             }
