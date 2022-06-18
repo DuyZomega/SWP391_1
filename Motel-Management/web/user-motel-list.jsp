@@ -176,14 +176,14 @@
                                             </div>
                                             <div class="motel-rating my-2">
                                                 <p>${o.rating}</p>
-                                            </div>
+                                            </di
                                             <div class="d-flex justify-content-between my-2">
                                                 <p>Liên hệ</p>
                                                 <p><i class="fas fa-history"></i> một ngày trước</p>
                                             </div>
                                             <div class="motel-price d-flex justify-content-between">
                                                 <p>${o.motelprice}</p>
-                                                <button class="button--primary">Xem ngay</button>
+                                                <a class="button--primary" type="button" href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a> 
                                             </div>
                                         </div>
                                     </div>

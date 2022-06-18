@@ -149,6 +149,49 @@ public List<MotelDTO> getListMotel() throws SQLException {
     
     }
 
+private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.MotelID = ? ";
+public List<MotelDTO> getDetailMotel(String motelID) throws SQLException {
+         List<MotelDTO> listMotel = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SHOWDETAIL_MOTEL);
+                ptm.setString(1,motelID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String image = rs.getString("image");
+                    String name = rs.getString("name");
+                    String phone = rs.getString("phone");
+                    String desct = rs.getString("Desct");
+                    String address = rs.getString("address");
+                    String district = rs.getString("DistrictName");
+                    String city = rs.getString("CityName");
+                    double rating = rs.getDouble("Ratings");
+                    String typename = rs.getString("TypeName");
+                    double price = rs.getDouble("Price");
+                    int status = rs.getInt("status");
+                    listMotel.add(new MotelDTO(motelID,name, image, phone, desct, address, district, city, rating, typename ,price, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listMotel;
+    
+    }
 private static final String FILTER_MOTEL = "SELECT MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.DistrictID = ? AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
 public List<MotelDTO> getFilterMotel() throws SQLException {
          List<MotelDTO> listMotel = new ArrayList<>();
@@ -326,7 +369,7 @@ public List<MotelDTO> getFilterMotel() throws SQLException {
     
     }
     
-    /*admin*/
+
 private static final String CANCEL_BOOKING = "UPDATE tblBooking SET Status = 3 WHERE bookingID =?";
     public boolean cancelBooking(String bookingID) throws SQLException {
       boolean check = false;
@@ -376,5 +419,5 @@ private static final String CANCEL_ROOM = "UPDATE tblRoom SET Status = 0 WHERE r
         }
         return check;
     }
-    /*admin*/
+
 }

@@ -128,7 +128,7 @@
                             <div class="motel-price d-flex justify-content-between">
                                 <p> <span class="badge-info">
                                         Chỉ từ: </span>${o.motelprice}</p>
-                                <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem ngay</a> 
+                                <a class="button--primary" type="button" href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a> 
                             </div>
                         </div>
                     </c:forEach>
