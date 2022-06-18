@@ -13,7 +13,9 @@ public class RoomDetailDTO {
     private int status;
     private String bookingID;
     private String roomID;
+    private String roomName;
     private String roomType;
+    private String roomTypeID;
     private String motelID;
     private String address;
     private String district;
@@ -108,10 +110,28 @@ public class RoomDetailDTO {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public String getRoomTypeID() {
+        return roomTypeID;
+    }
+
+    public void setRoomTypeID(String roomTypeID) {
+        this.roomTypeID = roomTypeID;
+    }
     
     
 
-    public RoomDetailDTO(String userID,int status, String bookingID, String roomID, String roomType, String motelID, String address, String district, String city, String bookingDate, int time) {
+    public RoomDetailDTO(String roomTypeID, String roomName,String userID,int status, String bookingID, String roomID, String roomType, String motelID, String address, String district, String city, String bookingDate, int time) {
+        this.roomTypeID = roomTypeID;
+        this.roomName = roomName;
         this.userID = userID;
         this.status = status;
         this.bookingID = bookingID;
@@ -126,6 +146,8 @@ public class RoomDetailDTO {
     }
 
     public RoomDetailDTO() {
+        this.roomTypeID = "";
+        this.roomName = "";
         this.userID = "";
         this.status = 0;
         this.bookingID = "";

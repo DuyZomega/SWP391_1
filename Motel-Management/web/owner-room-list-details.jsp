@@ -3,6 +3,7 @@
     Created on : Jun 15, 2022, 2:36:31 AM
     Author     : Bao
 --%>
+<%@page import="sample.room.RoomTypeDTO"%>
 <%@page buffer="8192kb" autoFlush="true" %>
 <%@page import="sample.service.ServiceDTO"%>
 <%@page import="sample.motel.MotelDTO"%>
@@ -372,11 +373,11 @@
                                                     </thead>
                                                     <tbody>
                                                         <% int totalRoom = 0;
-                                                            totalRoom = (int)request.getAttribute("TOTAL_ROOM"); %>
+                                                            totalRoom = (int) request.getAttribute("TOTAL_ROOM");%>
                                                         <tr>
                                                             <td>01</td>
                                                             <td>Giá Phòng</td>
-                                                            <td><%= totalRoom %>&#8363;</td>
+                                                            <td><%= totalRoom%>&#8363;</td>
                                                         </tr>
                                                         <tr>
                                                             <td>02</td>
@@ -388,7 +389,7 @@
                                                         <tr>
                                                             <th>Total</th>
                                                             <th></th>
-                                                            <th><%= total + totalRoom %>&#8363;</th>
+                                                            <th><%= total + totalRoom%>&#8363;</th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>
@@ -411,42 +412,47 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin phòng</h4>
                     </div>
-                    <form action="#" class="form-group">
+                    <form action="MainController" method="post" class="form-group">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12 col-md-7">
                                     <div class="form-group row">
                                         <label for="staticEmail" class="col-sm-4 col-form-label">Mã Phòng</label>
                                         <div class="col-sm-8">
-                                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="001">
+                                            <input type="text" name="roomID" readonly class="form-control-plaintext" id="staticEmail" value="<%= roomDetail.getRoomID()%>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="nameRoom" class="col-sm-4 col-form-label">Tên Phòng</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" value="ABC" id="nameRoom" required>
+                                            <input type="text" name="roomName" class="form-control" value="<%= roomDetail.getRoomName()%>" id="nameRoom" required>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="status" value="<%= roomDetail.getStatus()%>" >
                                     <div class="form-group row">
                                         <label for="typeofRoom" class="col-sm-4 col-form-label">Kiểu Phòng</label>
                                         <div class="col-sm-8">
-                                            <select name="#" id="typeofRoom" class="form-control">
-                                                <option value="">Luxury</option>
-                                                <option value="">Normal</option>
+                                            <select name="roomTypeID" id="typeofRoom" class="form-control">
+                                                <% List<RoomTypeDTO> listRoomType = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                                    if (listRoomType != null) {
+                                                        if (listRoomType.size() > 0) {
+                                                            for (RoomTypeDTO roomType : listRoomType) {
+                                                %>
+                                                <option value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
+                                                <%
+                                                            }
+                                                        }
+                                                    }
+                                                %>
+                                                <% %>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputPassword" class="col-sm-4 col-form-label">Mô tả</label>
-                                        <div class="col-sm-8">
-                                            <textarea type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
+                                    </div>                                   
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit">Xác nhận</button>
+                            <button class="btn btn-success" type="submit" name="action" value="updateRoom">Xác nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </form>
