@@ -132,14 +132,15 @@
                                                     <div class="dataTables_length" id="myTable_length">
                                                         <label> Role
                                                             <form class="row" action="UserManager">
-                                                                <select  aria-controls="myTable" name="role">
-                                                                <option value="US">Người thuê</option>
-                                                                <option value="OW">Chủ trọ</option>
-                                                                <option value="AD">Admin</option> 
-                                                            </select>
-                                                                <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i class='bx bx-search'></i>
+                                                                <select aria-controls="myTable" name="role">
+                                                                    <option value="US">Người thuê</option>
+                                                                    <option value="OW">Chủ trọ</option>
+                                                                    <option value="AD">Admin</option>
+                                                                </select>
+                                                                <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i
+                                                                        class='bx bx-search'></i>
                                                                 </button>
-                                                                </form>
+                                                            </form>
                                                         </label>
                                                     </div>
                                                     <thead>

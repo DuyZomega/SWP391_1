@@ -75,11 +75,14 @@ $(document).ready(function () {
     //data-table
     $('#myTable').DataTable();
 
+<<<<<<< Updated upstream
     $("td:has(#input)").click(function() {
         $("#input", this).removeAttr("disabled");
     });
 } );
 
+=======
+>>>>>>> Stashed changes
 
 $(document).ready(function () {
     

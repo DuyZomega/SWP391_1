@@ -769,7 +769,7 @@ html body {
     display: flex;
     padding: 7px 10px 0 10px;
     line-height: 20px;
-    background-color: #2ecc71;
+    background-color: #e74c3c;
     width: auto;
     text-transform: none;
     font-size: 15px;
@@ -780,7 +780,7 @@ html body {
     display: flex;
     padding: 7px 10px 0 10px;
     line-height: 20px;
-    background-color: #f39c12;
+    background-color: #f1c40f;
     width: auto;
     text-transform: none;
     font-size: 15px;
@@ -1504,4 +1504,26 @@ line-height: 35px;
     .customer-detail .row {
         flex-wrap: wrap !important;
     }
+}
+
+
+.abcdce #myTable_wrapper #myTable_length{
+    margin-left: 250px;
+}
+
+
+.abcdce .newselect {
+    position: absolute;
+}
+
+.abcdce .newselect label {
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.abcdce .newselect label select {
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
 }
