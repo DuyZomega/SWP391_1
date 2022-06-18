@@ -1,4 +1,5 @@
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.room.RoomDTO"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page import="java.util.List"%>
@@ -7,7 +8,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,14 +26,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
               integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
-
         <!-- Fotorama from CDNJS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-
         <!-- main CSS -->
         <link rel="stylesheet" href="./assets/css/main.css">
     </head>
-
     <body>
         <!-- HEADER -->
         <header>
@@ -71,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="header__bottom">
                 <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
                     <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
@@ -81,7 +77,6 @@
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
@@ -98,7 +93,6 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="header__bottom__right">
                         <form class="header__bottom--search">
                             <div class="input-group">
@@ -124,7 +118,6 @@
             </div>
             <hr>
         </header>
-
         <!-- CONTENT -->
         <section class="content__list-room container">
             <div class="row">
@@ -159,123 +152,117 @@
                 </div>
                 <div class="content__list col-9">
                     <div class="row">
-                        <div class="col-4 p-0">
                         <c:if test="${requestScope.LIST_MOTEL1 != null}">
                             <c:if test="${not empty requestScope.LIST_MOTEL1}">
 
                                 <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL1}">
-                                    <div class="item">
-                                        <a href="#" class="motel-image">
-                                            <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                                        </a>
-                                        <div class="motel-image my-2">
-                                            <p>${o.image}</p>
-                                        </div>
-                                        <div class="motel-title my-4">
-                                            <a href="#" class="text-decoration-none">${o.name}</a>
-                                        </div>
-                                        <div class="motel-address my-2">
-                                            <p>${o.address},${o.district},${o.city}</p>
-                                        </div>
-                                        <div class="motel-type my-2">
-                                            <p>${o.typename}</p>
-                                        </div>
-                                        <div class="motel-desc my-2">
-                                            <p>${o.Desct},${o.service},${o.serviceprice}</p>
-                                        </div>
-                                        <div class="motel-rating my-2">
-                                            <p>${o.rating}</p>
-                                        </div>
-                                        <div class="motel-price my-2">
-                                            <p>${o.motelprice}</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between my-2">
-                                            <p>Liên hệ</p>
-                                            <p><i class="fas fa-history"></i> một ngày trước</p>
-                                        </div>
-                                        <div class="motel-price d-flex justify-content-between">
-                                            <p>7.0 Triệu</p>
-                                            <button class="button--primary">Xem ngay</button>
+                                    <div class="col-4 p-0">
+
+                                        <div class="item">
+                                            <a href="#" class="motel-image">
+                                                <img class="img-fluid" src="${o.image}" alt="nt1">
+                                            </a>
+                                            <div class="motel-title my-4">
+                                                <a href="#" class="text-decoration-none">${o.name}</a>
+                                            </div>
+                                            <div class="motel-address my-2">
+                                                <p>${o.address},${o.district},${o.city}</p>
+                                            </div>
+                                            <div class="motel-type my-2">
+                                                <p>${o.typename}</p>
+                                            </div>
+                                            <div class="motel-desc my-2">
+                                                <p>${o.desct}</p>
+                                            </div>
+                                            <div class="motel-rating my-2">
+                                                <p>${o.rating}</p>
+                                            </di
+                                            <div class="d-flex justify-content-between my-2">
+                                                <p>Liên hệ</p>
+                                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                                            </div>
+                                            <div class="motel-price d-flex justify-content-between">
+                                                <p>${o.motelprice}</p>
+                                                <a class="button--primary" type="button" href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a> 
+                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
                             </c:if>
                         </c:if>
+
+                    </div>
+                    <div class="pagination">
+                        <button class="btn">
+                            <i class="fa fa-angle-left"></i>
+                        </button>
+                        <div class="pages">
+                            <a class="page active">1</a>
+                            <a class="page">2</a>
+                            <a class="page">3</a>
+                            <a class="page">4</a>
+                            <a class="page">...</a>
+                            <a class="page">10</a>
+                        </div>
+                        <button class="btn">
+                            <i class="fa fa-angle-right"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="pagination">
-                    <button class="btn">
-                        <i class="fa fa-angle-left"></i>
-                    </button>
-                    <div class="pages">
-                        <a class="page active">1</a>
-                        <a class="page">2</a>
-                        <a class="page">3</a>
-                        <a class="page">4</a>
-                        <a class="page">...</a>
-                        <a class="page">10</a>
+            </div>
+        </section>
+        <!-- FOOTER -->
+        <footer class="mt-5">
+            <div class="container">
+                <div class="row section mb-3">
+                    <div class="col-12 col-sm-3">
+                        <h3>VỀ HORD</h3>
+                        <ul>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Give us feedback</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
                     </div>
-                    <button class="btn">
-                        <i class="fa fa-angle-right"></i>
-                    </button>
+                    <div class="col-12 col-sm-3">
+                        <h3>THÔNG TIN</h3>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Find us</a></li>
+                            <li><a href="#">Schedule</a></li>
+                            <li><a href="#">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-3">
+                        <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
+                        <ul>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Cookie policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-3 footer-contact">
+                        <h3>THÔNG TIN LIÊN LẠC</h3>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer__copyright text-center">
+                    <p>2022 © công ty TNHH chém gió xuyên quốc gia</p>
+                    <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="mt-5">
-        <div class="container">
-            <div class="row section mb-3">
-                <div class="col-12 col-sm-3">
-                    <h3>VỀ HORD</h3>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Give us feedback</a></li>
-                        <li><a href="#">Contact us</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>THÔNG TIN</h3>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Find us</a></li>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">News</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
-                    <ul>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Cookie policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3 footer-contact">
-                    <h3>THÔNG TIN LIÊN LẠC</h3>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="footer__copyright text-center">
-                <p>2022 © công ty TNHH chém gió xuyên quốc gia</p>
-                <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- thư viện hỗ trợ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    referrerpolicy="no-referrer"></script>
-    <!-- BS4 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
-    <!-- Fotorama from CDNJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
-</body>
+        </footer>
+        <!-- thư viện hỗ trợ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+        <!-- BS4 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+        <!-- Fotorama from CDNJS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    </body>

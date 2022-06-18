@@ -82,10 +82,9 @@ public class ServiceDTO {
         this.status = status;
     }
 
-    public ServiceDTO(String name, int status, String MotelID) {
+    public ServiceDTO(String name, int status) {
         this.name = name;
         this.status = status;
-        this.MotelID = MotelID;
     }
     
     

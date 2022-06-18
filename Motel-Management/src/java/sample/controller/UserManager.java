@@ -35,6 +35,10 @@ public class UserManager extends HttpServlet {
     private static final String FEEDBACK_LIST_CONTROLLER = "UserFeedbackController";
     private static final String FILTER_LIST = "filter";
     private static final String FILTER_LIST_CONTROLLER = "AdminFilterRole";
+    private static final String CANCEL_ROOM = "cancel";
+    private static final String CANCEL_ROOM_CONTROLLER = "UserCancelRoom";
+    private static final String REPORT_ROOM = "report";
+    private static final String REPORT_ROOM_CONTROLLER = "UserReport";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -51,6 +55,12 @@ public class UserManager extends HttpServlet {
                 url = DELETE_LIST_CONTROLLER;
             }else if (FILTER_LIST.equals(action)){
                 url = FILTER_LIST_CONTROLLER;
+            }else if (FEEDBACK_LIST.equals(action)){
+                url = FEEDBACK_LIST_CONTROLLER;
+            }else if (CANCEL_ROOM.equals(action)){
+                url = CANCEL_ROOM_CONTROLLER;
+            }else if (REPORT_ROOM.equals(action)){
+                url = REPORT_ROOM_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: "+e.toString());

@@ -5,45 +5,45 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.util.Random;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.owner.FeedbackDTO;
-import sample.users.UserDAO;
+import sample.room.RoomDAO;
 
 /**
  *
- * @author cao thi phuong thuy
+ * @author Bao
  */
-@WebServlet(name = "UserFeedbackController", urlPatterns = {"/UserFeedbackController"})
-public class UserFeedbackController extends HttpServlet {
+@WebServlet(name = "OwnerDeleteRoom", urlPatterns = {"/OwnerDeleteRoom"})
+public class OwnerDeleteRoom extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "userhistorybooking";
-
+    private static final String ERROR = "ShowRoomController";
+    private static final String SUCCESS = "ShowRoomController";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = ERROR;
-        UserDAO dao = new UserDAO();
-        Random generator = new Random();
-        try { 
-//            String feedbackID = request.getParameter("bookingID");
-            String feedbackID = String.valueOf(generator.nextInt(9999999));
-            String userID = request.getParameter("userID");
-            int rating = Integer.parseInt(request.getParameter("rating"));
-            String desct = request.getParameter("desct");
-            String motelID = request.getParameter("motelID");
-             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID);
-            boolean checkInsert = dao.insertFeedback(feedback);
-                if (checkInsert) {
+        String url = ERROR;
+        try {
+            String status = request.getParameter("statusRoom");
+            if (status.equals("0")) {
+                String roomID = request.getParameter("roomID");
+                RoomDAO dao = new RoomDAO();
+                boolean checkDelete = dao.deleteRoom(roomID);
+                if (checkDelete) {
+                    request.setAttribute("MESSAGE", "Delete Room Successfully!");
                     url = SUCCESS;
+                } else {
+                    request.setAttribute("MESSAGE", "Delete Room Error!");
                 }
+            } else {
+                request.setAttribute("MESSAGE", " phòng đang cho thuê! không thể xóa ");
+            }
         } catch (Exception e) {
-            log("Error at OwnerCreateMotelController:"+e.toString());
+            log("Error at OwnerDeleteRoom: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

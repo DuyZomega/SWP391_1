@@ -75,16 +75,21 @@ $(document).ready(function () {
     //data-table
     $('#myTable').DataTable();
 
-    // change page history detail
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-
+<<<<<<< Updated upstream
     $("td:has(#input)").click(function() {
         $("#input", this).removeAttr("disabled");
     });
 } );
 
+=======
+>>>>>>> Stashed changes
+
+$(document).ready(function () {
+    
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+})
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");

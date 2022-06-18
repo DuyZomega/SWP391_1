@@ -37,7 +37,7 @@ public class ShowAllMotelController extends HttpServlet {
         String url = ERROR;
         try {
             MotelDAO motel1 = new MotelDAO();
-            List<MotelDTO> listMotel1 = motel1.getListMotel();
+            List<MotelDTO> listMotel1 = motel1.getAllListMotel();
             List<RoomDTO> listRoom1 = new ArrayList<>();
 
             List<ServiceDTO> listService = new ArrayList<>();
