@@ -13,7 +13,9 @@
     <!-- FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="fonts/fontawesome-free-5.15.4-web/css/all.min.css">
 
@@ -109,15 +111,15 @@
             form: '#form-1',
             errorSelector: '#error_message',
             rules: [
-                Validator.isRequired('#fullName', 'Vui lòng không để trống'),
-                Validator.isTextOnly('#fullName', 'Tên đăng nhập không chứa ký tự đặc biệt hoặc rỗng'),
+                Validator.isNotEmpty('#fullName', 'Vui lòng không để trống'),
+                Validator.isTextOnly('#fullName', 'Tên đăng nhập không chứa ký tự đặc biệt'),
                 Validator.isRequired('#userName', 'Vui lòng nhập lại tên người dùng'),
                 Validator.isNumberOnly('#telephone', 'Vui lòng chỉ nhập số điện thoại'),
                 Validator.isRequired('#email'),
                 Validator.isEmail('#email', 'Vui lòng nhập đúng ký tự email'),
                 Validator.minLength('#password', 1, 'Vui lòng nhập lại mật khẩu'),
                 Validator.isRequired('#password_confirmation', 'Vui lòng không để trống'),
-                Validator.isConfirmed('#password_confirmation', function(){
+                Validator.isConfirmed('#password_confirmation', function () {
                     return document.querySelector('#form-1 #password').value;
                 }, 'Mật khẩu nhập lại không chính xác')
             ]

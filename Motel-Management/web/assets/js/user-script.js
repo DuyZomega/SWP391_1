@@ -11,12 +11,12 @@ function Validator(options) {
 
         // Lấy ra các rules của selector
         var rules = selectorRules[rule.selector];
-        
+
         // Lặp qua từng rule & kiểm tra
         // Nếu lỗi break
-        for(var i = 0; i<rules.length; ++i){
+        for (var i = 0; i < rules.length; ++i) {
             errorMessage = rules[i](inputElement.value);
-            if(errorMessage) break;
+            if (errorMessage) break;
         }
 
         if (errorMessage) {
@@ -34,9 +34,9 @@ function Validator(options) {
         options.rules.forEach(function (rule) {
 
             // Lưu lại các rules cho mỗi input
-            if(Array.isArray(selectorRules[rule.selector])){
+            if (Array.isArray(selectorRules[rule.selector])) {
                 selectorRules[rule.selector].push(rule.test);
-            }else{
+            } else {
                 selectorRules[rule.selector] = [rule.test];
             }
             var inputElement = formElement.querySelector(rule.selector);
@@ -71,6 +71,15 @@ Validator.isRequired = function (selector, message) {
         test: function (value) {
             var regex = /^[A-Za-z0-9_.]+$/;
             return regex.test(value.trim()) ? undefined : message || 'Vui lòng nhập đúng cú pháp!';
+        }
+    };
+}
+
+Validator.isNotEmpty = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value.trim() ? undefined : message || 'Vui lòng không để trống';
         }
     };
 }
@@ -130,19 +139,17 @@ const optionsContainer = document.querySelector(".options-container");
 const optionsList = document.querySelectorAll(".option");
 
 selected.addEventListener("click", () => {
-  optionsContainer.classList.toggle("active");
+    optionsContainer.classList.toggle("active");
 });
 
 optionsList.forEach(o => {
-  o.addEventListener("click", () => {
-    selected.innerHTML = o.querySelector("label").innerHTML;
-    optionsContainer.classList.remove("active");
-  });
+    o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("active");
+    });
 });
 
-
-
-
+// ===================Pagination=====================
 
 
 

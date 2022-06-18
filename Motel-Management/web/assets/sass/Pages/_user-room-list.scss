@@ -1,3 +1,19 @@
+.content__filter {
+    .custom-select {
+        background: url(../../assets/img/down-arrow-solid.png) no-repeat right 0.75rem center/8px 10px;
+        background-size: 15px;
+        background-color: #edebeb;
+        border-color: transparent;
+        color: $color-blue-2;
+        border-radius: 10px;
+        &:focus {
+            border-color: transparent;
+            box-shadow: none;
+            outline: none;
+        }
+    }
+}
+
 .content__list {
     .item {
         margin-bottom: $mg-2;
@@ -51,5 +67,4 @@
             color: $color-white-0;
         }
     }
-
 }
