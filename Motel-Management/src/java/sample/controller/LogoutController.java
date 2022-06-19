@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
 public class LogoutController extends HttpServlet {
 
     private static final String ERROR="login.jsp";
-    private static final String SUCCESS="index.jsp";
+    private static final String SUCCESS="ShowMotelController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
