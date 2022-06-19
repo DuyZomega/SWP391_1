@@ -50,6 +50,42 @@ private static final String GET_FEEDBACK = "SELECT  f.Desct, f.Status  FROM tblM
         }
         return listService;
     }
+/**/
+    private static final String GET_FEEDBACK_DETAIL = "SELECT tblUser.FullName, tblUser.Image, tblFeedBack.Ratings ,tblFeedBack.Desct  FROM tblUser ,tblFeedBack, tblMotel, tblBooking WHERE tblMotel.MotelID =tblFeedBack.MotelID AND tblFeedBack.BookingID=tblBooking.BookingID AND tblBooking.UserID=tblUser.UserID AND tblMotel.MotelID=?";
+    public List<FeedbackDTO> getDetailFeedback(String motelID) throws SQLException {
+        List<FeedbackDTO> listService = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_FEEDBACK_DETAIL);
+                ptm.setString(1,motelID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String fullName = rs.getString("FullName");
+                     String image = rs.getString("Image");
+                      String desct = rs.getString("Desct");
+                    int ratings = rs.getInt("Ratings");
+                    listService.add(new FeedbackDTO(fullName, desct, ratings, image));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listService;
+    }
 
 }
 

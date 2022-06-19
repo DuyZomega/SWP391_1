@@ -39,34 +39,17 @@ public class ShowMotelDetailController extends HttpServlet {
         String url = ERROR;
         try {
             String motelID = request.getParameter("motelID");
-            MotelDAO motel2 = new MotelDAO();
-            List<MotelDTO> listMotel2 = motel2.getDetailMotel(motelID);
-            List<RoomDTO> listRoom2 = new ArrayList<>();
-            List<ServiceDTO> listService = new ArrayList<>();
-            List<FeedbackDTO> listFeedback = new ArrayList<>();
-            if (listMotel2.size() > 0) {
-                request.setAttribute("LIST_MOTEL2", listMotel2);
-                RoomDAO dao2 = new RoomDAO();
-                for (MotelDTO motel3 : listMotel2) {
-                    List<RoomDTO> list = dao2.searchRoom(motel3.getMotelID());
-                    listRoom2.addAll(list);
+            MotelDAO motel = new MotelDAO();
+            FeedbackDAO feedback = new FeedbackDAO();
+            List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
+            List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
+            if (listMotel.size() > 0) {
+                request.setAttribute("DETAIL_MOTEL", listMotel);
+                if (listFeedback.size() > 0) {
+                    request.setAttribute("DETAIL_FEEDBACK", listFeedback);
                 }
-                request.setAttribute("LIST_ROOM2", listRoom2);
-                ServiceDAO dao = new ServiceDAO();
-                for (MotelDTO motel3 : listMotel2) {
-                    List<ServiceDTO> list = dao.searchservice(motel3.getMotelID());
-                    listService.addAll(list);
-                }
-                request.setAttribute("LIST_SERVICE2", listService);
-                FeedbackDAO dao1 = new FeedbackDAO();
-                for (MotelDTO motel3 : listMotel2) {
-                    List<FeedbackDTO> list = dao1.searchfeedback(motel3.getMotelID());
-                    listFeedback.addAll(list);
-                }
-                request.setAttribute("LIST_FEEDBACK2", listService);
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

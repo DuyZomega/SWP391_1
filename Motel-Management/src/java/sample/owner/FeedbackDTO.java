@@ -17,6 +17,13 @@ public class FeedbackDTO {
     private String MotelID;
     private String image;
     private int status;
+
+    public FeedbackDTO(String userName, String desc, int rating, String image) {
+        this.userName = userName;
+        this.desc = desc;
+        this.rating = rating;
+        this.image = image;
+    }
     
     public FeedbackDTO() {
         this.feedbackID = "";

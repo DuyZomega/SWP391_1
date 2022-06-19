@@ -109,25 +109,21 @@
 
                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
                         <div class="room-item">
-                            <a href="#" class="motel-image">
+                            <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="motel-image">
                                 <img class="img-fluid" src="${o.image}" alt="nt1">
                             </a>
-                            <div class="motel-title my-4">
-                                <a href="#" class="text-decoration-none">${o.name}</a>
+                            <div class="motel-title my-2">
+                                <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name}</a>
                             </div>
-                            <div class="motel-address my-2">
+                            <div class="motel-address ">
                                 <p>${o.address},${o.district},${o.city}</p>
                             </div>
-                            <div class="motel-services my-2">
-                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                            </div>
-                            <div class="d-flex justify-content-between my-2">
-                                <p>Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                            <div class="d-flex justify-content-between">
+                                <p>Hotline</p>
+                                <p><i class="fas fa-phone"></i> ${o.phone}</p>
                             </div>
                             <div class="motel-price d-flex justify-content-between">
-                                <p> <span class="badge-info">
-                                        Chỉ từ: </span>${o.motelprice}</p>
+                                <p>Chỉ từ: <h5>${o.motelprice}</h5></p>
                                 <a class="button--primary" type="button" href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a> 
                             </div>
                         </div>
