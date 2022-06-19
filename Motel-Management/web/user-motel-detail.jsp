@@ -9,15 +9,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Thông tin chi tiết phòng</title>
+        <link rel="shortcut icon" href="assets/img/logo2.png">
         <!-- BS4 CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <!-- FONT -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,18 +24,13 @@
             href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100&family=Roboto+Condensed:wght@400;700&display=swap"
             rel="stylesheet">
         <!-- FONT AWESOME -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
-              integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
-              crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
         <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
-
         <!-- owl carousels -->
         <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
         <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
-
         <!-- lightbox -->
         <link rel="stylesheet" href="vendor/bootstrap-4.5.3-dist/css/lightbox.min.css">
-
         <!-- main CSS -->
         <link rel="stylesheet" href="./assets/css/main.css">
     </head>
@@ -45,7 +39,17 @@
         <!-- HEADER -->
 
         <%@include file="header.jsp" %> 
-
+        <hr>
+        <div class="header__breadcrumb container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="ShowAllMotelController" class="text-decoration-none">Danh sách motel</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Thông tin phòng</li>
+                </ol>
+            </nav>
+        </div>
+        <hr>
         <!-- CONTENT -->
         <section class="content">
             <div class="container pt-4">
@@ -81,24 +85,21 @@
                                     <h2>Đặt lịch</h2>
                                     <hr>
                                     <div class="content-booking-detail">
-                                        <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                                        <% if (loginUser == null) { %>
                                         <p>Vui lòng đăng nhập để đặt lịch</p>
                                         <button class="button--primary" href="./login.jsp">Đăng nhập</button>
                                         <p>hoặc</p>
                                         <button class="button--primary" href="./signup.jsp">Đăng ký</button>
                                         <% } else { %>
-                                        <div class="content-booking-1 text-center border rounded p-3 mb-2">
-                                            <h2>Đặt lịch</h2>
-                                            <hr>
-                                            <div class="content-booking-detail">
-                                                <p>Thủ tục đặt phòng đơn giản, nhanh gọn</p>
-                                                <button class="button--primary mt-3"><a href="#Booking"
-                                                                                        class="text-white text-decoration-none">Đặt phòng</a></button>
-                                            </div>
-                                        </div>
+                                        <p>Thủ tục đặt phòng đơn giản, nhanh gọn</p>
+                                        <button class="button--primary mt-3"><a href="#Booking"
+                                                                                class="text-white text-decoration-none">Đặt phòng</a></button>
+
                                         <%}%>
                                     </div>
                                 </div>
+
+
                                 <!-- Sau khi đăng nhập -->
                                 <div class="content-contact text-center border rounded p-3">
                                     <h2>Liên hệ</h2>
@@ -137,12 +138,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="PhongDon">
-                                <td>
-                                    <div class="row">
-                                        <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOM2}">
+                            <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOMTYPE}">
+                                <tr>
+                                    <td>
+                                        <div class="row">
                                             <div class="title col-12 d-flex justify-content-between align-items-center">
-                                                <h5 class="room-type-title"></h5>
+                                                <h5 class="room-type-title">${r.typeName}</h5>
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
@@ -154,54 +155,55 @@
                                             </div>
                                             <div class="col-6">
                                                 <div class="img-room">
-                                                    <a href="assets/img/image.jpg" data-lightbox="roadtrip"><img
+                                                    <a href="${r.image}" data-lightbox="roadtrip"><img
                                                             src="${r.image}" alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="desc col-6">
                                                 <ul>
-                                                    <li>${r.desct}</li>
+                                                    <li>1 Giường đôi lớn</li>
+                                                    <li>1 Tivi</li>
+                                                    <li>1 Máy lạnh</li>
+                                                    <li>1 Tủ lạnh</li>
+                                                    <li>1 Quạt trần</li>
                                                 </ul>
                                             </div>
-                                            <h6 class="col-12">Dịch vụ</h6>
+                                            <h6 class="col-12">Thông tin</h6>
                                             <div class="col-12">
-                                                <p>Wifi miễn phí, Tủ quần áo, Giá treo đồ, Tủ trang điểm, Khăn tắm, khăn trải
-                                                    giường, Dép, Giấy vệ sinh, Truyền hình cáp, Dịch vụ ăn uống.
+                                                <p>${r.desct}
                                                 </p>
                                             </div>
-                                        </c:forEach>
-                                    </div>
-                                </td>
-                                <td>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="3">4</option>
-                                        <option value="3">5</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <div class="inputHour">
-                                        <input type="number" value="1">
-                                    </div>
-                                </td>    
-                                <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOM2}">
-                                    <td>${r.price}/h</td>
-                                    <td>${r.price}</td>
-                                </c:forEach>
-                            </tr>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <select class="custom-select" id="inputGroupSelect01">
+                                            <option selected value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="inputHour">
+                                            <input type="number" value="1">
+                                        </div>
+                                    </td>
+                                    <td>${r.price} / h</td>
+                                    <td>${r.price} </td>
+                                </tr>
+
+                            </c:forEach>
+
                         </tbody>
                     </table>
                     <div class="box-booking">
                         <!-- trước khi đăng nhập -->
                         <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
                         <div class="btn-booking-before d-flex justify-content-center align-items-center">
-                            <button class="button--primary mr-3" type="submit"><a href="login.html"
+                            <button class="button--primary mr-3" type="submit"><a href="login.jsp"
                                                                                   class="text-decoration-none text-white">Đăng nhập</a></button>
                             <span>hoặc</span>
-                            <button class="button--primary ml-3" type="submit"><a href="signup.html"
+                            <button class="button--primary ml-3" type="submit"><a href="signup.jsp"
                                                                                   class=" text-decoration-none text-white">Đăng ký</a></button>
                         </div>
                         <!-- sau khi đăng nhập -->
@@ -222,28 +224,33 @@
                 <div class="row">
                     <h3 class="col-12 p-0 heading">Đánh giá </h3>
                     <div  class="rating-carousel owl-carousel owl-theme">
-                        <c:forEach var="f" varStatus="counter" items="${requestScope.DETAIL_FEEDBACK}">
-                            <div class="item item-rating">
 
-                                <div class="customer-rating">
-                                    <h6 class="name-customer">
-                                        ${f.userName}</h6>
-                                    <img src="${f.image}" alt="${f.userName}">
-                                </div>
-                                <div class="cmt-box">
-                                    <label class="rate-customer"> ${f.rating}
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </label>
-                                    <p class="cmt-customer">
-                                        ${f.desc}
-                                    </p>
-                                </div>
-                            </div>
-                        </c:forEach>
+                        <c:if test="${requestScope.DETAIL_FEEDBACK != null}">
+                            <c:if test="${not empty requestScope.DETAIL_FEEDBACK}">
+                                <c:forEach var="f" varStatus="counter" items="${requestScope.DETAIL_FEEDBACK}">
+                                    <div class="item item-rating">
+
+                                        <div class="customer-rating">
+                                            <h6 class="name-customer">
+                                                ${f.userName}</h6>
+                                            <img src="${f.image}" alt="${f.userName}">
+                                        </div>
+                                        <div class="cmt-box">
+                                            <label class="rate-customer"> ${f.rating}
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </label>
+                                            <p class="cmt-customer">
+                                                ${f.desc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:if>
+                        </c:if>
                     </div>
                 </div>
             </div>

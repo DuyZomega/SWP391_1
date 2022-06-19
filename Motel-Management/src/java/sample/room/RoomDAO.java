@@ -24,9 +24,9 @@ public class RoomDAO {
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
     private static final String CREATE_ROOMTYPE = "INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct], [MotelID]) VALUES(?,?,?,?,?,?)";
     private static final String DELETE_ROOM = "UPDATE tblRoom SET Status = 2 WHERE RoomID = ?";
-    private static final String UPDATE_ROOM = "UPDATE tblRoom SET Name = ?, RoomTypeID = ? WHERE RoomID = ?"; 
-    
-    public boolean updateRoom(String roomID, String Name,String roomTypeID ) throws SQLException {
+    private static final String UPDATE_ROOM = "UPDATE tblRoom SET Name = ?, RoomTypeID = ? WHERE RoomID = ?";
+
+    public boolean updateRoom(String roomID, String Name, String roomTypeID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -52,7 +52,7 @@ public class RoomDAO {
         return check;
 
     }
-    
+
     public boolean deleteRoom(String roomID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -76,8 +76,8 @@ public class RoomDAO {
         }
         return check;
     }
-    
-    public boolean createRoomType(String roomTypeID, String typeName,int price, String image,String desct, String motelID) throws SQLException {
+
+    public boolean createRoomType(String roomTypeID, String typeName, int price, String image, String desct, String motelID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -106,7 +106,7 @@ public class RoomDAO {
         return check;
 
     }
-    
+
     public boolean createRoom(RoomDTO room) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -137,7 +137,7 @@ public class RoomDAO {
         return check;
 
     }
-    
+
     public boolean checkRoomID(String roomID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -168,7 +168,7 @@ public class RoomDAO {
 
         return check;
     }
-    
+
     public boolean checkRoomTypeID(String roomTypeID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -199,7 +199,7 @@ public class RoomDAO {
 
         return check;
     }
-    
+
     public List<RoomDTO> searchRoom(String ownerID) throws SQLException {
         List<RoomDTO> listRoom = new ArrayList();
         Connection conn = null;
@@ -209,7 +209,7 @@ public class RoomDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(SHOW_ROOM);
-                ptm.setString(1,ownerID);
+                ptm.setString(1, ownerID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String roomID = rs.getString("RoomID");
@@ -236,5 +236,44 @@ public class RoomDAO {
             }
         }
         return listRoom;
+    }
+    private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct \n"
+            + "from tblRoomType as rt, tblMotel as m \n"
+            + "WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND m.MotelID= ? ";
+
+    public List<RoomTypeDTO> getRoomType(String motelID) throws SQLException {
+        List<RoomTypeDTO> listService = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_ROOMTYPE);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String roomTypeID = rs.getString("RoomTypeID");
+                    String typeName = rs.getString("TypeName");
+                    String image = rs.getString("Image");
+                    String desct = rs.getString("Desct");
+                    int price = rs.getInt("Price");
+                    listService.add(new RoomTypeDTO(roomTypeID, typeName, price, motelID, image, desct));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listService;
     }
 }

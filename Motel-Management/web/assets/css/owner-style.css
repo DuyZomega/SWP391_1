@@ -1570,6 +1570,7 @@ line-height: 35px;
 
 .spacing .newselect {
     position: absolute;
+    z-index: 9999;
 }
 
 .spacing .newselect label {

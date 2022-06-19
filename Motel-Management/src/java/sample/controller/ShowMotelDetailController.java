@@ -17,7 +17,7 @@ import sample.motel.MotelDTO;
 import sample.owner.FeedbackDAO;
 import sample.owner.FeedbackDTO;
 import sample.room.RoomDAO;
-import sample.room.RoomDTO;
+import sample.room.RoomTypeDTO;
 import sample.service.ServiceDAO;
 import sample.service.ServiceDTO;
 import sample.users.UserDAO;
@@ -41,10 +41,15 @@ public class ShowMotelDetailController extends HttpServlet {
             String motelID = request.getParameter("motelID");
             MotelDAO motel = new MotelDAO();
             FeedbackDAO feedback = new FeedbackDAO();
+            RoomDAO roomtype = new RoomDAO();
             List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
+           List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
             List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
             if (listMotel.size() > 0) {
                 request.setAttribute("DETAIL_MOTEL", listMotel);
+                if (listRoomType.size() > 0) {
+                    request.setAttribute("LIST_ROOMTYPE", listRoomType);
+                }
                 if (listFeedback.size() > 0) {
                     request.setAttribute("DETAIL_FEEDBACK", listFeedback);
                 }
