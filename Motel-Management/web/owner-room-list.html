@@ -429,7 +429,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Thêm Phòng Mới</h4>
                 </div>
-                <form action="#">
+                <form action="#" onsubmit="return submitFunc()" id="form">
                     <div class="modal-body">
                         <div class="row p-4">
                             <div class="col-12">
@@ -458,12 +458,12 @@
                                 </div>
                                 <div class="row form-group">
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Mô tả</label>
-                                    <textarea type="text" placeholder="Mô tả phòng..." required class="form-control col-md-7" rows="3"></textarea>
+                                    <textarea type="text" placeholder="Mô tả phòng..." class="form-control col-md-7" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit" >Xác Nhận</button>
+                            <button class="btn btn-success" type="submit">Xác Nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </div>

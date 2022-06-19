@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 html body {
@@ -343,6 +346,8 @@ html body {
     z-index: 1;
     background: rgba(236, 240, 241, 0.95);
     transition: 0.3s;
+    border-bottom: 1px solid #e7e7e7;
+    box-shadow: 12px 0 9px 5px rgba(162, 180, 185, 0.2);
 }
 
 .header.active {
@@ -662,6 +667,29 @@ html body {
     color: #95a5a6;
 }
 
+.origation {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.project-nav {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e7e7e7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.card-tabs .nav-tabs.style-2 {
+    border-bottom: 0;
+}
+
+.home-card .dropdown .btn {
+    padding: 0;
+}
+
 
 
 
@@ -960,6 +988,16 @@ line-height: 35px;
     width: 20px;
 }
 
+
+
+
+/* motel */
+
+
+
+
+
+
 /* history-room */
 #myTable thead th {
     font-size: 13px;
@@ -972,6 +1010,8 @@ line-height: 35px;
 #save {
     display: none;
 }
+
+
 
 
 /* history-room-details */
@@ -995,7 +1035,7 @@ line-height: 35px;
 .main-content .page-header .breadcrumb li.active {
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 20px;    
 }
 
 .main-content .page-header .breadcrumb li a {
@@ -1006,6 +1046,7 @@ line-height: 35px;
 
 .main-content .breadcrumb {
     background: transparent;
+    padding: 5px 15px 0 0;
 }
 
 .customer-detail {
@@ -1054,6 +1095,21 @@ line-height: 35px;
     justify-content: center;
 
 }
+.profile .card-header {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.profile .card-header h4{
+    margin-left: 30%;
+}
+
+.profile .card-header .edit-info {
+    padding: 2px;
+}
+
+
 
 .total-pay .card-header{
     position: relative;
@@ -1507,22 +1563,22 @@ line-height: 35px;
 }
 
 
-.abcdce #myTable_wrapper #myTable_length{
+.spacing #myTable_wrapper #myTable_length{
     margin-left: 250px;
 }
 
 
-.abcdce .newselect {
+.spacing .newselect {
     position: absolute;
 }
 
-.abcdce .newselect label {
+.spacing .newselect label {
     width: 300px;
     display: flex;
     align-items: center;
 }
 
-.abcdce .newselect label select {
+.spacing .newselect label select {
     border-radius: 5px;
     padding: 5px;
     margin-left: 5px;

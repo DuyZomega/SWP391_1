@@ -119,13 +119,27 @@
             </div>
         </div>
         <div class="main-content">
-            <div class="main">
+            <div class="main spacing">
                 <div class="container-fluid">
                     <section>
-                        <div class="row  abcdce">
+                        <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
+                                        <div class="newselect">
+                                            <label> Role
+                                                <form action="UserManager">
+                                                    <select aria-controls="myTable" name="role">
+                                                        <option value="US">Người thuê</option>
+                                                        <option value="OW">Chủ trọ</option>
+                                                        <option value="AD">Admin</option>
+                                                    </select>
+                                                    <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i
+                                                            class='bx bx-search'></i>
+                                                    </button>
+                                                </form>
+                                            </label>
+                                        </div>
                                         <div class="table-responsive">
                                             
                                             <div id="myTable_wrapper" class="dataTables_wrapper no-footer"><div class="newselect">
@@ -142,8 +156,7 @@
                                                     </form>
                                                 </label>
                                             </div>
-                                                <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
-                                                    
+                                                <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">     
                                                     <thead>
                                                         <tr>
                                                             <th class="sorting sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Mã Đặt Phòng: activate to sort column descending" style="width: 80.15px;">ID</th>
