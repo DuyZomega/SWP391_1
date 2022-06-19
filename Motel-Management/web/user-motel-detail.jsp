@@ -142,113 +142,264 @@
 </header>
 
 <!-- CONTENT -->
-<section class="content spacing">
-    <div class="container py-4">
+<section class="content">
+    <div class="container pt-4">
         <div class="row">
-            <c:if test="${requestScope.LIST_MOTEL2 != null}">
-                <c:if test="${not empty requestScope.LIST_MOTEL2}">
 
-                    <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL2}">
-                        <div class="col-12 content__title d-flex justify-content-between align-items-center">
-                            <div class="content__title-left">
-                                <h3 class="heading">${o.name}</h3>
-                                <p>${o.address},${o.district},${o.city}</p>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <!-- item -->
-                            <div class="content__item">
-                                <div class="fotorama" data-nav="thumbs">
-                                    <a href="${o.image}"><img src="${o.image}" width="144"
-                                                              height="96"></a>
-                                    <a href="${o.image}"><img src="${o.image}" width="144"
-                                                              height="96"></a>
-                                </div>
-                                <div class="item-price">
-                                    <p>${o.motelprice}</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="content__describe">
-                                <h3 class="heading">Mô tả</h3>
-                                <p>${o.desct}</p>
-                            </div>
-                            <hr>
-                            <div class="content__describe">
-                                <h3 class="heading">Tiện ích</h3>
-                                <p>7up, lavie, bánh, Coca, khăn ướt</p>
-                            </div>
-                            <hr>
-                            <div class="content__feedback container-fluid">
-                                <div class="row">
-                                    <h3 class="col-12 p-0 heading">Đánh giá</h3>
-                                    <div class="box-name col-6 p-0">
-                                        <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
-                                    </div>
-                                    <div class="box-rate col-6">
-                                        <label for="">Đánh giá</label>
-                                        <div class="stars">
-                                            <form action="">
-                                                <input class="star star-5" id="star-5" type="radio" name="star"/>
-                                                <label class="star star-5" for="star-5"></label>
-                                                <input class="star star-4" id="star-4" type="radio" name="star"/>
-                                                <label class="star star-4" for="star-4"></label>
-                                                <input class="star star-3" id="star-3" type="radio" name="star"/>
-                                                <label class="star star-3" for="star-3"></label>
-                                                <input class="star star-2" id="star-2" type="radio" name="star"/>
-                                                <label class="star star-2" for="star-2"></label>
-                                                <input class="star star-1" id="star-1" type="radio" name="star"/>
-                                                <label class="star star-1" for="star-1"></label>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="box-comment col-12 p-0">
-                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Hãy nói lên cảm nghĩ của bạn..."></textarea>
-                                    </div>
-                                    <div class="box-send col-12 text-center">
-                                        <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
-                        </c:if>
+            <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL2}">
+                <div class="col-12 content__title d-flex justify-content-between align-items-center">
+                    <div class="content__title-left">
+                        <h3 class="heading">${o.name}</h3>
+                        <p>${o.address},${o.district},${o.city}</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-3">
-                <div class="widgets"></div>
-                <div class="content__item">
-                    <div class="content-booking text-center border rounded p-3 mb-2">
-                        <h2>Đặt lịch</h2>
-                        <hr>
-                        <div class="content-booking-detail">
-                            <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
-                            <p>Vui lòng đăng nhập để đặt lịch</p>
-                            <button class="button--primary" href="./login.jsp">Đăng nhập</button>
-                            <p>hoặc</p>
-                            <button class="button--primary" href="./signup.jsp">Đăng ký</button>
-                            <% } else { %>
-                            <button class="button--primary" href="./user-booking.jsp">Đặt phòng</button>
-                        </div>
-                        <%}%>
+                <div class="col-9">
+                    <!-- item -->
+                    <div class="content__item">
+                        <a href="assets/img/image.jpg" data-lightbox="image-1" data-title="Nhà nghỉ"><img
+                                src="${o.image}" class="img-fluid" alt=""></a>
                     </div>
-                    <div class="content-contact text-center border rounded p-3">
-                        <h2>Liên hệ</h2>
-                        <hr>
-                        <div class="content-booking-detail">
-                            <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
-                            <span>
-                                <p class="m-0">Nguyễn Tuân</p>
-                                <p class="m-0">Tele: 0865.644.162</p>
-                            </span>
-                        </div>
-                    </div>                    
+                    <hr>
+                    <div class="content__describe">
+                        <h3 class="heading">Mô tả</h3>
+                        <p>${o.desct}</p>
+                    </div>
+                    <hr>
+                    <div class="content__describe">
+                        <h3 class="heading">Tiện ích</h3>
+                        <p>7up, lavie, bánh, Coca, khăn ướt</p>
+                    </div>
                 </div>
-            </div>
+                <div class="col-3 widgets">
+                    <div class="content__item">
+                        <div class="content-booking text-center border rounded p-3 mb-2">
+                            <h2>Đặt lịch</h2>
+                            <hr>
+                            <div class="content-booking-detail">
+                                <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                                <p>Vui lòng đăng nhập để đặt lịch</p>
+                                <button class="button--primary" href="./login.jsp">Đăng nhập</button>
+                                <p>hoặc</p>
+                                <button class="button--primary" href="./signup.jsp">Đăng ký</button>
+                                <% } else { %>
+                                <div class="content-booking-1 text-center border rounded p-3 mb-2">
+                                    <h2>Đặt lịch</h2>
+                                    <hr>
+                                    <div class="content-booking-detail">
+                                        <p>Thủ tục đặt phòng đơn giản, nhanh gọn</p>
+                                        <button class="button--primary mt-3"><a href="#Booking"
+                                                                                class="text-white text-decoration-none">Đặt phòng</a></button>
+                                    </div>
+                                </div>
+                                <%}%>
+                            </div>
+                        </div>
+                        <!-- Sau khi đăng nhập -->
+                        <div class="content-contact text-center border rounded p-3">
+                            <h2>Liên hệ</h2>
+                            <hr>
+                            <div class="content-booking-detail">
+                                <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
+                                <span>
+                                    <p class="m-0">Nguyễn Tuân</p>
+                                    <p class="m-0">Tele: 0865.644.162</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
+        <hr>
     </div>
-    <hr>
 </section>
 
+<section id="Booking" class="booking mb-5">
+    <div class="container">
+        <div class="booking__title">
+            <h3 class="heading">Đặt phòng</h3>
+        </div>
+        <div class="booking__table">
+            <table class="table table-book">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" class="room-type">Loại phòng nghỉ</th>
+                        <th class="room-number" scope="col">Số phòng</th>
+                        <th class="hour" scope="col">Số giờ</th>
+                        <th scope="col" class="price">Giá cả (...VNĐ/h)</th>
+                        <th scope="col" class="total-price">Tổng giá</th>
+                        <th scope="col" class="total-price-1">Tổng tất cả</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="PhongDon">
+                        <td>
+                            <div class="row">
+                                <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOM2}">
+                                    <div class="title col-12 d-flex justify-content-between align-items-center">
+                                        <h5 class="room-type-title"></h5>
+                                        <div>
+                                            <span class="empty-room">
+                                                <i class="fa fa-quote-left"></i>
+                                                Còn 5 phòng trống!!!
+                                                <i class="fa fa-quote-right"></i>
+                                            </span>
+                                            <img src="assets/img/HOT.svg" class="hot-label" alt="hot-label">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="img-room">
+                                            <a href="assets/img/image.jpg" data-lightbox="roadtrip"><img
+                                                    src="${r.image}" alt=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="desc col-6">
+                                        <ul>
+                                            <li>${r.desct}</li>
+                                        </ul>
+                                    </div>
+                                    <h6 class="col-12">Dịch vụ</h6>
+                                    <div class="col-12">
+                                        <p>Wifi miễn phí, Tủ quần áo, Giá treo đồ, Tủ trang điểm, Khăn tắm, khăn trải
+                                            giường, Dép, Giấy vệ sinh, Truyền hình cáp, Dịch vụ ăn uống.
+                                        </p>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </td>
+                        <td>
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option selected value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">4</option>
+                                <option value="3">5</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="inputHour">
+                                <input type="number" value="1">
+                            </div>
+                        </td>    
+                        <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOM2}">
+                            <td>${r.price}/h</td>
+                            <td>${r.price}</td>
+                        </c:forEach>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="box-booking">
+                <!-- trước khi đăng nhập -->
+                <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                <div class="btn-booking-before d-flex justify-content-center align-items-center">
+                    <button class="button--primary mr-3" type="submit"><a href="login.html"
+                                                                          class="text-decoration-none text-white">Đăng nhập</a></button>
+                    <span>hoặc</span>
+                    <button class="button--primary ml-3" type="submit"><a href="signup.html"
+                                                                          class=" text-decoration-none text-white">Đăng ký</a></button>
+                </div>
+                <!-- sau khi đăng nhập -->
+                <% } else { %>
+                <div class="btn-booking text-center">
+                    <button class="button--primary" type="submit">Đặt ngay</button>
+                </div>
+                <%}%>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="content pt-3">
+    <div class="content__feedback container">
+        <hr>
+        <div class="row">
+            <h3 class="col-12 p-0 heading">Đánh giá </h3>
+            <!-- Sau khi đăng nhập -->
+            <!-- <div class="box-name col-6 p-0">
+                <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
+            </div>
+            <div class="box-rate col-6">
+                <label for="">Đánh giá</label>
+                <div class="stars">
+                    <form action="">
+                      <input class="star star-5" id="star-5" type="radio" name="star"/>
+                      <label class="star star-5" for="star-5"></label>
+                      <input class="star star-4" id="star-4" type="radio" name="star"/>
+                      <label class="star star-4" for="star-4"></label>
+                      <input class="star star-3" id="star-3" type="radio" name="star"/>
+                      <label class="star star-3" for="star-3"></label>
+                      <input class="star star-2" id="star-2" type="radio" name="star"/>
+                      <label class="star star-2" for="star-2"></label>
+                      <input class="star star-1" id="star-1" type="radio" name="star"/>
+                      <label class="star star-1" for="star-1"></label>
+                    </form>
+                  </div>
+            </div>
+            <div class="box-comment col-12 p-0">
+                <textarea name="#" id="" cols="30" rows="10" placeholder="Hãy nói lên cảm nghĩ của bạn..."></textarea>
+            </div>
+            <div class="box-send col-12 text-center">
+                <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
+            </div> -->
+
+            <!-- Trước khi đăng nhập -->
+            <%     if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+            <div class="rating-carousel owl-carousel owl-theme">
+                <div class="item item-rating">
+
+                    <div class="customer-rating">
+                        <h6 class="name-customer">Nguyễn Văn Hoàng</h6>
+                        <img src="assets/img/avatar.jpg" alt="">
+                    </div>
+                    <div class="cmt-box">
+                        <label class="rate-customer">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </label>
+                        <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_FEEDBACK2}">
+                            <p class="cmt-customer">
+                                ${o.desct}
+                            </p>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <% } else {%>
+            <div class="box-name col-6 p-0">
+                <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
+            </div>
+            <div class="box-rate col-6">
+                <label for="">Đánh giá</label>
+                <div class="stars">
+                    <form action="">
+                        <input class="star star-5" id="star-5" type="radio" name="star"/>
+                        <label class="star star-5" for="star-5"></label>
+                        <input class="star star-4" id="star-4" type="radio" name="star"/>
+                        <label class="star star-4" for="star-4"></label>
+                        <input class="star star-3" id="star-3" type="radio" name="star"/>
+                        <label class="star star-3" for="star-3"></label>
+                        <input class="star star-2" id="star-2" type="radio" name="star"/>
+                        <label class="star star-2" for="star-2"></label>
+                        <input class="star star-1" id="star-1" type="radio" name="star"/>
+                        <label class="star star-1" for="star-1"></label>
+                    </form>
+                </div>
+            </div>
+            <div class="box-comment col-12 p-0">
+                <textarea name="#" id="" cols="30" rows="10" placeholder="Hãy nói lên cảm nghĩ của bạn..."></textarea>
+            </div>
+            <div class="box-send col-12 text-center">
+                <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</section>
 <!-- FOOTER -->
 <footer class="mt-5">
     <div class="container">

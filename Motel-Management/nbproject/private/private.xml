@@ -5,7 +5,10 @@
         <group>
             <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/motel/MotelDAO.java</file>
             <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-feedback.jsp</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/ShowRoomController.java</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/web/owner-room-list.jsp</file>
             <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-motel-list.jsp</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/room/RoomDAO.java</file>
             <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-motel-detail.jsp</file>
             <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/OwnerShowRoomDetail.java</file>
             <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-booking-list.jsp</file>
