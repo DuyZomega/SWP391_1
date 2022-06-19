@@ -149,13 +149,15 @@
     }
 }
 .booking {
-    .table {
-        border: 1px solid rgb(222, 226, 230);
-    }
     .table .thead-dark {
         background-color: $color-blue-2;
     }
     .booking__table {
+        tr {
+            &:first-child {
+                border: 1px solid $color-blue-2;
+            }
+        }
         .room-number {
             width: 105px;
         }
@@ -163,9 +165,17 @@
             width: 83px;
         }
         .price,
-        .total-price,
-        .total-price-1 {
+        .total-price {
             width: 150px;
+        }
+
+        .total-price-box {
+            padding: 0;
+            margin-left: -1px;
+            margin-bottom: 1rem;
+            .table {
+                height: 100%;
+            }
         }
     }
     .img-room {

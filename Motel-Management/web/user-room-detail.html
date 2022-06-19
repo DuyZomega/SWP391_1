@@ -251,8 +251,8 @@
             <div class="booking__title">
                 <h3 class="heading">Đặt phòng</h3>
             </div>
-            <div class="booking__table">
-                <table class="table table-book">
+            <div class="booking__table row">
+                <table class="table table-book col-10">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col" class="room-type">Loại phòng nghỉ</th>
@@ -260,7 +260,7 @@
                             <th class="hour" scope="col">Số giờ</th>
                             <th scope="col" class="price">Giá cả (...VNĐ/h)</th>
                             <th scope="col" class="total-price">Tổng giá</th>
-                            <th scope="col" class="total-price-1">Tổng tất cả</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -318,13 +318,7 @@
                             </td>
                             <td><span>75.000</span> VNĐ/h</td>
                             <td><span>75.000</span> VNĐ</td>
-                            <!-- Tổng tất cả -->
-                            <td rowspan="2" class="align-middle">
-                                <span>150.000</span> VNĐ
-                                <p class="m-0">- Phòng của bạn bao gồm <span>1</span> phòng đơn và <span>1</span> phòng
-                                    đôi</p>
-                                <p>- Giao dịch đơn giản, an toàn</p>
-                            </td>
+
                         </tr>
                         <tr class="PhongDoi">
                             <td>
@@ -383,7 +377,28 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="box-booking">
+                <div class="total-price-box col-2">
+                    <table class="table table-book">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="room-type">Tổng tất cả</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Tổng tất cả -->
+                                <td rowspan="2" class="align-middle">
+                                    <span>150.000</span> VNĐ
+                                    <p class="m-0">- Phòng của bạn bao gồm <span>1</span> phòng đơn và <span>1</span>
+                                        phòng
+                                        đôi</p>
+                                    <p>- Giao dịch đơn giản, an toàn</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="box-booking col-12">
                     <!-- trước khi đăng nhập -->
                     <div class="btn-booking-before d-flex justify-content-center align-items-center">
                         <button class="button--primary mr-3" type="submit"><a href="login.html"
