@@ -36,8 +36,9 @@ public class ShowMotelDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String motelID = request.getParameter("motelID");
             MotelDAO motel2 = new MotelDAO();
-            List<MotelDTO> listMotel2 = motel2.getDetailMotel(getInitParameter(motelID));
+            List<MotelDTO> listMotel2 = motel2.getDetailMotel(motelID);
             List<RoomDTO> listRoom2 = new ArrayList<>();
 
             List<ServiceDTO> listService = new ArrayList<>();
@@ -55,9 +56,6 @@ public class ShowMotelDetailController extends HttpServlet {
                     listService.addAll(list);
                 }
                 request.setAttribute("LIST_SERVICE2", listService);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR_MESSAGE", "No motel here");
                 url = SUCCESS;
             }
 

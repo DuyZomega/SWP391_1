@@ -160,9 +160,9 @@
                             <div class="content__item">
                                 <div class="fotorama" data-nav="thumbs">
                                     <a href="${o.image}"><img src="${o.image}" width="144"
-                                                                               height="96"></a>
+                                                              height="96"></a>
                                     <a href="${o.image}"><img src="${o.image}" width="144"
-                                                                               height="96"></a>
+                                                              height="96"></a>
                                 </div>
                                 <div class="item-price">
                                     <p>${o.motelprice}</p>
@@ -176,7 +176,7 @@
                             <hr>
                             <div class="content__describe">
                                 <h3 class="heading">Tiện ích</h3>
-                                <p>${o.desct}</p>
+                                <p>7up, lavie, bánh, Coca, khăn ướt</p>
                             </div>
                             <hr>
                             <div class="content__feedback container-fluid">
@@ -229,6 +229,7 @@
                             <% } else { %>
                             <button class="button--primary" href="./user-booking.jsp">Đặt phòng</button>
                         </div>
+                        <%}%>
                     </div>
                     <div class="content-contact text-center border rounded p-3">
                         <h2>Liên hệ</h2>
@@ -240,9 +241,8 @@
                                 <p class="m-0">Tele: 0865.644.162</p>
                             </span>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
-                <%}%>
             </div>
         </div>
     </div>

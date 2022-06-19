@@ -176,7 +176,7 @@
                                             </div>
                                             <div class="motel-rating my-2">
                                                 <p>${o.rating}</p>
-                                            </di
+                                            </div>
                                             <div class="d-flex justify-content-between my-2">
                                                 <p>Liên hệ</p>
                                                 <p><i class="fas fa-history"></i> một ngày trước</p>

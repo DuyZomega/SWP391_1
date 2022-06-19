@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/motel/MotelDAO.java</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-feedback.jsp</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-motel-list.jsp</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-motel-detail.jsp</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/OwnerShowRoomDetail.java</file>
+            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-booking-list.jsp</file>
+        </group>
     </open-files>
 </project-private>
