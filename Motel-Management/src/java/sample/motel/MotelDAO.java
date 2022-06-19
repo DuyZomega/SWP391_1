@@ -192,7 +192,7 @@ public List<MotelDTO> getAllListMotel() throws SQLException {
     
     }
 
-private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName, tblRoomType.Desct FROM tblMotel,tblDistrict,tblCity,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID  AND tblMotel.Status = 1 AND tblMotel.MotelID = ?";
+private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status  FROM tblMotel,tblDistrict,tblCity WHERE  tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID  AND tblMotel.Status = 1 AND tblMotel.MotelID = ?";
 public List<MotelDTO> getDetailMotel(String motelID) throws SQLException {
          List<MotelDTO> listMotel = new ArrayList<>();
         Connection conn = null;
@@ -213,10 +213,8 @@ public List<MotelDTO> getDetailMotel(String motelID) throws SQLException {
                     String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
-                    String typename = rs.getString("TypeName");
-                    double price = rs.getDouble("Price");
                     int status = rs.getInt("status");
-                    listMotel.add(new MotelDTO(name, image, phone, desct, address, district, city, rating, typename ,price, status));
+                    listMotel.add(new MotelDTO(name, image, phone, desct, address, district, city, rating, status));
                 }
             }
         } catch (Exception e) {

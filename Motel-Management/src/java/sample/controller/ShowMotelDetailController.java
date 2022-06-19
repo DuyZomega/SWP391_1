@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.owner.FeedbackDAO;
+import sample.owner.FeedbackDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
 import sample.service.ServiceDAO;
@@ -40,8 +42,8 @@ public class ShowMotelDetailController extends HttpServlet {
             MotelDAO motel2 = new MotelDAO();
             List<MotelDTO> listMotel2 = motel2.getDetailMotel(motelID);
             List<RoomDTO> listRoom2 = new ArrayList<>();
-
             List<ServiceDTO> listService = new ArrayList<>();
+            List<FeedbackDTO> listFeedback = new ArrayList<>();
             if (listMotel2.size() > 0) {
                 request.setAttribute("LIST_MOTEL2", listMotel2);
                 RoomDAO dao2 = new RoomDAO();
@@ -56,6 +58,12 @@ public class ShowMotelDetailController extends HttpServlet {
                     listService.addAll(list);
                 }
                 request.setAttribute("LIST_SERVICE2", listService);
+                FeedbackDAO dao1 = new FeedbackDAO();
+                for (MotelDTO motel3 : listMotel2) {
+                    List<FeedbackDTO> list = dao1.searchfeedback(motel3.getMotelID());
+                    listFeedback.addAll(list);
+                }
+                request.setAttribute("LIST_FEEDBACK2", listService);
                 url = SUCCESS;
             }
 
