@@ -177,7 +177,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="profile-pic">
-                                            <img src="<%= userProfile.getImage() %>" width="200"/>
+                                            <img src="<%=userProfile.getImage()%>"  width="200"/>
                                             <div class="upload">
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#uploadImg">Chi Tiết</button>                                                   
                                                 <i class='bx bxs-camera-plus'></i>
