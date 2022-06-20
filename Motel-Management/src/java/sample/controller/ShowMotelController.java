@@ -34,15 +34,12 @@ public class ShowMotelController extends HttpServlet {
         try {
             MotelDAO motel = new MotelDAO();
             List<MotelDTO> listMotel = motel.getListMotel();
-            List<RoomDTO> listRoom = new ArrayList<>();
             if (listMotel.size() > 0) {
                 request.setAttribute("LIST_MOTEL", listMotel);
-                RoomDAO dao1 = new RoomDAO();
-                for (MotelDTO motel1 : listMotel) {
-                    List<RoomDTO> list = dao1.searchRoom(motel1.getMotelID());
-                    listRoom.addAll(list);
-                }
-                request.setAttribute("LIST_ROOM", listRoom);
+                
+            List<MotelDTO> listMotelHot = motel.getListMotelHot();
+                 if (listMotelHot.size() > 0) {
+                request.setAttribute("LIST_MOTEL_HOT", listMotelHot);}
                 url = SUCCESS;
             }
 

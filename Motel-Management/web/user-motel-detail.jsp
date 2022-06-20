@@ -1,3 +1,4 @@
+<%@page import="sample.room.RoomTypeDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.room.RoomDTO" %>
 <%@page import="sample.users.UserDTO" %>
@@ -162,71 +163,76 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="r" varStatus="counter"
-                                       items="${requestScope.LIST_ROOMTYPE}">
-                                <tr>
-                                    <td>
-                                        <div class="row">
-                                            <div
-                                                class="title col-12 d-flex justify-content-between align-items-center">
-                                                <h5 class="room-type-title">
-                                                    ${r.typeName}</h5>
-                                                <div>
-                                                    <span class="empty-room">
-                                                        <i
-                                                            class="fa fa-quote-left"></i>
-                                                        Còn 5 phòng trống!!!
-                                                        <i
-                                                            class="fa fa-quote-right"></i>
-                                                    </span>
-                                                    <img src="assets/img/HOT.svg"
-                                                         class="hot-label"
-                                                         alt="hot-label">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="img-room">
-                                                    <a href="${r.image}"
-                                                       data-lightbox="roadtrip"><img
-                                                            src="${r.image}"
-                                                            alt=""></a>
-                                                </div>
-                                            </div>
-                                            <div class="desc col-6">
-                                                <ul>
-                                                    <li>1 Giường đôi lớn</li>
-                                                    <li>1 Tivi</li>
-                                                    <li>1 Máy lạnh</li>
-                                                    <li>1 Tủ lạnh</li>
-                                                    <li>1 Quạt trần</li>
-                                                </ul>
-                                            </div>
-                                            <h6 class="col-12">Thông tin</h6>
-                                            <div class="col-12">
-                                                <p>${r.desct}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <select class="custom-select"
-                                                id="inputGroupSelect01">
-                                            <option selected value="0">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <div class="inputHour">
-                                            <input type="number" value="1">
-                                        </div>
-                                    </td>
-                                    <td>${r.price} / h</td>
-                                    <td>${r.price} </td>
-                                </tr>
+                            <%
+                                List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                double total=0;
+                                double sum = 0;
+                                if (rt.size() > 0) {
+                                    for (RoomTypeDTO roomtype : rt) {
 
-                            </c:forEach>
+                                        sum += roomtype.getPrice() * roomtype.getCountRoom();
+                            %>
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div
+                                            class="title col-12 d-flex justify-content-between align-items-center">
+                                            <h5 class="room-type-title">
+                                                <%= roomtype.getTypeName()%></h5>
+                                            <div>
+                                                <span class="empty-room">
+                                                    <iclass="fa fa-quote-left"></i>
+                                                    Còn <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                    <i
+                                                        class="fa fa-quote-right"></i>
+                                                </span>
+                                                <img src="assets/img/HOT.svg"
+                                                     class="hot-label"
+                                                     alt="hot-label">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="img-room">
+                                                <a href="<%= roomtype.getImage()%>"
+                                                   data-lightbox="roadtrip"><img
+                                                        src="<%= roomtype.getImage()%>"
+                                                        alt="<%= roomtype.getTypeName()%>"></a>
+                                            </div>
+                                        </div>
+                                        <div class="desc col-6">
+                                            <ul>
+                                                <li> Tivi</li>
+                                                <li> Máy lạnh</li>
+                                                <li> Tủ lạnh</li>
+                                                <li> Quạt trần</li>
+                                            </ul>
+                                        </div>
+                                        <h6 class="col-12">Thông tin</h6>
+                                        <div class="col-12">
+                                            <p><%= roomtype.getDesct()%>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputHour" name="time">
+                                        <input type="number" min="1"  max="<%= roomtype.getCountRoom()%>" value="<%= roomtype.getCountRoom()%>">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="inputHour" name="time">
+                                        <input type="number" min="1" value="<%= roomtype.getTime()%>">
+                                    </div>
+                                </td>
+                                <td><%= roomtype.getPrice()%> / h</td>
+                                <td><%=sum%></td>
+                            </tr>
+
+                            <%
+                                    }
+                                } 
+                                total += sum;
+%>  
 
                         </tbody>
                     </table>
@@ -242,7 +248,7 @@
                                 <tr>
                                     <!-- Tổng tất cả -->
                                     <td rowspan="2" class="align-middle">
-                                        <span>150.000</span> VNĐ
+                                        <span><%=total%> VND</span> VNĐ
                                         <p class="m-0">- Phòng của bạn bao gồm
                                             <span>1</span> phòng đơn và
                                             <span>1</span>
@@ -254,6 +260,7 @@
                             </tbody>
                         </table>
                     </div>
+                                
                     <div class="box-booking col-12">
                         <!-- trước khi đăng nhập -->
                         <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
