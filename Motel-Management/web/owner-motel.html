@@ -134,15 +134,8 @@
     <div class="main-content">
         <div class="main">
             <div class="container-fluid">
-                    <!-- <div class="page-header">
-                        <div class="edit-home">
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addHome">Thêm Nhà</button>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#editHome">Sửa Nhà</button>
-                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteHome">Xóa Nhà</button>
-                        </div>
-                    </div> -->
                 <div class="row">
-                    <div class="offset-sm-6 col-sm-6 d-flex justify-content-sm-end p-md-0 mt-2 mt-sm-0 ">
+                    <div class="offset-sm-6 col-sm-6 d-flex justify-content-sm-end p-md-0 mt-sm-0">
                         <ol class="breadcrumb">
                             <li class="breadcrumd-item">
                                 <a href="#">Quản lý</a>
@@ -156,102 +149,134 @@
                         </ol>
                     </div>
                 </div>
-                <div class="row">
-                    <!-- vòng lặp in home -->
-                    <div class="col-xl-6 col-lg-12">
-                        <div class="card home-card">
-                            <div class="card-body">
-                                <div class="d-flex mb-4 align-items-start">
-                                    <div class="home-img mr-3">
-                                        <img src="./assets/img/best-choice.jpg" alt class="img-fluid">
-                                    </div>
-                                    <div class="mr-auto">
-                                        <p class="text mb-1">home ID</p>
-                                        <h5 class="title mb-2">Name Home</h5>
-                                        <span class="address-home">Địa chỉ</span>
-                                    </div>
-                                    <span class="badge badge-success d-sm-inline-block d-none mr-3">Trạng thái</span>
-                                    <div class="d-flex ml-3 p-1">
-                                        <button class="edit" data-toggle="modal" data-target="#addHome"><i class='bx bxs-edit-alt'></i></button>
-                                    </div>
-                                </div>
-                                <p class="mb-4">
-                                    Discription...
-                                </p>
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <div class="mr-auto mb-4">
-                                        <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
-                                        <div class="info-title ml-3">
-                                            SĐT:
-                                            <span class="ml-2">56</span>
+                <div class="origation">
+                    <div class="project-nav">
+                        <div class="card-action card-tabs mr-auto">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- vòng lặp in home -->
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="card home-card">
+                                <div class="card-body">
+                                    <div class="d-flex mb-4 align-items-start">
+                                        <div class="home-img mr-3">
+                                            <img src="./assets/img/best-choice.jpg" alt class="img-fluid">
                                         </div>
-                                        <div class="info-title ml-3">
-                                            Quận:
-                                            <span class="ml-2">56</span>
+                                        <div class="mr-auto">
+                                            <p class="text mb-1">home ID</p>
+                                            <h5 class="title mb-2">Name Home</h5>
+                                            <span class="address-home">Địa chỉ</span>
                                         </div>
-                                        <div class="info-title ml-3">
-                                            Tổng Phòng:
-                                            <span class="ml-2">300</span>
+                                        <span class="badge badge-success d-sm-inline-block d-none mr-2">Trạng thái</span>
+                                        <div class="d-flex ml-2 p-1">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="edit-dele" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="edit-dele">
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome"><i class='bx bx-edit'></i>Chỉnh sửa</a>
+                                                    
+                                                    
+                                                    <!-- remove Home -->
+                                                    <form action="#" method="POST">
+                                                        <input type="hidden" name="idhome" value="aaa"> 
+                                                        <button type="submit" class="dropdown-item" onclick="if (!confirm('Are you sure?')) { return false }">
+                                                            <a><i class='bx bx-recycle'></i>Xóa nhà</a>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center mb-4">
-                                        <div class="text-center mr-3 turnover">
-                                            <span>Tổng doanh thu</span>
-                                            <p class="mb-0 pt-1 text-black">$505,785</p>
+                                    <p class="mb-4">
+                                        Discription...
+                                    </p>
+                                    <div class="d-flex flex-wrap align-items-center">
+                                        <div class="mr-auto mb-4">
+                                            <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
+                                            <div class="info-title ml-3">
+                                                SĐT:
+                                                <span class="ml-2">56</span>
+                                            </div>
+                                            <div class="info-title ml-3">
+                                                Quận:
+                                                <span class="ml-2">56</span>
+                                            </div>
+                                            <div class="info-title ml-3">
+                                                Tổng Phòng:
+                                                <span class="ml-2">300</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <div class="text-center mr-3 turnover">
+                                                <span>Tổng doanh thu</span>
+                                                <p class="mb-0 pt-1 text-black">$505,785</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-xl-6 col-lg-12">
-                        <div class="card home-card">
-                            <div class="card-body">
-                                <div class="d-flex mb-4 align-items-start">
-                                    <div class="home-img mr-3">
-                                        <img src="./assets/img/best-choice.jpg" alt class="img-fluid">
-                                    </div>
-                                    <div class="mr-auto">
-                                        <p class="text mb-1">home ID</p>
-                                        <h5 class="title mb-2">Name Home</h5>
-                                        <span class="address-home">Địa chỉ</span>
-                                    </div>
-                                    <span class="badge badge-success d-sm-inline-block d-none mr-3">Trạng thái</span>
-                                    <div class="d-flex ml-3 p-1">
-                                        <button class="edit" data-toggle="modal" data-target="#addHome"><i class='bx bxs-edit-alt'></i></button>
-                                    </div>
-                                </div>
-                                <p class="mb-4">
-                                    Discription...
-                                </p>
-                                <div class="d-flex flex-wrap align-items-center">
-                                    <div class="mr-auto mb-4">
-                                        <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
-                                        <div class="info-title ml-3">
-                                            SĐT:
-                                            <span class="ml-2">56</span>
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="card home-card">
+                                <div class="card-body">
+                                    <div class="d-flex mb-4 align-items-start">
+                                        <div class="home-img mr-3">
+                                            <img src="./assets/img/best-choice.jpg" alt class="img-fluid">
                                         </div>
-                                        <div class="info-title ml-3">
-                                            Quận:
-                                            <span class="ml-2">56</span>
+                                        <div class="mr-auto">
+                                            <p class="text mb-1">home ID</p>
+                                            <h5 class="title mb-2">Name Home</h5>
+                                            <span class="address-home">Địa chỉ</span>
                                         </div>
-                                        <div class="info-title ml-3">
-                                            Tổng Phòng:
-                                            <span class="ml-2">300</span>
+                                        <span class="badge badge-success d-sm-inline-block d-none mr-2">Trạng thái</span>
+                                        <div class="d-flex ml-2 p-1">
+                                            <div class="dropdown">
+                                                <button class="btn" type="button" id="edit-dele" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class='bx bx-dots-vertical-rounded'></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="edit-dele">
+                                                    <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
+                                                    <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                                </div>
+                                            </div>  
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center mb-4">
-                                        <div class="text-center mr-3 turnover">
-                                            <span>Tổng doanh thu</span>
-                                            <p class="mb-0 pt-1 text-black">$505,785</p>
+                                    <p class="mb-4">
+                                        Discription...
+                                    </p>
+                                    <div class="d-flex flex-wrap align-items-center">
+                                        <div class="mr-auto mb-4">
+                                            <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
+                                            <div class="info-title ml-3">
+                                                SĐT:
+                                                <span class="ml-2">56</span>
+                                            </div>
+                                            <div class="info-title ml-3">
+                                                Quận:
+                                                <span class="ml-2">56</span>
+                                            </div>
+                                            <div class="info-title ml-3">
+                                                Tổng Phòng:
+                                                <span class="ml-2">300</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-4">
+                                            <div class="text-center mr-3 turnover">
+                                                <span>Tổng doanh thu</span>
+                                                <p class="mb-0 pt-1 text-black">$505,785</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>           
+                    </div>  
+                </div>
+                         
             </div>
         </div>
     </div>
@@ -349,7 +374,7 @@
                 <form action="#" class="form-group">
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-12  ">
+                            <div class="col-12">
                                 <div class="row form-group">
                                     <label for="idhome" class="col-md-3 col-form-label text-md-right">Mã nhà:</label>
                                     <input type="text" name="idhome" id="idhome" value="----" class="form-control col-md-6" readonly/>
@@ -363,75 +388,22 @@
                                     </select>
                                 </div>
                                 <div class="row form-group">
+                                    <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà:</label>
+                                    <input class="form-control col-md-6" name="namehome" value="Nhập tên nhà mới..." required>       
+                                </div>
+                                <div class="row form-group">
+                                    <label for="phone" class="col-md-3 col-form-label text-md-right">Số điện thoại:</label>
+                                    <input class="form-control col-md-6" name="namehome" value="Nhập số điện thoại..." required>       
+                                </div>
+                                <div class="row form-group">
                                     <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà Mới:</label>
                                     <input class="form-control col-md-6" name="namehome" placeholder="Nhập tên nhà mới..." required>       
-                                </div>
-                                <div class="form-group row">
-                                    <label for="typeofRoom" class="col-sm-4 col-form-label text-sm-right">Kiểu Phòng</label>
-                                    <div class="col-sm-6">
-                                        <select name="#" id="typeofRoom" class="form-control">
-                                            <option value="" disabled selected>Luxury</option>
-                                            <option value="">Luxury</option>
-                                            <option value="">Normal</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="inputPassword" class="col-sm-4 col-form-label text-sm-right">Mô tả</label>
-                                    <div class="col-sm-6">
-                                        <textarea type="text" class="form-control"></textarea>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button class="btn btn-success" type="submit">Xác nhận</button>
-                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- remove Home -->
-    <div id="deleteHome" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="content">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Xoá nhà</h4>
-                </div>
-                <form action="#">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="row form-group">
-                                    <label for="idhome" class="col-md-3 col-form-label text-md-right">Mã nhà</label>
-                                    <input type="text" name="idhome" id="idhome" value="----" class="form-control col-md-7" readonly/>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="idhome" class="col-md-3 col-form-label text-md-right">Tên Nhà</label>
-                                    <select class="form-control col-md-7" name="namehome" onchange="change(event)">
-                                        <option disabled selected>Chọn Nhà</option>
-                                        <option value="1">Home 1</option>
-                                        <option value="2">Home 2</option>
-                                    </select>
-                                </div>
-                                <div class="row form-group">
-                                    <label for="cancel" class="col-md-3 col-form-label text-md-right">Lý do xóa</label>
-                                    <select class="form-control col-md-7" name="pageSelector" onchange="other(event)">
-                                        <option value="1">Khách không nhận phòng</option>
-                                        <option value="2">Khách đổi phòng</option>
-                                        <option value="custom">Khác</option>
-                                    </select>
-                                    <textarea type="text" id="otherid" class="offset-md-3 form-control col-md-7 mt-2" style="display: none;"
-                                     placeholder="Viết lý do khác ..." required></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button class="btn btn-success" type="submit">Xác Nhận</button>
                         <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                     </div>
                 </form>

@@ -108,27 +108,24 @@
                 <c:if test="${not empty requestScope.LIST_MOTEL}">
 
                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
-                        <div class="room-item">
-                            <a href="#" class="motel-image">
+                        <div class="room-item ">
+                            <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="motel-image">
                                 <img class="img-fluid" src="${o.image}" alt="nt1">
                             </a>
-                            <div class="motel-title my-4">
-                                <a href="#" class="text-decoration-none">${o.name}</a>
+                            <div class="motel-title my-2">
+                                <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name}</a>
                             </div>
-                            <div class="motel-address my-2">
-                                <p>${o.address},${o.district},${o.city}</p>
+                            <div class="motel-address ">
+                                <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                             </div>
-                            <div class="motel-services my-2">
-                                <p>Dịch vụ: thay ga gối 1 lần/...</p>
-                            </div>
-                            <div class="d-flex justify-content-between my-2">
-                                <p>Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                            <div class="d-flex justify-content-between">
+                                <p><i class="fas fa-address-book"></i> Hotline</p>
+                                <p><i class="fas fa-phone"></i> ${o.phone}</p>
                             </div>
                             <div class="motel-price d-flex justify-content-between">
-                                <p> <span class="badge-info">
-                                        Chỉ từ: </span>${o.motelprice}</p>
-                                <a class="button--primary" type="button" href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a> 
+                                <p style="font-size: 1rem"><i class="fas fa-money-bill-wave"></i> Chỉ từ: ${o.motelprice}</p>
+                               <button class="button--primary"><a class="text-decoration-none text-white"
+                                        href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a></button> 
                             </div>
                         </div>
                     </c:forEach>
@@ -144,7 +141,6 @@
 
 
 <%@include file="footer.jsp" %> 
-
 
 <!-- thư viện hỗ trợ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -182,6 +178,7 @@
     </script>
     <!-- main js -->
     <script src="assets/js/user-script.js"></script>
+
 </body>
 
 </html>

@@ -133,6 +133,21 @@
     <div class="main-content">
         <div class="main">
             <div class="container-fluid">
+                <div class="row">
+                    <div class="offset-sm-6 col-sm-6 d-flex justify-content-sm-end p-md-0 mt-sm-0">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumd-item">
+                                <a href="#">Quản lý</a>
+                            </li>
+                            <li class="breadcrumd-item">
+                                <span>/</span>
+                            </li>
+                            <li class="breadcrumd-item active">
+                                <a href="owner-motel.html">Nhà</a>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
                 <div class="card service-list">
                     <div class="card-header d-sm-flex d-block">
                         <div class="mr-auto mb-sm-0 mb-3">
@@ -148,27 +163,33 @@
                                     <th>#</th>
                                     <th>Mã dịch vụ</th>
                                     <th>Tên dịch vụ</th>
+                                    <th>Motel</th>
                                     <th>Giá tiền</th>
                                     <th style="width: 100px;">Action</th>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>D01</td>
-                                        <td><input type="text" value="Thuê xe" class="form-control" id="input" disabled></td>
-                                        <td>250,000</td>
-                                        <td>
-                                            <div class="d-flex action-button">
-                                                <a class="btn btn-info btn-xs light px-2"
-                                                data-toggle="tooltip" data-placement="right" title="Chỉnh sửa">
-                                                    <i class='bx bxs-pencil'></i>
-                                                </a>
-                                                <a href="#" class="btn btn-danger btn-xs light px-2 ml-2"
-                                                data-toggle="tooltip" data-placement="right" title="Xóa">
-                                                    <i class='bx bx-block'></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                                        <form action="#" onsubmit="return submitFunc()" id="form">
+                                            <td>1</td>
+                                            <td>D01</td>
+                                            <td><input type="text" class="form-control w-auto" value="Thuê xe" id="input" disabled/></td>
+                                            <td>Motel Anh Duong</td> 
+                                            <td><input type="text" class="form-control w-auto" value="250,000" id="input" disabled/></td>
+                                            <td>
+                                                <div class="d-flex action-button">
+                                                    <button type="submit" class="btn btn-info btn-xs light px-2" 
+                                                    data-toggle="tooltip" data-placement="right" title="Cập nhật">
+                                                        <i class='bx bx-upload'></i>
+                                                    </button>
+
+                                                    <a class="btn btn-danger btn-xs light px-2 ml-3" onclick="return confirmation(event)"
+                                                    href="javascript(0):void;"
+                                                    data-toggle="tooltip" data-placement="right" title="Xóa">
+                                                        <i class='bx bx-block'></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </form>
                                     </tr>
                                 </tbody>
                             </table>
@@ -186,7 +207,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Thêm Dịch Vụ</h4>
                 </div>
-                <form action="#" >
+                <form action="#" onsubmit="return submitFunc()" id="form">
                     <div class="modal-body container-fluid">
                         <div class="row">
                             <div class="col-12">
@@ -194,7 +215,7 @@
                                     <div class="col-md-3 text-md-right"><span>Motel :</span></div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="hidden" name="motelID" id="idhome">
+                                            <input type="hidden" name="motelID" id="idhome" value="">
                                             <select name="" class="form-control" id="sel1" onchange="change(event)">
                                                 <option disabled selected>Chọn motel cần thêm dịch vụ</option>
                                                 <option value="1">Motel 1</option>
@@ -237,6 +258,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/owner-script.js"></script>
 </body>
 </html>

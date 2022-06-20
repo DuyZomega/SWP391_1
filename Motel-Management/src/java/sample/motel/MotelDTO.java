@@ -25,8 +25,36 @@ public class MotelDTO {
     private String typename;
     private double motelprice;
     private String ownerId;
+    private String ownerName;
     private int status;
 
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String city, double rating, String service, double serviceprice, String typename, double motelprice,  String ownerName, int status) {
+     
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
+        this.service = service;
+        this.serviceprice = serviceprice;
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.ownerName = ownerName;
+        this.status = status;
+    }
+
+    
     public String getMotelID() {
         return motelID;
     }
@@ -191,7 +219,7 @@ public class MotelDTO {
         this.status = status;
     }
 
-    public MotelDTO(String motelID, String name, String image, String phone, String address, String district, String city, String ownerId, int status) {
+    public MotelDTO(String motelID, String name, String image, String phone, String address, String district, String city,  String ownerName,double rating, int status) {
         this.motelID = motelID;
         this.name = name;
         this.image = image;
@@ -199,7 +227,8 @@ public class MotelDTO {
         this.address = address;
         this.district = district;
         this.city = city;
-        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+        this.rating = rating;
         this.status = status;
     }
 
@@ -225,6 +254,32 @@ public class MotelDTO {
         this.rating = rating;
         this.typename = typename;
         this.motelprice = motelprice;
+        this.status = status;
+    }
+
+    public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String city, double rating, String typename, double motelprice, int status) {
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.status = status;
+    }
+
+    public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String city, double rating, int status) {
+        this.name = name;
+        this.image = image;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
         this.status = status;
     }
 

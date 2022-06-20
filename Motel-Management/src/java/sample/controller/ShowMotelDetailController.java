@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.owner.FeedbackDAO;
+import sample.owner.FeedbackDTO;
 import sample.room.RoomDAO;
-import sample.room.RoomDTO;
+import sample.room.RoomTypeDTO;
 import sample.service.ServiceDAO;
 import sample.service.ServiceDTO;
 import sample.users.UserDAO;
@@ -36,31 +38,23 @@ public class ShowMotelDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            MotelDAO motel2 = new MotelDAO();
-            List<MotelDTO> listMotel2 = motel2.getDetailMotel(getInitParameter(motelID));
-            List<RoomDTO> listRoom2 = new ArrayList<>();
-
-            List<ServiceDTO> listService = new ArrayList<>();
-            if (listMotel2.size() > 0) {
-                request.setAttribute("LIST_MOTEL2", listMotel2);
-                RoomDAO dao2 = new RoomDAO();
-                for (MotelDTO motel3 : listMotel2) {
-                    List<RoomDTO> list = dao2.searchRoom(motel3.getMotelID());
-                    listRoom2.addAll(list);
+            String motelID = request.getParameter("motelID");
+            MotelDAO motel = new MotelDAO();
+            FeedbackDAO feedback = new FeedbackDAO();
+            RoomDAO roomtype = new RoomDAO();
+            List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
+           List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
+            List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
+            if (listMotel.size() > 0) {
+                request.setAttribute("DETAIL_MOTEL", listMotel);
+                if (listRoomType.size() > 0) {
+                    request.setAttribute("LIST_ROOMTYPE", listRoomType);
                 }
-                request.setAttribute("LIST_ROOM2", listRoom2);
-                ServiceDAO dao = new ServiceDAO();
-                for (MotelDTO motel3 : listMotel2) {
-                    List<ServiceDTO> list = dao.searchservice(motel3.getMotelID());
-                    listService.addAll(list);
+                if (listFeedback.size() > 0) {
+                    request.setAttribute("DETAIL_FEEDBACK", listFeedback);
                 }
-                request.setAttribute("LIST_SERVICE2", listService);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR_MESSAGE", "No motel here");
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

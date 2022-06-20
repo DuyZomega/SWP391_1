@@ -36,31 +36,19 @@ public class ShowAllMotelController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            MotelDAO motel1 = new MotelDAO();
-            List<MotelDTO> listMotel1 = motel1.getAllListMotel();
-            List<RoomDTO> listRoom1 = new ArrayList<>();
-
-            List<ServiceDTO> listService = new ArrayList<>();
-            if (listMotel1.size() > 0) {
-                request.setAttribute("LIST_MOTEL1", listMotel1);
-                RoomDAO dao2 = new RoomDAO();
-                for (MotelDTO motel2 : listMotel1) {
-                    List<RoomDTO> list = dao2.searchRoom(motel2.getMotelID());
-                    listRoom1.addAll(list);
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getListMotel();
+            List<RoomDTO> listRoom = new ArrayList<>();
+            if (listMotel.size() > 0) {
+                request.setAttribute("LIST_MOTEL", listMotel);
+                RoomDAO dao1 = new RoomDAO();
+                for (MotelDTO motel1 : listMotel) {
+                    List<RoomDTO> list = dao1.searchRoom(motel1.getMotelID());
+                    listRoom.addAll(list);
                 }
-                request.setAttribute("LIST_ROOM1", listRoom1);
-                ServiceDAO dao = new ServiceDAO();
-                for (MotelDTO motel2 : listMotel1) {
-                    List<ServiceDTO> list = dao.searchservice(motel2.getMotelID());
-                    listService.addAll(list);
-                }
-                request.setAttribute("LIST_SERVICE1", listService);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR_MESSAGE", "No motel here");
+                request.setAttribute("LIST_ROOM", listRoom);
                 url = SUCCESS;
             }
-
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

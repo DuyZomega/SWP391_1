@@ -12,10 +12,10 @@
         <div class="header__left">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:hotel.management@gmail.com" class="text-white text-decoration-none"><i
-                    class="fa fa-envelope"></i> hotel.management@gmail.com</a>
-            <a href="tel:0865644162" class="text-white mr-4 text-decoration-none"><i class="fas fa-phone-alt"></i>
-                0865.644.162</a>
+            <a href="mailto:hotelmanagement.fpt@gmail.com" class="text-white text-decoration-none"><i
+                    class="fa fa-envelope"></i> hotelmanagement.fpt@gmail.com</a>
+            <a href="tel:0396421901" class="text-white mr-4 text-decoration-none"><i class="fas fa-phone-alt"></i>
+                039 6421 901</a>
         </div>
         <div class="header__right">
 
@@ -32,7 +32,7 @@
                 <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span>Xin chào, <%= loginUser.getFullName()%></span>
-                    <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
+                    <span><img id="profile-pic" class="img-fluid" src="images/man.png" alt="<%= loginUser.getFullName()%>"></span>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
@@ -71,8 +71,8 @@
 </div>
 <div class="header__bottom">
     <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
-        <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
-                                              alt="logo"></a>
+        <a class="navbar-brand" href="ShowMotelController"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
+                                                                alt="logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -85,7 +85,7 @@
                     <a class="nav-link" href="#">Về chúng tôi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="ShowAllMotelController">Motel kinh doanh</a>
+                    <a class="nav-link" href="ShowAllMotelController">Danh sách motel</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Bảng giá dịch vụ</a>
@@ -96,69 +96,69 @@
             </ul>
         </div>
 
-       <div class="header__bottom__right">
-                    <form class="header__bottom--search d-flex">
-                        <div class="select-box">
-                            <div class="options-container">
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" class="radio" id="automobiles" name="category" />
-                                    <label for="automobiles">Quận 1</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="film" name="category" />
-                                    <label for="film">Quận 2</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="science" name="category" />
-                                    <label for="science">Quận 3</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="art" name="category" />
-                                    <label for="art">Quận 4</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="music" name="category" />
-                                    <label for="music">Quận 5</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="travel" name="category" />
-                                    <label for="travel">Quận 6</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="sports" name="category" />
-                                    <label for="sports">Quận 7</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="news" name="category" />
-                                    <label for="news">Quận 8</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                            </div>
-
-                            <div class="selected">
-                                <p>Chọn quận bạn muốn tìm kiếm</p>
-                            </div>
+        <div class="header__bottom__right">
+            <form class="header__bottom--search d-flex" action="#">
+                <div class="select-box">
+                    <div class="options-container">
+                        <div class="option">
+                            <input type="radio" class="radio" id="tutorials" name="category" />
+                            <label for="tutorials">Tân Phú</label>
                         </div>
-                        <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
+                        <div class="option">
+                            <input type="radio" class="radio" id="automobiles" name="category" />
+                            <label for="automobiles">Quận 1</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="film" name="category" />
+                            <label for="film">Quận 2</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="science" name="category" />
+                            <label for="science">Quận 3</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="art" name="category" />
+                            <label for="art">Quận 4</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="music" name="category" />
+                            <label for="music">Quận 5</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="travel" name="category" />
+                            <label for="travel">Quận 6</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="sports" name="category" />
+                            <label for="sports">Quận 7</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="news" name="category" />
+                            <label for="news">Quận 8</label>
+                        </div>
+
+                        <div class="option">
+                            <input type="radio" class="radio" id="tutorials" name="category" />
+                            <label for="tutorials">Tân Phú</label>
+                        </div>
+                    </div>
+
+                    <div class="selected">
+                        <p>Chọn quận bạn muốn tìm kiếm</p>
+                    </div>
                 </div>
+                <button type="submit" class="searchButton" name="action" value="search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
     </nav>
 </div>
 </header>

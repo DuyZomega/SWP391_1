@@ -217,10 +217,16 @@ $("#motelid").change(function() {
     $("#typyRoom option:not(." + cat + ")").hide(); // you hide every option that don't have your selected value as a class
     $("#typyRoom option." + cat).show(); // you only show selected options
     $("#typyRoom").val(""); //reset the previously selected value
-  });
+});
 
 
-
-// change span to input 
-
-
+function submitFunc() {
+    swal({
+        title: "Successfully!",
+        icon: "success",
+        timer: 1000
+    }).then(() => {
+        document.getElementById('form').submit();
+    });
+    return false;
+};

@@ -16,10 +16,6 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
  *
@@ -39,8 +35,6 @@ public class ShowMotelController extends HttpServlet {
             MotelDAO motel = new MotelDAO();
             List<MotelDTO> listMotel = motel.getListMotel();
             List<RoomDTO> listRoom = new ArrayList<>();
-
-            List<ServiceDTO> listService = new ArrayList<>();
             if (listMotel.size() > 0) {
                 request.setAttribute("LIST_MOTEL", listMotel);
                 RoomDAO dao1 = new RoomDAO();
@@ -49,15 +43,6 @@ public class ShowMotelController extends HttpServlet {
                     listRoom.addAll(list);
                 }
                 request.setAttribute("LIST_ROOM", listRoom);
-                ServiceDAO dao = new ServiceDAO();
-                for (MotelDTO motel1 : listMotel) {
-                    List<ServiceDTO> list = dao.searchservice(motel1.getMotelID());
-                    listService.addAll(list);
-                }
-                request.setAttribute("LIST_SERVICE", listService);
-                url = SUCCESS;
-            } else {
-                request.setAttribute("ERROR_MESSAGE", "No motel here");
                 url = SUCCESS;
             }
 

@@ -152,7 +152,7 @@
                                                                         <td>${motel.phone}</td>
                                                                         <td>${motel.address},${motel.district},${motel.city}</td>
                                                                         <td>${motel.rating}</td>
-                                                                        <td>${motel.ownerId}</td>
+                                                                        <td>${motel.ownerName}</td>
                                                                         <td>
                                                                             <c:if test="${motel.status == 0}">
                                                                                 <span class="badge badge-danger">Extended</span>
