@@ -1,14 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="sample.room.RoomDTO"%>
-<%@page import="sample.users.UserDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="sample.motel.MotelDTO"%>
-<%@page import="sample.room.RoomDTO"%>
-<%@page import="sample.service.ServiceDTO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="sample.room.RoomDTO" %>
+<%@page import="sample.users.UserDTO" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="sample.motel.MotelDTO" %>
+<%@page import="sample.room.RoomDTO" %>
+<%@page import="sample.service.ServiceDTO" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,8 @@
         <title>Thông tin chi tiết phòng</title>
         <link rel="shortcut icon" href="assets/img/logo2.png">
         <!-- BS4 CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
         <!-- FONT -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +26,10 @@
             href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100&family=Roboto+Condensed:wght@400;700&display=swap"
             rel="stylesheet">
         <!-- FONT AWESOME -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-        <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+        <link rel='stylesheet prefetch'
+              href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
         <!-- owl carousels -->
         <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
         <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
@@ -38,14 +42,17 @@
     <body>
         <!-- HEADER -->
 
-        <%@include file="header.jsp" %> 
+        <%@include file="header.jsp" %>
         <hr>
         <div class="header__breadcrumb container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
-                    <li class="breadcrumb-item"><a href="ShowAllMotelController" class="text-decoration-none">Danh sách motel</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thông tin phòng</li>
+                    <li class="breadcrumb-item"><a href="ShowMotelController"
+                                                   class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="ShowAllMotelController"
+                                                   class="text-decoration-none">Danh sách motel</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Thông tin
+                        phòng</li>
                 </ol>
             </nav>
         </div>
@@ -55,18 +62,24 @@
             <div class="container pt-4">
                 <div class="row">
 
-                    <c:forEach var="o" varStatus="counter" items="${requestScope.DETAIL_MOTEL}">
-                        <div class="col-12 content__title d-flex justify-content-between align-items-center">
+                    <c:forEach var="o" varStatus="counter"
+                               items="${requestScope.DETAIL_MOTEL}">
+                        <div
+                            class="col-12 content__title d-flex justify-content-between align-items-center">
                             <div class="content__title-left">
-                                <h3 class="heading">${o.name}  <span>${o.rating}</span></h3> 
+                                <h3 class="heading">${o.name}
+                                    <span>${o.rating}</span></h3>
                                 <p>${o.address},${o.district},${o.city}</p>
                             </div>
                         </div>
                         <div class="col-9">
                             <!-- item -->
                             <div class="content__item">
-                                <a href="${o.image}" data-lightbox="image-1" data-title="${o.name}" style="width: 100%; height: auto"><img
-                                        src="${o.image}" class="img-fluid" alt="${o.name}"></a>
+                                <a href="${o.image}" data-lightbox="image-1"
+                                   data-title="${o.name}"
+                                   style="width: 100%; height: auto"><img
+                                        src="${o.image}" class="img-fluid"
+                                        alt="${o.name}"></a>
                             </div>
                             <hr>
                             <div class="content__describe">
@@ -81,19 +94,27 @@
                         </div>
                         <div class="col-3 widgets">
                             <div class="content__item">
-                                <div class="content-booking text-center border rounded p-3 mb-2">
+                                <div
+                                    class="content-booking text-center border rounded p-3 mb-2">
                                     <h2>Đặt lịch</h2>
                                     <hr>
                                     <div class="content-booking-detail">
                                         <% if (loginUser == null) { %>
                                         <p>Vui lòng đăng nhập để đặt lịch</p>
-                                        <button class="button--primary" href="./login.jsp">Đăng nhập</button>
+                                        <button class="button--primary"
+                                                href="./login.jsp">Đăng
+                                            nhập</button>
                                         <p>hoặc</p>
-                                        <button class="button--primary" href="./signup.jsp">Đăng ký</button>
+                                        <button class="button--primary"
+                                                href="./signup.jsp">Đăng ký</button>
                                         <% } else { %>
-                                        <p>Thủ tục đặt phòng đơn giản, nhanh gọn</p>
-                                        <button class="button--primary mt-3"><a href="#Booking"
-                                                                                class="text-white text-decoration-none">Đặt phòng</a></button>
+                                        <p>Thủ tục đặt phòng đơn giản, nhanh
+                                            gọn</p>
+                                        <button
+                                            class="button--primary mt-3"><a
+                                                href="#Booking"
+                                                class="text-white text-decoration-none">Đặt
+                                                phòng</a></button>
 
                                         <%}%>
                                     </div>
@@ -101,11 +122,14 @@
 
 
                                 <!-- Sau khi đăng nhập -->
-                                <div class="content-contact text-center border rounded p-3">
+                                <div
+                                    class="content-contact text-center border rounded p-3">
                                     <h2>Liên hệ</h2>
                                     <hr>
                                     <div class="content-booking-detail">
-                                        <span><img src="images/man.png" alt="profile" style="width: 100px"></span>
+                                        <span><img src="images/man.png"
+                                                   alt="profile"
+                                                   style="width: 100px"></span>
                                         <span>
                                             <p class="m-0">${o.ownerName}</p>
                                             <p class="m-0">Tele: ${o.phone}</p>
@@ -125,38 +149,47 @@
                 <div class="booking__title">
                     <h3 class="heading">Đặt phòng</h3>
                 </div>
-                <div class="booking__table">
-                    <table class="table table-book">
+                <div class="booking__table row">
+                    <table class="table table-book col-10">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col" class="room-type">Loại phòng nghỉ</th>
+                                <th scope="col" class="room-type">Loại phòng nghỉ
+                                </th>
                                 <th class="room-number" scope="col">Số phòng</th>
                                 <th class="hour" scope="col">Số giờ</th>
                                 <th scope="col" class="price">Giá cả (...VNĐ/h)</th>
                                 <th scope="col" class="total-price">Tổng giá</th>
-                                <th scope="col" class="total-price-1">Tổng tất cả</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach var="r" varStatus="counter" items="${requestScope.LIST_ROOMTYPE}">
+                            <c:forEach var="r" varStatus="counter"
+                                       items="${requestScope.LIST_ROOMTYPE}">
                                 <tr>
                                     <td>
                                         <div class="row">
-                                            <div class="title col-12 d-flex justify-content-between align-items-center">
-                                                <h5 class="room-type-title">${r.typeName}</h5>
+                                            <div
+                                                class="title col-12 d-flex justify-content-between align-items-center">
+                                                <h5 class="room-type-title">
+                                                    ${r.typeName}</h5>
                                                 <div>
                                                     <span class="empty-room">
-                                                        <i class="fa fa-quote-left"></i>
+                                                        <i
+                                                            class="fa fa-quote-left"></i>
                                                         Còn 5 phòng trống!!!
-                                                        <i class="fa fa-quote-right"></i>
+                                                        <i
+                                                            class="fa fa-quote-right"></i>
                                                     </span>
-                                                    <img src="assets/img/HOT.svg" class="hot-label" alt="hot-label">
+                                                    <img src="assets/img/HOT.svg"
+                                                         class="hot-label"
+                                                         alt="hot-label">
                                                 </div>
                                             </div>
                                             <div class="col-6">
                                                 <div class="img-room">
-                                                    <a href="${r.image}" data-lightbox="roadtrip"><img
-                                                            src="${r.image}" alt=""></a>
+                                                    <a href="${r.image}"
+                                                       data-lightbox="roadtrip"><img
+                                                            src="${r.image}"
+                                                            alt=""></a>
                                                 </div>
                                             </div>
                                             <div class="desc col-6">
@@ -176,7 +209,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <select class="custom-select" id="inputGroupSelect01">
+                                        <select class="custom-select"
+                                                id="inputGroupSelect01">
                                             <option selected value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -196,20 +230,50 @@
 
                         </tbody>
                     </table>
-                    <div class="box-booking">
+                    <div class="total-price-box col-2">
+                        <table class="table table-book">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="room-type">Tổng tất cả
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- Tổng tất cả -->
+                                    <td rowspan="2" class="align-middle">
+                                        <span>150.000</span> VNĐ
+                                        <p class="m-0">- Phòng của bạn bao gồm
+                                            <span>1</span> phòng đơn và
+                                            <span>1</span>
+                                            phòng
+                                            đôi</p>
+                                        <p>- Giao dịch đơn giản, an toàn</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box-booking col-12">
                         <!-- trước khi đăng nhập -->
                         <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
-                        <div class="btn-booking-before d-flex justify-content-center align-items-center">
-                            <button class="button--primary mr-3" type="submit"><a href="login.jsp"
-                                                                                  class="text-decoration-none text-white">Đăng nhập</a></button>
+                        <div
+                            class="btn-booking-before d-flex justify-content-center align-items-center">
+                            <button class="button--primary mr-3"
+                                    type="submit"><a href="login.jsp"
+                                             class="text-decoration-none text-white">Đăng
+                                    nhập</a></button>
                             <span>hoặc</span>
-                            <button class="button--primary ml-3" type="submit"><a href="signup.jsp"
-                                                                                  class=" text-decoration-none text-white">Đăng ký</a></button>
+                            <button class="button--primary ml-3"
+                                    type="submit"><a href="signup.jsp"
+                                             class=" text-decoration-none text-white">Đăng
+                                    ký</a></button>
                         </div>
                         <!-- sau khi đăng nhập -->
                         <% } else { %>
                         <div class="btn-booking text-center">
-                            <button class="button--primary" type="submit">Đặt ngay</button>
+                            <button class="button--primary"
+                                    type="submit">Đặt ngay</button>
                         </div>
                         <%}%>
                     </div>
@@ -223,20 +287,23 @@
                 <hr>
                 <div class="row">
                     <h3 class="col-12 p-0 heading">Đánh giá </h3>
-                    <div  class="rating-carousel owl-carousel owl-theme">
+                    <div class="rating-carousel owl-carousel owl-theme">
 
                         <c:if test="${requestScope.DETAIL_FEEDBACK != null}">
                             <c:if test="${not empty requestScope.DETAIL_FEEDBACK}">
-                                <c:forEach var="f" varStatus="counter" items="${requestScope.DETAIL_FEEDBACK}">
+                                <c:forEach var="f" varStatus="counter"
+                                           items="${requestScope.DETAIL_FEEDBACK}">
                                     <div class="item item-rating">
 
                                         <div class="customer-rating">
                                             <h6 class="name-customer">
                                                 ${f.userName}</h6>
-                                            <img src="${f.image}" alt="${f.userName}">
+                                            <img src="${f.image}"
+                                                 alt="${f.userName}">
                                         </div>
                                         <div class="cmt-box">
-                                            <label class="rate-customer"> ${f.rating}
+                                            <label class="rate-customer">
+                                                ${f.rating}
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -257,15 +324,17 @@
         </section>
         <!-- FOOTER -->
 
-        <%@include file="footer.jsp" %> 
+        <%@include file="footer.jsp" %>
 
         <!-- thư viện hỗ trợ -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>
         <!-- BS4 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
         <!-- owl Carousels -->
         <script src="./assets/js/owl.carousel.min.js"></script>

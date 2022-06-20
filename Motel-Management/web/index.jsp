@@ -99,9 +99,10 @@
 
 
 <section class="motel container spacing">
-    <a class="button--primary" type="button" href="MainController?action=ShowAllMotel">Xem tất cả</a> 
-
-    <h3 class="heading">TIN CHO THUÊ</h3>
+    <div class="d-flex justify-content-between align-items-center">
+            <h3 class="heading">TIN CHO THUÊ</h3>
+            <a href="MainController?action=ShowAllMotel" class="view-motel-list">Xem tất cả <i class="fa fa-angle-right"></i></a>
+        </div>
     <div class="motel__content">
         <div class="motelList-carousel owl-carousel owl-theme">
             <c:if test="${requestScope.LIST_MOTEL != null}">
