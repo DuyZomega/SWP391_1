@@ -278,15 +278,11 @@ public class RoomDAO {
         }
         return listRoom;
     }
-<<<<<<< HEAD
-    private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct , rt.RoomTypeID, count(r.RoomID) as countRoom\n" +
-"	from tblRoomType as rt, tblMotel as m, tblRoom as r\n" +
-"	WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND rt.RoomTypeID=r.RoomTypeID AND m.MotelID= ? AND r.Status=0\n" +
-"	GROUP BY rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct ,rt.RoomTypeID ";
+//    private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct , rt.RoomTypeID, count(r.RoomID) as countRoom\n" +
+//"	from tblRoomType as rt, tblMotel as m, tblRoom as r\n" +
+//"	WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND rt.RoomTypeID=r.RoomTypeID AND m.MotelID= ? AND r.Status=0\n" +
+//"	GROUP BY rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct ,rt.RoomTypeID ";
 
-=======
-    
->>>>>>> 4d2bd063627cd10156159180c3c5a01fd5421932
     public List<RoomTypeDTO> getRoomType(String motelID) throws SQLException {
         List<RoomTypeDTO> listService = new ArrayList();
         Connection conn = null;
