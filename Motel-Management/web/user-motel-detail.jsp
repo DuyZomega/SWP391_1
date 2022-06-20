@@ -151,7 +151,7 @@
                     <h3 class="heading">Đặt phòng</h3>
                 </div>
                 <div class="booking__table row">
-                    <table class="table table-book col-10">
+                    <table class="table table-book col-10" id="app_a">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" class="room-type">Loại phòng nghỉ
@@ -165,26 +165,23 @@
                         <tbody>
                             <%
                                 List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
-                                double total=0;
+                                double total = 0;
                                 double sum = 0;
                                 if (rt.size() > 0) {
                                     for (RoomTypeDTO roomtype : rt) {
-
-                                        sum += roomtype.getPrice() * roomtype.getCountRoom();
-                            %>
-                            <tr>
+                            %><tr>
                                 <td>
                                     <div class="row">
                                         <div
                                             class="title col-12 d-flex justify-content-between align-items-center">
                                             <h5 class="room-type-title">
-                                                <%= roomtype.getTypeName()%></h5>
+                                                 <%= roomtype.getTypeName()%></h5>
                                             <div>
                                                 <span class="empty-room">
-                                                    <iclass="fa fa-quote-left"></i>
-                                                    Còn <%= roomtype.getCountRoom()%> phòng trống!!!
-                                                    <i
-                                                        class="fa fa-quote-right"></i>
+                                                    <i class="fa fa-quote-left"></i>
+                                                        Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                        <i
+                                                            class="fa fa-quote-right"></i>
                                                 </span>
                                                 <img src="assets/img/HOT.svg"
                                                      class="hot-label"
@@ -216,23 +213,23 @@
                                 </td>
                                 <td>
                                     <div class="inputHour" name="time">
-                                        <input type="number" min="1"  max="<%= roomtype.getCountRoom()%>" value="<%= roomtype.getCountRoom()%>">
+                                        <input class="room_val" type="number" min="0"  max="<%= roomtype.getCountRoom()%>" value="0">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="inputHour" name="time">
-                                        <input type="number" min="1" value="<%= roomtype.getTime()%>">
+                                        <input type="number" class="hour_val" min="0" value="1">
                                     </div>
                                 </td>
-                                <td><%= roomtype.getPrice()%> / h</td>
-                                <td><%=sum%></td>
+                                <td><input type="hidden" class="price" value="150000" /><%= roomtype.getPrice()%> / h</td>
+                                <td><span class="row_total">1350000.0</span></td>
                             </tr>
 
                             <%
                                     }
-                                } 
+                                }
                                 total += sum;
-%>  
+                            %>  
 
                         </tbody>
                     </table>
@@ -248,7 +245,7 @@
                                 <tr>
                                     <!-- Tổng tất cả -->
                                     <td rowspan="2" class="align-middle">
-                                        <span><%=total%> VND</span> VNĐ
+                                        <span><span class="amount"><%=total%></span> VND</span> VNĐ
                                         <p class="m-0">- Phòng của bạn bao gồm
                                             <span>1</span> phòng đơn và
                                             <span>1</span>
@@ -260,7 +257,7 @@
                             </tbody>
                         </table>
                     </div>
-                                
+
                     <div class="box-booking col-12">
                         <!-- trước khi đăng nhập -->
                         <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
