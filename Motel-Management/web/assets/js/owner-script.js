@@ -86,7 +86,7 @@ $(document).ready(function () {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-})
+});
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
@@ -201,11 +201,15 @@ function other(event) {
         document.getElementById("otherid1").style.display = "block";
         document.getElementById("otherid2").style.display = "block";
         document.getElementById("customFile").style.display = "block";
+        document.getElementById("labeldecp").style.display = "block";
+        document.getElementById("decp").style.display = "block";
     } else {
         document.getElementById("otherid").style.display = "none";
         document.getElementById("otherid1").style.display = "none";
         document.getElementById("otherid2").style.display = "none";
         document.getElementById("customFile").style.display = "none";
+        document.getElementById("labeldecp").style.display = "none";
+        document.getElementById("decp").style.display = "none";
     }
 }
 

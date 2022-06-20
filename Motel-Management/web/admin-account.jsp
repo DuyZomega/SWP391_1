@@ -55,7 +55,7 @@
                                 <span class="title">Tổng quan</span>
                             </a>
                         </li> 
-                        <li  class="active">
+                        <li  class="active acc">
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
                                 <span class="title">Quản lý tài khoản</span>
@@ -126,36 +126,21 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="newselect">
-                                            <label> Role
-                                                <form action="UserManager">
-                                                    <select aria-controls="myTable" name="role">
-                                                        <option value="US">Người thuê</option>
-                                                        <option value="OW">Chủ trọ</option>
-                                                        <option value="AD">Admin</option>
-                                                    </select>
-                                                    <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i
-                                                            class='bx bx-search'></i>
-                                                    </button>
-                                                </form>
-                                            </label>
+                                        <div class="typeaccount"> 
+                                            <form action="UserManager">
+                                                <label for="seleaccount">Role:</label>
+                                                <select id="seleaccount">
+                                                    <option value="US">Người thuê</option>
+                                                    <option value="OW">Chủ trọ</option>
+                                                    <option value="AD">Admin</option>
+                                                </select>
+                                                <button class="btn btn-info m-b-xs shadow btn-xs" type="submit" name="action" value="filter"><i
+                                                        class='bx bx-search'></i>
+                                                </button>
+                                            </form>
                                         </div>
                                         <div class="table-responsive">
-                                            
-                                            <div id="myTable_wrapper" class="dataTables_wrapper no-footer"><div class="newselect">
-                                                <label> Role
-                                                    <form action="UserManager">
-                                                        <select aria-controls="myTable" name="role">
-                                                            <option value="US">Người thuê</option>
-                                                            <option value="OW">Chủ trọ</option>
-                                                            <option value="AD">Admin</option>
-                                                        </select>
-                                                        <button class="btn btn-info m-b-xs shadow btn-xs sharp me-1 " type="submit" name="action" value="filter"><i
-                                                                class='bx bx-search'></i>
-                                                        </button>
-                                                    </form>
-                                                </label>
-                                            </div>
+                                            <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                                                 <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">     
                                                     <thead>
                                                         <tr>

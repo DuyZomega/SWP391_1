@@ -1,4 +1,5 @@
 
+<%@page import="sample.room.RoomTypeDTO"%>
 <%@page import="sample.room.RoomDTO"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page import="java.util.List"%>
@@ -205,8 +206,10 @@
                                             <div class="address-home">
                                                 <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></h5></span>
                                             </div>
-                                            <form action="#">
+                                            <form action="MainController" method="post">
                                                 <label>
+                                                    <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
+                                                    <input type="hidden" name="action" value="searchRoom"/>
                                                     <input class="form-control" type="text" name="search" placeholder="Search...">
                                                     <i class='bx bx-search-alt'></i>
                                                 </label>
@@ -216,7 +219,7 @@
                                             <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
                                                 <div class="card card-child">
                                                     <div class="card-body add-room">
-                                                        <button class="border-0" data-toggle="modal"  data-target="#addRoom">
+                                                        <button class="border-0" data-toggle="modal"  data-target="#addRoom<%=motel.getMotelID()%>">
                                                             <span>Thêm Phòng</span>
                                                             <i class='bx bx-add-to-queue'></i>
                                                         </button>
@@ -294,55 +297,70 @@
             </div>
         </div>
 
+        <%
+            if (listMotel != null) {
+                if (listMotel.size() > 0) {
+                    for (MotelDTO motel : listMotel) {
+
+        %>
         <!-- add new Room -->
-        <div id="addRoom" class="modal fade" role="dialog">
+        <div id="addRoom<%=motel.getMotelID()%>" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content modal-addRoom">
                     <div class="modal-header">
                         <h4 class="modal-title">Thêm Phòng Mới</h4>
                     </div>
-                    <form action="#">
+                    <form action="MainController" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>" />
                         <div class="modal-body">
                             <div class="row p-4">
                                 <div class="col-12">
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên Nhà Trọ</label>
-                                        <select name="MotelID" class="form-control col-md-7">
-                                            <option disabled selected>Choose motel name to add room</option>
-                                            <option value="#">ánh dương</option>
-                                            <option value="#">Normal</option>
+                                        <select name="motelID" class="form-control col-md-7">
+                                            <option disabled selected>Motel name to add room</option>
+                                            <option value="<%=motel.getMotelID()%>" selected="selected" ><%=motel.getName()%></option>
                                         </select>
                                     </div>
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên phòng</label>
-                                        <input type="text" name="roomID" placeholder="Tên Phòng" required class="form-control col-md-7">
+                                        <input type="text" name="roomName" placeholder="Tên Phòng" required class="form-control col-md-7">
                                     </div>
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Loại phòng</label>
-                                        <select name="typeofRoom" class="form-control col-md-7" onchange="other(event)">
+                                        <select name="typeofRoom" class="form-control col-md-7" onchange="other(event)" required="">
                                             <option disabled selected>Choose type of room</option>
-                                            <option value="#">Luxury</option>
-                                            <option value="#">Normal</option>
+                                            <%
+                                                List<RoomTypeDTO> listRoomType = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                                for (RoomTypeDTO roomType : listRoomType) {
+                                                    if (roomType.getMotelID().equals(motel.getMotelID())) {
+                                            %>
+                                            <option value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
+                                            <%
+                                                    }
+                                                }
+
+                                            %>
                                             <option value="custom">Other</option>
                                         </select>
                                         <input type="text" name="roomType" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"
-                                               placeholder="Loại phòng" required>
-                                        <input type="text" id="otherid1" name="price" placeholder="Giá Phòng" required 
+                                               placeholder="Loại phòng" >
+                                        <input type="text" id="otherid1" name="price" placeholder="Giá Phòng"  
                                                class="form-control offset-md-1 col-md-3 mt-2" style="display: none;"> 
                                         <label class="col-md-3 col-form-label mt-2 text-md-right" id="otherid2" for="customFile" style="display: none;">
                                             Chọn ảnh
                                         </label>
-                                        <input type="file" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none;"/>
-                                    </div>
-
-                                    <div class="row form-group">
-                                        <label for="firstname" class="col-md-3 col-form-label text-md-right">Mô tả</label>
-                                        <textarea type="text" placeholder="Mô tả phòng..." required class="form-control col-md-7" rows="3"></textarea>
+                                        <input type="file" name="photo" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none;">
+                                        <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3" id="labeldecp" style="display: none;">
+                                            Mô tả
+                                        </label>
+                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3" 
+                                                  rows="3" id="decp" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer justify-content-center">
-                                <button class="btn btn-success" type="submit" >Xác Nhận</button>
+                                <button class="btn btn-success" type="submit" name="action" value="createRoom" >Xác Nhận</button>
                                 <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                             </div>
                         </div>
@@ -350,6 +368,12 @@
                 </div>
             </div>
         </div>
+        <%                    }
+                }
+            }
+        %> 
+
+
         <%
             List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
             for (RoomDTO room : listRoom) {

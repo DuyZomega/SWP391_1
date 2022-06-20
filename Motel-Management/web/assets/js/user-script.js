@@ -149,3 +149,55 @@ optionsList.forEach(o => {
     });
 });
 
+// ===================Thuy detail=====================
+
+$(function () {
+    app_a.setUp();
+});
+let vnd = Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+    useGrouping: true
+});
+var app_a = {
+    tbl: '#app_a',
+    h: 'input.hour_val',
+    r: 'input.room_val',
+    t: '.row_total',
+    am: '.amount',
+    p: '.price',
+    setUp: function () {
+        var _this = this;
+        _this.amount();
+        $(this.tbl).find('input').change(function () {
+            _this.amount();
+        });
+    },
+    amount: function () {
+        var _this = this,
+            am = $(_this.am),
+            amount = 0;
+        $(this.tbl).find('tbody tr').each(function () {
+            amount += _this.rowtotal(this);
+        });
+        am.html(_this.toCur(amount));
+    },
+    rowtotal: function (row) {
+        var _this = this,
+            r = $(row),
+            h = r.find(_this.h),
+            p = r.find(_this.p),
+            rm = r.find(_this.r),
+            h_val = h.val(),
+            r_val = rm.val(),
+            p_val = p.val(),
+            t = r.find(_this.t),
+            total = h_val * r_val * p_val;
+        t.html(_this.toCur(total));
+        return total;
+    },
+    toCur: function (val) {
+        return vnd.format(val);
+    }
+}
+// ===================Thuy detail=====================

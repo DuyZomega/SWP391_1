@@ -30,7 +30,7 @@ import sample.users.UserDAO;
 public class OwnerCreateRoomController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "ownwer-room-list.jsp";
+    private static final String SUCCESS = "ShowRoomController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,8 +42,7 @@ public class OwnerCreateRoomController extends HttpServlet {
         try {
             String motelID = request.getParameter("motelID");
             String roomName = request.getParameter("roomName");
-            String desc = request.getParameter("desc");
-            String roomType = request.getParameter("roomType");
+            String roomType = request.getParameter("typeofRoom");
             boolean checkValidation = true;
 
             if (roomName.length() < 1 || roomName.length() > 10) {
@@ -72,11 +71,12 @@ public class OwnerCreateRoomController extends HttpServlet {
 
                     String image = "images/" + filename;
                     String roomTypeName = request.getParameter("roomType");
+                    String desct = request.getParameter("roomTypeDesct");
                     String checkPrice = request.getParameter("price");
                     if (checkPrice.matches("[0-9]{2,10}")) {
                         int price = Integer.parseInt(checkPrice);
-                        part.write(pathImage + "/" + filename);
-                        boolean check = dao.createRoomType(roomTypeID, roomTypeName, price, image, desc, motelID);
+                        part.write(pathImage + "/" + filename);                       
+                        boolean check = dao.createRoomType(roomTypeID, roomTypeName, price, image, desct, motelID,1);
                         if (check) {
                             roomType = roomTypeID;
                         } else {
@@ -93,7 +93,7 @@ public class OwnerCreateRoomController extends HttpServlet {
                         roomID = String.valueOf(generator.nextInt(9999999));
                         checkID = dao.checkRoomID(roomID);
                     } while (checkID = false);
-                    RoomDTO newRoom = new RoomDTO(roomID, roomName, desc, roomType, 1, motelID);
+                    RoomDTO newRoom = new RoomDTO(roomID, roomName, "", roomType, 0, motelID);
                     boolean checkCreate = dao.createRoom(newRoom);
                     if (checkCreate) {
                         url = SUCCESS;

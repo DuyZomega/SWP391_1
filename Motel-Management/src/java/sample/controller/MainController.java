@@ -51,6 +51,11 @@ public class MainController extends HttpServlet {
     private static final String DELETE_ROOM_CONTROLLER = "OwnerDeleteRoom";
     private static final String UPDATE_ROOM = "updateRoom";
     private static final String UPDATE_ROOM_CONTROLLER = "OwnerUpdateRoom";
+    private static final String CREATE_ROOM = "createRoom";
+    private static final String CREATE_ROOM_CONTROLLER = "OwnerCreateRoomController";
+    private static final String SEARCH_ROOM = "searchRoom";
+    private static final String SEARCH_ROOM_CONTROLLER = "OwnerSearchRoom";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -86,6 +91,10 @@ public class MainController extends HttpServlet {
                 url = DELETE_ROOM_CONTROLLER;
             } else if (UPDATE_ROOM.equals(action)){
                 url = UPDATE_ROOM_CONTROLLER;
+            } else if (CREATE_ROOM.equals(action)){
+                url = CREATE_ROOM_CONTROLLER;
+            } else if (SEARCH_ROOM.equals(action)){
+                url = SEARCH_ROOM_CONTROLLER;
             }
 
         } catch (Exception e) {

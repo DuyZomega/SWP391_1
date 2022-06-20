@@ -41,7 +41,7 @@ public class RoomDetailDAO {
                 while (rs.next()) {
                     String roomtypeID = rs.getString("RoomTypeID");
                     String TypeName = rs.getString("TypeName");
-                    listRoomType.add(new RoomTypeDTO(roomtypeID, TypeName, 0, "", "", ""));
+                    listRoomType.add(new RoomTypeDTO(roomtypeID, TypeName, 0, "", "", "",0));
                 }
             }
         } catch (Exception e) {

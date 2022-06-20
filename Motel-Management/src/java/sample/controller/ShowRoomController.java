@@ -18,6 +18,7 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
+import sample.room.RoomTypeDTO;
 
 /**
  *
@@ -38,14 +39,18 @@ public class ShowRoomController extends HttpServlet {
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
             List<RoomDTO> listRoom = new ArrayList<>();
+            List<RoomTypeDTO> listRoomType = new ArrayList<>();
             if (listMotel.size()>0){
                 request.setAttribute("LIST_MOTEL", listMotel);
                 RoomDAO dao2 = new RoomDAO();
                 for(MotelDTO motel : listMotel){                  
                    List<RoomDTO> list = dao2.searchRoom(motel.getMotelID());
+                   List<RoomTypeDTO> list2 = dao2.getRoomType(motel.getMotelID());
                    listRoom.addAll(list);
+                   listRoomType.addAll(list2);
                 }
                 request.setAttribute("LIST_ROOM", listRoom);
+                request.setAttribute("LIST_ROOMTYPE", listRoomType);
                 url=SUCCESS;
             }
             
