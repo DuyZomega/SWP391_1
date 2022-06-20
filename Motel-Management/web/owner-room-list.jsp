@@ -206,8 +206,10 @@
                                             <div class="address-home">
                                                 <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></h5></span>
                                             </div>
-                                            <form action="#">
+                                            <form action="MainController" method="post">
                                                 <label>
+                                                    <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
+                                                    <input type="hidden" name="action" value="searchRoom"/>
                                                     <input class="form-control" type="text" name="search" placeholder="Search...">
                                                     <i class='bx bx-search-alt'></i>
                                                 </label>
@@ -308,7 +310,8 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Thêm Phòng Mới</h4>
                     </div>
-                    <form action="MainController" method="post">
+                    <form action="MainController" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>" />
                         <div class="modal-body">
                             <div class="row p-4">
                                 <div class="col-12">
@@ -332,7 +335,7 @@
                                                 for (RoomTypeDTO roomType : listRoomType) {
                                                     if (roomType.getMotelID().equals(motel.getMotelID())) {
                                             %>
-                                            <option value="<%= roomType.getRoomTypeID() %>"><%= roomType.getTypeName()%></option>
+                                            <option value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
                                             <%
                                                     }
                                                 }
@@ -341,14 +344,18 @@
                                             <option value="custom">Other</option>
                                         </select>
                                         <input type="text" name="roomType" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"
-                                               placeholder="Loại phòng" required>
-                                        <input type="text" id="otherid1" name="price" placeholder="Giá Phòng" required 
+                                               placeholder="Loại phòng" >
+                                        <input type="text" id="otherid1" name="price" placeholder="Giá Phòng"  
                                                class="form-control offset-md-1 col-md-3 mt-2" style="display: none;"> 
                                         <label class="col-md-3 col-form-label mt-2 text-md-right" id="otherid2" for="customFile" style="display: none;">
                                             Chọn ảnh
                                         </label>
-                                        <input type="file" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none;">
-                                        
+                                        <input type="file" name="photo" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none;">
+                                        <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3" id="labeldecp" style="display: none;">
+                                            Mô tả
+                                        </label>
+                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3" 
+                                                  rows="3" id="decp" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -361,13 +368,12 @@
                 </div>
             </div>
         </div>
-        <%
-                    }
+        <%                    }
                 }
             }
         %> 
 
-            
+
         <%
             List<RoomDTO> listRoom = (ArrayList<RoomDTO>) request.getAttribute("LIST_ROOM");
             for (RoomDTO room : listRoom) {

@@ -199,11 +199,15 @@ function other(event) {
     if (event.target.value === 'custom') {
         document.getElementById("otherid").style.display = "block";
         document.getElementById("otherid1").style.display = "block";
+        document.getElementById("otherid2").style.display = "block";
+        document.getElementById("customFile").style.display = "block";
         document.getElementById("labeldecp").style.display = "block";
         document.getElementById("decp").style.display = "block";
     } else {
         document.getElementById("otherid").style.display = "none";
         document.getElementById("otherid1").style.display = "none";
+        document.getElementById("otherid2").style.display = "none";
+        document.getElementById("customFile").style.display = "none";
         document.getElementById("labeldecp").style.display = "none";
         document.getElementById("decp").style.display = "none";
     }
