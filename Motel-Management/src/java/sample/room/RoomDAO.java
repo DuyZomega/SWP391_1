@@ -21,11 +21,14 @@ public class RoomDAO {
     private static final String SHOW_ROOM = "SELECT RoomID, Name, tblRoomType.TypeName, Price, Desct, tblRoom.Status, MotelID FROM tblRoom, tblRoomType WHERE MotelID = ? and tblRoom.RoomTypeID = tblRoomType.RoomTypeID AND (tblRoom.Status = 0 OR tblRoom.Status = 1 ) ";
     private static final String CHECK_ROOMID = "SELECT RoomID FROM tblRoom Where RoomID = ? ";
     private static final String CHECK_ROOMTYPEID = "SELECT RoomTypeID FROM tblRoomType Where RoomTypeID = ?";
-    private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Image], [Desct], [Status], [MotelID],[RoomTypeID]) VALUES(?,?,?,?,?,?,?)";
+    private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES(?,?,?,?)";
     private static final String CREATE_ROOMTYPE = "INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct], [MotelID]) VALUES(?,?,?,?,?,?)";
     private static final String DELETE_ROOM = "UPDATE tblRoom SET Status = 2 WHERE RoomID = ?";
     private static final String UPDATE_ROOM = "UPDATE tblRoom SET Name = ?, RoomTypeID = ? WHERE RoomID = ?";
-
+    private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct \n"
+            + "from tblRoomType as rt, tblMotel as m \n"
+            + "WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND m.MotelID= ? ";
+    
     public boolean updateRoom(String roomID, String Name, String roomTypeID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -117,11 +120,8 @@ public class RoomDAO {
                 ptm = conn.prepareStatement(CREATE);
                 ptm.setString(1, room.getRoomId());
                 ptm.setString(2, room.getName());
-                ptm.setString(3, "...");
-                ptm.setString(4, room.getDesc());
-                ptm.setInt(5, room.getStatus());
-                ptm.setString(6, room.getMotelID());
-                ptm.setString(7, room.getRoomType());
+                ptm.setInt(3, room.getStatus());
+                ptm.setString(4, room.getRoomType());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -237,10 +237,7 @@ public class RoomDAO {
         }
         return listRoom;
     }
-    private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct \n"
-            + "from tblRoomType as rt, tblMotel as m \n"
-            + "WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND m.MotelID= ? ";
-
+    
     public List<RoomTypeDTO> getRoomType(String motelID) throws SQLException {
         List<RoomTypeDTO> listService = new ArrayList();
         Connection conn = null;

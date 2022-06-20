@@ -86,7 +86,7 @@ $(document).ready(function () {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-})
+});
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
