@@ -1,7 +1,6 @@
 .room-item {
     margin-top: 20px;
     margin-right: 5px;
-
     margin-bottom: 0;
     margin-left: $mg-4;
     padding: $pd-1;
@@ -11,13 +10,13 @@
     background-color: $color-white-0;
     display: table;
     transform: translateY(0);
-    transition: .5s;
+    transition: 0.5s;
     .motel-title {
         padding-top: 10px;
         a {
             color: $color-primary-1;
-            transition: all .5s;
-            &:hover{
+            transition: all 0.5s;
+            &:hover {
                 color: $color-primary-3;
             }
         }
@@ -26,33 +25,97 @@
         display: block;
         border-radius: $border-radius-1;
         overflow: hidden;
+        img {
+            height: 172px;
+        }
     }
-    .motel-price{
+    .motel-price {
         font-size: $fs-3;
     }
-    &:hover{
+    &:hover {
         transform: translateY(-10px);
         box-shadow: 1px 1px 15px $color-red-0;
     }
-    
+    i {
+        font-size: $fs-3;
+    }
+    p {
+        font-size: $fs-3 + 1;
+        margin: 0;
+        margin: 10px 0;
+    }
 }
 
-.spacing{
+.spacing {
     padding: 50px 0;
 }
 
-body{
-    .lb-data .lb-close{
+body {
+    .lb-data .lb-close {
         background: url(../../vendor/lightbox/imges/close.png);
     }
-    .lb-nav a.lb-prev{
+    .lb-nav a.lb-prev {
         background: url(../../vendor/lightbox/imges/prev.png) left 48% no-repeat;
     }
-    .lb-nav a.lb-next{
+    .lb-nav a.lb-next {
         background: url(../../vendor/lightbox/imges/next.png) right 48% no-repeat;
-    } 
+    }
 
-    .lb-cancel{
-        background:url(../../vendor/lightbox/imges/loading.gif) no-repeat;
+    .lb-cancel {
+        background: url(../../vendor/lightbox/imges/loading.gif) no-repeat;
+    }
+}
+
+.truncate {
+    width: 230.5px;
+    // height: 65px;
+    // white-space: normal;
+    // overflow: hidden;
+    // -webkit-line-clamp: 2;
+    // text-overflow: ellipsis;
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.owl-carousel {
+    .owl-nav {
+        button {
+            &.owl-prev,
+            &.owl-next {
+                color: $color-blue-0;
+                background-color: $color-white-0;
+                width: 44px;
+                height: 44px;
+                line-height: 40px;
+                border-radius: 50%;
+                border: 1px solid #b0b0b0;
+                font-size: 25px;
+                position: absolute;
+                transition: all 0.5s;
+                top: 50%;
+                overflow: hidden;
+                &:hover {
+                    background-color: $color-white-0;
+                    box-shadow: 0 2px 8px 2px #b0b0b0;
+                    color: $color-blue-0;
+                }
+                &:focus {
+                    outline: none;
+                }
+            }
+            &.owl-prev {
+                left: -30px;
+            }
+            &.owl-next {
+                right: -35px;
+            }
+        }
+    }
+    .owl-stage-outer {
+        padding-bottom: 10px;
     }
 }

@@ -30,16 +30,19 @@
         font-weight: 700;
         margin-bottom: $mg-3;
     }
-    .motel__content {
-        i{
-            font-size: $fs-3;
-        }
-        p{
-            font-size: $fs-3 - 2;
-            margin: 0;
-            padding: 10px 0;
 
+    .motel__content {
+        position: relative;
+        padding-bottom: 10px;
+        h5 {
+            font-weight: bold;
+            margin-left: 10px;
+            background: -webkit-linear-gradient(0.25turn, $color-primary-0, $color-primary-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            i {
+                font-size: 18px;
+            }
         }
-        
     }
 }
