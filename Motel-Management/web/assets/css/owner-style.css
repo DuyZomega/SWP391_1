@@ -398,7 +398,7 @@ html body {
 .main-content {
     position: relative;
     display: block;
-    padding-top: 85px;
+    padding-top: 100px;
     left: 270px;
     width: calc(100% - 300px);
     transition: 0.3s
@@ -1320,8 +1320,30 @@ line-height: 35px;
 
 /* feedback */
 
+.fb-main .card {
+    border-radius: 15px;
+}
+
+.fb-main .card .nav-link {
+    color: #34495e;
+}
+
+.fb-main .card .nav-link i {
+    font-size: 15px;
+    padding: 2px;
+}
+
+.fb-main .card .nav-link.active {
+    background-color: #34495e;
+    color: #e7e7e7;
+}
+
 .feedback {
     cursor: pointer;
+}
+
+.feedback.active{
+    background-color: #e7e7e7;
 }
 
 .main-img {
@@ -1567,20 +1589,23 @@ line-height: 35px;
     margin-left: 250px;
 }
 
-
-.spacing .newselect {
+.spacing .typeaccount {
     position: absolute;
     z-index: 9999;
-}
-
-.spacing .newselect label {
-    width: 300px;
-    display: flex;
+    margin-top: 1px;
     align-items: center;
 }
 
-.spacing .newselect label select {
+.spacing .typeaccount #seleaccount {
+    width: 150px;
+    align-items: center; 
+    border-radius: 3px;
+    padding: 6px;
+    margin-left: 2px;
+    border: 1px solid#95a5a6;
+}
+
+.spacing .typeaccount .btn  {
+    padding: 4px 10px;
     border-radius: 5px;
-    padding: 5px;
-    margin-left: 5px;
 }

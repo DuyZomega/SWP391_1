@@ -140,7 +140,6 @@
                                             </form>
                                         </div>
                                         <div class="table-responsive">
-                                            
                                             <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                                                 <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">     
                                                     <thead>
