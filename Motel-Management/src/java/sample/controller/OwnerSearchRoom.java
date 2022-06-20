@@ -7,7 +7,6 @@ package sample.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,10 +23,10 @@ import sample.room.RoomTypeDTO;
  *
  * @author Bao
  */
-@WebServlet(name = "ShowRoomController", urlPatterns = {"/ShowRoomController"})
-public class ShowRoomController extends HttpServlet {
-     
-    private static final String ERROR = "error.jsp";
+@WebServlet(name = "OwnerSearchRoom", urlPatterns = {"/OwnerSearchRoom"})
+public class OwnerSearchRoom extends HttpServlet {
+
+    private static final String ERROR = "owner-room-list.jsp";
     private static final String SUCCESS = "owner-room-list.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +34,7 @@ public class ShowRoomController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url =  ERROR;
         try {
+            String search = request.getParameter("search");
             String ownerID = request.getParameter("ownerID");
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
@@ -44,7 +44,7 @@ public class ShowRoomController extends HttpServlet {
                 request.setAttribute("LIST_MOTEL", listMotel);
                 RoomDAO dao2 = new RoomDAO();
                 for(MotelDTO motel : listMotel){                  
-                   List<RoomDTO> list = dao2.searchRoom(motel.getMotelID());
+                   List<RoomDTO> list = dao2.searchRoomByName(motel.getMotelID(),search);
                    List<RoomTypeDTO> list2 = dao2.getRoomType(motel.getMotelID());
                    listRoom.addAll(list);
                    listRoomType.addAll(list2);
@@ -59,7 +59,6 @@ public class ShowRoomController extends HttpServlet {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

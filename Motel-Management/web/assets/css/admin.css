@@ -227,9 +227,8 @@ a {
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    vertical-align: middle;
     background-color: #fff;
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 16px 12px;
     border: 1px solid #ced4da;
@@ -237,6 +236,7 @@ a {
     -moz-appearance: none;
     appearance: none;
 }
+
 select {
     word-wrap: normal;
 }
