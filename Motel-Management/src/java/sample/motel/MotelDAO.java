@@ -20,7 +20,7 @@ import sample.utils.DBUtils;
  */
 public class MotelDAO {
 
-    private static final String SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, Phone,Desct,Image, Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,OwnerID,Status FROM tblMotel,tblDistrict,tblCity WHERE OwnerID = ? AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
+    private static final String SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, Phone,Desct,Image, Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,OwnerID,Status FROM tblMotel,tblDistrict,tblCity WHERE OwnerID = ? AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.Status = 1";
 
     private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
     
@@ -29,6 +29,104 @@ public class MotelDAO {
     private static final String GET_NUMBER_ROOMTYPE = "SELECT COUNT(*) as numberRoomType FROM tblMotel as m , tblRoomType as rt WHERE m.MotelID = ? AND m.MotelID = rt.MotelID GROUP BY m.MotelID";
     
     private static final String GET_NUMBER_ROOM = "SELECT COUNT(*) as numberRoom FROM tblMotel as m , tblRoomType as rt , tblRoom as r WHERE m.MotelID = ? AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND (r.Status=1 OR r.Status=0) GROUP BY m.MotelID";
+    private static final String CREATE_MOTEL = "INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address],[OwnerID], [Status]) VALUES (?,?,?,?,?,?,?,?,?)";
+    private static final String CHECK_MOTELID = "SELECT MotelID FROM tblMotel Where MotelID = ?";
+    private static final String CHECK_EMPTY_ROOM = "SELECT * FROM tblMotel as m , tblRoomType as rt, tblRoom as r WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND m.MotelID = ? AND r.Status = 1";
+    
+    public boolean checkEmptyRoom(String motelID) throws SQLException {
+        boolean check = true;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_EMPTY_ROOM);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = false;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean createMotel(MotelDTO motel) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CREATE_MOTEL);
+                ptm.setString(1, motel.getMotelID());
+                ptm.setString(2, motel.getName());
+                ptm.setString(3, motel.getDesct());
+                ptm.setString(4, motel.getImage());
+                ptm.setString(5, motel.getPhone());
+                ptm.setString(6, motel.getDistrict());
+                ptm.setString(7, motel.getAddress());
+                ptm.setString(8, motel.getOwnerId());
+                ptm.setInt(9, 1);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+
+    }
+    
+    public boolean checkMotelID(String motelID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_MOTELID);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
     
     public int getNumberRoom(String motelID) throws SQLException {
         int numberRoom = 0;

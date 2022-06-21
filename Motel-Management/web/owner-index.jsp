@@ -37,7 +37,7 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <%
+                        <%  
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
                             if (loginUser == null || !loginUser.getRole().equals("OW")) {
                                 response.sendRedirect("login.jsp");
@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="owner-feedback.jsp">
+                            <a href="onwer-feedback.jsp">
                                 <span><i class="bx bx-detail"></i></span>
                                 <span class="title">Nhận xét</span>
                             </a>

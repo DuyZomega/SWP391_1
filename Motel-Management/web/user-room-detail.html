@@ -102,64 +102,14 @@
 
                 <div class="header__bottom__right">
                     <div class="header__bottom--search d-flex">
-                        <div class="select-box">
-                            <div class="options-container">
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" class="radio" id="automobiles" name="category" />
-                                    <label for="automobiles">Quận 1</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="film" name="category" />
-                                    <label for="film">Quận 2</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="science" name="category" />
-                                    <label for="science">Quận 3</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="art" name="category" />
-                                    <label for="art">Quận 4</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="music" name="category" />
-                                    <label for="music">Quận 5</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="travel" name="category" />
-                                    <label for="travel">Quận 6</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="sports" name="category" />
-                                    <label for="sports">Quận 7</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="news" name="category" />
-                                    <label for="news">Quận 8</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                            </div>
-
-                            <div class="selected">
-                                <p>Chọn quận bạn muốn tìm kiếm</p>
-                            </div>
-                        </div>
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Vị trí bạn muốn tìm kiếm</option>
+                            <option value="1">Quận 1</option>
+                            <option value="2">Quận 2</option>
+                            <option value="3">Quận 3</option>
+                        </select>
                         <button type="submit" class="searchButton">
-                            <i class="fa fa-filter"></i>
+                            <i class="fa fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -172,7 +122,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Room Detail</li>
+                <li class="breadcrumb-item"><a href="user-motel-list.html" class="text-decoration-none">Danh sách
+                        nhà nghỉ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin nhà nghỉ</li>
             </ol>
         </nav>
     </div>
@@ -184,7 +136,8 @@
             <div class="row">
                 <div class="col-12 content__title d-flex justify-content-between align-items-center">
                     <div class="content__title-left">
-                        <h3 class="heading">Nhà nghỉ Đi Bụi</h3>
+                        <h3 class="heading d-inline-block pr-3"><i class="fa fa-hotel"></i> Nhà nghỉ Đi Bụi</h3>
+                        <label><span>5</span> <i class="fa fa-star"></i></label>
                         <p>0 Phó Đức Chính, Phường Linh Trung, TP.Thủ Đức, Thành phố Hồ Chí Minh</p>
                     </div>
                 </div>
@@ -196,12 +149,12 @@
                     </div>
                     <hr>
                     <div class="content__describe">
-                        <h3 class="heading">Mô tả</h3>
+                        <h3 class="heading"><i class="fa fa-scroll"></i> Mô tả</h3>
                         <p>Không có mô tả nào</p>
                     </div>
                     <hr>
                     <div class="content__describe">
-                        <h3 class="heading">Tiện ích</h3>
+                        <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
                         <p>Chưa thiết lập cơ sở vật chất cho nhà.</p>
                     </div>
                 </div>
@@ -251,7 +204,7 @@
     <section id="Booking" class="booking mb-5">
         <div class="container">
             <div class="booking__title">
-                <h3 class="heading">Đặt phòng</h3>
+                <h3 class="heading"><i class="fa fa-concierge-bell"></i> Đặt phòng</h3>
             </div>
             <div class="booking__table row">
                 <table class="table table-book col-10">
@@ -422,7 +375,7 @@
         <div class="content__feedback container">
             <hr>
             <div class="row">
-                <h3 class="col-12 p-0 heading">Đánh giá </h3>
+                <h3 class="col-12 p-0 heading pb-3"><i class="fa fa-thumbs-up"></i> Đánh giá </h3>
                 <!-- Sau khi đăng nhập -->
                 <!-- <div class="box-name col-6 p-0">
                     <textarea name="#" id="" cols="1" rows="1" placeholder="Tên của bạn là?"></textarea>
@@ -451,7 +404,7 @@
                     <button class="button--primary btn">Gửi đi <i class="fa fa-paper-plane"></i></button>
                 </div> -->
 
-                <!-- Trước khi đăng nhập -->
+                <!-- Trước khi đăng nhập-->
                 <div class="rating-carousel owl-carousel owl-theme">
                     <div class="item item-rating">
                         <div class="customer-rating">
@@ -580,7 +533,8 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- không có đánh giá nào -->
+                <!-- <p>Hiện chưa có đánh giá nào cho nhà trọ này</p> -->
             </div>
         </div>
     </section>
