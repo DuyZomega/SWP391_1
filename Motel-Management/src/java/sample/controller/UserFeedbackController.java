@@ -37,7 +37,8 @@ public class UserFeedbackController extends HttpServlet {
             int rating = Integer.parseInt(request.getParameter("rating"));
             String desct = request.getParameter("desct");
             String motelID = request.getParameter("motelID");
-             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID);
+            int status = 1;
+             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status);
             boolean checkInsert = dao.insertFeedback(feedback);
                 if (checkInsert) {
                     url = SUCCESS;

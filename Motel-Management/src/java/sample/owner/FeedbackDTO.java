@@ -119,6 +119,15 @@ public class FeedbackDTO {
         this.desc = desc;
         this.status = status;
     }
+
+    public FeedbackDTO(String userId, String feedbackID, String desc, int rating, String MotelID, int status) {
+        this.userId = userId;
+        this.feedbackID = feedbackID;
+        this.desc = desc;
+        this.rating = rating;
+        this.MotelID = MotelID;
+        this.status = status;
+    }
     
     
 }
