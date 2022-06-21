@@ -58,7 +58,7 @@
                             </a>
                             <ul class="collapse sub-menu" id="collapseOne">
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
-                                    <a href="owner-motel.jsp" li class="dropdown-item">
+                                    <a href="MainController?action=ownerShowMotel" li class="dropdown-item">
                                         <i class='bx bx-home-alt-2'></i>
                                         <span class="title">Nhà nghỉ</span>
                                     </a> 

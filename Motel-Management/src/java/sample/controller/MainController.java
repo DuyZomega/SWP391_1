@@ -55,6 +55,8 @@ public class MainController extends HttpServlet {
     private static final String CREATE_ROOM_CONTROLLER = "OwnerCreateRoomController";
     private static final String SEARCH_ROOM = "searchRoom";
     private static final String SEARCH_ROOM_CONTROLLER = "OwnerSearchRoom";
+    private static final String SHOW_OWNER_MOTEL = "ownerShowMotel";
+    private static final String SHOW_OWNER_MOTEL_CONTROLLER = "OwnerShowMotelController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -95,8 +97,10 @@ public class MainController extends HttpServlet {
                 url = CREATE_ROOM_CONTROLLER;
             } else if (SEARCH_ROOM.equals(action)){
                 url = SEARCH_ROOM_CONTROLLER;
+            } else if (SHOW_OWNER_MOTEL.equals(action)){
+                url = SHOW_OWNER_MOTEL_CONTROLLER;
             }
-
+ 
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
