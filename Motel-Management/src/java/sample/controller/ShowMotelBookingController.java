@@ -27,11 +27,11 @@ import sample.users.UserDTO;
  *
  * @author cao thi phuong thuy
  */
-@WebServlet(name = "ShowMotelDetailController", urlPatterns = {"/ShowMotelDetailController"})
-public class ShowMotelDetailController extends HttpServlet {
+@WebServlet(name = "ShowMotelBookingController", urlPatterns = {"/ShowMotelBookingController"})
+public class ShowMotelBookingController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "user-motel-detail.jsp";
+    private static final String SUCCESS = "user-booking.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,7 +44,7 @@ public class ShowMotelDetailController extends HttpServlet {
             RoomDAO roomtype = new RoomDAO();
             List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
             List<MotelDTO> listMotel1 = motel.getListMotel();
-           List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
+            List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
             List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
             if (listMotel.size() > 0) {
                 request.setAttribute("DETAIL_MOTEL", listMotel);
