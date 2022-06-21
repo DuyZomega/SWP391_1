@@ -187,8 +187,8 @@
                                                                 <div class="modal-body">
                                                                     <div class="row p-4">
                                                                         <div class="col-12">
-                                                                            <div class="row form-group">
-                                                                                <input name="bookingID" value="<%= history.getBookingID()%>" style="display: none">
+                                                                            <div class="row form-group stars">
+                                                                                 <input name="bookingID" value="<%= history.getBookingID()%>" style="display: none">
                                                                                 <input name="userID" value="<%=loginUser.getUserId()%>" style="display: none">
                                                                                 <input name="motelID" value="<%= history.getMotelID()%>" style="display: none">
                                                                                 <label for="rating" class="col-md-3 col-form-label text-md-right">Rating</label>

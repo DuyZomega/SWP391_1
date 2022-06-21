@@ -5,46 +5,64 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.util.Random;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.owner.FeedbackDTO;
-import sample.users.UserDAO;
+import javax.servlet.http.HttpSession;
+import sample.address.addressDAO;
+import sample.address.cityDTO;
+import sample.address.districtDTO;
+import sample.motel.MotelDAO;
+import sample.motel.MotelDTO;
+import sample.users.UserDTO;
 
 /**
  *
- * @author cao thi phuong thuy
+ * @author Bao
  */
-@WebServlet(name = "UserFeedbackController", urlPatterns = {"/UserFeedbackController"})
-public class UserFeedbackController extends HttpServlet {
+@WebServlet(name = "OwnerShowMotelController", urlPatterns = {"/OwnerShowMotelController"})
+public class OwnerShowMotelController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "userhistorybooking";
-
+    private static final String SUCCESS = "owner-motel.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = ERROR;
-        UserDAO dao = new UserDAO();
-        Random generator = new Random();
-        try { 
-           String bookingID = request.getParameter("bookingID");
-          String feedbackID = String.valueOf(generator.nextInt(9999999));
-            String userID = request.getParameter("userID");
-            int rating = Integer.parseInt(request.getParameter("rating"));
-            String desct = request.getParameter("desct");
-            String motelID = request.getParameter("motelID");
-            int status = 1;
-             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status, bookingID);
-            boolean checkInsert = dao.insertFeedback(feedback);
-                if (checkInsert) {
-                    url = SUCCESS;
+        String url = ERROR;
+        try {
+            HttpSession session=request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            String ownerID = loginUser.getUserId();
+            MotelDAO dao = new MotelDAO();
+            List<MotelDTO> listMotel = dao.searchMotel(ownerID);
+            if(listMotel.size()>0){              
+                for(MotelDTO motel : listMotel){                  
+                   int income = dao.getMotelIncome(motel.getMotelID());
+                   motel.setMotelprice(income);
+                   int numberRoomtype = dao.getNumberRoomtype(motel.getMotelID());
+                   motel.setNumberRoomType(numberRoomtype);
+                   int numberRoom = dao.getNumberRoom(motel.getMotelID());
+                   motel.setNumberRoom(numberRoom);
                 }
+                request.setAttribute("LIST_MOTEL", listMotel);
+                url = SUCCESS;
+            }
+            addressDAO dao2 = new addressDAO();
+            List<cityDTO> listCity = dao2.getListCity();
+            List<districtDTO> listDistrict = dao2.getListDistrict();
+            if(listCity.size()>0){
+                request.setAttribute("LIST_CITY", listCity);
+            }
+            if(listDistrict.size() >0){
+                request.setAttribute("LIST_DISTRICT", listDistrict);
+            }
         } catch (Exception e) {
-            log("Error at OwnerCreateMotelController:"+e.toString());
+            log("Error at OwnerShowMotelController:"+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

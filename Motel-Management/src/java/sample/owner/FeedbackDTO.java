@@ -17,6 +17,26 @@ public class FeedbackDTO {
     private String MotelID;
     private String image;
     private int status;
+    private String bookingID;
+
+    public String getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(String bookingID) {
+        this.bookingID = bookingID;
+    }
+
+    public FeedbackDTO(String userId, String feedbackID, String desc, int rating, String MotelID, int status, String bookingID) {
+        this.userId = userId;
+        this.feedbackID = feedbackID;
+        this.desc = desc;
+        this.rating = rating;
+        this.MotelID = MotelID;
+        this.status = status;
+        this.bookingID = bookingID;
+    }
+    
 
     public FeedbackDTO(String userName, String desc, int rating, String image) {
         this.userName = userName;
@@ -117,6 +137,15 @@ public class FeedbackDTO {
 
     public FeedbackDTO(String desc, int status) {
         this.desc = desc;
+        this.status = status;
+    }
+
+    public FeedbackDTO(String userId, String feedbackID, String desc, int rating, String MotelID, int status) {
+        this.userId = userId;
+        this.feedbackID = feedbackID;
+        this.desc = desc;
+        this.rating = rating;
+        this.MotelID = MotelID;
         this.status = status;
     }
     

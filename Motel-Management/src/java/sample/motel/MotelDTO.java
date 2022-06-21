@@ -27,7 +27,25 @@ public class MotelDTO {
     private String ownerId;
     private String ownerName;
     private int status;
+    private int numberRoom;
+    private int numberRoomType;
 
+    public int getNumberRoom() {
+        return numberRoom;
+    }
+
+    public void setNumberRoom(int numberRoom) {
+        this.numberRoom = numberRoom;
+    }
+
+    public int getNumberRoomType() {
+        return numberRoomType;
+    }
+
+    public void setNumberRoomType(int numberRoomType) {
+        this.numberRoomType = numberRoomType;
+    }
+       
     public String getOwnerName() {
         return ownerName;
     }
@@ -190,6 +208,8 @@ public class MotelDTO {
         this.service = "";
         this.serviceprice = 0;
         this.motelprice = 0;
+        this.numberRoom =0;
+        this.numberRoomType = 0;
     }
 
     public MotelDTO(String motelID, String name, String image, String phone, String Desct, String address, String district, String city, double rating, String ownerId, int status) {

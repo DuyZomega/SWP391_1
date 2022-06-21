@@ -43,6 +43,7 @@ public class ShowMotelDetailController extends HttpServlet {
             FeedbackDAO feedback = new FeedbackDAO();
             RoomDAO roomtype = new RoomDAO();
             List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
+            List<MotelDTO> listMotel1 = motel.getListMotel();
            List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
             List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
             if (listMotel.size() > 0) {
@@ -53,8 +54,12 @@ public class ShowMotelDetailController extends HttpServlet {
                 if (listFeedback.size() > 0) {
                     request.setAttribute("DETAIL_FEEDBACK", listFeedback);
                 }
+                if (listMotel1.size() > 0) {
+                request.setAttribute("LIST_MOTEL", listMotel1);
+            }
                 url = SUCCESS;
             }
+            
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

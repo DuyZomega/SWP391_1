@@ -97,10 +97,12 @@
 
         <section class="motel container spacing">
             <div class="d-flex justify-content-between align-items-center">
-                <h3 class="heading">Motel nổi bật</h3>
+                <h3 class="heading"><i class="fa fa-newspaper"></i> TIN CHO THUÊ</h3>
+                <a href="MainController?action=ShowAllMotel" class="view-motel-list">Xem tất cả <i class="fa fa-angle-right"></i></a>
             </div>
             <div class="motel__content">
-                <div class="motelList-carousel owl-carousel owl-theme">
+                <h5><i class="fa fa-heart"></i> Yêu thích </h5>
+                <div class="famousList-carousel owl-carousel owl-theme">
                     <c:if test="${requestScope.LIST_MOTEL_HOT != null}">
                         <c:if test="${not empty requestScope.LIST_MOTEL_HOT}">
 
@@ -113,7 +115,7 @@
                                         <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name} <span style="color: black">${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span> </a>
                                     </div>
                                     <div class="motel-address ">
-                                        <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
+                                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p><i class="fas fa-address-book"></i> Hotline</p><p> ${o.phone}</p>
@@ -128,18 +130,8 @@
                         </c:if>
                     </c:if>
                 </div>
-            </div>  
-        </section>  
-        <!-- MOTEL -->
-
-
-        <section class="motel container spacing">
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="heading">TIN CHO THUÊ</h3>
-                <a href="MainController?action=ShowAllMotel" class="view-motel-list">Xem tất cả <i class="fa fa-angle-right"></i></a>
-            </div>
-            <div class="motel__content">
-                <div class="motelList-carousel owl-carousel owl-theme">
+                <h5><i class="fa fa-sort-amount-down"></i> Phổ biến</h5>
+                <div class="ratingList-carousel owl-carousel owl-theme">
                     <c:if test="${requestScope.LIST_MOTEL != null}">
                         <c:if test="${not empty requestScope.LIST_MOTEL}">
 
@@ -152,7 +144,7 @@
                                         <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name} <span style="color: black">${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span> </a>
                                     </div>
                                     <div class="motel-address ">
-                                        <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
+                                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <p><i class="fas fa-address-book"></i> Hotline</p>
@@ -195,10 +187,28 @@
         <!-- owl carousels -->
         <script src="./assets/js/owl.carousel.min.js"></script>
         <script>
-            $('.motelList-carousel').owlCarousel({
+            $('.famousList-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
-                nav: false,
+                nav: true,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
+            $('.ratingList-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
                 responsive: {
                     0: {
                         items: 1
@@ -213,6 +223,11 @@
             });
         </script>
         <!-- main js -->
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
         <script src="assets/js/user-script.js"></script>
 
     </body>

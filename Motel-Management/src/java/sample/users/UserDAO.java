@@ -586,13 +586,14 @@ public boolean checkDuplcate(String userId) throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "INSERT INTO tblFeedback(feedbackID, desct, ratings, motelID, bookingID, status) "
-                        + " VALUES(?,?,?,?,?,1)";
+                        + " VALUES(?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, feedback.getFeedbackID());
                 stm.setString(2, feedback.getDesc());
                 stm.setInt(3, feedback.getRating());
                 stm.setString(4, feedback.getMotelID());
                 stm.setString(5, feedback.getFeedbackID());
+                stm.setInt(6, feedback.getStatus());
                 check = stm.executeUpdate() > 0;
             }
         } finally {

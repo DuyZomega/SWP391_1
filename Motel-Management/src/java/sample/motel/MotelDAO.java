@@ -23,7 +23,106 @@ public class MotelDAO {
     private static final String SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, Phone,Desct,Image, Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,OwnerID,Status FROM tblMotel,tblDistrict,tblCity WHERE OwnerID = ? AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
 
     private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
-
+    
+    private static final String GET_MOTEL_INCOME = "SELECT b.BookingID, b.Total FROM tblMotel as m , tblRoomType as rt, tblRoom as r , tblBookingDetail as bd, tblBooking as b\n" +
+                                                   "WHERE m.MotelID =? AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID  AND (b.Status = 1 OR b.Status = 2 )";
+    private static final String GET_NUMBER_ROOMTYPE = "SELECT COUNT(*) as numberRoomType FROM tblMotel as m , tblRoomType as rt WHERE m.MotelID = ? AND m.MotelID = rt.MotelID GROUP BY m.MotelID";
+    
+    private static final String GET_NUMBER_ROOM = "SELECT COUNT(*) as numberRoom FROM tblMotel as m , tblRoomType as rt , tblRoom as r WHERE m.MotelID = ? AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND (r.Status=1 OR r.Status=0) GROUP BY m.MotelID";
+    
+    public int getNumberRoom(String motelID) throws SQLException {
+        int numberRoom = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_NUMBER_ROOM);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    numberRoom = rs.getInt("numberRoom");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return numberRoom;
+    }
+    
+    public int getNumberRoomtype(String motelID) throws SQLException {
+        int numberRoomType = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_NUMBER_ROOMTYPE);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    numberRoomType = rs.getInt("numberRoomType");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return numberRoomType;
+    }
+    
+    public int getMotelIncome(String motelID) throws SQLException {
+        int income = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_MOTEL_INCOME);
+                ptm.setString(1, motelID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    income += rs.getInt("Total");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return income;
+    }
+    
     public List<MotelDTO> searchMotel(String ownerID) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList();
         Connection conn = null;

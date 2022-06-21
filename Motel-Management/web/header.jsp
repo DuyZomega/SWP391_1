@@ -69,96 +69,96 @@
 
 </div>
 </div>
-<div class="header__bottom">
-    <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
-        <a class="navbar-brand" href="ShowMotelController"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
-                                                                alt="logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="header__bottom">
+            <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
+                <a class="navbar-brand" href="ShowMotelController"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
+                        alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Về chúng tôi</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="ShowAllMotelController">Danh sách motel</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bảng giá dịch vụ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Đội ngũ & Đối tác</a>
-                </li>
-            </ul>
-        </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Về chúng tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Đội ngũ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Bảng giá dịch vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Danh sách motel</a>
+                        </li>
+                    </ul>
+                </div>
 
-        <div class="header__bottom__right">
-            <form class="header__bottom--search d-flex" action="#">
-                <div class="select-box">
-                    <div class="options-container">
-                        <div class="option">
-                            <input type="radio" class="radio" id="tutorials" name="category" />
-                            <label for="tutorials">Tân Phú</label>
+                <div class="header__bottom__right">
+                    <div class="header__bottom--search d-flex">
+                        <div class="select-box">
+                            <div class="options-container">
+                                <div class="option">
+                                    <input type="radio" class="radio" id="tutorials" name="category" />
+                                    <label for="tutorials">Tân Phú</label>
+                                </div>
+                                <div class="option">
+                                    <input type="radio" class="radio" id="automobiles" name="category" />
+                                    <label for="automobiles">Quận 1</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="film" name="category" />
+                                    <label for="film">Quận 2</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="science" name="category" />
+                                    <label for="science">Quận 3</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="art" name="category" />
+                                    <label for="art">Quận 4</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="music" name="category" />
+                                    <label for="music">Quận 5</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="travel" name="category" />
+                                    <label for="travel">Quận 6</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="sports" name="category" />
+                                    <label for="sports">Quận 7</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="news" name="category" />
+                                    <label for="news">Quận 8</label>
+                                </div>
+
+                                <div class="option">
+                                    <input type="radio" class="radio" id="tutorials" name="category" />
+                                    <label for="tutorials">Tân Phú</label>
+                                </div>
+                            </div>
+
+                            <div class="selected">
+                                <p>Chọn quận bạn muốn tìm kiếm</p>
+                            </div>
                         </div>
-                        <div class="option">
-                            <input type="radio" class="radio" id="automobiles" name="category" />
-                            <label for="automobiles">Quận 1</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="film" name="category" />
-                            <label for="film">Quận 2</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="science" name="category" />
-                            <label for="science">Quận 3</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="art" name="category" />
-                            <label for="art">Quận 4</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="music" name="category" />
-                            <label for="music">Quận 5</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="travel" name="category" />
-                            <label for="travel">Quận 6</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="sports" name="category" />
-                            <label for="sports">Quận 7</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="news" name="category" />
-                            <label for="news">Quận 8</label>
-                        </div>
-
-                        <div class="option">
-                            <input type="radio" class="radio" id="tutorials" name="category" />
-                            <label for="tutorials">Tân Phú</label>
-                        </div>
-                    </div>
-
-                    <div class="selected">
-                        <p>Chọn quận bạn muốn tìm kiếm</p>
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-filter"></i>
+                        </button>
                     </div>
                 </div>
-                <button type="submit" class="searchButton" name="action" value="search">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
+            </nav>
         </div>
-    </nav>
-</div>
 </header>
