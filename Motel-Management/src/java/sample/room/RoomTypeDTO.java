@@ -12,9 +12,27 @@ public class RoomTypeDTO {
     private String roomTypeID;
     private String typeName;
     private int price;
+    private int time;
+    private int countRoom;
     private String motelID;
     private String image;
     private String desct;
+
+    public void setCountRoom(int countRoom) {
+        this.countRoom = countRoom;
+    }
+
+    public int getCountRoom() {
+        return countRoom;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public int getTime() {
+        return time;
+    }
 
     public String getRoomTypeID() {
         return roomTypeID;
@@ -73,12 +91,13 @@ public class RoomTypeDTO {
         this.desct = "";
     }
 
-    public RoomTypeDTO(String roomTypeID, String typeName, int price, String motelID, String image, String desct) {
+    public RoomTypeDTO(String roomTypeID, String typeName, int price, String motelID, String image, String desct, int countRoom) {
         this.roomTypeID = roomTypeID;
         this.typeName = typeName;
         this.price = price;
         this.motelID = motelID;
         this.image = image;
         this.desct = desct;
+        this.countRoom = countRoom;
     }
 }

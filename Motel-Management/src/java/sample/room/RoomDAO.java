@@ -278,7 +278,11 @@ public class RoomDAO {
         }
         return listRoom;
     }
-    
+    private static final String GET_ROOM_TYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct , rt.RoomTypeID, count(r.RoomID) as countRoom\n" +
+"	from tblRoomType as rt, tblMotel as m, tblRoom as r\n" +
+"	WHERE m.MotelID = rt.MotelID AND rt.Status = 1 AND rt.RoomTypeID=r.RoomTypeID AND m.MotelID= ? AND r.Status=0\n" +
+"	GROUP BY rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct ,rt.RoomTypeID ";
+
     public List<RoomTypeDTO> getRoomType(String motelID) throws SQLException {
         List<RoomTypeDTO> listService = new ArrayList();
         Connection conn = null;
@@ -287,7 +291,7 @@ public class RoomDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GET_ROOMTYPE);
+                ptm = conn.prepareStatement(GET_ROOM_TYPE);
                 ptm.setString(1, motelID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
@@ -296,7 +300,8 @@ public class RoomDAO {
                     String image = rs.getString("Image");
                     String desct = rs.getString("Desct");
                     int price = rs.getInt("Price");
-                    listService.add(new RoomTypeDTO(roomTypeID, typeName, price, motelID, image, desct));
+                    int countRoom = rs.getInt("countRoom");
+                    listService.add(new RoomTypeDTO(roomTypeID, typeName, price, motelID, image, desct,countRoom));
                 }
             }
         } catch (Exception e) {
