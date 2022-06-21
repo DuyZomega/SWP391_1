@@ -31,14 +31,14 @@ public class UserFeedbackController extends HttpServlet {
         UserDAO dao = new UserDAO();
         Random generator = new Random();
         try { 
-//            String feedbackID = request.getParameter("bookingID");
-            String feedbackID = String.valueOf(generator.nextInt(9999999));
+           String bookingID = request.getParameter("bookingID");
+          String feedbackID = String.valueOf(generator.nextInt(9999999));
             String userID = request.getParameter("userID");
             int rating = Integer.parseInt(request.getParameter("rating"));
             String desct = request.getParameter("desct");
             String motelID = request.getParameter("motelID");
             int status = 1;
-             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status);
+             FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status, bookingID);
             boolean checkInsert = dao.insertFeedback(feedback);
                 if (checkInsert) {
                     url = SUCCESS;
