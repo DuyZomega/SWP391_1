@@ -6,25 +6,25 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- FOOTER -->
+ <!-- FOOTER -->
     <footer class="pt-5">
         <div class="container">
             <div class="row section">
-                <div class="col-12 col-sm-3">
+                <div class="col-12 offset-sm-1 col-sm-3">
+                    <img class="logo img-fluid" src="./assets/img/logo2-1.png" alt="logo">
+                    <div class="slogan">
+                        Mái ấm của bạn là hạnh phúc của chúng tôi!
+                    </div>
+                </div>
+                <div class="col-12 col-sm-2">
                     <h3>VỀ HORD</h3>
                     <ul>
                         <li><a href="#">Giới thiệu</a></li>
                         <li><a href="#">Đội ngũ</a></li>
-                        <li><a href="#">Góp ý</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>DỊCH VỤ</h3>
-                    <ul>
                         <li><a href="#">Bảng giá dịch vụ</a></li>
-                        <li><a href="#">Hướng dẫn thanh toán</a></li>
-                        <li><a href="#">Hướng dẫn sử dụng</a></li>
                     </ul>
                 </div>
+
                 <div class="col-12 col-sm-3">
                     <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
                     <ul>
@@ -38,7 +38,7 @@
                     <ul>
                         <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
                         <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google+</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,6 +48,5 @@
             </div>
         </div>
     </footer>
-
 
 
