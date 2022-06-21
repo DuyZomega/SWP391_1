@@ -113,7 +113,7 @@
                                             gọn</p>
                                         <button
                                             class="button--primary mt-3"><a
-                                                href="#Booking"
+                                                href="MainController?action=ShowMotelBooking&motelID=${o.motelID}"
                                                 class="text-white text-decoration-none">Đặt
                                                 phòng</a></button>
 
@@ -175,13 +175,13 @@
                                         <div
                                             class="title col-12 d-flex justify-content-between align-items-center">
                                             <h5 class="room-type-title">
-                                                 <%= roomtype.getTypeName()%></h5>
+                                                <%= roomtype.getTypeName()%></h5>
                                             <div>
                                                 <span class="empty-room">
                                                     <i class="fa fa-quote-left"></i>
-                                                        Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
-                                                        <i
-                                                            class="fa fa-quote-right"></i>
+                                                    Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                    <i
+                                                        class="fa fa-quote-right"></i>
                                                 </span>
                                                 <img src="assets/img/HOT.svg"
                                                      class="hot-label"
@@ -275,10 +275,13 @@
                         </div>
                         <!-- sau khi đăng nhập -->
                         <% } else { %>
-                        <div class="btn-booking text-center">
-                            <button class="button--primary"
-                                    type="submit">Đặt ngay</button>
-                        </div>
+                        <c:forEach var="o" varStatus="counter"
+                                   items="${requestScope.LIST_MOTEL}">
+                            <div class="btn-booking text-center">
+                                <button class="button--primary"><a class="text-decoration-none text-white"
+                                                                   href="MainController?action=ShowMotelBooking&motelID=${o.motelID}">Đặt ngay</a></button> 
+                            </div>
+                        </c:forEach>
                         <%}%>
                     </div>
                 </div>

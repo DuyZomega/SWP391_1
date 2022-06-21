@@ -2,7 +2,7 @@
     .custom-select {
         background: url(../../assets/img/down-arrow-solid.png) no-repeat right 0.75rem center/8px 10px;
         background-size: 15px;
-        background-color: #edebeb;
+        background-color: #edebeb75;
         border-color: transparent;
         color: $color-blue-2;
         border-radius: 10px;
@@ -66,5 +66,27 @@
             background-color: $color-blue-2;
             color: $color-white-0;
         }
+    }
+}
+
+.col-bg {
+    display: grid;
+    row-gap: 50px;
+    margin-top: 10px;
+    .bg-1 {
+        background: url(../../assets/img/background-motel.jpg);
+    }
+    .bg-2 {
+        background: url(../../assets/img/background.jpg);
+    }
+    .bg-1,
+    .bg-2 {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        height: 525px;
+        border-radius: 10px;
+        border: 1px solid #edebeb75;
     }
 }

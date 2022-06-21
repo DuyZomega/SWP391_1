@@ -89,80 +89,31 @@
 
                 <div class="header__bottom__right">
                     <div class="header__bottom--search d-flex">
-                        <div class="select-box">
-                            <div class="options-container">
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                                <div class="option">
-                                    <input type="radio" class="radio" id="automobiles" name="category" />
-                                    <label for="automobiles">Quận 1</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="film" name="category" />
-                                    <label for="film">Quận 2</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="science" name="category" />
-                                    <label for="science">Quận 3</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="art" name="category" />
-                                    <label for="art">Quận 4</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="music" name="category" />
-                                    <label for="music">Quận 5</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="travel" name="category" />
-                                    <label for="travel">Quận 6</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="sports" name="category" />
-                                    <label for="sports">Quận 7</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="news" name="category" />
-                                    <label for="news">Quận 8</label>
-                                </div>
-
-                                <div class="option">
-                                    <input type="radio" class="radio" id="tutorials" name="category" />
-                                    <label for="tutorials">Tân Phú</label>
-                                </div>
-                            </div>
-
-                            <div class="selected">
-                                <p>Chọn quận bạn muốn tìm kiếm</p>
-                            </div>
-                        </div>
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Vị trí bạn muốn tìm kiếm</option>
+                            <option value="1">Quận 1</option>
+                            <option value="2">Quận 2</option>
+                            <option value="3">Quận 3</option>
+                        </select>
                         <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
+                            <i class="fa fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
             </nav>
         </div>
-        <hr>
-        <div class="header__breadcrumb container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Danh sách motel</li>
-                </ol>
-            </nav>
-        </div>
-        <hr>
     </header>
+
+    <hr>
+    <div class="header__breadcrumb container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Danh sách motel</li>
+            </ol>
+        </nav>
+    </div>
+    <hr>
 
     <!-- CONTENT -->
     <section class="content__list-room container">
@@ -183,7 +134,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <select class="custom-select" id="inputGroupSelect02">
-                                <option selected>Vị trí</option>
+                                <option selected>Quận</option>
                                 <option value="1">TP.Thủ Đức</option>
                                 <option value="2">Quận 1</option>
                                 <option value="3">Quận 2</option>
@@ -192,6 +143,10 @@
                         <div class="filter-search text-center">
                             <button class="button--primary"><i class="fa fa-filter"></i> Lọc</button>
                         </div>
+                    </div>
+                    <div class="col-bg">
+                        <div class="bg-1"></div>
+                        <div class="bg-2"></div>
                     </div>
                 </div>
             </div>
@@ -205,20 +160,67 @@
                             <div class="motel-title">
                                 <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                             </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
+                                <button class="button--primary"><a class="text-decoration-none text-white"
+                                        href="user-room-detail.html">Xem ngay</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 p-0">
+                        <div class="room-item">
+                            <a href="#" class="motel-image">
+                                <img class="img-fluid" src="./assets/img/background.jpg" alt="nt1">
+                            </a>
+                            <div class="motel-title">
+                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
+                            </div>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh , Thành phố Hà Tĩnh,
+                                        Ha
+                                        nội</span></p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
+                                <button class="button--primary"><a class="text-decoration-none text-white"
+                                        href="user-room-detail.html">Xem ngay</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 p-0">
+                        <div class="room-item">
+                            <a href="#" class="motel-image">
+                                <img class="img-fluid" src="./assets/img/cover-1.jpg" alt="nt1">
+                            </a>
+                            <div class="motel-title">
+                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
+                            </div>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                         href="user-room-detail.html">Xem ngay</a></button>
                             </div>
@@ -232,20 +234,67 @@
                             <div class="motel-title">
                                 <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                             </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
+                                <button class="button--primary"><a class="text-decoration-none text-white"
+                                        href="user-room-detail.html">Xem ngay</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 p-0">
+                        <div class="room-item">
+                            <a href="#" class="motel-image">
+                                <img class="img-fluid" src="./assets/img/background.jpg" alt="nt1">
+                            </a>
+                            <div class="motel-title">
+                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
+                            </div>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh , Thành phố Hà Tĩnh,
+                                        Ha
+                                        nội</span></p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
+                                <button class="button--primary"><a class="text-decoration-none text-white"
+                                        href="user-room-detail.html">Xem ngay</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 p-0">
+                        <div class="room-item">
+                            <a href="#" class="motel-image">
+                                <img class="img-fluid" src="./assets/img/cover-1.jpg" alt="nt1">
+                            </a>
+                            <div class="motel-title">
+                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
+                            </div>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                         href="user-room-detail.html">Xem ngay</a></button>
                             </div>
@@ -259,20 +308,17 @@
                             <div class="motel-title">
                                 <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                             </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                         href="user-room-detail.html">Xem ngay</a></button>
                             </div>
@@ -281,25 +327,24 @@
                     <div class="col-4 p-0">
                         <div class="room-item">
                             <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                                <img class="img-fluid" src="./assets/img/background.jpg" alt="nt1">
                             </a>
                             <div class="motel-title">
                                 <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                             </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh , Thành phố Hà Tĩnh,
+                                        Ha
+                                        nội</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                         href="user-room-detail.html">Xem ngay</a></button>
                             </div>
@@ -308,133 +353,22 @@
                     <div class="col-4 p-0">
                         <div class="room-item">
                             <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                                <img class="img-fluid" src="./assets/img/cover-1.jpg" alt="nt1">
                             </a>
                             <div class="motel-title">
                                 <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                             </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
+                            <div class="motel-address" data-toggle="tooltip" data-placement="auto"
+                                title="TP. Hồ Chí Minh">
+                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district">
+                                        Quận
+                                        Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
+                                <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
-                                <button class="button--primary"><a class="text-decoration-none text-white"
-                                        href="user-room-detail.html">Xem ngay</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 p-0">
-                        <div class="room-item">
-                            <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                            </a>
-                            <div class="motel-title">
-                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                            </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
-                                <button class="button--primary"><a class="text-decoration-none text-white"
-                                        href="user-room-detail.html">Xem ngay</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 p-0">
-                        <div class="room-item">
-                            <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                            </a>
-                            <div class="motel-title">
-                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                            </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
-                                <button class="button--primary"><a class="text-decoration-none text-white"
-                                        href="user-room-detail.html">Xem ngay</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 p-0">
-                        <div class="room-item">
-                            <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                            </a>
-                            <div class="motel-title">
-                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                            </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
-                                <button class="button--primary"><a class="text-decoration-none text-white"
-                                        href="user-room-detail.html">Xem ngay</a></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 p-0">
-                        <div class="room-item">
-                            <a href="#" class="motel-image">
-                                <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
-                            </a>
-                            <div class="motel-title">
-                                <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
-                            </div>
-                            <div class="motel-address">
-                                <p class="address"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân
-                                        Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
-                            </div>
-                            <div class="motel-services">
-                                <p class="service"><i class="fas fa-concierge-bell"></i> Dịch vụ: thay ga gối 1 lần/...
-                                </p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p><i class="fas fa-address-book"></i> Liên hệ</p>
-                                <p><i class="fas fa-history"></i> một ngày trước</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> 7.0 Triệu</p>
+                                <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                         href="user-room-detail.html">Xem ngay</a></button>
                             </div>
@@ -465,22 +399,21 @@
     <footer class="pt-5">
         <div class="container">
             <div class="row section">
-                <div class="col-12 col-sm-3">
+                <div class="col-12 offset-sm-1 col-sm-3">
+                    <img class="logo img-fluid" src="./assets/img/logo2-1.png" alt="logo">
+                    <div class="slogan">
+                        Mái ấm của bạn là hạnh phúc của chúng tôi!
+                    </div>
+                </div>
+                <div class="col-12 col-sm-2">
                     <h3>VỀ HORD</h3>
                     <ul>
                         <li><a href="#">Giới thiệu</a></li>
                         <li><a href="#">Đội ngũ</a></li>
-                        <li><a href="#">Góp ý</a></li>
-                    </ul>
-                </div>
-                <div class="col-12 col-sm-3">
-                    <h3>DỊCH VỤ</h3>
-                    <ul>
                         <li><a href="#">Bảng giá dịch vụ</a></li>
-                        <li><a href="#">Hướng dẫn thanh toán</a></li>
-                        <li><a href="#">Hướng dẫn sử dụng</a></li>
                     </ul>
                 </div>
+
                 <div class="col-12 col-sm-3">
                     <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
                     <ul>
@@ -494,7 +427,7 @@
                     <ul>
                         <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
                         <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google +</a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google+</a></li>
                     </ul>
                 </div>
             </div>
@@ -504,6 +437,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- thư viện hỗ trợ -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
