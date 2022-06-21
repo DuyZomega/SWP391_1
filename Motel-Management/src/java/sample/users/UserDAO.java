@@ -592,7 +592,7 @@ public boolean checkDuplcate(String userId) throws SQLException {
                 stm.setString(2, feedback.getDesc());
                 stm.setInt(3, feedback.getRating());
                 stm.setString(4, feedback.getMotelID());
-                stm.setString(5, feedback.getFeedbackID());
+                stm.setString(5, feedback.getBookingID());
                 stm.setInt(6, feedback.getStatus());
                 check = stm.executeUpdate() > 0;
             }
@@ -605,6 +605,42 @@ public boolean checkDuplcate(String userId) throws SQLException {
             }
         }
         return check;
+    
+    }
+    /*search*/
+     private static final String DISTRICT_LIST = "SELECT districtID, name, cityID FROM tblDistrict";
+  
+    public List<DistrictDTO> getListDistrict() throws SQLException {
+        List<DistrictDTO> listDis = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DISTRICT_LIST);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String districtID = rs.getString("districtID");
+                    String name = rs.getString("name");
+                    String cityID = rs.getString("cityID");
+                    listDis.add(new DistrictDTO(districtID, name, cityID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listDis;
     
     }
 }

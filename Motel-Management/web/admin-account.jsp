@@ -129,7 +129,7 @@
                                         <div class="typeaccount"> 
                                             <form action="UserManager">
                                                 <label for="seleaccount">Role:</label>
-                                                <select id="seleaccount">
+                                                <select id="seleaccount" name="role">
                                                     <option value="US">Người thuê</option>
                                                     <option value="OW">Chủ trọ</option>
                                                     <option value="AD">Admin</option>

@@ -107,9 +107,9 @@ body .lb-cancel {
 .owl-carousel .owl-stage-outer {
   padding-bottom: 10px; }
 
-.stars {
+/*.stars {
   width: 185px;
-  display: inline-block; }
+  display: inline-block; }*/
 
 .stars input.star {
   display: none; }

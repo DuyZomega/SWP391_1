@@ -68,9 +68,9 @@
                         <div
                             class="col-12 content__title d-flex justify-content-between align-items-center">
                             <div class="content__title-left">
-                                <h3 class="heading">${o.name}
-                                    <span>${o.rating}</span></h3>
-                                <p>${o.address},${o.district},${o.city}</p>
+                                <h3 class="heading d-inline-block pr-3"><i class="fa fa-hotel"></i> ${o.name}</h3>
+                                <label>${o.rating} <span style="color: yellow"><i class="fa fa-star"></i></span></label>
+                                <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                             </div>
                         </div>
                         <div class="col-9">
@@ -84,12 +84,12 @@
                             </div>
                             <hr>
                             <div class="content__describe">
-                                <h3 class="heading">Mô tả chi tiết</h3>
+                                <h3 class="heading"><i class="fa fa-scroll"></i> Mô tả chi tiết</h3>
                                 <p>${o.desct}</p>
                             </div>
                             <hr>
                             <div class="content__describe">
-                                <h3 class="heading">Tiện ích</h3>
+                                <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
                                 <p>7up, lavie, bánh, Coca, khăn ướt</p>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
         <section id="Booking" class="booking mb-5">
             <div class="container">
                 <div class="booking__title">
-                    <h3 class="heading">Đặt phòng</h3>
+                    <h3 class="heading"><i class="fa fa-concierge-bell"></i> Đặt phòng</h3>
                 </div>
                 <div class="booking__table row">
                     <table class="table table-book col-10" id="app_a">
@@ -293,7 +293,7 @@
             <div class="content__feedback container">
                 <hr>
                 <div class="row">
-                    <h3 class="col-12 p-0 heading">Đánh giá </h3>
+                    <h3 class="col-12 p-0 heading pb-3"><i class="fa fa-thumbs-up"></i> Đánh giá </h3>
                     <div class="rating-carousel owl-carousel owl-theme">
 
                         <c:if test="${requestScope.DETAIL_FEEDBACK != null}">

@@ -606,5 +606,53 @@ private static final String SHOWLIST_MOTEL_HOT = "SELECT tblMotel.MotelID,tblMot
         }
         return listMotel;    
     }
+ /*search user*/
+    private static final String SEARCH_MOTEL = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName \n" +
+"FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType \n" +
+"WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND tblDistrict.DistrictID =?";
+
+    public List<MotelDTO> getListMotel(String districtID) throws SQLException {
+        List<MotelDTO> listMotel = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SEARCH_MOTEL);
+                ptm.setString(1, districtID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String motelID = rs.getString("MotelID");
+                    String image = rs.getString("image");
+                    String name = rs.getString("name");
+                    String phone = rs.getString("phone");
+                    String desct = rs.getString("desct");
+                    String address = rs.getString("address");
+                    String district = rs.getString("DistrictName");
+                    String city = rs.getString("CityName");
+                    double rating = rs.getDouble("Ratings");
+                    String typename = rs.getString("TypeName");
+                    double price = rs.getDouble("Price");
+                    int status = rs.getInt("status");
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, desct, address, district, city, rating, typename, price, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listMotel;
+
+    }
 
 }
