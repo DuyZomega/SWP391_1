@@ -161,7 +161,22 @@
                     </div>
                 </div>
             </div>
-
+<!-- chart -->
+                        <section class="chartBox">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+<!--                                        <div class="card-header d-flex justify-content-between p-4">
+                                            <h4>Doanh thu tuần</h4>
+                                        </div>-->
+                                        <div class="card-body" id="chart" >
+                                           
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </section>
             <!-- order detail list -->
             <section class="chartBox">
                 <div class="row">
@@ -215,12 +230,56 @@
         </div>
 
 
-
-        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+ <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+
+
+        <script>
+
+            var options = {
+                series: [{
+                        name: "Desktops",
+                        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                    }],
+                chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'straight'
+                },
+                title: {
+                    text: 'Lượng truy cập tuần',
+                    align: 'left'
+                },
+                grid: {
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+
+        </script>
+        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> -->
         <script src="assets/js/owner-script.js"></script>
+        <script src="assets/js/admin.js"></script>
     </body>
 
 </html>

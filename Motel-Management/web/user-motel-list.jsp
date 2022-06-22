@@ -81,23 +81,21 @@
 
                                 <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_MOTEL}">
                                     <div class="col-4 p-0">
-
-                                        <div class="room-item">
+                                        <div class="room-item ">
                                             <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="motel-image">
                                                 <img class="img-fluid" src="${o.image}" alt="nt1">
                                             </a>
                                             <div class="motel-title my-2">
-                                                <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name}</a>
+                                                <a href="MainController?action=ShowMotelDetail&motelID=${o.motelID}" class="text-decoration-none">${o.name} <span style="color: black">${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span> </a>
                                             </div>
                                             <div class="motel-address ">
-                                                <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
+                                                <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <p><i class="fas fa-address-book"></i> Hotline</p>
-                                                <p><i class="fas fa-phone"></i> ${o.phone}</p>
+                                                <p><i class="fas fa-address-book"></i> Hotline</p><p> ${o.phone}</p>
                                             </div>
                                             <div class="motel-price d-flex justify-content-between">
-                                                <p><i class="fas fa-money-bill-wave"></i> Chỉ từ: <h6>${o.motelprice}</h6></p>
+                                                <p style="font-size: 1rem"><i class="fas fa-money-bill-wave"></i> Chỉ từ: ${o.motelprice}</p>
                                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                                                                    href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a></button> 
                                             </div>
@@ -131,39 +129,39 @@
 
         <%@include file="footer.jsp" %> 
         <!-- thư viện hỗ trợ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>
-    <!-- Jquery Waypoint -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <!-- BS4 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- BS4 carousels -->
-    <script>
-        $('.carousel').carousel({
-            interval: 3000
-        });
-    </script>
-    <!-- owl carousels -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script>
-        $('.motelList-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                1200: {
-                    items: 4
+        <!-- Jquery Waypoint -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <!-- BS4 JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- BS4 carousels -->
+        <script>
+            $('.carousel').carousel({
+                interval: 3000
+            });
+        </script>
+        <!-- owl carousels -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script>
+            $('.motelList-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 4
+                    }
                 }
-            }
-        });
-    </script>
-    <!-- main js -->
-    <script src="assets/js/user-script.js"></script>
+            });
+        </script>
+        <!-- main js -->
+        <script src="assets/js/user-script.js"></script>
     </body>

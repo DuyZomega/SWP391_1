@@ -95,7 +95,7 @@
         </div>
     </div>
     <!-- End sidebar -->
-
+    
     <!-- Header -->
     <div class="header">
         <div class="container-fluid">
@@ -133,6 +133,25 @@
     <!-- List room -->
     <div class="main-content">
         <div class="main">
+            <!-- theem if else va in ra mes -->j
+            <!-- <div class="alert alert-success alert-dismissible fade show" id="notif">
+                <i class='bx bx-message-alt-check p-1'></i>
+                <strong class="mr-1">Success!</strong>
+                 trả mesage ở đây 
+                <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                    <span><i class='bx bx-x'></i></span>
+                </button>
+            </div> -->
+
+            <div class="alert alert-danger alert-dismissible fade show" id="notif">
+                <i class='bx bx-message-alt-x p-1'></i>
+                <strong class="mr-1">Error!</strong>
+                 trả mesage ở đây 
+                <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                    <span><i class='bx bx-x'></i></span>
+                </button>
+            </div>
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="offset-sm-6 col-sm-6 d-flex justify-content-sm-end p-md-0 mt-sm-0">
@@ -148,7 +167,10 @@
                             </li>
                         </ol>
                     </div>
+                    
                 </div>
+                
+                
                 <div class="origation">
                     <div class="project-nav">
                         <div class="card-action card-tabs mr-auto">
@@ -182,7 +204,7 @@
                                                     <!-- remove Home -->
                                                     <form action="#" method="POST">
                                                         <input type="hidden" name="idhome" value="aaa"> 
-                                                        <button type="submit" class="dropdown-item" onclick="if (!confirm('Are you sure?')) { return false }">
+                                                        <button type="submit" class="dropdown-item" onclick="confirmdelte()">
                                                             <a><i class='bx bx-recycle'></i>Xóa nhà</a>
                                                         </button>
                                                     </form>
@@ -288,7 +310,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Thêm Nhà</h4>
                 </div>
-                <form action="#" >
+                <form action="#" onsubmit="return submitFunc()" id="form">
                     <div class="modal-body container-fluid">
                         <div class="row">
                             <div class="col-12">
@@ -296,7 +318,7 @@
                                     <div class="col-md-2 text-md-right"><span>Tỉnh:</span></div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <select name="" class="form-control" id="sel1" onchange="giveSelection(this.value)">
+                                            <select name="" class="form-control">
                                                 <option value="1">Sơn La</option>
                                                 <option value="2">Điện Biên</option>
                                                 <option value="3">Lai Châu</option>
@@ -307,7 +329,7 @@
                                     <div class="col-md-2 text-md-right"><span>Huyện: </span></div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <select name="" class="form-control" id="sel2">
+                                            <select name="" class="form-control">
                                                 <option value="1">Sơn La</option>
                                                 <option value="2">Điện Biên</option>
                                                 <option value="3">Lai Châu</option>
@@ -346,7 +368,7 @@
                                             <label for="file-input">
                                                 <i class="fas fa-upload"></i>&nbsp; Thêm ảnh phòng
                                             </label>
-                                            <input type="file" id="file-input" accept="image/*" onchange="preview()" multiple>
+                                            <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="preview()" multiple>
                                             <p id="num-of-files">No file choose</p>
                                             <div id="images"></div>
                                         </div>  
@@ -371,7 +393,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Chỉnh sửa thông tin Nhà</h4>
                 </div>
-                <form action="#" class="form-group">
+                <form action="#" class="form-group" onsubmit="return submitFunc()" id="form">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-12">
@@ -394,11 +416,7 @@
                                 <div class="row form-group">
                                     <label for="phone" class="col-md-3 col-form-label text-md-right">Số điện thoại:</label>
                                     <input class="form-control col-md-6" name="namehome" value="Nhập số điện thoại..." required>       
-                                </div>
-                                <div class="row form-group">
-                                    <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà Mới:</label>
-                                    <input class="form-control col-md-6" name="namehome" placeholder="Nhập tên nhà mới..." required>       
-                                </div>
+                                </div>                         
                             </div>
                         </div>
                     </div>
@@ -417,9 +435,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.es5.min.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="assets/js/owner-script.js"></script>
+    
 </body>
 </html>

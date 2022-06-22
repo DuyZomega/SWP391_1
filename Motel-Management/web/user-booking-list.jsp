@@ -192,7 +192,7 @@
                                                                                 <input name="userID" value="<%=loginUser.getUserId()%>" style="display: none">
                                                                                 <input name="motelID" value="<%= history.getMotelID()%>" style="display: none">
                                                                                 <label for="rating" class="col-md-3 col-form-label text-md-right">Rating</label>
-                                                                                <div class="form-group col-md-7 stars">
+                                                                                <div class="form-group col-md-5 stars">
                                                                                     <input class="star star-5" id="star-5" type="radio" name="rating" value="5"/>
                                                                                     <label class="star star-5" for="star-5"></label>
                                                                                     <input class="star star-4" id="star-4" type="radio" name="rating" value="4"/>
@@ -238,7 +238,7 @@
                                                                             <input name="motelID" value="<%= history.getMotelID()%>" style="display: none">
                                                                             <div class="row form-group">
                                                                                 <label for="rating" class="col-md-3 col-form-label text-md-right">Tiêu đề</label>
-                                                                                <input type="text" name="title"  placeholder="Giá Phòng"  class="col-md-7 form-control"/>
+                                                                                <input type="text" name="title"  placeholder="Tiêu đề"  class="col-md-7 form-control"/>
                                                                             </div>
                                                                             <div class="row form-group">
                                                                                 <label for="rating" class="col-md-3 col-form-label text-md-right">Ngày xảy ra</label>

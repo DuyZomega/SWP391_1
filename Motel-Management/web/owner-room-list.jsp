@@ -43,7 +43,7 @@
                             }
                         %>
                         <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
-                            <a href="owner-index.html">
+                            <a href="MainController?action=ShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -56,19 +56,19 @@
                             </a>
                             <ul class="collapse sub-menu" id="collapseOne">
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
-                                    <a href="owner-motel.html" li class="dropdown-item">
+                                    <a href="MainController?action=ownerShowMotel" li class="dropdown-item">
                                         <i class='bx bx-home-alt-2'></i>
                                         <span class="title">Nhà nghỉ</span>
                                     </a> 
                                 </li>
                                 <li class="active" data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
-                                    <a href="MainController?" li class="dropdown-item">
+                                    <a href="MainController?action=ShowRoom&ownerID=<%=loginUser.getUserId()%>" li class="dropdown-item">
                                         <i class='bx bx-calendar-edit'></i>
                                         <span class="title">Phòng</span>
                                     </a>
                                 </li> 
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                    <a href="owner-service.html" li class="dropdown-item">
+                                    <a href="owner-service.jsp" li class="dropdown-item">
                                         <i class='bx bx-cloud-rain'></i>
                                         <span class="title">Dịch vụ</span>
                                     </a>
@@ -82,19 +82,19 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.html">
+                            <a href="owner-notification.jsp">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="owner-feedback.html">
+                            <a href="onwer-feedback.jsp">
                                 <span><i class="bx bx-detail"></i></span>
                                 <span class="title">Nhận xét</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
-                            <a href="owner-statistical.html">
+                            <a href="owner-statistical.jsp">
                                 <span><i class='bx bx-line-chart'></i></span>
                                 <span class="title">Thống kê</span>
                             </a>

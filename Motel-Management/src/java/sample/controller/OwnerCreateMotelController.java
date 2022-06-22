@@ -28,8 +28,8 @@ import sample.motel.MotelError;
 @WebServlet(name = "OwnerCreateMotelController", urlPatterns = {"/OwnerCreateMotelController"})
 public class OwnerCreateMotelController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "ownwer-room-list.jsp";
+    private static final String ERROR = "OwnerShowMotelController";
+    private static final String SUCCESS = "OwnerShowMotelController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +39,7 @@ public class OwnerCreateMotelController extends HttpServlet {
         MotelDAO dao = new MotelDAO();
         Random generator = new Random();
         try {
-            Part part = request.getPart("image");          
+            Part part = request.getPart("photo");          
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
             String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
@@ -49,10 +49,10 @@ public class OwnerCreateMotelController extends HttpServlet {
             }
             
             String image = "images/" + filename;           
-            String ownerID = request.getParameter("userID");
+            String ownerID = request.getParameter("ownerID");
             String motelName = request.getParameter("motelName");
             String Phone = request.getParameter("phone");
-            String desc = request.getParameter("desc");
+            String desc = request.getParameter("desct");
             String address = request.getParameter("address");
             String DistrictID = request.getParameter("districtID");
             boolean checkValidation = true;
@@ -66,10 +66,27 @@ public class OwnerCreateMotelController extends HttpServlet {
                 motelError.setPhoneError("length of phone number must be in 7-10");
                 checkValidation = false;
             }
+                      
             
-            if (address.length() < 2 || address.length() > 25) {
-                motelError.setPhoneError("length of phone number must be in 2-25");
+            if (!Phone.matches("[0-9]{2,15}")) {
+                motelError.setPhoneError("phone is number");
                 checkValidation = false;
+            }
+            
+            if(checkValidation){
+                String motelID = "";
+                boolean checkID = false;
+                    do {
+                        motelID = String.valueOf(generator.nextInt(9999999));
+                        checkID = dao.checkMotelID(motelID);
+                    } while (checkID = false);
+                    MotelDTO motel = new MotelDTO(motelID, motelName, image, Phone, desc, address, DistrictID, "", 0, ownerID, 1);
+                    boolean checkCreate = dao.createMotel(motel);
+                    if(checkCreate){
+                        request.setAttribute("MESSAGE", "Create Motel Success! ");
+                        part.write(pathImage + "/" + filename); 
+                        url = SUCCESS;
+                    }
             }
                       
         } catch (Exception e) {

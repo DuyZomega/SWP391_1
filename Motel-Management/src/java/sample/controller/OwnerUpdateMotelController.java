@@ -14,51 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author cao thi phuong thuy
+ * @author Bao
  */
-@WebServlet(name = "MotelManager", urlPatterns = {"/MotelManager"})
-public class MotelManager extends HttpServlet {
+@WebServlet(name = "OwnerUpdateMotelController", urlPatterns = {"/OwnerUpdateMotelController"})
+public class OwnerUpdateMotelController extends HttpServlet {
 
-    
-    private static final String ERROR = "error.jsp";
-    private static final String MOTEL_LIST = "all";
-    private static final String MOTEL_LIST_CONTROLLER = "AdminShowMotel";
-    
-    private static final String UPDATE_LIST = "update";
-    private static final String UPDATE_LIST_CONTROLLER = "AdminUpdateMotel";
-    
-   private static final String DETAIL_LIST = "detail";
-  private static final String DETAIL_LIST_CONTROLLER = "AdminDetailMotel";
-  
-    private static final String DELETE_LIST = "delete";
-    private static final String DELETE_LIST_CONTROLLER = "AdminDeleteMotel";
-    
-    private static final String REPORT_LIST = "reportmanager";
-    private static final String REPORT_LIST_CONTROLLER = "AdminReport";
-    private static final String SEARCH_LIST = "search";
-    private static final String SEARCH_LIST_CONTROLLER = "SearchController";
-    
+    private static final String ERROR = "OwnerShowMotelController";
+    private static final String SUCCESS = "OwnerShowMotelController";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String url = ERROR;
+        String url = ERROR;
         try {
-            String action = request.getParameter("action");
-            if(MOTEL_LIST.equals(action)){
-                url = MOTEL_LIST_CONTROLLER;
-            }else if (UPDATE_LIST.equals(action)){
-                url = UPDATE_LIST_CONTROLLER;
-            }else if (DELETE_LIST.equals(action)){
-                url = DELETE_LIST_CONTROLLER;
-            }else if (DETAIL_LIST.equals(action)){
-                url = DETAIL_LIST_CONTROLLER;
-            }else if (REPORT_LIST.equals(action)){
-                url = REPORT_LIST_CONTROLLER;
-            }else if (SEARCH_LIST.equals(action)){
-                url = SEARCH_LIST_CONTROLLER;
-            }
+            String motelID = request.getParameter("motelID");
+            
         } catch (Exception e) {
-            log("Error at MainController: "+e.toString());
+            log("Error at OwnerUpdateMotelController:" +e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

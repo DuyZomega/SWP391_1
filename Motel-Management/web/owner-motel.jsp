@@ -4,6 +4,9 @@
     Author     : Bao
 --%>
 
+<%@page import="sample.users.UserDTO"%>
+<%@page import="sample.address.districtDTO"%>
+<%@page import="sample.address.cityDTO"%>
 <%@page import="sample.motel.MotelDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -38,8 +41,15 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
+                        <%
+                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                            if (loginUser == null || !loginUser.getRole().equals("OW")) {
+                                response.sendRedirect("login.jsp");
+                                return;
+                            }
+                        %>
                         <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
-                            <a href="owner-index.html">
+                            <a href="MainController?action=ShowOverview">
                                 <span><i class='bx bx-tachometer'></i></span>
                                 <span class="title">Tổng quan</span>
                             </a>
@@ -52,19 +62,19 @@
                             </a>
                             <ul class="collapse sub-menu" id="collapseOne">
                                 <li class="active" data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
-                                    <a href="owner-motel.html" li class="dropdown-item">
+                                    <a href="MainController?action=ownerShowMotel" li class="dropdown-item">
                                         <i class='bx bx-home-alt-2'></i>
                                         <span class="title">Nhà nghỉ</span>
                                     </a> 
                                 </li>
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý phòng">
-                                    <a href="owner-room-list.html" li class="dropdown-item">
+                                    <a href="MainController?action=ShowRoom&ownerID=<%=loginUser.getUserId()%>" li class="dropdown-item">
                                         <i class='bx bx-calendar-edit'></i>
                                         <span class="title">Phòng</span>
                                     </a>
                                 </li> 
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                    <a href="owner-service.html" li class="dropdown-item">
+                                    <a href="owner-service.jsp" li class="dropdown-item">
                                         <i class='bx bx-cloud-rain'></i>
                                         <span class="title">Dịch vụ</span>
                                     </a>
@@ -72,31 +82,31 @@
                             </ul>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Lịch sử">
-                            <a href="owner-history-room.html">
+                            <a href="MainController?action=ShowHistory">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.html">
+                            <a href="owner-notification.jsp">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="owner-feedback.html">
+                            <a href="onwer-feedback.jsp">
                                 <span><i class="bx bx-detail"></i></span>
                                 <span class="title">Nhận xét</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
-                            <a href="owner-statistical.html">
+                            <a href="owner-statistical.jsp">
                                 <span><i class='bx bx-line-chart'></i></span>
                                 <span class="title">Thống kê</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Tài khoản">
-                            <a href="owner-profile.html">
+                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -165,10 +175,15 @@
                             <div class="card-action card-tabs mr-auto">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
                             </div>
+                            <% String message = (String)request.getAttribute("MESSAGE"); 
+                                if (message == null){
+                                message="";
+                                }
+                            %>
+                            <%= message %>
                         </div>
                         <div class="row">
-                            <!-- vòng lặp in home -->
-
+                            <!-- vòng lặp in home -->                          
                             <%
                                 List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
                                 if (listMotel != null) {
@@ -181,7 +196,7 @@
                                     <div class="card-body">
                                         <div class="d-flex mb-4 align-items-start">
                                             <div class="home-img mr-3">
-                                                <img src="<%= motel.getImage() %>" alt class="img-fluid">
+                                                <img src="<%= motel.getImage()%>" alt class="img-fluid">
                                             </div>
                                             <div class="mr-auto">
                                                 <p class="text mb-1">home ID: <%= motel.getMotelID()%></p>
@@ -199,9 +214,9 @@
 
 
                                                         <!-- remove Home -->
-                                                        <form action="#" method="POST">
-                                                            <input type="hidden" name="idhome" value="aaa"> 
-                                                            <button type="submit" class="dropdown-item" onclick="if (!confirm('Are you sure?')) {
+                                                        <form action="MainController" method="POST">
+                                                            <input type="hidden" name="motelID" value="<%= motel.getMotelID() %>"> 
+                                                            <button name="action" value="deleteMotel" type="submit" class="dropdown-item" onclick="if (!confirm('Are you sure?')) {
                                                                         return false
                                                                     }">
                                                                 <a><i class='bx bx-recycle'></i>Xóa nhà</a>
@@ -258,7 +273,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Thêm Nhà</h4>
                     </div>
-                    <form action="#" >
+                    <form action="MainController" method="post" enctype="multipart/form-data" >
                         <div class="modal-body container-fluid">
                             <div class="row">
                                 <div class="col-12">
@@ -266,31 +281,48 @@
                                         <div class="col-md-2 text-md-right"><span>Tỉnh:</span></div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <select name="" class="form-control" id="sel1" onchange="giveSelection(this.value)">
-                                                    <option value="1">Sơn La</option>
-                                                    <option value="2">Điện Biên</option>
-                                                    <option value="3">Lai Châu</option>
-                                                    <option value="4">Bắc Giang</option>
+                                                <select name="cityID" class="form-control" id="sel1" onchange="giveSelection(this.value)">
+                                                    <%
+                                                        List<cityDTO> listCity = (ArrayList<cityDTO>) request.getAttribute("LIST_CITY");
+                                                        if (listCity != null) {
+                                                            if (listCity.size() > 0) {
+                                                                for (cityDTO city : listCity) {
+
+                                                    %>
+                                                    <option value="<%= city.getCityID() %>"><%= city.getCityName()%></option>
+                                                    <%            }
+                                                            }
+                                                        }
+                                                    %> 
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-2 text-md-right"><span>Huyện: </span></div>
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <select name="" class="form-control" id="sel2">
-                                                    <option value="1">Sơn La</option>
-                                                    <option value="2">Điện Biên</option>
-                                                    <option value="3">Lai Châu</option>
-                                                    <option value="4">Bắc Giang</option>
+                                                <select name="districtID" class="form-control" id="sel2">
+                                                   <%
+                                                        List<districtDTO> listDistrict = (ArrayList<districtDTO>) request.getAttribute("LIST_DISTRICT");
+                                                        if (listDistrict != null) {
+                                                            if (listDistrict.size() > 0) {
+                                                                for (districtDTO district : listDistrict) {
+
+                                                    %> 
+                                                    <option value="<%= district.getDistrictID() %>"><%= district.getDistrictName()%></option>
+                                                    <%            }
+                                                            }
+                                                        }
+                                                    %> 
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>                              
                                     <div class="row">
                                         <div class="col-md-2 text-md-right pb-1"><span>Tên Phòng Motel: </span></div>
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="tel" class="form-control" placeholder="Nhập tên..." required>
+                                                <input name="motelName" type="tel" class="form-control" placeholder="Nhập tên..." required>
+                                                <input name="ownerID" value="<%= loginUser.getUserId() %>" type="hidden" />
                                             </div>
                                         </div>
                                     </div>
@@ -298,7 +330,7 @@
                                         <div class="col-md-2 text-md-right pb-1"><span>Điện thoại: </span></div>
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="tel" class="form-control" placeholder="Nhập số điện thoại..." required>
+                                                <input name="phone" type="tel" class="form-control" placeholder="Nhập số điện thoại..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +338,15 @@
                                         <div class="col-md-2 text-md-right pb-1"><span>Địa chỉ: </span></div>
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Nhập địa chỉ..." required>
+                                                <input name="address" type="text" class="form-control" placeholder="Nhập địa chỉ..." required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                            <div class="row">
+                                        <div class="col-md-2 text-md-right pb-1"><span>Mô Tả: </span></div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input name="desct" type="text" class="form-control" placeholder="Nhập mô tả..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -316,7 +356,7 @@
                                                 <label for="file-input">
                                                     <i class="fas fa-upload"></i>&nbsp; Thêm ảnh phòng
                                                 </label>
-                                                <input type="file" id="file-input" accept="image/*" onchange="preview()" multiple>
+                                                <input name="photo" type="file" id="file-input" style="display: none" accept="image/*" onchange="preview()" multiple>
                                                 <p id="num-of-files">No file choose</p>
                                                 <div id="images"></div>
                                             </div>  
@@ -326,7 +366,7 @@
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit">Xác Nhận</button>
+                            <button class="btn btn-success" name="action" value="createMotel" type="submit">Xác Nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </form>
@@ -341,7 +381,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin Nhà</h4>
                     </div>
-                    <form action="#" class="form-group">
+                    <form action="MainController" method="post" class="form-group">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
@@ -353,13 +393,22 @@
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Chọn Nhà:</label>
                                         <select class="form-control col-md-6" name="namehome" onchange="change(event)">
                                             <option disabled selected>Chọn nhà cần chỉnh sửa</option>
-                                            <option value="1">Home 1</option>
-                                            <option value="2">Home 2</option>
+                                            <%
+                                                if (listMotel != null) {
+                                                    if (listMotel.size() > 0) {
+                                                        for (MotelDTO motel : listMotel) {
+
+                                            %>
+                                            <option value="<%= motel.getMotelID()%>"><%= motel.getName()%></option>
+                                            <%            }
+                                                    }
+                                                }
+                                            %>
                                         </select>
                                     </div>
                                     <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà:</label>
-                                        <input class="form-control col-md-6" name="namehome" value="Nhập tên nhà mới..." required>       
+                                        <input class="form-control col-md-6" name="motelName" value="Nhập tên nhà mới..." required>       
                                     </div>
                                     <div class="row form-group">
                                         <label for="phone" class="col-md-3 col-form-label text-md-right">Số điện thoại:</label>
