@@ -19,16 +19,20 @@ $('.tab-pane').each(function(i){
         $(this).addClass('active');
     }
 });
+
+
 //loading
 // $(window).on("load",function () {
 //     $(".preloader").fadeOut("slow");
 //     $(".preloader").css("display","none");
 // });
 
+
 let feedback = document.querySelectorAll('.feedback');
 feedback.onclick = function () {
     $("#" + (this).data("data-target")).classList.toggle('active'); 
 }
+
 
 // input image
 let fileInput = document.getElementById("file-input");
@@ -58,18 +62,6 @@ function preview() {
     }
 }
 
-// success
-function success() {
-    swal({
-        title: "Thành Công!",
-        text: "Xác nhận thao tác của bạn.",
-        icon: "success",
-        timer: 3000
-    });
-}
-
-//
-
 
 $(document).ready(function () {
     //data-table
@@ -86,7 +78,15 @@ $(document).ready(function () {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-});
+})
+
+
+$(document).ready(function () {
+    setTimeout(function () {
+        $('#notif').css('display', 'none');
+    }, 3000);
+})
+
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
@@ -188,6 +188,7 @@ function timeFrame(period) {
     chart.update();
 } 
 
+
 //change idHome for delete
 function change(event) {
     document.getElementById("idhome").value = event.target.value;
@@ -213,17 +214,31 @@ function other(event) {
     }
 }
 
-// select input
 
-$("#motelid").change(function() {
-    var cat = $(this).val(); // this is the selected value
- 
-    $("#typyRoom option:not(." + cat + ")").hide(); // you hide every option that don't have your selected value as a class
-    $("#typyRoom option." + cat).show(); // you only show selected options
-    $("#typyRoom").val(""); //reset the previously selected value
-});
+// select following select box
+
+function myFunc() {
+    var list = [];
+    var sel1 = $('#motelid').val();
+    
+    const option = document.getElementById('typeRoom');
+
+    for (let i = 0; i < option.childElementCount; i++) {
+        list[i] = option.children[i].getAttribute('data-option');
+    }
+
+    list.forEach((item, index) => {
+         if(item === sel1 || item == null) {
+            option.children[index].style.display = "block";
+         } else {
+            option.children[index].style.display = "none";
+         }
+    });
+}
 
 
+
+// sweetalert
 function submitFunc() {
     swal({
         title: "Successfully!",
@@ -234,3 +249,15 @@ function submitFunc() {
     });
     return false;
 };
+
+// confirm to dele
+
+function confirmdele() {
+    if (!confirm('Are you sure to delete?')) { 
+        return false }
+}
+
+
+
+
+

@@ -40,7 +40,7 @@
                         </a>
                         <ul class="collapse sub-menu" id="collapseOne">
                             <li data-toggle="tooltip"data-placement="right" title="Quản lý nhà">
-                                <a href="owner-room-list.html" li class="dropdown-item">
+                                <a href="owner-motel.html" li class="dropdown-item">
                                     <i class='bx bx-home-alt-2'></i>
                                     <span class="title">Nhà nghỉ</span>
                                 </a> 
@@ -182,8 +182,8 @@
                                                         <i class='bx bx-upload'></i>
                                                     </button>
 
-                                                    <a class="btn btn-danger btn-xs light px-2 ml-3" onclick="return confirmation(event)"
-                                                    href="javascript(0):void;"
+                                                    <a class="btn btn-danger btn-xs light px-2 ml-3" onclick="confirmdele()"
+                                                    href="aa"
                                                     data-toggle="tooltip" data-placement="right" title="Xóa">
                                                         <i class='bx bx-block'></i>
                                                     </a>
@@ -216,8 +216,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="hidden" name="motelID" id="idhome" value="">
-                                            <select name="" class="form-control" id="sel1" onchange="change(event)">
-                                                <option disabled selected>Chọn motel cần thêm dịch vụ</option>
+                                            <select name="" class="form-control" id="sel1" onchange="change(event)" required>
+                                                <option value="" disabled selected>Chọn motel cần thêm dịch vụ</option>
                                                 <option value="1">Motel 1</option>
                                                 <option value="2">Motel 2</option>
                                             </select>
