@@ -68,9 +68,9 @@
                         <div
                             class="col-12 content__title d-flex justify-content-between align-items-center">
                             <div class="content__title-left">
-                                <h3 class="heading d-inline-block pr-3"><i class="fa fa-hotel"></i> ${o.name}</h3>
-                                <label>${o.rating} <span style="color: yellow"><i class="fa fa-star"></i></span></label>
-                                <p><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
+                                <h3 class="headingd-inline-block pr-3"><i class="fa fa-hotel"> </i> ${o.name}
+                                    <span>${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span></h3>
+                                <p>${o.address},${o.district},${o.city}</p>
                             </div>
                         </div>
                         <div class="col-9">
@@ -84,14 +84,14 @@
                             </div>
                             <hr>
                             <div class="content__describe">
-                                <h3 class="heading"><i class="fa fa-scroll"></i> Mô tả chi tiết</h3>
+                                <h3 class="heading"><i class="fa fa-scroll"> </i> Mô tả chi tiết</h3>
                                 <p>${o.desct}</p>
                             </div>
-                            <hr>
-                            <div class="content__describe">
-                                <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
-                                <p>7up, lavie, bánh, Coca, khăn ướt</p>
-                            </div>
+                            <!--                            <hr>
+                                                        <div class="content__describe">
+                                                            <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
+                                                            <p>7up, lavie, bánh, Coca, khăn ướt</p>
+                                                        </div>-->
                         </div>
                         <div class="col-3 widgets">
                             <div class="content__item">
@@ -113,7 +113,7 @@
                                             gọn</p>
                                         <button
                                             class="button--primary mt-3"><a
-                                                href="MainController?action=ShowMotelBooking&motelID=${o.motelID}"
+                                                href="#Booking"
                                                 class="text-white text-decoration-none">Đặt
                                                 phòng</a></button>
 
@@ -148,7 +148,7 @@
         <section id="Booking" class="booking mb-5">
             <div class="container">
                 <div class="booking__title">
-                    <h3 class="heading"><i class="fa fa-concierge-bell"></i> Đặt phòng</h3>
+                    <h3 class="heading"><i class="fa fa-concierge-bell"> </i> Đặt phòng</h3>
                 </div>
                 <div class="booking__table row">
                     <table class="table table-book col-10" id="app_a">
@@ -275,13 +275,10 @@
                         </div>
                         <!-- sau khi đăng nhập -->
                         <% } else { %>
-                        <c:forEach var="o" varStatus="counter"
-                                   items="${requestScope.LIST_MOTEL}">
-                            <div class="btn-booking text-center">
-                                <button class="button--primary"><a class="text-decoration-none text-white"
-                                                                   href="MainController?action=ShowMotelBooking&motelID=${o.motelID}">Đặt ngay</a></button> 
-                            </div>
-                        </c:forEach>
+                        <div class="btn-booking text-center">
+                            <button class="button--primary"
+                                    type="submit">Đặt ngay</button>
+                        </div>
                         <%}%>
                     </div>
                 </div>
@@ -326,6 +323,15 @@
                             </c:if>
                         </c:if>
                     </div>
+
+
+                    <c:if test="${requestScope.MESSAGE_FEEDBACK != null}">
+                        <c:if test="${not empty requestScope.MESSAGE_FEEDBACK}">
+                            <div class="reviews-title alert alert-info col-12">
+                                ${requestScope.MESSAGE_FEEDBACK}
+                            </div>
+                        </c:if>
+                    </c:if>
                 </div>
             </div>
         </section>
@@ -362,6 +368,60 @@
                     }
                 }
             });
+
+
+// ===================Thuy detail=====================
+
+            $(function () {
+                app_a.setUp();
+            });
+            let vnd = Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+                useGrouping: true
+            });
+            var app_a = {
+                tbl: '#app_a',
+                h: 'input.hour_val',
+                r: 'input.room_val',
+                t: '.row_total',
+                am: '.amount',
+                p: '.price',
+                setUp: function () {
+                    var _this = this;
+                    _this.amount();
+                    $(this.tbl).find('input').change(function () {
+                        _this.amount();
+                    });
+                },
+                amount: function () {
+                    var _this = this,
+                            am = $(_this.am),
+                            amount = 0;
+                    $(this.tbl).find('tbody tr').each(function () {
+                        amount += _this.rowtotal(this);
+                    });
+                    am.html(_this.toCur(amount));
+                },
+                rowtotal: function (row) {
+                    var _this = this,
+                            r = $(row),
+                            h = r.find(_this.h),
+                            p = r.find(_this.p),
+                            rm = r.find(_this.r),
+                            h_val = h.val(),
+                            r_val = rm.val(),
+                            p_val = p.val(),
+                            t = r.find(_this.t),
+                            total = h_val * r_val * p_val;
+                    t.html(_this.toCur(total));
+                    return total;
+                },
+                toCur: function (val) {
+                    return vnd.format(val);
+                }
+            }
+// ===================Thuy detail=====================
         </script>
         <!-- lightbox -->
         <script src="vendor/lightbox/js/lightbox.min.js"></script>
