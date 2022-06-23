@@ -37,6 +37,8 @@ public class MotelManager extends HttpServlet {
     private static final String REPORT_LIST_CONTROLLER = "AdminReport";
     private static final String SEARCH_LIST = "search";
     private static final String SEARCH_LIST_CONTROLLER = "SearchController";
+    private static final String FILTER_LIST = "filter";
+    private static final String FILTER_LIST_CONTROLLER = "FilterMotelController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,6 +58,8 @@ public class MotelManager extends HttpServlet {
                 url = REPORT_LIST_CONTROLLER;
             }else if (SEARCH_LIST.equals(action)){
                 url = SEARCH_LIST_CONTROLLER;
+            }else if (FILTER_LIST.equals(action)){
+                url = FILTER_LIST_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: "+e.toString());

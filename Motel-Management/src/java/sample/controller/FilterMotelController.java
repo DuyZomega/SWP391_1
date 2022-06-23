@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
  *
@@ -31,13 +29,18 @@ public class FilterMotelController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            String teaString = request.getParameter("price");
+            String tmp[]= teaString.split("--");
+            String price1 = tmp[0];
+            String price2 = tmp[1];
+            String district = request.getParameter("district");
             MotelDAO motel1 = new MotelDAO();
-            List<MotelDTO> listMotel1 = motel1.getFilterMotel();
-                if (listMotel1.size() > 0) {
-                    request.setAttribute("FILTER_MOTEL", listMotel1);
+            List<MotelDTO> listMotel1 = motel1.getFilterMotel(price1,price2,district);
+                if (listMotel1.size() >0) {
+                    request.setAttribute("LIST_MOTEL", listMotel1);
                     url = SUCCESS;
                 } else {
-                    request.setAttribute("ERROR_MESSAGE", "No motel here");
+                    request.setAttribute("MESSAGE", "Không có nhà nghỉ phù hợp, bạn hãy tham khảo các nhà nghỉ khác.");
                     url = SUCCESS;
                 }
 
