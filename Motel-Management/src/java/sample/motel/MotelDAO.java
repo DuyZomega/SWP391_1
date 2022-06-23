@@ -495,8 +495,10 @@ public List<MotelDTO> getDetailMotel(String motelID) throws SQLException {
         return listMotel;
     
     }
-private static final String FILTER_MOTEL = "SELECT MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.DistrictID = ? AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1";
-public List<MotelDTO> getFilterMotel() throws SQLException {
+private static final String FILTER_MOTEL = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName \n" +
+"FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType \n" +
+"WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND ( tblDistrict.DistrictID = ? OR tblRoomType.Price BETWEEN ? AND ?)";
+public List<MotelDTO> getFilterMotel(String price1,String price2, String district) throws SQLException {
          List<MotelDTO> listMotel = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -505,21 +507,24 @@ public List<MotelDTO> getFilterMotel() throws SQLException {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(FILTER_MOTEL);
+                ptm.setString(1, district);
+                ptm.setString(2, price1);
+                ptm.setString(3, price2);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String motelID = rs.getString("MotelID");
                     String image = rs.getString("image");
                     String name = rs.getString("name");
                     String phone = rs.getString("phone");
-                    String Desct = rs.getString("Desct");
+                    String desct = rs.getString("desct");
                     String address = rs.getString("address");
-                    String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
-                    String ownerId = rs.getString("FullName");
+                    int price = rs.getInt("price");
+                    String typename = rs.getString("TypeName"); 
                     int status = rs.getInt("status");
-                    listMotel.add(new MotelDTO(motelID, name, image, phone, Desct, address, district, city, rating, ownerId, status));
-                }
+                    listMotel.add(new MotelDTO(motelID, name, image, phone, desct, address, district, city, rating, typename ,price, status));
+                  }
             }
         } catch (Exception e) {
             e.printStackTrace();
