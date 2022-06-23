@@ -175,12 +175,12 @@
                             <div class="card-action card-tabs mr-auto">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
                             </div>
-                            <% String message = (String)request.getAttribute("MESSAGE"); 
-                                if (message == null){
-                                message="";
+                            <% String message = (String) request.getAttribute("MESSAGE");
+                                if (message == null) {
+                                    message = "";
                                 }
                             %>
-                            <%= message %>
+                            <%= message%>
                         </div>
                         <div class="row">
                             <!-- vòng lặp in home -->                          
@@ -210,12 +210,12 @@
                                                         <i class='bx bx-dots-vertical-rounded'></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="edit-dele">
-                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome"><i class='bx bx-edit'></i>Chỉnh sửa</a>
+                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome<%= motel.getMotelID() %>"><i class='bx bx-edit'></i>Chỉnh sửa</a>
 
 
                                                         <!-- remove Home -->
                                                         <form action="MainController" method="POST">
-                                                            <input type="hidden" name="motelID" value="<%= motel.getMotelID() %>"> 
+                                                            <input type="hidden" name="motelID" value="<%= motel.getMotelID()%>"> 
                                                             <button name="action" value="deleteMotel" type="submit" class="dropdown-item" onclick="if (!confirm('Are you sure?')) {
                                                                         return false
                                                                     }">
@@ -226,7 +226,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-4">
+                                        <p class="mb-4 decp">
                                             <%= motel.getDesct()%>
                                         </p>
                                         <div class="d-flex flex-wrap align-items-center">
@@ -289,7 +289,7 @@
                                                                 for (cityDTO city : listCity) {
 
                                                     %>
-                                                    <option value="<%= city.getCityID() %>"><%= city.getCityName()%></option>
+                                                    <option value="<%= city.getCityID()%>"><%= city.getCityName()%></option>
                                                     <%            }
                                                             }
                                                         }
@@ -301,14 +301,14 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <select name="districtID" class="form-control" id="sel2">
-                                                   <%
+                                                    <%
                                                         List<districtDTO> listDistrict = (ArrayList<districtDTO>) request.getAttribute("LIST_DISTRICT");
                                                         if (listDistrict != null) {
                                                             if (listDistrict.size() > 0) {
                                                                 for (districtDTO district : listDistrict) {
 
                                                     %> 
-                                                    <option value="<%= district.getDistrictID() %>"><%= district.getDistrictName()%></option>
+                                                    <option value="<%= district.getDistrictID()%>"><%= district.getDistrictName()%></option>
                                                     <%            }
                                                             }
                                                         }
@@ -322,7 +322,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <input name="motelName" type="tel" class="form-control" placeholder="Nhập tên..." required>
-                                                <input name="ownerID" value="<%= loginUser.getUserId() %>" type="hidden" />
+                                                <input name="ownerID" value="<%= loginUser.getUserId()%>" type="hidden" />
                                             </div>
                                         </div>
                                     </div>
@@ -342,11 +342,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                            <div class="row">
+                                    <div class="row">
                                         <div class="col-md-2 text-md-right pb-1"><span>Mô Tả: </span></div>
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <input name="desct" type="text" class="form-control" placeholder="Nhập mô tả..." required>
+                                                <input name="desct" type="text" class="form-control" placeholder="Nhập mô tả..." >
                                             </div>
                                         </div>
                                     </div>
@@ -374,61 +374,95 @@
             </div>
         </div>
 
+        <%
+            if (listMotel != null) {
+                if (listMotel.size() > 0) {
+                    for (MotelDTO motel : listMotel) {
+
+        %>      
         <!-- edit Home -->
-        <div id="editHome" class="modal fade" role="dialog">
+        <div id="editHome<%= motel.getMotelID() %>" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
                 <div class="modal-content modal-addRoom">
                     <div class="modal-header">
                         <h4 class="modal-title">Chỉnh sửa thông tin Nhà</h4>
                     </div>
-                    <form action="MainController" method="post" class="form-group">
+                    <form action="MainController" method="post" enctype="multipart/form-data" class="form-group">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="row form-group">
                                         <label for="idhome" class="col-md-3 col-form-label text-md-right">Mã nhà:</label>
-                                        <input type="text" name="idhome" id="idhome" value="----" class="form-control col-md-6" readonly/>
-                                    </div>
-                                    <div class="row form-group">
-                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">Chọn Nhà:</label>
-                                        <select class="form-control col-md-6" name="namehome" onchange="change(event)">
-                                            <option disabled selected>Chọn nhà cần chỉnh sửa</option>
-                                            <%
-                                                if (listMotel != null) {
-                                                    if (listMotel.size() > 0) {
-                                                        for (MotelDTO motel : listMotel) {
-
-                                            %>
-                                            <option value="<%= motel.getMotelID()%>"><%= motel.getName()%></option>
-                                            <%            }
-                                                    }
-                                                }
-                                            %>
-                                        </select>
+                                        <input type="text" name="motelID" id="idhome" value="<%= motel.getMotelID()%>" class="form-control col-md-6" readonly/>
                                     </div>
                                     <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà:</label>
-                                        <input class="form-control col-md-6" name="motelName" value="Nhập tên nhà mới..." required>       
+                                        <input class="form-control col-md-6" name="motelName" value="<%= motel.getName()%>" required>       
                                     </div>
                                     <div class="row form-group">
                                         <label for="phone" class="col-md-3 col-form-label text-md-right">Số điện thoại:</label>
-                                        <input class="form-control col-md-6" name="namehome" value="Nhập số điện thoại..." required>       
+                                        <input class="form-control col-md-6" name="phone" value="<%= motel.getPhone()%>" required>       
                                     </div>
                                     <div class="row form-group">
-                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">Tên Nhà Mới:</label>
-                                        <input class="form-control col-md-6" name="namehome" placeholder="Nhập tên nhà mới..." required>       
+                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">địa chỉ:</label>
+                                        <input class="form-control col-md-6" name="address" value="<%= motel.getAddress()%>" required>       
                                     </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-3 col-form-label text-md-right"><span>Tỉnh:</span></div>
+                                        <select name="cityID" class="form-control col-md-6" id="sel1" onchange="giveSelection(this.value)">
+                                            <%
+                                                if (listCity != null) {
+                                                    if (listCity.size() > 0) {
+                                                        for (cityDTO city : listCity) {
+
+                                            %>
+                                            <option value="<%= city.getCityID()%>"><%= city.getCityName()%></option>
+                                            <%            }
+                                                    }
+                                                }
+                                            %> 
+                                        </select>                       
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-3 col-form-label text-md-right"><span>Huyện:</span></div>
+                                        <select name="districtID" class="form-control col-md-6" id="sel2">
+
+                                            <%
+                                                if (listDistrict != null) {
+                                                    if (listDistrict.size() > 0) {
+                                                        for (districtDTO district : listDistrict) {
+                                                            if (motel.getDistrict().equals(district.getDistrictName())) {
+                                            %> 
+                                            <option value="<%= district.getDistrictID()%>" selected="selected"><%= district.getDistrictName()%></option>
+                                            <%} else {%>
+                                            <option value="<%= district.getDistrictID()%>"><%= district.getDistrictName()%></option>
+                                            <%            }
+                                                        }
+                                                    }
+                                                }
+                                            %>  
+                                        </select>                       
+                                    </div>
+                                    <div class="row form-group">
+                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>
+                                        <input class="form-control col-md-6" name="desct" value="<%= motel.getDesct()%>" required>       
+                                    </div>
+                                    <input type="file" name="photo" />
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit">Xác nhận</button>
+                            <button class="btn btn-success" type="submit" name="action" value="updateMotel" >Xác nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <%            }
+                }
+            }
+        %>                             
 
 
 

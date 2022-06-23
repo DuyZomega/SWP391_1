@@ -34,14 +34,15 @@ public class ChangeImageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {             
-            Part part = request.getPart("photo");          
+            Part part = request.getPart("photo");
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
             String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
             
-            if(!Files.exists(Path.of(realPath))){
-                Files.createDirectories(Path.of(realPath));
+            if (!Files.exists(Path.of(pathImage))) {
+                Files.createDirectories(Path.of(pathImage));
             }
+            
             part.write(pathImage + "/" + filename);
             
             String image = "images/" + filename;

@@ -5,63 +5,57 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
-import sample.owner.feedbackDAO;
 import sample.owner.FeedbackDTO;
-import sample.room.RoomDAO;
-import sample.room.RoomTypeDTO;
-import sample.service.ServiceDAO;
+import sample.owner.HistoryDAO;
+import sample.owner.HistoryDTO;
 import sample.service.ServiceDTO;
-import sample.users.UserDAO;
 import sample.users.UserDTO;
 
 /**
  *
- * @author cao thi phuong thuy
+ * @author Bao
  */
-@WebServlet(name = "ShowMotelBookingController", urlPatterns = {"/ShowMotelBookingController"})
-public class ShowMotelBookingController extends HttpServlet {
+@WebServlet(name = "OwnerShowHistoryDetail", urlPatterns = {"/OwnerShowHistoryDetail"})
+public class OwnerShowHistoryDetail extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "user-booking.jsp";
-
+    private static final String SUCCESS = "owner-history-detail.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String motelID = request.getParameter("motelID");
-            MotelDAO motel = new MotelDAO();
-            feedbackDAO feedback = new feedbackDAO();
-            RoomDAO roomtype = new RoomDAO();
-            List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
-            List<MotelDTO> listMotel1 = motel.getListMotel();
-            List<RoomTypeDTO> listRoomType = roomtype.getRoomType(motelID);
-            List<FeedbackDTO> listFeedback = feedback.getDetailFeedback(motelID);
-            if (listMotel.size() > 0) {
-                request.setAttribute("DETAIL_MOTEL", listMotel);
-                if (listRoomType.size() > 0) {
-                    request.setAttribute("LIST_ROOMTYPE", listRoomType);
-                }
-                if (listFeedback.size() > 0) {
-                    request.setAttribute("DETAIL_FEEDBACK", listFeedback);
-                }
-                if (listMotel1.size() > 0) {
-                request.setAttribute("LIST_MOTEL", listMotel1);
+            String bookingID=request.getParameter("bookingID");
+            String roomID = request.getParameter("roomID");
+            HistoryDAO dao = new HistoryDAO();
+            UserDTO userBooking = dao.getUserBooking(bookingID);
+            if(userBooking != null){
+                request.setAttribute("USER_BOOKING", userBooking);
             }
+            FeedbackDTO feedbackBooking = dao.getFeedbackBooking(bookingID);
+            if(feedbackBooking != null){
+                request.setAttribute("FEEDBACK_BOOKING", feedbackBooking);
+            }
+            List<ServiceDTO> listService = dao.getListService(bookingID);
+            if(listService != null){
+                request.setAttribute("LIST_SERVICE", listService);
+            }
+            HistoryDTO historyDetail = dao.getHistoryDetail(bookingID, roomID);
+            if(historyDetail != null){
+                request.setAttribute("HISTORY_DETAIL", historyDetail);
                 url = SUCCESS;
             }
             
         } catch (Exception e) {
-            log("Error at showlistcontroller: " + e.toString());
+            log("Error at OwnerShowHistoryDetail:"+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

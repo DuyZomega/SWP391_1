@@ -11,8 +11,12 @@ package sample.owner;
 public class HistoryDTO {
     String bookingID;
     String motelID;
+    String motelAddress;
+    String district;
+    String city;
     String roomID;
     String userID;
+    String roomType;
     String userName;
     String status;  
     int NumberService;
@@ -20,6 +24,38 @@ public class HistoryDTO {
     String date;
     int total;
 
+    public String getMotelAddress() {
+        return motelAddress;
+    }
+
+    public void setMotelAddress(String motelAddress) {
+        this.motelAddress = motelAddress;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+        
     public String getBookingID() {
         return bookingID;
     }
@@ -133,8 +169,21 @@ public class HistoryDTO {
         this.payType = payType;
         this.total = total;
     }
-    
-    
+
+    public HistoryDTO(String bookingID, String motelID, String motelAddress, String district, String city, String roomID, String roomType, String status, String payType, String date, int total) {
+        this.bookingID = bookingID;
+        this.motelID = motelID;
+        this.motelAddress = motelAddress;
+        this.district = district;
+        this.city = city;
+        this.roomID = roomID;
+        this.roomType = roomType;
+        this.status = status;
+        this.payType = payType;
+        this.date = date;
+        this.total = total;
+    }
+       
         
     
 }

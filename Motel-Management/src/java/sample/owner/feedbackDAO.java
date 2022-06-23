@@ -16,7 +16,7 @@ import sample.utils.DBUtils;
  *
  * @author Bao
  */
-public class FeedbackDAO {
+public class feedbackDAO {
 private static final String GET_FEEDBACK = "SELECT  f.Desct, f.Status  FROM tblMotel as m, tblFeedback as f WHERE f.MotelID = m.MotelID AND f.Status = 1 AND m.MotelID =?";
     public List<FeedbackDTO> searchfeedback(String motelID) throws SQLException {
         List<FeedbackDTO> listService = new ArrayList();

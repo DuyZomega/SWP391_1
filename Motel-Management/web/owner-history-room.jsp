@@ -178,14 +178,17 @@
                                                             List<HistoryDTO> listHistory = (ArrayList<HistoryDTO>) request.getAttribute("LIST_HISTORY");
                                                             for (HistoryDTO history : listHistory) {
                                                                 String status = "Đã Hủy";
-                                                                if (history.getStatus().equals("1")) {
-                                                                    status = "Đã Thanh Toán";
+                                                                if (history.getStatus().equals("2")) {
+                                                                    status = "Đã Cọc";
                                                                 }
                                                                 if (history.getStatus().equals("0")) {
                                                                     status = "Chưa Thanh Toán";
                                                                 }
+                                                                if (history.getStatus().equals("1")) {
+                                                                    status = "Đã Thanh Toán";
+                                                                }
                                                         %>
-                                                        <tr class='clickable-row' data-href="owner-history-detail.html" 
+                                                        <tr class='clickable-row' data-href="MainController?action=showHistoryDetail&bookingID=<%=history.getBookingID()%>&roomID=<%= history.getRoomID() %>" 
                                                             data-bs-toggle="tooltip"data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td><%= history.getBookingID()%></td>
                                                             <td><%= history.getMotelID()%></td>

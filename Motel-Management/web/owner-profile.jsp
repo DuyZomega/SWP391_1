@@ -320,7 +320,7 @@
                             </label>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit">Xác nhận</button>
+                            <button class="btn btn-success" name="action" value="ChangeImage" type="submit">Xác nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </form>

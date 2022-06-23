@@ -97,7 +97,7 @@ var loadFile = function (event) {
 //chart
 const ctx = document.getElementById('chart-Dashboard').getContext('2d');
 const day = [
-    {x: Date.parse('2022-06-09 UTC+0700'), y: 18},
+    {x: Date.parse('2022-06-09 UTC+0700'), y: 25},
     {x: Date.parse('2022-06-10 UTC+0700'), y: 10},
     {x: Date.parse('2022-06-11 UTC+0700'), y: 4},
     {x: Date.parse('2022-06-12 UTC+0700'), y: 7},
@@ -111,11 +111,11 @@ const week = [
     {x: Date.parse('2022-06-12 UTC+0700'), y: 100},
     {x: Date.parse('2022-06-19 UTC+0700'), y: 240},
     {x: Date.parse('2022-06-26 UTC+0700'), y: 150},
-    {x: Date.parse('2022-07-03 UTC+0700'), y: 175},
+    {x: Date.parse('2022-07-03 UTC+0700'), y: 175}
 ];
 
 const month = [
-    {x: Date.parse('2022-01-01 UTC+0700'), y: 1234},
+    {x: Date.parse('2022-01-01 UTC+0700'), y: 2000},
     {x: Date.parse('2022-02-01 UTC+0700'), y: 3542},
     {x: Date.parse('2022-03-01 UTC+0700'), y: 1231},
     {x: Date.parse('2022-04-01 UTC+0700'), y: 1221},
@@ -124,9 +124,9 @@ const month = [
     {x: Date.parse('2022-07-01 UTC+0700'), y: 2412},
     {x: Date.parse('2022-08-01 UTC+0700'), y: 1233},
     {x: Date.parse('2022-09-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-12-01 UTC+0700'), y: 3212},
-    {x: Date.parse('2022-09-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-12-01 UTC+0700'), y: 1321},
+    {x: Date.parse('2022-10-01 UTC+0700'), y: 3212},
+    {x: Date.parse('2022-11-01 UTC+0700'), y: 1233},
+    {x: Date.parse('2022-12-01 UTC+0700'), y: 1321}
 ];
 
 const chart = new Chart(ctx, {   

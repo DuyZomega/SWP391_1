@@ -33,6 +33,67 @@ public class MotelDAO {
     private static final String CHECK_MOTELID = "SELECT MotelID FROM tblMotel Where MotelID = ?";
     private static final String CHECK_EMPTY_ROOM = "SELECT * FROM tblMotel as m , tblRoomType as rt, tblRoom as r WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND m.MotelID = ? AND r.Status = 1";
     
+    public boolean updateMotelOwner2(MotelDTO motel) throws SQLException {
+       boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblMotel SET Name=?,Desct=?, Phone=?,Address=?, DistrictID=? WHERE MotelID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, motel.getName());
+                stm.setString(2, motel.getDesct());
+                stm.setString(3, motel.getPhone());
+                stm.setString(4, motel.getAddress());
+                stm.setString(5, motel.getDistrict());
+                stm.setString(6, motel.getMotelID());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
+    public boolean updateMotelOwner(MotelDTO motel) throws SQLException {
+       boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE tblMotel SET Name=?, Image=?,Desct=?,Phone=?,Address=?, DistrictID = ? WHERE MotelID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, motel.getName());
+                stm.setString(2, motel.getImage());
+                stm.setString(3, motel.getDesct());
+                stm.setString(4, motel.getPhone());
+                stm.setString(5, motel.getAddress());
+                stm.setString(6, motel.getDistrict());
+                stm.setString(7, motel.getMotelID());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
     public boolean checkEmptyRoom(String motelID) throws SQLException {
         boolean check = true;
         Connection conn = null;

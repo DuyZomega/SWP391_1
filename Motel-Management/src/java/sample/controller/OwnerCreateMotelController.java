@@ -57,13 +57,13 @@ public class OwnerCreateMotelController extends HttpServlet {
             String DistrictID = request.getParameter("districtID");
             boolean checkValidation = true;
 
-            if (motelName.length() < 1 || motelName.length() > 10) {
-                motelError.setNameError("length of motel must be in 2-10");
+            if (motelName.length() < 1 || motelName.length() > 30) {
+                motelError.setNameError("length of motel must be in 2-30");
                 checkValidation = false;
             }
             
-            if (Phone.length() < 7 || motelName.length() > 10) {
-                motelError.setPhoneError("length of phone number must be in 7-10");
+            if (Phone.length() < 7 || Phone.length() > 15) {
+                motelError.setPhoneError("length of phone number must be in 7-15");
                 checkValidation = false;
             }
                       

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
-import sample.owner.FeedbackDAO;
+import sample.owner.feedbackDAO;
 import sample.owner.FeedbackDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomTypeDTO;
@@ -40,7 +40,7 @@ public class ShowMotelDetailController extends HttpServlet {
         try {
             String motelID = request.getParameter("motelID");
             MotelDAO motel = new MotelDAO();
-            FeedbackDAO feedback = new FeedbackDAO();
+            feedbackDAO feedback = new feedbackDAO();
             RoomDAO roomtype = new RoomDAO();
             List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
             List<MotelDTO> listMotel1 = motel.getListMotel();
