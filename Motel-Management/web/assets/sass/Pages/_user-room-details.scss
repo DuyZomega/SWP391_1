@@ -1,5 +1,11 @@
 .content {
     margin: 20px 0;
+    .content__item {
+        img {
+            width: 825px;
+            min-height: 400px;
+        }
+    }
     .content__feedback {
         h2 {
             text-transform: uppercase;

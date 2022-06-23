@@ -41,6 +41,7 @@ public class UserFeedbackController extends HttpServlet {
              FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status, bookingID);
             boolean checkInsert = dao.insertFeedback(feedback);
                 if (checkInsert) {
+                request.setAttribute("MESSAGE", "Successfully");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

@@ -23,12 +23,12 @@
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
     <body>
- <%
+        <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-    //                            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-    //                                response.sendRedirect("login.jsp");
-    //                                return;
-    //                            }
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
         %>
         <!-- sidebar -->
@@ -175,6 +175,7 @@
                                                     </tbody>
                                                 </table>
                                                 ${requestScope.ERROR_MESSAGE}
+
                                             </div>
                                         </div>
                                     </div>
@@ -184,9 +185,23 @@
                             <!-- /# column -->
                         </div>
                     </section>
+
                 </div>
             </div>
+            <c:if test="${requestScope.MESSAGE != null}">
+                <c:if test="${not empty requestScope.MESSAGE}">
+                    <div class="alert alert-success alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-check p-1'></i>
+                        <strong class="mr-1">${requestScope.MESSAGE}!</strong>
+
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
         </div>
+
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

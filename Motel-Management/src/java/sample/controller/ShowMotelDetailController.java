@@ -5,7 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +17,6 @@ import sample.owner.feedbackDAO;
 import sample.owner.FeedbackDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomTypeDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
  *
@@ -53,10 +48,12 @@ public class ShowMotelDetailController extends HttpServlet {
                 }
                 if (listFeedback.size() > 0) {
                     request.setAttribute("DETAIL_FEEDBACK", listFeedback);
+                } else{
+                    request.setAttribute("MESSAGE_FEEDBACK", " Chưa có đánh giá nào về motel này.");
                 }
                 if (listMotel1.size() > 0) {
                 request.setAttribute("LIST_MOTEL", listMotel1);
-            }
+                }
                 url = SUCCESS;
             }
             

@@ -36,7 +36,7 @@ public class AdminReportManager extends HttpServlet {
                 request.setAttribute("LIST_RP", listReport);
                 url=SUCCESS;
             } else{
-                request.setAttribute("ERROR_MESSAGE", "No user here");
+                request.setAttribute("MESSAGE", "No user here");
                 url=SUCCESS;
             }  
         } catch (Exception e) {

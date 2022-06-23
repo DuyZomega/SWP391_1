@@ -72,6 +72,10 @@
                                 <button class="button--primary"><i class="fa fa-filter"></i> Lọc</button>
                             </div>
                         </div>
+                        <div class="col-bg">
+                            <div class="bg-1"></div>
+                            <div class="bg-2"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="content__list col-9">
@@ -90,6 +94,9 @@
                                             </div>
                                             <div class="motel-address ">
                                                 <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <p><i class="fa fa-star"></i> Loại:</p><p> ${o.typename}</p>
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p><i class="fas fa-address-book"></i> Hotline</p><p> ${o.phone}</p>

@@ -28,12 +28,12 @@
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
     <body>
-<%
+        <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                                if (loginUser == null || !loginUser.getRole().equals("AD")) {
-                                    response.sendRedirect("login.jsp");
-                                    return;
-                                }
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
         %>
         <!-- sidebar -->
@@ -128,64 +128,75 @@
                                         <div class="table-responsive">
                                             <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
                                                 <table id="myTable" class="table table-hover table-bordered dataTable no-footer" aria-describedby="myTable_info">
-                                                    
-                                                <thead>
-                                                    <tr>
-                                                        <th>Report ID</th>
-                                                        <th>Người gửi</th>
-                                                        <th>Tiêu đề</th>
-                                                        <th>Nội dung</th>
-                                                        <th>Motel liên quan</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
 
-                                                <c:if test="${requestScope.LIST_RP != null}">
-                                                    <c:if test="${not empty requestScope.LIST_RP}">
-                                                        <tbody>
-                                                            <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_RP}">
-                                                            <form action="MotelController">
-                                                                <tr>
-                                                                    <td>${o.reportID}</td>
-                                                                    <td>${o.userId}</td>
-                                                                    <td>${o.title}</td>
-                                                                    <td>${o.desct}</td>
-                                                                    <td>${o.motelID}</td>
-                                                                    <td>
-                                                                        <c:if test="${o.status == 0}">
-                                                                            <span class="badge badge-danger">Pending</span>
-                                                                        </c:if> 
-                                                                        <c:if test="${o.status == 1}">
-                                                                            <span class="badge badge-success">Sloved</span>
-                                                                        </c:if> 
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="d-flex">
-<!--\                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
-                                                                            <a href="MotelManager?action=reportmanager&reportID=${o.reportID}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-pencil'></i></a>
-                                                                        </div>    
-                                                                    </td>
-                                                                </tr>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Report ID</th>
+                                                            <th>Người gửi</th>
+                                                            <th>Tiêu đề</th>
+                                                            <th>Nội dung</th>
+                                                            <th>Motel liên quan</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <c:if test="${requestScope.LIST_RP != null}">
+                                                        <c:if test="${not empty requestScope.LIST_RP}">
+                                                            <tbody>
+                                                                <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_RP}">
+                                                                <form action="MotelController">
+                                                                    <tr>
+                                                                        <td>${o.reportID}</td>
+                                                                        <td>${o.userId}</td>
+                                                                        <td>${o.title}</td>
+                                                                        <td>${o.desct}</td>
+                                                                        <td>${o.motelID}</td>
+                                                                        <td>
+                                                                            <c:if test="${o.status == 0}">
+                                                                                <span class="badge badge-danger">Pending</span>
+                                                                            </c:if> 
+                                                                            <c:if test="${o.status == 1}">
+                                                                                <span class="badge badge-success">Sloved</span>
+                                                                            </c:if> 
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex">
+                                                                                <!--\                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
+                                                                                <a href="MotelManager?action=reportmanager&reportID=${o.reportID}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-pencil'></i></a>
+                                                                            </div>    
+                                                                        </td>
+                                                                    </tr>
 
 
-                                                            </c:forEach>
-                                                        </form>
-                                                        </tbody>
+                                                                </c:forEach>
+                                                            </form>
+                                                            </tbody>
+                                                        </c:if>
                                                     </c:if>
-                                                </c:if>
-                                            </table>
-                                            ${requestScope.ERROR_MESSAGE}
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!-- /# card -->
                                 </div>
-                                <!-- /# card -->
+                                <!-- /# column -->
                             </div>
-                            <!-- /# column -->
-                        </div>
                     </section>
                 </div>
             </div>
+            <c:if test="${requestScope.MESSAGE != null}">
+                <c:if test="${not empty requestScope.MESSAGE}">
+                    <div class="alert alert-success alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-check p-1'></i>
+                        <strong class="mr-1">${requestScope.MESSAGE}!</strong>
+
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
         </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -212,11 +212,24 @@
                     </section>
                 </div>
             </div>
-            <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
-            <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-            <script src="assets/js/owner-script.js"></script>
+            <c:if test="${requestScope.MESSAGE != null}">
+                <c:if test="${not empty requestScope.MESSAGE}">
+                    <div class="alert alert-success alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-check p-1'></i>
+                        <strong class="mr-1">${requestScope.MESSAGE}!</strong>
+
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
+        </div>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="assets/js/owner-script.js"></script>
     </body>
 </html>

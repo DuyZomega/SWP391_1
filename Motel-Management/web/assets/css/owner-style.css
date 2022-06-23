@@ -133,6 +133,27 @@ html body {
     color: #f39c12;
 }
 
+#notif {
+    position: absolute;
+    display: flex;
+    right: 0;
+    top: 150px;
+    align-items: center;
+    width: 30%;
+    animation: notif 200 3s ease-in-out none;
+    
+}
+@keyframes notif {
+    0% {transform: scale(0.0);}
+    20% {transform: scale(1.0);}
+    30% {transform: scale(0.8);}
+    40% {transform: scale(1.0);}
+    50% {transform: scale(0.9);}
+    60% {transform: scale(1.0);}
+}
+
+
+
 
 
 /* navigation */
@@ -1467,6 +1488,10 @@ line-height: 35px;
 
 /* responsive design */
 @media (max-width: 991px) {
+    #notif{
+        width: 40%;
+    }
+
     .navigation {
         left: -300px;
     }
@@ -1509,7 +1534,9 @@ line-height: 35px;
 }
 
 @media (max-width: 768px) {
-
+    #notif{
+        width: 50%;
+    }
     .search input {
         width: 200px;
     }
