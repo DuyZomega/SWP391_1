@@ -61,32 +61,20 @@
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
                                             chỉ:</span> ${o.address},${o.district},${o.city}
                                     </label></p>
-                                    <%
-                                        List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
-                                        double total = 0;
-                                        double sum = 0;
-                                        if (rt.size() > 0) {
-                                            for (RoomTypeDTO roomtype : rt) {
-                                    %>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Số phòng
-                                            đặt:</span> <span>1</span>
+                                            đặt:</span> <span><%= request.getParameter("countroom")%></span>
                                         phòng</label></p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                    <label><span class="label">Số giờ đặt:</span> <span>2</span> giờ</label>
+                                    <label><span class="label">Số giờ đặt:</span> <span><%= request.getParameter("time")%></span> giờ</label>
                                 </p>
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
                                     <ul class="ml-3">
-                                        <li>- <span>1</span> <%= roomtype.getTypeName()%> <i class="fa fa-arrow-right"></i>
-                                            <span><%= roomtype.getPrice()%></span> VNĐ
+                                        <li>- <span><%= request.getParameter("countroom")%></span> <%= request.getParameter("typename")%> <i class="fa fa-arrow-right"></i>
+                                            <span><%= request.getParameter("price")%></span> VNĐ
                                         </li>
                                         <hr>
-                                        <%
-                                                }
-                                            }
-                                            total += sum;
-                                        %>  
-                                        <li>- Tổng tiền: <span><%=total%></span> VNĐ</li>
+                                        <li>- Tổng tiền: <span><%= request.getParameter("total")%></span> VNĐ</li>
                                     </ul>
                                 </div>
 

@@ -147,142 +147,147 @@
 
         <section id="Booking" class="booking mb-5">
             <div class="container">
-                <div class="booking__title">
-                    <h3 class="heading"><i class="fa fa-concierge-bell"> </i> Đặt phòng</h3>
-                </div>
-                <div class="booking__table row">
-                    <table class="table table-book col-10" id="app_a">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col" class="room-type">Loại phòng nghỉ
-                                </th>
-                                <th class="room-number" scope="col">Số phòng</th>
-                                <th class="hour" scope="col">Số giờ</th>
-                                <th scope="col" class="price">Giá cả (...VNĐ/h)</th>
-                                <th scope="col" class="total-price">Tổng giá</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
-                                double total = 0;
-                                double sum = 0;
-                                if (rt.size() > 0) {
-                                    for (RoomTypeDTO roomtype : rt) {
-                            %><tr>
-                                <td>
-                                    <div class="row">
-                                        <div
-                                            class="title col-12 d-flex justify-content-between align-items-center">
-                                            <h5 class="room-type-title">
-                                                <%= roomtype.getTypeName()%></h5>
-                                            <div>
-                                                <span class="empty-room">
-                                                    <i class="fa fa-quote-left"></i>
-                                                    Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
-                                                    <i
-                                                        class="fa fa-quote-right"></i>
-                                                </span>
-                                                <img src="assets/img/HOT.svg"
-                                                     class="hot-label"
-                                                     alt="hot-label">
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="img-room">
-                                                <a href="<%= roomtype.getImage()%>"
-                                                   data-lightbox="roadtrip"><img
-                                                        src="<%= roomtype.getImage()%>"
-                                                        alt="<%= roomtype.getTypeName()%>"></a>
-                                            </div>
-                                        </div>
-                                        <div class="desc col-6">
-                                            <ul>
-                                                <li> Tivi</li>
-                                                <li> Máy lạnh</li>
-                                                <li> Tủ lạnh</li>
-                                                <li> Quạt trần</li>
-                                            </ul>
-                                        </div>
-                                        <h6 class="col-12">Thông tin</h6>
-                                        <div class="col-12">
-                                            <p><%= roomtype.getDesct()%>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="inputHour" name="time">
-                                        <input class="room_val" type="number" min="0"  max="<%= roomtype.getCountRoom()%>" value="0">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="inputHour" name="time">
-                                        <input type="number" class="hour_val" min="0" value="1">
-                                    </div>
-                                </td>
-                                <td><input type="hidden" class="price" value="150000" /><%= roomtype.getPrice()%> / h</td>
-                                <td><span class="row_total">1350000.0</span></td>
-                            </tr>
-
-                            <%
-                                    }
-                                }
-                                total += sum;
-                            %>  
-
-                        </tbody>
-                    </table>
-                    <div class="total-price-box col-2">
-                        <table class="table table-book">
+                <form id="myform" name="myform" method="post" action="user-booking.jsp">
+                    <div class="booking__title">
+                        <h3 class="heading"><i class="fa fa-concierge-bell"> </i> Đặt phòng</h3>
+                    </div>
+                    <div class="booking__table row">
+                        <table class="table table-book col-10" id="app_a">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col" class="room-type">Tổng tất cả
+                                    <th scope="col" class="room-type">Loại phòng nghỉ
                                     </th>
+                                    <th class="room-number" scope="col">Số phòng</th>
+                                    <th class="hour" scope="col">Số giờ</th>
+                                    <th scope="col" class="price">Giá cả (...VNĐ/h)</th>
+                                    <th scope="col" class="total-price">Tổng giá</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <!-- Tổng tất cả -->
-                                    <td rowspan="2" class="align-middle">
-                                        <span><span class="amount"><%=total%></span> VND</span> VNĐ
-                                        <p class="m-0">- Phòng của bạn bao gồm
-                                            <span>1</span> phòng đơn và
-                                            <span>1</span>
-                                            phòng
-                                            đôi</p>
-                                        <p>- Giao dịch đơn giản, an toàn</p>
+                                <%
+                                    List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                    double total = 0;
+                                    double sum = 0;
+                                    if (rt.size() > 0) {
+                                        for (RoomTypeDTO roomtype : rt) {
+                                %><tr>
+                                    <td>
+                                        <div class="row">
+                                            <div
+                                                class="title col-12 d-flex justify-content-between align-items-center">
+                                                <h5 class="room-type-title" name="typename">
+                                                    <%= roomtype.getTypeName()%></h5>
+                                                <div>
+                                                    <span class="empty-room">
+                                                        <i class="fa fa-quote-left"></i>
+                                                        Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                        <i
+                                                            class="fa fa-quote-right"></i>
+                                                    </span>
+                                                    <img src="assets/img/HOT.svg"
+                                                         class="hot-label"
+                                                         alt="hot-label">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="img-room">
+                                                    <a href="<%= roomtype.getImage()%>"
+                                                       data-lightbox="roadtrip"><img
+                                                            src="<%= roomtype.getImage()%>"
+                                                            alt="<%= roomtype.getTypeName()%>"></a>
+                                                </div>
+                                            </div>
+                                            <div class="desc col-6">
+                                                <ul>
+                                                    <li> Tivi</li>
+                                                    <li> Máy lạnh</li>
+                                                    <li> Tủ lạnh</li>
+                                                    <li> Quạt trần</li>
+                                                </ul>
+                                            </div>
+                                            <h6 class="col-12">Thông tin</h6>
+                                            <div class="col-12">
+                                                <p><%= roomtype.getDesct()%>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </td>
+                                    <td>
+                                        <div class="inputHour" name="countroom">
+                                            <input class="room_val" type="number" min="0"  max="<%= roomtype.getCountRoom()%>" value="0">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="inputHour" name="time">
+                                            <input type="number" class="hour_val" min="0" value="1">
+                                        </div>
+                                    </td>
+                                    <td><input type="hidden" class="price" value="150000" name="price" /><%= roomtype.getPrice()%> / h</td>
+                                    <td><span class="row_total">1350000.0</span></td>
                                 </tr>
+
+                                <%
+                                        }
+                                    }
+                                    total += sum;
+                                %>  
+
                             </tbody>
                         </table>
-                    </div>
-
-                    <div class="box-booking col-12">
-                        <!-- trước khi đăng nhập -->
-                        <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
-                        <div
-                            class="btn-booking-before d-flex justify-content-center align-items-center">
-                            <button class="button--primary mr-3"
-                                    type="submit"><a href="login.jsp"
-                                             class="text-decoration-none text-white">Đăng
-                                    nhập</a></button>
-                            <span>hoặc</span>
-                            <button class="button--primary ml-3"
-                                    type="submit"><a href="signup.jsp"
-                                             class=" text-decoration-none text-white">Đăng
-                                    ký</a></button>
+                        <div class="total-price-box col-2">
+                            <table class="table table-book">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col" class="room-type">Tổng tất cả
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <!-- Tổng tất cả -->
+                                        <td rowspan="2" class="align-middle">
+                                            <span><span class="amount" name="total"><%=total%></span> VND</span> VNĐ
+                                            <p class="m-0">- Phòng của bạn bao gồm
+                                                <span>1</span> phòng đơn và
+                                                <span>1</span>
+                                                phòng
+                                                đôi</p>
+                                            <p>- Giao dịch đơn giản, an toàn</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- sau khi đăng nhập -->
-                        <% } else { %>
-                        <div class="btn-booking text-center">
-                            <button class="button--primary"
-                                    type="submit">Đặt ngay</button>
-                        </div>
-                        <%}%>
-                    </div>
-                </div>
 
+                        <div class="box-booking col-12">
+                            <!-- trước khi đăng nhập -->
+                            <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                            <div
+                                class="btn-booking-before d-flex justify-content-center align-items-center">
+                                <button class="button--primary mr-3"
+                                        type="submit"><a href="login.jsp"
+                                                 class="text-decoration-none text-white">Đăng
+                                        nhập</a></button>
+                                <span>hoặc</span>
+                                <button class="button--primary ml-3"
+                                        type="submit"><a href="signup.jsp"
+                                                 class=" text-decoration-none text-white">Đăng
+                                        ký</a></button>
+                            </div>
+                            <!-- sau khi đăng nhập -->
+                            <% } else { %>
+                            <c:forEach var="o" varStatus="counter"
+                                       items="${requestScope.LIST_MOTEL}">
+                                <div class="btn-booking text-center">
+                                    <button class="button--primary"
+                                            type="submit" value="Request!" ><a class="text-decoration-none text-white"
+                                                      href="MainController?action=ShowMotelBooking&motelID=${o.motelID}">Đặt ngay</a></button>
+                                </div>
+                            </c:forEach>
+                            <%}%>
+                        </div>
+                    </div>
+                </form>
             </div>
         </section>
 
