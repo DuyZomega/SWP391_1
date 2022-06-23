@@ -33,6 +33,7 @@ public class UserCancelRoom extends HttpServlet {
             String roomID = request.getParameter("roomID");
             boolean checkCancel = dao.cancelBooking(bookingID);
             if (checkCancel) {
+                request.setAttribute("MESSAGE", "Successfully");
                 boolean checkRoom = dao.cancelRoom(roomID);
                 if (checkRoom) {
                     url = SUCCESS;

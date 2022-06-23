@@ -130,9 +130,9 @@
                                     <div class="content-booking-detail">
                                         <span><img src="images/man.png"
                                                    alt="profile"
-                                                   style="width: 100px"></span>
+                                                   style="width: 100px; min-height: 100px"></span>
                                         <span>
-                                            <p class="m-0">${o.ownerName}</p>
+                                            <p class="m-0"> ${o.ownerName}</p>
                                             <p class="m-0">Tele: ${o.phone}</p>
                                         </span>
                                     </div>

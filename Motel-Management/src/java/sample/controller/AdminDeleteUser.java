@@ -31,6 +31,7 @@ public class AdminDeleteUser extends HttpServlet {
                 UserDAO dao = new UserDAO();
                 boolean check = dao.deleteUser(userId);
                 if (check) {
+                request.setAttribute("MESSAGE", "Successfully");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

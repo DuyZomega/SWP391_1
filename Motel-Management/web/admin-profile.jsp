@@ -1,5 +1,8 @@
 
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="sample.users.UserError"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,10 +28,10 @@
         <!-- sidebar -->
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                                        if (loginUser == null || !loginUser.getRole().equals("AD")) {
-                                            response.sendRedirect("login.jsp");
-                                            return;
-                                        }
+            if (loginUser == null || !loginUser.getRole().equals("AD")) {
+                response.sendRedirect("login.jsp");
+                return;
+            }
 
             String error = (String) request.getAttribute("ERROR");
             if (error == null) {
@@ -149,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="profile-pic">
-                                            <img src="<%= userProfile.getImage() %>" width="200"/>
+                                            <img src="<%= userProfile.getImage()%>" width="200"/>
                                             <div class="upload">
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#uploadImg">Chi Tiết</button>                                                   
                                                 <i class='bx bxs-camera-plus'></i>
@@ -209,13 +212,13 @@
                                                             <span class="error-message col-md-2 mt-3"><%= userError.getBirthDayError()%></span>
                                                         </div>
                                                         <div class="row gender-content">
-                                                        <label class="contact-title col-md-4 col-sm-4 mt-3">Giới tính:</label>
-                                                        <select name="gender" class="form-control col-md-6 col-sm-8 mt-2">
-                                                            <option value="<%=userProfile.getGender()%>"><%= gender %></option>
-                                                            <option value="0">Nam</option>
-                                                            <option value="1">Nữ</option>
-          
-                                                        </select>
+                                                            <label class="contact-title col-md-4 col-sm-4 mt-3">Giới tính:</label>
+                                                            <select name="gender" class="form-control col-md-6 col-sm-8 mt-2">
+                                                                <option value="<%=userProfile.getGender()%>"><%= gender%></option>
+                                                                <option value="0">Nam</option>
+                                                                <option value="1">Nữ</option>
+
+                                                            </select>
                                                         </div>
                                                         <div class="row pt-3 d-flex">
                                                             <button type="submit" name="action" value="updateOwner" class="offset-3 btn btn-success">Xác nhận</button>
@@ -257,7 +260,7 @@
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Mật khẩu mới:</label>
                                         <input class="col-md-3 col-sm-5 form-control" type="password" name="newpassword" id="password" required>
-                                        <span class="error-message col-sm-3 mt-2"><%= error %></span>
+                                        <span class="error-message col-sm-3 mt-2"><%= error%></span>
                                     </div>
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Xác nhận:</label>
@@ -273,6 +276,18 @@
                     </div>
                 </div>
             </div>
+                                        <c:if test="${requestScope.SUCCESS != null}">
+                <c:if test="${not empty requestScope.SUCCESS}">
+                    <div class="alert alert-success alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-check p-1'></i>
+                        <strong class="mr-1">${requestScope.SUCCESS}!</strong>
+
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
         </div>
 
         <!-- edit Home -->

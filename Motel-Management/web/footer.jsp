@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- FOOTER -->
- <!-- FOOTER -->
+
     <footer class="pt-5">
         <div class="container">
             <div class="row section">

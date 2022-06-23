@@ -32,6 +32,7 @@ public class AdminReport extends HttpServlet {
             String reportID = request.getParameter("reportID");
                 boolean check = report.solved(reportID);
                 if (check) {
+                request.setAttribute("MESSAGE", "Successfully");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

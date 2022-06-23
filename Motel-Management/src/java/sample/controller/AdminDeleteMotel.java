@@ -32,6 +32,7 @@ public class AdminDeleteMotel extends HttpServlet {
                 MotelDAO dao = new MotelDAO();
                 boolean check = dao.deleteMotel(motelID);
                 if (check) {
+                request.setAttribute("MESSAGE", "Successfully");
                     url = SUCCESS;
                 }
         } catch (Exception e) {
