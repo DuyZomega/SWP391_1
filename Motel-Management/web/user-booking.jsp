@@ -48,8 +48,6 @@
     <section class="confirm-booking mb-5">
         <div class="container">
             <div class="row">
-                <c:forEach var="o" varStatus="counter"
-                           items="${requestScope.DETAIL_MOTEL}">
                     <div class="col-5">
                         <div class="infor-booking">
                             <h3 class="heading"><i class="fa fa-money-check-alt"></i> Chi tiết đặt phòng của bạn</h3>
@@ -144,7 +142,6 @@
                                 công</span>
                         </form>
                     </div>
-                </c:forEach>
             </div>
         </div>
     </section>

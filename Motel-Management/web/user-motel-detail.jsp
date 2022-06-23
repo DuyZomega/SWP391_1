@@ -147,7 +147,7 @@
 
         <section id="Booking" class="booking mb-5">
             <div class="container">
-                <form id="myform" name="myform" method="post" action="user-booking.jsp">
+                <form id="myform" name="myform" method="post" action="user-booking.jsp">">
                     <div class="booking__title">
                         <h3 class="heading"><i class="fa fa-concierge-bell"> </i> Đặt phòng</h3>
                     </div>
@@ -175,8 +175,8 @@
                                         <div class="row">
                                             <div
                                                 class="title col-12 d-flex justify-content-between align-items-center">
-                                                <h5 class="room-type-title" name="typename">
-                                                    <%= roomtype.getTypeName()%></h5>
+                                                <h5 class="room-type-title" >
+                                                   <input type="roomtype" class="typename" name="typename" /> <%= roomtype.getTypeName()%></h5>
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
@@ -213,13 +213,13 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="inputHour" name="countroom">
-                                            <input class="room_val" type="number" min="0"  max="<%= roomtype.getCountRoom()%>" value="0">
+                                        <div class="inputHour" name="time">
+                                            <input class="room_val" type="number" min="0"  max="<%= roomtype.getCountRoom()%>" value="0" name="countroom">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="inputHour" name="time">
-                                            <input type="number" class="hour_val" min="0" value="1">
+                                            <input type="number" class="hour_val" min="0" value="1" name="counttime">
                                         </div>
                                     </td>
                                     <td><input type="hidden" class="price" value="150000" name="price" /><%= roomtype.getPrice()%> / h</td>
@@ -246,7 +246,7 @@
                                     <tr>
                                         <!-- Tổng tất cả -->
                                         <td rowspan="2" class="align-middle">
-                                            <span><span class="amount" name="total"><%=total%></span> VND</span> VNĐ
+                                            <span><span class="amount" ><input type="total" class="total" name="total" /><%=total%></span> VND</span> VNĐ
                                             <p class="m-0">- Phòng của bạn bao gồm
                                                 <span>1</span> phòng đơn và
                                                 <span>1</span>
@@ -276,14 +276,9 @@
                             </div>
                             <!-- sau khi đăng nhập -->
                             <% } else { %>
-                            <c:forEach var="o" varStatus="counter"
-                                       items="${requestScope.LIST_MOTEL}">
                                 <div class="btn-booking text-center">
-                                    <button class="button--primary"
-                                            type="submit" value="Request!" ><a class="text-decoration-none text-white"
-                                                      href="MainController?action=ShowMotelBooking&motelID=${o.motelID}">Đặt ngay</a></button>
+                                    <input class="button--primary" type = "submit" value = "Đặt ngay" />
                                 </div>
-                            </c:forEach>
                             <%}%>
                         </div>
                     </div>
