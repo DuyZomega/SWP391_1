@@ -51,27 +51,31 @@
                         <div class="tabs-left-title">
                             <h3 class="heading">Tin đăng</h3>
                         </div>
-                        <div class="tabs-left-filter">
+                        <form class="tabs-left-filter" action="MotelManager" >
                             <div class="input-group mb-3">
-                                <select class="custom-select" id="inputGroupSelect02">
-                                    <option selected>Mức giá</option>
-                                    <option value="1">Dưới 3 triệu</option>
-                                    <option value="2">Từ 3 triệu - 5 triệu</option>
-                                    <option value="3">Trên 5 triệu</option>
+                                <select class="custom-select" name="price"  id="inputGroupSelect02">
+                                    <option value="0--10000000"> Mức giá </option>
+                                    <option value="0--300000">Dưới 300.000</option>
+                                    <option value="300000--500000">Từ 300.000 - 500.000</option>
+                                    <option value="500000--10000000">Trên 500.000</option>
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <select class="custom-select" id="inputGroupSelect02">
-                                    <option selected>Vị trí</option>
-                                    <option value="1">TP.Thủ Đức</option>
-                                    <option value="2">Quận 1</option>
-                                    <option value="3">Quận 2</option>
+                                <select class="custom-select" name="district"  id="inputGroupSelect02">
+                                    <option value=""> Chọn Quận </option>
+                                    <c:if test="${requestScope.LIST_DISTRICT != null}">
+                                        <c:if test="${not empty requestScope.LIST_DISTRICT}">
+                                            <c:forEach var="d" varStatus="counter" items="${requestScope.LIST_DISTRICT}">
+                                                <option value="${d.districtID}"> ${d.name}</option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </c:if>
                                 </select>
                             </div>
                             <div class="filter-search text-center">
-                                <button class="button--primary"><i class="fa fa-filter"></i> Lọc</button>
+                                <button class="button--primary" type="submit" name="action" value="filter"><i class="fa fa-filter"></i> Lọc</button>
                             </div>
-                        </div>
+                        </form>
                         <div class="col-bg">
                             <div class="bg-1"></div>
                             <div class="bg-2"></div>
@@ -109,6 +113,13 @@
                                         </div>
                                     </div>
                                 </c:forEach>
+                            </c:if>
+                        </c:if>
+                        <c:if test="${requestScope.MESSAGE != null}">
+                            <c:if test="${not empty requestScope.MESSAGE}">
+                                <div class="reviews-title alert alert-info col-12">
+                                    ${requestScope.MESSAGE}
+                                </div>
                             </c:if>
                         </c:if>
 

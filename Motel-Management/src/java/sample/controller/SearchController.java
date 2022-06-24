@@ -37,7 +37,7 @@ public class SearchController extends HttpServlet {
                 request.setAttribute("LIST_MOTEL", listMotel);
                 url = SUCCESS;
             } else {
-                request.setAttribute("MESSAGE", "Motel does not exist");
+                request.setAttribute("MESSAGE", "Không có nhà nghỉ phù hợp, bạn hãy tham khảo các nhà nghỉ khác.");
                 url = SUCCESS;
             }
         } catch (Exception e) {

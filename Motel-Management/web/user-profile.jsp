@@ -24,6 +24,18 @@
     <body>
 
         <%@include file="header.jsp" %> 
+         <hr>
+    <div class="header__breadcrumb container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản</li>
+
+            </ol>
+        </nav>
+    </div>
+    <hr>
+
         <%            String error = (String) request.getAttribute("ERROR");
             if (error == null) {
                 error = "";
@@ -147,7 +159,7 @@
                                         <div class="profile-pic ">
                                             <img src="<%= userProfile.getImage()%>" width="200" class="form-group justify-content-center"/>
                                             <div class="upload row form-group justify-content-center">
-                                                <button class="button--primary" data-toggle="modal" data-target="#uploadImg">Chi Tiết</button>                                                   
+                                                <button class="button--primary" data-toggle="modal" data-target="#uploadImg">Thay ảnh</button>                                                   
                                                 
                                             </div>
                                         </div>
