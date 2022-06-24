@@ -48,115 +48,109 @@
     <section class="confirm-booking mb-5">
         <div class="container">
             <div class="row">
-                <c:forEach var="o" varStatus="counter"
-                           items="${requestScope.DETAIL_MOTEL}">
-                    <div class="col-5">
-                        <div class="infor-booking">
-                            <h3 class="heading"><i class="fa fa-money-check-alt"></i> Chi tiết đặt phòng của bạn</h3>
-                            <div class="box">
-
+                <div class="col-5">
+                    <div class="infor-booking">
+                        <h3 class="heading"><i class="fa fa-money-check-alt"></i> Chi tiết đặt phòng của bạn</h3>
+                        <div class="box">
+                            <c:forEach var="o" varStatus="counter"
+                                       items="${requestScope.DETAIL_MOTEL}">
+                                <%                                                                           
+                                    double total = 0;
+                                    double sum = 0;
+                                %>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Tên nhà
                                             nghỉ:</span> <span>${o.name}</span></label>
                                 </p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
                                             chỉ:</span> ${o.address},${o.district},${o.city}
                                     </label></p>
-                                    <%
-                                        List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
-                                        double total = 0;
-                                        double sum = 0;
-                                        if (rt.size() > 0) {
-                                            for (RoomTypeDTO roomtype : rt) {
-                                    %>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Số phòng
-                                            đặt:</span> <span>1</span>
+                                            đặt:</span> <span><%= request.getParameter("countroom")%></span>
                                         phòng</label></p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                    <label><span class="label">Số giờ đặt:</span> <span>2</span> giờ</label>
+                                    <label><span class="label">Số giờ đặt:</span> <span><%= request.getParameter("counttime")%></span> giờ</label>
                                 </p>
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
                                     <ul class="ml-3">
-                                        <li>- <span>1</span> <%= roomtype.getTypeName()%> <i class="fa fa-arrow-right"></i>
-                                            <span><%= roomtype.getPrice()%></span> VNĐ
+                                        <li>- <span><%= request.getParameter("countroom")%></span> <%= request.getParameter("typename")%> <i class="fa fa-arrow-right"></i>
+                                            <span><%= request.getParameter("price")%></span> VNĐ
                                         </li>
+
                                         <hr>
-                                        <%
-                                                }
-                                            }
-                                            total += sum;
-                                        %>  
-                                        <li>- Tổng tiền: <span><%=total%></span> VNĐ</li>
+                                        <li>- Tổng tiền: <span><%= request.getParameterValues("total")%></span> VNĐ</li>
                                     </ul>
                                 </div>
-
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="infor-owner">
-                            <h3 class="heading"><i class="fas fa-id-card-alt"></i> Chủ nhà nghỉ</h3>
-                            <div class="box d-flex">
-                                <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
-                                <span class="infor-owner-detail">
-                                    <p class="m-0"><span class="label">Họ tên:</span> Nguyễn Tuân</p>
-                                    <p class="m-0"><span class="label">SĐT:</span> 0865.644.162</p>
-                                    <p class="m-0"><span class="label">Địa chỉ:</span> 0 Phó Đức Chính, Phường Linh Trung,
-                                        Thủ Đức, Thành phố Hồ Chí Minh
-                                    </p>
-                                </span>
-                            </div>
+                                <%
+                                    total += sum;
+                                %>  
+                            </c:forEach>
                         </div>
                     </div>
-                    <div class="col-7">
-                        <h3 class="heading"><i class="fa fa-address-card"></i> Xác nhận thông tin</h3>
-                        <div class="warning">
-                            <span><i class="fas fa-exclamation-circle"></i> Yêu cầu nhập thông tin chính
-                                xác, trung thực</span>
-                        </div>
-                        <form id="form-3" action="" method="POST" class="form row">
-                            <div class="form-item col-6">
-                                <label for="fullName">Họ và Tên</label>
-                                <input type="text" name="Họ và tên" id="fullName" />
-                                <span id="error_message" class="helper-text text-danger"></span>
-                            </div>
-                            <div class="form-item col-6">
-                                <label for="email">Địa chỉ email</label>
-                                <input type="email" name="Mật khẩu" id="email">
-                                <span id="error_message" class="helper-text text-danger"></span>
-                            </div>
-                            <div class="form-item col-6">
-                                <label for="telephone">Số điện thoại</label>
-                                <input type="tel" name="Mật khẩu" id="telephone">
-                                <span id="error_message" class="helper-text text-danger"></span>
-                            </div>
-                            <div class="form-item col-6">
-                                <label for="password">Phương thức thanh toán</label>
-                                <select class="custom-select" id="inputGroupSelect01">
-                                    <option value="1" selected>Tiền mặt</option>
-                                    <option value="2">Chuyển khoản</option>
-                                </select>
-                            </div>
-                            <div class="form-item col-12">
-                                <label for="requestMore"><img src="assets/img/bell-concierge-solid.svg" alt="bell"> Yêu cầu
-                                    thêm</label>
-                                <p class="request-note">- Yêu cầu của quý khách sẽ được thực hiện phụ thuộc vào đối tác -
+                    <hr>
+                    <div class="infor-owner">
+                        <h3 class="heading"><i class="fas fa-id-card-alt"></i> Chủ nhà nghỉ</h3>
+                        <div class="box d-flex">
+                            <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
+                            <span class="infor-owner-detail">
+                                <p class="m-0"><span class="label">Họ tên:</span> Nguyễn Tuân</p>
+                                <p class="m-0"><span class="label">SĐT:</span> 0865.644.162</p>
+                                <p class="m-0"><span class="label">Địa chỉ:</span> 0 Phó Đức Chính, Phường Linh Trung,
+                                    Thủ Đức, Thành phố Hồ Chí Minh
                                 </p>
-                                <textarea id="requestMore" name="" id="" cols="30" rows="10"
-                                          placeholder="VD: Tôi cần đồ dịch vụ massage khi đến nhận phòng,... (Không bắt buộc)"></textarea>
-                            </div>
-                            <div class="form-checkbox col-12">
-                                <input type="checkbox" aria-label="Điều khoản và chính sách" required>
-                                <span>Tôi đồng ý <a href="#">Điều khoản và chính sách</a></span>
-                            </div>
-                            <button type="submit" value="submit" class="button--primary btn btn-danger">Xác nhận
-                                đặt
-                                phòng</button>
-                            <!-- sau khi gửi form thành công  -->
-                            <span class="check-success"><i class="fa fa-check-circle"></i> Bạn đã xác nhận đặt phòng thành
-                                công</span>
-                        </form>
+                            </span>
+                        </div>
                     </div>
-                </c:forEach>
+                </div>
+                <div class="col-7">
+                    <h3 class="heading"><i class="fa fa-address-card"></i> Xác nhận thông tin</h3>
+                    <div class="warning">
+                        <span><i class="fas fa-exclamation-circle"></i> Yêu cầu nhập thông tin chính
+                            xác, trung thực</span>
+                    </div>
+                    <form id="form-3" action="" method="POST" class="form row">
+                        <div class="form-item col-6">
+                            <label for="fullName">Họ và Tên</label>
+                            <input type="text" name="Họ và tên" id="fullName" />
+                            <span id="error_message" class="helper-text text-danger"></span>
+                        </div>
+                        <div class="form-item col-6">
+                            <label for="email">Địa chỉ email</label>
+                            <input type="email" name="Mật khẩu" id="email">
+                            <span id="error_message" class="helper-text text-danger"></span>
+                        </div>
+                        <div class="form-item col-6">
+                            <label for="telephone">Số điện thoại</label>
+                            <input type="tel" name="Mật khẩu" id="telephone">
+                            <span id="error_message" class="helper-text text-danger"></span>
+                        </div>
+                        <div class="form-item col-6">
+                            <label for="password">Phương thức thanh toán</label>
+                            <select class="custom-select" id="inputGroupSelect01">
+                                <option value="1" selected>Tiền mặt</option>
+                                <option value="2">Chuyển khoản</option>
+                            </select>
+                        </div>
+                        <div class="form-item col-12">
+                            <label for="requestMore"><img src="assets/img/bell-concierge-solid.svg" alt="bell"> Yêu cầu
+                                thêm</label>
+                            <p class="request-note">- Yêu cầu của quý khách sẽ được thực hiện phụ thuộc vào đối tác -
+                            </p>
+                            <textarea id="requestMore" name="" id="" cols="30" rows="10"
+                                      placeholder="VD: Tôi cần đồ dịch vụ massage khi đến nhận phòng,... (Không bắt buộc)"></textarea>
+                        </div>
+                        <div class="form-checkbox col-12">
+                            <input type="checkbox" aria-label="Điều khoản và chính sách" required>
+                            <span>Tôi đồng ý <a href="#">Điều khoản và chính sách</a></span>
+                        </div>
+                        <button type="submit" value="submit" class="button--primary btn btn-danger">Xác nhận
+                            đặt
+                            phòng</button>
+                        <!-- sau khi gửi form thành công  -->
+                        <span class="check-success"><i class="fa fa-check-circle"></i> Bạn đã xác nhận đặt phòng thành
+                            công</span>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

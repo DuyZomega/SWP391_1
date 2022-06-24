@@ -31,6 +31,8 @@ public class MainController extends HttpServlet {
     private static final String SHOW_MOTEL_LIST_CONTROLLER = "ShowAllMotelController";
     private static final String SHOW_MOTEL_DETAIL = "ShowMotelDetail";
     private static final String SHOW_MOTEL_DETAIL_CONTROLLER = "ShowMotelDetailController";
+    private static final String SHOW_MOTEL_BOOKING = "ShowMotelBooking";
+    private static final String SHOW_MOTEL_BOOKING_CONTROLLER = "ShowMotelBookingController";
     private static final String SHOW_ROOM_LIST = "ShowRoom";
     private static final String SHOW_ROOM_LIST_CONTROLLER = "ShowRoomController";
     private static final String SHOW_PROFILE = "ShowProfile";
@@ -65,7 +67,7 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_OWNER_MOTEL_CONTROLLER = "OwnerUpdateMotelController";
     private static final String SHOW_OWNER_HISTORY_DETAIL = "showHistoryDetail";
     private static final String SHOW_OWNER_HISTORY_DETAIL_CONTROLLER = "OwnerShowHistoryDetail";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -81,6 +83,8 @@ public class MainController extends HttpServlet {
                 url = SHOW_MOTEL_LIST_CONTROLLER;
             } else if (SHOW_MOTEL_DETAIL.equals(action)) {
                 url = SHOW_MOTEL_DETAIL_CONTROLLER;
+            } else if (SHOW_MOTEL_BOOKING.equals(action)) {
+                url = SHOW_MOTEL_BOOKING_CONTROLLER;
             } else if (SHOW_ROOM_LIST.equals(action)) {
                 url = SHOW_ROOM_LIST_CONTROLLER;
             } else if (SHOW_PROFILE.equals(action)) {
@@ -97,26 +101,26 @@ public class MainController extends HttpServlet {
                 url = SHOW_OWNER_HISTORY_CONTROLLER;
             } else if (SHOW_ROOM_DETAIL.equals(action)) {
                 url = SHOW_ROOM_DETAIL_CONTROLLER;
-            } else if (DELETE_ROOM.equals(action)){
+            } else if (DELETE_ROOM.equals(action)) {
                 url = DELETE_ROOM_CONTROLLER;
-            } else if (UPDATE_ROOM.equals(action)){
+            } else if (UPDATE_ROOM.equals(action)) {
                 url = UPDATE_ROOM_CONTROLLER;
-            } else if (CREATE_ROOM.equals(action)){
+            } else if (CREATE_ROOM.equals(action)) {
                 url = CREATE_ROOM_CONTROLLER;
-            } else if (SEARCH_ROOM.equals(action)){
+            } else if (SEARCH_ROOM.equals(action)) {
                 url = SEARCH_ROOM_CONTROLLER;
-            } else if (SHOW_OWNER_MOTEL.equals(action)){
+            } else if (SHOW_OWNER_MOTEL.equals(action)) {
                 url = SHOW_OWNER_MOTEL_CONTROLLER;
-            } else if (CREATE_OWNER_MOTEL.equals(action)){
+            } else if (CREATE_OWNER_MOTEL.equals(action)) {
                 url = CREATE_OWNER_MOTEL_CONTROLLER;
-            } else if (DELETE_OWNER_MOTEL.equals(action)){
+            } else if (DELETE_OWNER_MOTEL.equals(action)) {
                 url = DELETE_OWNER_MOTEL_CONTROLLER;
-            } else if (UPDATE_OWNER_MOTEL.equals(action)){
+            } else if (UPDATE_OWNER_MOTEL.equals(action)) {
                 url = UPDATE_OWNER_MOTEL_CONTROLLER;
-            } else if (SHOW_OWNER_HISTORY_DETAIL.equals(action)){
+            } else if (SHOW_OWNER_HISTORY_DETAIL.equals(action)) {
                 url = SHOW_OWNER_HISTORY_DETAIL_CONTROLLER;
             }
- 
+
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
         } finally {
