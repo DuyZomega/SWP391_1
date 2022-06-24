@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/web/owner-history-detail.jsp</file>
-            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/controller/OwnerShowHistoryDetail.java</file>
-            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/owner/HistoryDAO.java</file>
-            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/web/owner-profile.jsp</file>
-            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/web/owner-index.jsp</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/web/owner-service.jsp</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/utils/DBUtils.java</file>
         </group>
     </open-files>
 </project-private>
