@@ -59,95 +59,96 @@
         </div>
         <hr>
         <!-- CONTENT -->
-        <section class="content">
-            <div class="container pt-4">
-                <div class="row">
+        <form id="myform" name="myform" method="post" action="MainController?action=ShowMotelBooking&motelID=${param.motelID}">
+            <section class="content">
+                <div class="container pt-4">
+                    <div class="row">
 
-                    <c:forEach var="o" varStatus="counter"
-                               items="${requestScope.DETAIL_MOTEL}">
-                        <div
-                            class="col-12 content__title d-flex justify-content-between align-items-center">
-                            <div class="content__title-left">
-                                <h3 class="headingd-inline-block pr-3"><i class="fa fa-hotel"> </i> ${o.name}
-                                    <span>${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span></h3>
-                                <p>${o.address},${o.district},${o.city}</p>
-                            </div>
-                        </div>
-                        <div class="col-9">
-                            <!-- item -->
-                            <div class="content__item">
-                                <a href="${o.image}" data-lightbox="image-1"
-                                   data-title="${o.name}"
-                                   style="width: 100%; height: auto"><img
-                                        src="${o.image}" class="img-fluid"
-                                        alt="${o.name}"></a>
-                            </div>
-                            <hr>
-                            <div class="content__describe">
-                                <h3 class="heading"><i class="fa fa-scroll"> </i> Mô tả chi tiết</h3>
-                                <p>${o.desct}</p>
-                            </div>
-                            <!--                            <hr>
-                                                        <div class="content__describe">
-                                                            <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
-                                                            <p>7up, lavie, bánh, Coca, khăn ướt</p>
-                                                        </div>-->
-                        </div>
-                        <div class="col-3 widgets">
-                            <div class="content__item">
-                                <div
-                                    class="content-booking text-center border rounded p-3 mb-2">
-                                    <h2>Đặt lịch</h2>
-                                    <hr>
-                                    <div class="content-booking-detail">
-                                        <% if (loginUser == null) { %>
-                                        <p>Vui lòng đăng nhập để đặt lịch</p>
-                                        <button class="button--primary"
-                                                href="./login.jsp">Đăng
-                                            nhập</button>
-                                        <p>hoặc</p>
-                                        <button class="button--primary"
-                                                href="./signup.jsp">Đăng ký</button>
-                                        <% } else { %>
-                                        <p>Thủ tục đặt phòng đơn giản, nhanh
-                                            gọn</p>
-                                        <button
-                                            class="button--primary mt-3"><a
-                                                href="#Booking"
-                                                class="text-white text-decoration-none">Đặt
-                                                phòng</a></button>
-
-                                        <%}%>
-                                    </div>
-                                </div>
-
-
-                                <!-- Sau khi đăng nhập -->
-                                <div
-                                    class="content-contact text-center border rounded p-3">
-                                    <h2>Liên hệ</h2>
-                                    <hr>
-                                    <div class="content-booking-detail">
-                                        <span><img src="images/man.png"
-                                                   alt="profile"
-                                                   style="width: 100px; min-height: 100px"></span>
-                                        <span>
-                                            <p class="m-0"> ${o.ownerName}</p>
-                                            <p class="m-0">Tele: ${o.phone}</p>
-                                        </span>
-                                    </div>
+                        <c:forEach var="o" varStatus="counter"
+                                   items="${requestScope.DETAIL_MOTEL}">
+                            <div
+                                class="col-12 content__title d-flex justify-content-between align-items-center">
+                                <div class="content__title-left">
+                                    <h3 class="headingd-inline-block pr-3"><i class="fa fa-hotel"> </i> ${o.name}
+                                        <span>${o.rating} <span style="color: yellow"> <i class="fa fa-star"></i></span></span></h3>
+                                    <p>${o.address},${o.district},${o.city}</p>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                            <div class="col-9">
+                                <!-- item -->
+                                <div class="content__item">
+                                    <a href="${o.image}" data-lightbox="image-1"
+                                       data-title="${o.name}"
+                                       style="width: 100%; height: auto"><img
+                                            src="${o.image}" class="img-fluid"
+                                            alt="${o.name}"></a>
+                                </div>
+                                <hr>
+                                <div class="content__describe">
+                                    <h3 class="heading"><i class="fa fa-scroll"> </i> Mô tả chi tiết</h3>
+                                    <p>${o.desct}</p>
+                                </div>
+                                <!--                            <hr>
+                                                            <div class="content__describe">
+                                                                <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
+                                                                <p>7up, lavie, bánh, Coca, khăn ướt</p>
+                                                            </div>-->
+                            </div>
+                            <div class="col-3 widgets">
+                                <div class="content__item">
+                                    <div
+                                        class="content-booking text-center border rounded p-3 mb-2">
+                                        <h2>Đặt lịch</h2>
+                                        <hr>
+                                        <div class="content-booking-detail">
+                                            <% if (loginUser == null) { %>
+                                            <p>Vui lòng đăng nhập để đặt lịch</p>
+                                            <button class="button--primary"
+                                                    href="./login.jsp">Đăng
+                                                nhập</button>
+                                            <p>hoặc</p>
+                                            <button class="button--primary"
+                                                    href="./signup.jsp">Đăng ký</button>
+                                            <% } else { %>
+                                            <p>Thủ tục đặt phòng đơn giản, nhanh
+                                                gọn</p>
+                                            <button
+                                                class="button--primary mt-3"><a
+                                                    href="#Booking"
+                                                    class="text-white text-decoration-none">Đặt
+                                                    phòng</a></button>
+
+                                            <%}%>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Sau khi đăng nhập -->
+                                    <div
+                                        class="content-contact text-center border rounded p-3">
+                                        <h2>Liên hệ</h2>
+                                        <hr>
+                                        <div class="content-booking-detail">
+                                            <span><img src="images/man.png"
+                                                       alt="profile"
+                                                       style="width: 100px; min-height: 100px"></span>
+                                            <span>
+                                                <p class="m-0"> ${o.ownerName}</p>
+                                                <p class="m-0">Tele: ${o.phone}</p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <hr>
                 </div>
-                <hr>
-            </div>
-        </section>
+            </section>
 
-        <section id="Booking" class="booking mb-5">
-            <div class="container">
-                <form id="myform" name="myform" method="post" action="user-booking.jsp">">
+            <section id="Booking" class="booking mb-5">
+                <div class="container">
+
                     <div class="booking__title">
                         <h3 class="heading"><i class="fa fa-concierge-bell"> </i> Đặt phòng</h3>
                     </div>
@@ -176,7 +177,7 @@
                                             <div
                                                 class="title col-12 d-flex justify-content-between align-items-center">
                                                 <h5 class="room-type-title" >
-                                                   <input type="roomtype" class="typename" name="typename" /> <%= roomtype.getTypeName()%></h5>
+                                                    <input type="hidden" class="typename" name="typename" value="<%= roomtype.getTypeName()%>"/> <%= roomtype.getTypeName()%></h5>
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
@@ -222,7 +223,7 @@
                                             <input type="number" class="hour_val" min="0" value="1" name="counttime">
                                         </div>
                                     </td>
-                                    <td><input type="hidden" class="price" value="150000" name="price" /><%= roomtype.getPrice()%> / h</td>
+                                    <td><input type="hidden" class="price" value="<%= roomtype.getPrice()%>" name="price" /><%= roomtype.getPrice()%> / h</td>
                                     <td><span class="row_total">1350000.0</span></td>
                                 </tr>
 
@@ -246,7 +247,7 @@
                                     <tr>
                                         <!-- Tổng tất cả -->
                                         <td rowspan="2" class="align-middle">
-                                            <span><span class="amount" ><input type="total" class="total" name="total" /><%=total%></span> VND</span> VNĐ
+                                            <span><span class="amount" ><input type="hidden" class="total" name="total" value="<%=total%>"/><%=total%></span> VND</span> VNĐ
                                             <p class="m-0">- Phòng của bạn bao gồm
                                                 <span>1</span> phòng đơn và
                                                 <span>1</span>
@@ -276,65 +277,66 @@
                             </div>
                             <!-- sau khi đăng nhập -->
                             <% } else { %>
-                                <div class="btn-booking text-center">
-                                    <input class="button--primary" type = "submit" value = "Đặt ngay" />
-                                </div>
+                            <div class="btn-booking text-center">
+                                <input class="button--primary" type = "submit" value = "Đặt ngay" />
+                            </div>
                             <%}%>
                         </div>
                     </div>
-                </form>
-            </div>
-        </section>
 
-        <section class="content pt-3">
-            <div class="content__feedback container">
-                <hr>
-                <div class="row">
-                    <h3 class="col-12 p-0 heading pb-3"><i class="fa fa-thumbs-up"></i> Đánh giá </h3>
-                    <div class="rating-carousel owl-carousel owl-theme">
+                </div>
+            </section>
 
-                        <c:if test="${requestScope.DETAIL_FEEDBACK != null}">
-                            <c:if test="${not empty requestScope.DETAIL_FEEDBACK}">
-                                <c:forEach var="f" varStatus="counter"
-                                           items="${requestScope.DETAIL_FEEDBACK}">
-                                    <div class="item item-rating">
+            <section class="content pt-3">
+                <div class="content__feedback container">
+                    <hr>
+                    <div class="row">
+                        <h3 class="col-12 p-0 heading pb-3"><i class="fa fa-thumbs-up"></i> Đánh giá </h3>
+                        <div class="rating-carousel owl-carousel owl-theme">
 
-                                        <div class="customer-rating">
-                                            <h6 class="name-customer">
-                                                ${f.userName}</h6>
-                                            <img src="${f.image}"
-                                                 alt="${f.userName}">
+                            <c:if test="${requestScope.DETAIL_FEEDBACK != null}">
+                                <c:if test="${not empty requestScope.DETAIL_FEEDBACK}">
+                                    <c:forEach var="f" varStatus="counter"
+                                               items="${requestScope.DETAIL_FEEDBACK}">
+                                        <div class="item item-rating">
+
+                                            <div class="customer-rating">
+                                                <h6 class="name-customer">
+                                                    ${f.userName}</h6>
+                                                <img src="${f.image}"
+                                                     alt="${f.userName}">
+                                            </div>
+                                            <div class="cmt-box">
+                                                <label class="rate-customer">
+                                                    ${f.rating}
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </label>
+                                                <p class="cmt-customer">
+                                                    ${f.desc}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div class="cmt-box">
-                                            <label class="rate-customer">
-                                                ${f.rating}
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </label>
-                                            <p class="cmt-customer">
-                                                ${f.desc}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
+                                </c:if>
+                            </c:if>
+                        </div>
+
+
+                        <c:if test="${requestScope.MESSAGE_FEEDBACK != null}">
+                            <c:if test="${not empty requestScope.MESSAGE_FEEDBACK}">
+                                <div class="reviews-title alert alert-info col-12">
+                                    ${requestScope.MESSAGE_FEEDBACK}
+                                </div>
                             </c:if>
                         </c:if>
                     </div>
-
-
-                    <c:if test="${requestScope.MESSAGE_FEEDBACK != null}">
-                        <c:if test="${not empty requestScope.MESSAGE_FEEDBACK}">
-                            <div class="reviews-title alert alert-info col-12">
-                                ${requestScope.MESSAGE_FEEDBACK}
-                            </div>
-                        </c:if>
-                    </c:if>
                 </div>
-            </div>
-        </section>
+            </section>
+        </form>
         <!-- FOOTER -->
 
         <%@include file="footer.jsp" %>
