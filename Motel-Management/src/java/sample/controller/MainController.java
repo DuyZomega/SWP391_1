@@ -67,6 +67,12 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_OWNER_MOTEL_CONTROLLER = "OwnerUpdateMotelController";
     private static final String SHOW_OWNER_HISTORY_DETAIL = "showHistoryDetail";
     private static final String SHOW_OWNER_HISTORY_DETAIL_CONTROLLER = "OwnerShowHistoryDetail";
+    private static final String SHOW_OWNER_SERVICE = "showService";
+    private static final String SHOW_OWNER_SERVICE_CONTROLLER = "OwnerShowServiceController";
+    private static final String DELETE_OWNER_SERVICE = "deleteService";
+    private static final String DELETE_OWNER_SERVICE_CONTROLLER = "OwnerDeleteServiceController";
+    private static final String UPDATE_OWNER_SERVICE = "updateService";
+    private static final String UPDATE_OWNER_SERVICE_CONTROLLER = "OwnerUpdateServiceController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -119,6 +125,12 @@ public class MainController extends HttpServlet {
                 url = UPDATE_OWNER_MOTEL_CONTROLLER;
             } else if (SHOW_OWNER_HISTORY_DETAIL.equals(action)) {
                 url = SHOW_OWNER_HISTORY_DETAIL_CONTROLLER;
+            } else if (SHOW_OWNER_SERVICE.equals(action)) {
+                url = SHOW_OWNER_SERVICE_CONTROLLER;
+            } else if (DELETE_OWNER_SERVICE.equals(action)) {
+                url = DELETE_OWNER_SERVICE_CONTROLLER;
+            } else if (UPDATE_OWNER_SERVICE.equals(action)) {
+                url = UPDATE_OWNER_SERVICE_CONTROLLER;
             }
 
         } catch (Exception e) {

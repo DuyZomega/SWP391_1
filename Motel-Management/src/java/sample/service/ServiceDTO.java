@@ -86,8 +86,13 @@ public class ServiceDTO {
         this.name = name;
         this.status = status;
     }
-    
-    
-    
-    
+
+    public ServiceDTO(String serviceId, String name, int price, int status, String MotelID) {
+        this.serviceId = serviceId;
+        this.name = name;
+        this.price = price;
+        this.status = status;
+        this.MotelID = MotelID;
+    }
+     
 }

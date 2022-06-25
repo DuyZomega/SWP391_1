@@ -290,7 +290,10 @@
 
                                                     %>
                                                     <option value="<%= city.getCityID()%>"><%= city.getCityName()%></option>
-                                                    <%            }
+                                                    <% <%            }
+                                                            }
+                                                        }
+                                                    %>            }
                                                             }
                                                         }
                                                     %> 

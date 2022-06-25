@@ -53,7 +53,7 @@ public class OwnerUpdateMotelController extends HttpServlet {
             }
             
             if(motelName.length()<2 || motelName.length() > 30){
-                motelError.setNameError("tên không vượt quá 15 và nhỏ hơn 2!");
+                motelError.setNameError("tên không vượt quá 30 và nhỏ hơn 2!");
                 checkValidation = false;
             }
             
