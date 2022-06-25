@@ -63,10 +63,6 @@ public class CreateBookingController extends HttpServlet {
 
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
-            if (e.toString().contains("duplicate")) {
-                userError.setUserIdError("Duplicate UserID !!!");
-                request.setAttribute("USER_ERROR", userError);
-            }
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
