@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.Random;
 import javax.servlet.ServletException;
-import java.text.SimpleDateFormat;  
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 @WebServlet(name = "CreateBookingController", urlPatterns = {"/CreateBookingController"})
@@ -33,8 +33,6 @@ public class CreateBookingController extends HttpServlet {
         Date date = new Date(0);
         try {
             Date bookingDate = Date.valueOf(LocalDate.now());
-            String bookingID = String.valueOf(generator.nextInt(9999999));
-            String userID = String.valueOf(generator.nextInt(9999999));
             String paymentType = request.getParameter("payment");
             String fullName = request.getParameter("fullName");
             String phone = request.getParameter("phone");
@@ -48,19 +46,39 @@ public class CreateBookingController extends HttpServlet {
             RoomDAO dao2 = new RoomDAO();
             boolean check = true;
             if (check) {
-                UserDTO user = new UserDTO(userID, fullName, "", 0, "", "", phone, gmail, "", "", "", 1);
+                boolean checkID = false;
+                String userId = String.valueOf(generator.nextInt(9999999));
+                checkID = dao.checkUserID(userId);
+                UserDTO user = new UserDTO(userId, fullName, "", 0, "", "", phone, gmail, "", "", "", 1);
                 boolean checkInsert = dao.insertUserNew(user);
-                MotelDTO motel = new MotelDTO("",name, "", "",address, "", "", 0, bookingDate, "", 0, "", "", 1, bookingID,paymentType);
-                boolean checkInsert1 = dao1.insertMotelNew(motel);
-                RoomTypeDTO room = new RoomTypeDTO(typeName, countTime);
-                boolean checkInsert2 = dao2.insertRoomNew(room);
-                if (checkInsert & checkInsert1 & checkInsert2) {
+                if (checkInsert) {
                     url = SUCCESS;
                 }
             } else {
                 request.setAttribute("BOOKING_ERROR", userError);
             }
-
+            if (check) {
+                boolean checkID = false;
+                String motelID = request.getParameter("motelID");
+                String bookingID = String.valueOf(generator.nextInt(9999999));
+                checkID = dao1.checkMotelID(motelID);
+                MotelDTO motel = new MotelDTO("", name, "", "", address, "", "", 0, bookingDate, "", 0, "", "", 1, bookingID, paymentType);
+                boolean checkInsert1 = dao1.insertMotelNew(motel);
+                if (checkInsert1) {
+                    url = SUCCESS;
+                }
+            } else {
+                request.setAttribute("BOOKING_ERROR1", userError);
+            }
+            if (check) {
+                RoomTypeDTO room = new RoomTypeDTO(typeName, countTime);
+                boolean checkInsert2 = dao2.insertRoomNew(room);
+                if (checkInsert2) {
+                    url = SUCCESS;
+                }
+            } else {
+                request.setAttribute("BOOKING_ERROR2", userError);
+            }
         } catch (Exception e) {
             log("Error at CreateController: " + e.toString());
         } finally {
