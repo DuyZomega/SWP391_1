@@ -22,7 +22,7 @@ public class UserDAO {
     private static final String UPDATE_USER = "UPDATE tblUser SET FullName= ?, Address= ?, DateOfBirth=?, Phone=?,Gmail= ?, CitizenNumber = ?, Gender=? WHERE userID=?";
     private static final String CHANGE_PASSWORD = "UPDATE tblUser SET Password = ? WHERE UserID = ? ";
     private static final String CHANGE_IMAGE = "UPDATE tblUser SET Image = ? WHERE UserID = ? ";
-    
+    private static final String CHECK_USERID = "SELECT UserID FROM tblUser Where UserID = ?";
     public boolean changeImage(String userID, String image) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -47,6 +47,37 @@ public class UserDAO {
         }
         return check;
 
+    }
+    
+    public boolean checkUserID(String userID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_USERID);
+                ptm.setString(1, userID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
     }
     
     public boolean changePassword(String userID, String passWord) throws SQLException {
@@ -385,16 +416,14 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, password, role, status) "
+                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, status) "
                         + " VALUES(?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getUserId());
                 stm.setString(2, user.getFullName());
                 stm.setString(3, user.getPhone());
                 stm.setString(4, user.getGmail());
-                stm.setString(5, user.getPassword());
-                stm.setString(6, user.getRole());
-                stm.setInt(7, user.getStatus());
+                stm.setInt(5, user.getStatus());
                 check = stm.executeUpdate() > 0;
             }
         } finally {

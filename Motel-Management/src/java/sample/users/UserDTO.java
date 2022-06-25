@@ -195,6 +195,6 @@ public class UserDTO {
         this.phone = phone;
         this.gmail = gmail;
     }
-     
+  
       
 }
