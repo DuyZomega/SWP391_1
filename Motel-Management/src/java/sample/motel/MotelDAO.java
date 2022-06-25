@@ -476,7 +476,7 @@ public List<MotelDTO> getAllListMotel() throws SQLException {
         }
         return check;
     }
-private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone,tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status, tblUser.FullName as fullName \n" +
+private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone,tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status, tblUser.FullName as fullName , tblUser.Phone \n" +
 "FROM tblMotel,tblDistrict,tblCity , tblUser\n" +
 "WHERE  tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID  AND tblMotel.OwnerID = tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.MotelID = ?";
 public List<MotelDTO> getDetailMotel(String motelID) throws SQLException {

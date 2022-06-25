@@ -385,16 +385,14 @@ public boolean checkDuplcate(String userId) throws SQLException {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, password, role, status) "
+                String sql = "INSERT INTO tblUser(userId, fullName, phone, gmail, status) "
                         + " VALUES(?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, user.getUserId());
                 stm.setString(2, user.getFullName());
                 stm.setString(3, user.getPhone());
                 stm.setString(4, user.getGmail());
-                stm.setString(5, user.getPassword());
-                stm.setString(6, user.getRole());
-                stm.setInt(7, user.getStatus());
+                stm.setInt(5, user.getStatus());
                 check = stm.executeUpdate() > 0;
             }
         } finally {

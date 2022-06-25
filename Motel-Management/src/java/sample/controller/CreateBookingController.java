@@ -12,7 +12,11 @@ import sample.room.RoomDAO;
 import sample.room.RoomTypeDTO;
 import sample.users.UserError;
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Random;
 import javax.servlet.ServletException;
+import java.text.SimpleDateFormat;  
+import java.time.LocalDate;
 
 @WebServlet(name = "CreateBookingController", urlPatterns = {"/CreateBookingController"})
 public class CreateBookingController extends HttpServlet {
@@ -25,31 +29,36 @@ public class CreateBookingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         UserError userError = new UserError();
+        Random generator = new Random();
+        Date date = new Date(0);
         try {
+            Date bookingDate = Date.valueOf(LocalDate.now());
+            String bookingID = String.valueOf(generator.nextInt(9999999));
+            String userID = String.valueOf(generator.nextInt(9999999));
+            String[] paymentType = request.getParameterValues("payment");
             String fullName = request.getParameter("fullName");
             String phone = request.getParameter("phone");
             String gmail = request.getParameter("gmail");
             String name = request.getParameter("name");
             String address = request.getParameter("address");
-            int countRoom = request.getIntHeader("countroom");
-            int countTime = request.getIntHeader("counttime");
+            int countTime = Integer.parseInt(request.getParameter("counttime"));
             String typeName = request.getParameter("typename");
             UserDAO dao = new UserDAO();
             MotelDAO dao1 = new MotelDAO();
             RoomDAO dao2 = new RoomDAO();
             boolean check = true;
-            if (check == true) {
-                UserDTO user = new UserDTO(fullName, phone, gmail);
+            if (check) {
+                UserDTO user = new UserDTO(userID, fullName, "", 0, "", "", phone, gmail, "", "", "", 1);
                 boolean checkInsert = dao.insertUserNew(user);
-                MotelDTO motel = new MotelDTO(name,address);
+                MotelDTO motel = new MotelDTO("",name, "", "",address, "", "", 0, bookingDate, "", 0, "", "", 1);
                 boolean checkInsert1 = dao1.insertMotelNew(motel);
-                RoomTypeDTO room = new RoomTypeDTO(typeName, countRoom, countTime);
+                RoomTypeDTO room = new RoomTypeDTO(typeName, countTime);
                 boolean checkInsert2 = dao2.insertRoomNew(room);
                 if (checkInsert & checkInsert1 & checkInsert2) {
                     url = SUCCESS;
                 }
             } else {
-                request.setAttribute("USER_ERROR", userError);
+                request.setAttribute("BOOKING_ERROR", userError);
             }
 
         } catch (Exception e) {

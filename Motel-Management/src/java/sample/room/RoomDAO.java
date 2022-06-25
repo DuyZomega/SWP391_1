@@ -104,11 +104,11 @@ public class RoomDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblRoomType(countroom,counttime) "
-                        + " VALUES(?,?)";
+                String sql = "INSERT INTO tblBookingDetail(countTime) AND tblRoomType(typeName) "
+                        + " VALUES(?) AND VALUES(?)";
                 stm = conn.prepareStatement(sql);
-                stm.setInt(1, room.getCountRoom());
-                stm.setInt(2, room.getCountTime());
+                stm.setInt(1, room.getCountTime());
+                stm.setString(2, room.getTypeName());
                 check = stm.executeUpdate() > 0;
             }
         } finally {

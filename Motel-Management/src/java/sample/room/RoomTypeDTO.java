@@ -110,9 +110,8 @@ public class RoomTypeDTO {
         this.countRoom = countRoom;
     }
 
-    public RoomTypeDTO(String typeName, int countRoom, int countTime) {
+    public RoomTypeDTO(String typeName, int countTime) {
         this.typeName = typeName;
-        this.countRoom = countRoom;
         this.countTime = countTime;
     }
 

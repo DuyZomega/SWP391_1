@@ -89,17 +89,20 @@
                     </div>
                     <hr>
                     <div class="infor-owner">
+                        
                         <h3 class="heading"><i class="fas fa-id-card-alt"></i> Chủ nhà nghỉ</h3>
+                        <c:forEach var="i" varStatus="counter"
+                                   items="${requestScope.DETAIL_MOTEL}">
                         <div class="box d-flex">
                             <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
                             <span class="infor-owner-detail">
-                                <p class="m-0"><span class="label">Họ tên:</span> Nguyễn Tuân</p>
-                                <p class="m-0"><span class="label">SĐT:</span> 0865.644.162</p>
-                                <p class="m-0"><span class="label">Địa chỉ:</span> 0 Phó Đức Chính, Phường Linh Trung,
-                                    Thủ Đức, Thành phố Hồ Chí Minh
+                                <p class="m-0"><span class="label">Họ tên:</span> ${i.ownerName}</p>
+                                <p class="m-0"><span class="label">SĐT:</span> ${i.phone}</p>
+                                <p class="m-0"><span class="label">Địa chỉ:</span> ${i.address},${i.district},${i.city}
                                 </p>
                             </span>
                         </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="col-7">
@@ -126,7 +129,7 @@
                         </div>
                         <div class="form-item col-6">
                             <label for="password">Phương thức thanh toán</label>
-                            <select class="custom-select" id="inputGroupSelect01">
+                            <select class="custom-select" name="payment" id="inputGroupSelect01">
                                 <option value="1" selected>Tiền mặt</option>
                                 <option value="2">Chuyển khoản</option>
                             </select>
