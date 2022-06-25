@@ -216,11 +216,114 @@ $(".file-upload").on("change", function () {
 $(".upload-button").on("click", function () {
   $(".file-upload").click();
 });
+// ======================pagination====================
+function getPageList(totalPages, page, maxLength) {
+  function range(start, end) {
+    return Array.from(Array(end - start + 1), (_, i) => i + start);
+  }
 
-// datatable
+  var sideWidth = maxLength < 9 ? 1 : 2;
+  var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+  var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
 
-$(document).ready(function () {
-  $("#history-table").DataTable({
-    pagingType: "full_numbers",
+  if (totalPages <= maxLength) {
+    return range(1, totalPages);
+  }
+
+  if (page <= maxLength - sideWidth - 1 - rightWidth) {
+    return range(1, maxLength - sideWidth - 1).concat(
+      0,
+      range(totalPages - sideWidth + 1, totalPages)
+    );
+  }
+
+  if (page >= totalPages - sideWidth - 1 - rightWidth) {
+    return range(1, sideWidth).concat(
+      0,
+      range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages)
+    );
+  }
+
+  return range(1, sideWidth).concat(
+    0,
+    range(page - leftWidth, page + rightWidth),
+    0,
+    range(totalPages - sideWidth + 1, totalPages)
+  );
+}
+
+$(function () {
+  var numberOfItems = $(".content__list, .room-item").length;
+  var limitPerPage = 9;
+  var totalPages = Math.ceil(numberOfItems / limitPerPage);
+  var paginationSize = 7;
+  var currentPage;
+
+  function showPage(whichPage) {
+    if (whichPage < 1 || whichPage > totalPages) return false;
+    currentPage = whichPage;
+    $(".content__list .room-item")
+      .hide()
+      .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
+      .show();
+    $(".pagination li").slice(1, -1).remove();
+    getPageList(totalPages, currentPage, paginationSize).forEach((item) => {
+      $("<li>")
+        .addClass("pages")
+        .addClass("page-item")
+        .addClass(item ? "current-page" : "dots")
+        .toggleClass("active", item === currentPage)
+        .append(
+          $("<a>")
+            .addClass("page-link")
+            .attr({ href: "javascript: void(0)" })
+            .text(item || "...")
+        )
+        .insertBefore(".next-page");
+    });
+
+    $(".previous-page").toggleClass("disabled", currentPage === 1);
+    $(".next-page").toggleClass("disabled", currentPage === totalPages);
+    return true;
+  }
+  $(".pagination").append(
+    $("<li>")
+      .addClass("page-item")
+      .addClass("previous-page")
+      .append(
+        $("<a>")
+          .addClass("page-link")
+          .addClass("btn")
+          .attr({ href: "javascript: void(0)" })
+          .append($("<i>").addClass("fa fa-angle-left"))
+      ),
+    $("<li>")
+      .addClass("page-item")
+      .addClass("next-page")
+      .append(
+        $("<a>")
+          .addClass("page-link")
+          .addClass("btn")
+          .attr({ href: "javascript: void(0)" })
+          .append($("<i>").addClass("fa fa-angle-right"))
+      )
+  );
+
+  $(".content__list").show();
+  showPage(1);
+
+  $(document).on(
+    "click",
+    ".pagination li.current-page:not(.active)",
+    function () {
+      return showPage(+$(this).text());
+    }
+  );
+
+  $(".next-page").on("click", function () {
+    return showPage(currentPage + 1);
+  });
+  $(".previous-page").on("click", function () {
+    return showPage(currentPage - 1);
   });
 });
