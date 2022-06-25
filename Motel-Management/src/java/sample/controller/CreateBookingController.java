@@ -35,7 +35,7 @@ public class CreateBookingController extends HttpServlet {
             Date bookingDate = Date.valueOf(LocalDate.now());
             String bookingID = String.valueOf(generator.nextInt(9999999));
             String userID = String.valueOf(generator.nextInt(9999999));
-            String[] paymentType = request.getParameterValues("payment");
+            String paymentType = request.getParameter("payment");
             String fullName = request.getParameter("fullName");
             String phone = request.getParameter("phone");
             String gmail = request.getParameter("gmail");
@@ -50,7 +50,7 @@ public class CreateBookingController extends HttpServlet {
             if (check) {
                 UserDTO user = new UserDTO(userID, fullName, "", 0, "", "", phone, gmail, "", "", "", 1);
                 boolean checkInsert = dao.insertUserNew(user);
-                MotelDTO motel = new MotelDTO("",name, "", "",address, "", "", 0, bookingDate, "", 0, "", "", 1);
+                MotelDTO motel = new MotelDTO("",name, "", "",address, "", "", 0, bookingDate, "", 0, "", "", 1, bookingID,paymentType);
                 boolean checkInsert1 = dao1.insertMotelNew(motel);
                 RoomTypeDTO room = new RoomTypeDTO(typeName, countTime);
                 boolean checkInsert2 = dao2.insertRoomNew(room);

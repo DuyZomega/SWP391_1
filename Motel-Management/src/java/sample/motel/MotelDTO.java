@@ -32,6 +32,26 @@ public class MotelDTO {
     private int status;
     private int numberRoom;
     private int numberRoomType;
+    private String BookingID;
+    private String paymentType;
+
+    public String getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType) {
+        this.paymentType = paymentType;
+    }
+    
+    
+    
+    public String getBookingID() {
+        return BookingID;
+    }
+
+    public void setBookingID(String BookingID) {
+        this.BookingID = BookingID;
+    }
 
     public int getNumberRoom() {
         return numberRoom;
@@ -65,6 +85,26 @@ public class MotelDTO {
         this.bookingDate = bookingDate;
     }
 
+    public MotelDTO(String motelID, String name, String phone, String Desct, String address, String district, String city, double rating, Date bookingDate, String typename, double motelprice, String ownerId, String ownerName, int status, String BookingID, String paymentType) {
+        this.motelID = motelID;
+        this.name = name;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
+        this.bookingDate = bookingDate;
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+        this.status = status;
+        this.BookingID = BookingID;
+        this.paymentType = paymentType;
+    }
+
+    
     public MotelDTO(String motelID, String name, String phone, String Desct, String address, String district, String city, double rating, Date bookingDate, String typename, double motelprice, String ownerId, String ownerName, int status) {
         this.motelID = motelID;
         this.name = name;
