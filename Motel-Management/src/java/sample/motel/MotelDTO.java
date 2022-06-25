@@ -5,6 +5,8 @@
  */
 package sample.motel;
 
+import java.sql.Date;
+
 /**
  *
  * @author Bao
@@ -20,6 +22,7 @@ public class MotelDTO {
     private String district;
     private String city;
     private double rating;
+    private Date bookingDate;
     private String service;
     private double serviceprice;
     private String typename;
@@ -54,6 +57,32 @@ public class MotelDTO {
         this.ownerName = ownerName;
     }
 
+    public Date getBookingDate() {
+        return bookingDate;
+    }
+
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
+    }
+
+    public MotelDTO(String motelID, String name, String phone, String Desct, String address, String district, String city, double rating, Date bookingDate, String typename, double motelprice, String ownerId, String ownerName, int status) {
+        this.motelID = motelID;
+        this.name = name;
+        this.phone = phone;
+        this.Desct = Desct;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.rating = rating;
+        this.bookingDate = bookingDate;
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+        this.status = status;
+    }
+
+    
     public MotelDTO(String name, String image, String phone, String Desct, String address, String district, String city, double rating, String service, double serviceprice, String typename, double motelprice,  String ownerName, int status) {
      
         this.name = name;
@@ -70,6 +99,11 @@ public class MotelDTO {
         this.motelprice = motelprice;
         this.ownerName = ownerName;
         this.status = status;
+    }
+
+    public MotelDTO(String name, String address) {
+        this.name = name;
+        this.address = address;
     }
 
     
