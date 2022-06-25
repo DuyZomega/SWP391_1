@@ -14,6 +14,7 @@ public class RoomTypeDTO {
     private int price;
     private int time;
     private int countRoom;
+    private int countTime;
     private String motelID;
     private String image;
     private String desct;
@@ -82,6 +83,14 @@ public class RoomTypeDTO {
         this.desct = desct;
     }
 
+    public int getCountTime() {
+        return countTime;
+    }
+
+    public void setCountTime(int countTime) {
+        this.countTime = countTime;
+    }
+
     public RoomTypeDTO() {
         this.roomTypeID = "";
         this.typeName = "";
@@ -100,4 +109,13 @@ public class RoomTypeDTO {
         this.desct = desct;
         this.countRoom = countRoom;
     }
+
+    public RoomTypeDTO(String typeName, int countRoom, int countTime) {
+        this.typeName = typeName;
+        this.countRoom = countRoom;
+        this.countTime = countTime;
+    }
+
+ 
+    
 }

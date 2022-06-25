@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 import sample.utils.DBUtils;
 
 /**
@@ -96,6 +97,31 @@ public class RoomDAO {
 
     }
 
+    public boolean insertRoomNew(RoomTypeDTO room) throws SQLException, ClassNotFoundException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "INSERT INTO tblRoomType(countroom,counttime) "
+                        + " VALUES(?,?)";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, room.getCountRoom());
+                stm.setInt(2, room.getCountTime());
+                check = stm.executeUpdate() > 0;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
     public boolean deleteRoom(String roomID) throws SQLException {
         boolean check = false;
         Connection conn = null;

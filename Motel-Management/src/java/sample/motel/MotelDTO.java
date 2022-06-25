@@ -72,6 +72,11 @@ public class MotelDTO {
         this.status = status;
     }
 
+    public MotelDTO(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
     
     public String getMotelID() {
         return motelID;

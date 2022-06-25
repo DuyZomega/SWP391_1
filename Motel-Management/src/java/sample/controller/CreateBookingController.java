@@ -1,4 +1,3 @@
-
 package sample.controller;
 
 import javax.servlet.annotation.WebServlet;
@@ -7,15 +6,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.users.UserDAO;
 import sample.users.UserDTO;
+import sample.motel.MotelDAO;
+import sample.motel.MotelDTO;
+import sample.room.RoomDAO;
+import sample.room.RoomTypeDTO;
 import sample.users.UserError;
 import java.io.IOException;
 import javax.servlet.ServletException;
 
-@WebServlet(name = "CreateUserController", urlPatterns = {"/CreateUserController"})
-public class CreateUserController extends HttpServlet {
+@WebServlet(name = "CreateBookingController", urlPatterns = {"/CreateBookingController"})
+public class CreateBookingController extends HttpServlet {
 
     private static final String ERROR = "signup.jsp";
-    private static final String SUCCESS = "login.jsp";
+    private static final String SUCCESS = "user-booking.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -23,36 +26,26 @@ public class CreateUserController extends HttpServlet {
         String url = ERROR;
         UserError userError = new UserError();
         try {
-            String userId = request.getParameter("userId");
             String fullName = request.getParameter("fullName");
             String phone = request.getParameter("phone");
             String gmail = request.getParameter("gmail");
-            String password = request.getParameter("password");
-            String role = request.getParameter("role");
-            String confirm = request.getParameter("confirm");
-            int status = 1;
+            String name = request.getParameter("name");
+            String address = request.getParameter("address");
+            int countRoom = request.getIntHeader("countroom");
+            int countTime = request.getIntHeader("counttime");
+            String typeName = request.getParameter("typename");
             UserDAO dao = new UserDAO();
+            MotelDAO dao1 = new MotelDAO();
+            RoomDAO dao2 = new RoomDAO();
             boolean check = true;
-            if (userId.length() > 10 || userId.length() < 2) {
-                userError.setUserIdError("UserID contains 2 - 10 characters!");
-                check = false;
-            }
-            if (fullName.length() > 20 || fullName.length() < 5) {
-                userError.setFullNameError("FullName Contains 5 - 20 characters!");
-                check = false;
-            }
-            if (phone.length() < 9) {
-                userError.setPhoneError("Phone number must at least 9 number");
-                check = false;
-            }
-            if (!password.equals(confirm)) {
-                userError.setConfirmpasswordError("Passwords are not the same!");
-                check = false;
-            }
-            if(check == true){
-                UserDTO user = new UserDTO(userId, fullName, phone, gmail, password, role, status);
+            if (check == true) {
+                UserDTO user = new UserDTO(fullName, phone, gmail);
                 boolean checkInsert = dao.insertUserNew(user);
-                if (checkInsert) {
+                MotelDTO motel = new MotelDTO(name,address);
+                boolean checkInsert1 = dao1.insertMotelNew(motel);
+                RoomTypeDTO room = new RoomTypeDTO(typeName, countRoom, countTime);
+                boolean checkInsert2 = dao2.insertRoomNew(room);
+                if (checkInsert & checkInsert1 & checkInsert2) {
                     url = SUCCESS;
                 }
             } else {

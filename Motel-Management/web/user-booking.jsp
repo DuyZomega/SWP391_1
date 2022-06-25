@@ -59,26 +59,26 @@
                                     double sum = 0;
                                 %>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Tên nhà
-                                            nghỉ:</span> <span>${o.name}</span></label>
+                                            nghỉ:</span> <span><input type="hidden" name="name" value="${o.name}" />${o.name}</span></label>
                                 </p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
-                                            chỉ:</span> ${o.address},${o.district},${o.city}
+                                            chỉ:</span><input type="hidden" name="address" value="${o.address},${o.district},${o.city}" /> ${o.address},${o.district},${o.city}
                                     </label></p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Số phòng
-                                            đặt:</span> <span><%= request.getParameter("countroom")%></span>
+                                            đặt:</span> <span><input type="hidden" name="countroom" value="<%= request.getParameter("countroom")%>" /><%= request.getParameter("countroom")%></span>
                                         phòng</label></p>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                    <label><span class="label">Số giờ đặt:</span> <span><%= request.getParameter("counttime")%></span> giờ</label>
+                                    <label><span class="label">Số giờ đặt:</span> <span><input type="hidden" name="counttime" value="<%= request.getParameter("counttime")%>" /><%= request.getParameter("counttime")%></span> giờ</label>
                                 </p>
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
                                     <ul class="ml-3">
-                                        <li>- <span><%= request.getParameter("countroom")%></span> <%= request.getParameter("typename")%> <i class="fa fa-arrow-right"></i>
-                                            <span><%= request.getParameter("price")%></span> VNĐ
+                                        <li>- <span><%= request.getParameter("countroom")%></span> <input type="hidden" name="typename" value="<%= request.getParameter("typename")%>" /><%= request.getParameter("typename")%> <i class="fa fa-arrow-right"></i>
+                                            <span>149000</span> VNĐ
                                         </li>
 
                                         <hr>
-                                        <li>- Tổng tiền: <span><%= request.getParameterValues("total")%></span> VNĐ</li>
+                                        <li>- Tổng tiền: <span>149000</span> VNĐ</li>
                                     </ul>
                                 </div>
                                 <%
@@ -111,17 +111,17 @@
                     <form id="form-3" action="" method="POST" class="form row">
                         <div class="form-item col-6">
                             <label for="fullName">Họ và Tên</label>
-                            <input type="text" name="Họ và tên" id="fullName" />
+                            <input type="text" name="fullname" id="fullName" />
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
                         <div class="form-item col-6">
                             <label for="email">Địa chỉ email</label>
-                            <input type="email" name="Mật khẩu" id="email">
+                            <input type="email" name="gmail" id="gmail">
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
                         <div class="form-item col-6">
                             <label for="telephone">Số điện thoại</label>
-                            <input type="tel" name="Mật khẩu" id="telephone">
+                            <input type="tel" name="phone" id="telephone">
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
                         <div class="form-item col-6">
@@ -143,7 +143,7 @@
                             <input type="checkbox" aria-label="Điều khoản và chính sách" required>
                             <span>Tôi đồng ý <a href="#">Điều khoản và chính sách</a></span>
                         </div>
-                        <button type="submit" value="submit" class="button--primary btn btn-danger">Xác nhận
+                        <button type="submit" value="submit" class="button--primary btn btn-danger" action="Booking">Xác nhận
                             đặt
                             phòng</button>
                         <!-- sau khi gửi form thành công  -->
