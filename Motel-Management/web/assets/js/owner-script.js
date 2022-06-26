@@ -211,7 +211,7 @@ function confirmdele() {
     }
     const ctx = document.getElementById('chart-Dashboard').getContext('2d');
     const chart = new Chart(ctx, {   
-            type: 'bar',
+            type: 'line',
             data: {
                 // labels: Object.keys(week),
                 datasets: [{
@@ -225,6 +225,7 @@ function confirmdele() {
         
                     ],
                     borderWidth: 1,
+                    lineTension: 0.25,
                 },{
                     label: 'Doanh thu nhà nghỉ B',
                     data: home2,
@@ -232,7 +233,7 @@ function confirmdele() {
                         'rgba(192, 174, 96,0.5)'
                     ],
                     borderColor: [
-                        'rgba(39, 174, 96,1.0)'
+                        'rgba(192, 174, 96,1.0)'
         
                     ],
                     borderWidth: 1,
