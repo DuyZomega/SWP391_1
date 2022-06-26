@@ -880,12 +880,21 @@ html body {
     list-style: none;
     line-height: 1rem;
     display: flex;
-    align-items: baseline;
+    align-items: baseline;   
 }
 
 .room-title ul li h6{
     font-size: 15px;
     font-weight: 500;
+}
+
+.room-title ul li span {
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .room-title ul li:last-child {
