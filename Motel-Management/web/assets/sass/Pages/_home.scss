@@ -24,7 +24,6 @@
 }
 // MOTEL
 .motel {
-    padding-top: 0;
     .heading {
         color: $color-blue-2;
         font-weight: 700;
@@ -42,6 +41,203 @@
             -webkit-text-fill-color: transparent;
             i {
                 font-size: 18px;
+            }
+        }
+    }
+}
+//services
+.services {
+    .service-item {
+        text-align: center;
+    }
+    .heading {
+        font-weight: 700;
+        margin-bottom: $mg-3;
+        text-transform: uppercase;
+    }
+    .service-item {
+        padding: 0 30px;
+        i {
+            width: 75px;
+            height: 75px;
+            line-height: 75px;
+            border: 1px solid $color-blue-2;
+            border-radius: 50%;
+            background-color: white;
+            color: $color-blue-2;
+            font-size: 2.75rem;
+            transition: 1s;
+        }
+        &:hover {
+            i {
+                color: $color-primary-1;
+                transform: rotate(1000deg);
+            }
+        }
+        h5 {
+            margin-top: 10px;
+            font-size: 22px;
+            span {
+                margin-top: 5px;
+                text-transform: uppercase;
+                display: block;
+            }
+        }
+    }
+}
+//about us
+.about-us {
+    .card {
+        border: none;
+        .card-body {
+            padding-left: 0;
+        }
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #768092;
+        line-height: 24px;
+    }
+    .intro-status {
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        .message {
+            color: $color-blue-2;
+        }
+        img {
+            width: 80px;
+            height: 80px;
+            vertical-align: middle;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+        p {
+            color: #768092;
+        }
+    }
+    .intro-desc {
+        img {
+            width: 190px;
+            height: auto;
+        }
+    }
+    .intro-img {
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        border: 1px solid #edebeb75;
+    }
+    .intro-desc,
+    .intro-img {
+        margin-top: 20px;
+    }
+    p.card-text {
+        margin-left: 5px;
+    }
+    div.card-text {
+        margin-top: 10px;
+    }
+}
+
+//team member
+#teamMember {
+    .heading {
+        font-weight: 700;
+        margin-bottom: $mg-3;
+        text-transform: uppercase;
+    }
+    .team__item {
+        position: relative;
+        width: 330px;
+        height: 490px;
+        overflow: hidden;
+        transition: all 0.5s;
+        margin-left: 20px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .team__title {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            color: white;
+            background-color: $color-blue-2;
+            padding: 20px;
+            transition: all 0.5s;
+            opacity: 1;
+        }
+        .team__details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 100px 40px;
+            opacity: 0;
+            transition: all 0.5s;
+            transform: scale(0);
+            a {
+                text-decoration: none;
+                color: white;
+                i {
+                    width: 37px;
+                    height: 37px;
+                    border: 1.5px solid rgba(255, 255, 255, 0.5);
+                    text-align: center;
+                    line-height: 37px;
+                    margin: 0 5px;
+                    transition: all 0.5s;
+                }
+                &:hover {
+                    color: $color-primary-3;
+                }
+            }
+        }
+        h5 {
+            font-weight: bold;
+        }
+        &:hover {
+            .team__title {
+                opacity: 0;
+            }
+            .team__details {
+                opacity: 0.9;
+                transform: scale(1);
+            }
+        }
+    }
+    .team-carousel {
+        .owl-nav {
+            button.owl-prev {
+                left: -35px;
+            }
+            button.owl-prev,
+            button.owl-next {
+                width: 80;
+                height: 80px;
+                line-height: 80px;
+                background-color: transparent;
+                border: none;
+                font-size: 70px;
+                top: 50%;
+                transform: translateY(-50%);
+                span {
+                    transition: all 0.5s;
+                }
+                &:hover {
+                    border: none;
+                    box-shadow: none;
+                    color: $color-primary-3;
+                    span {
+                        color: $color-primary-3;
+                    }
+                }
             }
         }
     }
