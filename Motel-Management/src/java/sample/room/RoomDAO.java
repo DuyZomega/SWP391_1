@@ -25,6 +25,7 @@ public class RoomDAO {
     private static final String CREATE = "INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES(?,?,?,?)";
     private static final String CREATE_ROOMTYPE = "INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct], [MotelID], [Status]) VALUES(?,?,?,?,?,?,?)";
     private static final String DELETE_ROOM = "UPDATE tblRoom SET Status = 2 WHERE RoomID = ?";
+    private static final String BOOKING_ROOM = "UPDATE tblRoom SET Status = 1 WHERE RoomID = ?";
     private static final String UPDATE_ROOM = "UPDATE tblRoom SET Name = ?, RoomTypeID = ? WHERE RoomID = ?";
     private static final String GET_ROOMTYPE = "select rt.RoomTypeID ,rt.TypeName, rt.Image, rt.Price, rt.Desct \n"
             + "from tblRoomType as rt, tblMotel as m \n"
@@ -146,6 +147,30 @@ public class RoomDAO {
         return check;
     }
 
+    public boolean updateRoomstatus(String roomID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(BOOKING_ROOM);
+                ptm.setString(1, roomID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    
     public boolean createRoomType(String roomTypeID, String typeName, int price, String image, String desct, String motelID, int status) throws SQLException {
         boolean check = false;
         Connection conn = null;
