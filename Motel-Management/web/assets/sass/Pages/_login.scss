@@ -32,13 +32,13 @@
                     border-color: $color-white-0;
                 }
             }
-            .btn-signup{
-                &:hover{
+            .btn-signup {
+                &:hover {
                     background-color: $color-primary-3;
                 }
             }
         }
-        .input-field{
+        .input-field {
             margin-top: 0;
         }
         .form-item {
@@ -55,12 +55,32 @@
         }
         .button-select {
             .active {
-            background-color: $color-primary-3;
+                background-color: $color-primary-3;
             }
             .btn {
                 &:hover {
                     color: $color-white-1;
                 }
+            }
+        }
+        button.login-gg {
+            display: flex;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            background: $color-white-1;
+            transition: all 0.5s;
+            a {
+                text-decoration: none;
+                color: $color-blue-2;
+                img {
+                    display: inline-block;
+                    padding-right: 5px;
+                }
+            }
+            &:hover {
+                background: $color-blue-1;
             }
         }
     }

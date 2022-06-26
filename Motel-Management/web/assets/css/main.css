@@ -583,6 +583,22 @@ footer {
       background-color: #ffadd9; }
     .background .container .button-select .btn:hover {
       color: #f0f0f0; }
+    .background .container button.login-gg {
+      display: flex;
+      margin: auto;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      background: #f0f0f0;
+      transition: all 0.5s; }
+      .background .container button.login-gg a {
+        text-decoration: none;
+        color: #2c3e50; }
+        .background .container button.login-gg a img {
+          display: inline-block;
+          padding-right: 5px; }
+      .background .container button.login-gg:hover {
+        background: #61BDF6; }
 
 .content__list-room {
   min-height: 1367.5px; }
@@ -870,6 +886,9 @@ footer {
   padding: 0; }
 .main-content .col-form-label {
   font-size: 16px; }
+.main-content button.close:focus {
+  outline: none;
+  box-shadow: none; }
 .main-content textarea {
   resize: none;
   width: auto;
