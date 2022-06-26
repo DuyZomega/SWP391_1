@@ -87,14 +87,19 @@ public class CreateBookingController extends HttpServlet {
                 request.setAttribute("BOOKING_ERROR", userError);
             }
             if (check) {
-                boolean check2 = dao2.updateRoomstatus(roomID);
+                String roomTypeID = "";
+                do {
+                    roomTypeID = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao2.checkRoomTypeID(roomTypeID);
+                } while (checkID = false);
+                boolean check2 = dao2.updateRoomstatus(roomType);
                 if (check2) {
-                    url = SUCCESS;
-                    request.setAttribute("MESSAGE", "cập nhật thông tin phòng thành công !");
+                    roomType = roomTypeID;
                 } else {
-                    request.setAttribute("MESSAGE", "Cập Nhật Thất Bại");
+                    checkCreateRoomtype = false;
                 }
             }
+
         } catch (Exception e) {
             log("Error at OwnerCreateRoomController:" + e.toString());
         } finally {
