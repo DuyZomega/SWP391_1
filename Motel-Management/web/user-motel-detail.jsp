@@ -171,7 +171,7 @@
                                     double sum = 0;
                                     if (rt.size() > 0) {
                                         for (RoomTypeDTO roomtype : rt) {
-                                %><tr>
+                                %>  <tr>
                                     <td>
                                         <div class="row">
                                             <div

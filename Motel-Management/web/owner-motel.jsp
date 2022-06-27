@@ -210,7 +210,7 @@
                                                         <i class='bx bx-dots-vertical-rounded'></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="edit-dele">
-                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome<%= motel.getMotelID() %>"><i class='bx bx-edit'></i>Chỉnh sửa</a>
+                                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome<%= motel.getMotelID()%>"><i class='bx bx-edit'></i>Chỉnh sửa</a>
 
 
                                                         <!-- remove Home -->
@@ -290,10 +290,7 @@
 
                                                     %>
                                                     <option value="<%= city.getCityID()%>"><%= city.getCityName()%></option>
-                                                    <% <%            }
-                                                            }
-                                                        }
-                                                    %>            }
+                                                    <%            }
                                                             }
                                                         }
                                                     %> 
@@ -384,7 +381,7 @@
 
         %>      
         <!-- edit Home -->
-        <div id="editHome<%= motel.getMotelID() %>" class="modal fade" role="dialog">
+        <div id="editHome<%= motel.getMotelID()%>" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
                 <div class="modal-content modal-addRoom">
                     <div class="modal-header">
