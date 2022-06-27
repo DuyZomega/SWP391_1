@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về chúng tôi</title>
+    <link rel="shortcut icon" href="./assets/img/logo2.png">
+    <!-- BS4 CSS -->
+    <link rel="stylesheet" href="vendor/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <!-- FONT -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100&family=Roboto+Condensed:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <!-- main CSS -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header__top d-flex justify-content-between align-items-center container-fluid fixed-top">
+            <div class="header__left">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:hotel.management@gmail.com"><i class="fa fa-envelope"></i>
+                    hotel.management@gmail.com</a>
+                <a href="tel:0865644162" class="mr-4"><i class="fas fa-phone-alt"></i>
+                    0865.644.162</a>
+            </div>
+
+            <div class="header__right">
+                <!-- trước khi đăng nhập -->
+                <button type="button" class="button--primary btn btn-sm">
+                    <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+                </button>
+                <a href="./login.html">Đăng nhập</a>
+                <a href="./signup.html">Đăng ký</a>
+
+                <!-- sau khi đăng nhập -->
+                <!-- <button type="button" class="button--primary btn btn-sm">
+                    <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+                </button>
+                <div class="user-dropdown dropdown">
+                    <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
+                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span>Xin chào, "some-one"</span>
+                        <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg" alt="avatar"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="user-profile.html">Thông tin cá nhân</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </div> -->
+            </div>
+
+        </div>
+        <div class="header__bottom">
+            <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
+                <a class="navbar-brand" href="index.html"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
+                        alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-about-us.html">Về chúng tôi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-team.html">Đội ngũ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Bảng giá dịch vụ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user-motel-list.html">Danh sách Motel</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="header__bottom__right">
+                    <div class="header__bottom--search d-flex">
+                        <select class="custom-select" id="inputGroupSelect02">
+                            <option selected>Vị trí bạn muốn tìm kiếm</option>
+                            <option value="1">Quận 1</option>
+                            <option value="2">Quận 2</option>
+                            <option value="3">Quận 3</option>
+                        </select>
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="bg-header">
+        <div class="title container">
+            <h1>về chúng tôi</h1>
+        </div>
+    </div>
+    <hr class="m-0">
+    <div class="header__breadcrumb container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Về chúng tôi</li>
+            </ol>
+        </nav>
+    </div>
+    <hr>
+
+    <section class="intro container my-4">
+        <div class="intro-content row">
+            <div class="card col-6">
+                <img src="assets/img/background.jpg" class="card-img-top" alt="img1">
+                <div class="card-body">
+                    <h5 class="card-title">Về HORD</h5>
+                    <p class="card-text">Công ty TNHH Chém Gió Xuyên Quốc Gia HORD (tên viết tắt là: HORD Gossip Inc.)
+                        được thành
+                        lập vào tháng 05/2022 bởi Co-Founder có kinh nghiệm trong lĩnh vực công nghệ phần mềm cũng như
+                        dịch vụ, phòng trọ / nhà trọ.
+                    </p>
+                    <p class="card-text">Với nền tảng chính là cung cấp dịch vụ tìm kiếm và quản lý phòng / nhà trọ
+                        cho thị trường. Chúng tôi mong muốn mang đến cho người dùng một trải
+                        nghiệm
+                        hoàn hảo về việc tìm kiếm thông tin, quản lý phòng trọ / nhà trọ trên toàn TP. Hồ Chí Minh
+                        một cách : “Dễ dùng – Tiện dụng –
+                        Uy tín”.
+                    </p>
+                </div>
+            </div>
+            <div class="card col-6">
+                <img src="assets/img/background-motel.jpg" class="card-img-top" alt="img1">
+                <div class="card-body">
+                    <h5 class="card-title">Trách nhiệm của HORD</h5>
+                    <p class="card-text">Giúp mọi người tìm kiếm những không gian sống tốt hơn!
+                    </p>
+                    <p class="card-text">Giúp khách hàng quản lý phòng trọ / nhà trọ hiệu quả hơn với những trải nghiệm
+                        đơn giản, hiệu quả và thuận tiện cho khách hàng!
+                    </p>
+                    <p class="card-text">HORD cam kết sẽ luôn nỗ lực hết mình trong việc giữ vững vai trò cầu nối hiệu
+                        quả, sự lựa chọn tin cậy, quản lý chính xác không chỉ doanh nghiệp mà còn về phía người dùng.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 intro-status">
+                <h5 class="message">
+                    “Mái ấm của bạn là hạnh phúc của chúng tôi!”
+                </h5>
+                <img src="assets/img/avatar.jpg" alt="Co-Founder">
+                <p>Người sáng lập</p>
+            </div>
+            <div class="col-6 card intro-desc">
+                <img class="img-fluid" src="assets/img/logo2-1.png" alt="logo">
+                <h5 class="card-title">Home On Road</h5>
+                <div class="card-text">Là HORD, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu cầu không chỉ
+                    đơn thuần là tìm kiếm một nơi dừng chân mà còn cả môi trường cũng như dịch vụ mang lại cảm giác
+                    thoải mái và an toàn cho các quý khách hàng!
+                </div>
+            </div>
+            <div class="col-6 intro-img" style="background-image: url(assets/img/cover-1.jpg);" alt="cover-1"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="pt-5">
+        <div class="container">
+            <div class="row section">
+                <div class="col-12 offset-sm-1 col-sm-3">
+                    <img class="logo img-fluid" src="./assets/img/logo2-1.png" alt="logo">
+                    <div class="slogan">
+                        Mái ấm của bạn là hạnh phúc của chúng tôi!
+                    </div>
+                </div>
+                <div class="col-12 col-sm-2">
+                    <h3>VỀ HORD</h3>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Bảng giá dịch vụ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-sm-3">
+                    <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
+                    <ul>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Giải quyết tranh chấp</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-3 footer-contact">
+                    <h3>THÔNG TIN LIÊN LẠC</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-google-plus-g"></i> Google+</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__copyright text-center pb-3">
+                <p class="text-capitalize">2022 © công ty <span>TNHH</span> Chém Gió Xuyên Quốc Gia</p>
+                <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- thư viện hỗ trợ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        referrerpolicy="no-referrer"></script>
+    <!-- Jquery Waypoint -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- BS4 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>

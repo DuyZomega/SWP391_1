@@ -408,8 +408,8 @@ public boolean checkDuplcate(String userId) throws SQLException {
         }
         return check;
     }
-
-    public boolean insertUserNew(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
+   
+     public boolean insertUserNew(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -436,7 +436,7 @@ public boolean checkDuplcate(String userId) throws SQLException {
         }
         return check;
     }
-    
+     
     
     
     /*admin*/

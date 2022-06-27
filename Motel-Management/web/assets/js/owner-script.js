@@ -93,84 +93,6 @@ var loadFile = function (event) {
     image.src = URL.createObjectURL(event.target.files[0]);
 };  
 
-  
-//chart
-const ctx = document.getElementById('chart-Dashboard').getContext('2d');
-const day = [
-    {x: Date.parse('2022-06-09 UTC+0700'), y: 25},
-    {x: Date.parse('2022-06-10 UTC+0700'), y: 10},
-    {x: Date.parse('2022-06-11 UTC+0700'), y: 4},
-    {x: Date.parse('2022-06-12 UTC+0700'), y: 7},
-    {x: Date.parse('2022-06-13 UTC+0700'), y: 16},
-    {x: Date.parse('2022-06-14 UTC+0700'), y: 18},
-    {x: Date.parse('2022-06-15 UTC+0700'), y: 12}
-];
-
-const week = [
-    {x: Date.parse('2022-06-5 UTC+0700'), y: 134},
-    {x: Date.parse('2022-06-12 UTC+0700'), y: 100},
-    {x: Date.parse('2022-06-19 UTC+0700'), y: 240},
-    {x: Date.parse('2022-06-26 UTC+0700'), y: 150},
-    {x: Date.parse('2022-07-03 UTC+0700'), y: 175}
-];
-
-const month = [
-    {x: Date.parse('2022-01-01 UTC+0700'), y: 2000},
-    {x: Date.parse('2022-02-01 UTC+0700'), y: 3542},
-    {x: Date.parse('2022-03-01 UTC+0700'), y: 1231},
-    {x: Date.parse('2022-04-01 UTC+0700'), y: 1221},
-    {x: Date.parse('2022-05-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-06-01 UTC+0700'), y: 1323},
-    {x: Date.parse('2022-07-01 UTC+0700'), y: 2412},
-    {x: Date.parse('2022-08-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-09-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-10-01 UTC+0700'), y: 3212},
-    {x: Date.parse('2022-11-01 UTC+0700'), y: 1233},
-    {x: Date.parse('2022-12-01 UTC+0700'), y: 1321}
-];
-
-const chart = new Chart(ctx, {   
-    type: 'bar',
-    data: {
-        // labels: Object.keys(week),
-        datasets: [{
-            label: 'Doanh thu nhà nghỉ A',
-            data: day,
-            backgroundColor: [
-                'rgba(39, 174, 96,0.5)'
-            ],
-            borderColor: [
-                'rgba(39, 174, 96,1.0)'
-
-            ],
-            borderWidth: 1,
-        },{
-            label: 'Doanh thu nhà nghỉ B',
-            data: day,
-            backgroundColor: [
-                'rgba(211, 84, 0,0.5)'
-            ],
-            borderColor: [
-
-                'rgba(211, 84, 0,1.0)'
-            ],
-            borderWidth: 1,
-        }]
-    },
-    options: {
-        scales: {
-            x: {
-                type: 'time',
-                time: {
-                    unit: 'day'
-                }
-            },
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-}); 
 
 function timeFrame(period) {
     if (period.value == 'day') {
@@ -180,6 +102,7 @@ function timeFrame(period) {
     if (period.value == 'week') {
         chart.data.datasets[0].data = week;
         chart.options.scales.x.time.unit = period.value;
+
     }
     if (period.value == 'month') {
         chart.data.datasets[0].data = month;
@@ -258,6 +181,79 @@ function confirmdele() {
 }
 
 
+
+
+ function getValue() {
+
+    const numOfHome = document.querySelectorAll('#numOfHome select');
+    var num = [];
+    var lengthOfarray;
+    for (let i = 0; i < numOfHome.length; i++) {
+        var data = document.getElementById(numOfHome[i].id);
+        lengthOfarray = data.length;
+        for (let j = 0; j < lengthOfarray; j++) {
+            num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+        }  
+    }
+    console.log(num);
+    
+
+    // create array ojbect
+    var home1 = [];
+    let a1234 = document.getElementById('a1234');
+    for (let i = 0; i < a1234.length; i++) {
+        home1.push({x : Date.parse(a1234.options[i].innerText), y : a1234.options[i].value})
+    }
+    var home2 = [];
+    let b1234 = document.getElementById('b1234');
+    for (let i = 0; i < b1234.length; i++) {
+        home2.push({x : Date.parse(b1234.options[i].innerText), y : b1234.options[i].value})
+    }
+    const ctx = document.getElementById('chart-Dashboard').getContext('2d');
+    const chart = new Chart(ctx, {   
+            type: 'line',
+            data: {
+                // labels: Object.keys(week),
+                datasets: [{
+                    label: 'Doanh thu nhà nghỉ A',
+                    data: home1,
+                    backgroundColor: [
+                        'rgba(39, 174, 96,0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(39, 174, 96,1.0)'
+        
+                    ],
+                    borderWidth: 1,
+                    lineTension: 0.25,
+                },{
+                    label: 'Doanh thu nhà nghỉ B',
+                    data: home2,
+                    backgroundColor: [
+                        'rgba(192, 174, 96,0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(192, 174, 96,1.0)'
+        
+                    ],
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }); 
+}   
 
 
 

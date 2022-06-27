@@ -91,6 +91,17 @@ html body {
     color: #fff;
 }
 
+.btn-bg {
+    border-color: #34495e ;
+    background-color: #34495e;
+    color: #fff;
+}
+
+.btn-bg:hover {
+    border-color: #2b3d4f ;
+    background-color: #2b3d4f;
+    color: #fff;
+}
 
 .demise {
     background: #3498db;
@@ -153,8 +164,33 @@ html body {
 }
 
 
+.pagination .previous-page a,
+.pagination .next-page a{
+    display: flex;
+    justify-content: center;
+    background-color: #34495e;
+    border-radius: 20px !important;
+    margin: 0 10px;
+    width:70px;
+    color: #e7e7e7;
+}
 
+.pagination .dots {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
 
+.pagination .current-page a{
+    border-radius: 20px;
+    margin: 0 5px;
+    color: #34495e;
+}
+
+.pagination .current-page.active a {
+    background-color: #34495e;
+    border: none;
+}
 
 /* navigation */
 .navigation {
@@ -844,12 +880,21 @@ html body {
     list-style: none;
     line-height: 1rem;
     display: flex;
-    align-items: baseline;
+    align-items: baseline;   
 }
 
 .room-title ul li h6{
     font-size: 15px;
     font-weight: 500;
+}
+
+.room-title ul li span {
+    display: -webkit-box;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .room-title ul li:last-child {
@@ -1270,12 +1315,61 @@ line-height: 35px;
 
 
 /* notification */
+.notification .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.notification .nav-tabs {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.notification .nav-tabs .nav-item {
+    margin-bottom: -1px;
+}
+
+.notification .nav-link {
+    background: transparent;
+    border-radius: 0px;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    border-width: 0 0px 3px 0;
+    color: #a0c5ea;
+}
+
+
+.notification .nav-link.active {
+    background-color: #fff;
+    border-color: #34495e;
+    border-radius: 0;
+    color: #34495e;
+    border-width: 0 0px 3px 0;
+}
+
+.notification .nav-link i {
+    display: inline-block;
+    transform: scale(1.5);
+    color: #34495e;
+
+}
+
 .email-left-box {
     width: 15rem;
     float: left;
     padding: 0 1.25rem 1.25rem 1rem;
     border-top: 0;
     border-left: 0; 
+}
+
+.email-left-box .btn {
+    padding: 0.6rem 0.9rem;
+    border-radius: 0.3rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    box-shadow: none;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
@@ -1611,10 +1705,6 @@ line-height: 35px;
     }
 }
 
-
-.spacing #myTable_wrapper #myTable_length{
-    margin-left: 250px;
-}
 
 .spacing .typeaccount {
     position: absolute;

@@ -452,33 +452,6 @@ public List<MotelDTO> getAllListMotel() throws SQLException {
     
     }
 
- public boolean insertMotelNew(MotelDTO motel) throws SQLException, ClassNotFoundException, NamingException {
-        boolean check = false;
-        Connection conn = null;
-        PreparedStatement stm = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                String sql = "INSERT INTO tblMotel(name,address) AND tblBooking(bookingDate,bookingID) AND tblPayment(paymentType)"
-                        + " VALUES(?,?) AND VALUES(?,?) AND VALUES(?)";
-                stm = conn.prepareStatement(sql);
-                stm.setString(1, motel.getName());
-                stm.setString(2, motel.getAddress());
-                stm.setDate(3, motel.getBookingDate());
-                stm.setString(4, motel.getBookingID());
-                stm.setString(5, motel.getPaymentType());
-                check = stm.executeUpdate() > 0;
-            }
-        } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return check;
-    }
 private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone,tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status, tblUser.FullName as fullName , tblUser.Phone \n" +
 "FROM tblMotel,tblDistrict,tblCity , tblUser\n" +
 "WHERE  tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID  AND tblMotel.OwnerID = tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.MotelID = ?";

@@ -1,3 +1,6 @@
+.content__list-room {
+    min-height: 1367.5px;
+}
 .content__filter {
     .custom-select {
         background: url(../../assets/img/down-arrow-solid.png) no-repeat right 0.75rem center/8px 10px;
@@ -30,41 +33,61 @@
             overflow: hidden;
         }
     }
-    .pagination {
+}
+
+.pagination {
+    @extend %paginationDisplay;
+    gap: 16px;
+    margin-top: $mg-2;
+    .btn {
+        background-color: $color-white-0;
+        color: $color-blue-2;
+
+        border: 1px solid $color-blue-2;
+        @include size(40px, 40px);
+        border-radius: 50% !important;
+        cursor: pointer;
         @extend %paginationDisplay;
-        gap: 16px;
-        margin-top: $mg-2;
-        .btn {
-            background-color: $color-white-0;
-            border: 1px solid $color-blue-2;
+        &:hover {
+            background-color: $color-blue-2;
+            color: $color-white-0;
+        }
+    }
+    .pages {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        .page-link {
             @include size(40px, 40px);
+            color: $color-blue-2;
             border-radius: 50%;
+            // border: 1px solid $color-blue-2;
             cursor: pointer;
             @extend %paginationDisplay;
+            gap: 10px;
             &:hover {
                 background-color: $color-blue-2;
                 color: $color-white-0;
             }
         }
-        .pages {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            .page {
-                @include size(40px, 40px);
-                border-radius: 50%;
-                cursor: pointer;
-                @extend %paginationDisplay;
-                gap: 10px;
-                &:hover {
-                    background-color: $color-blue-2;
-                    color: $color-white-0;
-                }
-            }
+    }
+    .page-link {
+        &:focus {
+            outline: none;
+            box-shadow: none;
         }
-        .active {
+    }
+    .active {
+        .page-link {
             background-color: $color-blue-2;
             color: $color-white-0;
+            border-color: $color-blue-2;
+        }
+    }
+
+    .disabled {
+        .btn {
+            border-color: #ccc;
         }
     }
 }
@@ -73,12 +96,6 @@
     display: grid;
     row-gap: 50px;
     margin-top: 10px;
-    .bg-1 {
-        background: url(../../assets/img/background-motel.jpg);
-    }
-    .bg-2 {
-        background: url(../../assets/img/background.jpg);
-    }
     .bg-1,
     .bg-2 {
         width: 100%;

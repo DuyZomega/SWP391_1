@@ -54,16 +54,18 @@
                         <div class="box">
                             <c:forEach var="o" varStatus="counter"
                                        items="${requestScope.DETAIL_MOTEL}">
-                                <%                                                                           
-                                    double total = 0;
+                                <%                                    double total = 0;
                                     double sum = 0;
                                 %>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Tên nhà
                                             nghỉ:</span> <span><input type="hidden" name="name" value="${o.name}" />${o.name}</span></label>
                                 </p>
+                                <input type="hidden" name="motelID" value="${o.motelID}"/>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
                                             chỉ:</span><input type="hidden" name="address" value="${o.address},${o.district},${o.city}" /> ${o.address},${o.district},${o.city}
                                     </label></p>
+                                <input type="hidden" name="userId" value="<%= loginUser.getUserId()%>"/>
+                                <input type="hidden" name="username" value="<%= loginUser.getFullName()%>"/>
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Số phòng
                                             đặt:</span> <span><input type="hidden" name="countroom" value="<%= request.getParameter("countroom")%>" /><%= request.getParameter("countroom")%></span>
                                         phòng</label></p>
@@ -87,21 +89,25 @@
                             </c:forEach>
                         </div>
                     </div>
+                    <c:forEach var="a" varStatus="counter"
+                               items="${requestScope.LIST_ROOMTYPE}">
+                        <input type="hidden" name="typeofRoom" value="${a.roomTypeID}"/>
+                    </c:forEach>
                     <hr>
                     <div class="infor-owner">
-                        
+
                         <h3 class="heading"><i class="fas fa-id-card-alt"></i> Chủ nhà nghỉ</h3>
                         <c:forEach var="i" varStatus="counter"
                                    items="${requestScope.DETAIL_MOTEL}">
-                        <div class="box d-flex">
-                            <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
-                            <span class="infor-owner-detail">
-                                <p class="m-0"><span class="label">Họ tên:</span> ${i.ownerName}</p>
-                                <p class="m-0"><span class="label">SĐT:</span> ${i.phone}</p>
-                                <p class="m-0"><span class="label">Địa chỉ:</span> ${i.address},${i.district},${i.city}
-                                </p>
-                            </span>
-                        </div>
+                            <div class="box d-flex">
+                                <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
+                                <span class="infor-owner-detail">
+                                    <p class="m-0"><span class="label">Họ tên:</span> <input type="hidden" name="receiver" value="${i.ownerName}"/> ${i.ownerName}</p>
+                                    <p class="m-0"><span class="label">SĐT:</span> ${i.phone}</p>
+                                    <p class="m-0"><span class="label">Địa chỉ:</span> ${i.address},${i.district},${i.city}
+                                    </p>
+                                </span>
+                            </div>
                         </c:forEach>
                     </div>
                 </div>

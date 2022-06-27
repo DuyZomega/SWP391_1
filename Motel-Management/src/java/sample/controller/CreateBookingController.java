@@ -4,19 +4,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
-import sample.room.RoomTypeDTO;
 import sample.users.UserError;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Random;
 import javax.servlet.ServletException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import sample.booking.BookingDAO;
+import sample.booking.BookingDTO;
+import sample.booking.BookingDetailDTO;
+import sample.payment.PaymentDAO;
+import sample.payment.PaymentDTO;
+import sample.room.RoomDTO;
 
 @WebServlet(name = "CreateBookingController", urlPatterns = {"/CreateBookingController"})
 public class CreateBookingController extends HttpServlet {
@@ -33,54 +33,75 @@ public class CreateBookingController extends HttpServlet {
         Date date = new Date(0);
         try {
             Date bookingDate = Date.valueOf(LocalDate.now());
-            String paymentType = request.getParameter("payment");
-            String fullName = request.getParameter("fullName");
-            String phone = request.getParameter("phone");
-            String gmail = request.getParameter("gmail");
-            String name = request.getParameter("name");
-            String address = request.getParameter("address");
-            int countTime = Integer.parseInt(request.getParameter("counttime"));
-            String typeName = request.getParameter("typename");
-            UserDAO dao = new UserDAO();
-            MotelDAO dao1 = new MotelDAO();
+            String[] paymentType = request.getParameterValues("payment");
+            String payment = paymentType.toString();
+            String userID = request.getParameter("userId");
+            String sender = request.getParameter("username");
+            String receiver = request.getParameter("receiver");
+            int Time = Integer.parseInt(request.getParameter("counttime"));
+            String roomTypeName = request.getParameter("typename");
+            String motelID = request.getParameter("motelID");
+            String roomType = request.getParameter("typeofRoom");
+            int status = 1;
+            BookingDAO dao = new BookingDAO();
+            PaymentDAO dao1 = new PaymentDAO();
             RoomDAO dao2 = new RoomDAO();
             boolean check = true;
+            boolean checkCreatePayment = true;
+            boolean checkCreateBooking = true;
+            boolean checkCreateRoomtype = true;
+            String bookingID = "";
+            String paymentID = "";
+            String roomID = "";
+            boolean checkID = false;
             if (check) {
-                boolean checkID = false;
-                String userId = String.valueOf(generator.nextInt(9999999));
-                checkID = dao.checkUserID(userId);
-                UserDTO user = new UserDTO(userId, fullName, "", 0, "", "", phone, gmail, "", "", "", 1);
-                boolean checkInsert = dao.insertUserNew(user);
+                do {
+                    bookingID = String.valueOf(generator.nextInt(9999999));
+                    paymentID = bookingID;
+                    checkID = dao.checkBookingID(bookingID);
+                } while (checkID = false);
+                PaymentDTO payment1 = new PaymentDTO(paymentID, "", bookingDate, sender, receiver, payment);
+                boolean check1 = dao1.insertPayment(payment1);
+                if (check1) {
+                    url = SUCCESS;
+                } else {
+                    checkCreatePayment = false;
+                }
+            }
+            if (checkCreateBooking) {
+                do {
+                    bookingID = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao.checkBookingID(bookingID);
+                } while (checkID = false);
+                BookingDTO booking = new BookingDTO(bookingID, bookingDate, "", 0, 2, userID);
+                boolean checkInsert = dao.insertBooking(booking);
+                BookingDetailDTO booking1 = new BookingDetailDTO("", "", bookingID, Time);
+                boolean checkInsert1 = dao.insertBookingDetail(booking1);
                 if (checkInsert) {
                     url = SUCCESS;
+                    if (checkInsert1) {
+                        url = SUCCESS;
+                    }
                 }
             } else {
                 request.setAttribute("BOOKING_ERROR", userError);
             }
             if (check) {
-                boolean checkID = false;
-                String motelID = request.getParameter("motelID");
-                String bookingID = String.valueOf(generator.nextInt(9999999));
-                checkID = dao1.checkMotelID(motelID);
-                MotelDTO motel = new MotelDTO("", name, "", "", address, "", "", 0, bookingDate, "", 0, "", "", 1, bookingID, paymentType);
-                boolean checkInsert1 = dao1.insertMotelNew(motel);
-                if (checkInsert1) {
-                    url = SUCCESS;
+                String roomTypeID = "";
+                do {
+                    roomTypeID = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao2.checkRoomTypeID(roomTypeID);
+                } while (checkID = false);
+                boolean check2 = dao2.updateRoomstatus(roomType);
+                if (check2) {
+                    roomType = roomTypeID;
+                } else {
+                    checkCreateRoomtype = false;
                 }
-            } else {
-                request.setAttribute("BOOKING_ERROR1", userError);
             }
-            if (check) {
-                RoomTypeDTO room = new RoomTypeDTO(typeName, countTime);
-                boolean checkInsert2 = dao2.insertRoomNew(room);
-                if (checkInsert2) {
-                    url = SUCCESS;
-                }
-            } else {
-                request.setAttribute("BOOKING_ERROR2", userError);
-            }
+
         } catch (Exception e) {
-            log("Error at CreateController: " + e.toString());
+            log("Error at OwnerCreateRoomController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
@@ -124,5 +145,4 @@ public class CreateBookingController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
