@@ -132,7 +132,7 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        <%=loginUser.getFullName()%>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
@@ -191,7 +191,7 @@
                         <i class='bx bx-money'></i>
                     </div>
                     <div>
-                        <div class="number">&#8363;<%= overview.getIncomeNumber()%></div>
+                        <div class="number"><span class="price-format" data-price="<%= overview.getIncomeNumber()%>"></span></div>
                         <div class="cardName">Tổng doanh thu</div>
                     </div>
                 </div>
@@ -249,7 +249,7 @@
                                     %>
                                     <tr>
                                         <td><%= news.getUserID()%></td>
-                                        <td><%= news.getPrice()%></td>
+                                        <td><span class="price-format" data-price="<%= news.getPrice()%>"></span></td>
                                         <td><%= news.getRoomName()%></td>
                                         <td><div class="<%= clas%>"><%= status%></div></td>
                                     </tr>
@@ -295,7 +295,7 @@
                                             <i class='bx bxs-star yellow'></i>
                                             <% }%>
                                             <% if (5-feedback.getRating() > 0) {
-                                                    for (int y = 1; y < 5 - feedback.getRating(); y++){
+                                                    for (int y = 0; y < (5 - feedback.getRating()); y++){
                                             %>
                                             <i class='bx bx-star'></i>
                                             <%
@@ -309,17 +309,6 @@
                                             }
                                         }
                                     %>
-                                    <tr>
-                                        <td><div class="imgBx"><img src="assets/img/avatar.jpg" alt=""></div></td>
-                                        <td>Tran Ngoc Hai</td>
-                                        <td>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bx-star'></i>
-                                            <i class='bx bxs-star yellow'></i>
-                                            <i class='bx bxs-star yellow'></i>
-                                            <i class='bx bxs-star yellow'></i>
-                                        </td>
-                                    </tr>
                                     <tr>
 
                                         <td>Total</td>

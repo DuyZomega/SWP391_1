@@ -27,6 +27,21 @@ $('.tab-pane').each(function(i){
 //     $(".preloader").css("display","none");
 // });
 
+let vnd = Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+    useGrouping: true
+}); 
+function price_format(){
+    $('.price-format').each(function(){
+        var $price = $(this).data('price'),
+            html=vnd.format($price);
+        $(this).html(html);
+    });
+}
+$(function(){
+    price_format();
+});
 
 let feedback = document.querySelectorAll('.feedback');
 feedback.onclick = function () {

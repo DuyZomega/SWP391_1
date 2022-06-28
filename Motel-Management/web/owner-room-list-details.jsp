@@ -134,13 +134,13 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        <%=loginUser.getFullName()%>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
                                         <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class='bx bx-log-out-circle'></i>Thoát</a>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
                                 </div>  
                             </div>  
@@ -259,7 +259,7 @@
                                                 <span>Thời Gian Thuê:</span>
                                             </div>
                                             <div class="col-sm-7 text-sm-left">
-                                                <span><%= roomDetail.getTime()%></span>
+                                                <span><%= roomDetail.getTime()%>h</span>
                                             </div>
                                         </div>
                                     </div>
@@ -339,7 +339,7 @@
                                                                 <tr>
                                                                     <td><%= service.getServiceId()%></td>
                                                                     <td><%= service.getName()%></td>
-                                                                    <td><%= price%>&#8363;</td>
+                                                                    <td><span class="price-format" data-price="<%= price%>"></span></td>
                                                                 </tr>
                                                                 <%
                                                                             }
@@ -351,7 +351,7 @@
                                                                 <tr>
                                                                     <th>Total</th>
                                                                     <th></th>
-                                                                    <th><%= total%>&#8363;</th>
+                                                                    <th><span class="price-format" data-price="<%= total%>"></span></th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
@@ -384,19 +384,19 @@
                                                         <tr>
                                                             <td>01</td>
                                                             <td>Giá Phòng</td>
-                                                            <td><%= totalRoom%>&#8363;</td>
+                                                            <td><span class="price-format" data-price="<%= totalRoom%>"></span></td>
                                                         </tr>
                                                         <tr>
                                                             <td>02</td>
                                                             <td>Dịch vụ</td>
-                                                            <td><%= total%>&#8363;</td>
+                                                            <td><span class="price-format" data-price="<%= total%>"></span></td>
                                                         </tr>
                                                     </tbody>
                                                     <tfoot style="color: #e74c3c; border-top: 1px solid #ccc;">
                                                         <tr>
                                                             <th>Total</th>
                                                             <th></th>
-                                                            <th><%= total + totalRoom%>&#8363;</th>
+                                                            <th><span class="price-format" data-price="<%= total + totalRoom%>"></span></th>
                                                         </tr>
                                                     </tfoot>
                                                 </table>

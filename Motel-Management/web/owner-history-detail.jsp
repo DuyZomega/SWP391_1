@@ -134,16 +134,16 @@
                             <div class="float-right">
                                 <div class="btn-group me-1 mb-1">
                                     <div class="dropdown">
-                                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Lê Minh Quân
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
-                                            <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#"><i class='bx bx-log-out-circle'></i>Thoát</a>
-                                        </div>
-                                    </div>  
+                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <%=loginUser.getFullName()%>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
+                                    </div>
+                                </div>  
                                 </div>  
                             </div>   
                         </div>
@@ -196,7 +196,7 @@
                                             if (historyBooking.getStatus().equals("0")) {
                                                 status = "Chưa Thanh Toán";
                                             }
-                                            if (historyBooking.getStatus().equals("3")){
+                                            if (historyBooking.getStatus().equals("3")) {
                                                 status = "Đã Thanh Toán Trước";
                                             }
                                         %>
@@ -249,8 +249,15 @@
                                                     <% for (int i = 1; i <= feedbackBooking.getRating(); i++) {  %>
                                                     <i class='bx bxs-star yellow'></i>
                                                     <% } %>
+                                                    <% if (5 - feedbackBooking.getRating() > 0) {
+                                                            for (int y = 0; y < (5 - feedbackBooking.getRating()); y++) {
+                                                    %>
+                                                    <i class='bx bx-star'></i>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
 
-                    
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -348,26 +355,26 @@
                                                                 if (listService.size() > 0) {
                                                                     for (ServiceDTO service : listService) {
                                                         %>
-                                                        <li><%= service.getName() %></li>
-                                                            <%  
+                                                        <li><%= service.getName()%></li>
+                                                            <%
+                                                                        }
                                                                     }
                                                                 }
-                                                            }
                                                             %>
                                                     </ul>
                                                 </div>
                                                 <div class="col-sm-2 text-sm-left">
                                                     <ul>
-                                                        <% 
+                                                        <%
                                                             if (listService != null) {
                                                                 if (listService.size() > 0) {
                                                                     for (ServiceDTO service : listService) {
                                                         %>
-                                                        <li><%= service.getPrice() %> VND</li>
-                                                            <%  
+                                                        <li><span class="price-format" data-price="<%= service.getPrice()%>"></span></li>
+                                                            <%
+                                                                        }
                                                                     }
                                                                 }
-                                                            }
                                                             %>
                                                     </ul>
                                                 </div>
@@ -385,7 +392,7 @@
                                                     <span>Tổng tiền:</span>
                                                 </div>
                                                 <div class="col-sm-3 text-sm-left">
-                                                    <span style="color: red;"><%= historyBooking.getTotal() %></span>
+                                                    <span style="color: red;" class="price-format" data-price="<%= historyBooking.getTotal()%>"></span>
                                                 </div>
                                             </div>
                                         </div>

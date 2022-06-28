@@ -70,14 +70,14 @@ public class ServiceDAO {
         return check;
     }
     
-        public List<ServiceDTO> getServiceBooking(String bookingID) throws SQLException {
+    public List<ServiceDTO> getServiceBooking(String bookingID) throws SQLException {
         List<ServiceDTO> listService = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            while (rs.next()) {
+            if (conn != null) {
                 ptm = conn.prepareStatement(GET_SERVICE_BOOKING);
                 ptm.setString(1, bookingID);
                 rs = ptm.executeQuery();
@@ -104,6 +104,7 @@ public class ServiceDAO {
         }
         return listService;
     }
+        
 public List<ServiceDTO> searchservice(String motelID) throws SQLException {
         List<ServiceDTO> listService = new ArrayList();
         Connection conn = null;

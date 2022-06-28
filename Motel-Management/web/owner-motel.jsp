@@ -134,13 +134,13 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        <%=loginUser.getFullName()%>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
                                         <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class='bx bx-log-out-circle'></i>Thoát</a>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
                                 </div>  
                             </div>  
@@ -248,7 +248,7 @@
                                             <div class="d-flex align-items-center mb-4">
                                                 <div class="text-center mr-3 turnover">
                                                     <span>Tổng doanh thu</span>
-                                                    <p class="mb-0 pt-1 text-black">$<%= motel.getMotelprice()%></p>
+                                                    <p class="mb-0 pt-1 text-black"><span class="price-format" data-price="<%= motel.getMotelprice()%>"></span></p>
                                                 </div>
                                             </div>
                                         </div>
