@@ -68,7 +68,7 @@
                                     </a>
                                 </li> 
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                    <a href="owner-service.jsp" li class="dropdown-item">
+                                    <a href="MainController?action=showService" li class="dropdown-item">
                                         <i class='bx bx-cloud-rain'></i>
                                         <span class="title">Dịch vụ</span>
                                     </a>
@@ -355,7 +355,7 @@
                                             Mô tả
                                         </label>
                                         <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3" 
-                                                  rows="3" id="decp" style="display: none;"></textarea>
+                                                  rows="3" id="roomTypeDesct" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -423,6 +423,15 @@
         </div>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="ckeditor/ckeditor.js"></script>
+        <script src="ckfinder/ckfinder.js"></script>
+
+        <script>
+            
+            var editor = CKEDITOR.replace('roomTypeDesct');
+            CKFinder.setupCKEditor(editor, 'ckfinder/');
+            data["Desct"] = editor.getData();
+        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>

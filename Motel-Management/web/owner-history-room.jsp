@@ -74,7 +74,7 @@
                                         </a>
                                     </li> 
                                     <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                        <a href="owner-service.jsp" li class="dropdown-item">
+                                        <a href="MainController?action=showService" li class="dropdown-item">
                                             <i class='bx bx-cloud-rain'></i>
                                             <span class="title">Dịch vụ</span>
                                         </a>
