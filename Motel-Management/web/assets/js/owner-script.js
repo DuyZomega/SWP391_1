@@ -259,7 +259,7 @@ function confirmdele() {
                     x: {
                         type: 'time',
                         time: {
-                            unit: 'day'
+                            unit: 'week'
                         }
                     },
                     y: {
