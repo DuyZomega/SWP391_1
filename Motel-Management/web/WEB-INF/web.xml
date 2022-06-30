@@ -44,10 +44,6 @@
         <servlet-name>DeleteUserController</servlet-name>
         <url-pattern>/DeleteUserController</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginGoogleServlet</servlet-name>
-        <url-pattern>/LoginGoogleServlet</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
