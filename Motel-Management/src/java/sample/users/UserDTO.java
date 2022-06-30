@@ -196,5 +196,12 @@ public class UserDTO {
         this.gmail = gmail;
     }
   
-      
+         public UserDTO(String userId, String fullName, String image, String password, String role) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.image = image;
+        this.password = password;
+        this.role = role;
+    }
+    
 }

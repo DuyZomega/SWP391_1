@@ -248,18 +248,16 @@
                                                     <div class="card-body room-title">
                                                         <ul class="list">
                                                             <li>
-                                                                <h6>LOẠI PHÒNG:<%= room.getImage()%></h6>
-                                                                <span></span>
+                                                                <h6>Loại Phòng: </h6>
+                                                                <span><%= room.getImage()%></span>
                                                             </li>                                                        
                                                             <li>
-                                                                <h6>THÔNG TIN:<%= room.getDesc()%></h6>
-                                                                <span>
-                                                                </span>
+                                                                <h6>Thông Tin: </h6>
+                                                                <span><%= room.getDesc()%></span>
                                                             </li>
                                                             <li>
-                                                                <h6>Số lượng dịch vụ đã sử dụng:</h6>
-                                                                <span>
-                                                                </span>
+                                                                <h6>Dịch Vụ Sử Dụng:</h6>
+                                                                <span></span>
                                                             </li>
                                                             <li>
                                                                 <h5>Giá:</h5>
