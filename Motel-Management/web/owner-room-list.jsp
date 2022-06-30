@@ -354,7 +354,7 @@
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3" id="labeldecp" style="display: none;">
                                             Mô tả
                                         </label>
-                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3" 
+                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3 d-5" 
                                                   rows="3" id="roomTypeDesct" style="display: none;"></textarea>
                                     </div>
                                 </div>
@@ -430,7 +430,7 @@
             
             var editor = CKEDITOR.replace('roomTypeDesct');
             CKFinder.setupCKEditor(editor, 'ckfinder/');
-            data["Desct"] = editor.getData();
+            data["roomTypeDesct"] = editor.getData();
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

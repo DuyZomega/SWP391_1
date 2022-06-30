@@ -25,7 +25,7 @@ public class MotelDAO {
 
     private static final String ADMIN_SHOW_MOTEL = "SELECT MotelID, tblMotel.Name, tblMotel.Phone,tblMotel.Image, tblMotel.Address,tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName ,tblMotel.Status FROM tblMotel,tblDistrict,tblCity, tblUser WHERE tblMotel.OwnerID = tblUser.UserID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID";
     
-    private static final String GET_MOTEL_INCOME = "SELECT b.BookingID, b.Total FROM tblMotel as m , tblRoomType as rt, tblRoom as r , tblBookingDetail as bd, tblBooking as b\n" +
+    private static final String GET_MOTEL_INCOME = "SELECT distinct b.BookingID, b.Total FROM tblMotel as m , tblRoomType as rt, tblRoom as r , tblBookingDetail as bd, tblBooking as b\n" +
                                                    "WHERE m.MotelID =? AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID  AND (b.Status = 1 OR b.Status = 2 )";
     private static final String GET_NUMBER_ROOMTYPE = "SELECT COUNT(*) as numberRoomType FROM tblMotel as m , tblRoomType as rt WHERE m.MotelID = ? AND m.MotelID = rt.MotelID GROUP BY m.MotelID";
     
