@@ -7,34 +7,32 @@ package sample.booking;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
 import sample.utils.DBUtils;
 
 /**
  *
  * @author cao thi phuong thuy
  */
-public class BookingDAO {
-
-    private static final String BOOKING_SUB = "INSERT [tblBooking] ([BookingID], [BookingDate], [Desct], [UserID], [Status], [Total]) VALUES (?,?,?,?,?,?)";
-
-    public boolean insertBooking(BookingDTO book) throws SQLException {
-        boolean check = false;
+public class PaymentDAO {
+private static final String PAYMENT_SUB = "INSERT [tblPayment] (PaymentID, Desct, PaymentTime, Sender,Receiver,PaymentTypeName) VALUES (?,?,?,?,?,?)";
+  
+    public boolean insertPayment(PaymentDTO pay) throws SQLException {
+      
+    boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(BOOKING_SUB);
-                ptm.setString(1, book.getBookingID());
-                ptm.setString(2, book.getDate());
-                ptm.setString(3, book.getDesct());
-                ptm.setString(4, book.getUserId());
-                ptm.setInt(5, book.getStatus());
-                ptm.setInt(6, book.getTotal());
+                ptm = conn.prepareStatement(PAYMENT_SUB);
+                ptm.setString(1, pay.getPaymentID());
+                ptm.setString(2, pay.getDesct());
+                ptm.setString(3, pay.getPaymentTime());
+                ptm.setString(4, pay.getSender());
+                ptm.setString(5, pay.getReceiver());
+                ptm.setString(6, pay.getPaymentTypeName());
                 check = ptm.executeUpdate() > 0 ? true : false;
+                 
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,7 +43,7 @@ public class BookingDAO {
             if (conn != null) {
                 conn.close();
             }
-        }
-        return check;
+        } 
+     return check;
     }
 }

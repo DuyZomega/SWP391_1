@@ -820,4 +820,32 @@ private static final String SHOWLIST_MOTEL_HOT = "SELECT tblMotel.MotelID,tblMot
 
     }
 
+ public boolean insertMotelNew(MotelDTO motel) throws SQLException, ClassNotFoundException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "INSERT INTO tblMotel(name,address) AND tblBooking(bookingDate,bookingID) AND tblPayment(paymentType)"
+                        + " VALUES(?,?) AND VALUES(?,?) AND VALUES(?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, motel.getName());
+                stm.setString(2, motel.getAddress());
+                stm.setDate(3, motel.getBookingDate());
+                stm.setString(4, motel.getBookingID());
+                stm.setString(5, motel.getPaymentType());
+                check = stm.executeUpdate() > 0;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
 }

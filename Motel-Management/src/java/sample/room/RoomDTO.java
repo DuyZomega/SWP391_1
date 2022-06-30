@@ -114,6 +114,10 @@ public class RoomDTO {
         this.MotelID = MotelID;
     }
     
-    
+     public RoomDTO(String roomId, int status) {
+        this.roomId = roomId;
+        this.status = status;
+    }
+
     
 }

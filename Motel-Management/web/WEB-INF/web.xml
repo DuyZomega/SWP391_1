@@ -20,6 +20,10 @@
         <servlet-name>DeleteUserController</servlet-name>
         <servlet-class>sample.controller.DeleteUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>sample.controller.LoginGoogleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -28,7 +32,7 @@
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/CreateUserController</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateBookingController</servlet-name>
         <url-pattern>/CreateBookingController</url-pattern>
     </servlet-mapping>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>DeleteUserController</servlet-name>
         <url-pattern>/DeleteUserController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/LoginGoogleServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
