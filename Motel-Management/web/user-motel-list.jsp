@@ -77,13 +77,13 @@
                             </div>
                         </form>
                         <div class="col-bg">
-                            <div class="bg-1"></div>
-                            <div class="bg-2"></div>
+                             <div class="bg-1" style="background-image: url(assets/img/background-motel.jpg);"></div>
+                        <div class="bg-2" style="background-image: url(assets/img/background.jpg);"></div>
                         </div>
                     </div>
                 </div>
-                <div class="content__list col-9">
-                    <div class="row">
+                <div class="col-9">
+                    <div class="content__list row">
                         <c:if test="${requestScope.LIST_MOTEL != null}">
                             <c:if test="${not empty requestScope.LIST_MOTEL}">
 
@@ -106,7 +106,7 @@
                                                 <p><i class="fas fa-address-book"></i> Hotline</p><p> ${o.phone}</p>
                                             </div>
                                             <div class="motel-price d-flex justify-content-between">
-                                                <p style="font-size: 1rem"><i class="fas fa-money-bill-wave"></i> Chỉ từ: ${o.motelprice}</p>
+                                                <p style="font-size: 1rem"><i class="fas fa-money-bill-wave"></i> Chỉ từ: <span class="price-format" data-price="${o.motelprice}"></span></p>
                                                 <button class="button--primary"><a class="text-decoration-none text-white"
                                                                                    href="MainController?action=ShowMotelDetail&motelID=${o.motelID}">Xem ngay</a></button> 
                                             </div>
@@ -117,7 +117,7 @@
                         </c:if>
                         <c:if test="${requestScope.MESSAGE != null}">
                             <c:if test="${not empty requestScope.MESSAGE}">
-                                <div class="reviews-title alert alert-info col-12">
+                                <div class="reviews-title alert-info col-12">
                                     ${requestScope.MESSAGE}
                                 </div>
                             </c:if>
@@ -125,7 +125,7 @@
 
                     </div>
                     <div class="pagination mb-3">
-                        
+
                     </div>
                 </div>
             </div>
@@ -166,6 +166,7 @@
                     }
                 }
             });
+            
         </script>
         <!-- main js -->
         <script src="assets/js/user-script.js"></script>
