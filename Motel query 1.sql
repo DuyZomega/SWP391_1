@@ -157,6 +157,28 @@ ALTER TABLE [tblPayment]
 ADD CONSTRAINT FK_Payment_Booking FOREIGN KEY([PaymentID]) 
     REFERENCES [tblBooking]([BookingID]);
 
+CREATE TABLE [visit_tracking](--done
+[id]       [varchar](20) not null PRIMARY KEY,
+[time]     BIGINT ,
+[ip]        [nvarchar](255),
+[date]  [date]
+);
+select * from visit_tracking
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('1', 1655978934,'81.209.177.145','2022-06-23') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('2', 1655978943, '81.209.177.145','2022-06-23') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('3', 1655978953,'40.77.167.62','2022-06-23') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('4', 1655978963,'205.210.31.150','2022-06-23') 
+
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('6', 1656176340,'103.131.71.144','2022-06-26') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('7', 1656176785,'114.119.132.161','2022-06-26') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('8', 1656178150,'66.249.66.86','2022-06-26') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('9', 1656178897,'207.46.13.197','2022-06-26') 
+
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('10', 1656153799,'114.119.132.18','2022-06-25') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('11', 1656153809, '114.119.132.161','2022-06-25') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('12', 1656153819,'103.131.71.238','2022-06-25') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('13', 1656154240,'66.249.71.216','2022-06-25') 
+INSERT INTO [visit_tracking] ([id], [time],[ip], [date]) VALUES ('14', 1656178897,'66.249.71.216','2022-07-03') 
 --/////////////
 --insert user UPDATE tblUser set Image = 'assets/img/avatar.jpg' where Status = 0
 
