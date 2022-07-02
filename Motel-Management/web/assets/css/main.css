@@ -114,6 +114,28 @@ body .lb-cancel {
   margin-top: 10px;
   margin-bottom: 21px; }
 
+/* Back to top */
+.backToTop {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  visibility: hidden;
+  opacity: 0; }
+
+.cd-top--is-visible {
+  visibility: visible;
+  opacity: 1; }
+
+.backToTop i {
+  color: #0bbbcc;
+  border: 2px solid #0bbbcc;
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 50%; }
+
 .header__top {
   background-color: #2c3e50;
   font-size: 14px;
@@ -1039,6 +1061,8 @@ footer {
   .main-content textarea:focus {
     outline: none;
     box-shadow: none; }
+.main-content td:nth-child(7) {
+  text-align: center; }
 
 .stars {
   width: 185px;
@@ -1076,64 +1100,7 @@ footer {
   content: "\f005";
   font-family: FontAwesome; }
 
-.bg-header {
-  width: 100%;
-  height: 200px;
-  background-image: linear-gradient(200deg, #ffcd45, #00ccb8, #ffadd9); }
-  .bg-header .title {
-    position: relative;
-    height: 100%;
-    padding: 0; }
-    .bg-header .title h1 {
-      text-transform: uppercase;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      color: #f0f0f0;
-      font-weight: bold; }
-
-.intro .card {
-  border: none; }
-  .intro .card .card-body {
-    padding-left: 0; }
-.intro h5.card-title {
-  font-weight: bold;
-  margin-left: 10px;
-  background: -webkit-linear-gradient(0.25turn, #00ecd5, #ffadd9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 25px;
-  margin-left: 0; }
-.intro .card-text {
-  font-size: 16px;
-  color: #768092;
-  line-height: 24px; }
-.intro .intro-status {
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-  .intro .intro-status .message {
-    color: #2c3e50; }
-  .intro .intro-status img {
-    width: 80px;
-    height: 80px;
-    vertical-align: middle;
-    border-radius: 50%;
-    margin-bottom: 5px; }
-  .intro .intro-status p {
-    color: #768092; }
-.intro .intro-desc img {
-  width: 200px;
-  height: auto;
-  margin-bottom: 10px; }
-.intro .intro-img {
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: cover;
-  border: 1px solid #edebeb75; }
-.intro .intro-desc,
-.intro .intro-img {
-  margin-top: 20px; }
+#detailsModal .heading {
+  font-size: 1.5rem; }
 
 /*# sourceMappingURL=main.css.map */

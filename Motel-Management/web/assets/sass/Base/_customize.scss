@@ -75,6 +75,8 @@ body {
     // text-overflow: ellipsis;
     display: -webkit-box;
     max-width: 100%;
+    // line-clamp: 2;
+    // box-orient: vertical;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -125,4 +127,27 @@ body {
     row-gap: 20px;
     margin-top: 10px;
     margin-bottom: 21px;
+}
+
+/* Back to top */
+.backToTop {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    visibility: hidden;
+    opacity: 0;
+}
+.cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+.backToTop i {
+    color: #0bbbcc;
+    border: 2px solid #0bbbcc;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 50%;
 }
