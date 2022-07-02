@@ -63,7 +63,7 @@
                                     </a>
                                 </li> 
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                    <a href="owner-service.jsp" li class="dropdown-item">
+                                    <a href="MainController?action=showService" li class="dropdown-item">
                                         <i class='bx bx-cloud-rain'></i>
                                         <span class="title">Dịch vụ</span>
                                     </a>
@@ -130,10 +130,10 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        <%=loginUser.getFullName()%>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
                                         <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>

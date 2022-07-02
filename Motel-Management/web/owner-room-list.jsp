@@ -68,7 +68,7 @@
                                     </a>
                                 </li> 
                                 <li data-toggle="tooltip"data-placement="right" title="Quản lý dịch vụ">
-                                    <a href="owner-service.jsp" li class="dropdown-item">
+                                    <a href="MainController?action=showService" li class="dropdown-item">
                                         <i class='bx bx-cloud-rain'></i>
                                         <span class="title">Dịch vụ</span>
                                     </a>
@@ -130,13 +130,13 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Lê Minh Quân
+                                        <%=loginUser.getFullName()%>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="owner-profile.html"><i class='bx bx-user'></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
                                         <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class='bx bx-log-out-circle'></i>Thoát</a>
+                                        <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
                                 </div>  
                             </div>  
@@ -248,22 +248,20 @@
                                                     <div class="card-body room-title">
                                                         <ul class="list">
                                                             <li>
-                                                                <h6>LOẠI PHÒNG:<%= room.getImage()%></h6>
-                                                                <span></span>
+                                                                <h6>Loại Phòng: </h6>
+                                                                <span><%= room.getImage()%></span>
                                                             </li>                                                        
                                                             <li>
-                                                                <h6>THÔNG TIN:<%= room.getDesc()%></h6>
-                                                                <span>
-                                                                </span>
+                                                                <h6>Thông Tin: </h6>
+                                                                <span><%= room.getDesc()%></span>
                                                             </li>
                                                             <li>
-                                                                <h6>Số lượng dịch vụ đã sử dụng:</h6>
-                                                                <span>
-                                                                </span>
+                                                                <h6>Dịch Vụ Sử Dụng:</h6>
+                                                                <span></span>
                                                             </li>
                                                             <li>
                                                                 <h5>Giá:</h5>
-                                                                <span><%= room.getPrice()%>&dstrok;</span>
+                                                                <span class="price-format" data-price="<%= room.getPrice()%>"></span>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -354,8 +352,8 @@
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3" id="labeldecp" style="display: none;">
                                             Mô tả
                                         </label>
-                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3" 
-                                                  rows="3" id="decp" style="display: none;"></textarea>
+                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3 d-5" 
+                                                  rows="3" id="roomTypeDesct" style="display: none;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -423,6 +421,15 @@
         </div>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="ckeditor/ckeditor.js"></script>
+        <script src="ckfinder/ckfinder.js"></script>
+
+        <script>
+            
+            var editor = CKEDITOR.replace('roomTypeDesct');
+            CKFinder.setupCKEditor(editor, 'ckfinder/');
+            data["roomTypeDesct"] = editor.getData();
+        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
