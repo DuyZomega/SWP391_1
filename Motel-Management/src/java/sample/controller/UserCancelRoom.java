@@ -44,8 +44,7 @@ public class UserCancelRoom extends HttpServlet {
                 }
                 if (checkBT) {
                         url = SUCCESS;
-                        request.setAttribute("MESSAGE", "Successfully");
-                        request.setAttribute("SUCCESS", "Cập nhật thành công");
+                        request.setAttribute("MESSAGE", "Cập nhật thành công");
                     }
             }
         } catch (Exception e) {

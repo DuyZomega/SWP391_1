@@ -47,7 +47,7 @@
     <!-- CONTENT -->
     <section class="confirm-booking mb-5">
         <div class="container">
-            <form class="row" action="MainController" method="get">
+            <form class="row" action="MainController" method="post">
                 <div class="col-5">
                     <div class="infor-booking">
                         <h3 class="heading"><i class="fa fa-money-check-alt"></i> Chi tiết đặt phòng của bạn</h3>
