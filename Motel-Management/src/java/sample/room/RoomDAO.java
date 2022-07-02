@@ -434,4 +434,67 @@ public class RoomDAO {
         return check;
 
     }
+    
+     private static final String FIND_ROOM = "select distinct r.roomid , r.Status from tblMotel as m , tblBooking as b, tblBookingDetail as bd, tblRoom as r\n"
+            + "Where b.bookingid = bd.BookingID  AND bd.roomid = r.roomid AND b.bookingid = ?";
+
+    public List<RoomDTO> findrooom(String bookingID) throws SQLException {
+        List<RoomDTO> listroom = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(FIND_ROOM);
+                ptm.setString(1, bookingID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String roomID = rs.getString("roomid");
+                    int status = rs.getInt("status");
+                    listroom.add(new RoomDTO(roomID, status));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listroom;
+    }
+    private static final String CANCEL_ROOM = "UPDATE tblRoom SET Status = 0 WHERE roomID =?";
+
+    public boolean cancelRoom(String roomId) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CANCEL_ROOM);
+                ptm.setString(1, roomId);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 }
+
+   

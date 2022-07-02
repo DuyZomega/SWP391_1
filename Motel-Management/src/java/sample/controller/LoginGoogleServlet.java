@@ -88,4 +88,3 @@ public class LoginGoogleServlet extends HttpServlet {
         doGet(request, response);
     }
 }
-

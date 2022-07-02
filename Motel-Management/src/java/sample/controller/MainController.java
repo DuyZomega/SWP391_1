@@ -29,8 +29,8 @@ public class MainController extends HttpServlet {
     private static final String LOGOUT_CONTROLLER = "LogoutController";
     private static final String CREATE = "Create";
     private static final String CREATE_USER_CONTROLLER = "CreateUserController";
-    private static final String BOOKING = "Booking";
-    private static final String CREATE_BOOKING_CONTROLLER = "CreateBookingController";
+    private static final String BOOKING = "book";
+    private static final String CREATE_BOOKING_CONTROLLER = "BookingController";
     private static final String SHOW_MOTEL_LIST = "ShowAllMotel";
     private static final String SHOW_MOTEL_LIST_CONTROLLER = "ShowAllMotelController";
     private static final String SHOW_MOTEL_DETAIL = "ShowMotelDetail";
