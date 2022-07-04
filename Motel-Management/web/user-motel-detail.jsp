@@ -88,11 +88,6 @@
                                     <h3 class="heading"><i class="fa fa-scroll"> </i> Mô tả chi tiết</h3>
                                     <p>${o.desct}</p>
                                 </div>
-                                <!--                            <hr>
-                                                            <div class="content__describe">
-                                                                <h3 class="heading"><i class="fa fa-bars"></i> Tiện ích</h3>
-                                                                <p>7up, lavie, bánh, Coca, khăn ướt</p>
-                                                            </div>-->
                             </div>
                             <div class="col-3 widgets">
                                 <div class="content__item">
@@ -124,7 +119,7 @@
                                                        alt="profile"
                                                        style="width: 100px; min-height: 100px"></span>
                                             <span>
-                                                <p class="m-0"> ${o.ownerId}</p>
+                                                <p class="m-0"> ${o.ownerName}</p>
                                                 <p class="m-0">Tele: ${o.phone}</p>
                                             </span>
                                         </div>
@@ -319,7 +314,7 @@
 
                         <c:if test="${requestScope.MESSAGE_FEEDBACK != null}">
                             <c:if test="${not empty requestScope.MESSAGE_FEEDBACK}">
-                                <div class="reviews-title alert alert-info col-12">
+                                <div class="reviews-title alert-info col-12">
                                     ${requestScope.MESSAGE_FEEDBACK}
                                 </div>
                             </c:if>
@@ -359,8 +354,6 @@
                     }
                 }
             });
-
-
 
 // ===================Thuy detail=====================
         </script>

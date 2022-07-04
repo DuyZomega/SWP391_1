@@ -47,7 +47,7 @@
     <!-- CONTENT -->
     <section class="confirm-booking mb-5">
         <div class="container">
-            <form class="row" action="MainController" method="get">
+            <form class="row" action="MainController" method="post">
                 <div class="col-5">
                     <div class="infor-booking">
                         <h3 class="heading"><i class="fa fa-money-check-alt"></i> Chi tiết đặt phòng của bạn</h3>
@@ -69,6 +69,7 @@
 
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
+                                </div>
                                     <ul class="ml-3">
 
                                         <c:forEach var="t" items ="${requestScope.listTest}">
@@ -84,7 +85,6 @@
                                         <input type="hidden" class="price" value="${requestScope.total}" name="total" />
                                         <li><h6>- Tổng tiền: <span class="price-format" data-price="${requestScope.total}"></span> VNĐ</h6></li>
                                     </ul>
-                                </div>
                                 <%
                                     total += sum;
                                 %>  
@@ -100,7 +100,7 @@
                             <div class="box d-flex">
                                 <span><img src="images/man.png"   style="width: 100px; min-height: 100px" alt="profile"></span>
                                 <span class="infor-owner-detail">
-                                    <p class="m-0"><span class="label">Họ tên:</span> ${i.ownerId}</p>
+                                    <p class="m-0"><span class="label">Họ tên:</span> ${i.ownerName}</p>
                                     <p class="m-0"><span class="label">SĐT:</span> ${i.phone}</p>
                                     <p class="m-0"><span class="label">Địa chỉ:</span> ${i.address},${i.district},${i.city}
                                     </p>
@@ -115,22 +115,13 @@
                         <span><i class="fas fa-exclamation-circle"></i> Yêu cầu nhập thông tin chính
                             xác, trung thực</span>
                     </div>
-                    <form id="form-3" action="" method="POST" class="form row">
+                    <div class="form row">
                         <div class="form-item col-12">
                             <label for="sender">Họ và Tên</label>
                             <input type="text" name="sender" id="sender" />
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
-                        <!--                        <div class="form-item col-6">
-                                                    <label for="email">Địa chỉ email</label>
-                                                    <input type="email" name="gmail" id="gmail">
-                                                    <span id="error_message" class="helper-text text-danger"></span>
-                                                </div>
-                                                <div class="form-item col-6">
-                                                    <label for="telephone">Số điện thoại</label>
-                                                    <input type="tel" name="phone" id="telephone">
-                                                    <span id="error_message" class="helper-text text-danger"></span>
-                                                </div>-->
+                       
                         <div class="form-item col-12">
                             <label for="password">Phương thức thanh toán</label>
                             <select class="custom-select" name="status" id="inputGroupSelect01">
@@ -153,10 +144,7 @@
                         <button type="submit" value="book" name="action" class="button--primary btn btn-danger">Xác nhận
                             đặt
                             phòng</button>
-                        <!-- sau khi gửi form thành công  -->
-                        <!--                        <span class="check-success"><i class="fa fa-check-circle"></i> Bạn đã xác nhận đặt phòng thành
-                                                    công</span>-->
-                    </form>
+                    </div>
                 </div>
             </form>
         </div>
@@ -175,14 +163,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- main js -->
     <script src="assets/js/user-script.js"></script><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    referrerpolicy="no-referrer"></script>
-    <!-- BS4 JS -->
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
+   
     <!-- owl Carousels -->
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script>
