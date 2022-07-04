@@ -747,6 +747,11 @@ html body {
     padding: 0;
 }
 
+.inputfile#file-upload-button{
+    background: #fff;
+    color: #000;
+    border-radius: 10px; 
+}
 
 
 

@@ -102,29 +102,12 @@ $(document).ready(function () {
     }, 3000);
 })
 
+
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
 };  
-
-
-function timeFrame(period) {
-    if (period.value == 'day') {
-        chart.data.datasets[0].data = day;
-        chart.options.scales.x.time.unit = period.value;
-    }
-    if (period.value == 'week') {
-        chart.data.datasets[0].data = week;
-        chart.options.scales.x.time.unit = period.value;
-
-    }
-    if (period.value == 'month') {
-        chart.data.datasets[0].data = month;
-        chart.options.scales.x.time.unit = period.value;
-    }
-    chart.update();
-} 
 
 
 //change idHome for delete
@@ -154,7 +137,6 @@ function other(event) {
 
 
 // select following select box
-
 function myFunc() {
     var list = [];
     var sel1 = $('#motelid').val();
@@ -175,7 +157,6 @@ function myFunc() {
 }
 
 
-
 // sweetalert
 function submitFunc() {
     swal({
@@ -188,29 +169,47 @@ function submitFunc() {
     return false;
 };
 
-// confirm to dele
 
+// confirm to dele
 function confirmdele() {
     if (!confirm('Are you sure to delete?')) { 
         return false }
 }
 
 
+//chart
+function timeFrame(period) {
+    if (period.value == 'day') {
+        chart.data.datasets[0].data = day;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    if (period.value == 'week') {
+        chart.data.datasets[0].data = week;
+        chart.options.scales.x.time.unit = period.value;
+
+    }
+    if (period.value == 'month') {
+        chart.data.datasets[0].data = month;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    chart.update();
+} 
+
 
 
  function getValue() {
 
-    const numOfHome = document.querySelectorAll('#numOfHome select');
-    var num = [];
-    var lengthOfarray;
-    for (let i = 0; i < numOfHome.length; i++) {
-        var data = document.getElementById(numOfHome[i].id);
-        lengthOfarray = data.length;
-        for (let j = 0; j < lengthOfarray; j++) {
-            num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
-        }  
-    }
-    console.log(num);
+    // const numOfHome = document.querySelectorAll('#numOfHome select');
+    // var num = [];
+    // var lengthOfarray;
+    // for (let i = 0; i < numOfHome.length; i++) {
+    //     var data = document.getElementById(numOfHome[i].id);
+    //     lengthOfarray = data.length;
+    //     for (let j = 0; j < lengthOfarray; j++) {
+    //         num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+    //     }  
+    // }
+    // console.log(num);
     
 
     // create array ojbect
@@ -259,7 +258,7 @@ function confirmdele() {
                     x: {
                         type: 'time',
                         time: {
-                            unit: 'week'
+                            unit: 'day'
                         }
                     },
                     y: {

@@ -24,7 +24,7 @@
 
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
-    <body>
+    <body onload="getValue()">
         <!-- sidebar -->
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -161,22 +161,43 @@
                     </div>
                 </div>
             </div>
-<!-- chart -->
-                        <section class="chartBox">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-<!--                                        <div class="card-header d-flex justify-content-between p-4">
-                                            <h4>Doanh thu tuần</h4>
-                                        </div>-->
-                                        <div class="card-body" id="chart" >
-                                           
-                                        </div>
-                                    </div>
-                                    
+                <!-- chart -->
+            <section class="chartBox">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body" >
+                                <div class="d-flex align-content-center float-right">
+                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
+                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
+                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
                                 </div>
+                                <div id="numOfHome">
+                                    <select name="aaa" id="a1234" style="display: none;">
+                                        <option value="10">2022-06-09 UTC+0700</option>
+                                        <option value="9">2022-06-10 UTC+0700</option>
+                                        <option value="3">2022-06-11 UTC+0700</option>
+                                        <option value="7">2022-06-12 UTC+0700</option>
+                                        <option value="9">2022-06-13 UTC+0700</option>
+                                        <option value="5">2022-06-14 UTC+0700</option>
+                                        <option value="1">2022-06-15 UTC+0700</option>
+                                    </select>
+                                    <select name="bbb" id="b1234" style="display: none;">
+                                        <option value="1">2022-06-09 UTC+0700</option>
+                                        <option value="2">2022-06-10 UTC+0700</option>
+                                        <option value="3">2022-06-11 UTC+0700</option>
+                                        <option value="4">2022-06-12 UTC+0700</option>
+                                        <option value="5">2022-06-13 UTC+0700</option>
+                                        <option value="6">2022-06-14 UTC+0700</option>
+                                        <option value="7">2022-06-15 UTC+0700</option>
+                                    </select>
+                                </div>
+                                <canvas id="chart-Dashboard" width="400" height="200"></canvas>
                             </div>
-                        </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <!-- order detail list -->
             <section class="chartBox">
                 <div class="row">
@@ -226,60 +247,18 @@
                     </div>
                 </div>
             </section>
-
         </div>
 
 
  <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
+    <script src="assets/js/owner-script.js"></script>
+    <script src="assets/js/admin.js"></script>
 
-
-        <script>
-
-            var options = {
-                series: [{
-                        name: "Desktops",
-                        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-                    }],
-                chart: {
-                    height: 350,
-                    type: 'line',
-                    zoom: {
-                        enabled: false
-                    }
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    curve: 'straight'
-                },
-                title: {
-                    text: 'Lượng truy cập tuần',
-                    align: 'left'
-                },
-                grid: {
-                    row: {
-                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                        opacity: 0.5
-                    },
-                },
-                xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-                }
-            };
-
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
-
-        </script>
-        <!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script> -->
-         <script src="assets/js/admin.js"></script>
-        <script src="assets/js/owner-script.js"></script>
        
     </body>
 

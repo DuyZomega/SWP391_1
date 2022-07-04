@@ -93,12 +93,6 @@
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="onwer-feedback.jsp">
-                                <span><i class="bx bx-detail"></i></span>
-                                <span class="title">Nhận xét</span>
-                            </a>
-                        </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                             <a href="owner-statistical.jsp">
                                 <span><i class='bx bx-line-chart'></i></span>
@@ -447,7 +441,11 @@
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>
                                         <input class="form-control col-md-6" name="desct" value="<%= motel.getDesct()%>" required>       
                                     </div>
-                                    <input type="file" name="photo" />
+                                    <div class="row form-group">
+                                        <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>
+                                        <input type="file" name="photo" class="form-control col-md-6" style="padding-bottom: 37px" accept="image/*"/>   
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
