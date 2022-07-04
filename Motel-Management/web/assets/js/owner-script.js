@@ -20,6 +20,15 @@ $('.tab-pane').each(function(i){
     }
 });
 
+// print bill
+function imprimir() {
+        var divToPrint=document.getElementById("bill");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
 
 //loading
 // $(window).on("load",function () {

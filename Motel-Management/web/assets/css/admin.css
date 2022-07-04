@@ -1,4 +1,5 @@
 
+/*
 .dashboard {
     position: relative;
     background: #fff;
@@ -8,10 +9,10 @@
     border-radius: 20px;
     border: 1px #000;
 }
-/*.row{
+.row{
     margin-left: 0;
     margin-right: 0;
-}*/
+}
 .header{
     z-index: 9999 !important;
 }
@@ -64,9 +65,9 @@ table.dataTable thead>tr>th.sorting{
     min-width: 26px;
     min-height: 26px;
 }
-/* .btn.btn-success, .btn.btn-secondary, .btn.btn-warning, .btn.btn-primary, .btn.btn-danger, .btn.btn-info {
+ .btn.btn-success, .btn.btn-secondary, .btn.btn-warning, .btn.btn-primary, .btn.btn-danger, .btn.btn-info {
     color: #fff;
-} */
+} 
 .btn-xs {
     font-size: 0.75rem;
     padding: 0.438rem 1rem;
@@ -178,7 +179,7 @@ a {
 .btn-primary, .btn-primary.disabled, .btn-primary:disabled {
     background-color: #f0f2ff;
     border-color: #f0f2ff;
-    /* color: #7888fc; */
+     color: #7888fc; 
 }
 .btn {
     padding: 8px 20px;
@@ -196,7 +197,7 @@ a {
 .btn-success, .btn-success:disabled, .btn-sucess.disabled {
     background-color: #d3fbf9;
     border-color: #d3fbf9;
-    /* color: #6bcac2; */
+     color: #6bcac2; 
 }
 .input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3), .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
     border-top-right-radius: 0;
@@ -284,4 +285,4 @@ select {
 
 .spacing #myTable_wrapper #myTable_length {
     margin-left: 250px;
-}
+}*/

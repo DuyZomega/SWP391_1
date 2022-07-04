@@ -93,12 +93,6 @@
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="onwer-feedback.jsp">
-                                <span><i class="bx bx-detail"></i></span>
-                                <span class="title">Nhận xét</span>
-                            </a>
-                        </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                             <a href="owner-statistical.jsp">
                                 <span><i class='bx bx-line-chart'></i></span>
@@ -156,7 +150,10 @@
             <div class="main">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="offset-sm-6 col-sm-6  d-flex justify-content-sm-end p-md-0 mt-2 mt-sm-0 ">
+                        <div class="col-sm-1 d-flex align-items-center justify-content-center btn-back">
+                            <i class='bx bx-arrow-back' onclick="history.back()"></i>
+                        </div>
+                        <div class="offset-sm-5 col-sm-6 d-flex justify-content-sm-end p-md-0 mt-2 mt-sm-0 ">
                             <ol class="breadcrumb">
                                 <li class="breadcrumd-item">
                                     <a href="#">Quản lý</a>
@@ -188,77 +185,92 @@
                                         if (roomDetail == null) {
                                             roomDetail = new RoomDetailDTO();
                                         }
-                                        String status = "Trống";
-                                        if (roomDetail.getStatus() == 1) {
-                                            status = "Đang Thuê";
-                                        }
+                         
                                     %>
                                     <div class="card-body">
+                                        <%
+                                        if (roomDetail.getStatus() != 1) {
+                                        %>
                                         <div style="float: right; cursor: pointer;">
                                             <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#editRoom"></i>
                                         </div>
+                                        <% 
+                                            }
+                                        %>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Trạng thái:</span>
                                             </div>
-                                            <div class="col-sm-7">
-                                                <span class="demise" style="float: left;"><%= status%></span>
+                                            <div class="col-sm-8">
+                                                <%
+                                                String status = "Trống";
+                                                if (roomDetail.getStatus() == 1) {
+                                                    status = "Đang Thuê";
+                                                %>
+                                                    <span class="destroy" style="float: left;"><%= status%></span>
+                                                <%   
+                                                } else {%>
+                                                    <span class="outcome" style="float: left;"><%= status%></span>
+                                                <%
+                                                    }
+                                                %>
+                                                
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Mã đặt phòng:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getBookingID()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Mã Phòng:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getRoomID()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Loại Phòng:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getRoomType()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Mã Motel:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getMotelID()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Địa chỉ:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getAddress()%> - <%= roomDetail.getDistrict()%> - <%= roomDetail.getCity()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Ngày thuê:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getBookingDate()%></span>
                                             </div>
 
                                         </div>
                                         <div class="row mb-sm-2">
-                                            <div class="col-sm-5 text-sm-right">
+                                            <div class="col-sm-4 text-sm-right">
                                                 <span>Thời Gian Thuê:</span>
                                             </div>
-                                            <div class="col-sm-7 text-sm-left">
+                                            <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getTime()%>h</span>
                                             </div>
                                         </div>
@@ -370,7 +382,7 @@
                                     <div class="card-body flex-wrap">
                                         <div class="row">
                                             <div class="table-responsive">
-                                                <table id="myTable" class="table table-hover table-borderless">
+                                                <table id="bill myTable" class="table table-hover table-borderless">
                                                     <thead>
                                                         <tr>
                                                             <th>STT</th>
@@ -400,6 +412,12 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
+                                                <div class="d-flex justify-content-between mr-xl-5">
+                                                    <a href="javascript:imprimir(0)">In hóa đơn</a>
+                                                    <form action="#">
+                                                        <button type="submit" class="btn btn-success">Thanh toán</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

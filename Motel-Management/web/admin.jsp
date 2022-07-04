@@ -37,7 +37,6 @@
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
-
                     <ul class="slide-menu">
                         <div class="logo">
                             <a href="AdminShowOverview">
