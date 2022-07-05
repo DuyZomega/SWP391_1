@@ -211,18 +211,17 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <!-- cut data-toggle="modal" data-target="#detailsModal" từ <tr> truyền cho <td> trừ <td> cuối -->
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
+                                                            data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                            <td data-toggle="modal" data-target="#detailsModal">booking06</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">Nhà Trọ Ladalat</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">332369568</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">2022-12-10 00:00:00.0</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">100900</td>
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
-                                                            data-bs-placement="right" title="Nhấn để xem chi tiết"
-                                                            data-toggle="modal" data-target="#detailsModal">
-                                                            <td>booking06</td>
-                                                            <td>Nhà Trọ Ladalat</td>
-                                                            <td>332369568</td>
-                                                            <td>2022-12-10 00:00:00.0</td>
-                                                            <td>100900</td>
 
-
-                                                            <td>Đã hủy</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">Đã hủy</td>
                                                             <td>
                                                                 <div>
                                                                     <a href="MainController?action=ShowMotelDetail&motelID=548762589"
@@ -398,7 +397,7 @@
                                                         </tr>
 
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td>845264</td>
                                                             <td>Nhà Trọ VinHome</td>
@@ -451,7 +450,7 @@
                                                         </tr>
 
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td>3396955</td>
                                                             <td>Nhà Trọ Vạn Phúc</td>
@@ -504,7 +503,7 @@
                                                         </tr>
 
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td>6532717</td>
                                                             <td>Nhà Trọ Ngọc Quân</td>
@@ -557,7 +556,7 @@
                                                         </tr>
 
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td>6392312</td>
                                                             <td>Nhà Trọ Ngọc Quân</td>
@@ -579,7 +578,7 @@
                                                         </tr>
 
 
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row' data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                             <td>7618616</td>
                                                             <td>Nhà Trọ Ngọc Quân</td>
@@ -630,18 +629,16 @@
 
                                                             <!-- feedback form -->
                                                         </tr>
-
-
-                                                        <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
+                                                        <tr class='clickable-row'data-bs-toggle="tooltip"
                                                             data-bs-placement="right" title="Nhấn để xem chi tiết">
-                                                            <td>booking03</td>
-                                                            <td>Nhà Trọ VinHome</td>
-                                                            <td>248425478</td>
-                                                            <td>2021-08-09 00:00:00.0</td>
-                                                            <td>747900</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">booking03</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">Nhà Trọ VinHome</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">248425478</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">2021-08-09 00:00:00.0</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">747900</td>
 
 
-                                                            <td>Đã hoàn thành</td>
+                                                            <td data-toggle="modal" data-target="#detailsModal">Đã hoàn thành</td>
                                                             <td>
                                                                 <div class="d-flex justify-content-between">
                                                                     <!--<a href="UserManager?action=feedback?userId=hai03&motelID=785146827" class="btn btn-info m-b-xs shadow btn-xs sharp me-1" data-bs-toggle="tooltip">Đánh giá</a>-->
@@ -664,6 +661,170 @@
 
 
                                                             </td>
+                                                            <!-- Details Modal khi ấn <tr> hàng -->
+                                                            <div class="modal fade" id="detailsModal" tabindex="-1"
+                                                                aria-labelledby="detailModalLabel" aria-hidden="true">
+                                                                <div
+                                                                    class="modal-dialog modal-dialog-centered modal-xl">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h4 class="modal-title"
+                                                                                id="detailModalLabel">Chi tiết đặt
+                                                                                phòng</h4>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <section class="confirm-booking mb-5 pt-2">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="row">
+                                                                                        <div class="col-6">
+                                                                                            <div class="infor-booking">
+                                                                                                <h3 class="heading"><i
+                                                                                                        class="fa fa-money-check-alt"></i>
+                                                                                                    Chi tiết đặt phòng
+                                                                                                    của bạn</h3>
+                                                                                                <div class="box">
+                                                                                                    <p class="d-flex"><i
+                                                                                                            class="fa fa-hand-point-right"></i>
+                                                                                                        <label><span
+                                                                                                                class="label">Tên
+                                                                                                                nhà
+                                                                                                                nghỉ:</span>
+                                                                                                            <span>Việt
+                                                                                                                Motel</span></label>
+                                                                                                    </p>
+                                                                                                    <p class="d-flex"><i
+                                                                                                            class="fa fa-hand-point-right"></i>
+                                                                                                        <label><span
+                                                                                                                class="label">Địa
+                                                                                                                chỉ:</span>
+                                                                                                            0 Phó Đức
+                                                                                                            Chính,
+                                                                                                            Phường
+                                                                                                            Linh Trung,
+                                                                                                            <span>Thủ
+                                                                                                                Đức</span>,
+                                                                                                            Thành phố Hồ
+                                                                                                            Chí
+                                                                                                            Minh</label>
+                                                                                                    </p>
+                                                                                                    <div class="d-flex">
+                                                                                                        <p><i
+                                                                                                                class="fa fa-hand-point-right"></i><span
+                                                                                                                class="label">Đơn
+                                                                                                                giá:</span>
+                                                                                                        </p>
+                                                                                                    </div>
+                                                                                                    <ul class="ml-3">
+                                                                                                        <li>- Phòng
+                                                                                                            đơn:
+                                                                                                            <span>1</span>
+                                                                                                            phòng <i
+                                                                                                                class="fa fa-arrow-right"></i>
+                                                                                                            <span>150.000</span>
+                                                                                                            VNĐ
+                                                                                                        </li>
+                                                                                                        <li>- Phòng
+                                                                                                            đôi:
+                                                                                                            <span>0</span>
+                                                                                                            phòng <i
+                                                                                                                class="fa fa-arrow-right"></i>
+                                                                                                            <span>0</span>
+                                                                                                            VNĐ
+                                                                                                        </li>
+                                                                                                        <hr>
+                                                                                                        <li>- Tổng
+                                                                                                            tiền:
+                                                                                                            <span>150.000</span>
+                                                                                                            VNĐ
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-6">
+                                                                                            <h3 class="heading"><i
+                                                                                                    class="fa fa-address-card"></i>
+                                                                                                Xác nhận thông tin
+                                                                                            </h3>
+                                                                                            <div class="box">
+                                                                                                <div
+                                                                                                    class="form-item py-2">
+                                                                                                    <label
+                                                                                                        class="font-weight-bold">Họ
+                                                                                                        và Tên:
+                                                                                                    </label>
+                                                                                                    <span id="fullName">
+                                                                                                        Tran Ngoc
+                                                                                                        Hai
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="form-item py-2">
+                                                                                                    <label
+                                                                                                        class="font-weight-bold">Phương
+                                                                                                        thức
+                                                                                                        thanh
+                                                                                                        toán:
+                                                                                                    </label>
+                                                                                                    <span>
+                                                                                                        Tiền mặt
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="infor-owner">
+                                                                                                <h3 class="heading"><i
+                                                                                                        class="fas fa-id-card-alt"></i>
+                                                                                                    Chủ nhà nghỉ</h3>
+                                                                                                <div class="box d-flex">
+                                                                                                    <span><img
+                                                                                                            src="https://hfr.vn/Images/poster.png"
+                                                                                                            alt="profile"></span>
+                                                                                                    <span
+                                                                                                        class="infor-owner-detail">
+                                                                                                        <p class="m-0">
+                                                                                                            <span
+                                                                                                                class="label">Họ
+                                                                                                                tên:</span>
+                                                                                                            Nguyễn Tuân
+                                                                                                        </p>
+                                                                                                        <p class="m-0">
+                                                                                                            <span
+                                                                                                                class="label">SĐT:</span>
+                                                                                                            0865.644.162
+                                                                                                        </p>
+                                                                                                        <p class="m-0">
+                                                                                                            <span
+                                                                                                                class="label">Địa
+                                                                                                                chỉ:</span>
+                                                                                                            0 Phó Đức
+                                                                                                            Chính,
+                                                                                                            Phường Linh
+                                                                                                            Trung,
+                                                                                                            Thủ Đức,
+                                                                                                            Thành phố Hồ
+                                                                                                            Chí Minh
+                                                                                                        </p>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                        <div class="modal-footer py-0">
+                                                                            <button type="button"
+                                                                                class="button--primary bg-danger text-white"
+                                                                                data-dismiss="modal">Đóng</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <!-- feedback -->
                                                             <div id="feedback" class="modal fade" role="dialog">
                                                                 <div class="modal-dialog modal-dialog-centered modal-lg"
@@ -684,9 +845,7 @@
                                                                                             <input name="userID"
                                                                                                 value="hai03"
                                                                                                 style="display: none">
-                                                                                            <input name="motelID"
-                                                                                                value="785146827"
-                                                                                                style="display: none">
+                                                                                            <input name="motelID" value="785146827" style="display: none">
                                                                                             <label for="rating"
                                                                                                 class="col-md-3 col-form-label text-md-right">Rating</label>
                                                                                             <div
