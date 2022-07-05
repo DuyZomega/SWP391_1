@@ -20,8 +20,6 @@ $(".tab-pane").each(function (i) {
   }
 });
 
-<<<<<<< HEAD
-=======
 //print bill
 $('.btn-print').click(function () {
     var table = document.getElementById("table");
@@ -34,7 +32,6 @@ $('.btn-print').click(function () {
 
 })
 
->>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 //loading
 // $(window).on("load",function () {
 //     $(".preloader").fadeOut("slow");
@@ -120,25 +117,6 @@ var loadFile = function (event) {
   image.src = URL.createObjectURL(event.target.files[0]);
 };
 
-<<<<<<< HEAD
-function timeFrame(period) {
-  if (period.value == "day") {
-    chart.data.datasets[0].data = day;
-    chart.options.scales.x.time.unit = period.value;
-  }
-  if (period.value == "week") {
-    chart.data.datasets[0].data = week;
-    chart.options.scales.x.time.unit = period.value;
-  }
-  if (period.value == "month") {
-    chart.data.datasets[0].data = month;
-    chart.options.scales.x.time.unit = period.value;
-  }
-  chart.update();
-}
-
-=======
->>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 //change idHome for delete
 function change(event) {
   document.getElementById("idhome").value = event.target.value;
@@ -183,10 +161,6 @@ function myFunc() {
   });
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 // sweetalert
 function submitFunc() {
   swal({
@@ -207,23 +181,6 @@ function confirmdele() {
   }
 }
 
-<<<<<<< HEAD
-function getValue() {
-  const numOfHome = document.querySelectorAll("#numOfHome select");
-  var num = [];
-  var lengthOfarray;
-  for (let i = 0; i < numOfHome.length; i++) {
-    var data = document.getElementById(numOfHome[i].id);
-    lengthOfarray = data.length;
-    for (let j = 0; j < lengthOfarray; j++) {
-      num.push({
-        x: Date.parse(data.options[j].innerText),
-        y: data.options[j].value,
-      });
-    }
-  }
-  console.log(num);
-=======
 
 //chart
 function timeFrame(period) {
@@ -318,7 +275,6 @@ function timeFrame(period) {
 }   
 
 
->>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 
   // create array ojbect
   var home1 = [];
