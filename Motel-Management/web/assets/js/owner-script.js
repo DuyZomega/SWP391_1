@@ -20,6 +20,21 @@ $(".tab-pane").each(function (i) {
   }
 });
 
+<<<<<<< HEAD
+=======
+//print bill
+$('.btn-print').click(function () {
+    var table = document.getElementById("table");
+    var wme = window.open("","","with=900,height=700");
+    wme.document.write(table.outerHTML);
+    wme.document.close();    
+    wme.focus();
+    wme.print();
+    wme.close();
+
+})
+
+>>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 //loading
 // $(window).on("load",function () {
 //     $(".preloader").fadeOut("slow");
@@ -52,6 +67,8 @@ let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");
 let numOfFiles = document.getElementById("num-of-files");
 let removeFiles = document.getElementById("removeFiles");
+
+
 
 function preview() {
   imageContainer.innerHTML = "";
@@ -96,12 +113,14 @@ $(document).ready(function () {
   }, 3000);
 });
 
+
 //profile
 var loadFile = function (event) {
   var image = document.getElementById("output");
   image.src = URL.createObjectURL(event.target.files[0]);
 };
 
+<<<<<<< HEAD
 function timeFrame(period) {
   if (period.value == "day") {
     chart.data.datasets[0].data = day;
@@ -118,6 +137,8 @@ function timeFrame(period) {
   chart.update();
 }
 
+=======
+>>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 //change idHome for delete
 function change(event) {
   document.getElementById("idhome").value = event.target.value;
@@ -143,7 +164,6 @@ function other(event) {
 }
 
 // select following select box
-
 function myFunc() {
   var list = [];
   var sel1 = $("#motelid").val();
@@ -163,6 +183,10 @@ function myFunc() {
   });
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 // sweetalert
 function submitFunc() {
   swal({
@@ -175,14 +199,15 @@ function submitFunc() {
   return false;
 }
 
-// confirm to dele
 
+// confirm to dele
 function confirmdele() {
   if (!confirm("Are you sure to delete?")) {
     return false;
   }
 }
 
+<<<<<<< HEAD
 function getValue() {
   const numOfHome = document.querySelectorAll("#numOfHome select");
   var num = [];
@@ -198,6 +223,102 @@ function getValue() {
     }
   }
   console.log(num);
+=======
+
+//chart
+function timeFrame(period) {
+    if (period.value == 'day') {
+        chart.data.datasets[0].data = day;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    if (period.value == 'week') {
+        chart.data.datasets[0].data = week;
+        chart.options.scales.x.time.unit = period.value;
+
+    }
+    if (period.value == 'month') {
+        chart.data.datasets[0].data = month;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    chart.update();
+} 
+
+
+
+ function getValue() {
+
+    // const numOfHome = document.querySelectorAll('#numOfHome select');
+    // var num = [];
+    // var lengthOfarray;
+    // for (let i = 0; i < numOfHome.length; i++) {
+    //     var data = document.getElementById(numOfHome[i].id);
+    //     lengthOfarray = data.length;
+    //     for (let j = 0; j < lengthOfarray; j++) {
+    //         num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+    //     }  
+    // }
+    // console.log(num);
+    
+
+    // create array ojbect
+    var home1 = [];
+    let a1234 = document.getElementById('a1234');
+    for (let i = 0; i < a1234.length; i++) {
+        home1.push({x : Date.parse(a1234.options[i].innerText), y : a1234.options[i].value})
+    }
+    var home2 = [];
+    let b1234 = document.getElementById('b1234');
+    for (let i = 0; i < b1234.length; i++) {
+        home2.push({x : Date.parse(b1234.options[i].innerText), y : b1234.options[i].value})
+    }
+    const ctx = document.getElementById('chart-Dashboard').getContext('2d');
+    const chart = new Chart(ctx, {   
+            type: 'line',
+            data: {
+                // labels: Object.keys(week),
+                datasets: [{
+                    label: 'Doanh thu nhà nghỉ A',
+                    data: home1,
+                    backgroundColor: [
+                        'rgba(39, 174, 96,0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(39, 174, 96,1.0)'
+        
+                    ],
+                    borderWidth: 1,
+                    lineTension: 0.25,
+                },{
+                    label: 'Doanh thu nhà nghỉ B',
+                    data: home2,
+                    backgroundColor: [
+                        'rgba(192, 174, 96,0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(192, 174, 96,1.0)'
+        
+                    ],
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }); 
+}   
+
+
+>>>>>>> a1e0dbc27508fe44faa4960c951ffb39bda05b48
 
   // create array ojbect
   var home1 = [];

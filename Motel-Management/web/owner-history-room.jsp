@@ -93,12 +93,6 @@
                                     <span class="title">Thông báo</span>
                                 </a>
                             </li>
-                            <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                                <a href="onwer-feedback.jsp">
-                                    <span><i class="bx bx-detail"></i></span>
-                                    <span class="title">Nhận xét</span>
-                                </a>
-                            </li>
                             <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                                 <a href="owner-statistical.jsp">
                                     <span><i class='bx bx-line-chart'></i></span>

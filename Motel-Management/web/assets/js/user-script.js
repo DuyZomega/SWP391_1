@@ -1,4 +1,3 @@
-// ====================== Validation ====================
 //Đối tượng
 function Validator(options) {
   var selectorRules = {};
@@ -143,15 +142,25 @@ Validator.isConfirmed = function (selector, getConfirmValue, message) {
 };
 
 // ===================Thuy detail=====================
-
-$(function () {
-  app_a.setUp();
-});
 let vnd = Intl.NumberFormat("vi-VN", {
   style: "currency",
   currency: "VND",
   useGrouping: true,
 });
+function price_format(){
+    $('.price-format').each(function(){
+        var $price = $(this).data('price'),
+            html=vnd.format($price);
+        $(this).html(html);
+    });
+}
+$(function(){
+    price_format();
+});
+$(function () {
+  app_a.setUp();
+});
+
 var app_a = {
   tbl: "#app_a",
   h: "input.hour_val",

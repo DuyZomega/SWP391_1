@@ -202,18 +202,31 @@
                                                 for (MotelDTO motel : listMotel) {
                                     %>
                                     <div class="tab-pane" id="a<%= motel.getMotelID()%>" role="tabpanel">
-                                        <div class="search">
-                                            <div class="address-home">
-                                                <span>Địa chỉ: <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></h5></span>
+                                        <div class="row search">
+                                            <div class="col-sm-12 d-flex">
+                                                <div class="col-sm-7 d-flex address-home">
+                                                    <span>Địa chỉ: </span>
+                                                    <h5> <%= motel.getAddress()%>,<%= motel.getDistrict()%>,<%= motel.getCity()%></h5>
+                                                </div>
+                                                <div class="col-sm-5 d-flex justify-content-end search-details">
+                                                    <form action="MainController" method="post" class="filter form-group">
+                                                        <div>
+                                                           <label>
+                                                                <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
+                                                                <input type="hidden" name="action" value="searchRoom"/>
+                                                                <input class="form-control" type="text" name="search" placeholder="Search...">
+                                                                <button type="submit"><i class='bx bx-search-alt'></i></button>
+                                                            </label> 
+                                                        </div>
+                                                        <div class="vertical-line"></div>
+                                                        <select name="#" id="">
+                                                            <option value="1">Phòng đơn</option>
+                                                            <option value="1">Phòng đôi</option>
+                                                            <option value="1">Phòng uyên ương</option>
+                                                        </select>    
+                                                    </form>
+                                                </div>
                                             </div>
-                                            <form action="MainController" method="post">
-                                                <label>
-                                                    <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
-                                                    <input type="hidden" name="action" value="searchRoom"/>
-                                                    <input class="form-control" type="text" name="search" placeholder="Search...">
-                                                    <i class='bx bx-search-alt'></i>
-                                                </label>
-                                            </form>
                                         </div>
                                         <div class="row">
                                             <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
@@ -313,12 +326,10 @@
                         <div class="modal-body">
                             <div class="row p-4">
                                 <div class="col-12">
+                                    <input type="hidden" name="motelID" value="<%=motel.getMotelID()%>">
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên Nhà Trọ</label>
-                                        <select name="motelID" class="form-control col-md-7">
-                                            <option disabled selected>Motel name to add room</option>
-                                            <option value="<%=motel.getMotelID()%>" selected="selected" ><%=motel.getName()%></option>
-                                        </select>
+                                        <input class="form-control col-md-7" value="<%=motel.getName()%>" disabled/>
                                     </div>
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên phòng</label>
@@ -348,12 +359,14 @@
                                         <label class="col-md-3 col-form-label mt-2 text-md-right" id="otherid2" for="customFile" style="display: none;">
                                             Chọn ảnh
                                         </label>
-                                        <input type="file" name="photo" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none;">
-                                        <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3" id="labeldecp" style="display: none;">
+                                        <input type="file" name="photo" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none; padding-bottom: 37px;">
+                                        <div class="row form-group" id="labeldecp" style="display: none;">
+                                            <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3">
                                             Mô tả
-                                        </label>
-                                        <textarea type="text" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control col-md-7 mt-3 d-5" 
-                                                  rows="3" id="roomTypeDesct" style="display: none;"></textarea>
+                                            </label>
+                                            <textarea type="text" id="roomTypeDesct" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control" rows="3" ></textarea>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>

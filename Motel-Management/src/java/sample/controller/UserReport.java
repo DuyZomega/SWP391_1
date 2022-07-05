@@ -41,7 +41,7 @@ public class UserReport extends HttpServlet {
             int status = 1;
              ReportDTO report = new ReportDTO(reportID, userID, motelID, title, desct, status, date);
             boolean checkReport = dao.insertReport(report);
-                if (checkReport) {
+                if (checkReport) {request.setAttribute("MESSAGE", "Successfully");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

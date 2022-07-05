@@ -9,10 +9,6 @@
         <servlet-class>sample.controller.CreateUserController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateBookingController</servlet-name>
-        <servlet-class>sample.controller.CreateBookingController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>sample.controller.LogoutController</servlet-class>
     </servlet>
@@ -31,10 +27,6 @@
     <servlet-mapping>
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/CreateUserController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateBookingController</servlet-name>
-        <url-pattern>/CreateBookingController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
