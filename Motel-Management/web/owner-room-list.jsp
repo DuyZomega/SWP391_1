@@ -336,6 +336,10 @@
                                         <input type="text" name="roomName" placeholder="Tên Phòng" required class="form-control col-md-7">
                                     </div>
                                     <div class="row form-group">
+                                        <label for="numOfRoom" class="col-md-3 col-form-label text-md-right">Số lượng phòng</label>
+                                        <input type="number" name="numOfRoom" placeholder="Số lượng phòng" required class="form-control col-md-7" min="1" max="10">
+                                    </div>
+                                    <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Loại phòng</label>
                                         <select name="typeofRoom" class="form-control col-md-7" onchange="other(event)" required="">
                                             <option disabled selected>Choose type of room</option>
@@ -348,7 +352,6 @@
                                             <%
                                                     }
                                                 }
-
                                             %>
                                             <option value="custom">Other</option>
                                         </select>
@@ -379,7 +382,8 @@
                 </div>
             </div>
         </div>
-        <%                    }
+        <%                    
+                    }
                 }
             }
         %> 

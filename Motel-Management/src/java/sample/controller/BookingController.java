@@ -5,7 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
-import sample.room.RoomTypeDTO;
 import sample.room.TestDAO;
 import sample.room.TestDTO;
 import sample.users.UserDAO;
@@ -116,11 +114,6 @@ public class BookingController extends HttpServlet {
                 }
             }
 
-//                if (checkBT) {
-//                    RoomDTO room = new RoomDTO(id, status);
-//                    RoomDAO roomdao = new RoomDAO();
-//                    updateroom = roomdao.updateRoomBT(cr, id);
-//                }
             //===============
             if (checkCreate & check & updateroom) {
                 request.setAttribute("SUCCESS", "Booking thanh cong ");
