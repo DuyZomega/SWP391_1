@@ -147,15 +147,15 @@ let vnd = Intl.NumberFormat("vi-VN", {
   currency: "VND",
   useGrouping: true,
 });
-function price_format(){
-    $('.price-format').each(function(){
-        var $price = $(this).data('price'),
-            html=vnd.format($price);
-        $(this).html(html);
-    });
+function price_format() {
+  $(".price-format").each(function () {
+    var $price = $(this).data("price"),
+      html = vnd.format($price);
+    $(this).html(html);
+  });
 }
-$(function(){
-    price_format();
+$(function () {
+  price_format();
 });
 $(function () {
   app_a.setUp();
@@ -361,9 +361,6 @@ $(document).ready(function () {
         $(this).html(html);
       }
     });
-    var getParentTruncateContent = document
-      .querySelector(".truncate-content")
-      .parentElement.querySelector(".desc");
     $(".moreless").click(function () {
       var thisEl = $(this);
       var cT = thisEl.closest(".truncate-text");
@@ -383,3 +380,9 @@ $(document).ready(function () {
 
   /* end ready */
 });
+//data-href
+// $(document).ready(function () {
+//   $(".clickable-row").click(function () {
+//     window.location = $(this).data("href");
+//   });
+// });
