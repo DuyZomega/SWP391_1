@@ -45,6 +45,9 @@
                                                         <a class="dropdown-item"
                                                             href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                                             Thông tin cá nhân</a>
+                                                        <div class="dropdown-divider"></div><a class="dropdown-item"
+                                                            href="userhistorybooking">
+                                                            Lịch sử</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item"
                                                             href="MainController?action=Logout">Đăng xuất</a>

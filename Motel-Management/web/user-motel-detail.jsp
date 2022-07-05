@@ -96,7 +96,7 @@
                                         <h2>Đặt lịch</h2>
                                         <hr>
                                         <div class="content-booking-detail">
-                                            
+
                                             <p>Thủ tục đặt phòng đơn giản, nhanh
                                                 gọn</p>
                                             <button
@@ -151,8 +151,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%
-                                    List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                <%                                    List<RoomTypeDTO> rt = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
                                     double total = 0;
                                     double sum = 0;
                                     int i = 0;
@@ -161,12 +160,12 @@
                                 %><tr>
                                     <td>
                                         <div class="row">
-                                            <div class="title col-12 d-flex justify-content-between align-items-center">
+                                            <div class="title col-12 d-flex justify-content-start align-items-center">
                                                 <!--<a href="MainController?action=ShowMotelBooking&motelID=842578129&rt=<%=request.getParameterValues("rt")%>">Đặt ngay</a>-->
                                                 <input type="hidden" class="roomTypeID d-5"  name="roomTypeID[]" value="<%= roomtype.getRoomTypeID()%>"/>
-                                                <input type="hidden" class="typename"  name="typename[]" value="<%= roomtype.getTypeName()%>"/> <%= roomtype.getTypeName()%>
+                                                <input type="hidden" class="typename"  name="typename[]" value="<%= roomtype.getTypeName()%>"/> 
                                                 <input type="hidden" class="motelID"  name="motelID" value="<%= roomtype.getMotelID()%>"/> 
-
+                                                <h6 class="room-type-title"><%= roomtype.getTypeName()%></h6>
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
@@ -177,8 +176,9 @@
                                                          class="hot-label"
                                                          alt="hot-label">
                                                 </div>
+
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-12">
                                                 <div class="img-room">
                                                     <a href="<%= roomtype.getImage()%>"
                                                        data-lightbox="roadtrip"><img
@@ -186,18 +186,11 @@
                                                             alt="<%= roomtype.getTypeName()%>"></a>
                                                 </div>
                                             </div>
-                                            <div class="desc col-6">
-                                                <ul>
-                                                    <li> Tivi</li>
-                                                    <li> Máy lạnh</li>
-                                                    <li> Tủ lạnh</li>
-                                                    <li> Quạt trần</li>
-                                                </ul>
-                                            </div>
-                                            <h6 class="col-12">Thông tin</h6>
-                                            <div class="col-12">
-                                                <p><%= roomtype.getDesct()%>
-                                                </p>
+                                           
+                                            <div class="col-12 truncate-content"> <h6>Thông tin</h6>
+                                                <div>
+                                                    <p><%= roomtype.getDesct()%></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -334,7 +327,7 @@
         referrerpolicy="no-referrer"></script>
         <!-- BS4 JS -->
         <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- owl Carousels -->
         <script src="./assets/js/owl.carousel.min.js"></script>
         <script>

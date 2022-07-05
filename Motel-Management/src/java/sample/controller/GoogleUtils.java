@@ -14,7 +14,6 @@ import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import sample.users.UserDTO;
 import sample.users.UserGoogleDTO;
 import sample.utils.Constants;
 public class GoogleUtils {
