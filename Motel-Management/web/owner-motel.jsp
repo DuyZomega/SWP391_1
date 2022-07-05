@@ -93,12 +93,6 @@
                                 <span class="title">Thông báo</span>
                             </a>
                         </li>
-                        <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="onwer-feedback.jsp">
-                                <span><i class="bx bx-detail"></i></span>
-                                <span class="title">Nhận xét</span>
-                            </a>
-                        </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
                             <a href="owner-statistical.jsp">
                                 <span><i class='bx bx-line-chart'></i></span>
@@ -203,7 +197,14 @@
                                                 <h5 class="title mb-2"><%= motel.getName()%></h5>
                                                 <span class="address-home">Địa chỉ: <%= motel.getAddress()%>, <%= motel.getDistrict()%>, <%= motel.getCity()%></span>
                                             </div>
-                                            <span class="badge badge-success d-sm-inline-block d-none mr-2">Trạng thái</span>
+                                            <%
+                                            if (motel.getStatus() == 1) {
+                                            %>
+                                                <span class="badge badge-success d-sm-inline-block d-none mr-2">Đang hoạt động</span>
+                                            <%
+                                                }
+                                            %>
+                                            
                                             <div class="d-flex ml-2 p-1">
                                                 <div class="dropdown">
                                                     <button class="btn" type="button" id="edit-dele" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -211,8 +212,6 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="edit-dele">
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome<%= motel.getMotelID()%>"><i class='bx bx-edit'></i>Chỉnh sửa</a>
-
-
                                                         <!-- remove Home -->
                                                         <form action="MainController" method="POST">
                                                             <input type="hidden" name="motelID" value="<%= motel.getMotelID()%>"> 
@@ -447,7 +446,11 @@
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>
                                         <input class="form-control col-md-6" name="desct" value="<%= motel.getDesct()%>" required>       
                                     </div>
-                                    <input type="file" name="photo" />
+                                    <div class="row form-group">
+                                        <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>
+                                        <input type="file" name="photo" class="form-control col-md-6" style="padding-bottom: 37px" accept="image/*"/>   
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

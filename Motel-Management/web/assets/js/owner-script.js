@@ -20,6 +20,17 @@ $('.tab-pane').each(function(i){
     }
 });
 
+//print bill
+$('.btn-print').click(function () {
+    var table = document.getElementById("table");
+    var wme = window.open("","","with=900,height=700");
+    wme.document.write(table.outerHTML);
+    wme.document.close();    
+    wme.focus();
+    wme.print();
+    wme.close();
+
+})
 
 //loading
 // $(window).on("load",function () {
@@ -54,6 +65,8 @@ let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");
 let numOfFiles = document.getElementById("num-of-files");
 let removeFiles = document.getElementById("removeFiles");
+
+
 
 function preview() {
     imageContainer.innerHTML = "";
@@ -102,29 +115,12 @@ $(document).ready(function () {
     }, 3000);
 })
 
+
 //profile
 var loadFile = function (event) {
     var image = document.getElementById("output");
     image.src = URL.createObjectURL(event.target.files[0]);
 };  
-
-
-function timeFrame(period) {
-    if (period.value == 'day') {
-        chart.data.datasets[0].data = day;
-        chart.options.scales.x.time.unit = period.value;
-    }
-    if (period.value == 'week') {
-        chart.data.datasets[0].data = week;
-        chart.options.scales.x.time.unit = period.value;
-
-    }
-    if (period.value == 'month') {
-        chart.data.datasets[0].data = month;
-        chart.options.scales.x.time.unit = period.value;
-    }
-    chart.update();
-} 
 
 
 //change idHome for delete
@@ -154,7 +150,6 @@ function other(event) {
 
 
 // select following select box
-
 function myFunc() {
     var list = [];
     var sel1 = $('#motelid').val();
@@ -175,7 +170,6 @@ function myFunc() {
 }
 
 
-
 // sweetalert
 function submitFunc() {
     swal({
@@ -188,29 +182,47 @@ function submitFunc() {
     return false;
 };
 
-// confirm to dele
 
+// confirm to dele
 function confirmdele() {
     if (!confirm('Are you sure to delete?')) { 
         return false }
 }
 
 
+//chart
+function timeFrame(period) {
+    if (period.value == 'day') {
+        chart.data.datasets[0].data = day;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    if (period.value == 'week') {
+        chart.data.datasets[0].data = week;
+        chart.options.scales.x.time.unit = period.value;
+
+    }
+    if (period.value == 'month') {
+        chart.data.datasets[0].data = month;
+        chart.options.scales.x.time.unit = period.value;
+    }
+    chart.update();
+} 
+
 
 
  function getValue() {
 
-    const numOfHome = document.querySelectorAll('#numOfHome select');
-    var num = [];
-    var lengthOfarray;
-    for (let i = 0; i < numOfHome.length; i++) {
-        var data = document.getElementById(numOfHome[i].id);
-        lengthOfarray = data.length;
-        for (let j = 0; j < lengthOfarray; j++) {
-            num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
-        }  
-    }
-    console.log(num);
+    // const numOfHome = document.querySelectorAll('#numOfHome select');
+    // var num = [];
+    // var lengthOfarray;
+    // for (let i = 0; i < numOfHome.length; i++) {
+    //     var data = document.getElementById(numOfHome[i].id);
+    //     lengthOfarray = data.length;
+    //     for (let j = 0; j < lengthOfarray; j++) {
+    //         num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+    //     }  
+    // }
+    // console.log(num);
     
 
     // create array ojbect
@@ -259,7 +271,7 @@ function confirmdele() {
                     x: {
                         type: 'time',
                         time: {
-                            unit: 'week'
+                            unit: 'day'
                         }
                     },
                     y: {
