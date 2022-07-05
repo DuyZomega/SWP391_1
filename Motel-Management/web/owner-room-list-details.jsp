@@ -162,7 +162,7 @@
                                     <span>/</span>
                                 </li>
                                 <li class="breadcrumd-item">
-                                    <a href="owner-room-list.html">Phòng</a>
+                                    <a href="owner-room-list.jsp">Phòng</a>
                                 </li>
                                 <li class="breadcrumd-item">
                                     <span>/</span>
@@ -176,8 +176,8 @@
                     
                     <div class="row">
                         <div class="col-12 customer-detail">
-                            <div class="col-lg-8 customer-booking">
-                                <div class="card">
+                            <div class="col-lg-7 customer-booking">
+                                <div class="card profile mb-4">
                                     <div class="card-header">
                                         <h4>Thông tin đặt phòng</h4>
                                     </div>
@@ -189,17 +189,10 @@
                          
                                     %>
                                     <div class="card-body">
-                                        <%
-                                        if (roomDetail.getStatus() != 1) {
-                                        %>
-                                        <div style="float: right; cursor: pointer;">
-                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#editRoom" 
-                                               data-toggle="tooltip"data-placement="right" title="Chỉnh sửa thông tin Phòng"></i>
-                                        </div>
-                                        <% 
-                                            }
-                                        %>
                                         <div class="row mb-sm-2">
+                                           <%
+                                            if (roomDetail.getStatus() != 1) {
+                                            %>                                          
                                             <div class="col-sm-4 text-sm-right">
                                                 <span>Trạng thái:</span>
                                             </div>
@@ -216,9 +209,12 @@
                                                 <%
                                                     }
                                                 %>
-                                                
                                             </div>
                                         </div>
+                                        <% 
+                                            }
+                                        %>
+                                        
                                         <div class="row mb-sm-2">
                                             <div class="col-sm-4 text-sm-right">
                                                 <span>Mã đặt phòng:</span>
@@ -267,34 +263,7 @@
                                             <div class="col-sm-8 text-sm-left">
                                                 <span><%= roomDetail.getAddress()%> - <%= roomDetail.getDistrict()%> - <%= roomDetail.getCity()%></span>
                                             </div>
-                                        </div>
-                                        <div class="row mb-sm-2">
-                                            <div class="col-sm-4 text-sm-right">
-                                                <span>Ngày thuê:</span>
-                                            </div>
-                                            <div class="col-sm-8 text-sm-left">
-                                                <% if (roomDetail.getBookingDate()=="...") {
-                                                        %>
-                                                <span>--/--/----</span>
-                                                <%
-                                                    } else {
-                                                %>
-                                                <span><%= roomDetail.getBookingDate()%></span>
-                                                <%
-                                                    }
-                                                %>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="row mb-sm-2">
-                                            <div class="col-sm-4 text-sm-right">
-                                                <span>Thời Gian Thuê:</span>
-                                            </div>
-                                            <div class="col-sm-8 text-sm-left">
-                                                <span><%= roomDetail.getTime()%>h</span>
-                                            </div>
-                                        </div>
+                                        </div>                                   
                                     </div>
                                 </div>
                                 <%
@@ -303,104 +272,119 @@
                                         userProfile = new UserDTO();
                                     }
                                 %>         
-                                <div class="row">
-                                    <div class="col-lg-12 cust-profile justify-content-between">
-                                        <div class="col-lg-5 card profile">
-                                            <div class="card-header">
-                                                <h5>Thông tin người thuê</h5>                                             
+                                <div class="card profile mb-4">
+                                    <div class="card-header">
+                                        <h4>Thông tin người thuê</h4>   
+                                        <div class="edit-info">
+                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#addCustomer"></i>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-5 text-md-right">
+                                                <label for="customer-name">Họ và tên:</label>
                                             </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-5 text-md-right">
-                                                        <label for="customer-name">Họ và tên:</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        <span><%= userProfile.getFullName()%></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5 text-md-right">
-                                                        <label for="customer-name">Số điện thoại:</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        <span><%= userProfile.getPhone()%></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5 text-md-right">
-                                                        <label for="customer-name">CCCD/ CMND:</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        <span><%= userProfile.getCitizenNumber()%></span>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5 text-md-right">
-                                                        <label for="customer-name">Địa chỉ:</label>
-                                                    </div>
-                                                    <div class="col-md-7">
-                                                        <span><%= userProfile.getAddress()%></span>
-                                                    </div>
-                                                </div>
+                                            <div class="col-md-7">
+                                                <span><%= userProfile.getFullName()%></span>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 card rating">
-                                            <div class="card-header">
-                                                <h5>Dịch vụ sử dụng</h5>
+                                        <div class="row">
+                                            <div class="col-md-5 text-md-right">
+                                                <label for="customer-name">Số điện thoại:</label>
                                             </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-hover table-borderless">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Mã Dịch vụ</th>
-                                                                    <th>Tên Dịch vụ</th>
-                                                                    <th>Số tiền</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <%
-                                                                    List<ServiceDTO> listService = (ArrayList<ServiceDTO>) request.getAttribute("SERVICE_LIST");
-                                                                    int total = 0;
-                                                                    if (listService != null) {
-                                                                        if (listService.size() > 0) {
-                                                                            for (ServiceDTO service : listService) {
-                                                                                int price = service.getPrice() * service.getQuantity();
-                                                                                total += price;
-                                                                %>
-                                                                <tr>
-                                                                    <td><%= service.getServiceId()%></td>
-                                                                    <td><%= service.getName()%></td>
-                                                                    <td><span class="price-format" data-price="<%= price%>"></span></td>
-                                                                </tr>
-                                                                <%
-                                                                            }
-                                                                        }
+                                            <div class="col-md-7">
+                                                <span><%= userProfile.getPhone()%></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 text-md-right">
+                                                <label for="customer-name">CCCD/ CMND:</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <span><%= userProfile.getCitizenNumber()%></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 text-md-right">
+                                                <label for="customer-name">Địa chỉ:</label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <span><%= userProfile.getAddress()%></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-sm-2">
+                                            <div class="col-sm-5 text-sm-right">
+                                                <span>Ngày thuê:</span>
+                                            </div>
+                                            <div class="col-sm-7 text-sm-left">
+                                                <span><%= roomDetail.getBookingDate() %></span>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-sm-2">
+                                            <div class="col-sm-5 text-sm-right">
+                                                <span>Số giờ thuê:</span>
+                                            </div>
+                                            <div class="col-sm-7 text-sm-left">
+                                                <span><%= roomDetail.getTime()%></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                            <div class="col-lg-5 total-pay">
+                                <div class="card rating">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center pb-3">
+                                            <h5 >Dịch vụ sử dụng</h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-borderless">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mã Dịch vụ</th>
+                                                            <th>Tên Dịch vụ</th>
+                                                            <th>Số tiền</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <%
+                                                            List<ServiceDTO> listService = (ArrayList<ServiceDTO>) request.getAttribute("SERVICE_LIST");
+                                                            int total = 0;
+                                                            if (listService != null) {
+                                                                if (listService.size() > 0) {
+                                                                    for (ServiceDTO service : listService) {
+                                                                        int price = service.getPrice() * service.getQuantity();
+                                                                        total += price;
+                                                        %>
+                                                        <tr>
+                                                            <td><%= service.getServiceId()%></td>
+                                                            <td><%= service.getName()%></td>
+                                                            <td><span class="price-format" data-price="<%= price%>"></span></td>
+                                                        </tr>
+                                                        <%
                                                                     }
-                                                                %> 
-                                                            </tbody>
-                                                            <tfoot style="color: #e74c3c; border-top: 1px solid #ccc;">
-                                                                <tr>
-                                                                    <th>Total</th>
-                                                                    <th></th>
-                                                                    <th><span class="price-format" data-price="<%= total%>"></span></th>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                    </div>
-                                                </div>
+                                                                }
+                                                            }
+                                                        %> 
+                                                    </tbody>
+                                                    <tfoot style="color: #e74c3c; border-top: 1px solid #ccc;">
+                                                        <tr>
+                                                            <th>Total</th>
+                                                            <th></th>
+                                                            <th><span class="price-format" data-price="<%= total%>"></span></th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 total-pay">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Tổng tiền</h5>
-                                    </div>
+                                <div class="card">                                   
                                     <div class="card-body flex-wrap">
+                                        <div class="d-flex justify-content-center pb-3">
+                                            <h5 >Tổng tiền</h5>
+                                        </div>
                                         <div class="row">
                                             <div class="table-responsive">
                                                 <table id="table" class="table table-hover table-borderless">
@@ -433,7 +417,7 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
-                                                <div class="d-flex justify-content-sm-between mr-lg-4">
+                                                <div class="d-flex justify-content-sm-between mr-lg-5">
                                                     <button class="btn btn-print">In hóa đơn</button>
                                                     <form action="#">
                                                         <button type="submit" class="btn btn-success">Thanh toán</button>
@@ -463,27 +447,41 @@
                                 <div class="form-group row">
                                     <label for="username" class="col-sm-4 col-form-label">Họ tên người thuê</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="Trần Ngọc Hải" required>
+                                        <input type="text" class="form-control" placeHolder="Nhập tên khách hàng" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="phonenumber" class="col-sm-4 col-form-label">Số điện thoại</label>
                                     <div class="col-sm-8">
-                                        <input type="tel" class="form-control" value="0971520123" required>
+                                        <input type="tel" class="form-control" value="số điện thoại" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="citizennumber" class="col-sm-4 col-form-label">CCCD/CMND</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="000000000000" required>
+                                        <input type="text" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" value="address" required>
+                                        <input type="text" class="form-control" required>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-4 col-form-label">Thời gian thuê phòng</label>
+                                    <div class="col-sm-8">
+                                        <select class=" form-control">
+                                            <option> 1h </option>
+                                            <option> 1h </option>
+                                            <option> 1h </option>
+                                            <option> 1h </option>
+                                            <option> 1h </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
