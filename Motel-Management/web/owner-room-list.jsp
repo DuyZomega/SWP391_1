@@ -210,12 +210,14 @@
                                                 </div>
                                                 <div class="col-sm-5 d-flex justify-content-end search-details">
                                                     <form action="MainController" method="post" class="filter form-group">
-                                                        <label>
-                                                            <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
-                                                            <input type="hidden" name="action" value="searchRoom"/>
-                                                            <input class="form-control" type="text" name="search" placeholder="Search...">
-                                                            <button type="submit"><i class='bx bx-search-alt'></i></button>
-                                                        </label>
+                                                        <div>
+                                                           <label>
+                                                                <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
+                                                                <input type="hidden" name="action" value="searchRoom"/>
+                                                                <input class="form-control" type="text" name="search" placeholder="Search...">
+                                                                <button type="submit"><i class='bx bx-search-alt'></i></button>
+                                                            </label> 
+                                                        </div>
                                                         <div class="vertical-line"></div>
                                                         <select name="#" id="">
                                                             <option value="1">Phòng đơn</option>
