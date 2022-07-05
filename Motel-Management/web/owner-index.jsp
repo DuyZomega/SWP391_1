@@ -26,7 +26,7 @@
         <!--Boxicons-->
         <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
     </head>
-    <body>
+    <body onload="getValue()">
         <!-- sidebar -->
         <div class="sidebar">
             <div class="container">
@@ -195,7 +195,31 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4>Doanh thu tuần qua</h4>
+                                <a href="owner-statistical.jsp" class="btn-white">Xem tất cả</a>
+                            </div>
                             <div class="card-body">
+                                <div id="numOfHome">
+                                    <select name="aaa" id="a1234" style="display: none;">
+                                        <option value="10">2022-06-09 UTC+0700</option>
+                                        <option value="9">2022-06-10 UTC+0700</option>
+                                        <option value="3">2022-06-11 UTC+0700</option>
+                                        <option value="7">2022-06-12 UTC+0700</option>
+                                        <option value="9">2022-06-13 UTC+0700</option>
+                                        <option value="5">2022-06-14 UTC+0700</option>
+                                        <option value="1">2022-06-15 UTC+0700</option>
+                                    </select>
+                                    <select name="bbb" id="b1234" style="display: none;">
+                                        <option value="1">2022-06-09 UTC+0700</option>
+                                        <option value="2">2022-06-10 UTC+0700</option>
+                                        <option value="3">2022-06-11 UTC+0700</option>
+                                        <option value="4">2022-06-12 UTC+0700</option>
+                                        <option value="5">2022-06-13 UTC+0700</option>
+                                        <option value="6">2022-06-14 UTC+0700</option>
+                                        <option value="7">2022-06-15 UTC+0700</option>
+                                    </select>
+                                </div>
                                 <canvas id="chart-Dashboard" width="300" height="100"></canvas>
                             </div>
                         </div>
@@ -210,7 +234,7 @@
                     <div class="card border-0 d-flex">
                         <div class="card-header">
                             <h4>Thông báo mới</h4>
-                            <a href="#" class="btn-title">Xem tất cả</a>
+                            <a href="owner-notification.jsp" class="btn-white">Xem tất cả</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">
@@ -237,7 +261,7 @@
                                                         clas = "outcome";
                                                         status = "Đã Thanh Toán";
                                                     } else {
-                                                        clas = "demise";
+                                                        clas = "distroy";
                                                         status = "Đang Thuê";
                                                     }
                                     %>
@@ -326,6 +350,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
         <script src="assets/js/owner-script.js"></script>
     </body>
 </html>

@@ -173,6 +173,7 @@
                             </ol>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-12 customer-detail">
                             <div class="col-lg-8 customer-booking">
@@ -192,7 +193,8 @@
                                         if (roomDetail.getStatus() != 1) {
                                         %>
                                         <div style="float: right; cursor: pointer;">
-                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#editRoom"></i>
+                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#editRoom" 
+                                               data-toggle="tooltip"data-placement="right" title="Chỉnh sửa thông tin Phòng"></i>
                                         </div>
                                         <% 
                                             }
@@ -222,7 +224,16 @@
                                                 <span>Mã đặt phòng:</span>
                                             </div>
                                             <div class="col-sm-8 text-sm-left">
+                                                <% if (roomDetail.getBookingID()=="") {
+                                                        %>
+                                                <span>----------</span>
+                                                <%
+                                                    } else {
+                                                %>
                                                 <span><%= roomDetail.getBookingID()%></span>
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
@@ -262,7 +273,17 @@
                                                 <span>Ngày thuê:</span>
                                             </div>
                                             <div class="col-sm-8 text-sm-left">
+                                                <% if (roomDetail.getBookingDate()=="...") {
+                                                        %>
+                                                <span>--/--/----</span>
+                                                <%
+                                                    } else {
+                                                %>
                                                 <span><%= roomDetail.getBookingDate()%></span>
+                                                <%
+                                                    }
+                                                %>
+
                                             </div>
 
                                         </div>
@@ -286,7 +307,7 @@
                                     <div class="col-lg-12 cust-profile justify-content-between">
                                         <div class="col-lg-5 card profile">
                                             <div class="card-header">
-                                                <h5>Thông tin người thuê</h5>
+                                                <h5>Thông tin người thuê</h5>                                             
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -330,7 +351,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="table-responsive">
-                                                        <table id="myTable" class="table table-hover table-borderless">
+                                                        <table class="table table-hover table-borderless">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Mã Dịch vụ</th>
@@ -382,7 +403,7 @@
                                     <div class="card-body flex-wrap">
                                         <div class="row">
                                             <div class="table-responsive">
-                                                <table id="bill myTable" class="table table-hover table-borderless">
+                                                <table id="table" class="table table-hover table-borderless">
                                                     <thead>
                                                         <tr>
                                                             <th>STT</th>
@@ -412,8 +433,8 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
-                                                <div class="d-flex justify-content-between mr-xl-5">
-                                                    <a href="javascript:imprimir(0)">In hóa đơn</a>
+                                                <div class="d-flex justify-content-sm-between mr-lg-4">
+                                                    <button class="btn btn-print">In hóa đơn</button>
                                                     <form action="#">
                                                         <button type="submit" class="btn btn-success">Thanh toán</button>
                                                     </form>
@@ -423,13 +444,57 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+                                                        
+        <div id="addCustomer" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm Khách</h4>
+                    </div>
+                    <form action="MainController" class="form-group">
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-8">
+                                <div class="form-group row">
+                                    <label for="username" class="col-sm-4 col-form-label">Họ tên người thuê</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="Trần Ngọc Hải" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="phonenumber" class="col-sm-4 col-form-label">Số điện thoại</label>
+                                    <div class="col-sm-8">
+                                        <input type="tel" class="form-control" value="0971520123" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="citizennumber" class="col-sm-4 col-form-label">CCCD/CMND</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="000000000000" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" value="address" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button class="btn btn-success" type="submit" name="action" value="addCustomer">Xác nhận</button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
         <!-- edit Room -->
         <div id="editRoom" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
@@ -439,8 +504,8 @@
                     </div>
                     <form action="MainController" method="post" class="form-group">
                         <div class="modal-body">
-                            <div class="row">
-                                <div class="col-12 col-md-7">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-md-8">
                                     <div class="form-group row">
                                         <label for="staticEmail" class="col-sm-4 col-form-label">Mã Phòng</label>
                                         <div class="col-sm-8">

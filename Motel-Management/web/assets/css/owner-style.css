@@ -51,6 +51,26 @@ html body {
     
 } */
 
+.btn-white {
+    background: #fff;
+    color: #000;
+    border: 1px solid #34495e;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.btn-white:hover {
+    background: #EEEEEE;
+    color: #000;
+}
+
+.btn-add {
+    color: #34495e;
+    font-size: 5px;
+    background: #f1f1f1;
+    border: 1px solid #34495e;
+}
+
 .btn-success {
     border-color: #2ecc71 !important;
     background-color: #2ecc71 !important;
@@ -799,6 +819,33 @@ html body {
     font-size: 1.2em;
 }
 
+.search-details .filter {
+    position: absolute;
+    display: contents;
+}
+
+.search-details .filter button {
+    border: none;
+}
+
+.search-details .vertical-line {
+    position: absolute;
+    width: 1px; 
+    background-color: black; 
+    height: 20px; 
+    margin-top: 10px;
+    margin-right: 120px;
+} 
+
+.search-details .filter select {
+    position: absolute;
+    border: none;
+    width: 100px;
+    height: 38px;
+    margin-right: 15px;
+    background: inherit;
+}
+
 .card .card-child {
     border-radius: 20px;
     height: 400px;
@@ -909,7 +956,7 @@ html body {
 .room-title ul li h6{
     font-size: 15px;
     font-weight: 700;
-    width: 110px;
+    width: 116px;
 }
 
 .room-title ul li:nth-child(2) span {

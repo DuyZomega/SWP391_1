@@ -197,7 +197,14 @@
                                                 <h5 class="title mb-2"><%= motel.getName()%></h5>
                                                 <span class="address-home">Địa chỉ: <%= motel.getAddress()%>, <%= motel.getDistrict()%>, <%= motel.getCity()%></span>
                                             </div>
-                                            <span class="badge badge-success d-sm-inline-block d-none mr-2">Trạng thái</span>
+                                            <%
+                                            if (motel.getStatus() == 1) {
+                                            %>
+                                                <span class="badge badge-success d-sm-inline-block d-none mr-2">Đang hoạt động</span>
+                                            <%
+                                                }
+                                            %>
+                                            
                                             <div class="d-flex ml-2 p-1">
                                                 <div class="dropdown">
                                                     <button class="btn" type="button" id="edit-dele" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -205,8 +212,6 @@
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="edit-dele">
                                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#editHome<%= motel.getMotelID()%>"><i class='bx bx-edit'></i>Chỉnh sửa</a>
-
-
                                                         <!-- remove Home -->
                                                         <form action="MainController" method="POST">
                                                             <input type="hidden" name="motelID" value="<%= motel.getMotelID()%>"> 

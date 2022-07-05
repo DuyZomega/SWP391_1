@@ -20,15 +20,17 @@ $('.tab-pane').each(function(i){
     }
 });
 
-// print bill
-function imprimir() {
-        var divToPrint=document.getElementById("bill");
-        newWin= window.open("");
-        newWin.document.write(divToPrint.outerHTML);
-        newWin.print();
-        newWin.close();
-    }
+//print bill
+$('.btn-print').click(function () {
+    var table = document.getElementById("table");
+    var wme = window.open("","","with=900,height=700");
+    wme.document.write(table.outerHTML);
+    wme.document.close();    
+    wme.focus();
+    wme.print();
+    wme.close();
 
+})
 
 //loading
 // $(window).on("load",function () {
@@ -63,6 +65,8 @@ let fileInput = document.getElementById("file-input");
 let imageContainer = document.getElementById("images");
 let numOfFiles = document.getElementById("num-of-files");
 let removeFiles = document.getElementById("removeFiles");
+
+
 
 function preview() {
     imageContainer.innerHTML = "";
