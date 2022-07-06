@@ -116,17 +116,20 @@
                                                                     String status = "Đã Hủy";
 
                                                             %>
-                                                            <tr class="clickable-row" data-bs-toggle="tooltip"
-                                                                data-bs-placement="right" title="Nhấn để xem chi tiết">
-                                                                <td data-toggle="modal" data-target="#detailsModal"><%= history.getBookingID()%></td>
-                                                                <td data-toggle="modal" data-target="#detailsModal"><%= history.getUserName()%></td>
-                                                                <td data-toggle="modal" data-target="#detailsModal"><%= history.getDate()%></td>
-                                                                <td data-toggle="modal" data-target="#detailsModal"><span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
+                                                            <tr class="clickable-row" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                                <td class="clickable"
+                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>"><%= history.getBookingID()%></td>
+                                                                <td class="clickable"
+                                                                data-href="user-booking-detail.jsp"><%= history.getUserName()%></td>
+                                                                <td class="clickable"
+                                                                data-href="user-booking-detail.jsp"><%= history.getDate()%></td>
+                                                                <td class="clickable"
+                                                                data-href="user-booking-detail.jsp" ><span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
 
                                                                 <%
                                                                     if (history.getStatus().equals("1")) {
                                                                 %>
-                                                                <td data-toggle="modal" data-target="#detailsModal">Đã hoàn thành</td>
+                                                                <td>Đã hoàn thành</td>
                                                                 <td>
                                                                     <div class="d-flex">
                                                                         <div class="add-room">

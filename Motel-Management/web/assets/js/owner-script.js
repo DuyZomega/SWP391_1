@@ -330,4 +330,3 @@ function timeFrame(period) {
       },
     },
   });
-}

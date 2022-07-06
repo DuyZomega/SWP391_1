@@ -38,6 +38,8 @@ public class UserManager extends HttpServlet {
     private static final String CANCEL_ROOM_CONTROLLER = "UserCancelRoom";
     private static final String REPORT_ROOM = "report";
     private static final String REPORT_ROOM_CONTROLLER = "UserReport";
+    private static final String BOOKING_DETAIL = "bookingdetail";
+    private static final String BOOKING_DETAIL_CONTROLLER = "UserBookingDetail";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,6 +62,8 @@ public class UserManager extends HttpServlet {
                 url = CANCEL_ROOM_CONTROLLER;
             }else if (REPORT_ROOM.equals(action)){
                 url = REPORT_ROOM_CONTROLLER;
+            }else if (BOOKING_DETAIL.equals(action)){
+                url = BOOKING_DETAIL_CONTROLLER;
             }
         } catch (Exception e) {
             log("Error at MainController: "+e.toString());
