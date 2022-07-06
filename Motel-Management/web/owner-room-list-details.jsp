@@ -210,11 +210,10 @@
                                                     }
                                                 %>
                                             </div>
-                                        </div>
                                         <% 
                                             }
                                         %>
-                                        
+                                        </div>
                                         <div class="row mb-sm-2">
                                             <div class="col-sm-4 text-sm-right">
                                                 <span>Mã đặt phòng:</span>
@@ -417,7 +416,7 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
-                                                <div class="d-flex justify-content-sm-between mr-lg-5">
+                                                <div class="d-flex justify-content-sm-between mr-lg-5 ml-lg-3">
                                                     <button class="btn btn-print">In hóa đơn</button>
                                                     <form action="#">
                                                         <button type="submit" class="btn btn-success">Thanh toán</button>

@@ -1443,6 +1443,49 @@ line-height: 35px;
     box-shadow: none;
 }
 
+#all-tip {
+    position: absolute;
+    display: none;
+    margin-top: 7px;
+    margin-left: 10px;
+    
+}
+#all-tip a {
+    color: #34495e;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#all-tip i {
+    font-size: 25px;
+}
+
+.notif-details tbody tr:hover {
+    cursor: pointer;
+    background-color: #e7e7e7;
+    zoom: 102%;
+}
+.notif-details thead tr th:nth-child(3) {
+    
+    width: 55%;
+}
+
+.notif-details thead tr th:last-child {
+    display: flex;
+    justify-content: end;
+}
+
+.notif-details tbody tr td {
+    vertical-align: middle !important;
+}
+
+.notif-details tbody tr td:nth-child(3) form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media (min-width: 576px) and (max-width: 991.98px) {
     .email-left-box {
         width: 100%;

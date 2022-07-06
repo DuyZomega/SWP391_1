@@ -65,8 +65,6 @@ let imageContainer = document.getElementById("images");
 let numOfFiles = document.getElementById("num-of-files");
 let removeFiles = document.getElementById("removeFiles");
 
-
-
 function preview() {
   imageContainer.innerHTML = "";
   numOfFiles.textContent = `${fileInput.files.length}
@@ -93,10 +91,8 @@ $(document).ready(function () {
   //data-table
   $("#myTable").DataTable();
 
-  $("td:has(#input)").click(function () {
-    $("#input", this).removeAttr("disabled");
-  });
 });
+
 
 $(document).ready(function () {
   $(".clickable-row").click(function () {
@@ -200,6 +196,8 @@ function timeFrame(period) {
     chart.update();
 } 
 
+
+$('#')
 
 
  function getValue() {
@@ -321,7 +319,7 @@ function timeFrame(period) {
         x: {
           type: "time",
           time: {
-            unit: "week",
+            unit: "day",
           },
         },
         y: {
