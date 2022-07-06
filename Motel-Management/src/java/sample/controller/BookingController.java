@@ -97,13 +97,13 @@ public class BookingController extends HttpServlet {
                 int ct = Integer.parseInt(counttime[i]);
                 listTest.add(new TestDTO(id, name, p, ct, cr));
                 listbt.add(new BookingDetailDTO(bookingID, id, bookingID, ct));
-                String bookingdetailID = String.valueOf(generator.nextInt(9999999));
-                BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
                 RoomDAO roomdao1 = new RoomDAO();
                 boolean checkBT = false;
                 for (int c = 1; c <= cr; c++) {
                     List<RoomDTO> toproom = roomdao1.findtoprooom(id, cr);
                     for (RoomDTO roomDTO : toproom) {
+                        String bookingdetailID = String.valueOf(generator.nextInt(9999999));
+                        BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
                         checkBT = bookingDetail.insertBt(bt, roomDTO.getRoomId());
                         if (checkBT) {
                             RoomDTO room = new RoomDTO(id, status);

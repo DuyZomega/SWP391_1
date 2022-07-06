@@ -89,108 +89,111 @@
                     </ul>
                 </div>
 
-                
-            <div class="main-content col-10">
-                <div class="main">
-                    <div class="container-fluid">
-                        <section>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <section class="confirm-booking mb-5 pt-2">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-7 pr-0">
-                                                    <div class="infor-booking">
-                                                        <h3 class="heading"><i class="fa fa-money-check-alt"></i>
-                                                            Chi tiết đặt phòng
-                                                            của bạn</h3>
-                                                        <div class="box">
-                                                            <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                <label><span class="label">Tên Motel: </span>
-                                                                    <span>Nhà Trọ Ladalat</span></label>
-                                                            </p>
-                                                            <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                <label><span class="label">Địa chỉ:</span>
-                                                                    <span>Thủ Đức</span></label>
-                                                            </p>
-                                                            <div class="d-flex">
-                                                                <p><i class="fa fa-hand-point-right"></i><span
-                                                                        class="label">Đơn giá:</span>
-                                                                </p>
+
+                <div class="main-content col-10">
+                    <div class="main">
+                        <div class="container-fluid">
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <section class="confirm-booking mb-5 pt-2">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <c:forEach var="m" varStatus="counter" items="${requestScope.DETAIL_MOTEL1}">
+                                                        <div class="col-7 pr-0">
+                                                            <div class="infor-booking">
+                                                                <h3 class="heading"><i class="fa fa-money-check-alt"></i>
+                                                                    Chi tiết đặt phòng
+                                                                    của bạn</h3>
+                                                                <div class="box">
+                                                                    <p class="d-flex"><i class="fa fa-hand-point-right"></i>
+                                                                        <label><span class="label">Tên Motel: </span>
+                                                                            <span>${m.name}</span></label>
+                                                                    </p>
+                                                                    <p class="d-flex"><i class="fa fa-hand-point-right"></i>
+                                                                        <label><span class="label">Địa chỉ:</span>
+                                                                            <span>${m.address} , ${m.district}, ${m.city}</span></label>
+                                                                    </p>
+                                                                    <div class="d-flex">
+                                                                        <p><i class="fa fa-hand-point-right"></i><span
+                                                                                class="label">Đơn giá:</span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <ul class="ml-3">
+                                                                        <c:forEach var="b" varStatus="counter" items="${requestScope.DETAIL_BOOK}">
+                                                                            <li>- ${b.typename}
+                                                                                <span> - ${b.numberRoom}</span> phòng 
+                                                                                <span>- ${b.numberRoomType}</span> hour 
+                                                                                <i class="fa fa-arrow-right"></i> 
+                                                                                <span class="price-format" data-price="${b.motelprice * b.numberRoomType * b.numberRoom }"></span>
+                                                                            </li>
+
+                                                                        </c:forEach>
+                                                                        <hr>
+                                                                        <li>- Tổng tiền:
+                                                                            <span><span class="price-format"
+                                                                                        data-price="${m.motelprice}"></span></span> 
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
                                                             </div>
-                                                            <ul class="ml-3">
-                                                                <li>- Phòng đơn:
-                                                                    <span>1</span> phòng <i
-                                                                        class="fa fa-arrow-right"></i>
-                                                                    <span>150.000</span> VNĐ
-                                                                </li>
-                                                                <li>- Phòng đơn:
-                                                                    <span>1</span> phòng <i
-                                                                        class="fa fa-arrow-right"></i>
-                                                                    <span>150.000</span> VNĐ
-                                                                </li>
-                                                                <hr>
-                                                                <li>- Tổng tiền:
-                                                                    <span><span class="price-format"
-                                                                            data-price="100900"></span></span> VNĐ
-                                                                </li>
-                                                            </ul>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-5">
-                                                    <h3 class="heading"><i class="fa fa-address-card"></i>
-                                                        Xác nhận thông tin
-                                                    </h3>
-                                                    <div class="box">
-                                                        <div class="form-item py-2">
-                                                            <label class="font-weight-bold">Họ và Tên:
-                                                            </label>
-                                                            <span id="fullName">
-                                                                Tran Ngoc
-                                                                Hai
-                                                            </span>
-                                                        </div>
-                                                        <div class="form-item py-2"> <label
-                                                                class="font-weight-bold">Phương thức thanh toán:
-                                                            </label>
+                                                        <div class="col-5">
+                                                            <h3 class="heading"><i class="fa fa-address-card"></i>
+                                                                Xác nhận thông tin
+                                                            </h3>
+                                                            <div class="box">
+                                                                <div class="form-item py-2">
+                                                                    <label class="font-weight-bold">Họ và Tên:
+                                                                    </label>
+                                                                    <span id="fullName">
+                                                                        ${m.ownerName}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="form-item py-2"> <label
+                                                                        class="font-weight-bold">Phương thức thanh toán:  
+                                                                        <c:if test="${m.status == 0}">
+                                                                            Tiền mặt
+                                                                        </c:if>
+                                                                        <c:if test="${m.status == 2}">
+                                                                           Chuyển khoản
+                                                                        </c:if>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="infor-owner">
 
-
+                                                                <h3 class="heading"><i class="fas fa-id-card-alt"></i>
+                                                                    Chủ nhà nghỉ</h3>
+                                                                <div class="box d-flex">
+                                                                    <c:forEach var="o" varStatus="counter"
+                                                                               items="${requestScope.DETAIL_MOTEL}">
+                                                                        <span><img src="${o.typename}"
+                                                                                   alt="profile" style="width: 100px ; height: 100px"></span>
+                                                                        <span class="infor-owner-detail">
+                                                                            <p class="m-0">
+                                                                                <span class="label">Họ tên:</span>
+                                                                                ${o.ownerName}
+                                                                            </p>
+                                                                            <p class="m-0">
+                                                                                <span class="label">SĐT:</span>
+                                                                                ${o.phone}
+                                                                            </p>
+                                                                        </span>
+                                                                    </c:forEach>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="infor-owner">
-                                                        <h3 class="heading"><i class="fas fa-id-card-alt"></i>
-                                                            Chủ nhà nghỉ</h3>
-                                                        <div class="box d-flex">
-                                                            <span><img src="https://hfr.vn/Images/poster.png"
-                                                                    alt="profile"></span>
-                                                            <span class="infor-owner-detail">
-                                                                <p class="m-0">
-                                                                    <span class="label">Họ tên:</span>
-                                                                    Nguyễn Tuân
-                                                                </p>
-                                                                <p class="m-0">
-                                                                    <span class="label">SĐT:</span>
-                                                                    0865.644.162
-                                                                </p>
-                                                                <p class="m-0">
-                                                                    <span class="label">Địa
-                                                                        chỉ:</span>
-                                                                    Chí Minh
-                                                                </p>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                    </c:forEach>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </section>
+                                        </section>
+                                    </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
 
 
@@ -198,13 +201,10 @@
 
 
         <%@include file="footer.jsp" %> 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <!-- <script src="assets/js/owner-script.js"></script> -->
 
         <script src="assets/js/user-script.js"></script>
         <script>

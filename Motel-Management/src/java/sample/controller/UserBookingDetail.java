@@ -6,11 +6,18 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.booking.BookingDAO;
+import sample.booking.BookingDTO;
+import sample.motel.MotelDAO;
+import sample.motel.MotelDTO;
+import sample.users.UserDAO;
 
 /**
  *
@@ -19,23 +26,36 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserBookingDetail", urlPatterns = {"/UserBookingDetail"})
 public class UserBookingDetail extends HttpServlet {
 
-     private static final String ERROR = "error.jsp";
+    private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "user-booking-detail.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserBookingDetail</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserBookingDetail at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+        try {
+            UserDAO user = new UserDAO();
+            HttpSession session = request.getSession();
+            String userId = (String) session.getAttribute("userId");
+            String motelID = request.getParameter("motelID");
+            String bookingID = request.getParameter("bookingID");
+
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
+            List<MotelDTO> listMotel1 = motel.getDetailInfoBook(bookingID);
+            List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
+           
+            if (listBooking.size() > 0 || listMotel.size() > 0) { 
+                 request.setAttribute("DETAIL_MOTEL", listMotel);
+                  request.setAttribute("DETAIL_BOOK", listBooking);
+                 request.setAttribute("DETAIL_MOTEL1", listMotel1);
+                url = SUCCESS;
+                }
+              
+        } catch (Exception e) {
+            log("Error at showlistcontroller: " + e.toString());
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

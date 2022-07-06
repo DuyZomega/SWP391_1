@@ -34,6 +34,22 @@ public class MotelDTO {
     private int numberRoomType;
     private String BookingID;
     private String paymentType;
+    public MotelDTO(String typename, double motelprice, int numberRoom, int numberRoomType) {
+        this.typename = typename;
+        this.motelprice = motelprice;
+        this.numberRoom = numberRoom;
+        this.numberRoomType = numberRoomType;
+    }
+
+    public MotelDTO(String name, String address, String district, String city, double motelprice, String ownerName, int status) {
+        this.name = name;
+        this.address = address;
+        this.district = district;
+        this.city = city;
+        this.motelprice = motelprice;
+        this.ownerName = ownerName;
+        this.status = status;
+    }
 
     public String getPaymentType() {
         return paymentType;
