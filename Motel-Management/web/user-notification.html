@@ -18,12 +18,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
+
+
 </head>
 
 <body>
-
-
-
     <header>
 
         <div class="header__top d-flex justify-content-between align-items-center container-fluid py-2 fixed-top">
@@ -166,24 +165,26 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản</li>
-
             </ol>
         </nav>
     </div>
     <hr>
-
     <!-- End header -->
-
 
     <div class="profile container">
         <div class="row">
-
             <div class="navigation col-2">
                 <ul class="slide-menu">
                     <li>
                         <a href="MainController?action=ShowProfile&userID=hai03&role=US">
                             <span><i class='bx bx-user'></i></span>
                             <span class="title">Tài khoản</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#">
+                            <span><i class='bx bx-bell'></i></span>
+                            <span class="title">Thông báo</span>
                         </a>
                     </li>
                     <li>
@@ -194,105 +195,74 @@
                     </li>
                 </ul>
             </div>
-
             <div class="main-content col-10">
                 <div class="main">
                     <div class="container-fluid">
                         <section>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <section class="confirm-booking mb-5 pt-2">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-7 pr-0">
-                                                    <div class="infor-booking">
-                                                        <h3 class="heading"><i class="fa fa-money-check-alt"></i>
-                                                            Chi tiết đặt phòng
-                                                            của bạn</h3>
-                                                        <div class="box">
-                                                            <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                <label>
-                                                                    <span class="label">Tên Motel: </span>
-                                                                    <span>Nhà Trọ Ladalat</span>
-                                                                </label>
-                                                            </p>
-                                                            <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                <label>
-                                                                    <span class="label">Địa chỉ:</span>
-                                                                    <span>Thủ Đức</span>
-                                                                </label>
-                                                            </p>
-                                                            <div class="d-flex">
-                                                                <p>
-                                                                    <i class="fa fa-hand-point-right"></i>
-                                                                    <span class="label">Đơn giá:</span>
-                                                                </p>
-                                                            </div>
-                                                            <ul class="ml-3">
-                                                                <li>- Phòng đơn:
-                                                                    <span>1</span> phòng <i class="fa fa-arrow-right"></i>
-                                                                    <span>150.000</span> VNĐ
-                                                                </li>
-                                                                <li>- Phòng đơn:
-                                                                    <span>1</span> phòng <i class="fa fa-arrow-right"></i>
-                                                                    <span>150.000</span> VNĐ
-                                                                </li>
-                                                                <hr>
-                                                                <li>- Tổng tiền:
-                                                                    <span><span class="price-format" data-price="100900"></span> VNĐ</span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-5">
-                                                    <h3 class="heading"><i class="fa fa-address-card"></i>
-                                                        Xác nhận thông tin
-                                                    </h3>
-                                                    <div class="box">
-                                                        <div class="form-item py-2">
-                                                            <label class="font-weight-bold">Họ và Tên: </label>
-                                                            <span id="fullName">Tran Ngoc Hai</span>
-                                                        </div>
-                                                        <div class="form-item py-2"> 
-                                                            <label class="font-weight-bold">Phương thức thanh toán: </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="infor-owner">
-                                                        <h3 class="heading"><i class="fas fa-id-card-alt"></i>Chủ nhà nghỉ</h3>
-                                                        <div class="box d-flex">
-                                                            <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
-                                                            <span class="infor-owner-detail">
-                                                                <p class="m-0">
-                                                                    <span class="label">Họ tên:</span> Nguyễn Tuân
-                                                                </p>
-                                                                <p class="m-0"> 
-                                                                    <span class="label">SĐT:</span> 0865.644.162
-                                                                </p>
-                                                                <p class="m-0"> 
-                                                                    <span class="label">Địa chỉ:</span>TP. Hồ Chí Minh
-                                                                </p>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="notification-table"
+                                                    class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>STT</th>
+                                                            <th>Ngày thông báo</th>
+                                                            <th>Nội dung</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                01
+                                                            </td>
+                                                            <td>
+                                                                2022-12-10 00:00:00.0
+                                                            </td>
+                                                            <td>
+                                                                Đã thanh toán tiền
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                02
+                                                            </td>
+                                                            <td>
+                                                                2022-12-10 00:00:00.0
+                                                            </td>
+                                                            <td>
+                                                                Đã thanh toán tiền
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                03
+                                                            </td>
+                                                            <td>
+                                                                2022-12-10 00:00:00.0
+                                                            </td>
+                                                            <td>
+                                                                Đã thanh toán tiền
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                    </section>
+                                    </div>
+                                    <!-- /# card -->
                                 </div>
+                                <!-- /# column -->
                             </div>
                         </section>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
-
-
 
     <!-- FOOTER -->
 
@@ -346,8 +316,13 @@
     <!-- <script src="assets/js/owner-script.js"></script> -->
 
     <script src="assets/js/user-script.js"></script>
-
-
+    <script>
+        $(document).ready(function () {
+            $("#notification-table").DataTable({
+                pagingType: "full_numbers",
+            });
+        });
+    </script>
 </body>
 
 </html>
