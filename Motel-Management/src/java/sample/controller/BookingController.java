@@ -31,6 +31,7 @@ import sample.room.RoomDAO;
 import sample.room.RoomDTO;
 import sample.room.TestDAO;
 import sample.room.TestDTO;
+import sample.users.SendEmail;
 import sample.users.UserDAO;
 
 /**
@@ -115,8 +116,13 @@ public class BookingController extends HttpServlet {
             }
 
             //===============
+            List<MotelDTO> listMotel1 = motel.getDetailInfoBook(bookingID);
+            request.setAttribute("DETAIL_MOTEL1", listMotel1);
             if (checkCreate & check & updateroom) {
                 request.setAttribute("SUCCESS", "Booking thanh cong ");
+                String mes = "Đơn hàng của bạn có mã " + bookingID + ", bao gồm: "
+                        ;
+                SendEmail.sendEmail("nhatcao796569@gmail.com", mes);
                 url = SUCCESS;
             }
         } catch (Exception e) {
