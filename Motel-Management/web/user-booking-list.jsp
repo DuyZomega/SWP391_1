@@ -59,19 +59,19 @@
 
         <div class="profile container">
             <div class="row">
-                
 
-            <c:if test="${requestScope.MESSAGE != null}">
-                <c:if test="${not empty requestScope.MESSAGE}">
-                    <div class="alert hide">
-                        <span class="fas fa-exclamation-circle"></span>
-                        <span class="msg">${requestScope.MESSAGE}!</span>
-                        <div class="close-btn">
-                            <span class="fas fa-times"></span>
+
+                <c:if test="${requestScope.MESSAGE != null}">
+                    <c:if test="${not empty requestScope.MESSAGE}">
+                        <div class="alert hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">${requestScope.MESSAGE}!</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                 </c:if>
-            </c:if>
                 <div class="navigation col-2">
                     <ul class="slide-menu">
                         <li>
@@ -254,7 +254,7 @@
                                                             </div>
                                                         </div>
                                                         <%
-                                                        } else if (history.getStatus().equals("3")) {%>
+                                                                } else if (history.getStatus().equals("3")) {%>
                                                         <td data-toggle="modal" data-target="#detailsModal">Đã hủy</td>
                                                         <td>
                                                             <div >
@@ -290,12 +290,12 @@
                                                                                                 của bạn</h3>
                                                                                             <div class="box">
                                                                                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                                                    <label><span class="label">Tên</span>
-                                                                                                        <span>Việt Motel</span></label>
+                                                                                                    <label><span class="label">Tên Motel: </span>
+                                                                                                        <span><%= history.getUserName()%></span></label>
                                                                                                 </p>
                                                                                                 <p class="d-flex"><i  class="fa fa-hand-point-right"></i>
                                                                                                     <label><span class="label">Địa chỉ:</span>
-                                                                                                          <span>Thủ Đức</span></label>
+                                                                                                        <span>Thủ Đức</span></label>
                                                                                                 </p>
                                                                                                 <div class="d-flex">
                                                                                                     <p><i  class="fa fa-hand-point-right"></i><span  class="label">Đơn  giá:</span>
@@ -312,7 +312,7 @@
                                                                                                     </li>
                                                                                                     <hr>
                                                                                                     <li>- Tổng  tiền:
-                                                                                                        <span>150.000</span>  VNĐ
+                                                                                                        <span><span class="price-format" data-price="<%= history.getTotal()%>"></span></span>  VNĐ
                                                                                                     </li>
                                                                                                 </ul>
                                                                                             </div>
@@ -331,12 +331,24 @@
                                                                                                     Hai
                                                                                                 </span>
                                                                                             </div>
-                                                                                            <div class="form-item py-2">
-                                                                                                <label  class="font-weight-bold">Phương
+                                                                                            <div class="form-item py-2"> <label  class="font-weight-bold">Phương thức thanh toán: 
                                                                                                 </label>
+                                                                                                <%
+                                                                                                    if (history.getStatus().equals("1")) {
+                                                                                                %>
+                                                                                                <span>
+                                                                                                    Chuyển khoản
+                                                                                                </span> 
+                                                                                                <%
+                                                                                                } else if (history.getStatus().equals("0") || history.getStatus().equals("2")) {
+                                                                                                %>
                                                                                                 <span>
                                                                                                     Tiền mặt
                                                                                                 </span>
+                                                                                                <%
+                                                                                                    }
+                                                                                                %>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="infor-owner">
