@@ -6,7 +6,9 @@ package sample.booking;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
@@ -48,4 +50,5 @@ public class BookingDAO {
         }
         return check;
     }
+
 }

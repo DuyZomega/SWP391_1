@@ -17,7 +17,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Trang cá nhân</title>
+        <title>Lịch sử</title>
         <link rel="shortcut icon" href="assets/img/logo2.png">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -59,6 +59,19 @@
 
         <div class="profile container">
             <div class="row">
+
+
+                <c:if test="${requestScope.MESSAGE != null}">
+                    <c:if test="${not empty requestScope.MESSAGE}">
+                        <div class="alert hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">${requestScope.MESSAGE}!</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:if>
                 <div class="navigation col-2">
                     <ul class="slide-menu">
                         <li>
@@ -103,13 +116,15 @@
                                                                     String status = "Đã Hủy";
 
                                                             %>
-                                                            <tr class='clickable-row' data-href="#" data-bs-toggle="tooltip"
-                                                                data-bs-placement="right" title="Nhấn để xem chi tiết"
-                                                                data-toggle="modal" data-target="#detailsModal">
-                                                                <td><%= history.getBookingID()%></td>
-                                                                <td><%= history.getUserName()%></td>
-                                                                <td><%= history.getDate()%></td>
-                                                                <td><span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
+                                                            <tr class="clickable-row" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
+                                                                <td class="clickable"
+                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getBookingID()%></td>
+                                                                <td class="clickable"
+                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getUserName()%></td>
+                                                                <td class="clickable"
+                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getDate()%></td>
+                                                                <td class="clickable"
+                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>" ><span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
 
                                                                 <%
                                                                     if (history.getStatus().equals("1")) {
@@ -127,7 +142,7 @@
                                                                                 <span>Report</span>
                                                                             </button>
                                                                         </div>
-                                                                        </div>  
+                                                                    </div>  
 
 
                                                                 </td> 
@@ -219,7 +234,7 @@
                                                         <%
                                                         } else if (history.getStatus().equals("0") || history.getStatus().equals("2")) {
                                                         %>
-                                                        <td>Đang thực hiện</td>
+                                                        <td data-toggle="modal" data-target="#detailsModal">Đang thực hiện</td>
                                                         <td>
                                                             <button class="button--primary bg-danger text-white clickable-row" data-toggle="modal" data-target="#removeRoom">
                                                                 <span>Hủy Phòng</span> 
@@ -242,8 +257,8 @@
                                                             </div>
                                                         </div>
                                                         <%
-                                                        } else if (history.getStatus().equals("3")) {%>
-                                                        <td>Đã hủy</td>
+                                                                } else if (history.getStatus().equals("3")) {%>
+                                                        <td data-toggle="modal" data-target="#detailsModal">Đã hủy</td>
                                                         <td>
                                                             <div >
                                                                 <a href="MainController?action=ShowMotelDetail&motelID=<%= history.getMotelID()%>" class="button--primary bg-primary text-white clickable-row">Xem lại phòng</a>
@@ -252,7 +267,7 @@
                                                         <%}
                                                         %>
                                                         <!-- Details Modal khi ấn <tr> hàng -->
-<!--                                                        <div class="modal fade" id="detailsModal" tabindex="-1"
+                                                        <div class="modal fade" id="detailsModal" tabindex="-1"
                                                              aria-labelledby="detailModalLabel" aria-hidden="true">
                                                             <div
                                                                 class="modal-dialog modal-dialog-centered modal-xl">
@@ -261,7 +276,8 @@
                                                                         <h4 class="modal-title"
                                                                             id="detailModalLabel">Chi tiết đặt
                                                                             phòng</h4>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
@@ -271,66 +287,79 @@
                                                                                 <div class="row">
                                                                                     <div class="col-7">
                                                                                         <div class="infor-booking">
-                                                                                            <h3 class="heading"><i class="fa fa-money-check-alt"></i>
-                                                                                                Chi tiết đặt phòng của bạn</h3>
+                                                                                            <h3 class="heading"><i
+                                                                                                    class="fa fa-money-check-alt"></i>
+                                                                                                Chi tiết đặt phòng
+                                                                                                của bạn</h3>
                                                                                             <div class="box">
                                                                                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                                                    <label><span class="label">Tên nhàn nghỉ:</span>
-                                                                                                        <span>Việt  Motel</span></label>
+                                                                                                    <label><span class="label">Tên Motel: </span>
+                                                                                                        <span><%= history.getUserName()%></span></label>
                                                                                                 </p>
-                                                                                                <p class="d-flex"><i class="fa fa-hand-point-right"></i>
-                                                                                                    <label><span class="label">Địa  chỉ:</span>
-                                                                                                        0 Phó Đức
-
+                                                                                                <p class="d-flex"><i  class="fa fa-hand-point-right"></i>
+                                                                                                    <label><span class="label">Địa chỉ:</span>
+                                                                                                        <span>Thủ Đức</span></label>
                                                                                                 </p>
                                                                                                 <div class="d-flex">
-                                                                                                    <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span>
+                                                                                                    <p><i  class="fa fa-hand-point-right"></i><span  class="label">Đơn  giá:</span>
                                                                                                     </p>
                                                                                                 </div>
                                                                                                 <ul class="ml-3">
-                                                                                                    <li>- Phòng    đơn:
+                                                                                                    <li>- Phòng  đơn:
                                                                                                         <span>1</span>  phòng <i class="fa fa-arrow-right"></i>
                                                                                                         <span>150.000</span>  VNĐ
                                                                                                     </li>
-                                                                                                    <li>- Phòng
-                                                                                                        <span>0</span>  phòng <i class="fa fa-arrow-right"></i>
-                                                                                                        <span>0</span>   VNĐ
+                                                                                                    <li>- Phòng  đơn:
+                                                                                                        <span>1</span>  phòng <i class="fa fa-arrow-right"></i>
+                                                                                                        <span>150.000</span>  VNĐ
                                                                                                     </li>
                                                                                                     <hr>
-                                                                                                    <li>- Tổng  <span>150.000</span>VNĐ
+                                                                                                    <li>- Tổng  tiền:
+                                                                                                        <span><span class="price-format" data-price="<%= history.getTotal()%>"></span></span>  VNĐ
                                                                                                     </li>
                                                                                                 </ul>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col-5">
-                                                                                        <h3 class="heading"><i
-                                                                                                class="fa fa-address-card"></i>
+                                                                                        <h3 class="heading"><i  class="fa fa-address-card"></i>
                                                                                             Xác nhận thông tin
                                                                                         </h3>
                                                                                         <div class="box">
                                                                                             <div  class="form-item py-2">
-                                                                                                <label class="font-weight-bold">Họ  và Tên:
+                                                                                                <label  class="font-weight-bold">Họ và Tên:
                                                                                                 </label>
                                                                                                 <span id="fullName">
-                                                                                                    Tran Ngoc  Hai
+                                                                                                    Tran Ngoc
+                                                                                                    Hai
                                                                                                 </span>
                                                                                             </div>
-                                                                                            <div  class="form-item py-2">
-                                                                                                <label class="font-weight-bold">Phương
+                                                                                            <div class="form-item py-2"> <label  class="font-weight-bold">Phương thức thanh toán: 
                                                                                                 </label>
+                                                                                                <%
+                                                                                                    if (history.getStatus().equals("1")) {
+                                                                                                %>
+                                                                                                <span>
+                                                                                                    Chuyển khoản
+                                                                                                </span> 
+                                                                                                <%
+                                                                                                } else if (history.getStatus().equals("0") || history.getStatus().equals("2")) {
+                                                                                                %>
                                                                                                 <span>
                                                                                                     Tiền mặt
                                                                                                 </span>
+                                                                                                <%
+                                                                                                    }
+                                                                                                %>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="infor-owner">
-                                                                                            <h3 class="heading"><i   class="fas fa-id-card-alt"></i>
+                                                                                            <h3 class="heading"><i class="fas fa-id-card-alt"></i>
                                                                                                 Chủ nhà nghỉ</h3>
                                                                                             <div class="box d-flex">
                                                                                                 <span><img src="https://hfr.vn/Images/poster.png" alt="profile"></span>
-                                                                                                <span
-                                                                                                    class="infor-owner-detail">
+                                                                                                <span class="infor-owner-detail">
                                                                                                     <p class="m-0">
                                                                                                         <span class="label">Họ tên:</span>
                                                                                                         Nguyễn Tuân
@@ -340,7 +369,9 @@
                                                                                                         0865.644.162
                                                                                                     </p>
                                                                                                     <p class="m-0">
-                                                                                                        <span class="label">Địa  chỉ:</span> 0 Phó Đức
+                                                                                                        <span class="label">Địa
+                                                                                                            chỉ:</span>
+                                                                                                        Chí Minh
                                                                                                     </p>
                                                                                                 </span>
                                                                                             </div>
@@ -352,11 +383,13 @@
                                                                         </section>
                                                                     </div>
                                                                     <div class="modal-footer py-0">
-                                                                        <button type="button"  class="button--primary bg-danger text-white"  data-dismiss="modal">Đóng</button>
+                                                                        <button type="button"
+                                                                                class="button--primary bg-danger text-white"
+                                                                                data-dismiss="modal">Đóng</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>-->
+                                                        </div>
                                                         <!-- feedback form -->
                                                         </tr>
 
@@ -375,20 +408,8 @@
                     </div>
                 </div>
             </div>
-                                                        
-                                                        
-        <c:if test="${requestScope.MESSAGE != null}">
-            <c:if test="${not empty requestScope.MESSAGE}">
-                <div class="alert hide">
-                    <span class="fas fa-exclamation-circle"></span>
-                    <span class="msg">${requestScope.MESSAGE}!</span>
-                    <div class="close-btn">
-                        <span class="fas fa-times"></span>
-                    </div>
-                </div>
-            </c:if>
-        </c:if>
-                                                        
+
+
         </div>
 
 

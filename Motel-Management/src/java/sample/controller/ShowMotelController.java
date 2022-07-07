@@ -5,7 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
-import sample.room.RoomDAO;
-import sample.room.RoomDTO;
 
 /**
  *

@@ -127,7 +127,7 @@ html body {
     background: #3498db;
     color: #fff;
     font-size: 14px;
-    padding: 3px 5px;
+    padding: 3px 10px;
     border-radius: 4px;
     width: max-content;
     float: right;
@@ -136,7 +136,7 @@ html body {
     background: #2ecc71;
     color: #fff;
     font-size: 14px;
-    padding: 3px 5px;
+    padding: 3px 10px;
     border-radius: 4px;
     width: max-content;
     float: right;
@@ -145,7 +145,7 @@ html body {
     background: #e74c3c;
     color: #fff;
     font-size: 14px;
-    padding: 3px 5px;
+    padding: 3px 10px;
     border-radius: 4px;
     width: max-content;
     float: right;
@@ -154,7 +154,7 @@ html body {
     background: #f39c12;
     color: #fff;
     font-size: 14px;
-    padding: 3px 5px;
+    padding: 3px 10px;
     border-radius: 4px;
     width: max-content;
     float: right;
@@ -1441,6 +1441,49 @@ line-height: 35px;
     font-weight: 500;
     font-size: 0.875rem;
     box-shadow: none;
+}
+
+#all-tip {
+    position: absolute;
+    display: none;
+    margin-top: 7px;
+    margin-left: 10px;
+    
+}
+#all-tip a {
+    color: #34495e;
+    text-decoration: none;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#all-tip i {
+    font-size: 25px;
+}
+
+.notif-details tbody tr:hover {
+    cursor: pointer;
+    background-color: #e7e7e7;
+    zoom: 102%;
+}
+.notif-details thead tr th:nth-child(3) {
+    
+    width: 55%;
+}
+
+.notif-details thead tr th:last-child {
+    display: flex;
+    justify-content: end;
+}
+
+.notif-details tbody tr td {
+    vertical-align: middle !important;
+}
+
+.notif-details tbody tr td:nth-child(3) form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {

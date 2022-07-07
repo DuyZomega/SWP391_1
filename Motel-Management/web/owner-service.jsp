@@ -166,7 +166,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table dataTable" role="grid" id="myTable">
+                                <table class="table dataTable" role="grid" id="myService">
                                     <thead>
                                     <th>#</th>
                                     <th>Mã dịch vụ</th>
@@ -190,9 +190,9 @@
                                         <td><%= count %></td>
                                         <input type="hidden" name="serviceID" value="<%=service.getServiceId()%>"/>
                                         <td><%= service.getServiceId() %></td>
-                                        <td><input type="text" class="form-control w-auto" name="serviceName" value="<%= service.getName()%>" id="input" required="" /></td>
+                                        <td><input type="text" class="form-control w-auto" name="serviceName" value="<%= service.getName()%>" id="input" required/></td>
                                         <td><%= service.getMotelID()%></td> 
-                                        <td><input type="text" class="form-control w-auto" name="price" value="<%= service.getPrice()%>" id="input" required="  " /></td>
+                                        <td><input type="text" class="form-control w-auto" name="price" value="<%= service.getPrice()%>" id="input" required/></td>
                                         <td>
                                             <div class="d-flex action-button">
                                                 <button name="action" value="updateService" type="submit" class="btn btn-info btn-xs light px-2" 

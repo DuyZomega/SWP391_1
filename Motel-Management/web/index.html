@@ -3,25 +3,27 @@
 <!-- màu #00ecd5 -->
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang chủ</title>
-    <link rel="shortcut icon" href="./assets/img/logo2.png">
+    <link rel="shortcut icon" href="./assets/img/logo2.png" />
     <!-- BS4 CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap-4.5.3-dist/css/bootstrap.min.css" />
     <!-- FONT -->
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,100&family=Roboto+Condensed:wght@400;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" />
     <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome-free-5.15.4-web/css/all.min.css" />
+    <!-- animate -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- owl carousels -->
-    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css" />
 
     <!-- main CSS -->
-    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 
 <body>
@@ -30,23 +32,51 @@
         <div class="header__top d-flex justify-content-between align-items-center container-fluid fixed-top">
             <div class="header__left">
                 <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://github.com/CTPhuongThuy/ROH.git" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:hotel.management@gmail.com"><i class="fa fa-envelope"></i>
-                    hotel.management@gmail.com</a>
-                <a href="tel:0865644162" class="mr-4"><i class="fas fa-phone-alt"></i>
-                    0865.644.162</a>
+                <a href="https://github.com/CTPhuongThuy/ROH.git" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:hotel.management@gmail.com">
+                    <i class="fa fa-envelope"></i> hotel.management@gmail.com
+                </a>
+                <a href="tel:0865644162" class="mr-4">
+                    <i class="fas fa-phone-alt"></i> 0865.644.162
+                </a>
             </div>
 
             <div class="header__right">
                 <!-- trước khi đăng nhập -->
-                <button type="button" class="button--primary btn btn-sm">
+                <!-- thông báo -->
+
+                <div class="notification-dropdown dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell"></i><span class="notification">5</span>
+                    </button>
+                    <div class="dropdown-menu notification-table animate__animated animate__fadeInDown"
+                        aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="user-notification.html">
+                            Xem tất cả <i class="fa fa-angle-right"></i>
+                        </a>
+                        <a class="dropdown-item" href="#">Hoàn tất chuyển tiền</a>
+                        <a class="dropdown-item" href="#">Phòng của bạn đã được đặt</a>
+                        <a class="dropdown-item" href="#">Có phòng giảm giá</a>
+                        <a class="dropdown-item" href="#">dddddddddddddddddddddddddđddddddddddddd </a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+                <!-- <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
+
                 <a href="./login.html">Đăng nhập</a>
-                <a href="./signup.html">Đăng ký</a>
+                <a href="./signup.html">Đăng ký</a> -->
 
                 <!-- sau khi đăng nhập -->
-                <!-- <button type="button" class="button--primary btn btn-sm">
+                <button type="button" class="button--primary btn btn-sm">
                     <a href="#" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
                 </button>
                 <div class="user-dropdown dropdown">
@@ -60,14 +90,13 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Đăng xuất</a>
                     </div>
-                </div> -->
+                </div>
             </div>
-
         </div>
         <div class="header__bottom">
             <nav class="myNavBar navbar navbar-expand-lg navbar-dark container-fluid">
                 <a class="navbar-brand" href="#"><img class="logo img-fluid" src="./assets/img/logo2-1.png"
-                        alt="logo"></a>
+                        alt="logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -113,13 +142,13 @@
             <div id="carouselBanner" class="carousel slide">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="./assets/img/cover-1.jpg" class="d-block w-100" alt="cover-1">
+                        <img src="./assets/img/cover-1.jpg" class="d-block w-100" alt="cover-1" />
                     </div>
                     <div class="carousel-item">
-                        <img src="./assets/img/cover-2.jpg" class="d-block w-100" alt="cover-2">
+                        <img src="./assets/img/cover-2.jpg" class="d-block w-100" alt="cover-2" />
                     </div>
                     <div class="carousel-item">
-                        <img src="./assets/img/cover-3.jpg" class="d-block w-100" alt="cover-3">
+                        <img src="./assets/img/cover-3.jpg" class="d-block w-100" alt="cover-3" />
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselBanner" role="button" data-slide="prev">
@@ -134,39 +163,43 @@
         </div>
         <div class="infor__content container">
             <div class="row">
-                <div class="col-12 col-md-4  d-flex my-5">
+                <div class="col-12 col-md-4 d-flex my-5">
                     <div class="image">
-                        <img src="./assets/img/best-choice.jpg" alt="best-choice">
+                        <img src="./assets/img/best-choice.jpg" alt="best-choice" />
                     </div>
                     <div class="content">
                         <h4>Lựa chọn tốt nhất</h4>
-                        <p>HORD đưa cho bạn những lựa chọn phù hợp về nhà trọ để bạn có một cuộc sống vui vẻ.</p>
+                        <p>
+                            HORD đưa cho bạn những lựa chọn phù hợp về nhà trọ để bạn có một
+                            cuộc sống vui vẻ.
+                        </p>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 d-flex my-5">
                     <div class="image">
-                        <img src="./assets/img/security.jpg" alt="security">
+                        <img src="./assets/img/security.jpg" alt="security" />
                     </div>
                     <div class="content">
                         <h4>An toàn & bảo mật</h4>
-                        <p>Thông tin minh bạch, bảo mật cao cùng với những dịch vụ uy tín đem lại trải nghiệm tốt
-                            nhất
-                            cho bạn</p>
+                        <p>
+                            Thông tin minh bạch, bảo mật cao cùng với những dịch vụ uy tín
+                            đem lại trải nghiệm tốt nhất cho bạn
+                        </p>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 d-flex  my-5">
+                <div class="col-12 col-md-4 d-flex my-5">
                     <div class="image">
-                        <img src="./assets/img/support.jpg" alt="img3">
+                        <img src="./assets/img/support.jpg" alt="img3" />
                     </div>
                     <div class="content">
                         <h4>Hỗ trợ 24/7</h4>
-                        <p>Luôn luôn lắng nghe, luôn luôn hỗ trợ bạn về tất cả dịch vụ tại HORD.</p>
+                        <p>Luôn luôn lắng nghe, luôn luôn hỗ trợ bạn về tất cả dịch vụ tại HORD. </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <hr class="container my-0">
+    <hr class="container my-0" />
     <!-- MOTEL -->
     <section id="motelList" class="motel container spacing">
         <div class="d-flex justify-content-between align-items-center">
@@ -178,142 +211,177 @@
             <div class="famousList-carousel owl-carousel owl-theme">
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -322,150 +390,183 @@
             <div class="ratingList-carousel owl-carousel owl-theme">
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/nha-tro-1.jpeg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/background.jpg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/background.jpg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh , Thành phố Hà Tĩnh, Ha
-                                nội</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh , Thành phố Hà Tĩnh, Ha nội</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
                 <div class="room-item">
                     <a href="#" class="motel-image">
-                        <img class="img-fluid" src="./assets/img/cover-1.jpg" alt="nt1">
+                        <img class="img-fluid" src="./assets/img/cover-1.jpg" alt="nt1" />
                     </a>
                     <div class="motel-title">
                         <a href="#" class="text-decoration-none">NHÀ CHO THUÊ NGUYÊN CĂN T5.2022</a>
                     </div>
                     <div class="motel-address" data-toggle="tooltip" data-placement="auto" title="TP. Hồ Chí Minh">
-                        <p class="address truncate"><i class="fas fa-map-marker-alt"></i><span class="district"> Quận
-                                Tân Bình</span>, <span class="city">Thành phố Hồ Chí Minh</span></p>
+                        <p class="address truncate">
+                            <i class="fas fa-map-marker-alt"></i><span class="district"> Quận Tân Bình</span>,
+                            <span class="city">Thành phố Hồ Chí Minh</span>
+                        </p>
                     </div>
                     <div class="d-flex justify-content-between">
                         <p><i class="fas fa-phone-alt"></i> Liên hệ: 0865.644.162</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <p class="motel-price"><i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0</p>
-                        <button class="button--primary"><a class="text-decoration-none text-white"
-                                href="user-room-detail.html">Xem ngay</a></button>
+                        <p class="motel-price">
+                            <i class="fas fa-money-bill-wave"></i> Chỉ từ: 150000.0
+                        </p>
+                        <button class="button--primary">
+                            <a class="text-decoration-none text-white" href="user-room-detail.html">Xem ngay</a>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
-    <hr class="container my-0">
+    <hr class="container my-0" />
     <!-- SERVICES -->
     <section id="services" class="services spacing">
         <div class="container px-0">
@@ -484,37 +585,39 @@
             </div>
         </div>
     </section>
-    <hr class="container my-0">
+    <hr class="container my-0" />
     <!-- ABOUT US -->
     <section id="aboutUs" class="about-us container px-0 spacing">
         <h3 class="heading"><i class="fa fa-id-card"></i> VỀ CHÚNG TÔI</h3>
         <div class="row">
             <div class="col-6 card intro-desc">
                 <div class="intro-title d-flex">
-                    <img class="img-fluid" src="assets/img/logo2-1.png" alt="logo">
-                    <p class="card-text my-3">Công ty TNHH Chém Gió Xuyên Quốc Gia HORD <span
-                            class="text-center d-block">-
-                            HORD Gossip Inc. -</span> <span class="d-block text-center">Thành lập
-                            vào 05/2022</span></p>
-
+                    <img class="img-fluid" src="assets/img/logo2-1.png" alt="logo" />
+                    <p class="card-text my-3">
+                        Công ty TNHH Chém Gió Xuyên Quốc Gia HORD
+                        <span class="text-center d-block">- HORD Gossip Inc. -</span>
+                        <span class="d-block text-center">Thành lập vào 05/2022</span>
+                    </p>
                 </div>
 
-                <div class="card-text">Là HORD, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu cầu không chỉ
-                    đơn thuần là tìm kiếm một nơi dừng chân mà còn cả môi trường cũng như dịch vụ mang lại cảm giác
-                    thoải mái và an toàn cho các quý khách hàng!
+                <div class="card-text">
+                    Là HORD, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu
+                    cầu không chỉ đơn thuần là tìm kiếm một nơi dừng chân mà còn cả môi
+                    trường cũng như dịch vụ mang lại cảm giác thoải mái và an toàn cho
+                    các quý khách hàng!
                 </div>
             </div>
-            <div class="col-6 intro-img" style="background-image: url(assets/img/cover-1.jpg);" alt="cover-1"></div>
+            <div class="col-6 intro-img" style="background-image: url(assets/img/cover-1.jpg)" alt="cover-1"></div>
         </div>
     </section>
-    <hr class="container my-0">
+    <hr class="container my-0" />
     <!-- TEAM MEMBER -->
     <section id="teamMember" class="team-member spacing">
         <div class="container">
             <h3 class="heading"><i class="fa fa-users"></i> Đội ngũ</h3>
             <div class="team-carousel owl-carousel owl-theme">
                 <div class="team__item">
-                    <img src="assets/img/tv-1.jpg" alt="team 1">
+                    <img src="assets/img/tv-1.jpg" alt="team 1" />
                     <div class="team__title">
                         <h5>Cao Thị Phương Thủy</h5>
                         <p>- Trường nhóm</p>
@@ -522,7 +625,10 @@
                     <div class="team__details">
                         <h5>Cao Thị Phương Thủy</h5>
                         <p class="team__text">- Trường nhóm</p>
-                        <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam</p>
+                        <p>
+                            Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                            friuisque pretiuam
+                        </p>
                         <div class="team__socials">
                             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://github.com/CTPhuongThuy#" target="_blank"><i class="fab fa-github"></i></a>
@@ -530,7 +636,7 @@
                     </div>
                 </div>
                 <div class="team__item">
-                    <img src="assets/img/tv-2.jpg" alt="team 1">
+                    <img src="assets/img/tv-2.jpg" alt="team 1" />
                     <div class="team__title">
                         <h5>Lê Minh Quân</h5>
                         <p>- Thành viên</p>
@@ -538,7 +644,10 @@
                     <div class="team__details">
                         <h5>Lê Minh Quân</h5>
                         <p class="team__text">- Thành viên</p>
-                        <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam</p>
+                        <p>
+                            Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                            friuisque pretiuam
+                        </p>
                         <div class="team__socials">
                             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://github.com/Quanle9851" target="_blank"><i class="fab fa-github"></i></a>
@@ -546,7 +655,7 @@
                     </div>
                 </div>
                 <div class="team__item">
-                    <img src="assets/img/tv-3.jpg" alt="team 1">
+                    <img src="assets/img/tv-3.jpg" alt="team 1" />
                     <div class="team__title">
                         <h5>Trần Ngọc Hải</h5>
                         <p>- Thành viên</p>
@@ -554,7 +663,10 @@
                     <div class="team__details">
                         <h5>Trần Ngọc Hải</h5>
                         <p class="team__text">- Thành viên</p>
-                        <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam</p>
+                        <p>
+                            Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                            friuisque pretiuam
+                        </p>
                         <div class="team__socials">
                             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://github.com/haitn10" target="_blank"><i class="fab fa-github"></i></a>
@@ -562,7 +674,7 @@
                     </div>
                 </div>
                 <div class="team__item">
-                    <img src="assets/img/tv-4.jpg" alt="team 1">
+                    <img src="assets/img/tv-4.jpg" alt="team 1" />
                     <div class="team__title">
                         <h5>Hồ Khánh Duy</h5>
                         <p>- Thành viên</p>
@@ -570,7 +682,10 @@
                     <div class="team__details">
                         <h5>Hồ Khánh Duy</h5>
                         <p class="team__text">- Thành viên</p>
-                        <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam</p>
+                        <p>
+                            Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                            friuisque pretiuam
+                        </p>
                         <div class="team__socials">
                             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://github.com/DuyZomega" target="_blank"><i class="fab fa-github"></i></a>
@@ -578,7 +693,7 @@
                     </div>
                 </div>
                 <div class="team__item">
-                    <img src="assets/img/tuan-img.JPG" alt="team 1">
+                    <img src="assets/img/tuan-img.JPG" alt="team 1" />
                     <div class="team__title">
                         <h5>Nguyễn Hữu Phạm Tuân</h5>
                         <p>- Thành viên</p>
@@ -586,7 +701,10 @@
                     <div class="team__details">
                         <h5>Nguyễn Hữu Phạm Tuân</h5>
                         <p class="team__text">- Thành viên</p>
-                        <p>Mauris tincidunt dolor eget diam dapibus vitae finibusnisl friuisque pretiuam</p>
+                        <p>
+                            Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                            friuisque pretiuam
+                        </p>
                         <div class="team__socials">
                             <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://github.com/tuan2502" target="_blank"><i class="fab fa-github"></i></a>
@@ -602,10 +720,8 @@
         <div class="container">
             <div class="row section">
                 <div class="col-12 offset-sm-1 col-sm-3">
-                    <img class="logo img-fluid" src="./assets/img/logo2-1.png" alt="logo">
-                    <div class="slogan">
-                        Mái ấm của bạn là hạnh phúc của chúng tôi!
-                    </div>
+                    <img class="logo img-fluid" src="./assets/img/logo2-1.png" alt="logo" />
+                    <div class="slogan">Mái ấm của bạn là hạnh phúc của chúng tôi!</div>
                 </div>
                 <div class="col-12 col-sm-2">
                     <h3>VỀ HORD</h3>
@@ -627,14 +743,22 @@
                 <div class="col-12 col-sm-3 footer-contact">
                     <h3>THÔNG TIN LIÊN LẠC</h3>
                     <ul>
-                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="#" target="_blank"><i class="fab fa-google"></i> Gmail</a></li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><i class="fab fa-google"></i> Gmail</a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="footer__copyright text-center pb-3">
-                <p class="text-capitalize">2022 © công ty <span>TNHH</span> Chém Gió Xuyên Quốc Gia</p>
+                <p class="text-capitalize">
+                    2022 © công ty <span>TNHH</span> Chém Gió Xuyên Quốc Gia
+                </p>
                 <p>Địa chỉ: 269 Quang Trung, Thành phố Thủ Đức, TP.HCM</p>
             </div>
         </div>
@@ -644,12 +768,9 @@
         <i class="fa fa-angle-up"></i>
     </a>
 
-
-
-
     <!-- thư viện hỗ trợ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer">
+    </script>
     <!-- Jquery Waypoint -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- BS4 JS -->
@@ -657,63 +778,63 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- BS4 carousels -->
     <script>
-        $('.carousel').carousel({
-            interval: 3000
+        $(".carousel").carousel({
+            interval: 3000,
         });
     </script>
     <!-- owl carousels -->
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script>
-        $('.famousList-carousel').owlCarousel({
+        $(".famousList-carousel").owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
             dots: false,
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
                 },
                 576: {
-                    items: 2
+                    items: 2,
                 },
                 1200: {
-                    items: 4
-                }
-            }
+                    items: 4,
+                },
+            },
         });
-        $('.ratingList-carousel').owlCarousel({
+        $(".ratingList-carousel").owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
             dots: false,
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
                 },
                 576: {
-                    items: 2
+                    items: 2,
                 },
                 1200: {
-                    items: 4
-                }
-            }
+                    items: 4,
+                },
+            },
         });
-        $('.team-carousel').owlCarousel({
+        $(".team-carousel").owlCarousel({
             loop: true,
             nav: true,
             dots: false,
             responsive: {
                 0: {
-                    items: 1
+                    items: 1,
                 },
                 600: {
-                    items: 3
+                    items: 3,
                 },
                 1000: {
-                    items: 3
-                }
-            }
-        })
+                    items: 3,
+                },
+            },
+        });
     </script>
     <!-- backToTop -->
     <script src="assets/js/util.js"></script>

@@ -147,15 +147,15 @@ let vnd = Intl.NumberFormat("vi-VN", {
   currency: "VND",
   useGrouping: true,
 });
-function price_format(){
-    $('.price-format').each(function(){
-        var $price = $(this).data('price'),
-            html=vnd.format($price);
-        $(this).html(html);
-    });
+function price_format() {
+  $(".price-format").each(function () {
+    var $price = $(this).data("price"),
+      html = vnd.format($price);
+    $(this).html(html);
+  });
 }
-$(function(){
-    price_format();
+$(function () {
+  price_format();
 });
 $(function () {
   app_a.setUp();
@@ -337,4 +337,58 @@ $(function () {
   });
 });
 
+//truncate content
 
+$(document).ready(function () {
+  (function () {
+    var showChar = 0;
+    var ellipsestext = "";
+
+    $(".truncate-content").each(function () {
+      var content = $(this).html();
+      if (content.length > showChar) {
+        var c = content.substr(0, showChar);
+        var h = content;
+        var html =
+          '<div class="truncate-text" style="display:block">' +
+          c +
+          '<span class="moreellipses">' +
+          ellipsestext +
+          '&nbsp;&nbsp;<a href="" class="moreless more">Xem thêm</a></span></span></div><div class="truncate-text" style="display:none">' +
+          h +
+          '<a href="" class="moreless less">Thu gọn</a></span></div>';
+
+        $(this).html(html);
+      }
+    });
+    $(".moreless").click(function () {
+      var thisEl = $(this);
+      var cT = thisEl.closest(".truncate-text");
+      var tX = ".truncate-text";
+
+      if (thisEl.hasClass("less")) {
+        cT.prev(tX).toggle();
+        cT.slideToggle();
+      } else {
+        cT.toggle();
+        cT.next(tX).fadeToggle();
+      }
+      return false;
+    });
+    /* end iffe */
+  })();
+
+  /* end ready */
+});
+//data-href
+// $(document).ready(function () {
+//   $(".clickable-row").click(function () {
+//     window.location = $(this).data("href");
+//   });
+// });
+
+ $(document).ready(function () {
+            $(".clickable").click(function () {
+                window.location = $(this).data("href");
+            });
+        });

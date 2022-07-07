@@ -16,14 +16,8 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.owner.feedbackDAO;
 import sample.owner.FeedbackDTO;
-import sample.room.RoomDAO;
-import sample.room.RoomTypeDTO;
 import sample.room.TestDAO;
 import sample.room.TestDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
-import sample.users.UserDAO;
-import sample.users.UserDTO;
 
 /**
  *

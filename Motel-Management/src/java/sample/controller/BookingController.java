@@ -5,7 +5,6 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,9 +29,9 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
-import sample.room.RoomTypeDTO;
 import sample.room.TestDAO;
 import sample.room.TestDTO;
+import sample.users.SendEmail;
 import sample.users.UserDAO;
 
 /**
@@ -49,7 +48,7 @@ public class BookingController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
+        try {   String orderTable = "";
             List<BookingDetailDTO> listbt = new ArrayList<>();
             HttpSession session = request.getSession();
             MotelDAO motel = new MotelDAO();
@@ -99,13 +98,14 @@ public class BookingController extends HttpServlet {
                 int ct = Integer.parseInt(counttime[i]);
                 listTest.add(new TestDTO(id, name, p, ct, cr));
                 listbt.add(new BookingDetailDTO(bookingID, id, bookingID, ct));
-                String bookingdetailID = String.valueOf(generator.nextInt(9999999));
-                BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
                 RoomDAO roomdao1 = new RoomDAO();
                 boolean checkBT = false;
                 for (int c = 1; c <= cr; c++) {
                     List<RoomDTO> toproom = roomdao1.findtoprooom(id, cr);
                     for (RoomDTO roomDTO : toproom) {
+                        String bookingdetailID = String.valueOf(generator.nextInt(9999999));
+                        BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
+          
                         checkBT = bookingDetail.insertBt(bt, roomDTO.getRoomId());
                         if (checkBT) {
                             RoomDTO room = new RoomDTO(id, status);
@@ -116,14 +116,16 @@ public class BookingController extends HttpServlet {
                 }
             }
 
-//                if (checkBT) {
-//                    RoomDTO room = new RoomDTO(id, status);
-//                    RoomDAO roomdao = new RoomDAO();
-//                    updateroom = roomdao.updateRoomBT(cr, id);
-//                }
             //===============
+            List<MotelDTO> listMotel1 = motel.getDetailInfoBook(bookingID);
+            request.setAttribute("DETAIL_MOTEL1", listMotel1);
             if (checkCreate & check & updateroom) {
                 request.setAttribute("SUCCESS", "Booking thanh cong ");
+                String mes = "Your order have id " + bookingID + "\n"
+                        + orderTable
+                        +"Moi thac mac vui long lien he hotline: 0396421901"
+                        ;
+                SendEmail.sendEmail("nhatcao796569@gmail.com", bookingID);
                 url = SUCCESS;
             }
         } catch (Exception e) {

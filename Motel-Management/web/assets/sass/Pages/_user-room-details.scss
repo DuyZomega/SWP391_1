@@ -168,14 +168,14 @@
             }
         }
         .room-number {
-            width: 105px;
+            width: 110px;
         }
         .hour {
-            width: 83px;
+            width: 90px;
         }
         .price,
         .total-price {
-            width: 150px;
+            width: 160px;
         }
 
         .total-price-box {
@@ -187,11 +187,16 @@
             }
         }
     }
+    .empty-room {
+        display: inline-block;
+        margin-bottom: 18px;
+        margin-left: 10px;
+    }
     .img-room {
         img {
-            width: 150px;
+            width: 250px;
             height: auto;
-            margin-right: 10px;
+            margin-bottom: 10px;
         }
     }
 }
