@@ -211,18 +211,26 @@
                                                 <div class="col-sm-5 d-flex justify-content-end search-details">
                                                     <form action="MainController" method="post" class="filter form-group">
                                                         <div>
-                                                           <label>
-                                                                <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>"/>
+                                                            <label>
+                                                                <input type="hidden" name="ownerID" value="<%= loginUser.getUserId()%>"/>
                                                                 <input type="hidden" name="action" value="searchRoom"/>
                                                                 <input class="form-control" type="text" name="search" placeholder="Search...">
                                                                 <button type="submit"><i class='bx bx-search-alt'></i></button>
                                                             </label> 
                                                         </div>
                                                         <div class="vertical-line"></div>
-                                                        <select name="#" id="">
-                                                            <option value="1">Phòng đơn</option>
-                                                            <option value="1">Phòng đôi</option>
-                                                            <option value="1">Phòng uyên ương</option>
+                                                        <select name="fillter" id="">
+                                                            <option selected value="none">Choose..</option>
+                                                            <%
+                                                                List<RoomTypeDTO> listRoomType = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
+                                                                for (RoomTypeDTO roomType : listRoomType) {
+                                                                    if (roomType.getMotelID().equals(motel.getMotelID())) {
+                                                            %>
+                                                            <option value="<%= roomType.getRoomTypeID() %>"><%= roomType.getTypeName()%></option>
+                                                            <%
+                                                                    }
+                                                                }
+                                                            %>
                                                         </select>    
                                                     </form>
                                                 </div>
@@ -322,7 +330,7 @@
                         <h4 class="modal-title">Thêm Phòng Mới</h4>
                     </div>
                     <form action="MainController" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="ownerID" value="<%= loginUser.getUserId() %>" />
+                        <input type="hidden" name="ownerID" value="<%= loginUser.getUserId()%>" />
                         <div class="modal-body">
                             <div class="row p-4">
                                 <div class="col-12">
@@ -362,11 +370,11 @@
                                         <input type="file" name="photo" class="form-control col-md-7 mt-2" id="customFile" accept="image/*" style="display: none; padding-bottom: 37px;">
                                         <div class="row form-group" id="labeldecp" style="display: none;">
                                             <label for="firstname" class="col-md-3 col-form-label text-md-right mt-3">
-                                            Mô tả
+                                                Mô tả
                                             </label>
                                             <textarea type="text" id="roomTypeDesct" name="roomTypeDesct" placeholder="Mô tả phòng..." class="form-control" rows="3" ></textarea>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -438,10 +446,10 @@
         <script src="ckfinder/ckfinder.js"></script>
 
         <script>
-            
-            var editor = CKEDITOR.replace('roomTypeDesct');
-            CKFinder.setupCKEditor(editor, 'ckfinder/');
-            data["roomTypeDesct"] = editor.getData();
+
+                                            var editor = CKEDITOR.replace('roomTypeDesct');
+                                            CKFinder.setupCKEditor(editor, 'ckfinder/');
+                                            data["roomTypeDesct"] = editor.getData();
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
