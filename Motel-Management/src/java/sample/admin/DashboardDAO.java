@@ -184,5 +184,44 @@ public class DashboardDAO {
         return topIncome;}
 
    
+    //===========chart----------------
+  
+  public static  final String GET_DATE ="select v.date as date , count (v.time) as time \n" +
+"from visit_tracking as v \n" +
+"Where v.date = DATEADD(DAY , ? - DATEPART(WEEKDAY, GETDATE()), CAST(GETDATE() AS DATE))\n" +
+"GROUP BY v.date\n" +
+"Order by date" ;
+    public List<DashboardDTO> getDate(int i) throws SQLException {
+     List<DashboardDTO> listdate = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_DATE);
+                ptm.setInt(1, i);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String date = rs.getString("date");
+                    int time = rs.getInt("time");
+                    listdate.add(new DashboardDTO(time, date));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listdate;
+    }
     
 }

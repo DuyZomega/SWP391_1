@@ -5,6 +5,7 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +49,8 @@ public class BookingController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {   String orderTable = "";
+        try {
+            String orderTable = "";
             List<BookingDetailDTO> listbt = new ArrayList<>();
             HttpSession session = request.getSession();
             MotelDAO motel = new MotelDAO();
@@ -105,7 +107,7 @@ public class BookingController extends HttpServlet {
                     for (RoomDTO roomDTO : toproom) {
                         String bookingdetailID = String.valueOf(generator.nextInt(9999999));
                         BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
-          
+
                         checkBT = bookingDetail.insertBt(bt, roomDTO.getRoomId());
                         if (checkBT) {
                             RoomDTO room = new RoomDTO(id, status);
@@ -117,15 +119,26 @@ public class BookingController extends HttpServlet {
             }
 
             //===============
-            List<MotelDTO> listMotel1 = motel.getDetailInfoBook(bookingID);
-            request.setAttribute("DETAIL_MOTEL1", listMotel1);
+            String motelInfo = "";
+            List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
+            for (MotelDTO m : lm) {
+                motelInfo += m.getName() + "\n Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "\n TOTAL :" + m.getStatus();
+            }
+
+            List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
+            for (MotelDTO m : listBooking) {
+                orderTable += "\n- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd) - Hour:" + m.getNumberRoomType() + " (h)";
+            }
+            byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
+//To get original string from byte.
+            String value = new String(byteText, "UTF-8");
             if (checkCreate & check & updateroom) {
                 request.setAttribute("SUCCESS", "Booking thanh cong ");
-                String mes = "Your order have id " + bookingID + "\n"
-                        + orderTable
-                        +"Moi thac mac vui long lien he hotline: 0396421901"
-                        ;
-                SendEmail.sendEmail("nhatcao796569@gmail.com", bookingID);
+                String mes = "Your order have id " + bookingID + "\n "
+                        + motelInfo
+                        + value
+                        + "Moi thac mac vui long đôi liên hệ hotline: 0396421901";
+                SendEmail.sendEmail("nhatcao796569@gmail.com", mes);
                 url = SUCCESS;
             }
         } catch (Exception e) {

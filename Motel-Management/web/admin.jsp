@@ -160,7 +160,7 @@
                     </div>
                 </div>
             </div>
-                <!-- chart -->
+            <!-- chart -->
             <section class="chartBox">
                 <div class="row">
                     <div class="col-lg-12">
@@ -173,22 +173,19 @@
                                 </div>
                                 <div id="numOfHome">
                                     <select name="aaa" id="a1234" style="display: none;">
-                                        <option value="10">2022-06-09 UTC+0700</option>
-                                        <option value="9">2022-06-10 UTC+0700</option>
-                                        <option value="3">2022-06-11 UTC+0700</option>
-                                        <option value="7">2022-06-12 UTC+0700</option>
-                                        <option value="9">2022-06-13 UTC+0700</option>
-                                        <option value="5">2022-06-14 UTC+0700</option>
-                                        <option value="1">2022-06-15 UTC+0700</option>
+                                        <c:if test="${requestScope.ADMINCHART != null}">
+                                            <c:if test="${not empty requestScope.ADMINCHART}">
+                                                <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
+
+
+                                                    <option value="${c.time}">${c.date} UTC+0700</option>
+
+                                                </c:forEach> 
+                                            </c:if>
+                                        </c:if>
                                     </select>
                                     <select name="bbb" id="b1234" style="display: none;">
-                                        <option value="1">2022-06-09 UTC+0700</option>
-                                        <option value="2">2022-06-10 UTC+0700</option>
-                                        <option value="3">2022-06-11 UTC+0700</option>
-                                        <option value="4">2022-06-12 UTC+0700</option>
-                                        <option value="5">2022-06-13 UTC+0700</option>
-                                        <option value="6">2022-06-14 UTC+0700</option>
-                                        <option value="7">2022-06-15 UTC+0700</option>
+
                                     </select>
                                 </div>
                                 <canvas id="chart-Dashboard" width="400" height="200"></canvas>
@@ -249,16 +246,16 @@
         </div>
 
 
- <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
-    <script src="assets/js/owner-script.js"></script>
-    <script src="assets/js/admin.js"></script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
+        <script src="assets/js/owner-script.js"></script>
+        <script src="assets/js/admin.js"></script>
 
-       
+
     </body>
 
 </html>

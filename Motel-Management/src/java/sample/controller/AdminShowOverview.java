@@ -5,6 +5,7 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,6 +49,17 @@ public class AdminShowOverview extends HttpServlet {
                     url = SUCCESS;
                 }
             }
+            //======chart =========
+           //  DashboardDTO chart = new DashboardDTO();
+            List<DashboardDTO> listChart = new ArrayList<>();
+             for(int i= 2; i <=8 ; i++){
+                 List<DashboardDTO> countdate = dao.getDate(i);
+                   listChart.addAll(countdate);
+             }
+                request.setAttribute("ADMINCHART", listChart);
+            
+            //=============
+            
         } catch (Exception e) {
             log("Error at AdminShowOverview: " + e.toString());
         } finally {
