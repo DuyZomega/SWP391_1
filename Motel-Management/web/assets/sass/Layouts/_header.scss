@@ -86,6 +86,96 @@
                 }
             }
         }
+        .notification-dropdown > button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-blue-2;
+            border: none;
+            position: relative;
+            .fa-bell {
+                background-color: $color-blue-2;
+                color: white;
+                padding-right: 5px;
+                transition: 0.5s;
+                &::before {
+                    font-size: 18px;
+                }
+                &:hover {
+                    color: $color-primary-0;
+                }
+            }
+            .notification {
+                position: absolute;
+                top: -3px;
+                left: 18px;
+                display: inline-block;
+                border-radius: 50%;
+                color: white;
+                font-size: 10px;
+                background-color: $color-blue-3;
+                padding: 5px;
+                width: 1.15rem;
+                height: 1.15rem;
+                line-height: 0.7rem;
+                font-weight: bold;
+            }
+            &::after {
+                display: none;
+            }
+        }
+        .notification-dropdown {
+            .dropdown-menu {
+                max-height: 300px;
+                width: 250px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
+
+                .dropdown-item {
+                    text-align: left;
+                    padding: 15px;
+                    width: 230px;
+                    max-width: 100%;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                /* width */
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: $color-blue-2;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: $color-primary-1;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: $color-primary-1;
+        }
+
+        .notification-table {
+            top: 37px !important;
+            left: -110px !important;
+        }
+        .show > .btn-secondary.dropdown-toggle {
+            background-color: transparent;
+            &:focus {
+                box-shadow: none;
+                outline: none;
+                border: none;
+            }
+        }
     }
 }
 
