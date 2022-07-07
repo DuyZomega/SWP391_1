@@ -48,7 +48,7 @@ public class BookingController extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
+        try {   String orderTable = "";
             List<BookingDetailDTO> listbt = new ArrayList<>();
             HttpSession session = request.getSession();
             MotelDAO motel = new MotelDAO();
@@ -105,6 +105,7 @@ public class BookingController extends HttpServlet {
                     for (RoomDTO roomDTO : toproom) {
                         String bookingdetailID = String.valueOf(generator.nextInt(9999999));
                         BookingDetailDTO bt = new BookingDetailDTO(bookingdetailID, id, bookingID, ct);
+          
                         checkBT = bookingDetail.insertBt(bt, roomDTO.getRoomId());
                         if (checkBT) {
                             RoomDTO room = new RoomDTO(id, status);
@@ -120,9 +121,11 @@ public class BookingController extends HttpServlet {
             request.setAttribute("DETAIL_MOTEL1", listMotel1);
             if (checkCreate & check & updateroom) {
                 request.setAttribute("SUCCESS", "Booking thanh cong ");
-                String mes = "Đơn hàng của bạn có mã " + bookingID + ", bao gồm: "
+                String mes = "Your order have id " + bookingID + "\n"
+                        + orderTable
+                        +"Moi thac mac vui long lien he hotline: 0396421901"
                         ;
-                SendEmail.sendEmail("nhatcao796569@gmail.com", mes);
+                SendEmail.sendEmail("nhatcao796569@gmail.com", bookingID);
                 url = SUCCESS;
             }
         } catch (Exception e) {
