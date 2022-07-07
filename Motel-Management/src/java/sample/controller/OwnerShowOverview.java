@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sample.owner.ChartDTO;
 import sample.owner.FeedbackDTO;
 import sample.owner.NewsDTO;
 import sample.owner.OverviewDAO;
@@ -44,6 +45,7 @@ public class OwnerShowOverview extends HttpServlet {
                 int numberService = dao.getNumberService(userID);
                 int numberFeedback = dao.getNumberFeedback(userID);
                 int totalIncome = dao.getNumberIncome(userID);
+                List<ChartDTO> ChartData = dao.getChartIncome(userID);
                 overview = new OverviewDTO(numberRoom, numberService, numberFeedback, totalIncome);
                 if (overview != null){
                     request.setAttribute("OVERVIEW", overview);

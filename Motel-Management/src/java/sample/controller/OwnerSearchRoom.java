@@ -36,6 +36,7 @@ public class OwnerSearchRoom extends HttpServlet {
         try {
             String search = request.getParameter("search");
             String ownerID = request.getParameter("ownerID");
+            String fillter = request.getParameter("fillter");
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
             List<RoomDTO> listRoom = new ArrayList<>();
@@ -44,7 +45,7 @@ public class OwnerSearchRoom extends HttpServlet {
                 request.setAttribute("LIST_MOTEL", listMotel);
                 RoomDAO dao2 = new RoomDAO();
                 for(MotelDTO motel : listMotel){                  
-                   List<RoomDTO> list = dao2.searchRoomByName(motel.getMotelID(),search);
+                   List<RoomDTO> list = dao2.searchRoomByName(motel.getMotelID(),search,fillter);
                    List<RoomTypeDTO> list2 = dao2.getRoomType(motel.getMotelID());
                    listRoom.addAll(list);
                    listRoomType.addAll(list2);
