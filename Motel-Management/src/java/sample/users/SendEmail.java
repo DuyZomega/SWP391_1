@@ -66,8 +66,8 @@ public class SendEmail {
                     InternetAddress.parse(email)
             );
             message.setSubject("Thank you for visiting ROH MOTEL");
-            message.setText("Your booking id :  " + bookingID + "\nInfo Motel: " + motelInfo
-                    + "\n\n Please check your order: " + orderTable);
+            message.setContent("Your booking id :  " + bookingID + "\nInfo Motel: " + motelInfo
+                    + "\n\n Please check your order: " + orderTable, "text/html;charset=utf-8");
 
             Transport.send(message);
 
