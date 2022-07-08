@@ -24,7 +24,7 @@
 
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
-    <body onload="getValue()">
+    <body>
         <!-- sidebar -->
         <%
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -167,28 +167,29 @@
                         <div class="card">
                             <div class="card-body" >
                                 <div class="d-flex align-content-center float-right">
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="week">Week</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="month">Month</button>
                                 </div>
-                                <div id="numOfHome">
-                                    <select name="aaa" id="a1234" style="display: none;">
-                                        <c:if test="${requestScope.ADMINCHART != null}">
-                                            <c:if test="${not empty requestScope.ADMINCHART}">
-                                                <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
+                                
+                                <select name="a1" id="week" style="display: none;">
+                                    <c:if test="${requestScope.ADMINCHART != null}">
+                                        <c:if test="${not empty requestScope.ADMINCHART}">
+                                            <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
 
-
-                                                    <option value="${c.time}">${c.date} UTC+0700</option>
-
-                                                </c:forEach> 
-                                            </c:if>
+                                                <option value="3">2022-07-03 UTC+0700</option>
+                                                <option value="1">2022-07-10 UTC+0700</option>
+                                                <option value="3">2022-07-17 UTC+0700</option>
+                                            </c:forEach> 
                                         </c:if>
-                                    </select>
-                                    <select name="bbb" id="b1234" style="display: none;">
-
-                                    </select>
-                                </div>
-                                <canvas id="chart-Dashboard" width="400" height="200"></canvas>
+                                    </c:if>
+                                </select>
+                                <select name="a2" id="month" style="display: none;">
+                                    <option value="3">2022-07-03 UTC+0700</option>
+                                    <option value="1">2022-07-10 UTC+0700</option>
+                                    <option value="3">2022-07-17 UTC+0700</option>
+                                </select>
+                                
+                                <canvas id="numOfAccess" width="400" height="200"></canvas>
                             </div>
                         </div>
                     </div>

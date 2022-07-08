@@ -188,16 +188,79 @@ $('#checkAll').click(function () {
   }
 });
 
+// admin
+var week = [];
+let numOfweek = document.getElementById('week');
+for (let i = 0; i < numOfweek.length; i++) {
+  week.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
+}
+
+var month = [];
+let numOfmonth = document.getElementById('month');
+for (let i = 0; i < numOfmonth.length; i++) {
+  month.push({x : Date.parse(numOfmonth.options[i].innerText), y : numOfmonth.options[i].value})
+}
 
 
-    const numOfHome = document.querySelectorAll('#numOfHome select');
-    var num = [];
-    for (let i = 0; i < numOfHome.length; i++) {
-        var data = document.getElementById(numOfHome[i].id);
-        for (let j = 0; j < data.length; j++) {
-            num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
-        }  
+const ctx = document.getElementById('numOfAccess').getContext('2d');
+const chart = new Chart(ctx, {   
+        type: 'line',
+        data: {
+            
+            datasets: [{
+                label: 'number of access',
+                data: week,
+                backgroundColor: [
+                    'rgba(39, 174, 96,0.5)'
+                ],
+                borderColor: [
+                    'rgba(39, 174, 96,1.0)'
+    
+                ],
+                borderWidth: 1,
+                lineTension: 0.25,
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'week'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    }); 
+
+ 
+  //change-chart
+  function changeFrame(period) {
+    if (period.value == 'week') {
+      chart.options.scales.x.time.unit = period.value;
+      chart.data.datasets[0].data = week;
+
     }
+    if (period.value == 'month') {
+      chart.data.datasets[0].data = month;
+      chart.options.scales.x.time.unit = period.value;
+    }
+    chart.update();
+  } 
+
+
+
+  const numOfHome = document.querySelectorAll('#numOfHome select');
+  var num = [];
+  for (let i = 0; i < numOfHome.length; i++) {
+      var data = document.getElementById(numOfHome[i].id);
+      for (let j = 0; j < data.length; j++) {
+          num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+      }  
+  }
     
     console.log(num.slice(0,7));
     
@@ -216,8 +279,8 @@ for (let i = 0; i < b1234.length; i++) {
 
 
 
-const ctx = document.getElementById('chart-Dashboard').getContext('2d');
-const chart = new Chart(ctx, {   
+const myCtx = document.getElementById('chart-Dashboard').getContext('2d');
+const myChart = new Chart(myCtx, {   
         type: 'line',
         data: {
             // labels: Object.keys(week),
@@ -279,3 +342,8 @@ const chart = new Chart(ctx, {
     }
     chart.update();
   } 
+
+
+
+
+

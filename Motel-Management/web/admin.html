@@ -156,37 +156,36 @@
                         <div class="card">
                             <div class="card-body" >
                                 <div class="d-flex align-content-center float-right">
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
-                                    <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="week">Week</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="month">Month</button>
                                 </div>
-                                <div id="numOfHome">
-                                    <select name="aaa" id="a1234" style="display: none;">
-                                        
-                                            
-                                                
-                                                    <option value="4">2022-07-04 UTC+0700</option>
-                                                
-                                                    <option value="3">2022-07-05 UTC+0700</option>
-                                                
-                                                    <option value="2">2022-07-06 UTC+0700</option>
-                                                
-                                                    <option value="1">2022-07-07 UTC+0700</option>
-                                                
-                                                    <option value="3">2022-07-08 UTC+0700</option>
-                                                
-                                                    <option value="4">2022-07-09 UTC+0700</option>
-                                                
-                                                    <option value="6">2022-07-10 UTC+0700</option>
-                                                 
-                                            
-                                        
+                                
+                                    <select name="aaa" id="week" style="display: none;">
+    
+                                        <option value="4">2022-07-03 UTC+0700</option>
+                                    
+                                        <option value="3">2022-07-10 UTC+0700</option>
+                                    
+                                        <option value="2">2022-07-17 UTC+0700</option>
+                                    
+                                        <option value="1">2022-07-24 UTC+0700</option>
+                                    
+                                        <option value="3">2022-07-31 UTC+0700</option>
+    
                                     </select>
-                                    <select name="bbb" id="b1234" style="display: none;">
-
+                                    <select name="bbb" id="month" style="display: none;">
+                                        <option value="15">2022-07-01 UTC+0700</option>
+                                                
+                                        <option value="13">2022-08-01 UTC+0700</option>
+                                    
+                                        <option value="22">2022-09-01 UTC+0700</option>
+                                    
+                                        <option value="30">2022-10-01 UTC+0700</option>
+                                    
+                                       
                                     </select>
-                                </div>
-                                <canvas id="chart-Dashboard" width="400" height="200"></canvas>
+                                
+                                <canvas id="numOfAccess" width="400" height="200"></canvas>
                             </div>
                         </div>
                     </div>
