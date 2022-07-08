@@ -1049,7 +1049,9 @@ footer {
 .confirm-booking .infor-owner .infor-owner-detail {
   padding-left: 10px; }
 .confirm-booking .warning {
-  margin-top: 20px; }
+  margin-top: 20px;
+margin-bottom: 20px;
+}
   .confirm-booking .warning > span {
     padding: 10px 20px;
     background-color: #d9ff9e;
@@ -1270,3 +1272,6 @@ footer {
   text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
+.reviews-title {
+    padding: 20px 40px;
+}

@@ -13,15 +13,33 @@ import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.activation.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
+import sample.motel.MotelDAO;
+import sample.motel.MotelDTO;
 
 /**
  *
  * @author cao thi phuong thuy
  */
 public class SendEmail {
-     public static void sendEmail(String email, String mes) {
 
+    public static void sendEmail(String email, String bookingID) throws SQLException, UnsupportedEncodingException {
+        String orderTable = "";
+        String motelInfo = "";
+        MotelDAO motel = new MotelDAO();
+        List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
+        for (MotelDTO m : lm) {
+            motelInfo += m.getName() + "\n Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() +"\n TOTAL :"+ m.getStatus();
+        }
+
+        List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
+        for (MotelDTO m : listBooking) {
+            orderTable += "\n- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd) - Hour:" + m.getNumberRoomType()+" (h)";
+        }
         final String username = "vntphuongthuy.is@gmail.com";
         final String password = "cdyjushrbcpfatgz";
 
@@ -47,11 +65,9 @@ public class SendEmail {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Cảm ơn bạn đã tin tưởng");
-            message.setText("Xin chào,"
-                    + "\nChúng tôi rất vui mừng vì sự quan tâm của bạn đối với ROH MOTEL!"
-                    + "\n Hãy kiểm tra đơn hàng của bạn"
-                    + mes);
+            message.setSubject("Thank you for visiting ROH MOTEL");
+            message.setContent("Your booking id :  " + bookingID + "\nInfo Motel: " + motelInfo
+                    + "\n\n Please check your order: " + orderTable, "text/html;charset=utf-8");
 
             Transport.send(message);
 

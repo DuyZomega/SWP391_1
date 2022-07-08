@@ -14,6 +14,29 @@ public class DashboardDTO {
     private int userNumber;
     private int ownerNumber;
     private int reportNumber;
+    private int time;
+    private String date;
+
+    public int getTime() {
+        return time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public DashboardDTO(int time, String date) {
+        this.time = time;
+        this.date = date;
+    }
 
     public int getMotelNumber() {
         return motelNumber;

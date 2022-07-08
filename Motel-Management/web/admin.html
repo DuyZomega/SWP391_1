@@ -1,10 +1,11 @@
 
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="sample.users.UserError"%>
-<%@page import="sample.users.UserDTO"%>
-<%@page import="sample.admin.DashboardDTO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,16 +25,9 @@
 
         <link rel="stylesheet" href="assets/css/admin.css">
     </head>
-    <body>
+    <body onload="getValue()">
         <!-- sidebar -->
-        <%
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if (loginUser == null || !loginUser.getRole().equals("AD")) {
-                response.sendRedirect("login.jsp");
-                return;
-            }
-
-        %>
+        
         <div class="sidebar">
             <div class="container">
                 <div class="navigation">
@@ -68,7 +62,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                            <a href="MainController?action=ShowProfile&userID=thuy02&role=AD">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
@@ -98,10 +92,10 @@
                             <div class="btn-group me-1 mb-1">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        ${sessionScope.LOGIN_USER.fullName}
+                                        Cao Thi Phuong Thuy
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=${sessionScope.LOGIN_USER.userId}&role=AD"><i class="bx bx-user"></i>Tài khoản</a>
+                                        <a class="dropdown-item" href="MainController?action=ShowProfile&userID=thuy02&role=AD"><i class="bx bx-user"></i>Tài khoản</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class="bx bx-log-out-circle"></i>Thoát</a>
                                     </div>
@@ -114,12 +108,7 @@
         </div>
 
         <!-- Main Content -->
-        <%
-            DashboardDTO dashboard = (DashboardDTO) request.getAttribute("DASHBOARD");
-            if (dashboard == null) {
-                dashboard = new DashboardDTO();
-            }
-        %>
+        
 
         <div class="main-content">
             <div class="cardBox">
@@ -128,7 +117,7 @@
                         <i class='bx bx-home-heart'></i>
                     </div>
                     <div>
-                        <div class="number"><%= dashboard.getMotelNumber()%></div>
+                        <div class="number">9</div>
                         <div class="cardName">Số lượng motel</div>
                     </div>
                 </div>
@@ -137,7 +126,7 @@
                         <i class='bx bxs-user-rectangle'></i>
                     </div>
                     <div>
-                        <div class="number"><%= dashboard.getUserNumber()%></div>
+                        <div class="number">10</div>
                         <div class="cardName">Tài khoản</div>
                     </div>
                 </div>
@@ -146,7 +135,7 @@
                         <i class='bx bx-user-circle'></i>
                     </div>
                     <div>
-                        <div class="number"><%= dashboard.getOwnerNumber()%></div>
+                        <div class="number">4</div>
                         <div class="cardName">Chủ trọ</div>
                     </div>
                 </div>
@@ -155,7 +144,7 @@
                         <i class='bx bx-bell'></i>
                     </div>
                     <div>
-                        <div class="number"><%= dashboard.getReportNumber()%></div>
+                        <div class="number">5</div>
                         <div class="cardName">Report</div>
                     </div>
                 </div>
@@ -171,23 +160,30 @@
                                     <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="month">Month</button>
                                 </div>
                                 
-                                <select name="a1" id="week" style="display: none;">
-                                    <c:if test="${requestScope.ADMINCHART != null}">
-                                        <c:if test="${not empty requestScope.ADMINCHART}">
-                                            <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
-
-                                                <option value="3">2022-07-03 UTC+0700</option>
-                                                <option value="1">2022-07-10 UTC+0700</option>
-                                                <option value="3">2022-07-17 UTC+0700</option>
-                                            </c:forEach> 
-                                        </c:if>
-                                    </c:if>
-                                </select>
-                                <select name="a2" id="month" style="display: none;">
-                                    <option value="3">2022-07-03 UTC+0700</option>
-                                    <option value="1">2022-07-10 UTC+0700</option>
-                                    <option value="3">2022-07-17 UTC+0700</option>
-                                </select>
+                                    <select name="aaa" id="week" style="display: none;">
+    
+                                        <option value="4">2022-07-03 UTC+0700</option>
+                                    
+                                        <option value="3">2022-07-10 UTC+0700</option>
+                                    
+                                        <option value="2">2022-07-17 UTC+0700</option>
+                                    
+                                        <option value="1">2022-07-24 UTC+0700</option>
+                                    
+                                        <option value="3">2022-07-31 UTC+0700</option>
+    
+                                    </select>
+                                    <select name="bbb" id="month" style="display: none;">
+                                        <option value="15">2022-07-01 UTC+0700</option>
+                                                
+                                        <option value="13">2022-08-01 UTC+0700</option>
+                                    
+                                        <option value="22">2022-09-01 UTC+0700</option>
+                                    
+                                        <option value="30">2022-10-01 UTC+0700</option>
+                                    
+                                       
+                                    </select>
                                 
                                 <canvas id="numOfAccess" width="400" height="200"></canvas>
                             </div>
@@ -216,28 +212,67 @@
                                         </tr>
                                     </thead>
 
-                                    <c:if test="${requestScope.TOP_INCOME != null}">
-                                        <c:if test="${not empty requestScope.TOP_INCOME}">
+                                    
+                                        
                                             <tbody> 
-                                                <c:forEach var="t" varStatus="counter" items="${requestScope.TOP_INCOME}">
+                                                
                                                     <tr>
-                                                        <th>${counter.count}</th>
-                                                        <td>${t.userID}</td>
+                                                        <th>1</th>
+                                                        <td>quan01</td>
                                                         <td>
-                                                            <img src="${t.status}">
+                                                            <img src="images/man.png">
                                                         </td>
-                                                        <td>${t.userName}</td>
-                                                        <td>${t.payType}</td>
+                                                        <td>Le Minh Quan</td>
+                                                        <td>0942949219</td>
                                                         <td>
-                                                            <span class="price-format" data-price="${t.total}"></span>
+                                                            <span class="price-format" data-price="1832600"></span>
                                                         </td>
                                                     </tr>
-                                                </c:forEach>
+                                                
+                                                    <tr>
+                                                        <th>2</th>
+                                                        <td>nhatvuong</td>
+                                                        <td>
+                                                            <img src="images/man.png">
+                                                        </td>
+                                                        <td>Pham Nhat Vuong</td>
+                                                        <td>0248998745</td>
+                                                        <td>
+                                                            <span class="price-format" data-price="747900"></span>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                    <tr>
+                                                        <th>3</th>
+                                                        <td>tu06</td>
+                                                        <td>
+                                                            <img src="images/man.png">
+                                                        </td>
+                                                        <td>Nguyen Doan Tu</td>
+                                                        <td>01945876325</td>
+                                                        <td>
+                                                            <span class="price-format" data-price="340900"></span>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                    <tr>
+                                                        <th>4</th>
+                                                        <td>phuc08</td>
+                                                        <td>
+                                                            <img src="assets/img/avatar.jpg">
+                                                        </td>
+                                                        <td>Lam Son Phuc</td>
+                                                        <td>01478523654</td>
+                                                        <td>
+                                                            <span class="price-format" data-price="100900"></span>
+                                                        </td>
+                                                    </tr>
+                                                
                                             </tbody>
-                                        </c:if>
-                                    </c:if>
+                                        
+                                    
                                 </table>
-                                ${requestScope.ERROR_MESSAGE}
+                                
                             </div>
 
                         </div>
