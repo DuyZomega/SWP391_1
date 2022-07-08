@@ -16,6 +16,9 @@
                 margin-right: auto;
                 display: block;
             }
+            h4 {
+                font-size: 2rem;
+            }
         }
         .form {
             a {
@@ -41,8 +44,12 @@
         .input-field {
             margin-top: 0;
         }
+        .input-field > label {
+            font-size: 1.1rem !important;
+        }
         .form-item {
             padding: 0;
+
             label {
                 color: $color-white-1;
             }

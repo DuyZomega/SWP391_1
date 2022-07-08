@@ -136,6 +136,9 @@ body .lb-cancel {
   line-height: 36px;
   border-radius: 50%; }
 
+.reviews-title {
+  padding: 20px 40px; }
+
 .header__top {
   background-color: #2c3e50;
   font-size: 14px;
@@ -869,6 +872,8 @@ footer {
         margin-left: auto;
         margin-right: auto;
         display: block; }
+      .background .container .login h4 {
+        font-size: 2rem; }
     .background .container .form a {
       color: #fff; }
     .background .container .form button {
@@ -884,6 +889,8 @@ footer {
       background-color: #ffadd9; }
     .background .container .input-field {
       margin-top: 0; }
+    .background .container .input-field > label {
+      font-size: 1.1rem !important; }
     .background .container .form-item {
       padding: 0; }
       .background .container .form-item label {
@@ -1022,6 +1029,9 @@ footer {
   padding: 10px;
   border-radius: 10px;
   background: rgba(228, 228, 228, 0.5); }
+.confirm-booking .warning {
+  margin-top: 20px;
+  margin-bottom: 20px; }
 .confirm-booking label {
   margin-bottom: 0; }
 .confirm-booking .infor-booking {
