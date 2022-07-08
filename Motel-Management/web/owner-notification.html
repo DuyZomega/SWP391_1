@@ -148,15 +148,13 @@
                                                 <i class='bx bxs-edit'></i>
                                                 Viết thông báo
                                             </a>
-                                        </li>
-                                        
+                                        </li> 
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="readNotif" >
                                             <div class="pt-lg-2">
                                                 <div id="all-tip">
                                                     <a href="#" data-toggle="tooltip" data-placement="right" title="Xác nhận">
-                                                        
                                                         <i class='bx bx-task'></i>
                                                     </a>
                                                     <a href="#" data-toggle="tooltip" data-placement="right" title="Không xác nhận">
@@ -183,7 +181,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
+
+                                                            <tr style="background: #eee;">
                                                                 <td>
                                                                     <div class="custom-control custom-checkbox checkbox-success mr-3">
                                                                     <input type="checkbox" class="custom-control-input" id="check1" required="">
@@ -195,8 +194,14 @@
                                                                     <form action="#">
                                                                         <span>Đã đặt cọc phòng 102?</span>
                                                                         <div class="mr-2">
-                                                                            <a href="#" class="btn btn-success confirm">Xác nhận</a>
-                                                                            <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
+                                                                            <a href="#" class="btn btn-success confirm" 
+                                                                            data-toggle="tooltip" data-placement="right" title="Xác nhận">
+                                                                                <i class='bx bx-task'></i>
+                                                                            </a>
+                                                                            <a href="#" class="btn btn-danger unconfirm" 
+                                                                            data-toggle="tooltip" data-placement="right" title="Không xác nhận">
+                                                                                <i class='bx bx-task-x'></i>
+                                                                            </a>
                                                                         </div>
                                                                     </form> 
                                                                 </td>
@@ -214,13 +219,9 @@
                                                                 <td> 
                                                                     <form action="#">
                                                                         <span>Đã đặt cọc phòng 102?</span>
-                                                                        <div class="mr-2">
-                                                                            <a href="#" class="btn btn-success confirm">Xác nhận</a>
-                                                                            <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
-                                                                        </div>
                                                                     </form> 
                                                                 </td>
-                                                                <td>Đang xử lý</td>
+                                                                <td>Đã xử lý</td>
                                                                 <td>2020/01/01</td>        
                                                             </tr>
                                                         </tbody>
