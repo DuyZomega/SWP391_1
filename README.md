@@ -16,7 +16,7 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
     - Github: https://github.com/Quanle9851
         
 - Tran Ngoc Hai
-    - Gmail: 
+    - Gmail: tranhaihk00@gmail.com
     - Github: https://github.com/haitn10
     - 
 - Nguyen Huu Pham Tuan
