@@ -35,13 +35,14 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
     - CSS3
     - Javascript
     - SCSS
+    - JQuery
 - Backend:
    - JSP + Servlet
 - Tools:
    - Netbean 12.6 and JDK 17
    - Notion
    - SQL 2019
-   - Word, Excel, PowerPonit
+   - Word, Excel, PowerPoint
 - Responsitory:
    - GitHub
    - 
