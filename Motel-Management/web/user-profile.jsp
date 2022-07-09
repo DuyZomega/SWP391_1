@@ -65,6 +65,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                                <span><i class='bx bx-bell'></i></span>
+                                <span class="title">Thông báo</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="userhistorybooking">
                                 <span><i class='bx bx-history'></i></span>
                                 <span class="title">Lịch sử thuê phòng</span>
@@ -161,10 +167,10 @@
                                                     %>
                                                     <img src="images/man.png" width="200" class="form-group justify-content-center"/>
                                                     <%
-                                            } else {%>
+                                                    } else {%>
                                                     <img src="<%= userProfile.getImage()%>" width="200" class="form-group justify-content-center"/>
                                                     <%
-     }%>
+                                                        }%>
 
                                                     <div class="upload row form-group justify-content-center">
                                                         <button class="button--primary" data-toggle="modal" data-target="#uploadImg">Thay ảnh</button>                                                   

@@ -102,6 +102,7 @@ CREATE TABLE [tblNotification]( --done
 [Desct]           [nvarchar](1500),
 [Date]            [date],
 [UserID]          [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),
+[Status]       int 
 );
 
 CREATE TABLE [tblBooking](--done
@@ -405,11 +406,11 @@ INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) V
 
 --INSERT Notification
 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID]) VALUES ('notifi01', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-01','quan01') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID]) VALUES ('notifi02', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 , khách đã trả phòng', '2002-01-01','tu06') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi01', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-01','quan01','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi02', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 , khách đã trả phòng', '2002-01-01','tu06','1') 
 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID]) VALUES ('notifi03', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-01-01','duy05') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID]) VALUES ('notifi04', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-01-01','duy05') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi03', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-01-01','duy05','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi04', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-01-01','duy05','1') 
 
 
 ---INSERT Booking
