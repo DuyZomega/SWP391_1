@@ -31,6 +31,10 @@ public class MainController extends HttpServlet {
     private static final String CREATE_USER_CONTROLLER = "CreateUserController";
     private static final String BOOKING = "book";
     private static final String CREATE_BOOKING_CONTROLLER = "BookingController";
+    private static final String NOTIFICATION = "notifi";
+    private static final String NOTIFICATION_CONTROLLER = "NotificationController";
+    private static final String NOTIFICATION1 = "notifi1";
+    private static final String NOTIFICATION_CONTROLLER1 = "NotificationController1";
     private static final String SHOW_MOTEL_LIST = "ShowAllMotel";
     private static final String SHOW_MOTEL_LIST_CONTROLLER = "ShowAllMotelController";
     private static final String SHOW_MOTEL_DETAIL = "ShowMotelDetail";
@@ -93,6 +97,10 @@ public class MainController extends HttpServlet {
                 url = CREATE_USER_CONTROLLER;
             } else if (BOOKING.equals(action)) {
                 url = CREATE_BOOKING_CONTROLLER;
+            } else if (NOTIFICATION.equals(action)) {
+                url = NOTIFICATION_CONTROLLER;
+            } else if (NOTIFICATION1.equals(action)) {
+                url = NOTIFICATION_CONTROLLER1;
             } else if (SHOW_MOTEL_LIST.equals(action)) {
                 url = SHOW_MOTEL_LIST_CONTROLLER;
             } else if (SHOW_MOTEL_DETAIL.equals(action)) {
