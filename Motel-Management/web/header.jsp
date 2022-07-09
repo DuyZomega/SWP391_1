@@ -1,5 +1,3 @@
-<%-- Document : header Created on : Jun 17, 2022, 9:33:21 AM Author : cao thi phuong thuy --%>
-
 <%@page import="sample.notification.NotificationDTO"%>
 <%@page import="sample.users.UserDAO" %>
 <%@page import="sample.users.DistrictDTO" %>

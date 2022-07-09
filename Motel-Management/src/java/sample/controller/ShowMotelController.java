@@ -37,6 +37,16 @@ public class ShowMotelController extends HttpServlet {
         HttpSession session = request.getSession();
         Random generator = new Random();
         try {
+            MotelDAO motel = new MotelDAO();
+            List<MotelDTO> listMotel = motel.getListMotel();
+            if (listMotel.size() > 0) {
+                request.setAttribute("LIST_MOTEL", listMotel);
+                
+            List<MotelDTO> listMotelHot = motel.getListMotelHot();
+                 if (listMotelHot.size() > 0) {
+                request.setAttribute("LIST_MOTEL_HOT", listMotelHot);}
+                url = SUCCESS;
+            }
             /* get user agent  */
              String flag = (String) session.getAttribute("vtk");
             if (flag == "1") {
@@ -55,16 +65,6 @@ public class ShowMotelController extends HttpServlet {
             boolean listvisit = visit.insertVisit(visitDTO);
             
             /*end*/
-            MotelDAO motel = new MotelDAO();
-            List<MotelDTO> listMotel = motel.getListMotel();
-            if (listMotel.size() > 0) {
-                request.setAttribute("LIST_MOTEL", listMotel);
-                
-            List<MotelDTO> listMotelHot = motel.getListMotelHot();
-                 if (listMotelHot.size() > 0) {
-                request.setAttribute("LIST_MOTEL_HOT", listMotelHot);}
-                url = SUCCESS;
-            }
 
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
