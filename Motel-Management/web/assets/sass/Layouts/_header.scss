@@ -126,54 +126,96 @@
         }
         .notification-dropdown {
             .dropdown-menu {
-                max-height: 300px;
                 width: 250px;
-                overflow-y: auto;
-                overflow-x: hidden;
                 padding: 0;
-
-                .dropdown-item {
-                    text-align: left;
+                background-color: $color-white-1;
+                border-radius: 10px;
+                .dropdown-header {
+                    background: #fff;
                     padding: 15px;
-                    width: 230px;
-                    max-width: 100%;
-                    -webkit-line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
+                    position: relative;
+                    text-align: center;
+                    color: $color-blue-2;
+                    font-weight: bold;
+                    border-radius: 10px 10px 0 0;
+                    border: 0px;
+                    border-style: solid;
+                    border-bottom-width: 1px;
+                    border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%;
+                    box-shadow: 0px 2px 10px -2px $color-white-2;
+                    .triangle {
+                        position: absolute;
+                        top: -8px;
+                        left: 122px;
+                        height: 15px;
+                        width: 15px;
+                        border-radius: 6px 0px 0px 0px;
+                        transform: rotate(45deg);
+                        background: #fff;
+                        z-index: 1031;
+                    }
+                }
+                .dropdown-body {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    max-height: 300px;
+
+                    .dropdown-item {
+                        color: $color-blue-2;
+                        text-align: left;
+                        padding: 15px;
+                        max-width: 100%;
+                        cursor: pointer;
+                        .truncate {
+                            margin-bottom: 0;
+                            vertical-align: middle;
+                            color: $color-blue-2;
+                            cursor: pointer;
+                            font-size: 14px;
+                            word-spacing: 2px;
+                            line-height: 21px;
+                            display: inline-block;
+                        }
+                    }
+                }
+
+                ::-webkit-scrollbar {
+                    width: 5px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    background: $color-white-2;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: $color-primary-1;
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: $color-primary-1;
                 }
                 /* width */
             }
-        }
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
 
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background: $color-blue-2;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: $color-primary-1;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: $color-primary-1;
-        }
-
-        .notification-table {
-            top: 37px !important;
-            left: -110px !important;
-        }
-        .show > .btn-secondary.dropdown-toggle {
-            background-color: transparent;
-            &:focus {
-                box-shadow: none;
+            .notification-table {
+                top: 37px !important;
+                left: -110px !important;
+            }
+            .show > .btn-secondary.dropdown-toggle {
+                background-color: transparent;
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                    border: none;
+                }
+            }
+            .btn.focus,
+            .btn:focus {
                 outline: none;
-                border: none;
+                box-shadow: none;
             }
         }
     }

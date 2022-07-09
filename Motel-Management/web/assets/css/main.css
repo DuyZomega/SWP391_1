@@ -169,10 +169,7 @@ body .lb-cancel {
       color: #00ecd5; }
   .header__top .header__right {
     display: flex;
-    align-items: center;
-    /* Track */
-    /* Handle */
-    /* Handle on hover */ }
+    align-items: center; }
     .header__top .header__right .button--primary {
       margin-right: 15px; }
     .header__top .header__right a {
@@ -247,38 +244,77 @@ body .lb-cancel {
       .header__top .header__right .notification-dropdown > button::after {
         display: none; }
     .header__top .header__right .notification-dropdown .dropdown-menu {
-      max-height: 300px;
       width: 250px;
-      overflow-y: auto;
-      overflow-x: hidden;
       padding: 0;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+      /* Track */
+      /* Handle */
+      /* Handle on hover */
       /* width */ }
-      .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-item {
-        text-align: left;
+      .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-header {
+        background: #fff;
         padding: 15px;
-        width: 230px;
-        max-width: 100%;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis; }
-    .header__top .header__right ::-webkit-scrollbar {
-      width: 5px; }
-    .header__top .header__right ::-webkit-scrollbar-track {
-      background: #2c3e50; }
-    .header__top .header__right ::-webkit-scrollbar-thumb {
-      background: #00ccb8; }
-    .header__top .header__right ::-webkit-scrollbar-thumb:hover {
-      background: #00ccb8; }
-    .header__top .header__right .notification-table {
+        position: relative;
+        text-align: center;
+        color: #2c3e50;
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+        border: 0px;
+        border-style: solid;
+        border-bottom-width: 1px;
+        border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%;
+        box-shadow: 0px 2px 10px -2px #ccc; }
+        .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-header .triangle {
+          position: absolute;
+          top: -8px;
+          left: 122px;
+          height: 15px;
+          width: 15px;
+          border-radius: 6px 0px 0px 0px;
+          transform: rotate(45deg);
+          background: #fff;
+          z-index: 1031; }
+      .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 300px; }
+        .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-body .dropdown-item {
+          color: #2c3e50;
+          text-align: left;
+          padding: 15px;
+          max-width: 100%;
+          cursor: pointer; }
+          .header__top .header__right .notification-dropdown .dropdown-menu .dropdown-body .dropdown-item .truncate {
+            margin-bottom: 0;
+            vertical-align: middle;
+            color: #2c3e50;
+            cursor: pointer;
+            font-size: 14px;
+            word-spacing: 2px;
+            line-height: 21px;
+            display: inline-block; }
+      .header__top .header__right .notification-dropdown .dropdown-menu ::-webkit-scrollbar {
+        width: 5px; }
+      .header__top .header__right .notification-dropdown .dropdown-menu ::-webkit-scrollbar-track {
+        background: #ccc; }
+      .header__top .header__right .notification-dropdown .dropdown-menu ::-webkit-scrollbar-thumb {
+        background: #00ccb8; }
+      .header__top .header__right .notification-dropdown .dropdown-menu ::-webkit-scrollbar-thumb:hover {
+        background: #00ccb8; }
+    .header__top .header__right .notification-dropdown .notification-table {
       top: 37px !important;
       left: -110px !important; }
-    .header__top .header__right .show > .btn-secondary.dropdown-toggle {
+    .header__top .header__right .notification-dropdown .show > .btn-secondary.dropdown-toggle {
       background-color: transparent; }
-      .header__top .header__right .show > .btn-secondary.dropdown-toggle:focus {
+      .header__top .header__right .notification-dropdown .show > .btn-secondary.dropdown-toggle:focus {
         box-shadow: none;
         outline: none;
         border: none; }
+    .header__top .header__right .notification-dropdown .btn.focus,
+    .header__top .header__right .notification-dropdown .btn:focus {
+      outline: none;
+      box-shadow: none; }
 
 .header__bottom {
   padding-top: 45px; }
@@ -1049,9 +1085,7 @@ footer {
 .confirm-booking .infor-owner .infor-owner-detail {
   padding-left: 10px; }
 .confirm-booking .warning {
-  margin-top: 20px;
-margin-bottom: 20px;
-}
+  margin-top: 20px; }
   .confirm-booking .warning > span {
     padding: 10px 20px;
     background-color: #d9ff9e;
@@ -1272,6 +1306,3 @@ margin-bottom: 20px;
   text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
-.reviews-title {
-    padding: 20px 40px;
-}
