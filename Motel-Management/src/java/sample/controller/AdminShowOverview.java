@@ -5,6 +5,10 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -50,16 +54,38 @@ public class AdminShowOverview extends HttpServlet {
                 }
             }
             //======chart =========
-           //  DashboardDTO chart = new DashboardDTO();
+            //  DashboardDTO chart = new DashboardDTO();
             List<DashboardDTO> listChart = new ArrayList<>();
-             for(int i= 2; i <=8 ; i++){
-                 List<DashboardDTO> countdate = dao.getDate(i);
-                   listChart.addAll(countdate);
-             }
-                request.setAttribute("ADMINCHART", listChart);
-            
+            for (int i = 2; i <= 8; i++) {
+                List<DashboardDTO> countdate = dao.getDate(i);
+                listChart.addAll(countdate);
+            }
+            request.setAttribute("ADMINCHART", listChart);
+
+            List<DashboardDTO> listChartMth = new ArrayList<>();
+            String enddate = dao.getEndDateOfMonth();
+            TemporalAccessor temporal = DateTimeFormatter
+                    .ofPattern("yyyy-MM-dd HH:mm:ss.S")
+                    .parse(enddate); // use parse(date, LocalDateTime::from) to get LocalDateTime
+            String end = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
+            for (int i = 0; i <= 31; i++) {
+                String startdate = dao.getStartDateOfMonth(i);
+                TemporalAccessor temporal1 = DateTimeFormatter
+                        .ofPattern("yyyy-MM-dd HH:mm:ss.S")
+                        .parse(startdate);
+                String start = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal1);
+                if (start.equals(end)) {
+                    return;
+                } else {
+
+                    List<DashboardDTO> countdate = dao.getDateMth(start);
+                    listChartMth.addAll(countdate);
+                }
+            }
+
+            request.setAttribute("ADMINCHART_MONTH", listChartMth);
+
             //=============
-            
         } catch (Exception e) {
             log("Error at AdminShowOverview: " + e.toString());
         } finally {

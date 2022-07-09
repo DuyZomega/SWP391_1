@@ -5,12 +5,18 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.admin.VisitDAO;
+import sample.admin.VisitDTO;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 
@@ -28,7 +34,27 @@ public class ShowMotelController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
+        HttpSession session = request.getSession();
+        Random generator = new Random();
         try {
+            /* get user agent  */
+             String flag = (String) session.getAttribute("vtk");
+            if (flag == "1") {
+                return;
+            }
+            session.setAttribute("vtk", "1");
+            String ipAddress = request.getRemoteAddr();
+            request.setAttribute("ipAddress", ipAddress);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = new Date();
+            String time = formatter.format(date);
+            long timestamp = date.getTime();
+            String id = String.valueOf(generator.nextInt(9999999));
+            VisitDTO visitDTO = new VisitDTO(id, timestamp, ipAddress , time);
+            VisitDAO visit = new VisitDAO();
+            boolean listvisit = visit.insertVisit(visitDTO);
+            
+            /*end*/
             MotelDAO motel = new MotelDAO();
             List<MotelDTO> listMotel = motel.getListMotel();
             if (listMotel.size() > 0) {

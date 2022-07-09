@@ -175,18 +175,19 @@
                                     <c:if test="${requestScope.ADMINCHART != null}">
                                         <c:if test="${not empty requestScope.ADMINCHART}">
                                             <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
-
-                                                <option value="3">2022-07-03 UTC+0700</option>
-                                                <option value="1">2022-07-10 UTC+0700</option>
-                                                <option value="3">2022-07-17 UTC+0700</option>
+                                                <option value="${c.time}">${c.date} UTC+0700</option>
                                             </c:forEach> 
                                         </c:if>
                                     </c:if>
                                 </select>
                                 <select name="a2" id="month" style="display: none;">
-                                    <option value="3">2022-07-03 UTC+0700</option>
-                                    <option value="1">2022-07-10 UTC+0700</option>
-                                    <option value="3">2022-07-17 UTC+0700</option>
+                                    <c:if test="${requestScope.ADMINCHART_MONTH != null}">
+                                        <c:if test="${not empty requestScope.ADMINCHART_MONTH}">
+                                            <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART_MONTH}">
+                                                < <option value="${c.time}">${c.date} UTC+0700</option>
+                                            </c:forEach> 
+                                        </c:if>
+                                    </c:if>
                                 </select>
                                 
                                 <canvas id="numOfAccess" width="400" height="200"></canvas>

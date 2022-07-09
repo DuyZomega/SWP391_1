@@ -5,9 +5,13 @@
 package sample.admin;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import sample.owner.HistoryDTO;
@@ -224,4 +228,110 @@ public class DashboardDAO {
         return listdate;
     }
     
+    public String getStartDateOfMonth(int i) throws SQLException {
+       
+     String date ="" ;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql ="Declare @GivenDate datetime\n" +
+                                "SET @GivenDate = GETDATE()\n" +
+                                "\n" +
+                                "Select DATEADD(MM,DATEDIFF(MM, 0, @GivenDate),?) as startdate";
+                ptm = conn.prepareStatement(sql);
+                ptm.setInt(1, i);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    date = rs.getString("startdate");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return date;   }
+
+    public String getEndDateOfMonth() throws SQLException {
+    
+     String date ="" ;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql ="SELECT DATEADD(d,-1, DATEADD(mm, DATEDIFF(mm, 0 ,GETDATE())+1, 0)) as enddate";
+                ptm = conn.prepareStatement(sql);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    date = rs.getString("enddate");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return date;     
+    }
+ 
+  public static  final String GET_DATE_MONTH ="select v.date as date , count (v.time) as time \n" +
+"from visit_tracking as v \n" +
+"Where v.date = ? " +
+"GROUP BY v.date\n" +
+"Order by date" ;
+    public List<DashboardDTO> getDateMth(String startdate) throws SQLException, ParseException {
+    List<DashboardDTO> listdate = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_DATE_MONTH);
+                ptm.setString(1, startdate);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String date = rs.getString("date");
+                    int time = rs.getInt("time");
+                    listdate.add(new DashboardDTO(time, date));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listdate;  
+    }
+     
+     
 }
