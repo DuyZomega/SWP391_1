@@ -80,6 +80,12 @@
                                 <span class="title">Tài khoản</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                                <span><i class='bx bx-bell'></i></span>
+                                <span class="title">Thông báo</span>
+                            </a>
+                        </li>
                         <li class="active">
                             <a href="userhistorybooking">
                                 <span><i class='bx bx-history'></i></span>

@@ -9,6 +9,7 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -28,12 +29,15 @@ import sample.booking.PaymentDAO;
 import sample.booking.PaymentDTO;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
 import sample.room.TestDAO;
 import sample.room.TestDTO;
 import sample.users.SendEmail;
 import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -140,6 +144,20 @@ public class BookingController extends HttpServlet {
                         + "Moi thac mac vui long đôi liên hệ hotline: 0396421901";
                 SendEmail.sendEmail("nhatcao796569@gmail.com", mes);
                 url = SUCCESS;
+            }
+            //===============
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            NotificationDAO dao = new NotificationDAO();
+            String annoucementID = String.valueOf(generator.nextInt(9999999));
+            String title = "Bạn đã đặt phòng";
+            String desc = "Đang xử lý";
+            Calendar calendar = Calendar.getInstance();
+            java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
+            int Status = 1;
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                NotificationDTO noti = new NotificationDTO(annoucementID,title,desc,startDate,userID,Status);
+                boolean checkCreateNoti = dao.insertNotification(noti);
             }
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());

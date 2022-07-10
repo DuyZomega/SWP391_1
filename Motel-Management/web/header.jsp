@@ -64,17 +64,23 @@
                 </button>
                 <div class="dropdown-menu notification-table animate__animated animate__fadeInDown"
                      aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="MainController?action=notifi&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
-                        Xem tin mới <i class="fa fa-angle-right"></i>
-                    </a>
-                    <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
-                        Xem tất cả <i class="fa fa-angle-right"></i>
-                    </a>
-                    <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
-                        <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">${t.title}</a>
-                    </c:forEach>
+                    <div class="dropdown-header">
+                        <span class="triangle"></span>
+                        <span class="heading">Thông báo</span>
+                    </div>
+                    <div class="dropdown-body">
+                        <a class="dropdown-item" href="MainController?action=notifi&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                            <p class="truncate">Xem tin mới <i class="fa fa-angle-right"></i></p>
+                        </a>
+                        <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                            <p class="truncate"> Xem tất cả <i class="fa fa-angle-right"></i></p>
+                        </a>
+                        <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
+                            <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><p class="truncate">${t.title}</p></a>
+                        </c:forEach>
+                    </div>
                 </div>
-            </div>
+            </div>      
             <div class="user-dropdown dropdown">
                 <button class="btn-user-dropdown text-white btn dropdown-toggle"
                         type="button" id="dropdownMenuButton" data-toggle="dropdown"

@@ -4,6 +4,8 @@
  */
 package sample.notification;
 
+import java.sql.*;
+import java.util.Calendar;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,11 +20,69 @@ import sample.utils.DBUtils;
  * @author Admins
  */
 public class NotificationDAO {
-     private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1 ";
-     private static final String GET_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification \n" +
-                                                      "WHERE tblUser.UserID = tblNotification.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1";
-     
-     public List<NotificationDTO> notiList(String userID) throws SQLException {
+
+    private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1 ";
+    private static final String GET_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification \n"
+            + "WHERE tblUser.UserID = tblNotification.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1";
+
+    private static final String NOTIFICATION = "INSERT [tblNotification] ([AnnouncementID], [Title], [Desct], [Date], [UserID], [Status]) VALUES (?,?,?,?,?,?)";
+
+     private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Desct = ? WHERE UserID = ?"; 
+    
+    public boolean updateNotification(NotificationDTO notifi) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_NOTIFICATION);
+                ptm.setString(1, notifi.getDesct());
+                ptm.setString(2, notifi.getUserID());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    public boolean insertNotification(NotificationDTO notifi) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(NOTIFICATION);
+                ptm.setString(1, notifi.getAnnouncementID());
+                ptm.setString(2, notifi.getTitle());
+                ptm.setString(3, notifi.getDesct());
+                ptm.setDate(4, notifi.getDate());
+                ptm.setString(5, notifi.getUserID());
+                ptm.setInt(6, notifi.getStatus());
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public List<NotificationDTO> notiList(String userID) throws SQLException {
         List<NotificationDTO> notiList = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -57,8 +117,8 @@ public class NotificationDAO {
         }
         return notiList;
     }
-     
-     public int getNotificationNumber(String userID) throws SQLException {
+
+    public int getNotificationNumber(String userID) throws SQLException {
         int notificationNumber = 0;
         Connection conn = null;
         PreparedStatement ptm = null;
