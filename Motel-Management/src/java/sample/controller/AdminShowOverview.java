@@ -64,26 +64,20 @@ public class AdminShowOverview extends HttpServlet {
 
             List<DashboardDTO> listChartMth = new ArrayList<>();
             String enddate = dao.getEndDateOfMonth();
-            TemporalAccessor temporal = DateTimeFormatter
-                    .ofPattern("yyyy-MM-dd HH:mm:ss.S")
-                    .parse(enddate); // use parse(date, LocalDateTime::from) to get LocalDateTime
+            TemporalAccessor temporal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(enddate); // use parse(date, LocalDateTime::from) to get LocalDateTime
             String end = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
             for (int i = 0; i <= 31; i++) {
                 String startdate = dao.getStartDateOfMonth(i);
-                TemporalAccessor temporal1 = DateTimeFormatter
-                        .ofPattern("yyyy-MM-dd HH:mm:ss.S")
-                        .parse(startdate);
+                TemporalAccessor temporal1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(startdate);
                 String start = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal1);
-                if (start.equals(end)) {
-                    return;
-                } else {
-
-                    List<DashboardDTO> countdate = dao.getDateMth(start);
-                    listChartMth.addAll(countdate);
-                }
+               
+                    List<DashboardDTO> countdate1 = dao.getDateMth(start);
+                    listChartMth.addAll(countdate1);
+                
             }
 
             request.setAttribute("ADMINCHART_MONTH", listChartMth);
+                String start2 = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
 
             //=============
         } catch (Exception e) {
