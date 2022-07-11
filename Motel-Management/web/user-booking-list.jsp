@@ -39,8 +39,8 @@
         <div class="header__breadcrumb container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản</li>
+                    <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Lịch sử</li>
 
                 </ol>
             </nav>

@@ -32,7 +32,17 @@
 
     <body>
         <%@include file="header.jsp" %> 
+<hr>
+        <div class="header__breadcrumb container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Thông báo</li>
 
+                </ol>
+            </nav>
+        </div>
+        <hr>
         <div class="profile container">
             <div class="row">
                 <div class="navigation col-2">

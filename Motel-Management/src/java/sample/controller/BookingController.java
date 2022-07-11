@@ -57,6 +57,7 @@ public class BookingController extends HttpServlet {
             String orderTable = "";
             List<BookingDetailDTO> listbt = new ArrayList<>();
             HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             MotelDAO motel = new MotelDAO();
             UserDAO user = new UserDAO();
             BookingDAO booking = new BookingDAO();
@@ -121,32 +122,32 @@ public class BookingController extends HttpServlet {
                     }
                 }
             }
-
+            if (checkCreate & check & updateroom) {
+                request.setAttribute("SUCCESS", "Booking successfully ");
+                url = SUCCESS;
+            }
             //===============
             String motelInfo = "";
             List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
             for (MotelDTO m : lm) {
-                motelInfo += m.getName() + "\n Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "\n TOTAL :" + m.getStatus();
+                motelInfo += "<h4>" + m.getName() + "</h4><br> Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "<br> TOTAL :" + m.getMotelprice() + "VND. <br>";
             }
 
             List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
             for (MotelDTO m : listBooking) {
-                orderTable += "\n- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd) - Hour:" + m.getNumberRoomType() + " (h)";
+                orderTable += "<br>- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd/room) - Hour:" + m.getNumberRoomType() + " (h)<br>";
             }
             byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
-//To get original string from byte.
+            UserDTO userProfile = user.getUserProfile(userId);
+            String gmailUser = userProfile.getGmail();
             String value = new String(byteText, "UTF-8");
-            if (checkCreate & check & updateroom) {
-                request.setAttribute("SUCCESS", "Booking thanh cong ");
-                String mes = "Your order have id " + bookingID + "\n "
-                        + motelInfo
-                        + value
-                        + "Moi thac mac vui long đôi liên hệ hotline: 0396421901";
-                SendEmail.sendEmail("nhatcao796569@gmail.com", mes);
-                url = SUCCESS;
-            }
+
+            String mes = "Your order have ID: <h5>" + bookingID + "<h5> <br> "
+                    + motelInfo
+                    + value
+                    + "<br>For any questions, please contact the ROH Motel hotline: 0396421901";
+            SendEmail.sendEmail(gmailUser, mes);
             //===============
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             NotificationDAO dao = new NotificationDAO();
             String annoucementID = String.valueOf(generator.nextInt(9999999));
             String title = "Bạn đã đặt phòng";
@@ -156,7 +157,7 @@ public class BookingController extends HttpServlet {
             int Status = 1;
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
-                NotificationDTO noti = new NotificationDTO(annoucementID,title,desc,startDate,userID,Status);
+                NotificationDTO noti = new NotificationDTO(annoucementID, title, desc, startDate, userID, Status);
                 boolean checkCreateNoti = dao.insertNotification(noti);
             }
         } catch (Exception e) {

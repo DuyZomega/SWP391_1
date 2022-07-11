@@ -27,19 +27,8 @@ import sample.motel.MotelDTO;
  */
 public class SendEmail {
 
-    public static void sendEmail(String email, String bookingID) throws SQLException, UnsupportedEncodingException {
-        String orderTable = "";
-        String motelInfo = "";
-        MotelDAO motel = new MotelDAO();
-        List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
-        for (MotelDTO m : lm) {
-            motelInfo += m.getName() + "\n Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() +"\n TOTAL :"+ m.getStatus();
-        }
-
-        List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
-        for (MotelDTO m : listBooking) {
-            orderTable += "\n- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd) - Hour:" + m.getNumberRoomType()+" (h)";
-        }
+    public static void sendEmail(String email, String mes) throws SQLException, UnsupportedEncodingException {
+      
         final String username = "vntphuongthuy.is@gmail.com";
         final String password = "cdyjushrbcpfatgz";
 
@@ -66,8 +55,8 @@ public class SendEmail {
                     InternetAddress.parse(email)
             );
             message.setSubject("Thank you for visiting ROH MOTEL");
-            message.setContent("Your booking id :  " + bookingID + "\nInfo Motel: " + motelInfo
-                    + "\n\n Please check your order: " + orderTable, "text/html;charset=utf-8");
+            message.setContent("Please check your order<br>"
+                    + mes, "text/html;charset=utf-8");
 
             Transport.send(message);
 
