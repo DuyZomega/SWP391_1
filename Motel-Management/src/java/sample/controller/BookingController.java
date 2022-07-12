@@ -160,6 +160,21 @@ public class BookingController extends HttpServlet {
                 NotificationDTO noti = new NotificationDTO(annoucementID, title, desc, startDate, userID, Status);
                 boolean checkCreateNoti = dao.insertNotification(noti);
             }
+
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                int notiNumber = dao.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        url = SUCCESS;
+                    }
+                }
+            }
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

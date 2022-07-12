@@ -131,5 +131,16 @@ public class NotificationDTO {
         this.fullname = fullname;
     }
 
+    public NotificationDTO(String userID, int status) {
+        this.userID = userID;
+        this.status = status;
+    }
+
+    public NotificationDTO(String announcementID, String userID, int status) {
+        this.announcementID = announcementID;
+        this.userID = userID;
+        this.status = status;
+    }
+
     
 }
