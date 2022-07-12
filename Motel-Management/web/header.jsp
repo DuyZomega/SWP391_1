@@ -57,17 +57,14 @@
                     noti = new NotificationDTO();
                 }
             %> 
-            <%
-                NotificationDTO noti1 = (NotificationDTO) request.getAttribute("LIST_NOTI");
-                if (noti1 == null) {
-                    noti1 = new NotificationDTO();
-                }
-            %> 
+            
             <div class="notification-dropdown dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell"></i><span class="notification"><%= noti.getNotificationNumber()%></span>
-                    <span type="hidden" name="announcementID" value="<%= noti1.getAnnouncementID()%>"   
+                    <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
+                    <span type="hidden" name="announcementID" value="${t.announcementID}"></span>  
+                    </c:forEach>
                 </button>
                 <div class="dropdown-menu notification-table animate__animated animate__fadeInDown"
                      aria-labelledby="dropdownMenuButton">
@@ -107,7 +104,7 @@
                        href="MainController?action=Logout">Đăng xuất</a>
                 </div>
             </div>
-            <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"                
+                       <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"></span>            
                   </div>
         </div>
     </div>
