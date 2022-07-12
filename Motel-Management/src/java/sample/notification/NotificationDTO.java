@@ -18,7 +18,8 @@ public class NotificationDTO {
     public String userID;
     private int status;
     public int notificationNumber;
-
+    public String fullname;
+    
     public NotificationDTO() {
         
     }
@@ -82,6 +83,14 @@ public class NotificationDTO {
         this.status = status;
     }
 
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
     public NotificationDTO(String announcementID, String title, String desct, Date date, int status, int notificationNumber) {
         this.announcementID = announcementID;
         this.title = title;
@@ -110,6 +119,16 @@ public class NotificationDTO {
         this.date = date;
         this.userID = userID;
         this.status = status;
+    }
+
+    public NotificationDTO(String announcementID, String title, String desct, Date date, String userID, int status, String fullname) {
+        this.announcementID = announcementID;
+        this.title = title;
+        this.desct = desct;
+        this.date = date;
+        this.userID = userID;
+        this.status = status;
+        this.fullname = fullname;
     }
 
     

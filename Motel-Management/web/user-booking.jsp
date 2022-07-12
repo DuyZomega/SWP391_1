@@ -60,9 +60,9 @@
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Tên nhà
                                             nghỉ:</span> <span><input type="hidden" name="name" value="${o.name}" />${o.name}</span></label>
                                 </p>
-                                
+
                                 <input type="hidden"  class="d-5"  name="motelID" value="${o.motelID}" />
-                                
+
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
                                             chỉ:</span><input type="hidden" name="address" value="${o.address},${o.district},${o.city}" /> ${o.address},${o.district},${o.city}
                                     </label></p>
@@ -70,21 +70,21 @@
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
                                 </div>
-                                    <ul class="ml-3">
+                                <ul class="ml-3">
 
-                                        <c:forEach var="t" items ="${requestScope.listTest}">
-                                            <li> -ID: ${t.roomTypeID} - ${t.typeName}- Số giờ : ${t.time}- Số lượng phòng ${t.countRoom} - Giá <span class="price-format" data-price="${t.price}"></span> 
-                                            </li>
-                                            <input type="hidden" class="roomTypeID d-5"  name="roomTypeID[]" value="${t.roomTypeID}"/>
-                                            <input type="hidden" class="typename"  name="typename[]" value="${t.typeName}"/>
-                                            <input  type="hidden" class="hour_val" value="${t.time}" name="counttime[]">
-                                            <input  type="hidden" value="${t.countRoom}" name="countroom[]">
-                                            <input type="hidden" class="price" value="${t.price}" name="price[]" />
-                                        </c:forEach>
-                                        <hr>
-                                        <input type="hidden" class="price" value="${requestScope.total}" name="total" />
-                                        <li><h6>- Tổng tiền: <span class="price-format" data-price="${requestScope.total}"></span> VNĐ</h6></li>
-                                    </ul>
+                                    <c:forEach var="t" items ="${requestScope.listTest}">
+                                        <li> -ID: ${t.roomTypeID} - ${t.typeName}- Số giờ : ${t.time}- Số lượng phòng ${t.countRoom} - Giá <span class="price-format" data-price="${t.price}"></span> 
+                                        </li>
+                                        <input type="hidden" class="roomTypeID d-5"  name="roomTypeID[]" value="${t.roomTypeID}"/>
+                                        <input type="hidden" class="typename"  name="typename[]" value="${t.typeName}"/>
+                                        <input  type="hidden" class="hour_val" value="${t.time}" name="counttime[]">
+                                        <input  type="hidden" value="${t.countRoom}" name="countroom[]">
+                                        <input type="hidden" class="price" value="${t.price}" name="price[]" />
+                                    </c:forEach>
+                                    <hr>
+                                    <input type="hidden" class="price" value="${requestScope.total}" name="total" />
+                                    <li><h6>- Tổng tiền: <span class="price-format" data-price="${requestScope.total}"></span> VNĐ</h6></li>
+                                </ul>
                                 <%
                                     total += sum;
                                 %>  
@@ -121,7 +121,7 @@
                             <input type="text" name="sender" id="sender" />
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
-                       
+
                         <div class="form-item col-12">
                             <label for="password">Phương thức thanh toán</label>
                             <select class="custom-select" name="status" id="inputGroupSelect01">
@@ -144,12 +144,14 @@
                         <button type="submit" value="book" name="action" class="button--primary btn btn-danger">Xác nhận
                             đặt
                             phòng</button>
+                        
+                        
                     </div>
                 </div>
-            </form>
+            </form>            
         </div>
     </section>
-
+    <button class="notify-button">Notify Me</button> 
     <!-- FOOTER -->
     <%@include file="footer.jsp" %>
 
@@ -163,42 +165,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- main js -->
     <script src="assets/js/user-script.js"></script><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-   
+
     <!-- owl Carousels -->
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script>
-        $('.rating-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                1200: {
-                    items: 3
-                }
-            }
-        });
+                            $('.rating-carousel').owlCarousel({
+                            loop: true,
+                                    margin: 10,
+                                    nav: false,
+                                    responsive: {
+                                    0: {
+                                    items: 1
+                                    },
+                                            576: {
+                                            items: 2
+                                            },
+                                            1200: {
+                                            items: 3
+                                            }
+                                    }
+                            });
     </script>
     <!-- lightbox -->
     <script src="vendor/lightbox/js/lightbox.min.js"></script>
     <script src="assets/js/user-script.js"></script>
+    
     <script>
-        Validator({
-            form: '#form-3',
-            errorSelector: '#error_message',
-            rules: [
-                Validator.isNotEmpty('#fullName'),
-                Validator.isTextOnly('#fullName', 'Vui lòng nhập đúng cú pháp'),
-                Validator.isNotEmpty('#email'),
-                Validator.isEmail('#email', 'Vui lòng nhập đúng cú pháp'),
-                Validator.isNotEmpty('#telephone'),
-                Validator.isNumberOnly('#telephone', 'Vui lòng nhập đúng cú pháp'),
-            ]
-        });
+                            Validator({
+                            form: '#form-3',
+                                    errorSelector: '#error_message',
+                                    rules: [
+                                            Validator.isNotEmpty('#fullName'),
+                                            Validator.isTextOnly('#fullName', 'Vui lòng nhập đúng cú pháp'),
+                                            Validator.isNotEmpty('#email'),
+                                            Validator.isEmail('#email', 'Vui lòng nhập đúng cú pháp'),
+                                            Validator.isNotEmpty('#telephone'),
+                                            Validator.isNumberOnly('#telephone', 'Vui lòng nhập đúng cú pháp'),
+                                    ]
+                            });
     </script>
+    <script src="assets/js/push.js"></script>
+    <script>
+                            $("#notify-button").click(function(){
+                            Push.create("Bạn đã đặt phòng", {
+                            body: "đang xử lý",
+                                    icon: './assets/img/logo2.png',
+                                    timeout: 2000,
+                                    onClick: function () {
+                                    window.focus();
+                                    this.close();
+                                    }
+                            });
+                            });
+                        </script>
 </body>
