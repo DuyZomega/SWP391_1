@@ -25,6 +25,7 @@
 
         <!-- main CSS -->
         <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./assets/js/node_modules/sweetalert2/dist/sweetalert2.css">
     </head>
 
     <body>
@@ -144,14 +145,15 @@
                         <button type="submit" value="book" name="action" class="button--primary btn btn-danger">Xác nhận
                             đặt
                             phòng</button>
-                        
-                        
+
+
                     </div>
                 </div>
             </form>            
         </div>
     </section>
-    <button class="notify-button">Notify Me</button> 
+<button onclick="sweetalertclick()" type="button" class="button--primary btn btn-danger">Notify Me</button> 
+    </section>
     <!-- FOOTER -->
     <%@include file="footer.jsp" %>
 
@@ -169,53 +171,50 @@
     <!-- owl Carousels -->
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script>
-                            $('.rating-carousel').owlCarousel({
-                            loop: true,
-                                    margin: 10,
-                                    nav: false,
-                                    responsive: {
-                                    0: {
-                                    items: 1
-                                    },
-                                            576: {
-                                            items: 2
-                                            },
-                                            1200: {
-                                            items: 3
-                                            }
-                                    }
-                            });
+            $('.rating-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    576: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
     </script>
     <!-- lightbox -->
     <script src="vendor/lightbox/js/lightbox.min.js"></script>
-    <script src="assets/js/user-script.js"></script>
     
     <script>
-                            Validator({
-                            form: '#form-3',
-                                    errorSelector: '#error_message',
-                                    rules: [
-                                            Validator.isNotEmpty('#fullName'),
-                                            Validator.isTextOnly('#fullName', 'Vui lòng nhập đúng cú pháp'),
-                                            Validator.isNotEmpty('#email'),
-                                            Validator.isEmail('#email', 'Vui lòng nhập đúng cú pháp'),
-                                            Validator.isNotEmpty('#telephone'),
-                                            Validator.isNumberOnly('#telephone', 'Vui lòng nhập đúng cú pháp'),
-                                    ]
-                            });
+            Validator({
+                form: '#form-3',
+                errorSelector: '#error_message',
+                rules: [
+                    Validator.isNotEmpty('#fullName'),
+                    Validator.isTextOnly('#fullName', 'Vui lòng nhập đúng cú pháp'),
+                    Validator.isNotEmpty('#email'),
+                    Validator.isEmail('#email', 'Vui lòng nhập đúng cú pháp'),
+                    Validator.isNotEmpty('#telephone'),
+                    Validator.isNumberOnly('#telephone', 'Vui lòng nhập đúng cú pháp'),
+                ]
+            });
     </script>
-    <script src="assets/js/push.js"></script>
+   
     <script>
-                            $("#notify-button").click(function(){
-                            Push.create("Bạn đã đặt phòng", {
-                            body: "đang xử lý",
-                                    icon: './assets/img/logo2.png',
-                                    timeout: 2000,
-                                    onClick: function () {
-                                    window.focus();
-                                    this.close();
-                                    }
-                            });
-                            });
-                        </script>
+            function sweetalertclick() {
+                Swal.fire({
+        title: 'Test modal with input',
+        html: 'custom <strong>content</strong>',
+        input: 'text',
+        icon: 'success'
+    });
+    }
+    </script> <script src="./assets/js/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
 </body>

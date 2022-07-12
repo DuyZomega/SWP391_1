@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="#">
+                            <a href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>

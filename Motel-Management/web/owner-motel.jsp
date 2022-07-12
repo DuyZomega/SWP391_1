@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.jsp">
+                            <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
