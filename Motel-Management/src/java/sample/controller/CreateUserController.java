@@ -33,12 +33,8 @@ public class CreateUserController extends HttpServlet {
             int status = 1;
             UserDAO dao = new UserDAO();
             boolean check = true;
-            if (userId.length() > 10 || userId.length() < 2) {
+            if (userId.length() > 11 || userId.length() < 2) {
                 userError.setUserIdError("UserID contains 2 - 10 characters!");
-                check = false;
-            }
-            if (fullName.length() > 20 || fullName.length() < 5) {
-                userError.setFullNameError("FullName Contains 5 - 20 characters!");
                 check = false;
             }
             if (phone.length() < 9) {

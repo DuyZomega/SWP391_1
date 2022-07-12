@@ -84,7 +84,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.jsp">
+                            <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
@@ -130,7 +130,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>

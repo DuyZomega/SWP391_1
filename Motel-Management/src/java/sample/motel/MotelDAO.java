@@ -505,7 +505,7 @@ public class MotelDAO {
             + "FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType \n"
             + "WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND ( tblDistrict.DistrictID = ? OR tblRoomType.Price BETWEEN ? AND ?)";
 
-    public List<MotelDTO> getFilterMotel(String price1, String price2, String district) throws SQLException {
+    public List<MotelDTO> getFilterMotel(String price1, String price2, String districtfi) throws SQLException {
         List<MotelDTO> listMotel = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -514,7 +514,7 @@ public class MotelDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(FILTER_MOTEL);
-                ptm.setString(1, district);
+                ptm.setString(1, districtfi);
                 ptm.setString(2, price1);
                 ptm.setString(3, price2);
                 rs = ptm.executeQuery();
@@ -525,6 +525,7 @@ public class MotelDAO {
                     String phone = rs.getString("phone");
                     String desct = rs.getString("desct");
                     String address = rs.getString("address");
+                    String district = rs.getString("DistrictName");
                     String city = rs.getString("CityName");
                     double rating = rs.getDouble("Ratings");
                     int price = rs.getInt("price");

@@ -19,6 +19,9 @@ import sample.admin.VisitDAO;
 import sample.admin.VisitDTO;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -27,9 +30,9 @@ import sample.motel.MotelDTO;
 @WebServlet(name = "ShowMotelController", urlPatterns = {"/ShowMotelController"})
 public class ShowMotelController extends HttpServlet {
 
-      private static final String ERROR = "error.jsp";
+    private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "index.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -41,14 +44,32 @@ public class ShowMotelController extends HttpServlet {
             List<MotelDTO> listMotel = motel.getListMotel();
             if (listMotel.size() > 0) {
                 request.setAttribute("LIST_MOTEL", listMotel);
-                
-            List<MotelDTO> listMotelHot = motel.getListMotelHot();
-                 if (listMotelHot.size() > 0) {
-                request.setAttribute("LIST_MOTEL_HOT", listMotelHot);}
+
+                List<MotelDTO> listMotelHot = motel.getListMotelHot();
+                if (listMotelHot.size() > 0) {
+                    request.setAttribute("LIST_MOTEL_HOT", listMotelHot);
+                }
                 url = SUCCESS;
             }
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+
+            NotificationDAO dao = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                int notiNumber = dao.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        url = SUCCESS;
+                    }
+                }
+            }
             /* get user agent  */
-             String flag = (String) session.getAttribute("vtk");
+            String flag = (String) session.getAttribute("vtk");
             if (flag == "1") {
                 return;
             }
@@ -60,12 +81,11 @@ public class ShowMotelController extends HttpServlet {
             String time = formatter.format(date);
             long timestamp = date.getTime();
             String id = String.valueOf(generator.nextInt(9999999));
-            VisitDTO visitDTO = new VisitDTO(id, timestamp, ipAddress , time);
+            VisitDTO visitDTO = new VisitDTO(id, timestamp, ipAddress, time);
             VisitDAO visit = new VisitDAO();
             boolean listvisit = visit.insertVisit(visitDTO);
-            
-            /*end*/
 
+            /*end*/
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

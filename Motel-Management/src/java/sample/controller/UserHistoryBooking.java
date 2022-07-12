@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.owner.HistoryDAO;
 import sample.owner.HistoryDTO;
 import sample.users.UserDTO;
@@ -40,6 +42,20 @@ public class UserHistoryBooking extends HttpServlet {
             if (listUserBooking != null) {
                 request.setAttribute("LIST_HISTORY", listUserBooking);
                 url = SUCCESS;
+            }
+            NotificationDAO dao1 = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                int notiNumber = dao1.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao1.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        url = SUCCESS;
+                    }
+                }
             }
         } catch (Exception e) {
             log("Error at UserShowHistoryController:" + e.toString());

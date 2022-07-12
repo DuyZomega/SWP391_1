@@ -6,11 +6,15 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.users.UserDAO;
 import sample.users.UserDTO;
 
@@ -23,13 +27,13 @@ public class ShowProfileController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
     private static final String SUCCESS = "owner-profile.jsp";
-    private static final String AD="AD";
-    private static final String ADMIN_PAGE="admin-profile.jsp";
-    private static final String US="US";
-    private static final String USER_PAGE="user-profile.jsp";
-    private static final String OWNER="OW";
-    private static final String OWNER_PAGE="owner-profile.jsp";
-    
+    private static final String AD = "AD";
+    private static final String ADMIN_PAGE = "admin-profile.jsp";
+    private static final String US = "US";
+    private static final String USER_PAGE = "user-profile.jsp";
+    private static final String OWNER = "OW";
+    private static final String OWNER_PAGE = "owner-profile.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,15 +44,38 @@ public class ShowProfileController extends HttpServlet {
             UserDAO dao = new UserDAO();
             UserDTO userProfile = dao.getUserProfile(userID);
             request.setAttribute("USER_PROFILE", userProfile);
-            if (OWNER.equals(role)){
+            if (OWNER.equals(role)) {
                 url = OWNER_PAGE;
-            }else if (AD.equals(role)){
+            } else if (AD.equals(role)) {
                 url = ADMIN_PAGE;
-            }else if (US.equals(role)){
+            } else if (US.equals(role)) {
                 url = USER_PAGE;
             }
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+
+            NotificationDAO dao1 = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                int notiNumber = dao1.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao1.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        if (OWNER.equals(role)) {
+                            url = OWNER_PAGE;
+                        } else if (AD.equals(role)) {
+                            url = ADMIN_PAGE;
+                        } else if (US.equals(role)) {
+                            url = USER_PAGE;
+                        }
+                    }
+                }
+            }
         } catch (Exception e) {
-            log("Error at ShowProfileController: "+e.toString());
+            log("Error at ShowProfileController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

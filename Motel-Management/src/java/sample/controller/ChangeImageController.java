@@ -50,6 +50,7 @@ public class ChangeImageController extends HttpServlet {
             UserDAO dao = new UserDAO();
             boolean check = dao.changeImage(userID,image);
             if(check){
+            request.setAttribute("MESSAGE", "Successfully");
                 url = SUCCESS;
             }
         } catch (Exception e) {

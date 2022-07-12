@@ -1,5 +1,8 @@
 
 
+<%@page import="sample.notification.NotificationDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,7 +78,7 @@
                             </a>
                         </li>
                         <li class="active" data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.jsp">
+                            <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
@@ -148,20 +151,14 @@
                                                     Thông báo mới
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a href="#writeNotif" class="nav-link" data-toggle="tab">
-                                                    <i class='bx bxs-edit'></i>
-                                                    Viết thông báo
-                                                </a>
-                                            </li>
-                                            
+
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="readNotif" >
                                                 <div class="pt-lg-2">
                                                     <div id="all-tip">
                                                         <a href="#" data-toggle="tooltip" data-placement="right" title="Xác nhận">
-                                                            
+
                                                             <i class='bx bx-task'></i>
                                                         </a>
                                                         <a href="#" data-toggle="tooltip" data-placement="right" title="Không xác nhận">
@@ -173,6 +170,7 @@
                                                     </div>
                                                     <div class="table-responsive pt-5">
                                                         <table class="table table-responsive-md table-borderless notif-details">
+
                                                             <thead>
                                                                 <tr>
                                                                     <th>
@@ -189,56 +187,37 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
+                                                                    <%
+                                                                        List<NotificationDTO> listNotification = (ArrayList<NotificationDTO>) request.getAttribute("LIST_NOTI");
+                                                                        for (NotificationDTO notifi : listNotification) {
+                                                                    %>
                                                                     <td>
                                                                         <div class="custom-control custom-checkbox checkbox-success mr-3">
-                                                                        <input type="checkbox" class="custom-control-input" id="check1" required="">
-                                                                        <label class="custom-control-label" for="check1"></label>
-                                                                    </div>
+                                                                            <input type="checkbox" class="custom-control-input" id="check1" required="">
+                                                                            <label class="custom-control-label" for="check1"></label>
+                                                                        </div>
                                                                     </td>
-                                                                    <td>Nguyễn Thị Huyền Trang</td>
+                                                                    <td><%= notifi.getFullname()%></td>
                                                                     <td> 
                                                                         <form action="#">
-                                                                            <span>Đã đặt cọc phòng 102?</span>
+                                                                            <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
                                                                                 <a href="#" class="btn btn-success confirm">Xác nhận</a>
                                                                                 <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
                                                                     </td>
-                                                                    <td>Đang xử lý</td>
-                                                                    <td>2020/01/01</td>        
+                                                                    <td><%= notifi.getDesct()%></td>
+                                                                    <td><%= notifi.getDate()%></td>        
                                                                 </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox checkbox-success mr-3">
-                                                                        <input type="checkbox" class="custom-control-input" id="check2" required="">
-                                                                        <label class="custom-control-label" for="check2"></label>
-                                                                    </div>
-                                                                    </td>
-                                                                    <td>Nguyễn Thị Huyền Trang</td>
-                                                                    <td> 
-                                                                        <form action="#">
-                                                                            <span>Đã đặt cọc phòng 102?</span>
-                                                                            <div class="mr-2">
-                                                                                <a href="#" class="btn btn-success confirm">Xác nhận</a>
-                                                                                <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
-                                                                            </div>
-                                                                        </form> 
-                                                                    </td>
-                                                                    <td>Đang xử lý</td>
-                                                                    <td>2020/01/01</td>        
-                                                                </tr>
+                                                                <%}
+                                                                %> 
                                                             </tbody>
+
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="writeNotif" role="tabpanel">
-                                                <div class="pt-4">
-                                                    hello
-                                                </div>
-                                            </div>
-                                            
                                         </div>
                                     </div>
                                 </div>

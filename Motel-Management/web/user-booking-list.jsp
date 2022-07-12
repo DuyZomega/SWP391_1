@@ -39,8 +39,8 @@
         <div class="header__breadcrumb container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Thông tin tài khoản</li>
+                    <li class="breadcrumb-item"><a href="ShowMotelController" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Lịch sử</li>
 
                 </ol>
             </nav>
@@ -61,23 +61,18 @@
             <div class="row">
 
 
-                <c:if test="${requestScope.MESSAGE != null}">
-                    <c:if test="${not empty requestScope.MESSAGE}">
-                        <div class="alert hide">
-                            <span class="fas fa-exclamation-circle"></span>
-                            <span class="msg">${requestScope.MESSAGE}!</span>
-                            <div class="close-btn">
-                                <span class="fas fa-times"></span>
-                            </div>
-                        </div>
-                    </c:if>
-                </c:if>
                 <div class="navigation col-2">
                     <ul class="slide-menu">
                         <li>
                             <a href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                                <span><i class='bx bx-bell'></i></span>
+                                <span class="title">Thông báo</span>
                             </a>
                         </li>
                         <li class="active">
@@ -93,6 +88,18 @@
                     <div class="main">
                         <div class="container-fluid">
                             <section>
+                                <c:if test="${requestScope.MESSAGE != null}">
+                                    <c:if test="${not empty requestScope.MESSAGE}">
+                                        <div class="alert alert-success alert-dismissible fade show" id="notif">
+                                            <i class='bx bx-message-alt-check p-1'></i>
+                                            <strong class="mr-1">${requestScope.MESSAGE}!</strong>
+
+                                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                                                <span><i class='bx bx-x'></i></span>
+                                            </button>
+                                        </div>
+                                    </c:if>
+                                </c:if>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
@@ -118,13 +125,14 @@
                                                             %>
                                                             <tr class="clickable-row" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                                 <td class="clickable"
-                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getBookingID()%></td>
+                                                                    data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getBookingID()%></td>
                                                                 <td class="clickable"
-                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getUserName()%></td>
+                                                                    data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getUserName()%></td>
                                                                 <td class="clickable"
-                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getDate()%></td>
+                                                                    data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>"><%= history.getDate()%></td>
                                                                 <td class="clickable"
-                                                                data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>" ><span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
+                                                                    data-href="UserManager?action=bookingdetail&bookingID=<%= history.getBookingID()%>&motelID=<%= history.getMotelID()%>" >
+                                                                    <span class="price-format" data-price="<%= history.getTotal()%>"></span></td>
 
                                                                 <%
                                                                     if (history.getStatus().equals("1")) {
@@ -257,7 +265,7 @@
                                                             </div>
                                                         </div>
                                                         <%
-                                                                } else if (history.getStatus().equals("3")) {%>
+                                                        } else if (history.getStatus().equals("3")) {%>
                                                         <td data-toggle="modal" data-target="#detailsModal">Đã hủy</td>
                                                         <td>
                                                             <div >
@@ -420,15 +428,26 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <!-- <script src="assets/js/owner-script.js"></script> -->
-
         <script src="assets/js/user-script.js"></script>
+        <script src="assets/js/owner-script.js"></script> 
+
         <script>
+            $(document).ready(function () {
+    setTimeout(function () {
+        $('#notif').css('display', 'none');
+    }, 3000);
+})
             $(document).ready(function () {
                 $("#history-table").DataTable({
                     pagingType: "full_numbers",
                 });
             });
+            
+        $(document).ready(function () {
+            $(".clickable").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
         </script>
     </body>
 </html>

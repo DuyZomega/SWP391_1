@@ -6,12 +6,15 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.users.UserDAO;
 import sample.users.UserDTO;
 
@@ -22,44 +25,69 @@ import sample.users.UserDTO;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private static final String ERROR="login.jsp";
-    private static final String AD="AD";
-    private static final String ADMIN_PAGE="AdminShowOverview";
-    private static final String US="US";
-    private static final String USER_PAGE="ShowMotelController";
-    private static final String OWNER="OW";
-    private static final String OWNER_PAGE="OwnerShowOverview";
-    
+    private static final String ERROR = "login.jsp";
+    private static final String AD = "AD";
+    private static final String ADMIN_PAGE = "AdminShowOverview";
+    private static final String US = "US";
+    private static final String USER_PAGE = "ShowMotelController";
+    private static final String OWNER = "OW";
+    private static final String OWNER_PAGE = "OwnerShowOverview";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String userId=request.getParameter("userId");
-            String password=request.getParameter("password");
-            UserDAO dao=new UserDAO();
-            UserDTO loginUser= dao.checkLogin(userId, password);
-            HttpSession session=request.getSession();           
-            if(loginUser!=null){
+            String userId = request.getParameter("userId");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            UserDTO loginUser = dao.checkLogin(userId, password);
+            HttpSession session = request.getSession();
+            if (loginUser != null) {
                 session.setAttribute("LOGIN_USER", loginUser);
                 session.setAttribute("userId", userId);
-                String role=loginUser.getRole();
-                if(AD.equals(role)){
-                    url=ADMIN_PAGE;
-                }else if(US.equals(role)){
-                    url=USER_PAGE;
-                }else if(OWNER.equals(role)){
-                    url=OWNER_PAGE;
-                }else{
+                String role = loginUser.getRole();
+                if (AD.equals(role)) {
+                    url = ADMIN_PAGE;
+                } else if (US.equals(role)) {
+                    url = USER_PAGE;
+                } else if (OWNER.equals(role)) {
+                    url = OWNER_PAGE;
+                } else {
                     request.setAttribute("ERROR", "Tài khoản của bạn không được được phép");
                 }
-            }else{
-                request.setAttribute("ERROR","Sai tên đăng nhập , mật khẩu");
+            } else {
+                request.setAttribute("ERROR", "Sai tên đăng nhập , mật khẩu");
             }
-            
+            NotificationDAO dao1 = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                int notiNumber = dao1.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao1.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        String role = loginUser.getRole();
+                        if (AD.equals(role)) {
+                            url = ADMIN_PAGE;
+                        } else if (US.equals(role)) {
+                            url = USER_PAGE;
+                        } else if (OWNER.equals(role)) {
+                            url = OWNER_PAGE;
+                        } else {
+                            request.setAttribute("ERROR", "Tài khoản của bạn không được được phép");
+                        }
+                    } else {
+                        request.setAttribute("ERROR", "Sai tên đăng nhập , mật khẩu");
+                    }
+                }
+            }
         } catch (Exception e) {
-            log("ERROR at loginController: " +e.toString());
-        } finally{
+            log("ERROR at loginController: " + e.toString());
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

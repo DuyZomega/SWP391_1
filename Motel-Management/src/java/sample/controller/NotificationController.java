@@ -6,6 +6,8 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +27,7 @@ import sample.users.UserDTO;
 public class NotificationController extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "index.jsp";
+    private static final String SUCCESS = "user-notification.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,12 +39,19 @@ public class NotificationController extends HttpServlet {
 
             NotificationDAO dao = new NotificationDAO();
             NotificationDTO noti = new NotificationDTO();
+            int Status = 0;
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                NotificationDTO notifi = new NotificationDTO(userID, Status);
+                boolean checkCreateNoti = dao.updateNotification1(notifi);
+            }
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
                 int notiNumber = dao.getNotificationNumber(userID);
                 noti = new NotificationDTO(notiNumber);
                 if (noti != null) {
                     request.setAttribute("NOTIFICATION", noti);
+
                     List<NotificationDTO> listNoti = dao.notiList(userID);
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
