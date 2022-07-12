@@ -189,10 +189,10 @@ $('#checkAll').click(function () {
 });
 
 // admin
-var week = [];
-let numOfweek = document.getElementById('week');
+var day = [];
+let numOfweek = document.getElementById('day');
 for (let i = 0; i < numOfweek.length; i++) {
-  week.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
+  day.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
 }
 
 var month = [];
@@ -201,7 +201,6 @@ for (let i = 0; i < numOfmonth.length; i++) {
   month.push({x : Date.parse(numOfmonth.options[i].innerText), y : numOfmonth.options[i].value})
 }
 
-
 const ctx = document.getElementById('numOfAccess').getContext('2d');
 const chart = new Chart(ctx, {   
         type: 'line',
@@ -209,7 +208,7 @@ const chart = new Chart(ctx, {
             
             datasets: [{
                 label: 'number of access',
-                data: week,
+                data: day,
                 backgroundColor: [
                     'rgba(39, 174, 96,0.5)'
                 ],
@@ -226,7 +225,7 @@ const chart = new Chart(ctx, {
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'week'
+                        unit: 'day'
                     }
                 },
                 y: {
@@ -239,43 +238,48 @@ const chart = new Chart(ctx, {
  
   //change-chart
   function changeFrame(period) {
-    if (period.value == 'week') {
+    if (period.value === 'day') {
       chart.options.scales.x.time.unit = period.value;
-      chart.data.datasets[0].data = week;
+      chart.data.datasets[0].data = day;
 
     }
-    if (period.value == 'month') {
+    if (period.value === 'day1') {
       chart.data.datasets[0].data = month;
-      chart.options.scales.x.time.unit = period.value;
     }
     chart.update();
   } 
 
 
 
+
+
+
   const numOfHome = document.querySelectorAll('#numOfHome select');
-  var num = [];
-  for (let i = 0; i < numOfHome.length; i++) {
-      var data = document.getElementById(numOfHome[i].id);
-      for (let j = 0; j < data.length; j++) {
-          num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
-      }  
-  }
+
+  console.log(numOfHome);
+
+  // var num = [];
+  // for (let i = 0; i < numOfHome.length; i++) {
+  //     var data = document.getElementById(numOfHome[i].id);
+  //     for (let j = 0; j < data.length; j++) {
+  //         num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+  //     }  
+  // }
     
-    console.log(num.slice(0,7));
+  // console.log(num.slice(0,7));
     
 
 // create array ojbect
-var home1 = [];
-let a1234 = document.getElementById('a1234');
-for (let i = 0; i < a1234.length; i++) {
-    home1.push({x : Date.parse(a1234.options[i].innerText), y : a1234.options[i].value})
-}
-var home2 = [];
-let b1234 = document.getElementById('b1234');
-for (let i = 0; i < b1234.length; i++) {
-    home2.push({x : Date.parse(b1234.options[i].innerText), y : b1234.options[i].value})
-}
+// var home1 = [];
+// let a1234 = document.getElementById('a1234');
+// for (let i = 0; i < a1234.length; i++) {
+//     home1.push({x : Date.parse(a1234.options[i].innerText), y : a1234.options[i].value})
+// }
+// var home2 = [];
+// let b1234 = document.getElementById('b1234');
+// for (let i = 0; i < b1234.length; i++) {
+//     home2.push({x : Date.parse(b1234.options[i].innerText), y : b1234.options[i].value})
+// }
 
 
 

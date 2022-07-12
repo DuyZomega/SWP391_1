@@ -167,11 +167,11 @@
                         <div class="card">
                             <div class="card-body" >
                                 <div class="d-flex align-content-center float-right">
-                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="week">Week</button>
-                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="month">Month</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="day">Week</button>
+                                    <button class="btn btn-xs btn-orange" onclick="changeFrame(this)" value="day1">Month</button>
                                 </div>
                                 
-                                <select name="a1" id="week" style="display: none;">
+                                <select name="a1" id="day" style="display: none;">
                                     <c:if test="${requestScope.ADMINCHART != null}">
                                         <c:if test="${not empty requestScope.ADMINCHART}">
                                             <c:forEach var="c" varStatus="counter" items="${requestScope.ADMINCHART}">
