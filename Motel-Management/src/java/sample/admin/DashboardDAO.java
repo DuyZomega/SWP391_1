@@ -311,9 +311,15 @@ public class DashboardDAO {
                 ptm = conn.prepareStatement(GET_DATE_MONTH);
                 ptm.setString(1, startdate);
                 rs = ptm.executeQuery();
+                
                 while (rs.next()) {
                     String date = rs.getString("date");
                     int time = rs.getInt("time");
+                    listdate.add(new DashboardDTO(time, date));
+                }
+                if (listdate.size() == 0) {
+                    String date = startdate;
+                    int time = 0;
                     listdate.add(new DashboardDTO(time, date));
                 }
             }
