@@ -132,103 +132,111 @@
 
                                         <c:forEach var="o" varStatus="counter" items="${requestScope.INFO}">
                                             <div class="row">
-                                            <div class="row col-4">
-                                                <div class="mb-3 col-md-12 form-group mx-auto">
-                                                    <img name="image" src="${o.image}" style="width:300px; height: auto ; text-align: center">
-                                                </div>
-                                            </div>
-                                            <div class="row col-8">
-                                                
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="userId" class="form-label">Tên đăng nhập</label>
-                                                    <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
-                                                    <p>${o.userId}</p>
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="fullName" class="form-label">Họ và Tên  <span class="text-danger">*</span></label>
-                                                    <p>${o.fullName}</p>
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="birthDay" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
-                                                    <p>${o.dateOfBirth}</p>
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
+                                                <div class="row col-4">
+                                                    <div class="mb-3 col-md-12 form-group mx-auto">
+                                                        <c:if test="${o.image != null}">
+                                                            <c:if test="${not empty o.image}">
+                                                                <img name="image" src="${o.image}" style="width:300px; height: auto ; text-align: center">
+                                                            </c:if>
+                                                        </c:if>
+                                                        <c:if test="${o.image == null}">
+                                                            <img name="image" src="assets/img/avatar.jpg" style="width:300px; height: auto ; text-align: center">
+                                                        </c:if>
 
-                                                    <c:if test="${o.gender == 0}">
-                                                       <p> <span class="badge badge-info">Male</span></p>
-                                                    </c:if> 
-                                                    <c:if test="${o.gender == 1}">
-                                                        <p><span class="badge badge-info">Female</span></p>
-                                                    </c:if> 
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="phone" class="form-label">SDT  <span class="text-danger">*</span></label>
-                                                    <p>${o.phone}</p>
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="citizenNumber" class="form-label">CMND/CCCD <span class="text-danger">*</span></label>
-                                                    <p>${o.citizenNumber}</p>
-
-                                                </div>
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="gmail" class="form-label">Email <span class="text-danger">*</span></label>
-                                                    <p>${o.gmail}</p>
-                                                </div>
-
-                                                <div class="mb-3 col-md-6">
-                                                    <label for="address" class="form-label">Địa chỉ</label>
-                                                    <p>${o.address}</p>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="role" class="form-label">Quyền <span class="text-danger">*</span></label>
-
-                                                    <c:if test="${o.role.equals('US')}">
-                                                        <p><span class="badge badge-danger">Người thuê</span></p>
-                                                    </c:if> 
-                                                    <c:if test="${o.role.equals('OW')}">
-                                                       <p> <span class="badge badge-success">Chủ thuê</span></p>
-                                                    </c:if> 
-                                                    <c:if test="${o.role.equals('AD')}">
-                                                        <p><span class="badge badge-success">Admin</span></p>
-                                                    </c:if> 
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
-                                                    <c:if test="${o.status == 0}">
-                                                       <p> <span class="badge badge-danger">Extended</span></p>
-                                                    </c:if> 
-                                                    <c:if test="${o.status == 1}">
-                                                        <p><span class="badge badge-success">Activity</span></p>
-                                                    </c:if> 
-                                                </div>
-                                                <div class="form-group mx-auto">
-                                                    <button class="btn btn-danger" data-toggle="modal" data-target="#removeRoom">
-                                                        <span>Xóa tài khoản</span> 
-                                                    </button> 
-                                                    
-                                                </div>
-                                                <div id="removeRoom" class="modal fade" role="dialog">
-                                                    <div class="modal-dialog modal-dialog-centered" role="content">
-
-                                                        <form action="UserManager">
-                                                            <div class="modal-content">
-                                                                <div class="card-body">
-                                                                    <div class="del-title">
-                                                                        <i class='bx bx-error-circle'></i>
-                                                                        <h2>Bạn muốn xóa tài khoản?</h2> 
-                                                                        <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
-                                                                    </div>
-                                                                    <div class="del-submit d-flex justify-content-center">
-                                                                        <button class="btn btn-success"  type="submit" value="delete" name="action">Xác Nhận</button>
-                                                                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="row col-8">
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="userId" class="form-label">Tên đăng nhập</label>
+                                                        <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
+                                                        <p>${o.userId}</p>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="fullName" class="form-label">Họ và Tên  <span class="text-danger">*</span></label>
+                                                        <p>${o.fullName}</p>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="birthDay" class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                                                        <p>${o.dateOfBirth}</p>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="gender" class="form-label">Giới tính <span class="text-danger">*</span></label>
+
+                                                        <c:if test="${o.gender == 0}">
+                                                            <p> <span class="badge badge-info">Male</span></p>
+                                                        </c:if> 
+                                                        <c:if test="${o.gender == 1}">
+                                                            <p><span class="badge badge-info">Female</span></p>
+                                                        </c:if> 
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="phone" class="form-label">SDT  <span class="text-danger">*</span></label>
+                                                        <p>${o.phone}</p>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="citizenNumber" class="form-label">CMND/CCCD <span class="text-danger">*</span></label>
+                                                        <p>${o.citizenNumber}</p>
+
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="gmail" class="form-label">Email <span class="text-danger">*</span></label>
+                                                        <p>${o.gmail}</p>
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label for="address" class="form-label">Địa chỉ</label>
+                                                        <p>${o.address}</p>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="role" class="form-label">Quyền <span class="text-danger">*</span></label>
+
+                                                        <c:if test="${o.role.equals('US')}">
+                                                            <p><span class="badge badge-danger">Người thuê</span></p>
+                                                        </c:if> 
+                                                        <c:if test="${o.role.equals('OW')}">
+                                                            <p> <span class="badge badge-success">Chủ thuê</span></p>
+                                                        </c:if> 
+                                                        <c:if test="${o.role.equals('AD')}">
+                                                            <p><span class="badge badge-success">Admin</span></p>
+                                                        </c:if> 
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
+                                                        <c:if test="${o.status == 0}">
+                                                            <p> <span class="badge badge-danger">Extended</span></p>
+                                                        </c:if> 
+                                                        <c:if test="${o.status == 1}">
+                                                            <p><span class="badge badge-success">Activity</span></p>
+                                                        </c:if> 
+                                                    </div>
+                                                    <div class="form-group mx-auto">
+                                                        <button class="btn btn-danger" data-toggle="modal" data-target="#removeRoom">
+                                                            <span>Xóa tài khoản</span> 
+                                                        </button> 
+
+                                                    </div>
+                                                    <div id="removeRoom" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog modal-dialog-centered" role="content">
+
+                                                            <form action="UserManager">
+                                                                <div class="modal-content">
+                                                                    <div class="card-body">
+                                                                        <div class="del-title">
+                                                                            <i class='bx bx-error-circle'></i>
+                                                                            <h2>Bạn muốn xóa tài khoản?</h2> 
+                                                                            <input type="text" class="form-control" name="userId" value="${o.userId}" readonly=""  style="display: none">
+                                                                        </div>
+                                                                        <div class="del-submit d-flex justify-content-center">
+                                                                            <button class="btn btn-success"  type="submit" value="delete" name="action">Xác Nhận</button>
+                                                                            <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </c:forEach>
                                     </c:if>

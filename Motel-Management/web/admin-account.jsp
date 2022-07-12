@@ -163,7 +163,17 @@
                                                                 <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_ACC}">
                                                                     <tr class="clickable-row odd" data-href="UserManager?action=detail&role=${o.role}&userId=${o.userId}" data-bs-toggle="tooltip" data-bs-placement="right" title="Nhấn để xem chi tiết">
                                                                         <td class="sorting_1">${o.userId}</td>
-                                                                        <td><img src="${o.image}"></td>
+
+                                                                        <c:if test="${o.image != null}">
+                                                                            <c:if test="${not empty o.image}">
+                                                                                <td><img src="${o.image}"></td>
+                                                                                </c:if>
+                                                                            </c:if>
+                                                                            <c:if test="${o.image == null}">
+                                                                            <td><img src="assets/img/avatar.jpg"></td>
+                                                                            </c:if>
+
+
                                                                         <td>${o.fullName}</td>
                                                                         <td>${o.phone}</td>
                                                                         <td>${o.gmail}</td>

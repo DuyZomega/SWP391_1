@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
         <!--Boxicons-->
         <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css'>
+        <link rel="stylesheet" href="assets/css/admin.css">
     </head>
 
     <body>
@@ -59,7 +60,7 @@
                         <li>
                             <a href="AdminListAccount">
                                 <span><i class='bx bxs-user-rectangle'></i></span>
-                                <span class="title">Quản lý Tai Khoan</span>
+                                <span class="title">Quản lý tài khoản</span>
                             </a>
                         </li>
                         <li>
