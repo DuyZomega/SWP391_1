@@ -19,6 +19,67 @@ public class ServiceDAO {
     private static final String GET_SERVICE = "SELECT  s.ServiceName, s.Status, s.Price,s.ServiceID , m.Name FROM tblMotel as m, tblService as s WHERE s.MotelID = m.MotelID AND s.Status = 1 AND m.MotelID =? AND s.Status = 1";
     private static final String DELETE_SERVICE = "UPDATE tblService SET Status = 0 WHERE ServiceID = ?";    
     private static final String UPDATE_SERVICE = "UPDATE tblService SET ServiceName = ?, Price = ? WHERE ServiceID = ?"; 
+    private static final String CHECK_SERVICEID = "SELECT ServiceID FROM tblService Where ServiceID = ?";
+    private static final String CREATE = "INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) VALUES(?,?,?,?,?)";
+    
+    
+    public boolean insertService(ServiceDTO service) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                stm = conn.prepareStatement(CREATE);
+                stm.setString(1, service.getServiceId());
+                stm.setString(2, service.getName());
+                stm.setInt(3, service.getPrice());
+                stm.setInt(4, service.getStatus());
+                stm.setString(5, service.getMotelID());
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    public boolean checkServiceID(String serviceID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_SERVICEID);
+                ptm.setString(1, serviceID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
     
     public boolean updateService(ServiceDTO service) throws SQLException {
         boolean check = false;

@@ -275,7 +275,9 @@
                                     <div class="card-header">
                                         <h4>Thông tin người thuê</h4>   
                                         <div class="edit-info">
+                                            <% if(roomDetail.getStatus() == 0){ %>
                                             <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#addCustomer"></i>
+                                            <% } %>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -418,8 +420,13 @@
                                                 </table>
                                                 <div class="d-flex justify-content-sm-between mr-lg-5 ml-lg-3">
                                                     <button class="btn btn-print">In hóa đơn</button>
-                                                    <form action="#">
-                                                        <button type="submit" class="btn btn-success">Thanh toán</button>
+                                                    <form action="MainController" method="post">
+                                                        <input type="hidden" name="bookingID" value="<%= roomDetail.getBookingID()%>" />
+                                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID() %>" />
+                                                        <input type="hidden" name="status" value="<%= 0 %>" />
+                                                        <% if(roomDetail.getStatus() == 1 || roomDetail.getStatus() == 3 ){ %>
+                                                        <button type="submit" name="action" value="submitPayment" class="btn btn-success">Thanh toán</button>
+                                                        <%} %>
                                                     </form>
                                                 </div>
                                             </div>
@@ -439,44 +446,47 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Thêm Khách</h4>
                     </div>
-                    <form action="MainController" class="form-group">
+                    <form action="MainController" method="post" class="form-group">
                     <div class="modal-body">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-8">
                                 <div class="form-group row">
                                     <label for="username" class="col-sm-4 col-form-label">Họ tên người thuê</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" placeHolder="Nhập tên khách hàng" required>
+                                        <input name="userName" type="text" class="form-control" placeHolder="Nhập tên khách hàng" required>
+                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" >
+                                        <input type="hidden" name="status" value="<%= 1 %>" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="phonenumber" class="col-sm-4 col-form-label">Số điện thoại</label>
                                     <div class="col-sm-8">
-                                        <input type="tel" class="form-control" value="số điện thoại" required>
+                                        <input name="phone" type="tel" class="form-control" placeHolder="số điện thoại" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="citizennumber" class="col-sm-4 col-form-label">CCCD/CMND</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" required>
+                                        <input name="citizenNumber" type="text" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" required>
+                                        <input name="address" type="text" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="address" class="col-sm-4 col-form-label">Thời gian thuê phòng</label>
                                     <div class="col-sm-8">
-                                        <select class=" form-control">
-                                            <option> 1h </option>
-                                            <option> 1h </option>
-                                            <option> 1h </option>
-                                            <option> 1h </option>
-                                            <option> 1h </option>
-
+                                        <select name="Time" class=" form-control">
+                                            <option value="1"> 1h </option>
+                                            <option value="2"> 2h </option>
+                                            <option value="3"> 3h </option>
+                                            <option value="4"> 4h </option>
+                                            <option value="5"> 5h </option>
+                                            <option value="6"> 6h </option>
+                                            <option value="7"> 7h </option>
                                         </select>
                                     </div>
                                 </div>

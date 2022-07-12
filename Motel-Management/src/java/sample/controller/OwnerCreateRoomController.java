@@ -29,7 +29,7 @@ import sample.users.UserDAO;
 @WebServlet(name = "OwnerCreateRoomController", urlPatterns = {"/OwnerCreateRoomController"})
 public class OwnerCreateRoomController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "ShowRoomController";
     private static final String SUCCESS = "ShowRoomController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,9 +43,10 @@ public class OwnerCreateRoomController extends HttpServlet {
             String motelID = request.getParameter("motelID");
             String roomName = request.getParameter("roomName");
             String roomType = request.getParameter("typeofRoom");
+            int numberOfRoom = Integer.parseInt(request.getParameter("numOfRoom"));
             boolean checkValidation = true;
 
-            if (roomName.length() < 1 || roomName.length() > 10) {
+            if (roomName.length() < 1 || roomName.length() > 20) {
                 roomError.setNameError("length of roomName must be in 2-10");
                 checkValidation = false;
             }
@@ -75,8 +76,8 @@ public class OwnerCreateRoomController extends HttpServlet {
                     String checkPrice = request.getParameter("price");
                     if (checkPrice.matches("[0-9]{2,10}")) {
                         int price = Integer.parseInt(checkPrice);
-                        part.write(pathImage + "/" + filename);                       
-                        boolean check = dao.createRoomType(roomTypeID, roomTypeName, price, image, desct, motelID,1);
+                        part.write(pathImage + "/" + filename);
+                        boolean check = dao.createRoomType(roomTypeID, roomTypeName, price, image, desct, motelID, 1);
                         if (check) {
                             roomType = roomTypeID;
                         } else {
@@ -89,15 +90,27 @@ public class OwnerCreateRoomController extends HttpServlet {
                 }
 
                 if (checkCreateRoomtype) {
-                    do {
-                        roomID = String.valueOf(generator.nextInt(9999999));
-                        checkID = dao.checkRoomID(roomID);
-                    } while (checkID = false);
-                    RoomDTO newRoom = new RoomDTO(roomID, roomName, "", roomType, 0, motelID);
-                    boolean checkCreate = dao.createRoom(newRoom);
-                    if (checkCreate) {
-                        url = SUCCESS;
-                        request.setAttribute("MESSAGE", "Create Room Successfully!");
+                    int count = 0;
+                    for (int i = 0; i < numberOfRoom; i++) {
+                        do {
+                            roomID = String.valueOf(generator.nextInt(9999999));
+                            checkID = dao.checkRoomID(roomID);
+                        } while (checkID = false);                      
+                        RoomDTO newRoom = new RoomDTO();
+                        if (numberOfRoom > 1) {
+                            count++;
+                            String num = String.valueOf(count);
+                            String name = roomName.concat("");
+                            String newname = name.concat(num);
+                             newRoom = new RoomDTO(roomID, newname, "", roomType, 0, motelID);
+                        } else {
+                             newRoom = new RoomDTO(roomID, roomName, "", roomType, 0, motelID);
+                        }
+                        boolean checkCreate = dao.createRoom(newRoom);
+                        if (checkCreate) {
+                            url = SUCCESS;
+                            request.setAttribute("MESSAGE", "Create Room Successfully!");
+                        }
                     }
                 }
             }

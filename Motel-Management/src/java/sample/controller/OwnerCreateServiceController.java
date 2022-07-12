@@ -6,58 +6,53 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
 import sample.service.ServiceDAO;
 import sample.service.ServiceDTO;
-import sample.users.UserDTO;
 
 /**
  *
  * @author Bao
  */
-@WebServlet(name = "OwnerShowServiceController", urlPatterns = {"/OwnerShowServiceController"})
-public class OwnerShowServiceController extends HttpServlet {
+@WebServlet(name = "OwnerCreateServiceController", urlPatterns = {"/OwnerCreateServiceController"})
+public class OwnerCreateServiceController extends HttpServlet {
 
-    private static final String ERROR = "owner-service.jsp";
-    private static final String SUCCESS = "owner-service.jsp";
-    
+    private static final String ERROR = "OwnerShowServiceController";
+    private static final String SUCCESS = "OwnerShowServiceController";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url="ERROR";
+        request.setCharacterEncoding("utf-8");
+        String url = ERROR;
+        Random generator = new Random();
+        ServiceDAO dao = new ServiceDAO();
         try {
-            HttpSession session=request.getSession();
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            String ownerID = loginUser.getUserId();
-            MotelDAO dao1 = new MotelDAO();
-            List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
-            if(listMotel.size() > 0){
-                request.setAttribute("LIST_MOTEL", listMotel);
-            }
-            
-            if (listMotel.size()>0){
-                ServiceDAO dao2 = new ServiceDAO();
-                List<ServiceDTO> listService = new ArrayList<>();
-                for(MotelDTO motel : listMotel){                  
-                   List<ServiceDTO> list = dao2.searchservice(motel.getMotelID());
-                   listService.addAll(list);
-                }
-                if(listService.size() >0){
-                request.setAttribute("LIST_SERVICE", listService);
-                url=SUCCESS;
+            String motelId = request.getParameter("motelID");
+            String serName = request.getParameter("serviceName");
+            int price = Integer.parseInt(request.getParameter("price"));
+
+            if (motelId != null) {
+                boolean checkID = true;
+                String serviceID;
+                do {
+                    serviceID = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao.checkServiceID(serviceID);
+                } while (checkID == true);
+                ServiceDTO service = new ServiceDTO(serviceID, serName, price, 1, motelId);
+                boolean checkCreate = dao.insertService(service);
+                if(checkCreate){
+                    url = SUCCESS;
                 }
             }
+
         } catch (Exception e) {
-            log("Error at OwnerShowServiceController:"+e.toString());
+            log("Error at OwnerCreateServiceController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

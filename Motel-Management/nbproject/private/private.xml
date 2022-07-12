@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/UserHistoryBooking.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-notification.html</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-profile.jsp</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/notification/NotificationDAO.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/MainController.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-notification.jsp</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/NotificationController1.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/web/header.jsp</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/controller/NotificationController.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/src/java/sample/notification/NotificationDTO.java</file>
-            <file>file:/D:/Github/SWP391_1/Motel-Management/web/user-booking-list.jsp</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/web/owner-room-list-details.jsp</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/owner/RoomDetailDAO.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/controller/OwnerShowRoomDetail.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/controller/MainController.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/controller/OwnerAddCustomers.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/controller/SubmitPaymentController.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/payment/PaymentDAO.java</file>
+            <file>file:/C:/Users/Bao/OneDrive/Documents/GitHub/SWP391_1/Motel-Management/src/java/sample/owner/SubmitDAO.java</file>
         </group>
     </open-files>
 </project-private>

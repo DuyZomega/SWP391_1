@@ -6,58 +6,45 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sample.motel.MotelDAO;
-import sample.motel.MotelDTO;
-import sample.service.ServiceDAO;
-import sample.service.ServiceDTO;
-import sample.users.UserDTO;
+import sample.owner.SubmitDAO;
+
 
 /**
  *
  * @author Bao
  */
-@WebServlet(name = "OwnerShowServiceController", urlPatterns = {"/OwnerShowServiceController"})
-public class OwnerShowServiceController extends HttpServlet {
+@WebServlet(name = "SubmitPaymentController", urlPatterns = {"/SubmitPaymentController"})
+public class SubmitPaymentController extends HttpServlet {
 
-    private static final String ERROR = "owner-service.jsp";
-    private static final String SUCCESS = "owner-service.jsp";
+    private static final String ERROR = "error.jsp";
+    private static final String SUCCESS = "OwnerShowRoomDetail";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url="ERROR";
+        String url = ERROR;
+        SubmitDAO dao = new SubmitDAO();
         try {
-            HttpSession session=request.getSession();
-            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            String ownerID = loginUser.getUserId();
-            MotelDAO dao1 = new MotelDAO();
-            List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
-            if(listMotel.size() > 0){
-                request.setAttribute("LIST_MOTEL", listMotel);
-            }
-            
-            if (listMotel.size()>0){
-                ServiceDAO dao2 = new ServiceDAO();
-                List<ServiceDTO> listService = new ArrayList<>();
-                for(MotelDTO motel : listMotel){                  
-                   List<ServiceDTO> list = dao2.searchservice(motel.getMotelID());
-                   listService.addAll(list);
-                }
-                if(listService.size() >0){
-                request.setAttribute("LIST_SERVICE", listService);
-                url=SUCCESS;
+            String bookingId = request.getParameter("bookingID");
+            String roomID = request.getParameter("roomID");
+            boolean checkSubmit = dao.submitPayment(bookingId);
+            if(checkSubmit){
+                checkSubmit = dao.submitBooking(bookingId);
+                if(checkSubmit){
+                    checkSubmit = dao.submitRoom(roomID);
+                    if(checkSubmit){
+                        url = SUCCESS;
+                        request.setAttribute("MESSAGE", "Payment Success!");
+                    }
                 }
             }
         } catch (Exception e) {
-            log("Error at OwnerShowServiceController:"+e.toString());
+            log("Error at SubmitPaymentController: "+e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
