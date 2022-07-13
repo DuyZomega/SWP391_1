@@ -460,7 +460,7 @@ footer {
     color: #2c3e50;
     font-weight: 900;
     font-size: 17px; }
-
+/*
 .alert {
   background: #d9ff9e;
   padding: 20px 40px;
@@ -472,7 +472,7 @@ footer {
   border-left: 8px solid #d9ff9e;
   overflow: hidden;
   opacity: 0;
-  pointer-events: none; }
+  pointer-events: none; }*/
 
 .alert.showAlert {
   opacity: 1;
@@ -1309,11 +1309,12 @@ footer {
 #notif {
     position: absolute;
     display: flex;
-    right: 0;
-    top: 150px;
+    right: -154px;
+    top: -150px;
     align-items: center;
     width: 30%;
     animation: notif 200 3s ease-in-out none;
+    z-index: 99;
     
 }
 @keyframes notif {
