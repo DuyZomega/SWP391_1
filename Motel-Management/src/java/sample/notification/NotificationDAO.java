@@ -27,8 +27,8 @@ public class NotificationDAO {
 
     private static final String NOTIFICATION = "INSERT [tblNotification] ([AnnouncementID], [Title], [Desct], [Date], [UserID], [Status]) VALUES (?,?,?,?,?,?)";
 
-     private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? AND Desct = ? WHERE UserID = ? AND AnnouncementID = ?"; 
-     private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblNotification.UserID, tblUser.FullName FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID AND tblNotification.Status = 1";
+     private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? AND Desct = ? WHERE AnnouncementID = ?"; 
+     private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblNotification.UserID, tblUser.FullName FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID ";
      private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? WHERE UserID = ?";         
       private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? WHERE UserID = ? AND AnnouncementID = ?";   
     public boolean updateNotification(NotificationDTO notifi) throws SQLException {
@@ -41,7 +41,7 @@ public class NotificationDAO {
                 ptm = conn.prepareStatement(UPDATE_NOTIFICATION );
                 ptm.setString(1, notifi.getTitle());
                 ptm.setString(2, notifi.getDesct());
-                ptm.setString(3, notifi.getUserID());
+                ptm.setString(3, notifi.getAnnouncementID());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

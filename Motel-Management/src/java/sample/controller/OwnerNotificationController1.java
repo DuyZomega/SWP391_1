@@ -37,6 +37,14 @@ public class OwnerNotificationController1 extends HttpServlet {
             
             NotificationDAO dao = new NotificationDAO();
             NotificationDTO noti = new NotificationDTO();
+            int Status = 1;
+            String title = "Bạn đã đặt phòng(đã nhận tiền)";
+            String desc = "Đã xử lý";
+            String announcementID = request.getParameter("announcementID");
+             if (loginUser != null) {
+                NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
+                boolean checkCreateNoti = dao.updateNotification(notifi);
+            }
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
                 int notiNumber = dao.getNotificationNumber(userID);
@@ -49,15 +57,7 @@ public class OwnerNotificationController1 extends HttpServlet {
                         url = SUCCESS;
                     }
                 }
-            int Status = 1;
-            String title = "Bạn đã đặt phòng(đã nhận tiền)";
-            String desc = "Đã xử lý";
-            String announcementID = request.getParameter("announcementID");
-            String userId = request.getParameter("userID");
-             if (loginUser != null) {
-                NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, userId, Status);
-                boolean checkCreateNoti = dao.updateNotification1(notifi);
-            }
+           
             }
         } catch (Exception e) {
             log("Error at NotificationController:" + e.toString());
