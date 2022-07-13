@@ -17,63 +17,43 @@ import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.owner.ChartDAO;
 import sample.owner.ChartDTO;
-import sample.owner.FeedbackDTO;
-import sample.owner.NewsDTO;
-import sample.owner.OverviewDAO;
-import sample.owner.OverviewDTO;
 import sample.users.UserDTO;
 
 /**
  *
  * @author Bao
  */
-@WebServlet(name = "OwnerShowOverview", urlPatterns = {"/OwnerShowOverview"})
-public class OwnerShowOverview extends HttpServlet {
+@WebServlet(name = "OwnerShowChartStatical", urlPatterns = {"/OwnerShowChartStatical"})
+public class OwnerShowChartStatical extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-index.jsp";
+    private static final String STATICAL = "Owner-statical.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        ChartDAO daoC = new ChartDAO();
-        MotelDAO daoM = new MotelDAO();
+        ChartDAO dao = new ChartDAO();
         try {
-            OverviewDAO dao = new OverviewDAO();
+            String ownerID = "";
             HttpSession session = request.getSession();
-            OverviewDTO overview = new OverviewDTO();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            if (loginUser != null) {
-                String userID = loginUser.getUserId();
-                int numberRoom = dao.getNumberRoom(userID);
-                int numberService = dao.getNumberService(userID);
-                int numberFeedback = dao.getNumberFeedback(userID);
-                int totalIncome = dao.getNumberIncome(userID);
-                List<ChartDTO> listData = daoC.getDataChartOverview(userID);
-                if (listData != null) {
-                    request.setAttribute("LIST_DATA", listData);
-                }
-                List<MotelDTO> listMotel = daoM.searchMotel(userID);
-                if (listMotel != null) {
-                    request.setAttribute("LIST_MOTEL", listMotel);
-                }
-                overview = new OverviewDTO(numberRoom, numberService, numberFeedback, totalIncome);
-                if (overview != null) {
-                    request.setAttribute("OVERVIEW", overview);
-                    List<NewsDTO> listNews = dao.getListNews(userID);
-                    if (listNews != null) {
-                        request.setAttribute("LIST_NEWS", listNews);
-                        List<FeedbackDTO> listFeedback = dao.getListFeedback(userID);
-                        if (listFeedback != null) {
-                            request.setAttribute("LIST_FEEDBACK", listFeedback);
-                            url = SUCCESS;
-                        }
-                    }
-                }
+            MotelDAO dao2 = new MotelDAO();
+            List<MotelDTO> listMotel = dao2.searchMotel(ownerID);
+            if (listMotel != null) {
+                request.setAttribute("LIST_MOTEL", listMotel);
             }
+            if (loginUser != null) {
+                ownerID = loginUser.getUserId();
+            }
+            List<ChartDTO> listData = dao.getDataChartStatical(ownerID);
+            if (listData != null) {
+                request.setAttribute("LIST_DATA", listData);
+                url = STATICAL;
+            }
+
         } catch (Exception e) {
-            log("Error at OwnerShowOverview: " + e.toString());
+            log("Error at OwnerShowChartStatical:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

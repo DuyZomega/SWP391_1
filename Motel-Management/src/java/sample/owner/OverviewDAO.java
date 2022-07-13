@@ -36,46 +36,7 @@ public class OverviewDAO {
                                                "FROM tblUser, tblMotel, tblFeedBack, tblBooking\n" +
                                                "WHERE tblUser.UserID = ? AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC";
     
-    private static final String GET_CHART = "SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total \n" +
-                                            "FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b\n" +
-                                            "WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = ? AND (b.Status = 1 OR b.Status = 2 ) AND b.BookingDate between (SELECT DATEADD(wk, 0, DATEADD(DAY, 1-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) and (SELECT DATEADD(wk, 1, DATEADD(DAY, 0-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) ) a \n" +
-                                            "GROUP BY  a.BookingDate, a.MotelID, a.BookingDate \n" +
-                                            "ORDER BY a.BookingDate";
-    
-    public List<ChartDTO> getChartIncome(String userID) throws SQLException {
-        List<ChartDTO> listChart = new ArrayList();
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(GET_CHART);
-                ptm.setString(1, userID);
-                rs = ptm.executeQuery();
-                while (rs.next()) {
-                    String MotelID = rs.getString("MotelID");
-                    String bookingDate = rs.getString("BookingDate");
-                    int income = rs.getInt("total");
-                    listChart.add(new ChartDTO(MotelID, bookingDate, income));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return listChart;
-    }
-    
+       
     public List<FeedbackDTO> getListFeedback(String userID) throws SQLException {
         List<FeedbackDTO> listFeedback = new ArrayList();
         Connection conn = null;

@@ -89,6 +89,8 @@ public class MainController extends HttpServlet {
     private static final String ADD_CUSTOMER_ROOM_CONTROLLER = "OwnerAddCustomers";
     private static final String SUBMIT_PAYMENT = "submitPayment";
     private static final String SUBMIT_PAYMENT_CONTROLLER = "SubmitPaymentController";
+    private static final String SHOW_CHART = "showChart";
+    private static final String SHOW_CHART_CONTROLLER = "OwnerShowChartStaticalController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -164,6 +166,8 @@ public class MainController extends HttpServlet {
                 url = CREATE_OWNER_SERVICE_CONTROLLER;
             } else if (SUBMIT_PAYMENT.equals(action)) {
                 url = SUBMIT_PAYMENT_CONTROLLER;
+            } else if (SHOW_CHART.equals(action)) {
+                url = SHOW_CHART_CONTROLLER;
             }
 
         } catch (Exception e) {

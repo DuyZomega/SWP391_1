@@ -156,8 +156,8 @@
                                         </select>
                                         <select name="bbb" id="b1234" style="display: none;">
                                             <option value="1">2022-06-09 UTC+0700</option>
-                                            <option value="2">2022-06-10 UTC+0700</option>
-                                            <option value="3">2022-06-11 UTC+0700</option>
+                                            <option value="2">2022-06-1022-060 UTC+0700</option>
+                                            <option value="3">2-11 UTC+0700</option>
                                             <option value="4">2022-06-12 UTC+0700</option>
                                             <option value="5">2022-06-13 UTC+0700</option>
                                             <option value="6">2022-06-14 UTC+0700</option>
