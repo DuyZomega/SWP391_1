@@ -142,5 +142,12 @@ public class NotificationDTO {
         this.status = status;
     }
 
-    
+    public NotificationDTO(String announcementID, String title, String desct, int status) {
+        this.announcementID = announcementID;
+        this.title = title;
+        this.desct = desct;
+        this.status = status;
+    }
+
+
 }

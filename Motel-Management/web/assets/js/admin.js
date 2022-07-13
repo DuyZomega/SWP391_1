@@ -1,62 +1,60 @@
-//
-//let vnd = Intl.NumberFormat("vi-VN", {
-//  style: "currency",
-//  currency: "VND",
-//  useGrouping: true,
-//});
-//function price_format(){
-//    $('.price-format').each(function(){
-//        var $price = $(this).data('price'),
-//            html=vnd.format($price);
-//        $(this).html(html);
-//    });
-//}
-//$(function(){
-//    price_format();
-//});
-//// input image
-//let fileInput = document.getElementById("file-input");
-//let imageContainer = document.getElementById("images");
-//let numOfFiles = document.getElementById("num-of-files");
-//let removeFiles = document.getElementById("removeFiles");
-//
-//function preview() {
-//    imageContainer.innerHTML = "";
-//    numOfFiles.textContent = `${fileInput.files.length}
-//    Files Selected`;
-//
-//    for (i of fileInput.files) {
-//        let reader = new FileReader();
-//        let figure = document.createElement("figure");
-//        let figCap = document.createElement("figcaption");
-//
-//        figCap.innerText = i.name;
-//        figure.appendChild(figCap);
-//        reader.onload=()=> {
-//            let img = document.createElement("img");
-//            img.setAttribute("src",reader.result);
-//            figure.insertBefore(img,figCap);
-//        }
-//        imageContainer.appendChild(figure);
-//        reader.readAsDataURL(i);
-//    }
-//}
-////data-table
-//
-//$(document).ready( function () {
-//    $('#myTable').DataTable();
-//} );
-//
-////profile
-//var loadFile = function (event) {
-//    var image = document.getElementById("output");
-//    image.src = URL.createObjectURL(event.target.files[0]);
-//  };  
-//
-//let label = document.querySelector(".label");
-//let hover = document.querySelector(".profile-pic");
-//
-//profileAvat = function () {
-//    label.classList.toggle(".active");
-//}
-//
+var day = [];
+let numOfweek = document.getElementById('day');
+console.log(numOfweek)
+for (let i = 1; i < numOfweek.innerHTML; i++) {
+  day.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
+}
+
+var month = [];
+let numOfmonth = document.getElementById('month');
+for (let i = 0; i < numOfmonth.length; i++) {
+  month.push({x : Date.parse(numOfmonth.options[i].innerText), y : numOfmonth.options[i].value})
+}
+
+const ctx = document.getElementById('numOfAccess').getContext('2d');
+const chart = new Chart(ctx, {   
+        type: 'line',
+        data: {
+            
+            datasets: [{
+                label: 'number of access',
+                data: day,
+                backgroundColor: [
+                    'rgba(39, 174, 96,0.5)'
+                ],
+                borderColor: [
+                    'rgba(39, 174, 96,1.0)'
+    
+                ],
+                borderWidth: 1,
+                lineTension: 0.25,
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: 'day'
+                    }
+                },
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    }); 
+
+ 
+  //change-chart
+  function changeFrame(period) {
+    if (period.value === 'day') {
+      chart.options.scales.x.time.unit = period.value;
+      chart.data.datasets[0].data = day;
+
+    }
+    if (period.value === 'day1') {
+      chart.data.datasets[0].data = month;
+    }
+    chart.update();
+  } 

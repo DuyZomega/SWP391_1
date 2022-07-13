@@ -151,7 +151,6 @@
                                                     Thông báo mới
                                                 </a>
                                             </li>
-
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="readNotif" >
@@ -202,16 +201,24 @@
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="#" class="btn btn-success confirm">Xác nhận</a>
-                                                                                <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
+                                                                                <a href="MainController?action=ownerno&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
                                                                     </td>
                                                                     <td><%= notifi.getDesct()%></td>
-                                                                    <td><%= notifi.getDate()%></td>        
-                                                                </tr>
-                                                                <%}
-                                                                %> 
+                                                                    <td><%= notifi.getDate()%></td>  
+                                                            <c:if test="${requestScope.LIST_NOTI != null}">
+                                                                <c:if test="${not empty requestScope.LIST_NOTI}">
+
+                                                                    <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
+                                                                        <span type="hidden" name="announcementID" value="${o.announcementID}"></span>  
+                                                                    </c:forEach>
+                                                                </c:if>
+                                                            </c:if>
+                                                            </tr>
+                                                            <%}
+                                                            %> 
                                                             </tbody>
 
                                                         </table>

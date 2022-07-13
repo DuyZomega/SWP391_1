@@ -37,6 +37,10 @@ public class MainController extends HttpServlet {
     private static final String NOTIFICATION_CONTROLLER1 = "NotificationController1";
     private static final String OWNER_NOTIFICATION = "notify";
     private static final String OWNER_NOTIFICATION_CONTROLLER = "OwnerNotificationController";
+    private static final String OWNER_NOTIFICATION1 = "ownerno";
+    private static final String OWNER_NOTIFICATION_CONTROLLER1 = "OwnerNotificationController1";
+    private static final String OWNER_NOTIFICATION2 = "ownerno1";
+    private static final String OWNER_NOTIFICATION_CONTROLLER2 = "OwnerNotificationController2";
     private static final String SHOW_MOTEL_LIST = "ShowAllMotel";
     private static final String SHOW_MOTEL_LIST_CONTROLLER = "ShowAllMotelController";
     private static final String SHOW_MOTEL_DETAIL = "ShowMotelDetail";
@@ -92,7 +96,6 @@ public class MainController extends HttpServlet {
     private static final String SHOW_CHART = "showChart";
     private static final String SHOW_CHART_CONTROLLER = "OwnerShowChartStaticalController";
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -114,6 +117,10 @@ public class MainController extends HttpServlet {
                 url = NOTIFICATION_CONTROLLER1;
             } else if (OWNER_NOTIFICATION.equals(action)) {
                 url = OWNER_NOTIFICATION_CONTROLLER;
+            } else if (OWNER_NOTIFICATION1.equals(action)) {
+                url = OWNER_NOTIFICATION_CONTROLLER1;
+            } else if (OWNER_NOTIFICATION2.equals(action)) {
+                url = OWNER_NOTIFICATION_CONTROLLER2;
             } else if (SHOW_MOTEL_LIST.equals(action)) {
                 url = SHOW_MOTEL_LIST_CONTROLLER;
             } else if (SHOW_MOTEL_DETAIL.equals(action)) {

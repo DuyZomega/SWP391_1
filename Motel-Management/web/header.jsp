@@ -57,14 +57,19 @@
                     noti = new NotificationDTO();
                 }
             %> 
-            
+
             <div class="notification-dropdown dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell"></i><span class="notification"><%= noti.getNotificationNumber()%></span>
-                    <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
-                    <span type="hidden" name="announcementID" value="${t.announcementID}"></span>  
-                    </c:forEach>
+                        <c:if test="${requestScope.LIST_NOTI != null}">
+                            <c:if test="${not empty requestScope.LIST_NOTI}">
+
+                            <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
+                                <span type="hidden" name="announcementID" value="${o.announcementID}"></span>  
+                            </c:forEach>
+                            </c:if>
+                        </c:if>
                 </button>
                 <div class="dropdown-menu notification-table animate__animated animate__fadeInDown"
                      aria-labelledby="dropdownMenuButton">
@@ -78,7 +83,7 @@
                         </a>
                         <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
                             <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><p class="truncate">${t.title}</p></a>
-                        </c:forEach>
+                            </c:forEach>
                     </div>
                 </div>
             </div>      
@@ -104,31 +109,31 @@
                        href="MainController?action=Logout">Đăng xuất</a>
                 </div>
             </div>
-                       <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"></span>            
-                  </div>
+            <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"></span>            
         </div>
     </div>
-    <%} else if (loginUser.getRole().equals("OW")) {%>
+</div>
+<%} else if (loginUser.getRole().equals("OW")) {%>
 
-    <button type="button" class="button--primary btn btn-sm">
-        <a href="OwnerShowOverview" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+<button type="button" class="button--primary btn btn-sm">
+    <a href="OwnerShowOverview" class="border-left-0 m-0 p-0">Quản lý thuê trọ</a>
+</button>
+<div class="user-dropdown dropdown">
+    <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
+            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+        <span>Xin chào, <%= loginUser.getFullName()%></span>
+        <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg"
+                   alt="avatar"></span>
     </button>
-    <div class="user-dropdown dropdown">
-        <button class="btn-user-dropdown text-white btn dropdown-toggle" type="button"
-                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-            <span>Xin chào, <%= loginUser.getFullName()%></span>
-            <span><img id="profile-pic" class="img-fluid" src="assets/img/avatar.jpg"
-                       alt="avatar"></span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item"
-               href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
-                Thông tin cá nhân</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a>
-        </div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item"
+           href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+            Thông tin cá nhân</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="MainController?action=Logout">Đăng xuất</a>
     </div>
+</div>
 </div>
 </div>
 <%}%>

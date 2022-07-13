@@ -3,6 +3,7 @@ let navigation = document.querySelector(".navigation");
 let header = document.querySelector(".header");
 let main = document.querySelector(".main-content");
 
+
 toggle.onclick = function () {
   navigation.classList.toggle("active");
   header.classList.toggle("active");
@@ -188,164 +189,88 @@ $('#checkAll').click(function () {
   }
 });
 
-// admin
-var day = [];
-let numOfweek = document.getElementById('day');
-for (let i = 0; i < numOfweek.length; i++) {
-  day.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
+
+
+
+
+///statical
+const numOfHome = document.querySelectorAll('#numOfHome select');
+var num = [];
+for (let i = 0; i < numOfHome.length; i++) {
+    eval ('var array' + i + '= []');
+    var data = document.getElementById(numOfHome[i].id);
+
+    console.log(data);
+    for (let j = 0; j < data.length; j++) {
+      eval('array' + i).push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
+    }  
+    num.push(eval('array'+ i));
+    console.log(num[i]);
 }
 
-var month = [];
-let numOfmonth = document.getElementById('month');
-for (let i = 0; i < numOfmonth.length; i++) {
-  month.push({x : Date.parse(numOfmonth.options[i].innerText), y : numOfmonth.options[i].value})
-}
+  const myCtx = document.getElementById('chart-Dashboard').getContext('2d');
+  const myChart = new Chart(myCtx, {   
+      type: 'line',
+      data: {
+          datasets: []
+      },
+      options: {
+          scales: {
+              x: {
+                  type: 'time',
+                  time: {
+                      unit: 'day'
+                  }
+              },
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  }); 
 
-const ctx = document.getElementById('numOfAccess').getContext('2d');
-const chart = new Chart(ctx, {   
-        type: 'line',
-        data: {
-            
-            datasets: [{
-                label: 'number of access',
-                data: day,
-                backgroundColor: [
-                    'rgba(39, 174, 96,0.5)'
-                ],
-                borderColor: [
-                    'rgba(39, 174, 96,1.0)'
+    for (let i = 0; i < numOfHome.length; i++) {
+      let maxVal = 0xFFFFFF; 
+      let randomNumber = Math.random() * maxVal; 
+      randomNumber = Math.floor(randomNumber);
+      randomNumber = randomNumber.toString(16);
+      let randColor = randomNumber.padStart(6, 0);   
+      const newData = {
+        label: 'Doanh thu nhà nghỉ B',
+        data: num[i],
+        backgroundColor: [
+            `#${randColor}`
+        ],
+        borderColor: [
+            `#${randColor}`
     
-                ],
-                borderWidth: 1,
-                lineTension: 0.25,
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    }); 
-
- 
-  //change-chart
-  function changeFrame(period) {
-    if (period.value === 'day') {
-      chart.options.scales.x.time.unit = period.value;
-      chart.data.datasets[0].data = day;
-
+        ],
+        borderWidth: 1,
+      }
+    
+      myChart.data.datasets.push(newData);
+      myChart.update();
     }
-    if (period.value === 'day1') {
-      chart.data.datasets[0].data = month;
-    }
-    chart.update();
-  } 
-
-
-
-
-
-
-  const numOfHome = document.querySelectorAll('#numOfHome select');
-
-  console.log(numOfHome);
-
-  // var num = [];
-  // for (let i = 0; i < numOfHome.length; i++) {
-  //     var data = document.getElementById(numOfHome[i].id);
-  //     for (let j = 0; j < data.length; j++) {
-  //         num.push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
-  //     }  
-  // }
-    
-  // console.log(num.slice(0,7));
-    
-
-// create array ojbect
-// var home1 = [];
-// let a1234 = document.getElementById('a1234');
-// for (let i = 0; i < a1234.length; i++) {
-//     home1.push({x : Date.parse(a1234.options[i].innerText), y : a1234.options[i].value})
-// }
-// var home2 = [];
-// let b1234 = document.getElementById('b1234');
-// for (let i = 0; i < b1234.length; i++) {
-//     home2.push({x : Date.parse(b1234.options[i].innerText), y : b1234.options[i].value})
-// }
-
-
-
-const myCtx = document.getElementById('chart-Dashboard').getContext('2d');
-const myChart = new Chart(myCtx, {   
-        type: 'line',
-        data: {
-            // labels: Object.keys(week),
-            datasets: [{
-                label: 'Doanh thu nhà nghỉ A',
-                data: home1,
-                backgroundColor: [
-                    'rgba(39, 174, 96,0.5)'
-                ],
-                borderColor: [
-                    'rgba(39, 174, 96,1.0)'
-    
-                ],
-                borderWidth: 1,
-                lineTension: 0.25,
-            },{
-                label: 'Doanh thu nhà nghỉ B',
-                data: home2,
-                backgroundColor: [
-                    'rgba(192, 174, 96,0.5)'
-                ],
-                borderColor: [
-                    'rgba(192, 174, 96,1.0)'
-    
-                ],
-                borderWidth: 1,
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
-                },
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    }); 
-
  
   //change-chart
   function timeFrame(period) {
     if (period.value === 'day') {
-        chart.data.datasets[0].data = day;
-        chart.options.scales.x.time.unit = period.value;
+      myChart.data.datasets[0].data = day;
+      myChart.options.scales.x.time.unit = period.value;
     }
     if (period.value === 'week') {
-        chart.data.datasets[0].data = week;
-        chart.options.scales.x.time.unit = period.value;
+      myChart.data.datasets[0].data = week;
+      myChart.options.scales.x.time.unit = period.value;
 
     }
     if (period.value === 'month') {
-        chart.data.datasets[0].data = month;
-        chart.options.scales.x.time.unit = period.value;
+      myChart.data.datasets[0].data = month;
+      myChart.options.scales.x.time.unit = period.value;
     }
-    chart.update();
+    myChart.update();
   } 
+
+  
 
 
 
