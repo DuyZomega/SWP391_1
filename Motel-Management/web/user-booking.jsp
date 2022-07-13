@@ -152,8 +152,6 @@
             </form>            
         </div>
     </section>
-<button onclick="sweetalertclick()" type="button" class="button--primary btn btn-danger">Notify Me</button> 
-    </section>
     <!-- FOOTER -->
     <%@include file="footer.jsp" %>
 
@@ -205,16 +203,5 @@
                 ]
             });
     </script>
-   
-    <script>
-            function sweetalertclick() {
-                Swal.fire({
-        title: 'Test modal with input',
-        html: 'custom <strong>content</strong>',
-        input: 'text',
-        icon: 'success'
-    });
-    }
-    </script> <script src="./assets/js/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 </body>

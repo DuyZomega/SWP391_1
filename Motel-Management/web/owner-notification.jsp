@@ -151,7 +151,10 @@
                                                     Thông báo mới
                                                 </a>
                                             </li>
-
+                                            <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
+                                                <span type="hidden" name="announcementID" value="${t.announcementID}"></span>  
+                                                <span type="hidden" name="userID" value="${t.userID}"></span>  
+                                            </c:forEach>
                                         </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="readNotif" >
@@ -202,7 +205,7 @@
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="#" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-success confirm">Xác nhận</a>
                                                                                 <a href="#" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
