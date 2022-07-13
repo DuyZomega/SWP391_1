@@ -94,7 +94,7 @@ public class MainController extends HttpServlet {
     private static final String SUBMIT_PAYMENT = "submitPayment";
     private static final String SUBMIT_PAYMENT_CONTROLLER = "SubmitPaymentController";
     private static final String SHOW_CHART = "showChart";
-    private static final String SHOW_CHART_CONTROLLER = "OwnerShowChartStaticalController";
+    private static final String SHOW_CHART_CONTROLLER = "OwnerShowChartStatical";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -27,7 +27,7 @@ import sample.users.UserDTO;
 public class OwnerShowChartStatical extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String STATICAL = "Owner-statical.jsp";
+    private static final String STATICAL = "owner-statistical.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,16 +38,16 @@ public class OwnerShowChartStatical extends HttpServlet {
             String ownerID = "";
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            MotelDAO dao2 = new MotelDAO();
-            List<MotelDTO> listMotel = dao2.searchMotel(ownerID);
-            if (listMotel != null) {
-                request.setAttribute("LIST_MOTEL", listMotel);
-            }
+            MotelDAO dao2 = new MotelDAO();          
             if (loginUser != null) {
                 ownerID = loginUser.getUserId();
             }
+            List<MotelDTO> listMotel = dao2.searchMotel(ownerID);
+            if (listMotel.size() > 0) {
+                request.setAttribute("LIST_MOTEL", listMotel);
+            }            
             List<ChartDTO> listData = dao.getDataChartStatical(ownerID);
-            if (listData != null) {
+            if (listData.size() > 0) {
                 request.setAttribute("LIST_DATA", listData);
                 url = STATICAL;
             }

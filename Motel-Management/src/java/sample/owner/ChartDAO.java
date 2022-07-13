@@ -26,7 +26,7 @@ public class ChartDAO {
     
     private static final String GET_CHART_STATICTICAL = "SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total \n" +
                                                         "FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b\n" +
-                                                        "WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = 'quan01' AND (b.Status = 1 OR b.Status = 2 ) ) a \n" +
+                                                        "WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = ? AND (b.Status = 1 OR b.Status = 2 ) AND b.BookingDate between ( SELECT DATEFROMPARTS(YEAR(GETDATE()), 1, 1) ) and ( SELECT DATEFROMPARTS(YEAR(GETDATE()), 12, 31) ) )a \n" +
                                                         "GROUP BY  a.BookingDate, a.MotelID, a.BookingDate \n" +
                                                         "ORDER BY a.BookingDate";
     

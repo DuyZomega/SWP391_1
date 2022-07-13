@@ -1,5 +1,9 @@
 
 
+<%@page import="sample.owner.ChartDTO"%>
+<%@page import="sample.motel.MotelDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="sample.users.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -140,31 +144,42 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-flex align-content-center float-right">
-                                        <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
-                                        <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
-                                        <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
-                                    </div>
-                                    <div id="numOfHome">
-                                        <select name="aaa" id="a1234" style="display: none;">
-                                            <option value="10">2022-06-09 UTC+0700</option>
-                                            <option value="9">2022-06-10 UTC+0700</option>
-                                            <option value="3">2022-06-11 UTC+0700</option>
-                                            <option value="7">2022-06-12 UTC+0700</option>
-                                            <option value="9">2022-06-13 UTC+0700</option>
-                                            <option value="5">2022-06-14 UTC+0700</option>
-                                            <option value="1">2022-06-15 UTC+0700</option>
-                                        </select>
-                                        <select name="bbb" id="b1234" style="display: none;">
-                                            <option value="1">2022-06-09 UTC+0700</option>
-                                            <option value="2">2022-06-1022-060 UTC+0700</option>
-                                            <option value="3">2-11 UTC+0700</option>
-                                            <option value="4">2022-06-12 UTC+0700</option>
-                                            <option value="5">2022-06-13 UTC+0700</option>
-                                            <option value="6">2022-06-14 UTC+0700</option>
-                                            <option value="7">2022-06-15 UTC+0700</option>
-                                        </select>
-                                    </div>
-                                    <canvas id="chart-Dashboard" width="400" height="200"></canvas>
+                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
+                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
+                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
+                                        </div>
+                                        <div id="numOfHome">
+                                            <%
+                                                List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
+                                                if (listMotel != null) {
+                                                    if (listMotel.size() > 0) {
+                                                        for (MotelDTO motel : listMotel) {
+
+                                            %>
+                                            <select name="aaa" id="a<%= motel.getMotelID()%>" style="display: none;">
+                                                <%
+                                                    List<ChartDTO> listChart = (ArrayList<ChartDTO>) request.getAttribute("LIST_DATA");
+                                                    if (listChart != null) {
+                                                        if (listChart.size() > 0) {
+                                                            for (ChartDTO data : listChart) {
+                                                                if (motel.getMotelID().equals(data.getMotelID())) {
+
+                                                %>
+                                                <option value="<%=data.getIncome()%>"><%=data.getDate()%> UTC+0700</option>
+                                                <%
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                %> 
+                                            </select>
+                                            <%
+                                                        }
+                                                    }
+                                                }
+                                            %>                                        
+                                        </div>
+                                        <canvas id="chart-Dashboard" width="400" height="200"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +196,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
         <script src="assets/js/owner-script.js"></script>   
-       
+
     </body>
 </html>
