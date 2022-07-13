@@ -6,6 +6,7 @@ package sample.booking;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import sample.utils.DBUtils;
 
@@ -15,9 +16,40 @@ import sample.utils.DBUtils;
  */
 public class PaymentDAO {
 private static final String PAYMENT_SUB = "INSERT [tblPayment] (PaymentID, Desct, PaymentTime, Sender,Receiver,PaymentTypeName) VALUES (?,?,?,?,?,?)";
-  
-    public boolean insertPayment(PaymentDTO pay) throws SQLException {
-      
+private static final String GET_OWNERID = "SELECT m.OwnerID FROM tblRoom as r , tblRoomType as rt , tblMotel as m WHERE r.RoomID = ? AND r.RoomTypeID = rt.RoomTypeID AND rt.MotelID = m.MotelID"; 
+
+    public String getOwnerID(String roomID) throws SQLException {
+        String ownerID = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_OWNERID);
+                ptm.setString(1, roomID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    ownerID = rs.getString("OwnerID");    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return ownerID;
+    }
+
+    public boolean insertPayment(PaymentDTO pay) throws SQLException { 
     boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;

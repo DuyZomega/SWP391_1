@@ -57,10 +57,14 @@
                     noti = new NotificationDTO();
                 }
             %> 
+            
             <div class="notification-dropdown dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell"></i><span class="notification"><%= noti.getNotificationNumber()%></span>
+                    <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
+                    <span type="hidden" name="announcementID" value="${t.announcementID}"></span>  
+                    </c:forEach>
                 </button>
                 <div class="dropdown-menu notification-table animate__animated animate__fadeInDown"
                      aria-labelledby="dropdownMenuButton">
@@ -70,9 +74,6 @@
                     </div>
                     <div class="dropdown-body">
                         <a class="dropdown-item" href="MainController?action=notifi&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
-                            <p class="truncate">Xem tin mới <i class="fa fa-angle-right"></i></p>
-                        </a>
-                        <a class="dropdown-item" href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
                             <p class="truncate"> Xem tất cả <i class="fa fa-angle-right"></i></p>
                         </a>
                         <c:forEach var="t" items ="${requestScope.LIST_NOTI}">
@@ -103,7 +104,7 @@
                        href="MainController?action=Logout">Đăng xuất</a>
                 </div>
             </div>
-            <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"                
+                       <span type="hidden" name="userId" value="<%= loginUser.getUserId()%>"></span>            
                   </div>
         </div>
     </div>

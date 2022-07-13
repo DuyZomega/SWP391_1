@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.users.UserDAO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -48,7 +51,22 @@ public class UserBookingDetail extends HttpServlet {
                  request.setAttribute("DETAIL_MOTEL1", listMotel1);
                 url = SUCCESS;
                 }
-              
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+
+            NotificationDAO dao = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                int notiNumber = dao.getNotificationNumber(userId);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao.notiList(userId);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        url = SUCCESS;
+                    }
+                }
+            }
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {

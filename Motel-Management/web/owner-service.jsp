@@ -1,5 +1,6 @@
 
 
+<%@page import="sample.motel.MotelDTO"%>
 <%@page import="sample.service.ServiceDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -32,13 +33,13 @@
                             <a href="owner-index.html">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
-                            <%  
-                            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-                            if (loginUser == null || !loginUser.getRole().equals("OW")) {
-                                response.sendRedirect("login.jsp");
-                                return;
-                            }
-                        %>
+                            <%
+                                UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+                                if (loginUser == null || !loginUser.getRole().equals("OW")) {
+                                    response.sendRedirect("login.jsp");
+                                    return;
+                                }
+                            %>
                         </div>
                         <li data-toggle="tooltip"data-placement="right" title="Tổng quan">
                             <a href="MainController?action=ShowOverview">
@@ -80,7 +81,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.jsp">
+                            <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
@@ -180,16 +181,16 @@
                                             List<ServiceDTO> listService = (ArrayList<ServiceDTO>) request.getAttribute("LIST_SERVICE");
                                             if (listService != null) {
                                                 if (listService.size() > 0) {
-                                                int count =0;
-                                                    for (ServiceDTO service : listService) {                                                   
-                                                    count++;
+                                                    int count = 0;
+                                                    for (ServiceDTO service : listService) {
+                                                        count++;
 
                                         %>
                                         <tr>
-                                        <form action="MainController" method="post"> 
-                                        <td><%= count %></td>
+                                    <form action="MainController" method="post"> 
+                                        <td><%= count%></td>
                                         <input type="hidden" name="serviceID" value="<%=service.getServiceId()%>"/>
-                                        <td><%= service.getServiceId() %></td>
+                                        <td><%= service.getServiceId()%></td>
                                         <td><input type="text" class="form-control w-auto" name="serviceName" value="<%= service.getName()%>" id="input" required/></td>
                                         <td><%= service.getMotelID()%></td> 
                                         <td><input type="text" class="form-control w-auto" name="price" value="<%= service.getPrice()%>" id="input" required/></td>
@@ -229,7 +230,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Thêm Dịch Vụ</h4>
                     </div>
-                    <form action="#" onsubmit="return submitFunc()" id="form">
+                    <form action="MainController" method="post" >
                         <div class="modal-body container-fluid">
                             <div class="row">
                                 <div class="col-12">
@@ -238,10 +239,20 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <input type="hidden" name="motelID" id="idhome" value="">
-                                                <select name="" class="form-control" id="sel1" onchange="change(event)" required>
+                                                <select name="motelID" class="form-control" id="sel1" onchange="change(event)" required>
                                                     <option value="" disabled selected>Chọn motel cần thêm dịch vụ</option>
-                                                    <option value="1">Motel 1</option>
-                                                    <option value="2">Motel 2</option>
+                                                    <%
+                                                        List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
+                                                        if (listMotel != null) {
+                                                            if (listMotel.size() > 0) {
+                                                                for (MotelDTO motel : listMotel) {
+
+                                                    %>
+                                                    <option value="<%= motel.getMotelID() %>"><%= motel.getName() %></option>
+                                                    <%            }
+                                                            }
+                                                        }
+                                                    %> 
                                                 </select>
                                             </div>
                                         </div>
@@ -250,7 +261,7 @@
                                         <div class="col-md-3 text-md-right pb-1"><span>Tên Dịch Vụ: </span></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Nhập tên..." required>
+                                                <input name="serviceName" type="text" class="form-control" placeholder="Nhập tên..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -258,7 +269,7 @@
                                         <div class="col-md-3 text-md-right pb-1"><span>Giá: </span></div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="Nhập giá..." required>
+                                                <input name="price" type="text" class="form-control" placeholder="Nhập giá..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +277,7 @@
                             </div>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            <button class="btn btn-success" type="submit">Xác Nhận</button>
+                            <button class="btn btn-success" name="action" value="createService" type="submit">Xác Nhận</button>
                             <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
                         </div>
                     </form>

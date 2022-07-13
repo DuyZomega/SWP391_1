@@ -11,9 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.motel.MotelDAO;
+import sample.notification.NotificationDAO;
+import sample.notification.NotificationDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -45,6 +49,24 @@ public class UserCancelRoom extends HttpServlet {
                         url = SUCCESS;
                         request.setAttribute("MESSAGE", "Cập nhật thành công");
                     }
+            }
+            HttpSession session = request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+
+            NotificationDAO dao1 = new NotificationDAO();
+            NotificationDTO noti = new NotificationDTO();
+            if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                int notiNumber = dao1.getNotificationNumber(userID);
+                noti = new NotificationDTO(notiNumber);
+                if (noti != null) {
+                    request.setAttribute("NOTIFICATION", noti);
+                    List<NotificationDTO> listNoti = dao1.notiList(userID);
+                    if (listNoti != null) {
+                        request.setAttribute("LIST_NOTI", listNoti);
+                        url = SUCCESS;
+                    }
+                }
             }
         } catch (Exception e) {
             log("Error at OwnerCreateMotelController:" + e.toString());

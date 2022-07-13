@@ -23,6 +23,8 @@ public class UserDAO {
     private static final String CHANGE_PASSWORD = "UPDATE tblUser SET Password = ? WHERE UserID = ? ";
     private static final String CHANGE_IMAGE = "UPDATE tblUser SET Image = ? WHERE UserID = ? ";
     private static final String CHECK_USERID = "SELECT UserID FROM tblUser Where UserID = ?";
+    private static final String CHECK_BOOKINGID = "SELECT BookingID FROM tblBooking Where BookingID = ?";
+    
     public boolean changeImage(String userID, String image) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -59,6 +61,37 @@ public class UserDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(CHECK_USERID);
                 ptm.setString(1, userID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean checkBookingID(String bookingID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_BOOKINGID);
+                ptm.setString(1, bookingID);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     check = true;
@@ -438,7 +471,36 @@ public boolean checkDuplcate(String userId) throws SQLException {
         }
         return check;
     }
-     
+    
+     public boolean insertCustomer(UserDTO user) throws SQLException, ClassNotFoundException, NamingException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "INSERT INTO tblUser(UserId, FullName, Phone, CitizenNumber, Status, Address, Role) "
+                        + " VALUES(?,?,?,?,?,?,?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, user.getUserId());
+                stm.setString(2, user.getFullName());
+                stm.setString(3, user.getPhone());
+                stm.setString(4, user.getCitizenNumber());
+                stm.setInt(5, user.getStatus());
+                stm.setString(6, user.getAddress());
+                stm.setString(7, user.getRole());
+                check = stm.executeUpdate() > 0;
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
     
     
     /*admin*/

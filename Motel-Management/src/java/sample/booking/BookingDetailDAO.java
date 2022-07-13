@@ -21,7 +21,39 @@ import sample.utils.DBUtils;
 public class BookingDetailDAO {
 
     private static final String BOOKINGDT_SUB = "INSERT [tblBookingDetail] ([BookingDetailID], [RoomID], [BookingID], [Time]) VALUES (?,?,?,?)";
+    private static final String CHECK_BOOKING_DETAILID = "SELECT BookingDetailID FROM tblBookingDetail Where BookingDetailID = ?";
+    
+    public boolean checkBookingDetailID(String bookingDetailID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_BOOKING_DETAILID);
+                ptm.setString(1, bookingDetailID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    check = true;
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
 
+        return check;
+    }
+    
     public  boolean insertBt(BookingDetailDTO bt, String roomId) throws SQLException {
         boolean check = false;
         Connection conn = null;

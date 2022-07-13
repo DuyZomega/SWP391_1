@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="active" data-toggle="tooltip"data-placement="right" title="Thông báo">
-                            <a href="owner-notification.jsp">
+                            <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
                             </a>
@@ -151,12 +151,6 @@
                                                     Thông báo mới
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a href="#writeNotif" class="nav-link" data-toggle="tab">
-                                                    <i class='bx bxs-edit'></i>
-                                                    Viết thông báo
-                                                </a>
-                                            </li>
 
                                         </ul>
                                         <div class="tab-content">
@@ -224,12 +218,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="writeNotif" role="tabpanel">
-                                                <div class="pt-4">
-                                                    hello
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>

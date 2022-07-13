@@ -34,9 +34,15 @@ public class NotificationController1 extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-
+            String announcementID = request.getParameter("announcementID");
             NotificationDAO dao = new NotificationDAO();
             NotificationDTO noti = new NotificationDTO();
+            int Status = 0;
+             if (loginUser != null) {
+                String userID = loginUser.getUserId();
+                NotificationDTO notifi = new NotificationDTO(announcementID, userID, Status);
+                boolean checkCreateNoti = dao.updateNotification1(notifi);
+            }
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
                 int notiNumber = dao.getNotificationNumber(userID);

@@ -79,10 +79,17 @@ public class MainController extends HttpServlet {
     private static final String SHOW_OWNER_HISTORY_DETAIL_CONTROLLER = "OwnerShowHistoryDetail";
     private static final String SHOW_OWNER_SERVICE = "showService";
     private static final String SHOW_OWNER_SERVICE_CONTROLLER = "OwnerShowServiceController";
+    private static final String CREATE_OWNER_SERVICE = "createService";
+    private static final String CREATE_OWNER_SERVICE_CONTROLLER = "OwnerCreateServiceController";
     private static final String DELETE_OWNER_SERVICE = "deleteService";
     private static final String DELETE_OWNER_SERVICE_CONTROLLER = "OwnerDeleteServiceController";
     private static final String UPDATE_OWNER_SERVICE = "updateService";
     private static final String UPDATE_OWNER_SERVICE_CONTROLLER = "OwnerUpdateServiceController";
+    private static final String ADD_CUSTOMER_ROOM = "addCustomer";
+    private static final String ADD_CUSTOMER_ROOM_CONTROLLER = "OwnerAddCustomers";
+    private static final String SUBMIT_PAYMENT = "submitPayment";
+    private static final String SUBMIT_PAYMENT_CONTROLLER = "SubmitPaymentController";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -151,6 +158,12 @@ public class MainController extends HttpServlet {
                 url = DELETE_OWNER_SERVICE_CONTROLLER;
             } else if (UPDATE_OWNER_SERVICE.equals(action)) {
                 url = UPDATE_OWNER_SERVICE_CONTROLLER;
+            } else if (ADD_CUSTOMER_ROOM.equals(action)) {
+                url = ADD_CUSTOMER_ROOM_CONTROLLER;
+            } else if (CREATE_OWNER_SERVICE.equals(action)) {
+                url = CREATE_OWNER_SERVICE_CONTROLLER;
+            } else if (SUBMIT_PAYMENT.equals(action)) {
+                url = SUBMIT_PAYMENT_CONTROLLER;
             }
 
         } catch (Exception e) {

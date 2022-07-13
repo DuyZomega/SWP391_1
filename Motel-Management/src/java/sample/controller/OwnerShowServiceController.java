@@ -40,6 +40,9 @@ public class OwnerShowServiceController extends HttpServlet {
             String ownerID = loginUser.getUserId();
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
+            if(listMotel.size() > 0){
+                request.setAttribute("LIST_MOTEL", listMotel);
+            }
             
             if (listMotel.size()>0){
                 ServiceDAO dao2 = new ServiceDAO();
