@@ -210,7 +210,7 @@
                                                 for (MotelDTO motel : listMotel) {
 
                                     %>
-                                    <select name="aaa" id="a<%= motel.getMotelID()%>" style="display: none;">
+                                    <select name="<%= motel.getName()%>" id="a<%= motel.getMotelID()%>" style="display: none;">
                                         <%
                                             List<ChartDTO> listChart = (ArrayList<ChartDTO>) request.getAttribute("LIST_DATA");
                                             if (listChart != null) {
