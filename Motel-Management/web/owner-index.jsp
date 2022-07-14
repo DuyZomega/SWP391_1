@@ -4,6 +4,8 @@
     Author     : Bao
 --%>
 
+<%@page import="sample.owner.ChartDTO"%>
+<%@page import="sample.motel.MotelDTO"%>
 <%@page import="sample.owner.FeedbackDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="sample.owner.NewsDTO"%>
@@ -37,7 +39,7 @@
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
-                        <%  
+                        <%
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
                             if (loginUser == null || !loginUser.getRole().equals("OW")) {
                                 response.sendRedirect("login.jsp");
@@ -197,28 +199,37 @@
                         <div class="card">
                             <div class="card-header d-flex justify-content-between">
                                 <h4>Doanh thu tuần qua</h4>
-                                <a href="owner-statistical.jsp" class="btn-white">Xem tất cả</a>
+                                <a href="MainController?action=showChart" class="btn-white">Xem tất cả</a>
                             </div>
                             <div class="card-body">
                                 <div id="numOfHome">
-                                    <select name="aaa" id="a1234" style="display: none;">
-                                        <option value="10">2022-06-09 UTC+0700</option>
-                                        <option value="9">2022-06-10 UTC+0700</option>
-                                        <option value="3">2022-06-11 UTC+0700</option>
-                                        <option value="7">2022-06-12 UTC+0700</option>
-                                        <option value="9">2022-06-13 UTC+0700</option>
-                                        <option value="5">2022-06-14 UTC+0700</option>
-                                        <option value="1">2022-06-15 UTC+0700</option>
+                                    <%
+                                        List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
+                                        if (listMotel != null) {
+                                            if (listMotel.size() > 0) {
+                                                for (MotelDTO motel : listMotel) {
+
+                                    %>
+                                    <select name="aaa" id="a<%= motel.getMotelID()%>" style="display: none;">
+                                        <%
+                                            List<ChartDTO> listChart = (ArrayList<ChartDTO>) request.getAttribute("LIST_DATA");
+                                            if (listChart != null) {
+                                                if (listChart.size() > 0) {
+                                                    for (ChartDTO data : listChart) {
+                                                        if (motel.getMotelID().equals(data.getMotelID())) {
+
+                                        %>
+                                        <option value="<%=data.getIncome()%>"><%=data.getDate()%> UTC+0700</option>
+                                        <%                                                        }
+                                                    }
+                                                }
+                                            }
+                                        %>
                                     </select>
-                                    <select name="bbb" id="b1234" style="display: none;">
-                                        <option value="1">2022-06-09 UTC+0700</option>
-                                        <option value="2">2022-06-10 UTC+0700</option>
-                                        <option value="3">2022-06-11 UTC+0700</option>
-                                        <option value="4">2022-06-12 UTC+0700</option>
-                                        <option value="5">2022-06-13 UTC+0700</option>
-                                        <option value="6">2022-06-14 UTC+0700</option>
-                                        <option value="7">2022-06-15 UTC+0700</option>
-                                    </select>
+                                    <%                                                }
+                                            }
+                                        }
+                                    %> 
                                 </div>
                                 <canvas id="chart-Dashboard" width="300" height="100"></canvas>
                             </div>
@@ -312,8 +323,8 @@
                                             <% for (int i = 1; i <= feedback.getRating(); i++) { %>
                                             <i class='bx bxs-star yellow'></i>
                                             <% }%>
-                                            <% if (5-feedback.getRating() > 0) {
-                                                    for (int y = 0; y < (5 - feedback.getRating()); y++){
+                                            <% if (5 - feedback.getRating() > 0) {
+                                                    for (int y = 0; y < (5 - feedback.getRating()); y++) {
                                             %>
                                             <i class='bx bx-star'></i>
                                             <%

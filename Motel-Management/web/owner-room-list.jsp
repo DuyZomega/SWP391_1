@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
-                            <a href="owner-statistical.jsp">
+                            <a href="MainController?action=showChart">
                                 <span><i class='bx bx-line-chart'></i></span>
                                 <span class="title">Thống kê</span>
                             </a>
