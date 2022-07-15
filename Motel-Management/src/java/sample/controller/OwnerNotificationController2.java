@@ -38,27 +38,18 @@ public class OwnerNotificationController2 extends HttpServlet {
             NotificationDAO dao = new NotificationDAO();
             NotificationDTO noti = new NotificationDTO();
             int Status = 1;
-                String title = "Bạn đã đặt phòng(chưa nhận tiền)";
-                String desc = "Đã xử lý";
-                String announcementID = request.getParameter("announcementID");
-                String userId = request.getParameter("userID");
-                if (loginUser != null) {
-                    NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
-                    boolean checkCreateNoti = dao.updateNotification(notifi);
-                }
+            String title = "Chưa nhận tiền đặt phòng";
+            String desc = "Đã xử lý";
+            String announcementID = request.getParameter("announcementID");
+            boolean checkID = true;
             if (loginUser != null) {
-                String userID = loginUser.getUserId();
-                int notiNumber = dao.getNotificationNumber(userID);
-                noti = new NotificationDTO(notiNumber);
-                if (noti != null) {
-                    request.setAttribute("NOTIFICATION", noti);
-                    List<NotificationDTO> listNoti = dao.getnotiList();
-                    if (listNoti != null) {
-                        request.setAttribute("LIST_NOTI", listNoti);
-                        url = SUCCESS;
-                    }
+                NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
+                boolean checkUpdateNoti = dao.updateNotification(notifi);
+                List<NotificationDTO> listNoti = dao.getnotiList();
+                if (listNoti != null) {
+                    request.setAttribute("LIST_NOTI", listNoti);
+                    url = SUCCESS;
                 }
-                
             }
         } catch (Exception e) {
             log("Error at NotificationController:" + e.toString());
