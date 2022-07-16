@@ -1,7 +1,7 @@
 var day = [];
 let numOfweek = document.getElementById('day');
 console.log(numOfweek)
-for (let i = 1; i < numOfweek.innerHTML; i++) {
+for (let i = 1; i < numOfweek.length; i++) {
   day.push({x : Date.parse(numOfweek.options[i].innerText), y : numOfweek.options[i].value})
 }
 
