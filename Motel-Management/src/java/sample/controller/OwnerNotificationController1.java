@@ -34,30 +34,22 @@ public class OwnerNotificationController1 extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-            
             NotificationDAO dao = new NotificationDAO();
-            NotificationDTO noti = new NotificationDTO();
             int Status = 1;
-            String title = "Bạn đã đặt phòng(đã nhận tiền)";
+            String title = "Đã nhận tiền đặt phòng";
             String desc = "Đã xử lý";
+            boolean checkID = true;
             String announcementID = request.getParameter("announcementID");
-             if (loginUser != null) {
-                NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
-                boolean checkCreateNoti = dao.updateNotification(notifi);
-            }
             if (loginUser != null) {
+                NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
+                boolean checkUpdateNoti = dao.updateNotification(notifi);
+                NotificationDTO noti = new NotificationDTO();
                 String userID = loginUser.getUserId();
-                int notiNumber = dao.getNotificationNumber(userID);
-                noti = new NotificationDTO(notiNumber);
-                if (noti != null) {
-                    request.setAttribute("NOTIFICATION", noti);
-                    List<NotificationDTO> listNoti = dao.getnotiList();
-                    if (listNoti != null) {
-                        request.setAttribute("LIST_NOTI", listNoti);
-                        url = SUCCESS;
-                    }
+                List<NotificationDTO> listNoti = dao.getnotiList();
+                if (listNoti != null) {
+                    request.setAttribute("LIST_NOTI", listNoti);
+                    url = SUCCESS;
                 }
-           
             }
         } catch (Exception e) {
             log("Error at NotificationController:" + e.toString());
