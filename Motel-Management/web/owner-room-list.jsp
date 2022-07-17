@@ -226,7 +226,7 @@
                                                                 for (RoomTypeDTO roomType : listRoomType) {
                                                                     if (roomType.getMotelID().equals(motel.getMotelID())) {
                                                             %>
-                                                            <option value="<%= roomType.getRoomTypeID() %>"><%= roomType.getTypeName()%></option>
+                                                            <option value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
                                                             <%
                                                                     }
                                                                 }
@@ -240,7 +240,7 @@
                                             <div class="col-xl-3 col-lg-6 col-sm-6 my-3">
                                                 <div class="card card-child">
                                                     <div class="card-body add-room">
-                                                        <button class="border-0" data-toggle="modal"  data-target="#addRoom<%=motel.getMotelID()%>">
+                                                        <button class="border-0" data-toggle="modal"  data-target="#addRoom">
                                                             <span>Thêm Phòng</span>
                                                             <i class='bx bx-add-to-queue'></i>
                                                         </button>
@@ -316,14 +316,9 @@
             </div>
         </div>
 
-        <%
-            if (listMotel != null) {
-                if (listMotel.size() > 0) {
-                    for (MotelDTO motel : listMotel) {
 
-        %>
         <!-- add new Room -->
-        <div id="addRoom<%=motel.getMotelID()%>" class="modal fade" role="dialog">
+        <div id="addRoom" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content modal-addRoom">
                     <div class="modal-header">
@@ -334,10 +329,23 @@
                         <div class="modal-body">
                             <div class="row p-4">
                                 <div class="col-12">
-                                    <input type="hidden" name="motelID" value="<%=motel.getMotelID()%>">
                                     <div class="row form-group">
-                                        <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên Nhà Trọ</label>
-                                        <input class="form-control col-md-7" value="<%=motel.getName()%>" disabled/>
+                                        <label for="firstname" class="col-md-3 col-form-label text-md-right">motel Name</label>
+                                        <select id="motelId" name="MotelID" class="form-control col-md-7" onchange="myFunc(this.value)" required>
+                                            <option value="" disabled selected>Chọn Motel</option>
+                                            <%
+                                                if (listMotel != null) {
+                                                    if (listMotel.size() > 0) {
+                                                        for (MotelDTO motel : listMotel) {
+
+                                            %>
+                                            <option value="<%=motel.getMotelID()%>"><%=motel.getName()%></option>
+                                            <%
+                                                        }
+                                                    }
+                                                }
+                                            %>
+                                        </select>
                                     </div>
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên phòng</label>
@@ -349,16 +357,16 @@
                                     </div>
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">Loại phòng</label>
-                                        <select name="typeofRoom" class="form-control col-md-7" onchange="other(event)" required="">
+                                        <select id="typeRoom" name="typeofRoom" class="form-control col-md-7" onchange="other(event)" required="">
                                             <option disabled selected>Choose type of room</option>
                                             <%
                                                 List<RoomTypeDTO> listRoomType = (ArrayList<RoomTypeDTO>) request.getAttribute("LIST_ROOMTYPE");
                                                 for (RoomTypeDTO roomType : listRoomType) {
-                                                    if (roomType.getMotelID().equals(motel.getMotelID())) {
+                                                    
                                             %>
-                                            <option value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
+                                            <option data-option="<%= roomType.getMotelID()%>" value="<%= roomType.getRoomTypeID()%>"><%= roomType.getTypeName()%></option>
                                             <%
-                                                    }
+                                                    
                                                 }
                                             %>
                                             <option value="custom">Other</option>
@@ -390,11 +398,7 @@
                 </div>
             </div>
         </div>
-        <%                    
-                    }
-                }
-            }
-        %> 
+
 
 
         <%

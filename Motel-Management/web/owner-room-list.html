@@ -463,10 +463,10 @@
                             <div class="col-12">
                                 <div class="row form-group">
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Tên phòng</label>
-                                    <select id="motelid" name="MotelID" class="form-control col-md-7" onchange="myFunc()" required>
+                                    <select id="motelid" name="MotelID" class="form-control col-md-7" onchange="myFunc(this.value)" required>
                                         <option value="" disabled selected>Chọn Motel</option>
-                                        <option value="a">ánh dương</option>
-                                        <option value="b">bạch dương</option>
+                                        <option value="1">ánh dương</option>
+                                        <option value="2">bạch dương</option>
                                     </select>
                                 </div>
                                 
@@ -474,10 +474,10 @@
                                     <label for="firstname" class="col-md-3 col-form-label text-md-right">Loại phòng</label>
                                     <select id="typeRoom" name="typeofRoom" class="form-control col-md-7" onchange="other(event)" required>
                                         <option value="" disabled selected>Chọn loại phòng</option>
-                                        <option data-option="a" value="#">Luxury</option>
-                                        <option data-option="a" value="#">Normal</option>
-                                        <option data-option="b" value="#">L</option>
-                                        <option data-option="b" value="#">n</option>
+                                        <option data-option="1" value="#">Luxury</option>
+                                        <option data-option="1" value="#">Normal</option>
+                                        <option data-option="2" value="#">L</option>
+                                        <option data-option="2" value="#">n</option>
                                         <option value="custom">Other</option>
                                     </select>
                                     <input type="text" id="otherid" class="offset-md-3 form-control col-md-3 mt-2" style="display: none;"

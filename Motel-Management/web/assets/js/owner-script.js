@@ -139,24 +139,20 @@ function other(event) {
 }
 
 // select following select box
-function myFunc() {
-  var list = [];
-  var sel1 = $("#motelid").val();
+var sel1 = document.querySelector('#motelId');
+var sel2 = document.querySelector('#typeRoom');
+var options2 = sel2.querySelectorAll('option');
 
-  const option = document.getElementById("typeRoom");
-
-  for (let i = 0; i < option.childElementCount; i++) {
-    list[i] = option.children[i].getAttribute("data-option");
-  }
-
-  list.forEach((item, index) => {
-    if (item === sel1 || item == null) {
-      option.children[index].style.display = "block";
-    } else {
-      option.children[index].style.display = "none";
+function myFunc(selValue) {
+  sel2.innerHTML = '';
+  for(var i = 0; i < options2.length; i++) {
+    if(options2[i].dataset.option === selValue) {
+      sel2.appendChild(options2[i]);
     }
-  });
+  }
+  sel2.appendChild(options2[options2.length-1]);
 }
+giveSelection(sel1.value);
 
 // sweetalert
 function submitFunc() {
