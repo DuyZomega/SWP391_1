@@ -37,7 +37,7 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="owner-index.html">
+                            <a href="MainController?action=ShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
@@ -159,7 +159,7 @@
                                     <span>/</span>
                                 </li>
                                 <li class="breadcrumd-item active">
-                                    <a href="owner-motel.html">Nhà</a>
+                                    <a href="#">Nhà</a>
                                 </li>
                             </ol>
                         </div>
