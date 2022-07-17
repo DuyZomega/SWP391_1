@@ -272,7 +272,7 @@
                                                         clas = "outcome";
                                                         status = "Đã Thanh Toán";
                                                     } else {
-                                                        clas = "distroy";
+                                                        clas = "destroy";
                                                         status = "Đang Thuê";
                                                     }
                                     %>

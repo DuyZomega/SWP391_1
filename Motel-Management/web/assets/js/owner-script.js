@@ -192,17 +192,20 @@ $('#checkAll').click(function () {
 ///statical
 const numOfHome = document.querySelectorAll('#numOfHome select');
 var num = [];
+
+var nameOfHome = [];
 for (let i = 0; i < numOfHome.length; i++) {
     eval ('var array' + i + '= []');
     var data = document.getElementById(numOfHome[i].id);
+    
+    nameOfHome.push(data.name);
 
-    console.log(data);
     for (let j = 0; j < data.length; j++) {
       eval('array' + i).push({x : Date.parse(data.options[j].innerText), y : data.options[j].value})
     }  
     num.push(eval('array'+ i));
-    console.log(num[i]);
 }
+
 
   const myCtx = document.getElementById('chart-Dashboard').getContext('2d');
   const myChart = new Chart(myCtx, {   
@@ -226,13 +229,15 @@ for (let i = 0; i < numOfHome.length; i++) {
   }); 
 
     for (let i = 0; i < numOfHome.length; i++) {
+      
       let maxVal = 0xFFFFFF; 
       let randomNumber = Math.random() * maxVal; 
       randomNumber = Math.floor(randomNumber);
       randomNumber = randomNumber.toString(16);
       let randColor = randomNumber.padStart(6, 0);   
+
       const newData = {
-        label: 'Doanh thu nhà nghỉ B',
+        label: `${nameOfHome[i]}`,
         data: num[i],
         backgroundColor: [
             `#${randColor}`
@@ -253,6 +258,7 @@ for (let i = 0; i < numOfHome.length; i++) {
     if (period.value === 'day') {
       myChart.data.datasets[0].data = day;
       myChart.options.scales.x.time.unit = period.value;
+
     }
     if (period.value === 'week') {
       myChart.data.datasets[0].data = week;
@@ -264,6 +270,8 @@ for (let i = 0; i < numOfHome.length; i++) {
       myChart.options.scales.x.time.unit = period.value;
     }
     myChart.update();
+
+    period.classList.addClass('active');
   } 
 
   
