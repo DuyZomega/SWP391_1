@@ -47,7 +47,7 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
    - GitHub
    - 
 ## Database
-![image](#)
+![image](https://user-images.githubusercontent.com/74039932/179421903-247817a3-6e64-4be0-8043-8672a09f734f.png)
 
 ## Wireframe or Screenshots of the system
 ### Website Interface

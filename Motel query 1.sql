@@ -170,22 +170,21 @@ CREATE TABLE [visit_tracking](--done
 --/////////////
 --insert user UPDATE tblUser set Image = 'assets/img/avatar.jpg' where Status = 0
 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address], [Phone] ,[Gmail], [Role], [Status] ) VALUES (N'quan01', N'Le Minh Quan',N'1', N'images/man.png','2001-05-07',321615057,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942949219','hoangquan9851@gmail.com','OW',1) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber],[Gender], [Address] ,[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tu06', N'Nguyen Doan Tu',N'1', N'images/man.png','2001-05-26',78523465,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01945876325','tutu988@gmail.com','OW',0) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'phuc08', N'Lam Son Phuc',N'1', N'assets/img/avatar.jpg','2001-02-14',235478154,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01478523654','phucson223@gmail.com','OW',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Quang09', N'Do Duy Quang',N'1', N'images/man.png','1998-05-14',25479864,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0365258417','quang744@gmail.com','OW',1)  
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'chuongmai', N'Huy Chuong',N'99', N'assets/img/avatar.jpg','2002-01-14',214536587,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0975841354','chuongmai@gmail.com','OW',0)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'nhatvuong', N'Pham Nhat Vuong',N'99', N'images/man.png','1989-01-14',248762544,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0248998745','vuong@gmail.com','OW',1)  
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address], [Phone] ,[Gmail], [Role], [Status] ) VALUES (N'leminhquan', N'Le Minh Quan',N'12345', N'images/man.png','2001-05-07',321615057,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0942949219','hoangquan9851@gmail.com','OW',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber],[Gender], [Address] ,[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tu06', N'Nguyen Doan Tu',N'12345', N'images/man.png','2001-05-26',78523465,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01945876325','tutu988@gmail.com','OW',0) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'phuc08', N'Lam Son Phuc',N'12345', N'assets/img/avatar.jpg','2001-02-14',235478154,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01478523654','phucson223@gmail.com','OW',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Quang09', N'Do Duy Quang',N'12345', N'images/man.png','1998-05-14',25479864,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0365258417','quang744@gmail.com','OW',1)  
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'chuongmai', N'Huy Chuong',N'12345', N'assets/img/avatar.jpg','2002-01-14',214536587,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0975841354','chuongmai@gmail.com','OW',0)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'nhatvuong', N'Pham Nhat Vuong',N'12345', N'images/man.png','1989-01-14',248762544,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0248998745','vuong@gmail.com','OW',1)  
  
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'doan07', N'Nguyen Huu Doan',N'1', N'images/man.png','2001-09-17',712465325,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0965852413','donatran1113@gmail.com','US',1) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'hai03', N'Tran Ngoc Hai',N'1', N'images/man.png','2001-10-15',3541258746,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0347895634','haitn@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tuan04', N'Nguyen Huu Pham Tuan',N'1', N'images/man.png','2001-07-07',47853265,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01653992966','tuanhp@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'duy05', N'Ho Khanh Duy',N'1', N'images/duy.png','2001-01-25',452874365,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0963756841','Devilgamer@gmail.com','US',0) 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Lamm44', N'Dang Son Lam',N'14', N'images/man.png','1989-05-07',58213647,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','014752368','liontee@gmail.com','US',1)
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'taich74', N'Nguyen Huu Tai',N'8751', N'images/man.png','1999-11-24',7468512,1,N'Số 71 đường c18 P12 Tân Bình, HCM','0942741653','monster11@gmail.com','US',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'doan03', N'Nguyen Huu Doan',N'12345', N'images/man.png','2001-09-17',712465325,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0965852413','donatran1113@gmail.com','US',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'ngochai', N'Tran Ngoc Hai',N'12345', N'images/man.png','2001-10-15',3541258746,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0347895634','tranhaihk00@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'tuan04', N'Nguyen Huu Pham Tuan',N'12345', N'images/man.png','2001-07-07',47853265,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','01653992966','tuanhp@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'duy05', N'Ho Khanh Duy',N'12345', N'images/duy.png','2001-01-25',452874365,0,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','0963756841','Devilgamer@gmail.com','US',1) 
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'Lamm44', N'Dang Son Lam',N'12345', N'images/man.png','1989-05-07',58213647,1,N'111 đình phong phú,tăng nhơn phú B,TP thủ đức,hcm','014752368','liontee@gmail.com','US',1)
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'thuy03', N'Thuy Cao',N'12345', N'images/man.png','1999-11-24',7468512,1,N'Số 71 đường c18 P12 Tân Bình, HCM','0942741653','nhatcao796569@gmail.com','US',1) 
 
-INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'thuy02', N'Cao Thi Phuong Thuy',N'1', N'images/girl.png','2001-04-08',45217896,1,N'166/46d2 Thích Quảng Đức, Phú Nhuận , HCM','0852135789','thuy01@gmail.com','AD',1)  
-
+INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [CitizenNumber] ,[Gender], [Address],[Phone] ,[Gmail], [Role], [Status] ) VALUES (N'admin@@', N'Administrator - Thuy',N'12345', N'images/girl.png','2001-04-08',45217896,1,N'166/46d2 Thích Quảng Đức, Phú Nhuận , HCM','0852135789','vntphuongthuy.is@gmail.com','AD',1)  
 
 --insert motel
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Ngọc Quân', N'<p>Nằm c&aacute;ch C&ocirc;ng vi&ecirc;n Yersin 1,2 km, Nh&agrave; Trọ Vạn Ph&uacute;c c&oacute; chỗ nghỉ với sảnh kh&aacute;ch chung, khu vườn v&agrave; lễ t&acirc;n 24 giờ để tạo thuận tiện cho kh&aacute;ch. Chỗ nghỉ n&agrave;y cung cấp WiFi miễn ph&iacute;.</p>
@@ -201,7 +200,7 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 <p>C&aacute;c điểm tham quan nổi tiếng gần Trọng Nguyễn villa bao gồm Hồ Xu&acirc;n Hương, Quảng trường L&acirc;m Vi&ecirc;n v&agrave; Vườn hoa Đ&agrave; Lạt. S&acirc;n bay gần nhất l&agrave; s&acirc;n bay Li&ecirc;n Khương, nằm trong b&aacute;n k&iacute;nh 23 km từ kh&aacute;ch sạn căn hộ n&agrave;y, v&agrave; chỗ nghỉ cung cấp dịch vụ đưa đ&oacute;n s&acirc;n bay với một khoản phụ ph&iacute;.</p>
 
 <p>&nbsp;</p>
-',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'quan01',1)
+',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'leminhquan',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'<p>C&oacute; vị tr&iacute; thuận tiện ở Quận 1, Ngan Ha Hotel cung cấp c&aacute;c ph&ograve;ng nghỉ trang nh&atilde; v&agrave; thoải m&aacute;i với Wi-Fi miễn ph&iacute; tại c&aacute;c khu vực chung. Nơi nghỉ n&agrave;y c&oacute; lễ t&acirc;n 24 giờ v&agrave; chỗ đỗ xe m&aacute;y miễn ph&iacute;.</p>
 
 <p>Kh&aacute;ch sạn c&aacute;ch Chợ Bến Th&agrave;nh nổi tiếng chỉ 200 m v&agrave; Bảo t&agrave;ng Mỹ thuật 400 m. Dinh Độc Lập v&agrave; S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất c&aacute;ch đ&oacute; lần lượt 500 m v&agrave; 7 km l&aacute;i xe.</p>
@@ -210,14 +209,8 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 
 <p>Nh&acirc;n vi&ecirc;n th&acirc;n thiện tại Ngan Ha Hotel sẵn l&ograve;ng hỗ trợ qu&yacute; kh&aacute;ch với c&aacute;c dịch vụ để h&agrave;nh l&yacute;, đặt v&eacute; v&agrave; fax/photocopy. Dịch vụ đưa đ&oacute;n v&agrave; vận chuyển s&acirc;n bay c&oacute; thể được bố tr&iacute; với một khoản phụ ph&iacute;.</p>
 
-<p>Nh&agrave; h&agrave;ng nh&igrave;n ra th&agrave;nh phố tr&ecirc;n tầng 9 của kh&aacute;ch sạn phục vụ nhiều m&oacute;n ăn ngon của Việt Nam v&agrave; phương T&acirc;y.</p>
-
-<p>Đ&acirc;y l&agrave; khu vực ở TP. H&ocirc;̀ Chí Minh m&agrave; kh&aacute;ch y&ecirc;u th&iacute;ch, theo c&aacute;c đ&aacute;nh gi&aacute; độc lập.</p>
-
-<p>C&aacute;c cặp đ&ocirc;i đặc biệt th&iacute;ch địa điểm n&agrave;y &mdash; họ cho điểm&nbsp;<strong>9,6</strong>&nbsp;cho kỳ nghỉ d&agrave;nh cho 2 người.</p>
-
 <p><img alt="" src="images/motel-6.jpg" /></p>
-',N'images/motel-5.jpg', N'0328787878','2', N'143A Mỹ Đức,Bình Phú',4.5,N'quan01',1)
+',N'images/motel-5.jpg', N'0328787878','2', N'143A Mỹ Đức,Bình Phú',4.5,N'leminhquan',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'<p>Tọa lạc tại vị tr&iacute; l&yacute; tưởng ở Quận 1 thuộc Th&agrave;nh phố Hồ Ch&iacute; Minh, Saigon Hanoi Central Hotel nằm c&aacute;ch Chợ ẩm thực đường phố Bến Th&agrave;nh 500 m, C&ocirc;ng vi&ecirc;n Tao Đ&agrave;n 500 m v&agrave; Bảo t&agrave;ng Th&agrave;nh phố Hồ Ch&iacute; Minh 800 m. Chỗ nghỉ n&agrave;y c&ograve;n c&oacute; một số tiện nghi như nh&agrave; h&agrave;ng, lễ t&acirc;n 24 giờ, dịch vụ ph&ograve;ng cũng như WiFi miễn ph&iacute; trong to&agrave;n bộ khu&ocirc;n vi&ecirc;n. Kh&aacute;ch sạn cung cấp c&aacute;c ph&ograve;ng gia đ&igrave;nh.</p>
 
 <p>Tất cả ph&ograve;ng nghỉ tại kh&aacute;ch sạn c&oacute; m&aacute;y điều h&ograve;a, TV truyền h&igrave;nh vệ tinh m&agrave;n h&igrave;nh phẳng, tủ lạnh, ấm đun nước, vòi sen, dép v&agrave; tủ để quần &aacute;o. C&aacute;c ph&ograve;ng c&oacute; ph&ograve;ng tắm ri&ecirc;ng, m&aacute;y sấy t&oacute;c v&agrave; ga trải giường.</p>
@@ -260,46 +253,33 @@ INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [
 
 <p>Đ&acirc;y l&agrave; khu vực ở TP. H&ocirc;̀ Chí Minh m&agrave; kh&aacute;ch y&ecirc;u th&iacute;ch, theo c&aacute;c đ&aacute;nh gi&aacute; độc lập.</p>
 ',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
-INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'Desction motel',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
+INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'<p><strong>Nh&agrave; Trọ NgocLan </strong>Nguyễn C&ocirc;ng Trứ The Bitexco Neighbour nằm trong b&aacute;n k&iacute;nh 30 ph&uacute;t l&aacute;i xe từ S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất v&agrave; 700 m từ c&aacute;c điểm tham quan như Dinh Độc Lập cũng như Nh&agrave; thờ Đức B&agrave;.</p>
 
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 150000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh
-<p>Tầm nh&igrave;n ra khung cản</p>
-	<p>Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;</p>
-	<p>Dịch vụ streaming (như l&agrave; Netflix)</p>
-	<p>Nh&agrave; vệ sinh</p>
-	<p>B&ocirc;̀n tắm hoặc Vòi sen</p>
-	<p>S&agrave;n l&aacute;t g</p>
-', '587416594',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 250000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh
+<p>C&aacute;c ph&ograve;ng m&aacute;y lạnh tại đ&acirc;y c&oacute; s&agrave;n l&aacute;t gạch v&agrave; ph&ograve;ng tắm ri&ecirc;ng. Trong ph&ograve;ng được trang bị truyền h&igrave;nh c&aacute;p, minibar v&agrave; m&aacute;y pha tr&agrave;/c&agrave; ph&ecirc;. Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;, m&aacute;y sấy t&oacute;c v&agrave; d&eacute;p cũng được cung cấp trong ph&ograve;ng. Một số ph&ograve;ng nh&igrave;n ra quang cảnh th&agrave;nh phố.</p>
 
-	<p>Tầm nh&igrave;n ra khung cản</p>
-	<p>Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;</p>
-	<p>Dịch vụ streaming (như l&agrave; Netflix)</p>
-	<p>Giường cực dài (&gt; 2 mét)</p>
-	<p>Khăn tắm/Bộ khăn trải giường (c&oacute; thu ph&iacute;)</p>
-	<p>Ấm đun nước điện</p>
-	<p>&nbsp;</p>
+<p>Đội ngũ nh&acirc;n vi&ecirc;n th&acirc;n thiện của Anh Duy c&oacute; thể hỗ trợ kh&aacute;ch sắp xếp c&aacute;c tour du lịch v&agrave; đặt v&eacute;. Ngo&agrave;i ra, kh&aacute;ch c&ograve;n được cung cấp dịch vụ cho thu&ecirc; xe đạp v&agrave; xe hơi cũng như giặt l&agrave;. Dịch vụ ph&ograve;ng cũng c&oacute; tại đ&acirc;y v&agrave; bữa s&aacute;ng c&oacute; thể được phục vụ ngay trong ph&ograve;ng nghỉ của kh&aacute;ch.</p>
+',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
+
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'1', N'Phòng đơn Ngọc Quân', 25000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh
+	<p>B&ocirc;̀n tắm hoặc Vòi sen, đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;</p>
 ', '587416594',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'3', N'Phòng gia đình Ngọc Quân', 499000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'4', N'Phòng đơn Ánh Dương', 200000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh
-<p>Đi&ecirc;̣n thoại</p>
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'2', N'Phòng đôi Ngọc Quân', 35000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh
+	<p>Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;</p>
+', '587416594',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'3', N'Phòng gia đình Ngọc Quân', 49000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '587416594',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'4', N'Phòng đơn Ánh Dương', 20000, N'images/motel-2.jpg', N'<p>Đi&ecirc;̣n thoại</p>
 	<p>Máy s&acirc;́y tóc</p>
-	<p>Giường cực dài (&gt; 2 mét)</p>
 	<p>Khăn tắm/Bộ khăn trải giường (c&oacute; thu ph&iacute;)</p>
-	<p>Ấm đun nước điện</p>
-	<p>&nbsp;</p>
 ', '842578129',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'5', N'Phòng đôi Ánh Dương', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'6', N'Phòng đơn Gia Lai', 145000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'7', N'Phòng đôi Malibu Beach', 350000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh<br> <p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
-
-<p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'5', N'Phòng đôi Ánh Dương', 40000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'6', N'Phòng đơn Gia Lai', 45000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'7', N'Phòng đôi Malibu Beach', 55000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh<br> <p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
 
 <p>Điều h&ograve;a kh&ocirc;ng kh&iacute;-Ph&ograve;ng tắm ri&ecirc;ng trong ph&ograve;ng</p>
 
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '861435762',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'8', N'Phòng gia đình Ladalat', 499000,N'images/motel-1.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'8', N'Phòng gia đình Ladalat', 49900,N'images/motel-1.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
 
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
 
@@ -307,7 +287,7 @@ INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[Motel
 
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '548762589',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 198000, N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 19800, N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
 
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
 
@@ -315,10 +295,10 @@ INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[Motel
 
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '473658715',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 351000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 31000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'11', N'Phòng VinHome', 69000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '785146827',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'12', N'Phòng đơn NgocLan', 100000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458',1)
-INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 245000,N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'12', N'Phòng đơn NgocLan', 25000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458',1)
+INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 24500,N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
 
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
 
@@ -367,13 +347,13 @@ INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'871245872'
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'985568725', N'num 9', 0, N'13')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'112547695', N'num 10', 0, N'1')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'365982589', N'num 11', 0, N'2')
-INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'245782168', N'phòng số 1', 0, N'3')
-INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'626356896', N'phòng số 2', 0, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'245782168', N'phòng số 1', 0, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'626356896', N'phòng số 2', 0, N'11')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'842565836', N'phòng số 3', 1, N'2')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'895658269', N'phòng số 4', 0, N'3')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'124858468', N'phòng số 5', 0, N'4')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'642766983', N'phòng số 6',0, N'5')
-INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'528495989', N'phòng số 7',0, N'1')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'528495989', N'phòng số 7',0, N'10')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'663289984', N'phòng số 8', 0, N'2')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'215487599', N'phòng số 9', 0, N'3')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'854577756', N'phòng số 10', 0, N'4')
@@ -387,7 +367,7 @@ INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'745447857'
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'225657877', N'Room 07', 1, N'3')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'632577896', N'Room 08', 0, N'4')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'996532157', N'Room 09', 0, N'5')
-INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'323565985', N'Room 10', 1, N'6')
+INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'323565985', N'Room 10', 1, N'12')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'747569865', N'Room 11',0, N'7')
 INSERT [tblRoom] ([RoomID], [Name], [Status], [RoomTypeID]) VALUES (N'332369568', N'Room 12', 1, N'8')
 
@@ -406,22 +386,22 @@ INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) V
 
 --INSERT Notification
 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi01', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-01','quan01','1') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi02', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 , khách đã trả phòng', '2002-01-01','tu06','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi01', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-07','tuan04','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi02', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 khách đã trả phòng', '2002-08-07','tu06','1') 
 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi03', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-01-01','duy05','1') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi04', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-01-01','duy05','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi03', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-08-01','duy05','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi04', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-07-24','duy05','1') 
 
 
 ---INSERT Booking
 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2001-05-07',N'Booking table', 420900,2,'duy05') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-11-08',N'Booking table', 710900,1,'duy05') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking03', '2021-08-09',N'Booking table', 747900,1,'hai03') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-10-10',N'Booking table', 542900,2,'tuan04') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-12-10',N'khach nhan phong', 340900,2,'Lamm44')
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-12-10',N'khach nhan cung ngay', 100900,0,'hai03')
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-12-10',N'khach nhan phong', 157900,2,'Lamm44')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2022-07-19',N'Booking table', 420900,2,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-07-20',N'Booking table', 710900,1,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking03', '2022-08-01',N'Booking table', 138000,1,'ngochai') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-07-27',N'Booking table', 542900,2,'tuan04') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-08-02',N'khach nhan phong', 340900,2,'Lamm44')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-08-03',N'khach nhan cung ngay', 349300,0,'ngochai')
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-07-20',N'khach nhan phong', 157900,2,'Lamm44')
 
 ---INSERT BookingDetail
 
@@ -456,11 +436,11 @@ INSERT [tblFeedBack] ([FeedbackID],[Desct], [Ratings],[MotelID], [BookingID],[St
 
 
 ---INSERT Report
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date], [MotelID],[Status]) VALUES ('1', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',0) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date], [MotelID],[Status]) VALUES ('1', N'doan03',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',0) 
 INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('2', N'duy05',N'bao cao owner', N'Nhà trọ không đúng như mô tả','2021-05-05','625781458',0) 
 INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('3', N'tuan04',N'bao cao owner', N'Owner nay khong tot','2022-05-05','625781458',0) 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('4', N'doan07',N'bao cao owner', N'Nhà trọ này chém giá','2022-05-05', '587624587',1) 
-INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('5', N'doan07',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',1) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('4', N'doan03',N'bao cao owner', N'Nhà trọ này chém giá','2022-05-05', '587624587',1) 
+INSERT [tblReport] ([ReportID], [UserID],[Title], [Desct],[Date],[MotelID],[Status]) VALUES ('5', N'ngochai',N'bao cao owner', N'Owner nay khong tot','2022-05-05', '587624587',1) 
 
 
 ---INSERT BookingServiceDetail
@@ -472,31 +452,31 @@ INSERT [tblBookingServiceDetail] ([BookingSeviceDetailID], [ServiceID],[BookingI
 
 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('1', 1655978934,'81.209.177.145','2022-07-04') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('2', 1655978943, '81.209.177.145','2022-07-04') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('3', 1655978953,'40.77.167.62','2022-07-10') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('4', 1655978963,'205.210.31.150','2022-07-10') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('1', 1655978934,'81.209.177.145','2022-07-18') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('2', 1655978943, '81.209.177.145','2022-07-18') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('3', 1655978953,'40.77.167.62','2022-07-18') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('4', 1655978963,'205.210.31.150','2022-07-19') 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('6', 1656176340,'103.131.71.144','2022-07-09') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('7', 1656176785,'114.119.132.161','2022-07-09') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('8', 1656178150,'66.249.66.86','2022-07-08') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('9', 1656178897,'207.46.13.197','2022-07-07') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('6', 1656176340,'103.131.71.144','2022-07-19') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('7', 1656176785,'114.119.132.161','2022-07-19') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('8', 1656178150,'66.249.66.86','2022-07-20') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('9', 1656178897,'207.46.13.197','2022-07-20') 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('10', 1656153799,'114.119.132.18','2022-07-06') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('11', 1656153809, '114.119.132.161','2022-07-06') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('12', 1656153819,'103.131.71.238','2022-07-05') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('13', 1656154240,'66.249.71.216','2022-07-05') 
-INSERT INTO [visit_tracking] ([id], [time],[ip], [date]) VALUES ('14', 1656178897,'66.249.71.216','2022-07-05') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('10', 1656153799,'114.119.132.18','2022-07-20') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('11', 1656153809, '114.119.132.161','2022-07-21') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('12', 1656153819,'103.131.71.238','2022-07-21') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('13', 1656154240,'66.249.71.216','2022-07-24') 
+INSERT INTO [visit_tracking] ([id], [time],[ip], [date]) VALUES ('14', 1656178897,'66.249.71.216','2022-07-24') 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('16', 1655978934,'81.209.177.145','2022-07-04') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('17', 1655978943, '81.209.177.145','2022-07-04') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('18', 1655978953,'40.77.167.62','2022-07-10') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('19', 1655978963,'205.210.31.150','2022-07-10') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('16', 1655978934,'81.209.177.145','2022-07-25') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('17', 1655978943, '81.209.177.145','2022-07-30') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('18', 1655978953,'40.77.167.62','2022-07-31') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('19', 1655978963,'205.210.31.150','2022-08-10') 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('20', 1656176340,'103.131.71.144','2022-07-09') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('21', 1656176785,'114.119.132.161','2022-07-09') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('22', 1656178150,'66.249.66.86','2022-07-08') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('23', 1656178897,'207.46.13.197','2022-07-08') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('20', 1656176340,'103.131.71.144','2022-07-29') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('21', 1656176785,'114.119.132.161','2022-08-01') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('22', 1656178150,'66.249.66.86','2022-08-02') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('23', 1656178897,'207.46.13.197','2022-08-01') 
 
 INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('24', 1656153799,'114.119.132.18','2022-07-12') 
 INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('25', 1656153809, '114.119.132.161','2022-07-11') 
@@ -509,20 +489,43 @@ INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('30', 1655978953,'40
 INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('31', 1655978963,'205.210.31.150','2022-07-15') 
 
 INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('32', 1656176340,'103.131.71.144','2022-07-14') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('33', 1656176785,'114.119.132.161','2022-07-13') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('34', 1656178150,'66.249.66.86','2022-07-12') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('35', 1656178897,'207.46.13.197','2022-07-13') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('33', 1656176785,'114.119.132.161','2022-08-01') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('34', 1656178150,'66.249.66.86','2022-08-03') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('35', 1656178897,'207.46.13.197','2022-08-01') 
 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('36', 1656153799,'114.119.132.18','2022-07-12') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('37', 1656153809, '114.119.132.161','2022-07-11') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('38', 1656153819,'103.131.71.238','2022-07-10') 
-INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('39', 1656154240,'66.249.71.216','2022-07-10') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('36', 1656153799,'114.119.132.18','2022-08-02') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('37', 1656153809, '114.119.132.161','2022-08-01') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('38', 1656153819,'103.131.71.238','2022-08-01') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('39', 1656154240,'66.249.71.216','2022-07-01') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('40', 1656154240,'66.249.71.216','2022-07-02') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('41', 1656154240,'66.249.71.216','2022-07-03') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('42', 1656154240,'66.249.71.216','2022-07-04') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('43', 1656154240,'66.249.71.216','2022-07-05') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('44', 1656154240,'66.249.71.216','2022-07-06') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('45', 1656154240,'66.249.71.216','2022-07-07') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('46', 1656154240,'66.249.71.216','2022-07-08') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('47', 1656154240,'66.249.71.216','2022-07-09') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('48', 1656154240,'66.249.71.216','2022-07-10') 
+INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('49', 1656154240,'66.249.71.216','2022-07-09') 
 
 
-
+/*
 Declare @GivenDate datetime
 SET @GivenDate = GETDATE()
 
 Select DATEADD(MM,DATEDIFF(MM, 0, @GivenDate),31) --First day of the month 
 
 Select DATEADD(MM,DATEDIFF(MM, -1, @GivenDate),-1) --Last day of the month
+SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total 
+FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b
+WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = 'quan01'
+	AND (b.Status = 1 OR b.Status = 2 ) AND b.BookingDate between (SELECT DATEADD(wk, 0, DATEADD(DAY, 1-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) and (SELECT DATEADD(wk, 1, DATEADD(DAY, 0-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) ) a 
+GROUP BY  a.BookingDate, a.MotelID, a.BookingDate 
+ORDER BY a.BookingDate
+select * from tblBooking
+
+SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings 
+                                               FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings 
+                                               FROM tblUser, tblMotel, tblFeedBack, tblBooking
+                                               WHERE tblUser.UserID = 'quan01' AND tblUser.UserID = tblMotel.OwnerID AND tblMotel.MotelID = tblFeedBack.MotelID AND tblFeedBack.BookingID = tblBooking.BookingID) a inner join tblUser on tblUser.UserID = a.UserID ORDER BY a.BookingDate DESC
+*/

@@ -30,7 +30,7 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="owner-index.html">
+                            <a href="MainController?action=ShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                             <%
