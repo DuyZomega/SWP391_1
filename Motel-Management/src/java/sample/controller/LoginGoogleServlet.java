@@ -60,10 +60,11 @@ public class LoginGoogleServlet extends HttpServlet {
             } else {
                 Random generator = new Random();
                 String userId = String.valueOf(generator.nextInt(9999999));
-                String password = "***";
+                String password = "12345";
                 String role = "US";
                 int status = 1;
-                UserDTO usergoogle = new UserDTO(userId, name, image, 0, "", "", "", email, "", role, status);
+               // UserDTO usergoogle = new UserDTO(userId, name, image, 0, "", "", "", email, "", role, status);
+                UserDTO usergoogle = new UserDTO(userId, name, role, email, password, role, status);
                
                 boolean checkInsert = dao.insertUserGoogle(usergoogle);
                 if (checkInsert) {

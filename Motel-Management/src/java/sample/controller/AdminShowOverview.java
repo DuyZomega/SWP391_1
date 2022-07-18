@@ -7,6 +7,7 @@ package sample.controller;
 import java.io.IOException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
@@ -55,29 +56,38 @@ public class AdminShowOverview extends HttpServlet {
             }
             //======chart =========
             //  DashboardDTO chart = new DashboardDTO();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime then = now.plusDays(-7);
+        
             List<DashboardDTO> listChart = new ArrayList<>();
-            for (int i = 2; i <= 8; i++) {
+            for (int i = -5; i <= 2; i++) {
                 List<DashboardDTO> countdate = dao.getDate(i);
                 listChart.addAll(countdate);
             }
             request.setAttribute("ADMINCHART", listChart);
 
             List<DashboardDTO> listChartMth = new ArrayList<>();
-            String enddate = dao.getEndDateOfMonth();
-            TemporalAccessor temporal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(enddate); // use parse(date, LocalDateTime::from) to get LocalDateTime
-            String end = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
-            for (int i = 0; i <= 31; i++) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");  
+            Date date = new Date();  
+            String end =formatter.format(date);
+            //String enddate = dao.getEndDateOfMonth();
+          //  TemporalAccessor temporal = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(enddate); // use parse(date, LocalDateTime::from) to get LocalDateTime
+            //String end = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(enddate);
+            for (int i = 0; i <= 30; i++) {
                 String startdate = dao.getStartDateOfMonth(i);
                 TemporalAccessor temporal1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(startdate);
                 String start = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal1);
-               
+               if(start.equals(end)){
+                break;
+               } else{
                     List<DashboardDTO> countdate1 = dao.getDateMth(start);
                     listChartMth.addAll(countdate1);
                 
+               }
             }
 
             request.setAttribute("ADMINCHART_MONTH", listChartMth);
-                String start2 = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
+               // String start2 = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal);
 
             //=============
         } catch (Exception e) {
