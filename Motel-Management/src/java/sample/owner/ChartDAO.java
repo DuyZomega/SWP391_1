@@ -18,17 +18,17 @@ import sample.utils.DBUtils;
  * @author Bao
  */
 public class ChartDAO {
-    private static final String GET_CHART_OVERVIEW = "SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total \n" +
+    private static final String GET_CHART_OVERVIEW = "SELECT CAST(a.BookingDate as DATE) as BookingDate, a.MotelID, SUM(a.Total) as total \n" +
                                                      "FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b\n" +
                                                      "WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = ? AND (b.Status = 1 OR b.Status = 2 ) AND b.BookingDate between (SELECT DATEADD(wk, 0, DATEADD(DAY, 1-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) and (SELECT DATEADD(wk, 1, DATEADD(DAY, 0-DATEPART(WEEKDAY, GETDATE()), DATEDIFF(dd, 0, GETDATE())))) ) a \n" +
-                                                     "GROUP BY  a.BookingDate, a.MotelID, a.BookingDate \n" +
-                                                     "ORDER BY a.BookingDate";
+                                                     "GROUP BY  CAST(a.BookingDate as DATE), a.MotelID \n" +
+                                                     "ORDER BY CAST(a.BookingDate as DATE)";
     
-    private static final String GET_CHART_STATICTICAL = "SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total \n" +
+    private static final String GET_CHART_STATICTICAL = "SELECT CAST(a.BookingDate as DATE) as BookingDate, a.MotelID, SUM(a.Total) as total \n" +
                                                         "FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b\n" +
                                                         "WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.RoomID AND bd.BookingID = b.BookingID AND m.OwnerID = ? AND (b.Status = 1 OR b.Status = 2 ) AND b.BookingDate between ( SELECT DATEFROMPARTS(YEAR(GETDATE()), 1, 1) ) and ( SELECT DATEFROMPARTS(YEAR(GETDATE()), 12, 31) ) )a \n" +
-                                                        "GROUP BY  a.BookingDate, a.MotelID, a.BookingDate \n" +
-                                                        "ORDER BY a.BookingDate";
+                                                        "GROUP BY  CAST(a.BookingDate as DATE), a.MotelID \n" +
+                                                        "ORDER BY CAST(a.BookingDate as DATE)";
     
     
     public List<ChartDTO> getDataChartStatical(String ownerID) throws SQLException {
