@@ -139,20 +139,20 @@ function other(event) {
 }
 
 // select following select box
-var sel1 = document.querySelector('#motelId');
-var sel2 = document.querySelector('#typeRoom');
-var options2 = sel2.querySelectorAll('option');
-
-function myFunc(selValue) {
-  sel2.innerHTML = '';
-  for(var i = 0; i < options2.length; i++) {
-    if(options2[i].dataset.option === selValue) {
-      sel2.appendChild(options2[i]);
-    }
-  }
-  sel2.appendChild(options2[options2.length-1]);
-}
-giveSelection(sel1.value);
+//var sel1 = document.querySelector('#motelId');
+//var sel2 = document.querySelector('#typeRoom');
+//var options2 = sel2.querySelectorAll('option');
+//
+//function myFunc(selValue) {
+//  sel2.innerHTML = '';
+//  for(var i = 0; i < options2.length; i++) {
+//    if(options2[i].dataset.option === selValue) {
+//      sel2.appendChild(options2[i]);
+//    }
+//  }
+//  sel2.appendChild(options2[options2.length-1]);
+//}
+//giveSelection(sel1.value);
 
 // sweetalert
 function submitFunc() {
@@ -196,8 +196,7 @@ var num = [];
 var nameOfHome = [];
 for (let i = 0; i < numOfHome.length; i++) {
     eval ('var array' + i + '= []');
-    var data = document.getElementById(numOfHome[i].id);
-    
+    var data = document.getElementById(numOfHome[i].id);  
     nameOfHome.push(data.name);
 
     for (let j = 0; j < data.length; j++) {
@@ -205,7 +204,6 @@ for (let i = 0; i < numOfHome.length; i++) {
     }  
     num.push(eval('array'+ i));
 }
-
 
   const myCtx = document.getElementById('chart-Dashboard').getContext('2d');
   const myChart = new Chart(myCtx, {   
@@ -271,7 +269,6 @@ for (let i = 0; i < numOfHome.length; i++) {
     }
     myChart.update();
 
-    period.classList.addClass('active');
   } 
 
   
