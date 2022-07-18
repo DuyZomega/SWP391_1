@@ -78,7 +78,9 @@ public class AdminShowOverview extends HttpServlet {
                 TemporalAccessor temporal1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S").parse(startdate);
                 String start = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(temporal1);
                if(start.equals(end)){
-                break;
+                    List<DashboardDTO> countdate1 = dao.getDateMth(start);
+                    listChartMth.addAll(countdate1);
+                    break;
                } else{
                     List<DashboardDTO> countdate1 = dao.getDateMth(start);
                     listChartMth.addAll(countdate1);
