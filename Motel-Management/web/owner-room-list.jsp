@@ -465,5 +465,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.es5.min.js"></script>
         <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
         <script src="assets/js/owner-script.js"></script>
+        <script src="assets/js/select.js"></script>
     </body>
 </html>

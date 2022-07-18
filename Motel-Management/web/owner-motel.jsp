@@ -477,5 +477,6 @@
         <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="assets/js/owner-script.js"></script>
+        <script src="assets/js/chart.js"></script>
     </body>
 </html>

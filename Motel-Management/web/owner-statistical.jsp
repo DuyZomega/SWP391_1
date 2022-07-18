@@ -196,6 +196,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
         <script src="assets/js/owner-script.js"></script>   
-
+        <script src="assets/js/chart.js"></script>
     </body>
 </html>
