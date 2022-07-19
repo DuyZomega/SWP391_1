@@ -45,7 +45,7 @@ public class OwnerNotificationController2 extends HttpServlet {
             if (loginUser != null) {
                 NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
                 boolean checkUpdateNoti = dao.updateNotification(notifi);
-                List<NotificationDTO> listNoti = dao.getnotiList();
+                List<NotificationDTO> listNoti = dao.getnotiList(loginUser.getUserId());
                 if (listNoti != null) {
                     request.setAttribute("LIST_NOTI", listNoti);
                     url = SUCCESS;

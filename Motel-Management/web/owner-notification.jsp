@@ -201,8 +201,8 @@
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="MainController?action=ownerno&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-success confirm">Xác nhận</a>
-                                                                                <a href="MainController?action=ownerno1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
+                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
                                                                     </td>
@@ -217,7 +217,8 @@
                                                                 </c:if>
                                                             </c:if>
                                                             </tr>
-                                                            <%}
+                                                            <%
+                                                                }
                                                             %> 
                                                             </tbody>
 
