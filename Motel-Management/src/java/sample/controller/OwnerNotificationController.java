@@ -39,7 +39,7 @@ public class OwnerNotificationController extends HttpServlet {
             NotificationDTO noti = new NotificationDTO();
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
-                int notiNumber = dao.getNotificationNumber(userID);
+                int notiNumber = dao.getOwnerNotificationNumber(userID);
                 noti = new NotificationDTO(notiNumber);
                 if (noti != null) {
                     request.setAttribute("NOTIFICATION", noti);

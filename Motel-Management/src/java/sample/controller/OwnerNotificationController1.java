@@ -35,6 +35,7 @@ public class OwnerNotificationController1 extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             NotificationDAO dao = new NotificationDAO();
+            
             int Status = 0;
             String title = "Xác nhận đặt phòng";
             String desc = "Đã xử lý";
@@ -45,10 +46,16 @@ public class OwnerNotificationController1 extends HttpServlet {
                 boolean checkUpdateNoti = dao.updateNotification(notifi);
                 if (checkUpdateNoti) {
                     checkUpdateNoti = dao.submitBooking(announcementID);
+                    if(checkUpdateNoti){
+                        checkUpdateNoti = dao.submitRoom(announcementID);
+                        if(checkUpdateNoti){
+                            request.setAttribute("MESSAGE", "Nhận Phòng Thành Công!");
+                        }
+                    }
                 }
             }
         } catch (Exception e) {
-            log("Error at NotificationController:" + e.toString());
+            log("Error at ƠnerNotificationController1:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
