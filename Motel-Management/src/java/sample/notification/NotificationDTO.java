@@ -16,6 +16,7 @@ public class NotificationDTO {
     public String desct;
     public Date date;
     public String userID;
+    public String ownerID;
     private int status;
     public int notificationNumber;
     public String fullname;
@@ -91,6 +92,14 @@ public class NotificationDTO {
         this.fullname = fullname;
     }
 
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
+    }
+
     public NotificationDTO(String announcementID, String title, String desct, Date date, int status, int notificationNumber) {
         this.announcementID = announcementID;
         this.title = title;
@@ -112,14 +121,15 @@ public class NotificationDTO {
         this.status = status;
     }
 
-    public NotificationDTO(String announcementID, String title, String desct, Date date, String userID, int status) {
+    public NotificationDTO(String announcementID, String title, String desct, Date date, String ownerID, int status) {
         this.announcementID = announcementID;
         this.title = title;
         this.desct = desct;
         this.date = date;
-        this.userID = userID;
+        this.ownerID = ownerID;
         this.status = status;
     }
+
 
     public NotificationDTO(String announcementID, String title, String desct, Date date, String userID, int status, String fullname) {
         this.announcementID = announcementID;
@@ -148,6 +158,17 @@ public class NotificationDTO {
         this.desct = desct;
         this.status = status;
     }
+
+    public NotificationDTO(String announcementID, String title, String desct, Date date, String userID, String ownerID, int status) {
+        this.announcementID = announcementID;
+        this.title = title;
+        this.desct = desct;
+        this.date = date;
+        this.userID = userID;
+        this.ownerID = ownerID;
+        this.status = status;
+    }
+
 
 
 }

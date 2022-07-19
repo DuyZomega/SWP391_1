@@ -455,7 +455,7 @@ public class MotelDAO {
 
     }
 
-    private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone,tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.Status, tblUser.FullName as fullName , tblUser.Phone, tblUser.Image as ownerImage \n"
+    private static final String SHOWDETAIL_MOTEL = "SELECT tblMotel.Name, tblMotel.image, tblMotel.phone,tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblMotel.OwnerID as ownerID, tblMotel.Status, tblUser.FullName as fullName , tblUser.Phone, tblUser.Image as ownerImage \n"
             + "FROM tblMotel,tblDistrict,tblCity , tblUser\n"
             + "WHERE  tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID  AND tblMotel.OwnerID = tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.MotelID = ?";
 
@@ -482,7 +482,8 @@ public class MotelDAO {
                     int status = rs.getInt("status");
                     String ownerName = rs.getString("fullName");
                     String ownerImage = rs.getString("ownerImage");
-                    listMotel.add(new MotelDTO(name, image, phone, desct, address, district, city, rating, ownerImage, rating, ownerImage, rating, ownerName, status));
+                    String ownerID = rs.getString("ownerID");
+                    listMotel.add(new MotelDTO(name, image, phone, desct, address, district, city, rating, ownerImage, ownerID, ownerName, status));
                 }
             }
         } catch (Exception e) {
