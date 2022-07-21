@@ -233,13 +233,13 @@ public class NotificationDAO {
         }
         return check;
     }
-    private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct as Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser,tblBooking  WHERE tblBooking.UserID = tblUser.UserID AND tblUser.UserID = ? AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ?";
+    private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct as Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser,tblBooking  WHERE tblBooking.UserID = tblUser.UserID AND tblUser.UserID = ? AND tblBooking.BookingID = tblNotification.AnnouncementID ";
     private static final String GET_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification,tblBooking \n"
             + "WHERE tblUser.UserID = tblBooking.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1 AND tblBooking.BookingID = tblNotification.AnnouncementID";
 
     private static final String NOTIFICATION = "INSERT [tblNotification] ([AnnouncementID], [Title], [Desct], [Date], [OwnerID], [Status]) VALUES (?,?,?,?,?,?)";
 
-    private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID, tblUser.FullName FROM tblNotification,tblUser,tblBooking WHERE tblBooking.UserID = tblUser.UserID ";
+    private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct as Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser,tblBooking WHERE tblBooking.UserID = tblUser.UserID AND tblUser.UserID = ? ";
 
     private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblUser.UserID = ? AND tblBooking.UserID = tblUser.UserID";
     private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblBooking.UserID = tblUser.UserID AND AnnouncementID = ?";
@@ -310,7 +310,7 @@ public class NotificationDAO {
         return notiList;
     }
 
-    public List<NotificationDTO> getnotiList() throws SQLException {
+    public List<NotificationDTO> getnotiList(String userID) throws SQLException {
         List<NotificationDTO> notiList1 = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -319,13 +319,13 @@ public class NotificationDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(LIST_NOTIFICATION);
+                ptm.setString(1, userID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String announceID = rs.getString("AnnouncementID");
                     String title = rs.getString("Title");
                     String desct = rs.getString("Desct");
                     Date date = rs.getDate("Date");
-                    String userID = rs.getString("UserID");
                     int status = rs.getInt("Status");
                     String fullname = rs.getString("FullName");
                     notiList1.add(new NotificationDTO(announceID, title, desct, date, userID, status, fullname));
