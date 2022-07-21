@@ -115,7 +115,7 @@
                                         <h2>Liên hệ</h2>
                                         <hr>
                                         <div class="content-booking-detail">
-                                            <span><img src="${o.typename}"
+                                            <span><img src="${o.service}"
                                                        alt="profile"
                                                        style="width: 100px; min-height: 100px"></span>
                                             <span>

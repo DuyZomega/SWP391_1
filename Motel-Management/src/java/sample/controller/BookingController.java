@@ -126,27 +126,7 @@ public class BookingController extends HttpServlet {
                 request.setAttribute("SUCCESS", "Booking successfully ");
                 url = SUCCESS;
             }
-            //===============
-            String motelInfo = "";
-            List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
-            for (MotelDTO m : lm) {
-                motelInfo += "<h4>" + m.getName() + "</h4><br> Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "<br> TOTAL :" + m.getMotelprice() + "VND. <br>";
-            }
-
-            List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
-            for (MotelDTO m : listBooking) {
-                orderTable += "<br>- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd/room) - Hour:" + m.getNumberRoomType() + " (h)<br>";
-            }
-            byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
-            UserDTO userProfile = user.getUserProfile(userId);
-            String gmailUser = userProfile.getGmail();
-            String value = new String(byteText, "UTF-8");
-
-            String mes = "Your order have ID: <h5>" + bookingID + "<h5> <br> "
-                    + motelInfo
-                    + value
-                    + "<br>For any questions, please contact the ROH Motel hotline: 0396421901";
-            SendEmail.sendEmail(gmailUser, mes);
+            
             //===============
             NotificationDAO dao = new NotificationDAO();
             String title = "Bạn đã đặt phòng";
@@ -175,6 +155,28 @@ public class BookingController extends HttpServlet {
                     }
                 }
             }
+            
+            //===============
+            String motelInfo = "";
+            List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
+            for (MotelDTO m : lm) {
+                motelInfo += "<h4>" + m.getName() + "</h4><br> Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "<br> TOTAL :" + m.getMotelprice() + "VND. <br>";
+            }
+
+            List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
+            for (MotelDTO m : listBooking) {
+                orderTable += "<br>- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd/room) - Hour:" + m.getNumberRoomType() + " (h)<br>";
+            }
+            byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
+            UserDTO userProfile = user.getUserProfile(userId);
+            String gmailUser = userProfile.getGmail();
+            String value = new String(byteText, "UTF-8");
+
+            String mes = "Your order have ID: <h5>" + bookingID + "<h5> <br> "
+                    + motelInfo
+                    + value
+                    + "<br>For any questions, please contact the ROH Motel hotline: 0396421901";
+            SendEmail.sendEmail(gmailUser, mes);
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
         } finally {
