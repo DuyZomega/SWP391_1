@@ -38,7 +38,7 @@
                     <div class="navigation">  
                         <ul class="slide-menu">
                             <div class="logo">
-                                <a href="owner-index.jsp">
+                                <a href="index.jsp">
                                     <img class="logo" src="assets/img/logo2.png" alt="logo">
                                 </a>
                             </div>

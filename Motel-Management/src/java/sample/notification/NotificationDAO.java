@@ -21,16 +21,12 @@ import sample.utils.DBUtils;
  */
 public class NotificationDAO {
 
-    private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID AND tblUser.UserID = ? ";
-    private static final String GET_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification \n"
-            + "WHERE tblUser.UserID = tblNotification.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1";
-
-    private static final String NOTIFICATION = "INSERT [tblNotification] ([AnnouncementID], [Title], [Desct], [Date], [UserID], [Status]) VALUES (?,?,?,?,?,?)";
-
-    private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Desct = ? , Status = ? WHERE AnnouncementID = ?";
-    private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblNotification.UserID, tblUser.FullName FROM tblNotification,tblUser WHERE tblNotification.UserID = tblUser.UserID ";
-    private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? WHERE UserID = ?";
-    private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? WHERE tblNotification.UserID = tblUser.UserID AND AnnouncementID = ?";
+    private static final String GET_OWNER_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification \n"
+            + "WHERE tblUser.UserID = tblNotification.OwnerID AND tblUser.UserID = ? AND tblNotification.Status = 1";
+    private static final String SUBMIT_BOOKING = "UPDATE tblBooking SET Status = 0 WHERE BookingID = ?";
+    private static final String SUBMIT_ROOM = "UPDATE tblRoom SET Status = 1 FROM tblBooking, tblBookingDetail, tblRoom WHERE tblBooking.BookingID = ? AND tblBooking.BookingID = tblBookingDetail.BookingID AND tblBookingDetail.RoomID = tblRoom.RoomID";
+    private static final String UNSUBMIT_BOOKING = "UPDATE tblBooking SET Status = 3 WHERE BookingID = ?";
+    private static final String UNSUBMIT_ROOM = "UPDATE tblRoom SET Status = 0 FROM tblBooking, tblBookingDetail, tblRoom WHERE tblBooking.BookingID = ? AND tblBooking.BookingID = tblBookingDetail.BookingID AND tblBookingDetail.RoomID = tblRoom.RoomID";
 
     public boolean updateNotification(NotificationDTO notifi) throws SQLException {
         boolean check = false;
@@ -58,6 +54,7 @@ public class NotificationDAO {
         }
         return check;
     }
+
     public boolean updateNotification1(NotificationDTO notifi) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -109,6 +106,145 @@ public class NotificationDAO {
         return check;
     }
 
+
+    public int getOwnerNotificationNumber(String userID) throws SQLException {
+        int notificationNumber = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_OWNER_NOTIFICATION_NUMBER);
+                ptm.setString(1, userID);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    notificationNumber = rs.getInt("NumberNotification");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return notificationNumber;
+    }
+
+    public boolean submitRoom(String bookingID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SUBMIT_ROOM);
+                ptm.setString(1, bookingID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean submitBooking(String bookingID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(SUBMIT_BOOKING);
+                ptm.setString(1, bookingID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean unSubmitRoom(String bookingID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UNSUBMIT_ROOM);
+                ptm.setString(1, bookingID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
+    public boolean unSubmitBooking(String bookingID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UNSUBMIT_BOOKING);
+                ptm.setString(1, bookingID);
+                check = ptm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+    private static final String SHOW_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct as Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID FROM tblNotification,tblUser,tblBooking  WHERE tblBooking.UserID = tblUser.UserID AND tblUser.UserID = ? AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ?";
+    private static final String GET_NOTIFICATION_NUMBER = "SELECT COUNT(*) as NumberNotification FROM  tblUser, tblNotification,tblBooking \n"
+            + "WHERE tblUser.UserID = tblBooking.UserID AND tblUser.UserID = ? AND tblNotification.Status = 1 AND tblBooking.BookingID = tblNotification.AnnouncementID";
+
+    private static final String NOTIFICATION = "INSERT [tblNotification] ([AnnouncementID], [Title], [Desct], [Date], [OwnerID], [Status]) VALUES (?,?,?,?,?,?)";
+
+    private static final String LIST_NOTIFICATION = "SELECT AnnouncementID, Title, Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.UserID, tblUser.FullName FROM tblNotification,tblUser,tblBooking WHERE tblBooking.UserID = tblUser.UserID ";
+
+    private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblUser.UserID = ? AND tblBooking.UserID = tblUser.UserID";
+    private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblBooking.UserID = tblUser.UserID AND AnnouncementID = ?";
+    private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Desct = ? , Status = ? WHERE AnnouncementID = ?";
+
     public boolean insertNotification(NotificationDTO notifi) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -121,7 +257,7 @@ public class NotificationDAO {
                 ptm.setString(2, notifi.getTitle());
                 ptm.setString(3, notifi.getDesct());
                 ptm.setDate(4, notifi.getDate());
-                ptm.setString(5, notifi.getUserID());
+                ptm.setString(5, notifi.getOwnerID());
                 ptm.setInt(6, notifi.getStatus());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }

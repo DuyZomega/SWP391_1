@@ -149,15 +149,15 @@ public class BookingController extends HttpServlet {
             SendEmail.sendEmail(gmailUser, mes);
             //===============
             NotificationDAO dao = new NotificationDAO();
-            String annoucementID = String.valueOf(generator.nextInt(9999999));
             String title = "Bạn đã đặt phòng";
             String desc = "Đang xử lý";
+            String announcementID = bookingID;
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
             int Status = 1;
             if (loginUser != null) {
-                String userID = loginUser.getUserId();
-                NotificationDTO noti = new NotificationDTO(annoucementID, title, desc, startDate, userID, Status);
+                String ownerID = request.getParameter("ownerID");
+                NotificationDTO noti = new NotificationDTO(announcementID, title, desc, startDate, ownerID, Status);
                 boolean checkCreateNoti = dao.insertNotification(noti);
             }
 

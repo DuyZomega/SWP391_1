@@ -31,7 +31,7 @@
                 <div class="navigation">
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="MainController?action=ShowOverview">
+                            <a href="index.jsp">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
@@ -85,12 +85,6 @@
                             <a href="MainController?action=notify">
                                 <span><i class='bx bx-bell'></i></span>
                                 <span class="title">Thông báo</span>
-                            </a>
-                        </li>
-                        <li data-toggle="tooltip"data-placement="right" title="Nhận xét">
-                            <a href="onwer-feedback.jsp">
-                                <span><i class="bx bx-detail"></i></span>
-                                <span class="title">Nhận xét</span>
                             </a>
                         </li>
                         <li data-toggle="tooltip"data-placement="right" title="Thống kê">
@@ -465,6 +459,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.es5.min.js"></script>
         <script src="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.js"></script>
         <script src="assets/js/owner-script.js"></script>
-        <script src="assets/js/select.js"></script>
     </body>
 </html>

@@ -27,7 +27,7 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="MainController?action=ShowOverview">
+                            <a href="index.jsp">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
@@ -122,7 +122,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -201,8 +201,8 @@
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="MainController?action=ownerno&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-success confirm">Xác nhận</a>
-                                                                                <a href="MainController?action=ownerno1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
+                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
                                                                     </td>
@@ -217,7 +217,8 @@
                                                                 </c:if>
                                                             </c:if>
                                                             </tr>
-                                                            <%}
+                                                            <%
+                                                                }
                                                             %> 
                                                             </tbody>
 

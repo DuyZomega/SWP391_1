@@ -1,5 +1,3 @@
-
-
 USE [master];
 GO
 
@@ -101,7 +99,7 @@ CREATE TABLE [tblNotification]( --done
 [Title]           [nvarchar](100),
 [Desct]           [nvarchar](1500),
 [Date]            [date],
-[UserID]          [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),
+[OwnerID]          [varchar](10) not null FOREIGN KEY REFERENCES tblUser(UserID),
 [Status]       int 
 );
 
@@ -159,6 +157,9 @@ CREATE TABLE [tblBookingServiceDetail](
 ALTER TABLE [tblPayment]
 ADD CONSTRAINT FK_Payment_Booking FOREIGN KEY([PaymentID]) 
     REFERENCES [tblBooking]([BookingID]);
+ALTER TABLE [tblNotification]
+ADD CONSTRAINT FK_Notification_Booking FOREIGN KEY([AnnouncementID]) 
+    REFERENCES [tblBooking]([BookingID]);
 
 
 CREATE TABLE [visit_tracking](--done
@@ -188,75 +189,47 @@ INSERT [tblUser] ([UserID], [FullName],[Password], [Image],[DateOfBirth], [Citiz
 
 --insert motel
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587416594',N'Nhà Trọ Ngọc Quân', N'<p>Nằm c&aacute;ch C&ocirc;ng vi&ecirc;n Yersin 1,2 km, Nh&agrave; Trọ Vạn Ph&uacute;c c&oacute; chỗ nghỉ với sảnh kh&aacute;ch chung, khu vườn v&agrave; lễ t&acirc;n 24 giờ để tạo thuận tiện cho kh&aacute;ch. Chỗ nghỉ n&agrave;y cung cấp WiFi miễn ph&iacute;.</p>
-
 <p>Mỗi căn tại đ&acirc;y đều được bố tr&iacute; ph&ograve;ng tắm ri&ecirc;ng với v&ograve;i xịt/chậu rửa vệ sinh, dép đi trong phòng, m&aacute;y sấy t&oacute;c v&agrave; đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;.</p>
-
 <p>Kh&aacute;ch sạn căn hộ n&agrave;y phục vụ bữa s&aacute;ng &agrave; la carte.</p>
-
 <p>Nh&agrave; Trọ Vạn Ph&uacute;c c&oacute; s&acirc;n hi&ecirc;n.</p>
-
 <p>Du kh&aacute;ch c&oacute; thể đi xe đạp để kh&aacute;m ph&aacute; khu vực xung quanh v&agrave; chỗ nghỉ c&oacute; thể thu xếp dịch vụ cho thu&ecirc; xe hơi.</p>
-
 <p>C&aacute;c điểm tham quan nổi tiếng gần Trọng Nguyễn villa bao gồm Hồ Xu&acirc;n Hương, Quảng trường L&acirc;m Vi&ecirc;n v&agrave; Vườn hoa Đ&agrave; Lạt. S&acirc;n bay gần nhất l&agrave; s&acirc;n bay Li&ecirc;n Khương, nằm trong b&aacute;n k&iacute;nh 23 km từ kh&aacute;ch sạn căn hộ n&agrave;y, v&agrave; chỗ nghỉ cung cấp dịch vụ đưa đ&oacute;n s&acirc;n bay với một khoản phụ ph&iacute;.</p>
-
 <p>&nbsp;</p>
 ',N'images/motel-1.jpg', N'0948484848','1', N'111 đình phong phú,tăng nhơn phú B',4,N'leminhquan',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'842578129',N'Nhà Trọ Ánh Dương',N'<p>C&oacute; vị tr&iacute; thuận tiện ở Quận 1, Ngan Ha Hotel cung cấp c&aacute;c ph&ograve;ng nghỉ trang nh&atilde; v&agrave; thoải m&aacute;i với Wi-Fi miễn ph&iacute; tại c&aacute;c khu vực chung. Nơi nghỉ n&agrave;y c&oacute; lễ t&acirc;n 24 giờ v&agrave; chỗ đỗ xe m&aacute;y miễn ph&iacute;.</p>
-
 <p>Kh&aacute;ch sạn c&aacute;ch Chợ Bến Th&agrave;nh nổi tiếng chỉ 200 m v&agrave; Bảo t&agrave;ng Mỹ thuật 400 m. Dinh Độc Lập v&agrave; S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất c&aacute;ch đ&oacute; lần lượt 500 m v&agrave; 7 km l&aacute;i xe.</p>
-
 <p>C&aacute;c ph&ograve;ng m&aacute;y lạnh được b&agrave;i tr&iacute; đơn giản tại đ&acirc;y c&oacute; tủ quần &aacute;o, khu vực tiếp kh&aacute;ch, minibar v&agrave; truyền h&igrave;nh c&aacute;p. Ngo&agrave;i ra c&ograve;n bao gồm ph&ograve;ng tắm ri&ecirc;ng với bồn tắm/tiện nghi v&ograve;i sen. Đồ vệ sinh c&aacute; nh&acirc;n được cung cấp miễn ph&iacute;.</p>
-
 <p>Nh&acirc;n vi&ecirc;n th&acirc;n thiện tại Ngan Ha Hotel sẵn l&ograve;ng hỗ trợ qu&yacute; kh&aacute;ch với c&aacute;c dịch vụ để h&agrave;nh l&yacute;, đặt v&eacute; v&agrave; fax/photocopy. Dịch vụ đưa đ&oacute;n v&agrave; vận chuyển s&acirc;n bay c&oacute; thể được bố tr&iacute; với một khoản phụ ph&iacute;.</p>
-
 <p><img alt="" src="images/motel-6.jpg" /></p>
 ',N'images/motel-5.jpg', N'0328787878','2', N'143A Mỹ Đức,Bình Phú',4.5,N'leminhquan',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'486258478',N'Nhà Trọ Gia Lai',N'<p>Tọa lạc tại vị tr&iacute; l&yacute; tưởng ở Quận 1 thuộc Th&agrave;nh phố Hồ Ch&iacute; Minh, Saigon Hanoi Central Hotel nằm c&aacute;ch Chợ ẩm thực đường phố Bến Th&agrave;nh 500 m, C&ocirc;ng vi&ecirc;n Tao Đ&agrave;n 500 m v&agrave; Bảo t&agrave;ng Th&agrave;nh phố Hồ Ch&iacute; Minh 800 m. Chỗ nghỉ n&agrave;y c&ograve;n c&oacute; một số tiện nghi như nh&agrave; h&agrave;ng, lễ t&acirc;n 24 giờ, dịch vụ ph&ograve;ng cũng như WiFi miễn ph&iacute; trong to&agrave;n bộ khu&ocirc;n vi&ecirc;n. Kh&aacute;ch sạn cung cấp c&aacute;c ph&ograve;ng gia đ&igrave;nh.</p>
-
 <p>Tất cả ph&ograve;ng nghỉ tại kh&aacute;ch sạn c&oacute; m&aacute;y điều h&ograve;a, TV truyền h&igrave;nh vệ tinh m&agrave;n h&igrave;nh phẳng, tủ lạnh, ấm đun nước, vòi sen, dép v&agrave; tủ để quần &aacute;o. C&aacute;c ph&ograve;ng c&oacute; ph&ograve;ng tắm ri&ecirc;ng, m&aacute;y sấy t&oacute;c v&agrave; ga trải giường.</p>
-
 <p>Kh&aacute;ch sạn cung cấp bữa s&aacute;ng buffet hoặc bữa s&aacute;ng kiểu Mỹ.</p>
-
 <p>C&aacute;c điểm tham quan nổi tiếng gần Saigon Hanoi Central Hotel bao gồm Chợ Bến Th&agrave;nh, trung t&acirc;m thương mại Takashimaya Việt Nam v&agrave; Trung t&acirc;m Thương mại Union Square. S&acirc;n bay gần nhất l&agrave; s&acirc;n bay quốc tế T&acirc;n Sơn Nhất, c&aacute;ch đ&oacute; 12 km, v&agrave; chỗ nghỉ cung cấp dịch vụ đưa đ&oacute;n s&acirc;n bay với một khoản phụ ph&iacute;.</p>
-
 <p>Đ&acirc;y l&agrave; khu vực ở TP. H&ocirc;̀ Chí Minh m&agrave; kh&aacute;ch y&ecirc;u th&iacute;ch, theo c&aacute;c đ&aacute;nh gi&aacute; độc lập.</p>
-
 <p>C&aacute;c cặp đ&ocirc;i đặc biệt th&iacute;ch địa điểm n&agrave;y &mdash; họ cho điểm&nbsp;<strong>8,8</strong>&nbsp;cho kỳ nghỉ d&agrave;nh cho 2 người.</p>
 ',N'images/motel-4.jpg', N'0248996587','3', N'345/55 Trần Hưng Đạo, Cầu Kho',4.1,N'tu06',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'861435762',N'Nhà Trọ Malibu Beach',N'Desction motel',N'images/motel-7.jpg', N'0344989898','4', N'263, Lê Hồng Phong',4.1,N'chuongmai',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'548762589',N'Nhà Trọ Ladalat',N'<p><strong>Nh&agrave; Trọ Ladala</strong>t tọa lạc ở th&agrave;nh phố Đ&agrave; Lạt, c&aacute;ch Vườn hoa Đ&agrave; Lạt 3,2 km v&agrave; Quảng trường L&acirc;m Vi&ecirc;n 3,4 km. Chỗ nghỉ n&agrave;y nằm trong b&aacute;n k&iacute;nh 3,6 km từ Hồ Xu&acirc;n Hương, 3,7 km từ C&ocirc;ng vi&ecirc;n Yersin v&agrave; 7 km từ Thiền viện Tr&uacute;c L&acirc;m. Chỗ nghỉ cung cấp miễn ph&iacute; WiFi v&agrave; dịch vụ ph&ograve;ng.</p>
-
 <p>Ph&ograve;ng nghỉ tại khách sạn được trang bị b&agrave;n l&agrave;m việc, TV m&agrave;n h&igrave;nh phẳng, ph&ograve;ng tắm ri&ecirc;ng, ga trải giường, khăn tắm v&agrave; ấm đun nước. Ivy Hotel Dalat cung cấp một số ph&ograve;ng c&oacute; tầm nh&igrave;n ra quang cảnh th&agrave;nh phố.</p>
-
 <p>Hồ Tuyền L&acirc;m nằm c&aacute;ch chỗ nghỉ 7 km trong khi N&uacute;i Lang Bian c&aacute;ch đ&oacute; 8 km. S&acirc;n bay gần nhất l&agrave; s&acirc;n bay Li&ecirc;n Khương, nằm trong b&aacute;n k&iacute;nh 31 km từ Ivy Hotel Dalat.</p>
-
 <p>C&aacute;c cặp đ&ocirc;i đặc biệt th&iacute;ch địa điểm n&agrave;y &mdash; họ cho điểm&nbsp;<strong>8,0</strong>&nbsp;cho kỳ nghỉ d&agrave;nh cho 2 người.</p>
 ',N'images/motel-6.jpg', N'0147586325','5', N'263, Số 19, đường Hoa Hồng, hồ Tuyền Lâm, phường 4',3.9,N'phuc08',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'473658715',N'Nhà Trọ Vạn Phúc',N'Desction motel',N'images/motel-5.jpg', N'0478523645','6', N'91 Vạn Phúc, phường Liễu Giai',4.7,N'Quang09',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'785146827',N'Nhà Trọ VinHome',N'<p>Tọa lạc tại vị tr&iacute; trung t&acirc;m ở Quận 1 của Th&agrave;nh phố Hồ Ch&iacute; Minh, kh&aacute;ch sạn cung cấp c&aacute;c ph&ograve;ng được trang bị nội thất giản dị với Wi-Fi miễn ph&iacute;. Nằm c&aacute;ch Chợ Bến Th&agrave;nh 5 ph&uacute;t đi bộ, nơi đ&acirc;y c&oacute; nh&agrave; h&agrave;ng phục vụ c&aacute;c m&oacute;n ăn Việt Nam.</p>
-
 <p><strong>Nh&agrave; Trọ NgocLan </strong>Nguyễn C&ocirc;ng Trứ The Bitexco Neighbour nằm trong b&aacute;n k&iacute;nh 30 ph&uacute;t l&aacute;i xe từ S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất v&agrave; 700 m từ c&aacute;c điểm tham quan như Dinh Độc Lập cũng như Nh&agrave; thờ Đức B&agrave;.</p>
-
 <p>C&aacute;c ph&ograve;ng m&aacute;y lạnh tại đ&acirc;y c&oacute; s&agrave;n l&aacute;t gạch v&agrave; ph&ograve;ng tắm ri&ecirc;ng. Trong ph&ograve;ng được trang bị truyền h&igrave;nh c&aacute;p, minibar v&agrave; m&aacute;y pha tr&agrave;/c&agrave; ph&ecirc;. Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;, m&aacute;y sấy t&oacute;c v&agrave; d&eacute;p cũng được cung cấp trong ph&ograve;ng. Một số ph&ograve;ng nh&igrave;n ra quang cảnh th&agrave;nh phố.</p>
-
 <p>Đội ngũ nh&acirc;n vi&ecirc;n th&acirc;n thiện của Anh Duy c&oacute; thể hỗ trợ kh&aacute;ch sắp xếp c&aacute;c tour du lịch v&agrave; đặt v&eacute;. Ngo&agrave;i ra, kh&aacute;ch c&ograve;n được cung cấp dịch vụ cho thu&ecirc; xe đạp v&agrave; xe hơi cũng như giặt l&agrave;. Dịch vụ ph&ograve;ng cũng c&oacute; tại đ&acirc;y v&agrave; bữa s&aacute;ng c&oacute; thể được phục vụ ngay trong ph&ograve;ng nghỉ của kh&aacute;ch.</p>
-
 <p>Đ&acirc;y l&agrave; khu vực ở TP. H&ocirc;̀ Chí Minh m&agrave; kh&aacute;ch y&ecirc;u th&iacute;ch, theo c&aacute;c đ&aacute;nh gi&aacute; độc lập.</p>
 ',N'images/motel-4.jpg', N'0745898989','7', N'Đường 30 Tháng 4, Phường Hưng Lợi',4.4,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'625781458',N'Nhà Trọ NgocLan',N'<p>Tọa lạc tại vị tr&iacute; trung t&acirc;m ở Quận 1 của Th&agrave;nh phố Hồ Ch&iacute; Minh, kh&aacute;ch sạn cung cấp c&aacute;c ph&ograve;ng được trang bị nội thất giản dị với Wi-Fi miễn ph&iacute;. Nằm c&aacute;ch Chợ Bến Th&agrave;nh 5 ph&uacute;t đi bộ, nơi đ&acirc;y c&oacute; nh&agrave; h&agrave;ng phục vụ c&aacute;c m&oacute;n ăn Việt Nam.</p>
-
 <p><strong>Nh&agrave; Trọ NgocLan </strong>Nguyễn C&ocirc;ng Trứ The Bitexco Neighbour nằm trong b&aacute;n k&iacute;nh 30 ph&uacute;t l&aacute;i xe từ S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất v&agrave; 700 m từ c&aacute;c điểm tham quan như Dinh Độc Lập cũng như Nh&agrave; thờ Đức B&agrave;.</p>
-
 <p>C&aacute;c ph&ograve;ng m&aacute;y lạnh tại đ&acirc;y c&oacute; s&agrave;n l&aacute;t gạch v&agrave; ph&ograve;ng tắm ri&ecirc;ng. Trong ph&ograve;ng được trang bị truyền h&igrave;nh c&aacute;p, minibar v&agrave; m&aacute;y pha tr&agrave;/c&agrave; ph&ecirc;. Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;, m&aacute;y sấy t&oacute;c v&agrave; d&eacute;p cũng được cung cấp trong ph&ograve;ng. Một số ph&ograve;ng nh&igrave;n ra quang cảnh th&agrave;nh phố.</p>
-
 <p>Đội ngũ nh&acirc;n vi&ecirc;n th&acirc;n thiện của Anh Duy c&oacute; thể hỗ trợ kh&aacute;ch sắp xếp c&aacute;c tour du lịch v&agrave; đặt v&eacute;. Ngo&agrave;i ra, kh&aacute;ch c&ograve;n được cung cấp dịch vụ cho thu&ecirc; xe đạp v&agrave; xe hơi cũng như giặt l&agrave;. Dịch vụ ph&ograve;ng cũng c&oacute; tại đ&acirc;y v&agrave; bữa s&aacute;ng c&oacute; thể được phục vụ ngay trong ph&ograve;ng nghỉ của kh&aacute;ch.</p>
-
 <p>Đ&acirc;y l&agrave; khu vực ở TP. H&ocirc;̀ Chí Minh m&agrave; kh&aacute;ch y&ecirc;u th&iacute;ch, theo c&aacute;c đ&aacute;nh gi&aacute; độc lập.</p>
 ',N'images/motel-3.jpg', N'0985364865','8', N'Đặng Huy Trứ, Phường Vĩnh Nguyên',4.1,N'nhatvuong',1)
 INSERT [tblMotel] ([MotelID], [Name], [Desct], [Image], [Phone], [DistrictID], [Address], [Ratings], [OwnerID], [Status]) VALUES (N'587624587',N'Nhà Trọ Kỳ Nam',N'<p><strong>Nh&agrave; Trọ NgocLan </strong>Nguyễn C&ocirc;ng Trứ The Bitexco Neighbour nằm trong b&aacute;n k&iacute;nh 30 ph&uacute;t l&aacute;i xe từ S&acirc;n bay Quốc tế T&acirc;n Sơn Nhất v&agrave; 700 m từ c&aacute;c điểm tham quan như Dinh Độc Lập cũng như Nh&agrave; thờ Đức B&agrave;.</p>
-
 <p>C&aacute;c ph&ograve;ng m&aacute;y lạnh tại đ&acirc;y c&oacute; s&agrave;n l&aacute;t gạch v&agrave; ph&ograve;ng tắm ri&ecirc;ng. Trong ph&ograve;ng được trang bị truyền h&igrave;nh c&aacute;p, minibar v&agrave; m&aacute;y pha tr&agrave;/c&agrave; ph&ecirc;. Đồ vệ sinh c&aacute; nh&acirc;n miễn ph&iacute;, m&aacute;y sấy t&oacute;c v&agrave; d&eacute;p cũng được cung cấp trong ph&ograve;ng. Một số ph&ograve;ng nh&igrave;n ra quang cảnh th&agrave;nh phố.</p>
-
 <p>Đội ngũ nh&acirc;n vi&ecirc;n th&acirc;n thiện của Anh Duy c&oacute; thể hỗ trợ kh&aacute;ch sắp xếp c&aacute;c tour du lịch v&agrave; đặt v&eacute;. Ngo&agrave;i ra, kh&aacute;ch c&ograve;n được cung cấp dịch vụ cho thu&ecirc; xe đạp v&agrave; xe hơi cũng như giặt l&agrave;. Dịch vụ ph&ograve;ng cũng c&oacute; tại đ&acirc;y v&agrave; bữa s&aacute;ng c&oacute; thể được phục vụ ngay trong ph&ograve;ng nghỉ của kh&aacute;ch.</p>
 ',N'images/motel-2.jpg', N'0985635353','9', N'Hùng Vương, Phường Thanh Hà',3.4,N'chuongmai',1)
 
@@ -274,36 +247,25 @@ INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[Motel
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'5', N'Phòng đôi Ánh Dương', 40000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '842578129',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'6', N'Phòng đơn Gia Lai', 45000, N'images/motel-1.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '486258478',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'7', N'Phòng đôi Malibu Beach', 55000,N'images/motel-1.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh<br> <p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
-
 <p>Điều h&ograve;a kh&ocirc;ng kh&iacute;-Ph&ograve;ng tắm ri&ecirc;ng trong ph&ograve;ng</p>
-
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '861435762',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'8', N'Phòng gia đình Ladalat', 49900,N'images/motel-1.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
-
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
-
 <p>Điều h&ograve;a kh&ocirc;ng kh&iacute;-Ph&ograve;ng tắm ri&ecirc;ng trong ph&ograve;ng</p>
-
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '548762589',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'9', N'Phòng đơn Vạn Phúc', 19800, N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
-
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
-
 <p>Điều h&ograve;a kh&ocirc;ng kh&iacute;-Ph&ograve;ng tắm ri&ecirc;ng trong ph&ograve;ng</p>
-
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '473658715',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'10', N'Phòng đôi Vạn Phúc', 31000,N'images/motel-2.jpg', N'1 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '473658715',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'11', N'Phòng VinHome', 69000,N'images/motel-1.jpg', N'2 giường đôi ,30 m²,Tầm nhìn ra khung cảnh', '785146827',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'12', N'Phòng đơn NgocLan', 25000, N'images/motel-2.jpg', N'1 giường đơn ,20 m²,Tầm nhìn ra khung cảnh', '625781458',1)
 INSERT [tblRoomType] ([RoomTypeID], [TypeName], [Price], [Image], [Desct],[MotelID], [Status]) VALUES (N'13', N'Phòng đôi Kỳ Nam', 24500,N'images/motel-2.jpg', N'<p>32 m&sup2; -Nh&igrave;n ra địa danh nổi tiếng</p>
-
 <p>Nh&igrave;n ra th&agrave;nh phố -Nh&igrave;n ra s&ocirc;ng</p>
-
 <p>Điều h&ograve;a kh&ocirc;ng kh&iacute;-Ph&ograve;ng tắm ri&ecirc;ng trong ph&ograve;ng</p>
-
 <p>TV m&agrave;n h&igrave;nh phẳng- Hệ thống c&aacute;ch &acirc;m</p>
 ', '587624587',1)
 
@@ -384,21 +346,13 @@ INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) V
 INSERT [tblService] ([ServiceID], [ServiceName], [Price], [Status], [MotelID]) VALUES (N'012495547', N'7 up', 15000, 1, N'842578129')
 
 
---INSERT Notification
-
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi01', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-07','tuan04','1') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi02', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 khách đã trả phòng', '2002-08-07','tu06','1') 
-
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi03', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-08-01','duy05','1') 
-INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [UserID], [Status]) VALUES ('notifi04', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-07-24','duy05','1') 
-
 
 ---INSERT Booking
 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2022-07-19',N'Booking table', 420900,2,'duy05') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-07-20',N'Booking table', 710900,1,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking01', '2022-08-01',N'Booking table', 420900,2,'duy05') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking02', '2022-07-24',N'Booking table', 710900,1,'duy05') 
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking03', '2022-08-01',N'Booking table', 138000,1,'ngochai') 
-INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2022-07-27',N'Booking table', 542900,2,'tuan04') 
+INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking04', '2002-01-07',N'Booking table', 542900,2,'tuan04') 
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking05', '2022-08-02',N'khach nhan phong', 340900,2,'Lamm44')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking06', '2022-08-03',N'khach nhan cung ngay', 349300,0,'ngochai')
 INSERT [tblBooking] ([BookingID], [BookingDate],[Desct], [Total],[Status], [UserID]) VALUES ('booking07', '2022-07-20',N'khach nhan phong', 157900,2,'Lamm44')
@@ -412,6 +366,16 @@ INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUE
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt05', '323565985','booking05',5) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt06', '332369568','booking06',7) 
 INSERT [tblBookingDetail] ([BookingDetailID], [RoomID],[BookingID],[Time]) VALUES ('bookDt07', '225657877','booking07',1) 
+
+--INSERT Notification
+
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking01', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2002-08-01','tu06','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking02', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-07-24','tu06','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking03', N'Bạn có phòng đang trả',N'Phòng số 2 ở Motel 02 khách đã trả phòng', '2002-08-07','leminhquan','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking04', N'Bạn có đơn đặt phòng mới',N'Bạn có đơn đặt phòng mới chi tiết xem tại đây', '2002-01-07','leminhquan','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking05', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2022-08-02','leminhquan','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking06', N'Bạn vừa trả phòng',N'Bạn vừa trả phòng hãy đánh giá', '2002-07-24','tu06','1') 
+INSERT [tblNotification] ([AnnouncementID], [Title],[Desct], [Date], [OwnerID], [Status]) VALUES ('booking07', N'Bạn vừa đặt phòng thành công',N'Bạn vừa đặt phòng xong, vui lòng kiểm tra lại hóa đơn chi tiết', '2022-07-20','Quang09','1') 
 
 
 
@@ -512,9 +476,7 @@ INSERT [visit_tracking] ([id], [time],[ip], [date]) VALUES ('49', 1656154240,'66
 /*
 Declare @GivenDate datetime
 SET @GivenDate = GETDATE()
-
 Select DATEADD(MM,DATEDIFF(MM, 0, @GivenDate),31) --First day of the month 
-
 Select DATEADD(MM,DATEDIFF(MM, -1, @GivenDate),-1) --Last day of the month
 SELECT a.BookingDate, a.MotelID, SUM(a.Total) as total 
 FROM (SELECT distinct m.MotelID,b.BookingID,b.BookingDate ,b.Total  FROM tblMotel as m, tblRoomType as rt, tblRoom as r, tblBookingDetail as bd ,tblBooking as b
@@ -523,7 +485,6 @@ WHERE m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID = bd.
 GROUP BY  a.BookingDate, a.MotelID, a.BookingDate 
 ORDER BY a.BookingDate
 select * from tblBooking
-
 SELECT tblUser.FullName,tblUser.Image, a.MotelID,a.FeedbackID,a.BookingDate,a.Desct,a.Ratings 
                                                FROM (SELECT TOP 5 tblBooking.UserID,tblMotel.MotelID,tblFeedBack.FeedbackID,tblBooking.BookingDate , tblFeedBack.Desct, tblFeedBack.Ratings 
                                                FROM tblUser, tblMotel, tblFeedBack, tblBooking

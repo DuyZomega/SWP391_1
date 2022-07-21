@@ -67,7 +67,7 @@
                                 <p class="d-flex"><i class="fa fa-hand-point-right"></i> <label><span class="label">Địa
                                             chỉ:</span><input type="hidden" name="address" value="${o.address},${o.district},${o.city}" /> ${o.address},${o.district},${o.city}
                                     </label></p>
-
+                                    <input type="hidden" name="ownerID" value="${o.ownerId}" />
                                 <div class="d-flex">
                                     <p><i class="fa fa-hand-point-right"></i><span class="label">Đơn giá:</span></p>
                                 </div>

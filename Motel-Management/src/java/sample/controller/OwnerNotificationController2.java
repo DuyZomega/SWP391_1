@@ -25,7 +25,7 @@ import sample.users.UserDTO;
 public class OwnerNotificationController2 extends HttpServlet {
 
     private static final String ERROR = "error.jsp";
-    private static final String SUCCESS = "owner-notification.jsp";
+    private static final String SUCCESS = "OwnerNotificationController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,25 +34,28 @@ public class OwnerNotificationController2 extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
-
             NotificationDAO dao = new NotificationDAO();
-            NotificationDTO noti = new NotificationDTO();
-            int Status = 1;
-            String title = "Chưa nhận tiền đặt phòng";
+            
+            int Status = 0;          
+            String title = "Hủy Đơn đặt phòng";
             String desc = "Đã xử lý";
+            
             String announcementID = request.getParameter("announcementID");
-            boolean checkID = true;
             if (loginUser != null) {
                 NotificationDTO notifi = new NotificationDTO(announcementID, title, desc, Status);
                 boolean checkUpdateNoti = dao.updateNotification(notifi);
-                List<NotificationDTO> listNoti = dao.getnotiList();
-                if (listNoti != null) {
-                    request.setAttribute("LIST_NOTI", listNoti);
-                    url = SUCCESS;
+                if (checkUpdateNoti) {
+                    checkUpdateNoti = dao.unSubmitBooking(announcementID);
+                    if(checkUpdateNoti){
+                        checkUpdateNoti = dao.unSubmitRoom(announcementID);
+                        if(checkUpdateNoti){
+                            request.setAttribute("MESSAGE", "Hủy Phòng Thành Công!");
+                        }
+                    }
                 }
             }
         } catch (Exception e) {
-            log("Error at NotificationController:" + e.toString());
+            log("Error at OwnerNotificationController2:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

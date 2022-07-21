@@ -28,7 +28,7 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="MainController?action=ShowOverview">
+                            <a href="index.jsp">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
@@ -197,5 +197,6 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>   
         <script src="assets/js/owner-script.js"></script>   
         <script src="assets/js/chart.js"></script>
+
     </body>
 </html>

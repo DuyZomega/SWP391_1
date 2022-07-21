@@ -39,11 +39,11 @@ public class OwnerNotificationController extends HttpServlet {
             NotificationDTO noti = new NotificationDTO();
             if (loginUser != null) {
                 String userID = loginUser.getUserId();
-                int notiNumber = dao.getNotificationNumber(userID);
+                int notiNumber = dao.getOwnerNotificationNumber(userID);
                 noti = new NotificationDTO(notiNumber);
                 if (noti != null) {
                     request.setAttribute("NOTIFICATION", noti);
-                    List<NotificationDTO> listNoti = dao.getnotiList();
+                    List<NotificationDTO> listNoti = dao.getnotiList(userID);
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;

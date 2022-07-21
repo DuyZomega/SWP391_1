@@ -35,7 +35,7 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="MainController?action=ShowOverview">
+                            <a href="index.jsp">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
