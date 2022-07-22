@@ -346,6 +346,44 @@ public class NotificationDAO {
         }
         return notiList1;
     }
+    
+    public List<NotificationDTO> getnotiList(String userID) throws SQLException {
+        List<NotificationDTO> notiList1 = new ArrayList();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(LIST_NOTIFICATION);
+                ptm.setString(1, userID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String announceID = rs.getString("AnnouncementID");
+                    String title = rs.getString("Title");
+                    String desct = rs.getString("Desct");
+                    Date date = rs.getDate("Date");
+                    int status = rs.getInt("Status");
+                    String fullname = rs.getString("FullName");
+                    notiList1.add(new NotificationDTO(announceID, title, desct, date, userID, status, fullname));
+                }
+                             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return notiList1;
+    }
+            
 
     public int getNotificationNumber(String userID) throws SQLException {
         int notificationNumber = 0;
