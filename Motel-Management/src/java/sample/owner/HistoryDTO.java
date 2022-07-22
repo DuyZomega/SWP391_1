@@ -162,14 +162,21 @@ public class HistoryDTO {
         this.total = total;
     }
 
-    public HistoryDTO(String userID, String userName, String status, String payType, int total) {
+    public HistoryDTO(String userID, String userName, String status,String motelID, String payType, int total) {
+        this.userID = userID;
+        this.userName = userName;
+        this.motelID = motelID;
+        this.status = status;
+        this.payType = payType;
+        this.total = total;
+    }
+public HistoryDTO(String userID, String userName, String status, String payType, int total) {
         this.userID = userID;
         this.userName = userName;
         this.status = status;
         this.payType = payType;
         this.total = total;
     }
-
     public HistoryDTO(String bookingID, String motelID, String motelAddress, String district, String city, String roomID, String roomType, String status, String payType, String date, int total) {
         this.bookingID = bookingID;
         this.motelID = motelID;
