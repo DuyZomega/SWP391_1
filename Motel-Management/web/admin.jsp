@@ -213,6 +213,7 @@
                                             <th>Hình ảnh</th>
                                             <th>Họ và tên</th>
                                             <th>SDT</th>
+                                            <th>Tên Motel</th>
                                             <th>Income</th>
                                         </tr>
                                     </thead>
@@ -228,6 +229,7 @@
                                                             <img src="${t.status}">
                                                         </td>
                                                         <td>${t.userName}</td>
+                                                        <td>${t.motelID}</td>
                                                         <td>${t.payType}</td>
                                                         <td>
                                                             <span class="price-format" data-price="${t.total}"></span>

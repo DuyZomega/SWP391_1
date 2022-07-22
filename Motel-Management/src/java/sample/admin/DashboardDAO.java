@@ -147,7 +147,7 @@ public class DashboardDAO {
         
     }
 
-      public static  final String GET_TOP_INCOME ="SELECT distinct TOP 5 u.UserID, u.FullName, u.Image , u.Phone,m.Name,SUM(DISTINCT tblBooking.Total) as Income\n" +
+      public static  final String GET_TOP_INCOME ="SELECT distinct TOP 5 u.UserID, u.FullName, u.Image , u.Phone,m.Name as Name ,SUM(DISTINCT tblBooking.Total) as Income\n" +
 "FROM tblUser as u, tblMotel as m,tblRoomType, tblRoom, tblBookingDetail, tblBooking ,tblPayment\n" +
 "WHERE u.UserID = m.OwnerID AND m.MotelID = tblRoomType.MotelID AND tblRoomType.RoomTypeID = tblRoom.RoomTypeID AND tblRoom.RoomID = tblBookingDetail.RoomID AND tblBookingDetail.BookingID =tblBooking.BookingID \n" +
 "Group BY u.UserID, u.FullName, u.Image , u.Phone, m.Name\n" +
@@ -168,8 +168,9 @@ public class DashboardDAO {
                     String userName = rs.getString("FullName");
                     String status = rs.getString("Image");
                     String payType = rs.getString("Phone");
+                    String name = rs.getString("Name");
                     int total = rs.getInt("Income");
-                    topIncome.add(new HistoryDTO(userID, userName, status, payType, total));
+                    topIncome.add(new HistoryDTO(userID, userName, status,name, payType, total));
                 }
             }
         } catch (Exception e) {
