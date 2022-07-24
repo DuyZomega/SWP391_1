@@ -20,7 +20,7 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
     - Github: https://github.com/haitn10
     - 
 - Nguyen Huu Pham Tuan
-    - Gmail: 
+    - Gmail: tuapham.25201@gmail.com
     - Github: https://github.com/tuan2502
     - 
 - Ho Tran Khanh Duy
