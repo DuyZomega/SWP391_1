@@ -12,7 +12,7 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
     - Github: https://github.com/tinh-nhi
 
 - Le Minh Quan
-    - Gmail: 
+    - Gmail: hoangquan9851@gmail.com
     - Github: https://github.com/Quanle9851
         
 - Tran Ngoc Hai
