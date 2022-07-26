@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sample.owner.SubmitDAO;
 
-
 /**
  *
  * @author Bao
@@ -21,9 +20,9 @@ import sample.owner.SubmitDAO;
 @WebServlet(name = "SubmitPaymentController", urlPatterns = {"/SubmitPaymentController"})
 public class SubmitPaymentController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "OwnerShowRoomDetail";
     private static final String SUCCESS = "OwnerShowRoomDetail";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,18 +32,24 @@ public class SubmitPaymentController extends HttpServlet {
             String bookingId = request.getParameter("bookingID");
             String roomID = request.getParameter("roomID");
             boolean checkSubmit = dao.submitPayment(bookingId);
-            if(checkSubmit){
+            if (checkSubmit) {
                 checkSubmit = dao.submitBooking(bookingId);
-                if(checkSubmit){
+                if (checkSubmit) {
                     checkSubmit = dao.submitRoom(roomID);
-                    if(checkSubmit){
+                    if (checkSubmit) {
                         url = SUCCESS;
                         request.setAttribute("MESSAGE", "Payment Success!");
+                    } else {
+                        request.setAttribute("ERROR", "Payment Error!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Payment Error!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Payment Error!");
             }
         } catch (Exception e) {
-            log("Error at SubmitPaymentController: "+e.toString());
+            log("Error at SubmitPaymentController: " + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

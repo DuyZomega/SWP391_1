@@ -37,7 +37,7 @@ public class OwnerDeleteMotelController extends HttpServlet {
                     request.setAttribute("MESSAGE", "Delete Motel Success!");
                 }
             }else{
-                request.setAttribute("MESSAGE", "trọ còn phòng đang cho thuê! không thể xóa ");
+                request.setAttribute("ERROR", "trọ còn phòng đang cho thuê! không thể xóa ");
             }
         } catch (Exception e) {
             log("Error at OwnerDeleteMotelController: "+e.toString());

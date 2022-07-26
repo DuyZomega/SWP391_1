@@ -30,7 +30,7 @@ public class OwnerCreateMotelController extends HttpServlet {
 
     private static final String ERROR = "OwnerShowMotelController";
     private static final String SUCCESS = "OwnerShowMotelController";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -39,16 +39,16 @@ public class OwnerCreateMotelController extends HttpServlet {
         MotelDAO dao = new MotelDAO();
         Random generator = new Random();
         try {
-            Part part = request.getPart("photo");          
+            Part part = request.getPart("photo");
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
             String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
-            
-            if(!Files.exists(Path.of(realPath))){
+
+            if (!Files.exists(Path.of(realPath))) {
                 Files.createDirectories(Path.of(realPath));
             }
-            
-            String image = "images/" + filename;           
+
+            String image = "images/" + filename;
             String ownerID = request.getParameter("ownerID");
             String motelName = request.getParameter("motelName");
             String Phone = request.getParameter("phone");
@@ -61,36 +61,39 @@ public class OwnerCreateMotelController extends HttpServlet {
                 motelError.setNameError("length of motel must be in 2-30");
                 checkValidation = false;
             }
-            
+
             if (Phone.length() < 7 || Phone.length() > 15) {
                 motelError.setPhoneError("length of phone number must be in 7-15");
                 checkValidation = false;
             }
-                      
-            
+
             if (!Phone.matches("[0-9]{2,15}")) {
                 motelError.setPhoneError("phone is number");
                 checkValidation = false;
             }
-            
-            if(checkValidation){
+
+            if (checkValidation) {
                 String motelID = "";
                 boolean checkID = false;
-                    do {
-                        motelID = String.valueOf(generator.nextInt(9999999));
-                        checkID = dao.checkMotelID(motelID);
-                    } while (checkID = false);
-                    MotelDTO motel = new MotelDTO(motelID, motelName, image, Phone, desc, address, DistrictID, "", 0, ownerID, 1);
-                    boolean checkCreate = dao.createMotel(motel);
-                    if(checkCreate){
-                        request.setAttribute("MESSAGE", "Create Motel Success! ");
-                        part.write(pathImage + "/" + filename); 
-                        url = SUCCESS;
-                    }
+                do {
+                    motelID = String.valueOf(generator.nextInt(9999999));
+                    checkID = dao.checkMotelID(motelID);
+                } while (checkID = false);
+                MotelDTO motel = new MotelDTO(motelID, motelName, image, Phone, desc, address, DistrictID, "", 0, ownerID, 1);
+                boolean checkCreate = dao.createMotel(motel);
+                if (checkCreate) {
+                    request.setAttribute("MESSAGE", "Create Motel Success! ");
+                    part.write(pathImage + "/" + filename);
+                    url = SUCCESS;
+                } else {
+                    request.setAttribute("ERROR", "Create Motel Fail! ");
+                }
+            } else {
+                request.setAttribute("ERROR", "Create Motel Fail! ");
             }
-                      
+
         } catch (Exception e) {
-            log("Error at OwnerCreateMotelController:"+e.toString());
+            log("Error at OwnerCreateMotelController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

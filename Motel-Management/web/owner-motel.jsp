@@ -198,13 +198,13 @@
                                                 <span class="address-home">Địa chỉ: <%= motel.getAddress()%>, <%= motel.getDistrict()%>, <%= motel.getCity()%></span>
                                             </div>
                                             <%
-                                            if (motel.getStatus() == 1) {
+                                                if (motel.getStatus() == 1) {
                                             %>
-                                                <span class="badge badge-success d-sm-inline-block d-none mr-2">Đang hoạt động</span>
+                                            <span class="badge badge-success d-sm-inline-block d-none mr-2">Đang hoạt động</span>
                                             <%
                                                 }
                                             %>
-                                            
+
                                             <div class="d-flex ml-2 p-1">
                                                 <div class="dropdown">
                                                     <button class="btn" type="button" id="edit-dele" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -450,7 +450,7 @@
                                         <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>
                                         <input type="file" name="photo" class="form-control col-md-6" style="padding-bottom: 37px" accept="image/*"/>   
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -468,7 +468,31 @@
         %>                             
 
 
+        <% String MESSAGE = (String) request.getAttribute("MESSAGE");
+            if (MESSAGE != null) {
+        %> 
+        <div class="alert alert-success alert-dismissible fade show" id="notif">
+            <i class='bx bx-message-alt-check p-1'></i>
+            <strong class="mr-1">Success!</strong>
+            <%= MESSAGE%> 
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                <span><i class='bx bx-x'></i></span>
+            </button>
+        </div> 
+        <%} %>
 
+        <% String ERROR = (String) request.getAttribute("ERROR");
+            if (ERROR != null) {
+        %>
+        <div class="alert alert-danger alert-dismissible fade show" id="notif">
+            <i class='bx bx-message-alt-x p-1'></i>
+            <strong class="mr-1">Error!</strong>
+            <%= ERROR%> 
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                <span><i class='bx bx-x'></i></span>
+            </button>
+        </div> 
+        <%}%>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

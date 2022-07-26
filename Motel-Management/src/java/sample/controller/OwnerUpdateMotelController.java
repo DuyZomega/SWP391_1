@@ -47,48 +47,51 @@ public class OwnerUpdateMotelController extends HttpServlet {
             String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
             boolean checkValidation = true;
             MotelError motelError = new MotelError();
-            
+
             if (!Files.exists(Path.of(pathImage))) {
                 Files.createDirectories(Path.of(pathImage));
             }
-            
-            if(motelName.length()<2 || motelName.length() > 30){
+
+            if (motelName.length() < 2 || motelName.length() > 30) {
                 motelError.setNameError("tên không vượt quá 30 và nhỏ hơn 2!");
                 checkValidation = false;
             }
-            
-            if(!phone.matches("^[0-9]{3,15}$")){
+
+            if (!phone.matches("^[0-9]{3,15}$")) {
                 motelError.setNameError("số điện thoại sai!");
                 checkValidation = false;
             }
-            
-            if(address.length()<2 || address.length() > 35){
+
+            if (address.length() < 2 || address.length() > 35) {
                 motelError.setNameError("địa chỉ không vượt quá 15 và nhỏ hơn 25!");
                 checkValidation = false;
             }
-            
+
             if (checkValidation) {
                 if (filename != "") {
-                    String image = "images/" + filename;  
+                    String image = "images/" + filename;
                     MotelDAO dao = new MotelDAO();
-                    MotelDTO motel = new MotelDTO(motelID,motelName, image, phone,desc, address, districtID, "", 0, "", 0, 0);
+                    MotelDTO motel = new MotelDTO(motelID, motelName, image, phone, desc, address, districtID, "", 0, "", 0, 0);
                     boolean checkUpdate = dao.updateMotelOwner(motel);
-                    if(checkUpdate){
+                    if (checkUpdate) {
                         request.setAttribute("MESSAGE", "Update Motel Success! ");
-                        part.write(pathImage + "/" + filename); 
+                        part.write(pathImage + "/" + filename);
                         url = SUCCESS;
                     }
                 } else {
                     MotelDAO dao = new MotelDAO();
-                    MotelDTO motel = new MotelDTO(motelID,motelName, "", phone,desc, address, districtID, "", 0, "", 0, 0);
+                    MotelDTO motel = new MotelDTO(motelID, motelName, "", phone, desc, address, districtID, "", 0, "", 0, 0);
                     boolean checkUpdate = dao.updateMotelOwner2(motel);
-                    if(checkUpdate){
+                    if (checkUpdate) {
                         request.setAttribute("MESSAGE", "Update Motel Success! ");
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Create Motel Fail! ");
                     }
                 }
-            }else{
-                request.setAttribute("MOTEL_ERROR", motelError );
+            } else {
+                request.setAttribute("MOTEL_ERROR", motelError);
+                request.setAttribute("ERROR", "Create Motel Fail! ");
             }
 
         } catch (Exception e) {

@@ -30,7 +30,7 @@ import sample.users.UserError;
 @WebServlet(name = "OwnerAddCustomers", urlPatterns = {"/OwnerAddCustomers"})
 public class OwnerAddCustomers extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "OwnerShowRoomDetail";
     private static final String SUCCESS = "OwnerShowRoomDetail";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -97,6 +97,7 @@ public class OwnerAddCustomers extends HttpServlet {
                                 check = roomdao.updateRoomBT(roomID);
                                 if(check){
                                     url = SUCCESS;
+                                    request.setAttribute("MESSAGE", "Thêm Khách Thành Công!");
                                 }
                             }
                         }
@@ -104,6 +105,7 @@ public class OwnerAddCustomers extends HttpServlet {
                 }
             } else {
                 request.setAttribute("USER_ERROR", userError);
+                request.setAttribute("ERROR", "Thêm Khách Thất Bại!");
             }
 
         } catch (Exception e) {
