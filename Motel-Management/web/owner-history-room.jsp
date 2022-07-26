@@ -172,8 +172,11 @@
                                                             List<HistoryDTO> listHistory = (ArrayList<HistoryDTO>) request.getAttribute("LIST_HISTORY");
                                                             for (HistoryDTO history : listHistory) {
                                                                 String status = "Đã Hủy";
-                                                                if (history.getStatus().equals("2")) {
+                                                                if (history.getStatus().equals("4")) {
                                                                     status = "Đã Cọc";
+                                                                }
+                                                                if (history.getStatus().equals("2")) {
+                                                                    status = "Đã Thanh Toán Trước";
                                                                 }
                                                                 if (history.getStatus().equals("0")) {
                                                                     status = "Chưa Thanh Toán";

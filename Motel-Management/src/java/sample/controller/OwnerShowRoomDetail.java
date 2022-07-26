@@ -29,7 +29,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "OwnerShowRoomDetail", urlPatterns = {"/OwnerShowRoomDetail"})
 public class OwnerShowRoomDetail extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "ShowRoomController";
     private static final String SUCCESS = "owner-room-list-details.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

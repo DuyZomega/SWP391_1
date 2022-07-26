@@ -190,8 +190,11 @@
                                             if (historyBooking.getStatus().equals("0")) {
                                                 status = "Chưa Thanh Toán";
                                             }
-                                            if (historyBooking.getStatus().equals("3")) {
+                                            if (historyBooking.getStatus().equals("2")) {
                                                 status = "Đã Thanh Toán Trước";
+                                            }
+                                            if (historyBooking.getStatus().equals("4")) {
+                                                status = "Đã Cọc";
                                             }
                                         %>
                                         <div class="card-body flex-wrap">

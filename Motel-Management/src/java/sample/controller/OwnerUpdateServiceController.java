@@ -55,10 +55,10 @@ public class OwnerUpdateServiceController extends HttpServlet {
                     request.setAttribute("MESSAGE", "Update Success!");
                     url = SUCCESS;
                 }else{
-                    request.setAttribute("MESSAGE", "ERROR");
+                    request.setAttribute("ERROR", "Cập Nhật Thất Bại!");
                 }
             }else{
-                request.setAttribute("SERVICE_ERROR", serviceError );
+                request.setAttribute("ERROR", "Cập Nhật Thất Bại!" );
             }
         } catch (Exception e) {
             log("Error at OwnerUpdateServiceController:" +e.toString());

@@ -48,10 +48,14 @@ public class OwnerCreateServiceController extends HttpServlet {
                 boolean checkCreate = dao.insertService(service);
                 if(checkCreate){
                     url = SUCCESS;
+                    request.setAttribute("MESSAGE", "Thêm Dịch Vụ Thành Công!");
+                }else{
+                    request.setAttribute("ERROR", "Thêm Dịch Vụ Thất Bại!");
                 }
             }
 
         } catch (Exception e) {
+            request.setAttribute("ERROR", "Thêm Dịch Vụ Thất Bại!");
             log("Error at OwnerCreateServiceController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);

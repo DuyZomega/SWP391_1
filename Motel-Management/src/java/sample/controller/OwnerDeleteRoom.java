@@ -37,10 +37,10 @@ public class OwnerDeleteRoom extends HttpServlet {
                     request.setAttribute("MESSAGE", "Delete Room Successfully!");
                     url = SUCCESS;
                 } else {
-                    request.setAttribute("MESSAGE", "Delete Room Error!");
+                    request.setAttribute("ERROR", "Delete Room Error!");
                 }
             } else {
-                request.setAttribute("MESSAGE", " phòng đang cho thuê! không thể xóa ");
+                request.setAttribute("ERROR", " phòng đang cho thuê! không thể xóa ");
             }
         } catch (Exception e) {
             log("Error at OwnerDeleteRoom: " + e.toString());

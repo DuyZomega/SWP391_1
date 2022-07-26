@@ -40,7 +40,7 @@ public class OwnerCreateRoomController extends HttpServlet {
         RoomDAO dao = new RoomDAO();
         Random generator = new Random();
         try {
-            String motelID = request.getParameter("motelID");
+            String motelID = request.getParameter("MotelID");
             String roomName = request.getParameter("roomName");
             String roomType = request.getParameter("typeofRoom");
             int numberOfRoom = Integer.parseInt(request.getParameter("numOfRoom"));
@@ -95,24 +95,30 @@ public class OwnerCreateRoomController extends HttpServlet {
                         do {
                             roomID = String.valueOf(generator.nextInt(9999999));
                             checkID = dao.checkRoomID(roomID);
-                        } while (checkID = false);                      
+                        } while (checkID = false);
                         RoomDTO newRoom = new RoomDTO();
                         if (numberOfRoom > 1) {
                             count++;
                             String num = String.valueOf(count);
                             String name = roomName.concat("");
                             String newname = name.concat(num);
-                             newRoom = new RoomDTO(roomID, newname, "", roomType, 0, motelID);
+                            newRoom = new RoomDTO(roomID, newname, "", roomType, 0, motelID);
                         } else {
-                             newRoom = new RoomDTO(roomID, roomName, "", roomType, 0, motelID);
+                            newRoom = new RoomDTO(roomID, roomName, "", roomType, 0, motelID);
                         }
                         boolean checkCreate = dao.createRoom(newRoom);
                         if (checkCreate) {
                             url = SUCCESS;
                             request.setAttribute("MESSAGE", "Create Room Successfully!");
+                        } else {
+                            request.setAttribute("ERROR", "Thêm phòng thất bại!");
                         }
                     }
+                } else {
+                    request.setAttribute("ERROR", "Thêm phòng thất bại!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Thêm phòng thất bại!");
             }
 
         } catch (Exception e) {

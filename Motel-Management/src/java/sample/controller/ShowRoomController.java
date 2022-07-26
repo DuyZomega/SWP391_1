@@ -12,11 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.motel.MotelDAO;
 import sample.motel.MotelDTO;
 import sample.room.RoomDAO;
 import sample.room.RoomDTO;
 import sample.room.RoomTypeDTO;
+import sample.users.UserDTO;
 
 /**
  *
@@ -33,7 +35,9 @@ public class ShowRoomController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url =  ERROR;
         try {
-            String ownerID = request.getParameter("ownerID");
+            HttpSession session=request.getSession();
+            UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
+            String ownerID= loginUser.getUserId();
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> listMotel = dao1.searchMotel(ownerID);
             List<RoomDTO> listRoom = new ArrayList<>();

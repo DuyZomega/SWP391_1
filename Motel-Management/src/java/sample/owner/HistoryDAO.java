@@ -90,7 +90,7 @@ public class HistoryDAO {
                     String payType  = rs.getString("PaymentTypeName");
                     int total = rs.getInt("Total");
                     int time = rs.getInt("Time");
-                    historyDetail = new HistoryDTO(bookingID, motelName, address, district, city, roomName, status, date, payType, date, total);
+                    historyDetail = new HistoryDTO(bookingID, motelName, address, district, city, roomName, roomType, status, payType, date, total);
                     historyDetail.setNumberService(time);
                 }
             }

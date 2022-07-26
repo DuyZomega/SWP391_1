@@ -326,7 +326,7 @@
                                     <div class="row form-group">
                                         <label for="firstname" class="col-md-3 col-form-label text-md-right">motel Name</label>
                                         <select id="motelId" name="MotelID" class="form-control col-md-7" onchange="myFunc(this.value)" required>
-                                            <option value="" disabled selected>Chọn Motel</option>
+                                            <option disabled selected>Chọn Motel</option>
                                             <%
                                                 if (listMotel != null) {
                                                     if (listMotel.size() > 0) {
@@ -442,7 +442,31 @@
                 </div>
             </div>
         </div>
-
+        <% String MESSAGE = (String) request.getAttribute("MESSAGE");
+            if (MESSAGE != null) {
+        %> 
+        <div class="alert alert-success alert-dismissible fade show" id="notif">
+            <i class='bx bx-message-alt-check p-1'></i>
+            <strong class="mr-1">Success!</strong>
+            <%= MESSAGE %> 
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                <span><i class='bx bx-x'></i></span>
+            </button>
+        </div> 
+        <%} %>
+        
+        <% String ERROR = (String) request.getAttribute("ERROR");
+            if (ERROR != null) {
+        %>
+        <div class="alert alert-danger alert-dismissible fade show" id="notif">
+            <i class='bx bx-message-alt-x p-1'></i>
+            <strong class="mr-1">Error!</strong>
+            <%= ERROR %> 
+            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                <span><i class='bx bx-x'></i></span>
+            </button>
+        </div> 
+        <%}%>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="ckeditor/ckeditor.js"></script>
         <script src="ckfinder/ckfinder.js"></script>

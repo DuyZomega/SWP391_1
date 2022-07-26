@@ -75,6 +75,7 @@ public class UpdateOwnerController extends HttpServlet {
                 }
             }else{
                 request.setAttribute("USER_ERROR", userError);
+                request.setAttribute("ERROR", "Thay Đổi Thông Tin Thất Bại");
             }
         } catch (Exception e) {
             log("Error at ShowProfile Controller: " + e.toString());

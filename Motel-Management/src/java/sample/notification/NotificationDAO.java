@@ -244,7 +244,9 @@ public class NotificationDAO {
     private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblUser.UserID = ? AND tblBooking.UserID = tblUser.UserID";
     private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblBooking.UserID = tblUser.UserID AND AnnouncementID = ?";
     private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Desct = ? , Status = ? WHERE AnnouncementID = ?";
-
+    private static final String LIST_OWNER_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.FullName\n" +
+                                                    "FROM tblNotification,tblUser,tblBooking\n" +
+                                                    "WHERE tblUser.UserID = tblBooking.UserID AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ?";
     public boolean insertNotification(NotificationDTO notifi) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -347,7 +349,7 @@ public class NotificationDAO {
         return notiList1;
     }
     
-    public List<NotificationDTO> getnotiList(String userID) throws SQLException {
+    public List<NotificationDTO> getOwnerNotiList(String ownerID) throws SQLException {
         List<NotificationDTO> notiList1 = new ArrayList();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -355,8 +357,8 @@ public class NotificationDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(LIST_NOTIFICATION);
-                ptm.setString(1, userID);
+                ptm = conn.prepareStatement(LIST_OWNER_NOTIFICATION);
+                ptm.setString(1, ownerID);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String announceID = rs.getString("AnnouncementID");
@@ -365,7 +367,7 @@ public class NotificationDAO {
                     Date date = rs.getDate("Date");
                     int status = rs.getInt("Status");
                     String fullname = rs.getString("FullName");
-                    notiList1.add(new NotificationDTO(announceID, title, desct, date, userID, status, fullname));
+                    notiList1.add(new NotificationDTO(announceID, title, desct, date, ownerID, status, fullname));
                 }
                              }
         } catch (Exception e) {
