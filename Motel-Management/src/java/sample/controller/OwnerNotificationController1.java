@@ -49,7 +49,8 @@ public class OwnerNotificationController1 extends HttpServlet {
                     if(checkUpdateNoti){
                         checkUpdateNoti = dao.submitRoom(announcementID);
                         if(checkUpdateNoti){
-                            request.setAttribute("MESSAGE", "Nhận Phòng Thành Công!");
+                            request.setAttribute("MESSAGE", "Nhận Phòng Thành Công!"); 
+                            url = SUCCESS;
                         }
                     }
                 }
