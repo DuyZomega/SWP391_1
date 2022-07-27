@@ -27,10 +27,11 @@
                 <div class="navigation">  
                     <ul class="slide-menu">
                         <div class="logo">
-                            <a href="index.jsp">
+                            <a href="MainController?action=ShowOverview">
                                 <img class="logo" src="assets/img/logo2.png" alt="logo">
                             </a>
                         </div>
+                        <a href="MainController?action=ShowOverview"></a>
                         <%
                             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
                             if (loginUser == null || !loginUser.getRole().equals("OW")) {
