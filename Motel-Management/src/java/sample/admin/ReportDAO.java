@@ -25,17 +25,20 @@ public class ReportDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql="SELECT reportID, tblUser.FullName as fullName, tblMotel.Name as motelName, title, tblReport.desct, tblReport.status FROM tblReport, tblUser, tblMotel WHERE tblReport.userId = tblUser.userId AND tblReport.motelId = tblMotel.motelId";
+                String sql="SELECT reportID, tblUser.FullName as fullName, tblMotel.Name as motelName, title, tblReport.desct, tblReport.status , tblReport.motelId FROM tblReport, tblUser, tblMotel WHERE tblReport.userId = tblUser.userId AND tblReport.motelId = tblMotel.motelId";
                 ptm = conn.prepareStatement(sql);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     String reportID = rs.getString("reportID");
+                    String motelID = rs.getString("motelId");
                     String fullName = rs.getString("fullName");
                     String motelName = rs.getString("motelName");
                     String title = rs.getString("title");
                     String desct = rs.getString("desct");
                     int status = rs.getInt("status");
-                    listReport.add(new ReportDTO(reportID, fullName, motelName, title, desct, status));
+                  //  listReport.add(new ReportDTO(reportID, fullName, motelName, title, desct, status));
+                    
+                    listReport.add(new ReportDTO(reportID, fullName, motelName, motelID, title, desct, status, title));
                 }
             }
         } catch (Exception e) {

@@ -164,6 +164,7 @@
                                                                             <div class="d-flex">
                                                                                 <!--\                                                                            <a href="#" class="btn btn-success shadow btn-xs sharp me-1"><i class='bx bxs-pencil'></i></a>-->
                                                                                 <a href="MotelManager?action=reportmanager&reportID=${o.reportID}" class="btn btn-info m-b-xs  shadow btn-xs sharp"><i class='bx bxs-pencil'></i></a>
+                                                                                <a href="MotelManager?action=delete&motelID=${o.id}" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
                                                                             </div>    
                                                                         </td>
                                                                     </tr>

@@ -13,6 +13,7 @@ public class ReportDTO {
     private String reportID;
     private String userId;
     private String motelID;
+    private String id;
     private String title;
     private String desct;
     private int status;
@@ -84,7 +85,14 @@ public class ReportDTO {
         this.status = status;
     }
 
-    public ReportDTO(String reportID, String userId, String motelID, String title, String desct, int status) {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+public ReportDTO(String reportID, String userId, String motelID, String title, String desct, int status) {
         this.reportID = reportID;
         this.userId = userId;
         this.motelID = motelID;
@@ -92,6 +100,18 @@ public class ReportDTO {
         this.desct = desct;
         this.status = status;
     }
+
+    public ReportDTO(String reportID, String userId, String motelID, String id, String title, String desct, int status, String date) {
+        this.reportID = reportID;
+        this.userId = userId;
+        this.motelID = motelID;
+        this.id = id;
+        this.title = title;
+        this.desct = desct;
+        this.status = status;
+        this.date = date;
+    }
+    
 
     public ReportDTO() {
     }

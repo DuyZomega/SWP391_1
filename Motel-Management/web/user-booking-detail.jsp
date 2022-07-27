@@ -79,6 +79,11 @@
                                 <span><i class='bx bx-user'></i></span>
                                 <span class="title">Tài khoản</span>
                             </a>
+                        </li><li>
+                            <a href="MainController?action=notifi1&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>">
+                                <span><i class='bx bx-bell'></i></span>
+                                <span class="title">Thông báo</span>
+                            </a>
                         </li>
                         <li class="active">
                             <a href="userhistorybooking">
@@ -152,7 +157,7 @@
                                                                 </div>
                                                                 <div class="form-item py-2"> <label
                                                                         class="font-weight-bold">Phương thức thanh toán:  
-                                                                        <c:if test="${m.status == 0}">
+                                                                        <c:if test="${m.status == 0 || m.status == 1}">
                                                                             Tiền mặt
                                                                         </c:if>
                                                                         <c:if test="${m.status == 2}">
@@ -168,7 +173,7 @@
                                                                 <div class="box d-flex">
                                                                     <c:forEach var="o" varStatus="counter"
                                                                                items="${requestScope.DETAIL_MOTEL}">
-                                                                        <span><img src="${o.typename}"
+                                                                        <span><img src="${o.service}"
                                                                                    alt="profile" style="width: 100px ; height: 100px"></span>
                                                                         <span class="infor-owner-detail">
                                                                             <p class="m-0">

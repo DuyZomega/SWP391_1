@@ -169,10 +169,10 @@
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
-                                                        Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                        Còn  <%= roomtype.getCountRoom()%> phòng!!!
                                                         <i class="fa fa-quote-right"></i>
                                                     </span>
-                                                    <img src="assets/img/HOT.svg"
+                                                        <img src="assets/img/HOT.svg" style="width: 35px; height: auto"
                                                          class="hot-label"
                                                          alt="hot-label">
                                                 </div>
@@ -257,7 +257,7 @@
                             <!-- sau khi đăng nhập -->
                             <% } else { %>
                             <div class="btn-booking text-center">
-                                <input class="button--primary" type = "submit" name="action" value = "ShowMotelBooking" placeholder="dat ngay"/>
+                                <button class="button--primary" type = "submit" name="action" value = "ShowMotelBooking">Đặt ngay</button>
                             </div>
                             <%}%>
                         </div>
