@@ -172,7 +172,7 @@ public class BookingController extends HttpServlet {
             String gmailUser = userProfile.getGmail();
             String value = new String(byteText, "UTF-8");
 
-            String mes = "Your order have ID: <h5>" + bookingID + "<h5> <br> "
+            String mes = "Your order have ID:" + bookingID + "<br> "
                     + motelInfo
                     + value
                     + "<br>For any questions, please contact the ROH Motel hotline: 0396421901";
