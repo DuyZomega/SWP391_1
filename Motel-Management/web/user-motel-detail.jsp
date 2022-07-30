@@ -99,12 +99,7 @@
 
                                             <p>Thủ tục đặt phòng đơn giản, nhanh
                                                 gọn</p>
-                                            <button
-                                                class="button--primary mt-3"><a
-                                                    href="#Booking"
-                                                    class="text-white text-decoration-none">Đặt
-                                                    phòng</a></button>
-
+                                            <a href="#Booking" class="button--primary mt-4 text-white text-decoration-none">Đặt phòng</a>
                                         </div>
                                     </div>
 
@@ -172,7 +167,7 @@
                                                         Còn  <%= roomtype.getCountRoom()%> phòng!!!
                                                         <i class="fa fa-quote-right"></i>
                                                     </span>
-                                                        <img src="assets/img/HOT.svg" style="width: 35px; height: auto"
+                                                    <img src="assets/img/HOT.svg" style="width: 35px; height: auto"
                                                          class="hot-label"
                                                          alt="hot-label">
                                                 </div>
@@ -186,7 +181,7 @@
                                                             alt="<%= roomtype.getTypeName()%>"></a>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="col-12 truncate-content"> <h6>Thông tin</h6>
                                                 <div>
                                                     <p><%= roomtype.getDesct()%></p>
