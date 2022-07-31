@@ -15,18 +15,18 @@
                     <div class="col-12 col-sm-2">
                         <h3>VỀ HORD</h3>
                         <ul>
-                            <li><a href="#aboutUs">Giới thiệu</a></li>
-                            <li><a href="#teamMember">Đội ngũ</a></li>
-                            <li><a href="#services">Dịch vụ</a></li>
+                            <li><a href="ShowMotelController#aboutUs">Giới thiệu</a></li>
+                            <li><a href="ShowMotelController#teamMember">Đội ngũ</a></li>
+                            <li><a href="ShowMotelController#services">Dịch vụ</a></li>
                         </ul>
                     </div>
 
                     <div class="col-12 col-sm-3">
                         <h3>ĐIỀU KHOẢN VÀ CHÍNH SÁCH</h3>
                         <ul>
-                            <li><a href="#">Điều khoản dịch vụ</a></li>
-                            <li><a href="#">Chính sách bảo mật</a></li>
-                            <li><a href="#">Giải quyết tranh chấp</a></li>
+                            <li><a href="rules.jsp">Điều khoản dịch vụ</a></li>
+                            <li><a href="policy.jsp">Chính sách bảo mật</a></li>
+                            <li><a href="dispute-resolution.jsp">Giải quyết tranh chấp</a></li>
                         </ul>
                     </div>
                     <div class="col-12 col-sm-3 footer-contact">
