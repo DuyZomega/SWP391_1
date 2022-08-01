@@ -139,7 +139,8 @@
                                                                 </div>
                                                                 <div class="row phone-content">
                                                                     <label class="contact-title col-md-4 col-sm-4 mt-3">Số điện thoại:</label>
-                                                                    <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-8 col-sm-8 mt-2">
+                                                                    <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" 
+       pattern="[0-9]{9,11}" class="form-control col-md-8 col-sm-8 mt-2">
                                                                     <span class="error-message col-md-2 mt-3"><%= userError.getPhoneError()%></span>
                                                                 </div>
                                                                 <div class="row address-content">

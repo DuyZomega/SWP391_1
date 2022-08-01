@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="userId">Tên đăng nhập <span class="text-danger">*</span></label>
-                                    <input type="text" name="userId" placeholder="Tên đăng nhập" id="userName">
+                                    <input type="text" name="userId" placeholder="Tên đăng nhập" id="userName"  pattern="[a-z]{1,9}">
                                     <span id="error_message" class="helper-text text-danger"><span id="error_userName_sign" class="helper-text text-danger">${requestScope.USER_ERROR.getUserIdError()} </span></span>
                                     
                                      </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="form-item input-field col-12">
                                     <label for="phone">Số điện thoại <span class="text-danger">*</span></label>
-                                    <input type="tel" name="phone" placeholder="Số điện thoại" id="telephone">
+                                    <input type="tel" name="phone" placeholder="Số điện thoại" id="telephone"  pattern="[0-9]{9,11}" >
                                     <span id="error_message" class="helper-text text-danger">${requestScope.USER_ERROR.getPhoneError()}</span>
                                
                                 </div>
