@@ -20,7 +20,7 @@ import sample.motel.MotelDTO;
  */
 @WebServlet(name = "AdminDetailMotel", urlPatterns = {"/AdminDetailMotel"})
 public class AdminDetailMotel extends HttpServlet {
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "admin-motel-info.jsp";
     private static final String MOTEL = "admin-motel-info.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

@@ -24,7 +24,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "NotificationController1", urlPatterns = {"/NotificationController1"})
 public class NotificationController1 extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "user-notification.jsp";
     private static final String SUCCESS = "user-notification.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -53,8 +53,14 @@ public class NotificationController1 extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at NotificationController:" + e.toString());
