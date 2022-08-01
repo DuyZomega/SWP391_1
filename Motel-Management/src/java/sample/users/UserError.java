@@ -19,6 +19,7 @@ public class UserError {
     private String gmailError;
     private String addressError;
     private String passwordError;
+    private String newPasswordError;
     private String roleError;
     private int statusError;
     private String confirmpasswordError;
@@ -37,6 +38,7 @@ public class UserError {
         this.roleError = "";
         this.statusError = 0;
         this.confirmpasswordError = "";
+        this.newPasswordError = "";
     }
 
     public UserError(String userIdError, String fullNameError, String phoneError, String gmailError, String addressError, String passwordError, String roleError, String confirmpasswordError) {
@@ -72,6 +74,15 @@ public class UserError {
         this.statusError = statusError;
     }
 
+    public String getNewPasswordError() {
+        return newPasswordError;
+    }
+
+    public void setNewPasswordError(String newPasswordError) {
+        this.newPasswordError = newPasswordError;
+    }
+
+    
     public String getUserIdError() {
         return userIdError;
     }

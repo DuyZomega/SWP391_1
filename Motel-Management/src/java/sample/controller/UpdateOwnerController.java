@@ -52,8 +52,15 @@ public class UpdateOwnerController extends HttpServlet {
             if (CitizenNumber.length() < 7 || CitizenNumber.length() > 12){
                 userError.setCitizenNumberError("CitizenNumber must be in range 8-11");
                 checkValidation = false;
-            }           
-            
+            }                      
+            if (!phone.matches("[0-9]{2,15}")) {
+                userError.setPhoneError("phone number must be number");;
+                checkValidation = false;
+            }          
+            if (!CitizenNumber.matches("[0-9]{2,15}")){
+                userError.setCitizenNumberError("CitizenNumber must be Number!");
+                checkValidation = false;
+            }  
             
             if (checkValidation) {
                 UserDAO dao = new UserDAO();             

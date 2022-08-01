@@ -57,11 +57,25 @@ public class OwnerAddCustomers extends HttpServlet {
                 userError.setFullNameError("FullName Contains 5 - 20 characters!");
                 check = false;
             }
+            if (cusAddress.length() > 50 || cusAddress.length() < 5) {
+                userError.setAddressError("Address Contains 5 - 50 characters!");
+                check = false;
+            }
             if (cusPhone.length() < 9) {
                 userError.setPhoneError("Phone number must at least 9 number");
                 check = false;
             }
-
+            
+            if (!cusPhone.matches("[0-9]{2,15}")) {
+                userError.setPhoneError("phone is number");
+                check = false;
+            }
+            
+            if (!cusCitizenNumber.matches("[0-9]{2,15}")) {
+                userError.setCitizenNumberError("Citizen Number is number");
+                check = false;
+            }
+            
             if (check == true) {
                 String userID;
                 boolean checkID = true;

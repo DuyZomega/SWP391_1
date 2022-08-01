@@ -169,12 +169,6 @@
                             <div class="card-action card-tabs mr-auto">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
                             </div>
-                            <% String message = (String) request.getAttribute("MESSAGE");
-                                if (message == null) {
-                                    message = "";
-                                }
-                            %>
-                            <%= message%>
                         </div>
                         <div class="row">
                             <!-- vòng lặp in home -->                          

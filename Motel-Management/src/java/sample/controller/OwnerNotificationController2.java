@@ -36,7 +36,7 @@ public class OwnerNotificationController2 extends HttpServlet {
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
             NotificationDAO dao = new NotificationDAO();
             
-            int Status = 0;          
+            int Status = 2;          
             String title = "Hủy Đơn đặt phòng";
             String desc = "Đã xử lý";
             
