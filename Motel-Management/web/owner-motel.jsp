@@ -169,12 +169,6 @@
                             <div class="card-action card-tabs mr-auto">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
                             </div>
-                            <% String message = (String) request.getAttribute("MESSAGE");
-                                if (message == null) {
-                                    message = "";
-                                }
-                            %>
-                            <%= message%>
                         </div>
                         <div class="row">
                             <!-- vòng lặp in home -->                          
@@ -225,9 +219,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-4 decp">
+                                        <div class="mb-4 decp">
+                                            <a  id="show-more" class="show-less" href="#show-less">Show less</a>
+                                            <a  id="show-less" class="show-more" href="#show-more">Show more</a>
                                             <%= motel.getDesct()%>
-                                        </p>
+                                        </div>
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="mr-auto mb-4">
                                                 <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
