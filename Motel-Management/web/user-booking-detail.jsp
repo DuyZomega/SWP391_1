@@ -157,10 +157,10 @@
                                                                 </div>
                                                                 <div class="form-item py-2"> <label
                                                                         class="font-weight-bold">Phương thức thanh toán:  
-                                                                        <c:if test="${m.status == 0 || m.status == 1}">
+                                                                        <c:if test="${m.status == 0 || m.status == 1 ||  m.status == 3}">
                                                                             Tiền mặt
                                                                         </c:if>
-                                                                        <c:if test="${m.status == 2}">
+                                                                        <c:if test="${m.status == 2 || m.status == 4}">
                                                                            Chuyển khoản
                                                                         </c:if>
                                                                     </label>
