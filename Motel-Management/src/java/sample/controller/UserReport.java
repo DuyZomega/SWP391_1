@@ -37,7 +37,7 @@ public class UserReport extends HttpServlet {
             String title = request.getParameter("title");
             String desct = request.getParameter("desct");
             String date = request.getParameter("date");
-            int status = 1;
+            int status = 0;
              ReportDTO report = new ReportDTO(reportID, userID, motelID, title, desct, status, date);
             boolean checkReport = dao.insertReport(report);
                 if (checkReport) {request.setAttribute("MESSAGE", "Successfully");

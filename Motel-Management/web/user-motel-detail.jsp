@@ -99,12 +99,7 @@
 
                                             <p>Thủ tục đặt phòng đơn giản, nhanh
                                                 gọn</p>
-                                            <button
-                                                class="button--primary mt-3"><a
-                                                    href="#Booking"
-                                                    class="text-white text-decoration-none">Đặt
-                                                    phòng</a></button>
-
+                                            <a href="#Booking" class="button--primary mt-4 text-white text-decoration-none">Đặt phòng</a>
                                         </div>
                                     </div>
 
@@ -169,10 +164,10 @@
                                                 <div>
                                                     <span class="empty-room">
                                                         <i class="fa fa-quote-left"></i>
-                                                        Còn  <%= roomtype.getCountRoom()%> phòng trống!!!
+                                                        Còn  <%= roomtype.getCountRoom()%> phòng!!!
                                                         <i class="fa fa-quote-right"></i>
                                                     </span>
-                                                    <img src="assets/img/HOT.svg"
+                                                    <img src="assets/img/HOT.svg" style="width: 35px; height: auto"
                                                          class="hot-label"
                                                          alt="hot-label">
                                                 </div>
@@ -186,7 +181,7 @@
                                                             alt="<%= roomtype.getTypeName()%>"></a>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="col-12 truncate-content"> <h6>Thông tin</h6>
                                                 <div>
                                                     <p><%= roomtype.getDesct()%></p>
@@ -241,7 +236,7 @@
 
                         <div class="box-booking col-12">
                             <!-- trước khi đăng nhập -->
-                            <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                            <% if (loginUser == null) { %>
                             <div
                                 class="btn-booking-before d-flex justify-content-center align-items-center">
                                 <button class="button--primary mr-3"
@@ -255,9 +250,14 @@
                                         ký</a></button>
                             </div>
                             <!-- sau khi đăng nhập -->
-                            <% } else { %>
+                            <% } else if (loginUser.getRole().equals("OW")) { %>
                             <div class="btn-booking text-center">
-                                <input class="button--primary" type = "submit" name="action" value = "ShowMotelBooking" placeholder="dat ngay"/>
+                                <p style="color: red">Không thể đặt phòng bằng role chủ nhà</p>
+                            </div>
+                            <%
+                                }else{%>
+                            <div class="btn-booking text-center">
+                                <button class="button--primary" type = "submit" name="action" value = "ShowMotelBooking">Đặt ngay</button>
                             </div>
                             <%}%>
                         </div>

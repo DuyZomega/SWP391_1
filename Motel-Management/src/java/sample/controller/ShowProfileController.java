@@ -64,6 +64,7 @@ public class ShowProfileController extends HttpServlet {
                     List<NotificationDTO> listNoti = dao1.notiList(userID);
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
+                request.setAttribute("MESSAGE", "Successfully");
                         if (OWNER.equals(role)) {
                             url = OWNER_PAGE;
                         } else if (AD.equals(role)) {

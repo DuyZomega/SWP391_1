@@ -117,7 +117,7 @@
                                     <div class="motel-address ">
                                         <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                                     </div>
-                                      <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between">
                                         <p><i class="fa fa-star"></i> Loại:</p><p> ${o.typename}</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
@@ -149,7 +149,7 @@
                                     <div class="motel-address ">
                                         <p class="address truncate"><i class="fas fa-map-marker-alt"></i> ${o.address},${o.district},${o.city}</p>
                                     </div>
-                                      <div class="d-flex justify-content-between">
+                                    <div class="d-flex justify-content-between">
                                         <p><i class="fa fa-star"></i> Loại:</p><p> ${o.typename}</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
@@ -169,13 +169,162 @@
             </div>  
         </section>  
 
+        <hr class="container my-0" />
+        <!-- SERVICES -->
+        <section id="services" class="services spacing">
+            <div class="container px-0">
+                <h3 class="heading"><i class="fa fa-concierge-bell"></i> Dịch vụ</h3>
+                <div class="row">
+                    <div class="offset-1 col-4 service-item">
+                        <i class="fa fa-cog"></i>
+                        <h5>Tài khoản<span>người tìm kiếm / thuê</span></h5>
+                        <p>Đây là tài khoản giúp bạn có thể thuê phòng trọ / nhà trọ</p>
+                    </div>
+                    <div class="offset-2 col-4 service-item">
+                        <i class="fa fa-cog"></i>
+                        <h5>Tài khoản<span>người quản lý / cho thuê</span></h5>
+                        <p>Đây là tài khoản giúp bạn có thể quản lý phòng trọ / nhà trọ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="container my-0" />
+        <!-- ABOUT US -->
+        <section id="aboutUs" class="about-us container px-0 spacing">
+            <h3 class="heading"><i class="fa fa-id-card"></i> VỀ CHÚNG TÔI</h3>
+            <div class="row">
+                <div class="col-6 card intro-desc">
+                    <div class="intro-title d-flex">
+                        <img class="img-fluid" src="assets/img/logo2-1.png" alt="logo" />
+                        <p class="card-text my-3">
+                            Công ty TNHH Chém Gió Xuyên Quốc Gia HORD
+                            <span class="text-center d-block">- HORD Gossip Inc. -</span>
+                            <span class="d-block text-center">Thành lập vào 05/2022</span>
+                        </p>
+                    </div>
 
-        <!-- CONTACT -->
-        <section class="contact"></section>
+                    <div class="card-text">
+                        Là HORD, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu
+                        cầu không chỉ đơn thuần là tìm kiếm một nơi dừng chân mà còn cả môi
+                        trường cũng như dịch vụ mang lại cảm giác thoải mái và an toàn cho
+                        các quý khách hàng!
+                    </div>
+                </div>
+                <div class="col-6 intro-img" style="background-image: url(assets/img/cover-1.jpg)" alt="cover-1"></div>
+            </div>
+        </section>
+        <hr class="container my-0" />
+        <!-- TEAM MEMBER -->
+        <section id="teamMember" class="team-member spacing">
+            <div class="container">
+                <h3 class="heading"><i class="fa fa-users"></i> Đội ngũ</h3>
+                <div class="team-carousel owl-carousel owl-theme">
+                    <div class="team__item">
+                        <img src="assets/img/tv-1.jpg" alt="team 1" />
+                        <div class="team__title">
+                            <h5>Cao Thị Phương Thủy</h5>
+                            <p>- Trường nhóm</p>
+                        </div>
+                        <div class="team__details">
+                            <h5>Cao Thị Phương Thủy</h5>
+                            <p class="team__text">- Trường nhóm</p>
+                            <p>
+                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                                friuisque pretiuam
+                            </p>
+                            <div class="team__socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://github.com/CTPhuongThuy#" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team__item">
+                        <img src="assets/img/tv-2.jpg" alt="team 1" />
+                        <div class="team__title">
+                            <h5>Lê Minh Quân</h5>
+                            <p>- Thành viên</p>
+                        </div>
+                        <div class="team__details">
+                            <h5>Lê Minh Quân</h5>
+                            <p class="team__text">- Thành viên</p>
+                            <p>
+                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                                friuisque pretiuam
+                            </p>
+                            <div class="team__socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://github.com/Quanle9851" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team__item">
+                        <img src="assets/img/tv-3.jpg" alt="team 1" />
+                        <div class="team__title">
+                            <h5>Trần Ngọc Hải</h5>
+                            <p>- Thành viên</p>
+                        </div>
+                        <div class="team__details">
+                            <h5>Trần Ngọc Hải</h5>
+                            <p class="team__text">- Thành viên</p>
+                            <p>
+                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                                friuisque pretiuam
+                            </p>
+                            <div class="team__socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://github.com/haitn10" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team__item">
+                        <img src="assets/img/tv-4.jpg" alt="team 1" />
+                        <div class="team__title">
+                            <h5>Hồ Khánh Duy</h5>
+                            <p>- Thành viên</p>
+                        </div>
+                        <div class="team__details">
+                            <h5>Hồ Khánh Duy</h5>
+                            <p class="team__text">- Thành viên</p>
+                            <p>
+                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                                friuisque pretiuam
+                            </p>
+                            <div class="team__socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://github.com/DuyZomega" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team__item">
+                        <img src="assets/img/tuan-img.JPG" alt="team 1" />
+                        <div class="team__title">
+                            <h5>Nguyễn Hữu Phạm Tuân</h5>
+                            <p>- Thành viên</p>
+                        </div>
+                        <div class="team__details">
+                            <h5>Nguyễn Hữu Phạm Tuân</h5>
+                            <p class="team__text">- Thành viên</p>
+                            <p>
+                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
+                                friuisque pretiuam
+                            </p>
+                            <div class="team__socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://github.com/tuan2502" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
 
         <%@include file="footer.jsp" %> 
-
+        <!-- BackToTop -->
+        <a href="#" class="backToTop cd-top text-replace js-cd-top">
+            <i class="fa fa-angle-up"></i>
+        </a> 
         <!-- thư viện hỗ trợ -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         referrerpolicy="no-referrer"></script>
@@ -227,7 +376,26 @@
                     }
                 }
             });
+            $(".team-carousel").owlCarousel({
+                loop: true,
+                nav: true,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    600: {
+                        items: 3,
+                    },
+                    1000: {
+                        items: 3,
+                    },
+                },
+            });
         </script>
+        <!-- backToTop -->
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main-backToTop.js"></script>
         <!-- main js -->
         <script>
             $(document).ready(function () {

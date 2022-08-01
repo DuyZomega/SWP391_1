@@ -161,13 +161,13 @@
                         motel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#services">Dịch vụ</a>
+                    <a class="nav-link" href="ShowMotelController#services">Dịch vụ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#aboutUs">Về chúng tôi</a>
+                    <a class="nav-link" href="ShowMotelController#aboutUs">Về chúng tôi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#teamMember">Đội ngũ</a>
+                    <a class="nav-link" href="ShowMotelController#teamMember">Đội ngũ</a>
                 </li>
             </ul>
         </div>
