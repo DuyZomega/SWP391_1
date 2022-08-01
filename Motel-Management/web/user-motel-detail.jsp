@@ -236,7 +236,7 @@
 
                         <div class="box-booking col-12">
                             <!-- trước khi đăng nhập -->
-                            <% if (loginUser == null || !loginUser.getRole().equals("US")) { %>
+                            <% if (loginUser == null) { %>
                             <div
                                 class="btn-booking-before d-flex justify-content-center align-items-center">
                                 <button class="button--primary mr-3"
@@ -250,7 +250,12 @@
                                         ký</a></button>
                             </div>
                             <!-- sau khi đăng nhập -->
-                            <% } else { %>
+                            <% } else if (loginUser.getRole().equals("OW")) { %>
+                            <div class="btn-booking text-center">
+                                <p style="color: red">Không thể đặt phòng bằng role chủ nhà</p>
+                            </div>
+                            <%
+                                }else{%>
                             <div class="btn-booking text-center">
                                 <button class="button--primary" type = "submit" name="action" value = "ShowMotelBooking">Đặt ngay</button>
                             </div>
