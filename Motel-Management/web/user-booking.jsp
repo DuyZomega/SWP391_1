@@ -119,7 +119,7 @@
                     <div class="form row">
                         <div class="form-item col-12">
                             <label for="sender">Họ và Tên</label>
-                            <input type="text" name="sender" id="sender" />
+                            <input type="text" name="sender" id="sender" required=""/>
                             <span id="error_message" class="helper-text text-danger"></span>
                         </div>
 
