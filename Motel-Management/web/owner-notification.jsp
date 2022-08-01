@@ -157,88 +157,74 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="notification">
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item">
-                                            <a href="#readNotif" class="nav-link active" data-toggle="tab">
-                                                <i class='bx bx-notification'></i>
-                                                Thông báo mới
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active">
-                                            <div class="pt-lg-2">
-                                                <div class="table-responsive pt-5">
-                                                    <table class="table table-responsive-md table-borderless notif-details">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>Tên Khách</th>
-                                                                <th>Nội dung</th>
-                                                                <th>Trạng thái</th>
-                                                                <th>Ngày</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <%
-                                                                List<NotificationDTO> listNotification = (ArrayList<NotificationDTO>) request.getAttribute("LIST_NOTI");
-                                                                for (NotificationDTO notifi : listNotification) {
-                                                            %>
-                                                            <tr>
-                                                                <td><%= notifi.getFullname()%></td>
-                                                                <td> 
-                                                                    <form action="#">
-                                                                        <span><%= notifi.getTitle()%></span>
-                                                                        <div class="mr-2">
-                                                                            <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm" 
-                                                                            data-toggle="tooltip" data-placement="right" title="Xác nhận">
-                                                                                Xác nhận
-                                                                            </a>
-                                                                            <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm" 
-                                                                            data-toggle="tooltip" data-placement="right" title="Không xác nhận">
-                                                                                Không nhận
-                                                                            </a>
-                                                                        </div>
-                                                                    </form> 
-                                                                </td>
-                                                                <td> 
-                                                                    <%
-                                                                        if (notifi.getStatus() == 1) {   
-                                                                    %>
-                                                                        <i class='bx bx-loader-alt'></i>
-                                                                        Chưa xử lý
-                                                                    <%
-                                                                        } else if (notifi.getStatus() == 0) {
-                                                                    %>
-                                                                        <i class='bx bx-check-circle'></i>
-                                                                        Xác nhận đặt phòng
-                                                                    <%
-                                                                        } else {
-                                                                    %>
-                                                                        <i class='bx bx-x-circle'></i>
-                                                                        Không xác nhận đặt phòng
-                                                                    <%
-                                                                        }
-                                                                    %>
-                                                                </td>
-                                                                <td><%= notifi.getDate()%></td>        
-                                                            <c:if test="${requestScope.LIST_NOTI != null}">     
-                                                                <c:if test="${not empty requestScope.LIST_NOTI}">
-                                                                    <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
-                                                                        <span type="hidden" name="announcementID" value="${o.announcementID}"></span>  
-                                                                    </c:forEach>
-                                                                </c:if>
-                                                            </c:if>
-                                                            </tr>
-                                                            <%
-                                                                }
-                                                            %>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="table-responsive pt-5">
+                                        <table class="table table-responsive-md table-borderless notif-details">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tên Khách</th>
+                                                    <th>Nội dung</th>
+                                                    <th>Trạng thái</th>
+                                                    <th>Ngày</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <%
+                                                    List<NotificationDTO> listNotification = (ArrayList<NotificationDTO>) request.getAttribute("LIST_NOTI");
+                                                    for (NotificationDTO notifi : listNotification) {
+                                                %>
+                                                <tr>
+                                                    <td><%= notifi.getFullname()%></td>
+                                                    <td> 
+                                                        <form action="#">
+                                                            <span><%= notifi.getTitle()%></span>
+                                                            <div class="mr-2">
+                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm" 
+                                                                data-toggle="tooltip" data-placement="right" title="Xác nhận">
+                                                                    Xác nhận
+                                                                </a>
+                                                                <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm" 
+                                                                data-toggle="tooltip" data-placement="right" title="Không xác nhận">
+                                                                    Không nhận
+                                                                </a>
+                                                            </div>
+                                                        </form> 
+                                                    </td>
+                                                    <td> 
+                                                        <%
+                                                            if (notifi.getStatus() == 1) {   
+                                                        %>
+                                                            <i class='bx bx-loader-alt'></i>
+                                                            Chưa xử lý
+                                                        <%
+                                                            } else if (notifi.getStatus() == 0) {
+                                                        %>
+                                                            <i class='bx bx-check-circle'></i>
+                                                            Xác nhận đặt phòng
+                                                        <%
+                                                            } else {
+                                                        %>
+                                                            <i class='bx bx-x-circle'></i>
+                                                            Không xác nhận đặt phòng
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </td>
+                                                    <td><%= notifi.getDate()%></td>        
+                                                <c:if test="${requestScope.LIST_NOTI != null}">     
+                                                    <c:if test="${not empty requestScope.LIST_NOTI}">
+                                                        <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
+                                                            <span type="hidden" name="announcementID" value="${o.announcementID}"></span>  
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </c:if>
+                                                </tr>
+                                                <%
+                                                    }
+                                                %>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div>
+                                </div>            
                             </div>
                         </div>
                     </div>

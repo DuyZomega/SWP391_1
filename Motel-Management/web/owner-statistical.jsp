@@ -143,11 +143,6 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="d-flex align-content-center float-right">
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
-                                        </div>
                                         <div id="numOfHome">
                                             <%
                                                 List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");
