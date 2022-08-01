@@ -899,9 +899,9 @@ public class MotelDAO {
         return listBooking;
 
     }
-    private static final String SHOWINFO_BOOKING = "select distinct m.Name as motelName, m.Address , dis.Name as DistrictName , ct.Name as CityName , u.FullName as userName , b.Total, b.Status\n"
-            + "from tblBooking as b, tblBookingDetail as bd , tblMotel as m , tblRoom as r , tblRoomType as rt, tblDistrict as dis , tblCity as ct, tblUser as u\n"
-            + "where b.BookingID = bd.BookingID and bd.RoomID = r.RoomID AND r.RoomTypeID = rt.RoomTypeID  AND dis.DistrictID=m.DistrictID AND dis.CityID = ct.CityID\n"
+    private static final String SHOWINFO_BOOKING = "select distinct m.Name as motelName, m.Address , dis.Name as DistrictName , ct.Name as CityName , p.Sender as userName , b.Total, b.Status\n"
+            + "from tblBooking as b, tblBookingDetail as bd , tblMotel as m , tblRoom as r , tblRoomType as rt, tblDistrict as dis , tblCity as ct, tblUser as u , tblPayment as p \n"
+            + "where b.BookingID = bd.BookingID and bd.RoomID = r.RoomID AND r.RoomTypeID = rt.RoomTypeID  AND dis.DistrictID=m.DistrictID AND dis.CityID = ct.CityID AND b.BookingID = p.PaymentID \n"
             + "AND b.UserID = u.UserID AND rt.MotelID = m.MotelID AND b.BookingID= ? ";
 
     public List<MotelDTO> getDetailInfoBook(String bookingID) throws SQLException {

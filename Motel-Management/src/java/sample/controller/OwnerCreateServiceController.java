@@ -35,23 +35,37 @@ public class OwnerCreateServiceController extends HttpServlet {
         try {
             String motelId = request.getParameter("motelID");
             String serName = request.getParameter("serviceName");
-            int price = Integer.parseInt(request.getParameter("price"));
+            String price1 = request.getParameter("price");
+            boolean checkValidation = true;
 
-            if (motelId != null) {
-                boolean checkID = true;
-                String serviceID;
-                do {
-                    serviceID = String.valueOf(generator.nextInt(9999999));
-                    checkID = dao.checkServiceID(serviceID);
-                } while (checkID == true);
-                ServiceDTO service = new ServiceDTO(serviceID, serName, price, 1, motelId);
-                boolean checkCreate = dao.insertService(service);
-                if(checkCreate){
-                    url = SUCCESS;
-                    request.setAttribute("MESSAGE", "Thêm Dịch Vụ Thành Công!");
-                }else{
-                    request.setAttribute("ERROR", "Thêm Dịch Vụ Thất Bại!");
+            if (serName.length() < 1 || serName.length() > 20) {
+                checkValidation = false;
+            }
+
+            if (!price1.matches("[0-9]{2,15}")) {
+                checkValidation = false;
+            }
+
+            if (checkValidation) {
+                if (motelId != null) {
+                    boolean checkID = true;
+                    String serviceID;
+                    int price = Integer.parseInt(price1);
+                    do {
+                        serviceID = String.valueOf(generator.nextInt(9999999));
+                        checkID = dao.checkServiceID(serviceID);
+                    } while (checkID == true);
+                    ServiceDTO service = new ServiceDTO(serviceID, serName, price, 1, motelId);
+                    boolean checkCreate = dao.insertService(service);
+                    if (checkCreate) {
+                        url = SUCCESS;
+                        request.setAttribute("MESSAGE", "Thêm Dịch Vụ Thành Công!");
+                    } else {
+                        request.setAttribute("ERROR", "Thêm Dịch Vụ Thất Bại!");
+                    }
                 }
+            } else {
+                request.setAttribute("ERROR", "Thêm Dịch Vụ Thất Bại!");
             }
 
         } catch (Exception e) {

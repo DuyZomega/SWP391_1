@@ -279,7 +279,7 @@
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Mật khẩu mới:</label>
                                         <input class="col-md-3 col-sm-5 form-control" type="password" name="newpassword" id="password" required>
-                                        <span class="error-message col-sm-3 mt-2"><%= error %></span>
+                                        <span class="error-message col-sm-3 mt-2"><%= userError.getNewPasswordError()%></span>
                                     </div>
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Xác nhận:</label>

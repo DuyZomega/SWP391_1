@@ -24,7 +24,7 @@ public class ChangePassWordController extends HttpServlet {
 
     private static final String ERROR = "ShowProfileController";
     private static final String SUCCESS = "ShowProfileController";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -36,25 +36,45 @@ public class ChangePassWordController extends HttpServlet {
             String newPassword = request.getParameter("newpassword");
             String ConfirmPassword = request.getParameter("confirmpassword");
             UserDAO dao = new UserDAO();
-            if (newPassword.length() > 5 && newPassword.length() < 15) {
-                UserDTO user = dao.checkLogin(userID, oldPassword);
-                if (user != null) {
-                    if (newPassword.equals(ConfirmPassword)) {
-                        boolean check = dao.changePassword(userID, newPassword);
-                        if (check) {
-                            request.setAttribute("SUCCESS", "Change Password successfully !");
-                            url = SUCCESS;
+            boolean checkValidation = true;
+
+            if (!oldPassword.matches("[0-9]{2,15}")) {
+                userError.setPasswordError("old password is number");
+                checkValidation = false;
+            }
+
+            if (!newPassword.matches("[0-9]{2,15}")) {
+                userError.setNewPasswordError("new password is number");
+                checkValidation = false;
+            }
+
+            if (!ConfirmPassword.matches("[0-9]{2,15}")) {
+                userError.setConfirmpasswordError("confirm password is number");
+                checkValidation = false;
+            }
+            if (checkValidation) {
+                if (newPassword.length() > 5 && newPassword.length() < 15) {
+                    UserDTO user = dao.checkLogin(userID, oldPassword);
+                    if (user != null) {
+                        if (newPassword.equals(ConfirmPassword)) {
+                            boolean check = dao.changePassword(userID, newPassword);
+                            if (check) {
+                                request.setAttribute("SUCCESS", "Change Password successfully !");
+                                url = SUCCESS;
+                            }
+                        } else {
+                            userError.setConfirmpasswordError("confirm password is not same !");
+                            request.setAttribute("USER_ERROR", userError);
                         }
                     } else {
-                        userError.setConfirmpasswordError("confirm password is not same !");
+                        userError.setPasswordError("Your old password is wrong!");
                         request.setAttribute("USER_ERROR", userError);
                     }
                 } else {
-                    userError.setPasswordError("Your old password is wrong!");
-                    request.setAttribute("USER_ERROR", userError);
+                    request.setAttribute("ERROR", "password >5 and pasword <15");
                 }
-            } else{
-                request.setAttribute("ERROR", "password >5 and pasword <15");
+            }else{
+                request.setAttribute("USER_ERROR", userError);
             }
         } catch (Exception e) {
             log("Error at ChangePasswordController: " + e.toString());

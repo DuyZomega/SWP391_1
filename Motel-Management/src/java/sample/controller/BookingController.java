@@ -64,6 +64,7 @@ public class BookingController extends HttpServlet {
             BookingDetailDAO bookingDetail = new BookingDetailDAO();
             PaymentDAO payment = new PaymentDAO();
             String userId = (String) session.getAttribute("userId");
+            String sender = request.getParameter("sender");
             String motelID = request.getParameter("motelID");
             String desct = request.getParameter("desct");
             int total = Integer.parseInt(request.getParameter("total"));
@@ -80,7 +81,7 @@ public class BookingController extends HttpServlet {
             boolean checkCreate = booking.insertBooking(book);
             if (status == 0) {
                 String pmtn = "Tiền mặt";
-                PaymentDTO pay = new PaymentDTO(bookingID, desct, bookdate, userId, "", pmtn);
+                PaymentDTO pay = new PaymentDTO(bookingID, desct, bookdate, sender, "", pmtn);
                 check = payment.insertPayment(pay);
             } else if (status == 2) {
                 String pmtn = "Chuyển khoản";
@@ -132,7 +133,7 @@ public class BookingController extends HttpServlet {
             //===============
             NotificationDAO dao = new NotificationDAO();
             String title = "Bạn đã đặt phòng";
-            String desc = "Đang xử lý";
+            String desc = "Your order have ID:" + bookingID;
             String announcementID = bookingID;
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
