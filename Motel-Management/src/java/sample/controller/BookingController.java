@@ -46,7 +46,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "BookingController", urlPatterns = {"/BookingController"})
 public class BookingController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "userhistorybooking";
     private static final String SUCCESS = "userhistorybooking";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -124,14 +124,16 @@ public class BookingController extends HttpServlet {
                 }
             }
             if (checkCreate & check & updateroom) {
-                request.setAttribute("SUCCESS", "Booking successfully ");
+                request.setAttribute("SUCCESS", "Đặt phòng thành công ");
                 url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR", "Đặt phòng thất bại!");
             }
-            
+
             //===============
             NotificationDAO dao = new NotificationDAO();
             String title = "Bạn đã đặt phòng";
-            String desc = "Đang xử lý";
+            String desc = "Your order have ID:" + bookingID;
             String announcementID = bookingID;
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
@@ -153,10 +155,16 @@ public class BookingController extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
-            
+
             //===============
             String motelInfo = "";
             List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);

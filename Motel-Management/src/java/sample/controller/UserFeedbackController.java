@@ -21,7 +21,7 @@ import sample.users.UserDAO;
 @WebServlet(name = "UserFeedbackController", urlPatterns = {"/UserFeedbackController"})
 public class UserFeedbackController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "userhistorybooking";
     private static final String SUCCESS = "userhistorybooking";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,8 +41,10 @@ public class UserFeedbackController extends HttpServlet {
              FeedbackDTO feedback = new FeedbackDTO(userID, feedbackID, desct, rating, motelID, status, bookingID);
             boolean checkInsert = dao.insertFeedback(feedback);
                 if (checkInsert) {
-                request.setAttribute("MESSAGE", "Successfully");
+                request.setAttribute("MESSAGE", "Thành công");
                     url = SUCCESS;
+                }else {
+                    request.setAttribute("ERROR", "Không có đánh giá!");
                 }
         } catch (Exception e) {
             log("Error at OwnerCreateMotelController:"+e.toString());

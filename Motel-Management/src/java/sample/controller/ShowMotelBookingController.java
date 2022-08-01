@@ -30,7 +30,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "ShowMotelBookingController", urlPatterns = {"/ShowMotelBookingController"})
 public class ShowMotelBookingController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "user-booking.jsp";
     private static final String SUCCESS = "user-booking.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -82,6 +82,8 @@ public class ShowMotelBookingController extends HttpServlet {
 
                 //========
                 url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR", "Không có danh sách phòng!");
             }
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -98,8 +100,14 @@ public class ShowMotelBookingController extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());

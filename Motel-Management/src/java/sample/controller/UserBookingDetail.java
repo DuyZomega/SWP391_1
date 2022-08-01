@@ -26,7 +26,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "UserBookingDetail", urlPatterns = {"/UserBookingDetail"})
 public class UserBookingDetail extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "user-booking-detail.jsp";
     private static final String SUCCESS = "user-booking-detail.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -44,13 +44,15 @@ public class UserBookingDetail extends HttpServlet {
             List<MotelDTO> listMotel = motel.getDetailMotel(motelID);
             List<MotelDTO> listMotel1 = motel.getDetailInfoBook(bookingID);
             List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
-           
-            if (listBooking.size() > 0 || listMotel.size() > 0) { 
-                 request.setAttribute("DETAIL_MOTEL", listMotel);
-                  request.setAttribute("DETAIL_BOOK", listBooking);
-                 request.setAttribute("DETAIL_MOTEL1", listMotel1);
+
+            if (listBooking.size() > 0 || listMotel.size() > 0) {
+                request.setAttribute("DETAIL_MOTEL", listMotel);
+                request.setAttribute("DETAIL_BOOK", listBooking);
+                request.setAttribute("DETAIL_MOTEL1", listMotel1);
                 url = SUCCESS;
-                }
+            } else {
+                request.setAttribute("ERROR", "Không có danh sách!");
+            }
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
 
             NotificationDAO dao = new NotificationDAO();
@@ -64,8 +66,14 @@ public class UserBookingDetail extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
