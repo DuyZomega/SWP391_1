@@ -19,19 +19,23 @@ import sample.admin.ReportDAO;
 @WebServlet(name = "AdminReport", urlPatterns = {"/AdminReport"})
 public class AdminReport extends HttpServlet {
 
-       private static final String ERROR = "error.jsp";
+       private static final String ERROR = "AdminReportManager";
     private static final String SUCCESS = "AdminReportManager";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url = ERROR;
+       String url = SUCCESS;
         try {
             ReportDAO report = new ReportDAO();
             String reportID = request.getParameter("reportID");
                 boolean check = report.solved(reportID);
                 if (check) {
                 request.setAttribute("MESSAGE", "Successfully");
+                    url = SUCCESS;
+                }else{
+                    
+                request.setAttribute("ERROR", "Có lỗi, vui lòng kiểm tra lại!");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

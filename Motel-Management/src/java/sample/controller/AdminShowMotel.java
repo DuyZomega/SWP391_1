@@ -27,7 +27,7 @@ public class AdminShowMotel extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url =  ERROR;
+       String url =  SUCCESS;
         try {
             MotelDAO dao1 = new MotelDAO();
             List<MotelDTO> adminMotel = dao1.adminShowMotel();

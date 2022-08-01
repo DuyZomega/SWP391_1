@@ -27,7 +27,7 @@ public class AdminReportManager extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url =  ERROR;
+        String url =  SUCCESS;
         try {
             ReportDAO report = new ReportDAO();
             List<ReportDTO> listReport = report.getList();
