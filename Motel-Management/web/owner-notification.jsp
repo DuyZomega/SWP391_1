@@ -172,6 +172,12 @@
                                                         <table class="table table-responsive-md table-borderless notif-details">
                                                             <thead>
                                                                 <tr>
+                                                                    <th>
+                                                                        <div class="custom-control custom-checkbox mr-3 d-inline-flex">
+                                                                            <input type="checkbox" class="custom-control-input" id="checkAll" required="">
+                                                                            <label class="custom-control-label" for="checkAll"></label>
+                                                                        </div>     
+                                                                    </th>
                                                                     <th>Tên Khách</th>
                                                                     <th>Nội dung</th>
                                                                     <th>Trạng thái</th>
@@ -184,15 +190,27 @@
                                                                         List<NotificationDTO> listNotification = (ArrayList<NotificationDTO>) request.getAttribute("LIST_NOTI");
                                                                         for (NotificationDTO notifi : listNotification) {
                                                                     %>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox checkbox-success mr-3">
+                                                                            <input type="checkbox" class="custom-control-input" id="check1" required="">
+                                                                            <label class="custom-control-label" for="check1"></label>
+                                                                        </div>
+                                                                    </td>
                                                                     <td><%= notifi.getFullname()%></td>
                                                                     <td> 
+                                                                        <% 
+                                                                            if(notifi.getStatus() !=0){
+                                                                        %>
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID()%>" class="btn btn-success confirm">Xác nhận</a>
                                                                                 <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
+                                                                        <% }else{%>   
+                                                                        Đã Xử Lý
+                                                                        <% } %>
                                                                     </td>
                                                                     <td><%= notifi.getDesct()%></td>
                                                                     <td><%= notifi.getDate()%></td>  
