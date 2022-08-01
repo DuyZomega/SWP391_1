@@ -26,7 +26,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "UserCancelRoom", urlPatterns = {"/UserCancelRoom"})
 public class UserCancelRoom extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "userhistorybooking";
     private static final String SUCCESS = "userhistorybooking";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,9 +46,9 @@ public class UserCancelRoom extends HttpServlet {
                     checkBT = roomdao1.cancelRoom(roomDTO.getRoomId());
                 }
                 if (checkBT) {
-                        url = SUCCESS;
-                        request.setAttribute("MESSAGE", "Cập nhật thành công");
-                    }
+                    url = SUCCESS;
+                    request.setAttribute("MESSAGE", "Cập nhật thành công");
+                }
             }
             HttpSession session = request.getSession();
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
@@ -65,8 +65,14 @@ public class UserCancelRoom extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at OwnerCreateMotelController:" + e.toString());

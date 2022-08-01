@@ -25,7 +25,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "UserHistoryBooking", urlPatterns = {"/userhistorybooking"})
 public class UserHistoryBooking extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "user-booking-list.jsp";
     private static final String SUCCESS = "user-booking-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -42,6 +42,8 @@ public class UserHistoryBooking extends HttpServlet {
             if (listUserBooking != null) {
                 request.setAttribute("LIST_HISTORY", listUserBooking);
                 url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR", "Không có danh sách người đã đặt phòng!");
             }
             NotificationDAO dao1 = new NotificationDAO();
             NotificationDTO noti = new NotificationDTO();
@@ -54,8 +56,14 @@ public class UserHistoryBooking extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at UserShowHistoryController:" + e.toString());
@@ -63,7 +71,6 @@ public class UserHistoryBooking extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

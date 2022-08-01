@@ -25,7 +25,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "SearchController", urlPatterns = {"/SearchController"})
 public class SearchController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "user-motel-list.jsp";
     private static final String SUCCESS = "user-motel-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -58,8 +58,14 @@ public class SearchController extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
         } catch (Exception e) {
             log("Error at SearchController: " + e.toString());

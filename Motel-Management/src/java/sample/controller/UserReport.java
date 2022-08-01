@@ -21,7 +21,7 @@ import sample.admin.ReportDTO;
 @WebServlet(name = "UserReport", urlPatterns = {"/UserReport"})
 public class UserReport extends HttpServlet {
 
-     private static final String ERROR = "error.jsp";
+    private static final String ERROR = "userhistorybooking";
     private static final String SUCCESS = "userhistorybooking";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,13 +38,16 @@ public class UserReport extends HttpServlet {
             String desct = request.getParameter("desct");
             String date = request.getParameter("date");
             int status = 0;
-             ReportDTO report = new ReportDTO(reportID, userID, motelID, title, desct, status, date);
+            ReportDTO report = new ReportDTO(reportID, userID, motelID, title, desct, status, date);
             boolean checkReport = dao.insertReport(report);
-                if (checkReport) {request.setAttribute("MESSAGE", "Successfully");
-                    url = SUCCESS;
-                }
+            if (checkReport) {
+                request.setAttribute("MESSAGE", "Thành công");
+                url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR", "Lỗi xảy ra khi tạo report!");
+            }
         } catch (Exception e) {
-            log("Error at OwnerCreateMotelController:"+e.toString());
+            log("Error at OwnerCreateMotelController:" + e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
