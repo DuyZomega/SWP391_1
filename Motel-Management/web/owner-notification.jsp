@@ -170,33 +170,20 @@
                                                     </div>
                                                     <div class="table-responsive pt-5">
                                                         <table class="table table-responsive-md table-borderless notif-details">
-
                                                             <thead>
                                                                 <tr>
-                                                                    <th>
-                                                                        <div class="custom-control custom-checkbox mr-3 d-inline-flex">
-                                                                            <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                                                            <label class="custom-control-label" for="checkAll"></label>
-                                                                        </div>     
-                                                                    </th>
                                                                     <th>Tên Khách</th>
                                                                     <th>Nội dung</th>
                                                                     <th>Trạng thái</th>
                                                                     <th>Ngày</th>
                                                                 </tr>
-                                                            </thead>
+                                                            </thead>    
                                                             <tbody>
                                                                 <tr>
                                                                     <%
                                                                         List<NotificationDTO> listNotification = (ArrayList<NotificationDTO>) request.getAttribute("LIST_NOTI");
                                                                         for (NotificationDTO notifi : listNotification) {
                                                                     %>
-                                                                    <td>
-                                                                        <div class="custom-control custom-checkbox checkbox-success mr-3">
-                                                                            <input type="checkbox" class="custom-control-input" id="check1" required="">
-                                                                            <label class="custom-control-label" for="check1"></label>
-                                                                        </div>
-                                                                    </td>
                                                                     <td><%= notifi.getFullname()%></td>
                                                                     <td> 
                                                                         <form action="#">
@@ -209,7 +196,7 @@
                                                                     </td>
                                                                     <td><%= notifi.getDesct()%></td>
                                                                     <td><%= notifi.getDate()%></td>  
-                                                            <c:if test="${requestScope.LIST_NOTI != null}">
+                                                            <c:if test="${requestScope.LIST_NOTI != null}">     
                                                                 <c:if test="${not empty requestScope.LIST_NOTI}">
 
                                                                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
