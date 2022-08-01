@@ -21,7 +21,7 @@ import sample.motel.MotelDTO;
 public class AdminUpdateMotel extends HttpServlet {
 
      
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "AdminShowMotel";
     private static final String SUCCESS = "AdminShowMotel";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +43,7 @@ public class AdminUpdateMotel extends HttpServlet {
                     request.setAttribute("MESSAGE", "Update successfully");
                     url = SUCCESS;
                 } else {
-                    request.setAttribute("ERROR_MESSAGE", "Update fail");
+                    request.setAttribute("ERROR", "Update fail");
                     url = ERROR;
                 }
        } catch (Exception e) {

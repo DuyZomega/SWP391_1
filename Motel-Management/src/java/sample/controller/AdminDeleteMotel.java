@@ -19,7 +19,7 @@ import sample.motel.MotelDAO;
 @WebServlet(name = "AdminDeleteMotel", urlPatterns = {"/AdminDeleteMotel"})
 public class AdminDeleteMotel extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "AdminShowMotel";
     private static final String SUCCESS = "AdminShowMotel";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +31,11 @@ public class AdminDeleteMotel extends HttpServlet {
                 MotelDAO dao = new MotelDAO();
                 boolean check = dao.deleteMotel(motelID);
                 if (check) {
-                request.setAttribute("MESSAGE", "Successfully");
+                request.setAttribute("MESSAGE", "Thành công");
+                    url = SUCCESS;
+                } else{
+                    
+                request.setAttribute("ERROR", "Có lỗi, vui lòng kiểm tra lại!");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

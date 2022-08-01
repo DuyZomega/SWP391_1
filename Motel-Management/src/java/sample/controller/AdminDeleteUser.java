@@ -20,7 +20,7 @@ import sample.users.UserDAO;
 @WebServlet(name = "AdminDeleteUser", urlPatterns = {"/AdminDeleteUser"})
 public class AdminDeleteUser extends HttpServlet {
 
-     private static final String ERROR = "error.jsp";
+     private static final String ERROR = "AdminListAccount";
     private static final String SUCCESS = "AdminListAccount";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,6 +32,10 @@ public class AdminDeleteUser extends HttpServlet {
                 boolean check = dao.deleteUser(userId);
                 if (check) {
                 request.setAttribute("MESSAGE", "Successfully");
+                    url = SUCCESS;
+                }else{
+                    
+                request.setAttribute("ERROR", "Có lỗi, vui lòng kiểm tra lại!");
                     url = SUCCESS;
                 }
         } catch (Exception e) {

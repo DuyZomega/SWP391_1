@@ -26,7 +26,7 @@ import sample.users.UserDAO;
 public class ChangeImageController extends HttpServlet {
 
     
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "ShowProfileController";
     private static final String SUCCESS = "ShowProfileController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +52,11 @@ public class ChangeImageController extends HttpServlet {
             if(check){
             request.setAttribute("MESSAGE", "Successfully");
                 url = SUCCESS;
-            }
+            }else{
+                    
+                request.setAttribute("ERROR", "Có lỗi, vui lòng kiểm tra lại!");
+                    url = SUCCESS;
+                }
         } catch (Exception e) {
             e.printStackTrace();
         } finally{
