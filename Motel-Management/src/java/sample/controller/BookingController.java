@@ -132,7 +132,7 @@ public class BookingController extends HttpServlet {
             //===============
             NotificationDAO dao = new NotificationDAO();
             String title = "Bạn đã đặt phòng";
-            String desc = "Đang xử lý";
+            String desc = "Your order have ID:" + bookingID;
             String announcementID = bookingID;
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
