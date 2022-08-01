@@ -123,7 +123,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -170,7 +170,6 @@
                                                     </div>
                                                     <div class="table-responsive pt-5">
                                                         <table class="table table-responsive-md table-borderless notif-details">
-
                                                             <thead>
                                                                 <tr>
                                                                     <th>
@@ -184,7 +183,7 @@
                                                                     <th>Trạng thái</th>
                                                                     <th>Ngày</th>
                                                                 </tr>
-                                                            </thead>
+                                                            </thead>    
                                                             <tbody>
                                                                 <tr>
                                                                     <%
@@ -199,17 +198,23 @@
                                                                     </td>
                                                                     <td><%= notifi.getFullname()%></td>
                                                                     <td> 
+                                                                        <% 
+                                                                            if(notifi.getStatus() !=0){
+                                                                        %>
                                                                         <form action="#">
                                                                             <span><%= notifi.getTitle()%></span>
                                                                             <div class="mr-2">
-                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID() %>" class="btn btn-success confirm">Xác nhận</a>
+                                                                                <a href="MainController?action=ownerno&announcementID=<%= notifi.getAnnouncementID()%>" class="btn btn-success confirm">Xác nhận</a>
                                                                                 <a href="MainController?action=ownerno1&announcementID=<%=notifi.getAnnouncementID()%>" class="btn btn-danger unconfirm">Chưa nhận</a>
                                                                             </div>
                                                                         </form> 
+                                                                        <% }else{%>   
+                                                                        Đã Xử Lý
+                                                                        <% } %>
                                                                     </td>
                                                                     <td><%= notifi.getDesct()%></td>
                                                                     <td><%= notifi.getDate()%></td>  
-                                                            <c:if test="${requestScope.LIST_NOTI != null}">
+                                                            <c:if test="${requestScope.LIST_NOTI != null}">     
                                                                 <c:if test="${not empty requestScope.LIST_NOTI}">
 
                                                                     <c:forEach var="o" varStatus="counter" items="${requestScope.LIST_NOTI}">
