@@ -289,6 +289,19 @@
                     </div>
                 </c:if>
             </c:if>
+                                    
+            <c:if test="${requestScope.ERROR != null}">
+                <c:if test="${not empty requestScope.ERROR}"> 
+                    <div class="alert alert-danger alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-x p-1'></i>
+                        <strong class="mr-1">Error!</strong>
+                        ${requestScope.ERROR}
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
         </div>
 
         <!-- edit Home -->

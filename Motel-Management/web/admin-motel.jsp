@@ -133,7 +133,8 @@
                                                             <th>Rating</th>
                                                             <th>Chủ trọ </th>
                                                             <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Trạng thái: activate to sort column ascending" style="width: 90px;">Trạng thái</th>
-                                                            <th  class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 90px;">Action</th>
+<!--                                                            <th  class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 90px;">Action</th>
+                                                        -->
                                                         </tr>
                                                     </thead>
 
@@ -161,12 +162,29 @@
                                                                                 <span class="badge badge-success">Activity</span>
                                                                             </c:if> 
                                                                         </td>
-                                                                        <td>
-                                                                            <div class="d-flex">
-                                                                                <a href="MotelManager?action=detail&motelID=${motel.motelID}" class="btn btn-info m-b-xs shadow btn-xs sharp me-1 "><i class='bx bxs-pencil'></i></a>
-                                                                                <a href="MotelManager?action=delete&motelID=${motel.motelID}" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
-                                                                            </div>    
-                                                                        </td>
+<!--                                                                        <td>
+                                                                            <div class="d-flex"><a href="MotelManager?action=delete&motelID=${motel.motelID}" class="btn btn-danger shadow btn-xs sharp"><i class='bx bxs-trash-alt' ></i></a>
+                                                                                <button class="btn btn-danger shadow btn-xs sharp" data-toggle="modal" data-target="#removeMotel">
+                                                                                    <i class='bx bxs-trash-alt' ></i> 
+                                                                                </button> 
+                                                                                </div>
+                                                                        </td>        
+                                                                                <div id="removeMotel" class="modal fade" role="dialog">
+                                                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                                                        <div class="modal-content modal-addRoom">
+                                                                                            <div class="modal-header">
+                                                                                                <h4 class="modal-title">Bạn muốn xóa motel?</h4> 
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">×</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-footer justify-content-center">
+                                                                                                <button class="btn btn-success"><a href="MotelManager?action=delete&motelID=${motel.motelID}" style="color: white">Xác Nhận</a></button>
+                                                                                                <button class="button--primary bg-danger text-white" type="button" data-dismiss="modal">Hủy</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>-->
                                                                     </tr>
                                                                 </c:forEach> 
                                                             </c:if>
@@ -194,6 +212,20 @@
                         <i class='bx bx-message-alt-check p-1'></i>
                         <strong class="mr-1">${requestScope.MESSAGE}!</strong>
 
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
+
+
+            <c:if test="${requestScope.ERROR != null}">
+                <c:if test="${not empty requestScope.ERROR}"> 
+                    <div class="alert alert-danger alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-x p-1'></i>
+                        <strong class="mr-1">Error!</strong>
+                        ${requestScope.ERROR}
                         <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
                             <span><i class='bx bx-x'></i></span>
                         </button>
