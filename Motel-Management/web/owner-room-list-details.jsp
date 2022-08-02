@@ -188,7 +188,7 @@
                                     %>
                                     <div class="card-header">
                                         <h4>Thông tin đặt phòng </h4>
-                                        <button onclick="Export2Doc('exportContent', 'Phòng <%= roomDetail.getRoomID()%>');">Xuất</button>
+                                        <button class="btn btn-primary" onclick="Export2Doc('exportContent', 'Phòng <%= roomDetail.getRoomID()%>');">Xuất</button>
                                                    
                                     </div>
                                     <div class="card-body">

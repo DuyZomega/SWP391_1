@@ -174,7 +174,7 @@ public class BookingController extends HttpServlet {
 
             List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
             for (MotelDTO m : listBooking) {
-                orderTable += "<br>- Loại: " + m.getTypename() + " - Số lượng: " + m.getNumberRoom() + "(Giá: " + m.getMotelprice() + " vnd/phòng) - Giờ:" + m.getNumberRoomType() + " (h)<br>";
+                orderTable += "<br>- Loại: " + m.getTypename() + " - Số lượng: " + m.getNumberRoom() + "(Giá: " + m.getMotelprice() + " vnd/phòng) - Số giờ:" + m.getNumberRoomType() + " (h)<br>";
             }
             byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
             UserDTO userProfile = user.getUserProfile(userId);

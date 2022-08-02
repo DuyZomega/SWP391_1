@@ -54,7 +54,7 @@ public class SendEmail {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Cảm ơn bạn đã tin tưởng ROH Motel");
+            message.setSubject("ROH Motel");
             message.setContent("Vui lòng kiểm tra lại đơn đặt phòng :<br>"
                     + mes, "text/html;charset=utf-8");
 
