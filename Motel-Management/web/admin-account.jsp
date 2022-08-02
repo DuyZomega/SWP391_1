@@ -134,7 +134,7 @@
                                                     <option value="OW">Chủ trọ</option>
                                                     <option value="AD">Admin</option>
                                                 </select>
-                                                <button class="btn btn-info m-b-xs shadow btn-xs" type="submit" name="action" value="filter"><i
+                                                <button class="btn btn-info m-b-xs btn-xs" type="submit" name="action" value="filter"><i
                                                         class='bx bx-search'></i>
                                                 </button>
                                             </form>

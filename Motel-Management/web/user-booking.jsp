@@ -140,7 +140,7 @@
                         </div>
                         <div class="form-checkbox col-12">
                             <input type="checkbox" aria-label="Điều khoản và chính sách" required>
-                            <span>Tôi đồng ý <a href="#">Điều khoản và chính sách</a></span>
+                            <span>Tôi đồng ý <a target="_blank" href="rules.jsp">Điều khoản và chính sách</a></span>
                         </div>
                         <button type="submit" value="book" name="action" class="button--primary btn btn-danger">Xác nhận
                             đặt

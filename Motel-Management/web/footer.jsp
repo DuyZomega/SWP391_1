@@ -32,9 +32,9 @@
                     <div class="col-12 col-sm-3 footer-contact">
                         <h3>THÔNG TIN LIÊN LẠC</h3>
                         <ul>
-                            <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-                            <li><a href="#" target="_blank"><i class="fab fa-google"></i> Gmail</a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=100083932190679" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href="https://github.com/DuyZomega/SWP391_1" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                            <li><a href="mailto:hotelmanagement.fpt@gmail.com" target="_blank"><i class="fab fa-google"></i> Gmail</a></li>
                         </ul>
                     </div>
                 </div>

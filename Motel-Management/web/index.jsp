@@ -69,7 +69,7 @@
                         </div>
                         <div class="content">
                             <h4>Lựa chọn tốt nhất</h4>
-                            <p>HORD đưa cho bạn những lựa chọn phù hợp về nhà trọ để bạn có một cuộc sống vui vẻ.</p>
+                            <p>ROH đưa cho bạn những lựa chọn phù hợp về nhà trọ để bạn có một cuộc sống vui vẻ.</p>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 d-flex my-5">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="content">
                             <h4>Hỗ trợ 24/7</h4>
-                            <p>Luôn luôn lắng nghe, luôn luôn hỗ trợ bạn về tất cả dịch vụ tại HORD.</p>
+                            <p>Luôn luôn lắng nghe, luôn luôn hỗ trợ bạn về tất cả dịch vụ tại ROH.</p>
                         </div>
                     </div>
                 </div>
@@ -197,14 +197,14 @@
                     <div class="intro-title d-flex">
                         <img class="img-fluid" src="assets/img/logo2-1.png" alt="logo" />
                         <p class="card-text my-3">
-                            Công ty TNHH Chém Gió Xuyên Quốc Gia HORD
-                            <span class="text-center d-block">- HORD Gossip Inc. -</span>
+                            Công ty TNHH Chém Gió Xuyên Quốc Gia ROH
+                            <span class="text-center d-block">- ROH Gossip Inc. -</span>
                             <span class="d-block text-center">Thành lập vào 05/2022</span>
                         </p>
                     </div>
 
                     <div class="card-text">
-                        Là HORD, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu
+                        Là ROH, chúng tôi luôn luôn lắng nghe, luôn luôn thấu hiểu các nhu
                         cầu không chỉ đơn thuần là tìm kiếm một nơi dừng chân mà còn cả môi
                         trường cũng như dịch vụ mang lại cảm giác thoải mái và an toàn cho
                         các quý khách hàng!
@@ -229,11 +229,10 @@
                             <h5>Cao Thị Phương Thủy</h5>
                             <p class="team__text">- Trường nhóm</p>
                             <p>
-                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
-                                friuisque pretiuam
+                                Là một người siêng năng, chăm chỉ, cầu tiến,.... Là một trưởng nhóm tuyệt vời.
                             </p>
                             <div class="team__socials">
-                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/cao.thi.phuong.thuy.07" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://github.com/CTPhuongThuy#" target="_blank"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
@@ -248,11 +247,10 @@
                             <h5>Lê Minh Quân</h5>
                             <p class="team__text">- Thành viên</p>
                             <p>
-                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
-                                friuisque pretiuam
+                                Là người có kỹ năng ẩn mình một cách thượng thừa, nhưng rất vui tính và dễ gần.
                             </p>
                             <div class="team__socials">
-                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/quann.lee75" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://github.com/Quanle9851" target="_blank"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
@@ -267,11 +265,10 @@
                             <h5>Trần Ngọc Hải</h5>
                             <p class="team__text">- Thành viên</p>
                             <p>
-                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
-                                friuisque pretiuam
+                                Sôi nổi và nhiệt huyết ở mọi mặt trận là những gì xây dựng lên cá nhân này.
                             </p>
                             <div class="team__socials">
-                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/profile.php?id=100037071323614" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://github.com/haitn10" target="_blank"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
@@ -286,11 +283,10 @@
                             <h5>Hồ Khánh Duy</h5>
                             <p class="team__text">- Thành viên</p>
                             <p>
-                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
-                                friuisque pretiuam
+                                Trái ngược với sôi nổi, trầm tính và hành động là đặc điểm nhận dạng của Duy.
                             </p>
                             <div class="team__socials">
-                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/khanhduy.ho.148" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://github.com/DuyZomega" target="_blank"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
@@ -305,11 +301,10 @@
                             <h5>Nguyễn Hữu Phạm Tuân</h5>
                             <p class="team__text">- Thành viên</p>
                             <p>
-                                Mauris tincidunt dolor eget diam dapibus vitae finibusnisl
-                                friuisque pretiuam
+                                Là một người đứng giữa sôi nổi và trầm lặng của team, "bình thường" là từ dùng để miêu tả.
                             </p>
                             <div class="team__socials">
-                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.facebook.com/tuan25201/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://github.com/tuan2502" target="_blank"><i class="fab fa-github"></i></a>
                             </div>
                         </div>

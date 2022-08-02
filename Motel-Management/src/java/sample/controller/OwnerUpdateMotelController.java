@@ -40,11 +40,13 @@ public class OwnerUpdateMotelController extends HttpServlet {
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
             String districtID = request.getParameter("districtID");
-            String desc = request.getParameter("desct");
+            String desc = request.getParameter("motelDesct");
             Part part = request.getPart("photo");
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
-            String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+           // String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+           
+            String pathImage ="D:\\SWP-Final\\SWP391_1\\Motel-Management\\web\\images";
             boolean checkValidation = true;
             MotelError motelError = new MotelError();
 

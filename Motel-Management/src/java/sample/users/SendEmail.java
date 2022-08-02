@@ -54,8 +54,8 @@ public class SendEmail {
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
-            message.setSubject("Thank you for visiting ROH MOTEL");
-            message.setContent("Please check your order<br>"
+            message.setSubject("ROH Motel");
+            message.setContent("Vui lòng kiểm tra lại đơn đặt phòng :<br>"
                     + mes, "text/html;charset=utf-8");
 
             Transport.send(message);

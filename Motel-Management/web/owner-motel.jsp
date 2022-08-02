@@ -219,9 +219,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-4 decp">
+                                        <div class="mb-4 decp">
+                                            <a  id="show-more" class="show-less" href="#show-less">Show less</a>
+                                            <a  id="show-less" class="show-more" href="#show-more">Show more</a>
                                             <%= motel.getDesct()%>
-                                        </p>
+                                        </div>
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="mr-auto mb-4">
                                                 <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
@@ -438,7 +440,7 @@
                                     </div>
                                     <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>   
-                                        <textarea type="text" id="motelDesct" name="desct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
+                                        <textarea type="text" id="motelDesct" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
                                         
                                     </div>
                                     <div class="row form-group">
