@@ -21,13 +21,13 @@ import sample.users.UserDTO;
 @WebServlet(name = "AdminDetailUser", urlPatterns = {"/AdminDetailUser"})
 public class AdminDetailUser extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "admin-owner-info.jsp";
     private static final String USER = "admin-owner-info.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = USER;
         try {
             String userId = request.getParameter("userId");
             String role = request.getParameter("role");
@@ -37,7 +37,7 @@ public class AdminDetailUser extends HttpServlet {
                     request.setAttribute("INFO", listAcc);
                     url = USER;
                 } else {
-                    request.setAttribute("ERROR_MESSAGE", "No user here");
+                    request.setAttribute("ERROR", "No user here");
                     url = USER;
                 }
            

@@ -132,7 +132,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -169,12 +169,6 @@
                             <div class="card-action card-tabs mr-auto">
                                 <button class="btn btn-primary" data-toggle="modal" data-target="#addHome"><i class='bx bx-plus-medical mr-2'></i>Thêm Nhà</button>
                             </div>
-                            <% String message = (String) request.getAttribute("MESSAGE");
-                                if (message == null) {
-                                    message = "";
-                                }
-                            %>
-                            <%= message%>
                         </div>
                         <div class="row">
                             <!-- vòng lặp in home -->                          
@@ -225,9 +219,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-4 decp">
+                                        <div class="mb-4 decp">
+                                            <a  id="show-more" class="show-less" href="#show-less">Show less</a>
+                                            <a  id="show-less" class="show-more" href="#show-more">Show more</a>
                                             <%= motel.getDesct()%>
-                                        </p>
+                                        </div>
                                         <div class="d-flex flex-wrap align-items-center">
                                             <div class="mr-auto mb-4">
                                                 <p class="mb-2 text-black"><i class='bx bx-book-alt'></i>Thông tin</p>
@@ -344,8 +340,8 @@
                                     <div class="row">
                                         <div class="col-md-2 text-md-right pb-1"><span>Mô Tả: </span></div>
                                         <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input name="desct" type="text" class="form-control" placeholder="Nhập mô tả..." >
+                                            <div class="form-group">                                             
+                                                <textarea type="text" id="roomTypeDesct" name="desct" placeholder="nhập mô tả..." class="form-control" rows="3" ></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -443,8 +439,9 @@
                                         </select>                       
                                     </div>
                                     <div class="row form-group">
-                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>
-                                        <input class="form-control col-md-6" name="desct" value="<%= motel.getDesct()%>" required>       
+                                        <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>   
+                                        <textarea type="text" id="motelDesct" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
+                                        
                                     </div>
                                     <div class="row form-group">
                                         <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>
@@ -494,6 +491,21 @@
         </div> 
         <%}%>
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
+        <script src="ckeditor/ckeditor.js"></script>
+        <script src="ckfinder/ckfinder.js"></script>
+        
+        <script>
+
+                                            var editor = CKEDITOR.replace('motelDesct');
+                                            CKFinder.setupCKEditor(editor, 'ckfinder/');
+                                            data["motelDesct"] = editor.getData();
+        </script>
+        <script>
+
+                                            var editor = CKEDITOR.replace('roomTypeDesct');
+                                            CKFinder.setupCKEditor(editor, 'ckfinder/');
+                                            data["roomTypeDesct"] = editor.getData();
+        </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>

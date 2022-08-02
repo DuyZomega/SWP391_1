@@ -42,8 +42,8 @@ public class OwnerCreateMotelController extends HttpServlet {
             Part part = request.getPart("photo");
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
-            String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
-
+          //  String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+            String pathImage ="D:\\SWP-Final\\SWP391_1\\Motel-Management\\web\\images";
             if (!Files.exists(Path.of(realPath))) {
                 Files.createDirectories(Path.of(realPath));
             }
@@ -82,14 +82,14 @@ public class OwnerCreateMotelController extends HttpServlet {
                 MotelDTO motel = new MotelDTO(motelID, motelName, image, Phone, desc, address, DistrictID, "", 0, ownerID, 1);
                 boolean checkCreate = dao.createMotel(motel);
                 if (checkCreate) {
-                    request.setAttribute("MESSAGE", "Create Motel Success! ");
+                    request.setAttribute("MESSAGE", "Tạo Nhà Trọ Thành Công! ");
                     part.write(pathImage + "/" + filename);
                     url = SUCCESS;
                 } else {
-                    request.setAttribute("ERROR", "Create Motel Fail! ");
+                    request.setAttribute("ERROR", "Tạo Nhà Trọ Thất Bại! ");
                 }
             } else {
-                request.setAttribute("ERROR", "Create Motel Fail! ");
+                request.setAttribute("ERROR", "Tạo Nhà Trọ Thất Bại! ");
             }
 
         } catch (Exception e) {

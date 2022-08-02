@@ -109,6 +109,18 @@
                                                     </div>
                                                 </c:if>
                                             </c:if>
+                                            <c:if test="${requestScope.ERROR != null}">
+                <c:if test="${not empty requestScope.ERROR}"> 
+                    <div class="alert alert-danger alert-dismissible fade show" id="notif">
+                        <i class='bx bx-message-alt-x p-1'></i>
+                        <strong class="mr-1">Error!</strong>
+                        ${requestScope.ERROR}
+                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
+                            <span><i class='bx bx-x'></i></span>
+                        </button>
+                    </div>
+                </c:if>
+            </c:if>
                                             <div class="col-lg-8">
                                                 <div class="profile-content">
                                                     <div class="contact-infor">
@@ -139,7 +151,8 @@
                                                                 </div>
                                                                 <div class="row phone-content">
                                                                     <label class="contact-title col-md-4 col-sm-4 mt-3">Số điện thoại:</label>
-                                                                    <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" class="form-control col-md-8 col-sm-8 mt-2">
+                                                                    <input type="tel" name="phone" value="<%= userProfile.getPhone()%>" 
+       pattern="[0-9]{9,11}" class="form-control col-md-8 col-sm-8 mt-2">
                                                                     <span class="error-message col-md-2 mt-3"><%= userError.getPhoneError()%></span>
                                                                 </div>
                                                                 <div class="row address-content">

@@ -28,7 +28,7 @@ import sample.owner.HistoryDTO;
 @WebServlet(name = "AdminShowOverview", urlPatterns = {"/AdminShowOverview"})
 public class AdminShowOverview extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "admin.jsp";
     private static final String SUCCESS = "admin.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

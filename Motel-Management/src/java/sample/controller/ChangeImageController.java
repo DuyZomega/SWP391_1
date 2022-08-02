@@ -26,7 +26,7 @@ import sample.users.UserDAO;
 public class ChangeImageController extends HttpServlet {
 
     
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "ShowProfileController";
     private static final String SUCCESS = "ShowProfileController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -37,8 +37,8 @@ public class ChangeImageController extends HttpServlet {
             Part part = request.getPart("photo");
             String realPath = request.getServletContext().getRealPath("/images");
             String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
-            String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
-            
+          //  String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+            String pathImage ="D:\\SWP-Final\\SWP391_1\\Motel-Management\\web\\images";
             if (!Files.exists(Path.of(pathImage))) {
                 Files.createDirectories(Path.of(pathImage));
             }
@@ -52,7 +52,11 @@ public class ChangeImageController extends HttpServlet {
             if(check){
             request.setAttribute("MESSAGE", "Successfully");
                 url = SUCCESS;
-            }
+            }else{
+                    
+                request.setAttribute("ERROR", "Có lỗi, vui lòng kiểm tra lại!");
+                    url = SUCCESS;
+                }
         } catch (Exception e) {
             e.printStackTrace();
         } finally{

@@ -30,7 +30,7 @@ import sample.users.UserDTO;
 @WebServlet(name = "ShowMotelController", urlPatterns = {"/ShowMotelController"})
 public class ShowMotelController extends HttpServlet {
 
-    private static final String ERROR = "error.jsp";
+    private static final String ERROR = "index.jsp";
     private static final String SUCCESS = "index.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -50,6 +50,8 @@ public class ShowMotelController extends HttpServlet {
                     request.setAttribute("LIST_MOTEL_HOT", listMotelHot);
                 }
                 url = SUCCESS;
+            } else {
+                request.setAttribute("ERROR", "Không có danh sách motel!");
             }
             UserDTO loginUser = (UserDTO) session.getAttribute("LOGIN_USER");
 
@@ -65,8 +67,14 @@ public class ShowMotelController extends HttpServlet {
                     if (listNoti != null) {
                         request.setAttribute("LIST_NOTI", listNoti);
                         url = SUCCESS;
+                    } else {
+                        request.setAttribute("ERROR", "Không có thông báo!");
                     }
+                } else {
+                    request.setAttribute("ERROR", "Không có thông báo!");
                 }
+            } else {
+                request.setAttribute("ERROR", "Không có người dùng!");
             }
             /* get user agent  */
             String flag = (String) session.getAttribute("vtk");

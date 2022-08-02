@@ -132,7 +132,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -174,13 +174,11 @@
                         </div>
                     </div>
                     
-                    <div class="row">
+                    <div class="row" id="exportContent">
                         <div class="col-12 customer-detail">
                             <div class="col-lg-7 customer-booking">
                                 <div class="card profile mb-4">
-                                    <div class="card-header">
-                                        <h4>Thông tin đặt phòng</h4>
-                                    </div>
+                                    
                                     <%
                                         RoomDetailDTO roomDetail = (RoomDetailDTO) request.getAttribute("ROOM_DETAIL");
                                         if (roomDetail == null) {
@@ -188,6 +186,11 @@
                                         }
                          
                                     %>
+                                    <div class="card-header">
+                                        <h4>Thông tin đặt phòng </h4>
+                                        <button class="btn btn-primary" onclick="Export2Doc('exportContent', 'Phòng <%= roomDetail.getRoomID()%>');">Xuất</button>
+                                                   
+                                    </div>
                                     <div class="card-body">
                                         <div class="row mb-sm-2">
                                            <%
@@ -590,5 +593,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0-beta.5/lightgallery.es5.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="assets/js/owner-script.js"></script>
+        <script>
+                    function Export2Doc(element, filename = '') {
+                        var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+                        var postHtml = "</body></html>";
+                        var html = preHtml + document.getElementById(element).innerHTML + postHtml;
+                        var blob = new Blob(['\ufeff', html], {
+                            type: 'application/msword'
+                        });
+                        var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html)
+                        filename = filename ? filename + '.doc' : 'document.doc';
+                        var downloadLink = document.createElement("a");
+                        document.body.appendChild(downloadLink);
+                        if (navigator.msSaveOrOpenBlob) {
+                            navigator.msSaveOrOpenBlob(blob, filename);
+                        } else {
+                            downloadLink.href = url;
+                            downloadLink.download = filename;
+                            downloadLink.click();
+                        }
+                        document.body.removeChild(downloadLink);
+                    }
+        </script>
     </body>
 </html>

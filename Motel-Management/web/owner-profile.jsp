@@ -128,7 +128,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -279,7 +279,7 @@
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Mật khẩu mới:</label>
                                         <input class="col-md-3 col-sm-5 form-control" type="password" name="newpassword" id="password" required>
-                                        <span class="error-message col-sm-3 mt-2"><%= error %></span>
+                                        <span class="error-message col-sm-3 mt-2"><%= userError.getNewPasswordError()%></span>
                                     </div>
                                     <div class="row form-group">
                                         <label class="offset-md-3 col-md-2 col-sm-3 col-form-label">Xác nhận:</label>

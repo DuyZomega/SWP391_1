@@ -123,7 +123,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="MainController?action=ShowProfile&userID=<%=loginUser.getUserId()%>&role=<%=loginUser.getRole()%>"><i class='bx bx-user'></i>Tài khoản</a>
-                                        <a class="dropdown-item" href="owner-notification.html"><i class='bx bx-bell'></i>Thông báo</a>
+                                        <a class="dropdown-item" href="MainController?action=notify"><i class='bx bx-bell'></i>Thông báo</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="MainController?action=Logout"><i class='bx bx-log-out-circle'></i>Thoát</a>
                                     </div>
@@ -143,11 +143,6 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="d-flex align-content-center float-right">
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="day">Day</button>
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="week">Week</button>
-                                            <button class="btn btn-xs btn-orange" onclick="timeFrame(this)" value="month">Month</button>
-                                        </div>
                                         <div id="numOfHome">
                                             <%
                                                 List<MotelDTO> listMotel = (ArrayList<MotelDTO>) request.getAttribute("LIST_MOTEL");

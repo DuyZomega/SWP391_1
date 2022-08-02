@@ -21,13 +21,13 @@ import sample.users.UserDTO;
 @WebServlet(name = "AdminListAccount", urlPatterns = {"/AdminListAccount"})
 public class AdminListAccount extends HttpServlet {
 
-      private static final String ERROR = "error.jsp";
+      private static final String ERROR = "admin-account.jsp";
     private static final String SUCCESS = "admin-account.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url =  ERROR;
+       String url =  SUCCESS;
         try {
             UserDAO user = new UserDAO();
             List<UserDTO> listAcc = user.getListAcc();

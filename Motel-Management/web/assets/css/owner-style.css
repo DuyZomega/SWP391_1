@@ -778,7 +778,6 @@ html body {
 }
 
 
-
 /* room list */
 .navs .nav-item .nav-link {
     color: #34495e;
@@ -1464,26 +1463,44 @@ line-height: 35px;
 .notif-details tbody tr:hover {
     cursor: pointer;
     background-color: #e7e7e7;
-    zoom: 102%;
+    zoom: 101%;
 }
-.notif-details thead tr th:nth-child(3) {
-    
+
+.notif-details thead tr th:nth-child(2) {
     width: 55%;
 }
 
-.notif-details thead tr th:last-child {
+.notif-details thead tr th:last-child,
+.notif-details tbody tr td:last-child  {
     display: flex;
     justify-content: end;
 }
 
-.notif-details tbody tr td {
-    vertical-align: middle !important;
-}
-
-.notif-details tbody tr td:nth-child(3) form{
+.notif-details tbody tr td:nth-child(2) form{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.notif-details tbody tr td .bx-loader-alt {
+    animation: load 2s infinite ease;
+}
+
+@keyframes load {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.notif-details tbody tr td .bx-x-circle {
+    color: red;
+}
+
+.notif-details tbody tr td .bx-check-circle{
+    color: green;
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
