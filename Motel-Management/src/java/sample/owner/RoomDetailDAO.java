@@ -25,7 +25,39 @@ public class RoomDetailDAO {
                                                    "WHERE b.BookingID = bd.BookingID AND bd.RoomID = r.RoomID AND r.RoomTypeID = rt.RoomTypeID AND b.BookingID = ?";
     private static final String GET_ROOM_DETAIL_NULL = "SELECT  r.Name as RoomName,r.RoomTypeID,r.Status, r.RoomID, rt.TypeName,m.MotelID,m.Address, dt.Name as district, c.Name as city FROM tblCity as c, tblDistrict as dt, tblMotel as m, tblRoomType as rt, tblRoom as r\n" +
                                                        "WHERE c.CityID = dt.CityID AND dt.DistrictID = m.DistrictID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID= ? ";
-     private static final String GET_ROOMTYPE = "SELECT rt.RoomTypeID, rt.TypeName FROM tblMotel as m, tblRoomType as rt WHERE m.MotelID = rt.MotelID AND m.MotelID = ?";
+    private static final String GET_ROOMTYPE = "SELECT rt.RoomTypeID, rt.TypeName FROM tblMotel as m, tblRoomType as rt WHERE m.MotelID = rt.MotelID AND m.MotelID = ?";
+    private static final String GET_OLD_TOTAL_BOOKING =  "SELECT tblBooking.Total FROM tblBooking WHERE tblBooking.BookingID = ?";
+    
+     public int getOldBookingPrice(String bookingID) throws SQLException {
+        int total = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_OLD_TOTAL_BOOKING);
+                ptm.setString(1, bookingID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    total = rs.getInt("Total");  
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return total;
+    }
      
      public List<RoomTypeDTO> getRoomType(String motelID) throws SQLException {
         List<RoomTypeDTO> listRoomType = new ArrayList();

@@ -16,7 +16,8 @@ import sample.utils.DBUtils;
 public class SubmitDAO {
     private static final String submitPayment ="UPDATE tblPayment SET PaymentTime = CURRENT_TIMESTAMP , Desct = ?, PaymentTypeName = ? WHERE PaymentID = ?";
     private static final String submitBooking = "UPDATE tblBooking SET Status = 1 WHERE BookingID = ?";
-    private static final String submitRoom = "UPDATE tblRoom SET Status = 0 WHERE RoomID = ?";
+    private static final String submitRoom = "UPDATE tblRoom SET Status = 0 FROM tblBooking as b, tblBookingDetail as bd, tblRoom as r \n" +
+                                             "WHERE b.BookingID = ? AND b.BookingID = bd.BookingID AND bd.RoomID = r.RoomID";
     
     public boolean submitRoom(String roomID) throws SQLException {
         boolean check = false;

@@ -35,7 +35,7 @@ public class SubmitPaymentController extends HttpServlet {
             if (checkSubmit) {
                 checkSubmit = dao.submitBooking(bookingId);
                 if (checkSubmit) {
-                    checkSubmit = dao.submitRoom(roomID);
+                    checkSubmit = dao.submitRoom(bookingId);
                     if (checkSubmit) {
                         url = SUCCESS;
                         request.setAttribute("MESSAGE", "Payment Success!");

@@ -245,7 +245,7 @@
                     <div class="card border-0 d-flex">
                         <div class="card-header">
                             <h4>Thông báo mới</h4>
-                            <a href="owner-notification.jsp" class="btn-white">Xem tất cả</a>
+                            <a href="MainController?action=notify" class="btn-white">Xem tất cả</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover">
@@ -265,12 +265,15 @@
                                                 for (NewsDTO news : listNews) {
                                                     String status = "";
                                                     String clas = "";
-                                                    if (news.getStatus() == null) {
+                                                    if (news.getStatus().equals("2")) {
                                                         clas = "destroy";
-                                                        status = "Hủy Phòng";
+                                                        status = "Đã Thanh Toán Trước";
                                                     } else if (news.getStatus().equals("1")) {
                                                         clas = "outcome";
                                                         status = "Đã Thanh Toán";
+                                                    }else if (news.getStatus().equals("3")) {
+                                                        clas = "destroy";
+                                                        status = "Hủy Phòng";
                                                     } else {
                                                         clas = "destroy";
                                                         status = "Đang Thuê";

@@ -246,7 +246,7 @@ public class NotificationDAO {
     private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Desct = ? , Status = ? WHERE AnnouncementID = ?";
     private static final String LIST_OWNER_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.FullName\n" +
                                                     "FROM tblNotification,tblUser,tblBooking\n" +
-                                                    "WHERE tblUser.UserID = tblBooking.UserID AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ?";
+                                                    "WHERE tblUser.UserID = tblBooking.UserID AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ? ORDER BY tblNotification.Date DESC ";
     public boolean insertNotification(NotificationDTO notifi) throws SQLException {
         boolean check = false;
         Connection conn = null;

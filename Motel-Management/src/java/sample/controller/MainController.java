@@ -95,6 +95,8 @@ public class MainController extends HttpServlet {
     private static final String SUBMIT_PAYMENT_CONTROLLER = "SubmitPaymentController";
     private static final String SHOW_CHART = "showChart";
     private static final String SHOW_CHART_CONTROLLER = "OwnerShowChartStatical";
+    private static final String ADD_SERVICE_BOOKING = "addServiceBooking";
+    private static final String ADD_SERVICE_BOOKING_CONTROLLER = "OwnerAddServiceBookingController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -175,6 +177,8 @@ public class MainController extends HttpServlet {
                 url = SUBMIT_PAYMENT_CONTROLLER;
             } else if (SHOW_CHART.equals(action)) {
                 url = SHOW_CHART_CONTROLLER;
+            } else if (ADD_SERVICE_BOOKING.equals(action)) {
+                url = ADD_SERVICE_BOOKING_CONTROLLER;
             }
 
         } catch (Exception e) {

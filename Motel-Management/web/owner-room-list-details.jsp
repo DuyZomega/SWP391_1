@@ -173,7 +173,7 @@
                             </ol>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-12 customer-detail">
                             <div class="col-lg-7 customer-booking">
@@ -186,44 +186,43 @@
                                         if (roomDetail == null) {
                                             roomDetail = new RoomDetailDTO();
                                         }
-                         
+
                                     %>
                                     <div class="card-body">
                                         <div class="row mb-sm-2">
-                                           <%
-                                            if (roomDetail.getStatus() != 1) {
+                                            <%                                               if (roomDetail.getStatus() != 1) {
                                             %>                                          
                                             <div class="col-sm-4 text-sm-right">
                                                 <span>Trạng thái:</span>
                                             </div>
                                             <div class="col-sm-8">
                                                 <%
-                                                String status = "Trống";
-                                                if (roomDetail.getStatus() == 1) {
-                                                    status = "Đang Thuê";
+                                                    String status = "Trống";
+                                                    if (roomDetail.getStatus() == 1) {
+                                                        status = "Đang Thuê";
                                                 %>
-                                                    <span class="destroy" style="float: left;"><%= status%></span>
-                                                <%   
+                                                <span class="destroy" style="float: left;"><%= status%></span>
+                                                <%
                                                 } else {%>
-                                                    <span class="outcome" style="float: left;"><%= status%></span>
+                                                <span class="outcome" style="float: left;"><%= status%></span>
                                                 <%
                                                     }
                                                 %>
                                             </div>
-                                        <% 
-                                            }
-                                        %>
+                                            <%
+                                                }
+                                            %>
                                         </div>
                                         <div class="row mb-sm-2">
                                             <div class="col-sm-4 text-sm-right">
                                                 <span>Mã đặt phòng:</span>
                                             </div>
                                             <div class="col-sm-8 text-sm-left">
-                                                <% if (roomDetail.getBookingID()=="") {
-                                                        %>
+                                                <% if (roomDetail.getBookingID() == "") {
+                                                %>
                                                 <span>----------</span>
                                                 <%
-                                                    } else {
+                                                } else {
                                                 %>
                                                 <span><%= roomDetail.getBookingID()%></span>
                                                 <%
@@ -275,9 +274,9 @@
                                     <div class="card-header">
                                         <h4>Thông tin người thuê</h4>   
                                         <div class="edit-info">
-                                            <% if(roomDetail.getStatus() == 0){ %>
+                                            <% if (roomDetail.getStatus() == 0) { %>
                                             <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#addCustomer"></i>
-                                            <% } %>
+                                            <% }%>
                                         </div>
                                     </div>
                                     <div class="card-body">
@@ -318,7 +317,7 @@
                                                 <span>Ngày thuê:</span>
                                             </div>
                                             <div class="col-sm-7 text-sm-left">
-                                                <span><%= roomDetail.getBookingDate() %></span>
+                                                <span><%= roomDetail.getBookingDate()%></span>
                                             </div>
                                         </div>
                                         <div class="row mb-sm-2">
@@ -337,6 +336,9 @@
                                     <div class="card-body">
                                         <div class="d-flex justify-content-center pb-3">
                                             <h5 >Dịch vụ sử dụng</h5>
+                                            <% if (roomDetail.getBookingID() != "") { %>
+                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#addServiceBooking"></i>
+                                            <% } %>
                                         </div>
                                         <div class="row">
                                             <div class="table-responsive">
@@ -422,9 +424,9 @@
                                                     <button class="btn btn-print">In hóa đơn</button>
                                                     <form action="MainController" method="post">
                                                         <input type="hidden" name="bookingID" value="<%= roomDetail.getBookingID()%>" />
-                                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID() %>" />
-                                                        <input type="hidden" name="status" value="<%= 0 %>" />
-                                                        <% if(roomDetail.getStatus() == 1 || roomDetail.getStatus() == 3 ){ %>
+                                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" />
+                                                        <input type="hidden" name="status" value="<%= 0%>" />
+                                                        <% if (roomDetail.getStatus() == 1 || roomDetail.getStatus() == 3) { %>
                                                         <button type="submit" name="action" value="submitPayment" class="btn btn-success">Thanh toán</button>
                                                         <%} %>
                                                     </form>
@@ -439,7 +441,59 @@
                 </div>
             </div>
         </div>
-                                                        
+
+        <!-- add service -->                                                
+        <div id="addServiceBooking" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Thêm Dịch Vụ</h4>
+                    </div>
+                    <form action="MainController" method="post" class="form-group">
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-md-8">
+                                    <div class="form-group row">
+                                        <label for="address" class="col-sm-4 col-form-label">Tên Dịch Vụ</label>
+                                        <div class="col-sm-8">
+                                            <select name="serviceID" class=" form-control">
+                                                <%
+                                                    List<ServiceDTO> listServiceBooking = (ArrayList<ServiceDTO>) request.getAttribute("LIST_SERVICE_BOOKING");
+                                                    if (listServiceBooking != null) {
+                                                        if (listServiceBooking.size() > 0) {
+                                                            for (ServiceDTO serviceBooking : listServiceBooking) {
+                                                %>
+                                                <option value="<%= serviceBooking.getServiceId() %>"> <%= serviceBooking.getName() %> </option>
+                                                <%
+                                                            }
+                                                        }
+                                                    }
+                                                %> 
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="numberService" class="col-sm-4 col-form-label">Số Lượng</label>
+                                        <div class="col-sm-8">
+                                            <input name="numberService" type="number" class="form-control" placeHolder="số lượng.." required>
+                                        </div>
+                                        <input type="hidden" name="bookingID" value="<%= roomDetail.getBookingID() %>"/>
+                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" >
+                                        <input type="hidden" name="status" value="<%= 1%>" >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button class="btn btn-success" type="submit" name="action" value="addServiceBooking">Xác nhận</button>
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- add customer -->                                                
         <div id="addCustomer" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
                 <div class="modal-content">
@@ -447,61 +501,66 @@
                         <h4 class="modal-title">Thêm Khách</h4>
                     </div>
                     <form action="MainController" method="post" class="form-group">
-                    <div class="modal-body">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-md-8">
-                                <div class="form-group row">
-                                    <label for="username" class="col-sm-4 col-form-label">Họ tên người thuê</label>
-                                    <div class="col-sm-8">
-                                        <input name="userName" type="text" class="form-control" placeHolder="Nhập tên khách hàng" required>
-                                        <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" >
-                                        <input type="hidden" name="status" value="<%= 1 %>" >
+                        <div class="modal-body">
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-md-8">
+                                    <div class="form-group row">
+                                        <label for="username" class="col-sm-4 col-form-label">Họ tên người thuê</label>
+                                        <div class="col-sm-8">
+                                            <input name="userName" type="text" class="form-control" placeHolder="Nhập tên khách hàng" required>
+                                            <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" >
+                                            <input type="hidden" name="status" value="<%= 1%>" >
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="phonenumber" class="col-sm-4 col-form-label">Số điện thoại</label>
-                                    <div class="col-sm-8">
-                                        <input name="phone" type="tel" class="form-control" placeHolder="số điện thoại" required>
+                                    <div class="form-group row">
+                                        <label for="phonenumber" class="col-sm-4 col-form-label">Số điện thoại</label>
+                                        <div class="col-sm-8">
+                                            <input name="phone" type="tel" class="form-control" placeHolder="số điện thoại" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="citizennumber" class="col-sm-4 col-form-label">CCCD/CMND</label>
-                                    <div class="col-sm-8">
-                                        <input name="citizenNumber" type="text" class="form-control" required>
+                                    <div class="form-group row">
+                                        <label for="citizennumber" class="col-sm-4 col-form-label">CCCD/CMND</label>
+                                        <div class="col-sm-8">
+                                            <input name="citizenNumber" type="text" class="form-control" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
-                                    <div class="col-sm-8">
-                                        <input name="address" type="text" class="form-control" required>
+                                    <div class="form-group row">
+                                        <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
+                                        <div class="col-sm-8">
+                                            <input name="address" type="text" class="form-control" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="address" class="col-sm-4 col-form-label">Thời gian thuê phòng</label>
-                                    <div class="col-sm-8">
-                                        <select name="Time" class=" form-control">
-                                            <option value="1"> 1h </option>
-                                            <option value="2"> 2h </option>
-                                            <option value="3"> 3h </option>
-                                            <option value="4"> 4h </option>
-                                            <option value="5"> 5h </option>
-                                            <option value="6"> 6h </option>
-                                            <option value="7"> 7h </option>
-                                        </select>
+                                    <div class="form-group row">
+                                        <label for="address" class="col-sm-4 col-form-label">Thời gian thuê phòng</label>
+                                        <div class="col-sm-8">
+                                            <select name="Time" class=" form-control">
+                                                <option value="1"> 1h </option>
+                                                <option value="2"> 2h </option>
+                                                <option value="3"> 3h </option>
+                                                <option value="4"> 4h </option>
+                                                <option value="5"> 5h </option>
+                                                <option value="6"> 6h </option>
+                                                <option value="7"> 7h </option>
+                                                <option value="4"> 8h </option>
+                                                <option value="5"> 9h </option>
+                                                <option value="6"> 10h </option>
+                                                <option value="7"> 12h </option>
+                                            </select>
+                                        </div>
                                     </div>
+
                                 </div>
-                                
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button class="btn btn-success" type="submit" name="action" value="addCustomer">Xác nhận</button>
-                        <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
-                    </div>
-                </form>
+                        <div class="modal-footer justify-content-center">
+                            <button class="btn btn-success" type="submit" name="action" value="addCustomer">Xác nhận</button>
+                            <button class="btn btn-danger" type="button" data-dismiss="modal">Hủy</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+
         <!-- edit Room -->
         <div id="editRoom" class="modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="content">
@@ -564,20 +623,20 @@
         <div class="alert alert-success alert-dismissible fade show" id="notif">
             <i class='bx bx-message-alt-check p-1'></i>
             <strong class="mr-1">Success!</strong>
-            <%= MESSAGE %> 
+            <%= MESSAGE%> 
             <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
                 <span><i class='bx bx-x'></i></span>
             </button>
         </div> 
         <%} %>
-        
+
         <% String ERROR = (String) request.getAttribute("ERROR");
             if (ERROR != null) {
         %>
         <div class="alert alert-danger alert-dismissible fade show" id="notif">
             <i class='bx bx-message-alt-x p-1'></i>
             <strong class="mr-1">Error!</strong>
-            <%= ERROR %> 
+            <%= ERROR%> 
             <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
                 <span><i class='bx bx-x'></i></span>
             </button>

@@ -42,6 +42,10 @@ public class OwnerShowRoomDetail extends HttpServlet {
         try {
             String roomID = request.getParameter("roomID");
             int status = Integer.parseInt(request.getParameter("status"));
+            
+            List<ServiceDTO> serviceListBooking = Sdao.getServiceByRoomID(roomID);
+            request.setAttribute("LIST_SERVICE_BOOKING", serviceListBooking);
+            
             if(status == 1){
                 RoomDetailDTO roomDetail = Rdao.getRoomDetail(roomID);
                 if(roomDetail != null){

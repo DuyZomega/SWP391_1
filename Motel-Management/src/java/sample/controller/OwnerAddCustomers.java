@@ -54,11 +54,11 @@ public class OwnerAddCustomers extends HttpServlet {
             boolean check = true;
 
             if (cusName.length() > 20 || cusName.length() < 5) {
-                userError.setFullNameError("FullName Contains 5 - 20 characters!");
+                userError.setFullNameError("FullName Contains 5 - 30 characters!");
                 check = false;
             }
-            if (cusAddress.length() > 50 || cusAddress.length() < 5) {
-                userError.setAddressError("Address Contains 5 - 50 characters!");
+            if (cusAddress.length()<5 || cusAddress.length() > 100) {
+                userError.setAddressError("Address Contains 5 - 100 characters!");
                 check = false;
             }
             if (cusPhone.length() < 9) {
