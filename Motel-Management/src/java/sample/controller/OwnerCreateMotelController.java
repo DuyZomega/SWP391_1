@@ -82,7 +82,7 @@ public class OwnerCreateMotelController extends HttpServlet {
                 MotelDTO motel = new MotelDTO(motelID, motelName, image, Phone, desc, address, DistrictID, "", 0, ownerID, 1);
                 boolean checkCreate = dao.createMotel(motel);
                 if (checkCreate) {
-                    request.setAttribute("MESSAGE", "Tạo Nhà Trọ Thất Bại! ");
+                    request.setAttribute("MESSAGE", "Tạo Nhà Trọ Thành Công! ");
                     part.write(pathImage + "/" + filename);
                     url = SUCCESS;
                 } else {

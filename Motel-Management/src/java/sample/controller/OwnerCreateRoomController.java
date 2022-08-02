@@ -64,8 +64,9 @@ public class OwnerCreateRoomController extends HttpServlet {
                     Part part = request.getPart("photo");
                     String realPath = request.getServletContext().getRealPath("/images");
                     String filename = Path.of(part.getSubmittedFileName()).getFileName().toString();
-                    String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
+                 //   String pathImage = "C:\\Users\\Bao\\OneDrive\\Documents\\GitHub\\SWP391_1\\Motel-Management\\web\\images";
 
+            String pathImage ="D:\\SWP-Final\\SWP391_1\\Motel-Management\\web\\images";
                     if (!Files.exists(Path.of(realPath))) {
                         Files.createDirectories(Path.of(realPath));
                     }

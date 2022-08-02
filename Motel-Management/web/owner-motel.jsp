@@ -440,7 +440,7 @@
                                     </div>
                                     <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>   
-                                        <textarea type="text" id="motelDesct" name="desct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
+                                        <textarea type="text" id="motelDesct" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
                                         
                                     </div>
                                     <div class="row form-group">
