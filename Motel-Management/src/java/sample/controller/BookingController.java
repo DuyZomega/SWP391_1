@@ -132,8 +132,8 @@ public class BookingController extends HttpServlet {
 
             //===============
             NotificationDAO dao = new NotificationDAO();
-            String title = "Bạn đã đặt phòng";
-            String desc = "Your order have ID:" + bookingID;
+            String title = "Đặt phòng thành công";
+            String desc = "Đơn hàng đặt thành công có mã :" + bookingID;
             String announcementID = bookingID;
             Calendar calendar = Calendar.getInstance();
             java.sql.Date startDate = new java.sql.Date(calendar.getTime().getTime());
@@ -169,22 +169,22 @@ public class BookingController extends HttpServlet {
             String motelInfo = "";
             List<MotelDTO> lm = motel.getDetailInfoBook(bookingID);
             for (MotelDTO m : lm) {
-                motelInfo += "<h4>" + m.getName() + "</h4><br> Address: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "<br> TOTAL :" + m.getMotelprice() + "VND. <br>";
+                motelInfo += "<h4>" + m.getName() + "</h4> Địa chỉ: " + m.getAddress() + ", " + m.getDistrict() + ", " + m.getCity() + "<br> TOTAL :" + m.getMotelprice() + "VND. <br>";
             }
 
             List<MotelDTO> listBooking = motel.getDetailBooking(bookingID);
             for (MotelDTO m : listBooking) {
-                orderTable += "<br>- Roomtype: " + m.getTypename() + " - Room number: " + m.getNumberRoom() + "(Price: " + m.getMotelprice() + " vnd/room) - Hour:" + m.getNumberRoomType() + " (h)<br>";
+                orderTable += "<br>- Loại: " + m.getTypename() + " - Số lượng: " + m.getNumberRoom() + "(Giá: " + m.getMotelprice() + " vnd/phòng) - Giờ:" + m.getNumberRoomType() + " (h)<br>";
             }
             byte[] byteText = orderTable.getBytes(Charset.forName("UTF-8"));
             UserDTO userProfile = user.getUserProfile(userId);
             String gmailUser = userProfile.getGmail();
             String value = new String(byteText, "UTF-8");
 
-            String mes = "Your order have ID:" + bookingID + "<br> "
+            String mes = "Mã đơn đặt phòng:" + bookingID + "<br> "
                     + motelInfo
                     + value
-                    + "<br>For any questions, please contact the ROH Motel hotline: 0396421901";
+                    + "<br>Mọi thắc mắc vui lòng liên hệ ROH Motel: 0396421901";
             SendEmail.sendEmail(gmailUser, mes);
         } catch (Exception e) {
             log("Error at showlistcontroller: " + e.toString());
