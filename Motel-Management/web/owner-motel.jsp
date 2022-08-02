@@ -220,8 +220,6 @@
                                             </div>
                                         </div>
                                         <div class="mb-4 decp">
-                                            <a  id="show-more" class="show-less" href="#show-less">Show less</a>
-                                            <a  id="show-less" class="show-more" href="#show-more">Show more</a>
                                             <%= motel.getDesct()%>
                                         </div>
                                         <div class="d-flex flex-wrap align-items-center">
@@ -440,8 +438,8 @@
                                     </div>
                                     <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>   
-                                        <textarea type="text" id="motelDesct" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
-                                        
+                                        <textarea type="text" id="motelDesct<%= motel.getMotelID() %>" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
+
                                     </div>
                                     <div class="row form-group">
                                         <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>
@@ -493,18 +491,27 @@
         <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
         <script src="ckeditor/ckeditor.js"></script>
         <script src="ckfinder/ckfinder.js"></script>
-        
+        <%
+            if (listMotel != null) {
+                if (listMotel.size() > 0) {
+                    for (MotelDTO motel : listMotel) {
+
+        %>
         <script>
 
-                                            var editor = CKEDITOR.replace('motelDesct');
+                                            var editor = CKEDITOR.replace('motelDesct<%= motel.getMotelID() %>');
                                             CKFinder.setupCKEditor(editor, 'ckfinder/');
-                                            data["motelDesct"] = editor.getData();
+                                            data["motelDesct<%= motel.getMotelID() %>"] = editor.getData();
         </script>
+        <%            }
+                }
+            }
+        %> 
         <script>
 
-                                            var editor = CKEDITOR.replace('roomTypeDesct');
-                                            CKFinder.setupCKEditor(editor, 'ckfinder/');
-                                            data["roomTypeDesct"] = editor.getData();
+            var editor = CKEDITOR.replace('roomTypeDesct');
+            CKFinder.setupCKEditor(editor, 'ckfinder/');
+            data["roomTypeDesct"] = editor.getData();
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
