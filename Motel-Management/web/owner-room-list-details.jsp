@@ -178,6 +178,9 @@
                         <div class="col-12 customer-detail">
                             <div class="col-lg-7 customer-booking">
                                 <div class="card profile mb-4">
+                                    <div class="card-header">
+                                        <h4>Thông tin đặt phòng</h4>
+                                         </div>
                                     <%
                                         RoomDetailDTO roomDetail = (RoomDetailDTO) request.getAttribute("ROOM_DETAIL");
                                         if (roomDetail == null) {
@@ -185,10 +188,6 @@
                                         }
 
                                     %>
-                                    <div class="card-header">
-                                        <h4>Thông tin đặt phòng</h4>
-                                        <button class="btn btn-primary" onclick="Export2Doc('exportContent', 'Phòng <%= roomDetail.getRoomID()%>');">Xuất</button>
-                                    </div>
                                     
                                     <div class="card-body">
                                         <div class="row mb-sm-2">
