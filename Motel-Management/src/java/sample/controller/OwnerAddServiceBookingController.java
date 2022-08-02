@@ -42,11 +42,12 @@ public class OwnerAddServiceBookingController extends HttpServlet {
             if(service != null){
                 int newQuantity = service.getQuantity() + serviceNumber ;
                 int newTotalServiceDetail = newQuantity * service.getPrice();
-                int totalPriceRoom = rDAO.getBookingPrice(bookingID);
-                int newBookingTotal = newTotalServiceDetail + totalPriceRoom;
+                int totalPriceRoom = rDAO.getBookingPrice(bookingID);                
                 
                 boolean checkUpdate = sDAO.updateBookingServiceDetail(newQuantity, newTotalServiceDetail, bookingID, serviceID);
                 if(checkUpdate){
+                    int totalServiceBooking = rDAO.getBookingServicePrice(bookingID);
+                    int newBookingTotal = totalServiceBooking + totalPriceRoom;
                     checkUpdate = sDAO.updateBookingTotal(newBookingTotal, bookingID);
                     if(checkUpdate){
                         url = SUCCESS;

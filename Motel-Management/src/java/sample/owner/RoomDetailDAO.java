@@ -27,6 +27,41 @@ public class RoomDetailDAO {
                                                        "WHERE c.CityID = dt.CityID AND dt.DistrictID = m.DistrictID AND m.MotelID = rt.MotelID AND rt.RoomTypeID = r.RoomTypeID AND r.RoomID= ? ";
     private static final String GET_ROOMTYPE = "SELECT rt.RoomTypeID, rt.TypeName FROM tblMotel as m, tblRoomType as rt WHERE m.MotelID = rt.MotelID AND m.MotelID = ?";
     private static final String GET_OLD_TOTAL_BOOKING =  "SELECT tblBooking.Total FROM tblBooking WHERE tblBooking.BookingID = ?";
+    private static final String GET_SERVICE_BOOKING_TOTAl = "SELECT s.Price, sd.Quantity FROM tblBooking as b, tblBookingServiceDetail as sd, tblService as s \n" +
+                                                            "WHERE b.BookingID = sd.BookingID AND sd.ServiceID = s.ServiceID AND b.BookingID = ?";
+    
+    public int getBookingServicePrice(String bookingID) throws SQLException {
+        int total = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_SERVICE_BOOKING_TOTAl);
+                ptm.setString(1, bookingID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int price = rs.getInt("Price");
+                    int quantity = rs.getInt("Quantity");
+                    total += price * quantity;    
+                }               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return total;
+    }
     
      public int getOldBookingPrice(String bookingID) throws SQLException {
         int total = 0;
