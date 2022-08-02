@@ -349,6 +349,7 @@
                                                         <tr>
                                                             <th>Mã Dịch vụ</th>
                                                             <th>Tên Dịch vụ</th>
+                                                            <th>Số lượng</th>
                                                             <th>Số tiền</th>
                                                         </tr>
                                                     </thead>
@@ -365,6 +366,7 @@
                                                         <tr>
                                                             <td><%= service.getServiceId()%></td>
                                                             <td><%= service.getName()%></td>
+                                                            <td><%= service.getQuantity()%></td>
                                                             <td><span class="price-format" data-price="<%= price%>"></span></td>
                                                         </tr>
                                                         <%
