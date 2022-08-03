@@ -37,9 +37,8 @@ public class NotificationDAO {
             if (conn != null) {
                 ptm = conn.prepareStatement(UPDATE_NOTIFICATION);
                 ptm.setString(1, notifi.getTitle());
-                ptm.setString(2, notifi.getDesct());
-                ptm.setInt(3, notifi.getStatus());
-                ptm.setString(4, notifi.getAnnouncementID());
+                ptm.setInt(2, notifi.getStatus());
+                ptm.setString(3, notifi.getAnnouncementID());
                 check = ptm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -243,7 +242,7 @@ public class NotificationDAO {
 
     private static final String UPDATE_NOTIFICATION1 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblUser.UserID = ? AND tblBooking.UserID = tblUser.UserID";
     private static final String UPDATE_NOTIFICATION2 = "UPDATE tblNotification SET Status = ? FROM tblBooking,tblNotification,tblUser WHERE tblBooking.UserID = tblUser.UserID AND AnnouncementID = ?";
-    private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Desct = ? , Status = ? WHERE AnnouncementID = ?";
+    private static final String UPDATE_NOTIFICATION = "UPDATE tblNotification SET Title = ? , Status = ? WHERE AnnouncementID = ?";
     private static final String LIST_OWNER_NOTIFICATION = "SELECT AnnouncementID, Title, tblNotification.Desct, tblNotification.Date as Date ,tblNotification.Status as Status, tblUser.FullName\n" +
                                                     "FROM tblNotification,tblUser,tblBooking\n" +
                                                     "WHERE tblUser.UserID = tblBooking.UserID AND tblBooking.BookingID = tblNotification.AnnouncementID AND tblNotification.OwnerID = ? ORDER BY tblNotification.Date DESC ";

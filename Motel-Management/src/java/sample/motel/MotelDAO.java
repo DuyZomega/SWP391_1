@@ -737,7 +737,7 @@ public class MotelDAO {
         }
         return check;
     }
-    private static final String SHOWLIST_MOTEL_HOT = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.Ratings >=4.4";
+    private static final String SHOWLIST_MOTEL_HOT = "SELECT tblMotel.MotelID,tblMotel.Name, tblMotel.image, tblMotel.phone, tblMotel.desct, tblMotel.address, tblDistrict.Name AS DistrictName,tblCity.Name AS CityName,Ratings,tblUser.FullName AS FullName,tblMotel.Status ,tblRoomType.Price , tblRoomType.TypeName FROM tblMotel,tblDistrict,tblCity, tblUser,tblRoomType WHERE tblMotel.MotelID = tblRoomType.MotelID AND tblMotel.DistrictID = tblDistrict.DistrictID AND tblDistrict.CityID = tblCity.CityID AND tblMotel.OwnerID= tblUser.UserID AND tblMotel.Status = 1 AND tblMotel.Ratings >=4";
 
     public List<MotelDTO> getListMotelHot() throws SQLException {
         List<MotelDTO> listMotel = new ArrayList<>();

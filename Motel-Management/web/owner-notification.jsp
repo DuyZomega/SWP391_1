@@ -187,7 +187,7 @@
                                                                     <td><%= notifi.getFullname()%></td>
                                                                     <td>                      
                                                                         <form action="#">
-                                                                            <span><%= notifi.getTitle()%></span>
+                                                                            <span><%= notifi.getDesct()%></span>
                                                                             <%
                                                                                 if (notifi.getStatus() == 1) {
                                                                             %>
