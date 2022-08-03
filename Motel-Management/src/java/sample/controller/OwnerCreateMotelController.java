@@ -61,6 +61,11 @@ public class OwnerCreateMotelController extends HttpServlet {
                 motelError.setNameError("length of motel must be in 2-30");
                 checkValidation = false;
             }
+            
+            if (address.length() < 1 || address.length() > 150) {
+                motelError.setAddressError("length of address must be in 2-150");
+                checkValidation = false;
+            }
 
             if (Phone.length() < 7 || Phone.length() > 15) {
                 motelError.setPhoneError("length of phone number must be in 7-15");

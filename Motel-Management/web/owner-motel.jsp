@@ -436,10 +436,17 @@
                                             %>  
                                         </select>                       
                                     </div>
-                                    <div class="row form-group">
+<!--                                    <div class="row form-group">
                                         <label for="namehome" class="col-md-3 col-form-label text-md-right">Mô Tả:</label>   
                                         <textarea type="text" id="motelDesct<%= motel.getMotelID() %>" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
-
+                                    </div>-->
+                                    <div class="row">
+                                        <div class="col-md-2 text-md-right pb-1"><span>Mô Tả: </span></div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">                                             
+                                                <textarea type="text" id="motelDesct<%= motel.getMotelID() %>" name="motelDesct" class="form-control" rows="3" ><%= motel.getDesct()%></textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row form-group">
                                         <label for="photo" class="col-md-3 col-form-label text-md-right">Thay ảnh(Nếu cần):</label>

@@ -339,9 +339,10 @@
                                         <div class="d-flex justify-content-center pb-3">
                                             <h5 >Dịch vụ sử dụng</h5>
                                             <% if (roomDetail.getBookingID() != "") { %>
-                                            <i class='bx bxs-edit-alt'data-toggle="modal" data-target="#addServiceBooking"></i>
+                                                <i class='bx bxs-edit-alt' style="position: absolute; right: 5%" data-toggle="modal" data-target="#addServiceBooking"></i>
                                             <% } %>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="table-responsive">
                                                 <table class="table table-hover table-borderless">
@@ -378,6 +379,7 @@
                                                     <tfoot style="color: #e74c3c; border-top: 1px solid #ccc;">
                                                         <tr>
                                                             <th>Total</th>
+                                                            <th></th>
                                                             <th></th>
                                                             <th><span class="price-format" data-price="<%= total%>"></span></th>
                                                         </tr>
@@ -479,7 +481,7 @@
                                     <div class="form-group row">
                                         <label for="numberService" class="col-sm-4 col-form-label">Số Lượng</label>
                                         <div class="col-sm-8">
-                                            <input name="numberService" type="number" class="form-control" placeHolder="số lượng.." required>
+                                            <input name="numberService" type="number" min="1" max="100" class="form-control" placeHolder="số lượng.." required>
                                         </div>
                                         <input type="hidden" name="bookingID" value="<%= roomDetail.getBookingID() %>"/>
                                         <input type="hidden" name="roomID" value="<%= roomDetail.getRoomID()%>" >
