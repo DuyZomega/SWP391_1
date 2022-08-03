@@ -24,7 +24,7 @@ This has done within 10 weeks of Software Development Project - SWP391 at FPT Un
     - Github: https://github.com/tuan2502
     - 
 - Ho Tran Khanh Duy
-    - Gmail: 
+    - Gmail: hotrankhanhduy16@gmail.com
     - Github: https://github.com/DuyZomega
 
 
